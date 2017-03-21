@@ -1,0 +1,179 @@
+/* ----------------------------------------------------------------
+	Custom CSS
+
+	Add all your Custom Styled CSS here for New Styles or
+	Overwriting Default Theme Styles for Better Hanlding Updates
+-----------------------------------------------------------------*/
+
+
+.stroke-white{text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff,
+        0 2px 3px rgba(0,0,0,0.3)}
+
+.text-regular{ font-weight: normal;}
+.font-weight{ font-weight: bold;}
+.font-size4x{ font-size: 4em}
+.font-size3x{ font-size: 3em}
+.font-size2x{ font-size: 2em}
+.font-size1{ font-size: 1.4em}
+.font-size2{ font-size: 1.2em}
+.font-size3{ font-size: 1em}
+.font-size4{ font-size: .9em}
+.font-size5{ font-size: .8em}
+.font-size6{ font-size: .7em}
+.font-size7{ font-size: .6em}
+
+.box-shadow1{
+    -webkit-border-radius:2px;
+    -moz-border-radius:2px;
+    border-radius:2px;
+
+    -webkit-box-shadow: 0 0 7px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 0 7px rgba(0,0,0,0.3)    ;
+    box-shadow: 0 0 7px rgba(0,0,0,0.3)    ;
+}
+.box-shadow2{
+    -webkit-border-radius:2px;
+    -moz-border-radius:2px;
+    border-radius:2px;
+
+    -webkit-box-shadow: 0px 2px 7px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 2px 7px rgba(0,0,0,0.3)    ;
+    box-shadow: 0px 2px 7px rgba(0,0,0,0.3)    ;
+}
+
+.category-ul{
+    padding-left: 20px;
+
+}
+.category-ul ul li {
+    line-height: 40px;
+    list-style: none;
+    border-bottom:1px solid #222;
+}
+.category-ul ul li a{
+    display: block;
+}
+.category-ul ul li:hover {
+    background: rgba(255,255,255,0.1);
+}
+.category-ul ul li:hover ul{
+    display: block;
+}
+.category-ul ul li ul{
+
+    display: none;
+    background: rgba(255,255,255,0.1);
+}
+.category-ul ul li ul li{
+    padding-left:20px;
+}
+
+
+
+.p-title{  line-height: 4em; }
+.p-title i{ color: #888; padding-right: 10px; padding-left: 10px;}
+.p-title .p-logo{ width: 100%; display: block; text-align: center}
+.p-title .p-logout{ width: 100%; display: block;  text-align: center}
+.p-shortcuts{ padding-top: 10px; padding-bottom: 10px;}
+.p-shortcuts li{ float: left; list-style: none; border-left: 1px solid #d4d4d4; padding: .5em 1.5em;}
+.p-shortcuts li:hover{background: #333}
+.p-shortcuts li img{ float: right; border : 1px solid #fff;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 0 5px rgba(0,0,0,0.2)    ;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2)    ;
+;
+}
+.p-container{ border-top: 1px solid #fff;}
+.p-sh-img{ width: 45px;float: inherit;}
+.p-sh-ttx{float: inherit;}
+.p-shortcuts li:first-child .p-sh-ttx{ display: block !important;}
+.p-shortcuts li:hover .p-sh-ttx,.p-shortcuts li:focus .p-sh-ttx,.p-shortcuts li:active .p-sh-ttx{ display: block !important;}
+.p-shortcuts a{   display: inherit}
+.p-shortcuts a:hover{ color: #fff;}
+.p-sh-brief{ display: inline-block; float: inherit; font-size: .8em; color: #aaa}
+
+
+.p-nav li{ list-style: none;  border-bottom: 1px solid #ccc}
+.p-nav li a{ border: 0 !important; display: block; margin: 0; color: #222 !important ; }
+.p-nav .button.button-border:hover{ background: none; color:#2e2e2e;}
+.p-nav .button.button-border i{ background: none;  font-size:2em; margin-left: 0; padding-left: 0; color: inherit }
+.button.button-reveal.button-border i{top:0;}
+.button.button-reveal.tright:hover i{left: -11px;}
+
+
+
+.p-right{width: 20%; float: left; background: #fff}
+.p-left{width: 80%; float: left;}
+
+.p-bread{ padding: 15px;  border-top: 1px solid #eee; margin-bottom: 10px;
+    -webkit-box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 3px 3px rgba(0,0,0,0.2)    ;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.2)    ;
+}
+
+.p-notification .inbox{ background:  #ffffed; border: 1px solid #f3efbc}
+.p-notification .information{ background:  #d5ffd9; border: 1px solid #c7f5cb; }
+.p-notification .inbox .col-md-2{ vertical-align: middle; height: 100%; color:#b2b2a5;}
+.p-notification .inbox .col-md-2 i{ background: #b2b2a5; color:#ffffed; width: 40px; height: 40px; line-height: 39px; margin: 3em auto .4em; text-align: center; font-size: 1.4em;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    border-radius:50%;}
+.p-notification .inbox .col-md-10{ background: url('../img/inbox-bg.png') no-repeat left bottom #fffff8; border-right:1px solid #f3efbc; padding: 20px 0;}
+.p-notification .inbox .col-md-10 ul li{list-style: none; line-height: 20px; background: url("../img/p-left-li.png") no-repeat right 6px  ; padding-right: 20px; }
+.p-notification .inbox .col-md-10 ul li span.tag{ background: #666666; color: #ffffed; padding: 2px 4px;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;}
+
+
+.p-ch > div{ padding: 13px 0; float: left;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px; border:1px dashed #555}
+.p-ch ul{ margin:0;  width: 100%;}
+.p-ch ul li { list-style: none;  float: left; }
+.p-ch ul li:first-child{ border-left: 1px solid rgba(255,255,255,0.5); margin-left: 10px; padding-right:  10px; padding-left:10px; }
+.p-ch h3{ font-size: 1.2em; color: #fff}
+.p-ch h6{ font-size: .8em; color: #fff}
+
+
+
+.p-invoice h4{  margin-bottom: 10px; }
+.p-invoice table{ }
+.p-invoice table tr td{ border:none !important; padding: 0 10px; line-height: 40px}
+.p-invoice table .button-aqua{ background: #ccc;}
+
+
+.p-nav-handle{ display: none;}
+@media (max-width:480px) {
+    .p-shortcuts li{float: none;}
+    .p-right{width: 100%; float: right; }
+    .p-right ul{display: none}
+    .p-shortcuts ul{display: none}
+
+    .p-nav-handle{background: #fff; min-height: 50px; position: relative; display: block; line-height: 43px; padding:0 40px;}
+    .p-nav-handle:after{ position: absolute; content: ""; width: 15px; height: 2px; background: #aaa ; top:1.9em; right: 1em}
+    .p-nav-handle i{position: absolute; content: ""; width: 15px; height: 2px; background: #aaa ; top: 1.6em ; right: 1em}
+    .p-nav-handle:before{ position: absolute; content: ""; width: 15px; height: 2px; background: #aaa ; top: 1.3em;  right:1em;}
+    .p-left{width: 100%; float: right;}
+}
+
+@media (max-width:768px) {
+
+}
+
+@media (max-width:1200px){
+
+}
+
+@media (min-width:1200px){
+    .p-left{ min-height: 11em;}
+}
+#page-menu, #page-menu-wrap{ background: #000}

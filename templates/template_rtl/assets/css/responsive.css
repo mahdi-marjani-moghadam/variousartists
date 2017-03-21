@@ -1,0 +1,662 @@
+﻿@media screen and (min-width: 1200px) and (max-width: 1223px) {
+    .fullPadding{
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+    }
+    .copyRightContainer{
+        padding-right: 15px !important;
+    }
+    .fullPadding1{
+        padding-right: 3px !important;
+        padding-left: 31px !important;
+    }
+    .pro .slider-pro {
+        max-width: 600px !important;
+    }
+    .mmenuHolder {
+        min-height: 389px;
+        height: 360px;
+    }
+    .mr{
+        margin-right: 0;
+    }
+}
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+    /*.company-list-keyboard-container-mmenu .ui-keyboard {
+        right: 255px;
+    }*/
+    .container {
+        width: 970px;
+    }
+    .Hidden{
+        display: none;
+    }
+    #categoryContainer .City {
+        padding-right: 10.5rem;
+    }
+    .mmenuHolder {
+        height: 275px;
+    }
+    .container-location-city .city-list li{
+        width: 12.5%;
+    }
+    #mainContainer.noPadding {
+        padding: 0 .2rem !important;
+    }
+
+    .slider-pro {
+        max-width: 697px !important;
+    }
+    .mmenuHolder .rotate {
+        right: -41px;
+    }
+    #categoryContainer header .hamburgerIcon span {
+        right: 1.1rem
+    }
+    #categoryContainer {
+        height: 365px;
+    }
+}
+@media screen and (min-width: 992px){
+    .contact-form.contact2{
+        height: 200px;
+    }
+    #categoryContainer.active .mm-menu.mm-offcanvas {
+        min-height: 582px;
+    }
+    .mainPage #categoryContainer.active .mm-menu.mm-offcanvas {
+
+    }
+    .mainPage #categoryContainer  .mmenuHolder{
+        min-height: inherit;
+    }
+    #categoryContainer .menu{
+        display: none;
+    }
+    #categoryContainer.active .menu{
+        display: block;
+    }
+    #categoryContainer .menu1{
+        display: none;
+    }
+    #categoryContainer.active .menu1{
+        display: block;
+    }
+    #categoryContainer  .mmenuHolder{
+        min-height: 582px;
+        cursor: pointer;
+    }
+
+    #categoryContainer .City {
+         display: none;
+     }
+    #categoryContainer.active .City {
+          display: block;
+      }
+
+}
+@media screen and (max-width: 992px) {
+
+    .title1 {
+        padding: 0 30px;
+    }
+    .copyRightContainer p {
+        text-align: center;
+    }
+    #categoryContainer {
+        width:100%;
+        height: inherit;
+    }
+    .mmenuHolder,.mmenuHolder1 {
+        display:none;
+    }
+    .mmenuHolder.active{
+        display:block;
+    }
+    .mmenuHolder1.active {
+        top: 0;
+        display: block;
+        max-width: 100%;
+        position: relative;
+    }
+    .contentProduct{
+        width: 100%;
+    }
+    .hid.linRight{
+        border-left: none;
+    }
+    .container-location-city .city-list li{
+        width: 16.6%;
+    }
+    .article .item .content footer .calender {
+        margin-top:0;
+    }
+    .aboutUs .margin {
+        margin-right:0;
+    }
+    .detailNews .content img {
+        width: 100%;
+    }
+    #categoryContainer {
+        max-width:100%;
+        margin-top: 1rem;
+    }
+    .article .item .content footer .calender {
+        margin-top: 15px;
+    }
+    #categoryContainer header .hamburgerIcon {
+        cursor: pointer;
+    }
+
+}
+@media screen and (min-width: 767px){
+    .contentP1{
+        display: none;
+    }
+    .copyRightContainer img {
+        margin-right: 14px;
+    }
+}
+@media screen and  (max-width: 992px) and (min-width: 767px){
+
+    .search-bar {
+        max-width: 70%;
+    }
+    .search-bar input[type=text] {
+        max-width: 100%;
+    }
+    .search-bar .keyboard-container-search-bar{
+        width:75%;
+    }
+    .search-bar .select {
+        width: 15%;
+    }
+    .search-bar .submit {
+        width: 10%;
+    }
+    #mainContainer {
+        margin-top: 4.8rem;
+    }
+    header.pageHeader.sticky {
+        height: 74px
+    }
+    .contact-form {
+        line-height: 40px;
+        min-height: 357px;
+    }
+    .container {
+        width: 95%;
+    }
+    .slider-pro {
+        max-width: 930px !important;
+    }
+    #searchContainer {
+        max-width: 465px;
+    }
+}
+@media screen and (max-width: 767px)  {
+
+   .sp-slide .innerContent .logoContainer {
+        width: 15%;
+    }
+    .newsContainer .sp-slide .innerContent article {
+        width: 85%;
+    }
+    .tab.stick {
+        top: 110px;
+    }
+
+    .tab{
+        display: table;
+    }
+    .tab .tabMenu{
+        display: none;
+    }
+    .tab .tabMenu.active{
+        display: block;
+    }
+    .tab .menucompany{
+        display: block;
+        width: 100%;
+        height: 40px;
+        padding: 0 10px;
+        line-height: 40px;
+    }
+    .contentP1{
+        color: #167d97;
+        right: 25px;
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 40px;
+    }
+    .contentP1 span .angle{
+      position: absolute;
+        left: 50px;
+        line-height: 40px;
+
+    }
+    .tab .tabMenu li{
+        width: 100%;
+    }
+    .contentP {
+        bottom: 125px;
+        right: 125px;
+        font-size: 18px;
+}
+
+    a.logoNew {
+        max-width: 100px;
+        bottom: 110px;
+    }
+    .imgContentProduct .overlayCompany .textP{
+        top:70px;
+    }
+    .search-bar {
+        max-width: 100%;
+        top: 65px;
+    }
+    .keyboard-container-search-bar {
+        max-width: 75%;
+    }
+    .search-bar .select {
+        width: 15%;
+    }
+    .search-bar .submit {
+        width: 10%;
+    }
+    .list-inline1 li {
+        width: 100%;
+        text-align: center;
+    }
+    .list-inline1 {
+        float: none;
+    }
+    header.pageHeader.sticky  .logoContainer {
+        width: 100px !important;
+    }
+    .container-location-city .city-list {
+        top: 93px
+    }
+    .overlayBg {
+        top: 93px;
+    }
+    .nav.nav-tabs.borerB li{
+        width: 32%;
+    }
+
+    .nav.nav-tabs.borerB>li>a:hover {
+        width: 100%;
+    }
+    .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+        width: 100%;
+        text-align: center;
+    }
+    .hamburger {
+        top: 18px;
+    }
+    .newsContainer {
+        height: 165px;
+    }
+    .plus {
+        left: 45px;
+        top: 12px;
+    }
+    .pageHeader .container .loginBtnContainer {
+        position: absolute;
+    }
+    #searchContainer {
+        margin-top: 10px;
+    }
+    .padding{
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+    }
+    .st{
+        margin-top: 5rem;
+
+    }
+    .copyRightContainer a {
+        float:none !important;
+    }
+    .title1{
+        float:none !important;
+    }
+    .title2{
+        display: block !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+        float:none !important;
+    }
+
+    .pageHeader .container .loginBtnContainer.location-city i {
+        font-size: 20px;
+    }
+        .size img{
+        float: right !important;
+    }
+    .linRight{
+        border-left: none;
+    }
+    .container-location-city .city-list li{
+        width: 25%;
+    }
+    .pageHeader .container .loginBtnContainer .btn-login.location-city {
+        width: 100%;
+        height: 100%;
+        display: block;
+        padding: 0;
+        text-align: center;
+        line-height: 37px
+    }
+    #categoryContainer header a .angle{
+        position: absolute !important;
+        left: -4px !important;
+        color:#ff6a00 ;
+        font-size: 15px !important;
+        top: 11px !important;
+    }
+    .boxGrid-pane img {
+        width: 100PX;
+        max-width: 100%;
+    }
+    #searchContainer {
+        max-width:100%;
+    }
+
+    .search-box .nav-search.isactive{
+        height: 100px;
+    }
+    .pageHeader .container .loginBtnContainer .btn-login {
+        width: 38px;
+        height: 38px;
+    }
+    .pageHeader .container .loginBtnContainer .btn-login i{
+        left: 0.1rem;
+    }
+
+    .width{
+        max-width: 100%;
+    }
+    .news {
+        min-height: 335px;
+        display: table;
+    }
+    .news .item .content {
+        height: auto;
+        width: 100%;
+        margin-top: 25px;
+        display: block;
+        min-height: 220px;
+    }
+    .news .item .logoContainer {
+        height: auto;
+        width: 100%;
+        float: none !important;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+    .news .item .logoContainer img {
+        max-width: 100%;
+        margin-top: 0;
+    }
+    .news .item .content footer .btn {
+        top: 145px;
+    }
+    .pageHeader .container .logoContainer {
+        /*left: -25px;*/
+        left: -10px;
+        width: 100px;
+    }
+
+    #mainContainer {
+        margin-top: 1rem;
+    }
+    .pageHeader .container .loginBtnContainer {
+        top: 36px !important;
+        width: 7%;
+        height: 47%;
+        right: -8px;
+    }
+    .logo1 a img{
+        width: 85%;
+    }
+    header.pageHeader.sticky {
+        height: 151px;
+    }
+
+    /*login slider*/
+    .login-container {
+        float: none !important;
+        max-width: 300px !important;
+        /* display: block; */
+        /* margin: 0 auto; */
+        border-radius: 5px;
+        position: absolute;
+        left: 50%;
+        margin-left: -150px;
+    }
+
+    #mainContainer.noPadding {
+        padding: 4rem 1rem 1rem !important;
+    }
+
+    #advContainer {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    .newsColumn {
+        margin-top: 2rem;
+    }
+
+    .pageHeader .container .loginBtnContainer{
+        top: 0 !important;
+        width: 7%;
+        height: 47%;
+        right: 85px !important;
+    }
+    header.pageHeader.sticky .loginBtnContainer {
+        top: 6px !important;
+    }
+    header.pageHeader.sticky {
+        height: 110px !important;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    a.logoNew{
+        right: 50%;
+        margin-right: -37px;
+        max-width: 75px;
+        top: 5px;
+    }
+    .contentP {
+        top: 75px;
+        font-weight: 500;
+        right: 0;
+        font-size: 12px;
+        text-align: center;
+        width: 100%;
+    }
+    .imgContentProduct .overlayCompany {
+        height: 265px;
+    }
+    .imgContentProduct .overlayCompany .footer{
+        bottom: 25px;
+    }
+
+    .imgContentProduct {
+        position: relative;
+        height: 300px
+    }
+    .searchBox .logoContainer{
+        width: 30% !important;
+    }
+    .searchBox .text {
+        width: 70% !important;
+    }
+}
+@media screen and (max-width: 500px) {
+
+    .sp-slide .innerContent .logoContainer {
+        width: 30%;
+    }
+    .newsContainer .sp-slide .innerContent article {
+        width: 70%;
+    }
+    .keyboard-container-search-bar {
+        max-width: 60%;
+    }
+    .search-bar .select {
+        width: 25%;
+    }
+    .search-bar .submit {
+        width: 15%;
+    }
+
+    #categoryContainer header{
+        font-size: 10px;
+    }
+    .Hidden{
+        display: none;
+    }
+    .tab-content a.logoNew {
+        top: -4px;
+    }
+
+    #categoryContainer header a .angle {
+        left: -9px !important;
+    }
+
+    .container .loginBtnContainer {
+        right: 0 !important;
+    }
+    .select2-container--default .select2-selection--single {
+        height: 36px;
+        max-height: 36px;
+    }
+    .paddingRL{
+        padding-right: 50px;
+        padding-left: 50px;
+    }
+    .tab-content .item-box {
+        width: 385px;
+        max-width: 100%;
+    }
+    #mainFooter .container.mainLink .threePartInfo ul {
+        margin: -15px 0 0 0;
+    }
+
+    #mainFooter .container.mainLink .threePartInfo ul li span {
+        font-size: .7em;
+    }
+
+    #searchContainer button i {
+        font-size: 1.4rem;
+        margin-top: 12px;
+    }
+    .container-location-city .city-list li{
+        width: 50%;
+    }
+    .Breadcrumb a span{
+        font-size: 10px;
+    }
+    #breadcrumb li {
+        float: right;
+        font-size: 0.8rem;
+        min-width: 60px;
+        margin-bottom: 5px;
+    }
+    #breadcrumb li:nth-child(1) {
+        margin-right: -17px;
+    }
+    .pr {
+        padding-right: 25px;
+    }
+    #breadcrumb li:first-child a{
+        padding-right: inherit;
+    }
+    #breadcrumb li a{
+        padding: inherit;
+    }
+    .BoxB{
+        width: 100%;
+    }
+
+    .newsContainer .sp-slide {
+        margin-top: -13px;
+    }
+    .boxA{
+        width: 100%;
+    }
+    .boxA1{
+        width: 50%;
+    }
+    .news {
+        min-height: 405px;
+        display: table;
+    }
+    .news .item .content {
+        height: auto;
+        width: 100%;
+        margin-top: 5px;
+        display: block;
+        min-height: 220px;
+    }
+    .news .item .logoContainer {
+        height: auto;
+        width: 100%;
+        float: none !important;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+    .news .item .logoContainer img {
+        max-height: inherit;
+        max-width: 100%;
+        margin-top: 0;
+    }
+    .news .item .content footer .btn {
+        top: 145px;
+    }
+
+    .article {
+        min-height: 335px;
+        display: table;
+    }
+    .article .item .content {
+        height: auto;
+        width: 100%;
+        margin-top: 25px;
+        display: block;
+        min-height: 220px;
+    }
+    .article .item {
+        height: auto;
+        min-height:100px;
+        display: block;
+    }
+    .article .item .logoContainer {
+        height: auto;
+        width: 100%;
+        float: none !important;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+    .article .item .logoContainer img {
+        max-height: inherit;
+        max-width: 100%;
+        margin-top: 0;
+    }
+    .article .item .content footer .btn {
+        width: 100%;
+        top: 145px;
+    }
+    .sp-bottom-thumbnails.sp-has-pointer {
+        display: none;
+        visibility: hidden;
+    }
+    #breadcrumb {
+        margin-right: 20px;
+    }
+
+}
