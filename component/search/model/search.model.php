@@ -186,41 +186,41 @@ class searchModel
     public function getSearch($fields)
     {
         global $lang;
-        switch ($fields['type']) {
+        //print_r_debug($fields['type']);
+        if($fields['type'] == 'رویدادها' || $fields['type'] == 'events') {
 
-            case 'رویدادها' || 'events':
-                include_once ROOT_DIR."component/event/model/event.model.php";
-                $tt = 'event_name_'.$lang;
+            include_once ROOT_DIR . "component/event/model/event.model.php";
+            $tt = 'event_name_' . $lang;
 
-                $result = eventModel::query("select * from event where $tt like '%".handleData($fields['q'])."%'")->getList();
+            $result = eventModel::query("select * from event where $tt like '%" . handleData($fields['q']) . "%'")->getList();
+            //echo "select * from event where $tt like '%" . handleData($fields['q']) . "%'";
+            //die();
+            if ($result['result'] != 1) {
+                return $result;
+            }
 
-                if ($result['result'] != 1) {
-                    return $result;
-                }
 
+            $temp = $result['export']['list'];
+            unset($result['export']);
+            $result['export']['events'] = $temp;
 
-                $temp = $result['export']['list'];
-                unset($result['export']);
-                $result['export']['events'] = $temp;
-                
-                //print_r_debug($this->recordsCount[company]);
-                //$resultPage['company'] = paginationButtom($this->recordsCount['company'],10);
+            //print_r_debug($this->recordsCount[company]);
+            //$resultPage['company'] = paginationButtom($this->recordsCount['company'],10);
 
-                /*if ($resultPage['company']['result'] == 1 && ($fields['type'] == 'تولیدی' || !isset($fields['type']))) {
-                    $this->pagination['company']['pageCount'] = $resultPage['company']['export']['pageCount'];
-                    $this->pagination['company']['rowCount'] = $resultPage['company']['export']['rowCount'];
-                    $this->pagination['company']['list'] = $resultPage['company']['export']['list'];
+            /*if ($resultPage['company']['result'] == 1 && ($fields['type'] == 'تولیدی' || !isset($fields['type']))) {
+                $this->pagination['company']['pageCount'] = $resultPage['company']['export']['pageCount'];
+                $this->pagination['company']['rowCount'] = $resultPage['company']['export']['rowCount'];
+                $this->pagination['company']['list'] = $resultPage['company']['export']['list'];
 
-                }*/
-                //print_r_debug($this->pagination);
+            }*/
+            //print_r_debug($this->pagination);
+        }
+        else if($fields['type'] == 'هنرمندان' || $fields['type'] == 'artists') {
 
-                break;
-            case 'هنرمندان' || 'artists':
+                include_once ROOT_DIR . "component/artists/model/artists.model.php";
+                $tt = 'artists_name_' . $lang;
 
-                include_once ROOT_DIR."component/artists/model/artists.model.php";
-                $tt = 'artists_name_'.$lang;
-
-                $result = artistsModel::query("select * from artists where $tt like '%".handleData($fields['q'])."%'")->getList();
+                $result = artistsModel::query("select * from artists where $tt like '%" . handleData($fields['q']) . "%'")->getList();
 
                 if ($result['result'] != 1) {
                     return $result;
@@ -232,7 +232,7 @@ class searchModel
                 $result['export']['artists'] = $temp;
 
 
-               //$resultPage['company'] = paginationButtom($this->recordsCount['company'],10);
+                //$resultPage['company'] = paginationButtom($this->recordsCount['company'],10);
 
                 /*if ($resultPage['company']['result'] == 1 && ($fields['type'] == 'تولیدی' || !isset($fields['type']))) {
                     $this->pagination['company']['pageCount'] = $resultPage['company']['export']['pageCount'];
@@ -242,9 +242,9 @@ class searchModel
                 }*/
                 //print_r_debug($this->pagination);
 
-                break;
+            }
 
-            default:
+            else{
                 if (isset($fields['order'])) {
                     $order = $fields['order'];
                     unset($fields['order']);
@@ -265,8 +265,8 @@ class searchModel
                 if ($resultPage['company']['result'] == 1 && ($fields['type'] == 'تولیدی' || !isset($fields['type']))) {
                     $this->pagination['company'] = $resultPage['company']['export']['list'];
                 }
-                break;
-        }
+            }
+
 
 
 

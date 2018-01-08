@@ -46,7 +46,7 @@
     </div>
       <div class="panel-body">
           <div class="pull-right">
-              <a href="<?= RELA_DIR ?>admin/?component=article&action=addArticle" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i>افزودن مقاله جدید </a>
+              <a href="<?= RELA_DIR ?>zamin/?component=article&action=addArticle" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i>افزودن مقاله جدید </a>
           </div>
 
           <!-- separator -->
@@ -88,8 +88,8 @@
                           <td align="center"><img height="60" src="<?php echo $fields['image']; ?>"></td>
                           <td><?php echo convertDate($fields['date']); ?></td>
                           <td>
-                              <a href="<?= RELA_DIR ?>admin/?component=article&action=editArticle&id=<?php echo $fields['Article_id']; ?>">ویرایش</a>
-                              <a href="<?= RELA_DIR ?>admin/?component=article&action=deleteArticle&id=<?php echo $fields['Article_id']; ?>">حذف</a>
+                              <a href="<?= RELA_DIR ?>zamin/?component=article&action=editArticle&id=<?php echo $fields['Article_id']; ?>">ویرایش</a>
+                              <a href="<?= RELA_DIR ?>zamin/?component=article&action=deleteArticle&id=<?php echo $fields['Article_id']; ?>">حذف</a>
                           </td>
 
                       </tr>

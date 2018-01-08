@@ -77,8 +77,8 @@
                 <td><?php echo $fields['status']; ?></td>
                 <td><?php echo $fields['date']; ?></td>
 
-                <td><a href="<?=RELA_DIR?>admin/?component=contactus&action=showMore&id=<?php echo $fields['Contact_id']; ?>">نمایش</a>
-                  <a href="<?=RELA_DIR?>admin/?component=contactus&action=deleteContactus&id=<?php echo $fields['Contact_id']; ?>">حذف</a> </td>
+                <td><a href="<?=RELA_DIR?>zamin/?component=contactus&action=showMore&id=<?php echo $fields['Contact_id']; ?>">نمایش</a>
+                  <a href="<?=RELA_DIR?>zamin/?component=contactus&action=deleteContactus&id=<?php echo $fields['Contact_id']; ?>">حذف</a> </td>
 
               </tr>
               <?

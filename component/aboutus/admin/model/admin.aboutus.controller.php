@@ -96,7 +96,7 @@ class adminAboutusController
         if($result['result']!='1')
         {
             $msg=$result['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=aboutus", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=aboutus", $msg);
         }
         $export=$aboutus->list;
 
@@ -123,7 +123,7 @@ class adminAboutusController
         if($result['result']!='1')
         {
             $msg=$result['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=aboutus", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=aboutus", $msg);
         }
 
 
@@ -148,7 +148,7 @@ class adminAboutusController
             $this->showAboutusEditForm($result['msg']);
         }
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=aboutus", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=aboutus", $msg);
         die();
     }
 

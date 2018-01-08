@@ -9,25 +9,54 @@
                 <!-- Footer Widgets
                 ============================================= -->
                 <div class="footer-widgets-wrap clearfix">
-                    <div class="col-md-4 ">
-                            <div class="col_full nobottommargin center">
-                                <p>Music The Great Communicator</p>
-                                <div class="copyrights-menu copyright-links clearfix">
-                                    <a href="<?=RELA_DIR?>">Home</a>/<a href="<?=RELA_DIR?>aboutus">About us</a>/<a href="<?=RELA_DIR?>contactus">Contact us</a>
-                                </div>
 
-
-                                <br>
-                                <div style="font-size: 8px; "><a style="color: #ccc" href="http://www.webgem.ir" target="_blank">Powered By WebGem &copy; Copyrights 2016</a></div>
-                            </div>
-                    </div>
                     <div class="col-md-4">
 
                         <div class="widget clearfix">
 
 
-                            <div class="clearfix" style="padding: 0; display: none ">
+                            <div class="col_full masonry-thumbs col-6 clearfix" data-lightbox="gallery">
+
+                                <a  href="https://www.instagram.com/bahamzi/">
+                                    <img class="image_fade img-circle" src="<?=RELA_DIR.'statics/friends/bahamzi.jpg'?>" alt="Gallery Thumb 1">
+                                </a>
                                 
+                                <a  href="http://www.zendegicomplex.com">
+                                    <img class="image_fade img-circle" src="<?=RELA_DIR.'statics/friends/zendegicomplex.jpg'?>" alt="zendegicomplex">
+                                </a>
+                                <a  href="https://www.instagram.com/nymadteam/">
+                                    <img class="image_fade img-circle" src="<?=RELA_DIR.'statics/friends/nymadteam.jpg'?>" alt="nymadteam">
+                                </a>
+
+                                <a  href="https://www.instagram.com/hamedvfx/">
+                                    <img class="image_fade img-circle   " src="<?=RELA_DIR.'statics/friends/hamedvfx.jpg'?>" alt="hamedvfx">
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-4 ">
+                        <div class="col_full nobottommargin center">
+                            <p>Music The Great Communicator</p>
+                            <div class="copyrights-menu copyright-links clearfix">
+                                <a href="<?=RELA_DIR?>">Home</a>/<a href="<?=RELA_DIR?>aboutus">About us</a>/<a href="<?=RELA_DIR?>contactus">Contact us</a>
+                            </div>
+
+
+                            <br>
+                            <div style="font-size: 8px; "><a style="color: #ccc" href="http://www.webgem.ir" target="_blank">Powered By WebGem &copy; Copyrights 2016</a></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="widget clearfix">
+
+                            <p style="margin: 0">Technical Institute of Ramshgaran Goonagoon</p>
+                            <div class="clearfix" style="padding: 0; display: none ">
+
                                 <div class="col_full col_last">
                                     <abbr title="Phone Number"><strong>Phone:</strong></abbr><span dir="ltr"> (021) 22768101 </span><br>
                                     <abbr title="Email Address"><strong>Email:</strong></abbr><span dir="ltr"> info@variousartists.ir </span>
@@ -61,7 +90,7 @@
 
                             <a  href="http://www.aparat.com/variousartists.ir" class="social-icon si-small si-rounded topmargin-sm si-soundcloud">
                                 <i class="icon-play"></i>
-                                <i class="icon-play"  style="background: #ea1d5d"></i>
+                                <i class="icon-play"  style=""></i>
                             </a>
 
 
@@ -70,38 +99,6 @@
                         </div>
 
                     </div>
-
-                    <div class="col-md-4">
-
-                        <div class="widget clearfix">
-                            <h4>Our Friends</h4>
-
-
-                            <div class="col_full masonry-thumbs col-6 clearfix" data-lightbox="gallery">
-
-                                <a  href="https://www.instagram.com/bahamzi/">
-                                    <img class="image_fade img-circle" src="<?=RELA_DIR.'statics/friends/bahamzi.jpg'?>" alt="Gallery Thumb 1">
-                                </a>
-                                <a  href="https://www.instagram.com/caffemolinariiran/">
-                                    <img class="image_fade img-circle" src="<?=RELA_DIR.'statics/friends/caffemolinariiran.jpg'?>" alt="caffemolinariiran">
-                                </a>
-                                <a  href="http://www.zendegicomplex.com">
-                                    <img class="image_fade img-circle" src="<?=RELA_DIR.'statics/friends/zendegicomplex.jpg'?>" alt="zendegicomplex">
-                                </a>
-                                <a  href="https://www.instagram.com/nymadteam/">
-                                    <img class="image_fade img-circle" src="<?=RELA_DIR.'statics/friends/nymadteam.jpg'?>" alt="nymadteam">
-                                </a>
-
-                                <a  href="https://www.instagram.com/hamedvfx/">
-                                    <img class="image_fade img-circle   " src="<?=RELA_DIR.'statics/friends/hamedvfx.jpg'?>" alt="hamedvfx">
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
 
 
                 </div><!-- .footer-widgets-wrap end -->

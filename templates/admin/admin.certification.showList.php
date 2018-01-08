@@ -45,7 +45,7 @@
     </div>
     <div class="panel-body">
         <div class="pull-right">
-            <a href="<?=RELA_DIR?>admin/?component=certification&action=add" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن گواهی جدید</a>
+            <a href="<?=RELA_DIR?>zamin/?component=certification&action=add" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن گواهی جدید</a>
         </div>
         <!-- separator -->
         <div class="row smallSpace"></div>
@@ -72,8 +72,8 @@
                     <td><?php echo $fields['description']; ?></td>
                     <td><img height="60" src="<?php echo $fields['image'];?>"></td>
                     <td>
-                        <a href="<?=RELA_DIR?>admin/?component=certification&action=edit&id=<?php echo $fields['Certification_id'];?>">ویرایش</a> <br/>
-                        <a href="<?=RELA_DIR?>admin/?component=certification&action=delete&id=<?php echo $fields['Certification_id'];?>">حذف</a>
+                        <a href="<?=RELA_DIR?>zamin/?component=certification&action=edit&id=<?php echo $fields['Certification_id'];?>">ویرایش</a> <br/>
+                        <a href="<?=RELA_DIR?>zamin/?component=certification&action=delete&id=<?php echo $fields['Certification_id'];?>">حذف</a>
                     </td>
                   </tr>
               <?php

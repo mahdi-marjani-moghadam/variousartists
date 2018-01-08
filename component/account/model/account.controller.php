@@ -597,7 +597,7 @@ class accountController
 //
 //            $msg = 'یافت نشد';
 //            redirectPage('');
-//            redirectPage(RELA_DIR . 'admin/index.php?component=package', $msg);
+//            redirectPage(RELA_DIR . 'zamin/index.php?component=package', $msg);
 //        }
 
         //$result = $account->getPackageById($fields['Package_id']);
@@ -611,7 +611,7 @@ class accountController
 
         /*if ($result['result'] != '1') {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR . 'admin/index.php?component=package', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=package', $msg);
         }*/
         //print_r_debug($account->fields);
 
@@ -645,14 +645,14 @@ class accountController
       /*  if (!validator::required($fields['Package_id']) and !validator::Numeric($fields['Package_id'])) {
 
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'admin/index.php?component=package', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=package', $msg);
         }
 
         $result = $account->getPackageById($fields['Package_id']);
 
         if ($result['result'] != '1') {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR.'admin/index.php?component=package', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=package', $msg);
         }
 
         $result = $account->setFields($fields);
@@ -668,7 +668,7 @@ class accountController
             $this->showPackageEditForm($fields, $result['msg']);
         }*/
         $msg = translate('عملیات با موفقیت انجام شد');
-        redirectPage(RELA_DIR.'admin/index.php?component=package', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=package', $msg);
         die();
     }
 
@@ -690,13 +690,13 @@ class accountController
 
         if (!validator::required($fields['Package_id']) and !validator::Numeric($fields['Package_id'])) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'admin/index.php?component=package', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=package', $msg);
         }
         $result = $account->getPackageById($fields['Package_id']);
      //   print_r_debug($result);
         if ($result['result'] != '1') {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR.'admin/index.php?component=package', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=package', $msg);
         }
         $result = $account->setFields($fields);
 //print_r_debug($result);
@@ -709,7 +709,7 @@ class accountController
             $this->showPackageEditForm($fields, $result['msg']);
         }
         $msg = translate('عملیات با موفقیت انجام شد');
-        redirectPage(RELA_DIR.'admin/index.php?component=package', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=package', $msg);
         die();
     }
 

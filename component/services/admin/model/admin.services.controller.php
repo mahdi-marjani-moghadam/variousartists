@@ -78,7 +78,7 @@ class adminServicesController
         if($obj['result']!='1')
         {
             $msg=$obj['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=aboutus", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=aboutus", $msg);
         }
 
         foreach ($obj['export']['list'] as $k => $va)
@@ -108,7 +108,7 @@ class adminServicesController
         if($obj['result']!='1')
         {
             $msg=$obj['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=aboutus", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=aboutus", $msg);
         }
 
         $services = $obj['export']['list'][0];
@@ -125,7 +125,7 @@ class adminServicesController
             $this->showServicesEditForm($result['msg']);
         }
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=services", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=services", $msg);
         die();
     }
 

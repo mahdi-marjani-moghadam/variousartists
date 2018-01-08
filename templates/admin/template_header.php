@@ -12,7 +12,7 @@
                     </a>
                     <ul class="dropdown-menu animated fadeInDown pull-right" role="menu">
 
-                        <li><a href="<?php echo RELA_DIR ?>admin/?component=login&action=logout" class="text-16"><i class="fa fa-power-off"></i> خروج از حساب</a></li>
+                        <li><a href="<?php echo RELA_DIR ?>zamin/?component=login&action=logout" class="text-16"><i class="fa fa-power-off"></i> خروج از حساب</a></li>
                     </ul>
                 </div>
 <!--                <div class="profile-picture">

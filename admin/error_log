@@ -1,2 +1,0 @@
-[10-Dec-2016 02:47:12 Asia/Tehran] PHP Fatal error:  Call to undefined function print_r_debug() in /home/variousa/public_html/admin/init.inc.php on line 73
-[10-Dec-2016 02:47:13 Asia/Tehran] PHP Fatal error:  Call to undefined function print_r_debug() in /home/variousa/public_html/admin/init.inc.php on line 73

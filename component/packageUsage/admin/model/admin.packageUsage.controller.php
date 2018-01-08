@@ -72,7 +72,7 @@ class adminPackageUsageController
         if(!is_object($packageUsage))
         {
             $msg = 'صفحه مورد نظر یافت نشد';
-            redirectPage(RELA_DIR.'admin/index.php?component=packageUsage', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=packageUsage', $msg);
         }
         $export = $packageUsage->fields;
         $this->fileName = 'admin.packageUsage.editForm.php';
@@ -86,7 +86,7 @@ class adminPackageUsageController
         $PackageUsage->setFields($fields);
         $PackageUsage->save();
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=packageUsage', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=packageUsage', $msg);
         die();
     }
 
@@ -98,7 +98,7 @@ class adminPackageUsageController
             $this->showPackageUsageEditForm($fields, $result['msg']);
         }
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=packageUsage', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=packageUsage', $msg);
         die();
     }
     

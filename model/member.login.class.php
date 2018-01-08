@@ -1,5 +1,5 @@
 <?
-class memberLogIn
+class memberLogIns
 {
 	private static function GetHash()
 	{

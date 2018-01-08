@@ -40,9 +40,9 @@
 
                             <ul class="iconlist nobottommargin">
                                 <?php
-                                $newDate = ($list['list']['date']!="" ? convertDate($list['list']['date']):"");
-                                $newDate2 = ($list['list']['date2']!=""? convertDate($list['list']['date2']):"");
-                                $newDate3 = ($list['list']['date3']!=""? convertDate($list['list']['date3']):"");
+                                $newDate = ($list['list']['date']!="0000-00-00" ? convertDate($list['list']['date']):"");
+                                $newDate2 = ($list['list']['date2']!="0000-00-00"? convertDate($list['list']['date2']):"");
+                                $newDate3 = ($list['list']['date3']!="0000-00-00"? convertDate($list['list']['date3']):"");
                                 $newTime = ($list['list']['event_time']!=""?   $list['list']['event_time']:"");
                                 $newTime2 = ($list['list']['event_time2']!=""? $list['list']['event_time2']:"");
                                 $newTime3 = ($list['list']['event_time3']!=""? $list['list']['event_time3']:"");
@@ -150,18 +150,6 @@
     </div>
 
 </section><!-- #content end -->
-
-
-<!-- External JavaScripts
-	============================================= -->
-<script type="text/javascript" src="<?=TEMPLATE_DIR?>js/jquery.js"></script>
-<script type="text/javascript" src="<?=TEMPLATE_DIR?>js/plugins.js"></script>
-
-<!-- Footer Scripts
-============================================= -->
-<script type="text/javascript" src="<?=TEMPLATE_DIR?>js/functions.js"></script>
-
-<script type="text/javascript" src="<?=TEMPLATE_DIR?>js/jquery.gmap.js"></script>
 
 
 

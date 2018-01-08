@@ -244,7 +244,7 @@ class adminCategoryController
 
 
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=category", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=category", $msg);
         die();
     }
 
@@ -262,7 +262,7 @@ class adminCategoryController
         if($result['result']!='1')
         {
             $msg=$result['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=category", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=category", $msg);
         }
 
         $export=$category->fields;
@@ -288,7 +288,7 @@ class adminCategoryController
         if(!is_object($object))
         {
             $msg=$object['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=category", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=category", $msg);
         }
         $result=$object->setFields($fields);
         $result=$object->validator();
@@ -301,7 +301,7 @@ class adminCategoryController
             $this->showCategoryEditForm($fields,$result['msg']);
         }
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=category", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=category", $msg);
         die();
     }
     public function deleteCategory($id)
@@ -312,7 +312,7 @@ class adminCategoryController
         if(!is_object($object))
         {
             $msg=$object['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=category", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=category", $msg);
         }
 
 
@@ -322,14 +322,14 @@ class adminCategoryController
         {
             $result['result'] = -1;
             $result['msg']='ابتدا زیر دسته ها را پاک نمایید';
-            redirectPage(RELA_DIR . "admin/index.php?component=category", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=category", $msg);
         }
 
         $result = $object->delete();
 
 
         $msg='حذف دسته بندی';
-        redirectPage(RELA_DIR . "admin/index.php?component=category", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=category", $msg);
         die();
     }
 

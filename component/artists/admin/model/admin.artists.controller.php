@@ -92,6 +92,8 @@ class adminArtistsController
 
         $artists = new adminArtistsModel();
 
+        $fields['password'] = md5($fields['password']);
+
         $fields['refresh_date'] = convertJToGDate($fields['refresh_date']);
         $fields['category_id'] = ','.implode(',',$fields['category_id']).',';
 
@@ -111,6 +113,7 @@ class adminArtistsController
             $artists->logo = $result['image_name'];
             $result = $artists->save();
         }
+        //print_r_debug($artists);
         //print_r_debug($_FILES);
 
         if ($result['result'] != '1') {
@@ -120,7 +123,7 @@ class adminArtistsController
         $msg = 'ثبت نام با موفقیت انجام شد.';
         $messageStack->add_session('register', $msg);
 
-        redirectPage(RELA_DIR.'admin/?component=artists', $msg);
+        redirectPage(RELA_DIR.'zamin/?component=artists', $msg);
         die();
     }
 
@@ -192,6 +195,11 @@ class adminArtistsController
         $fields['refresh_date'] = convertJToGDate($fields['refresh_date']);
         $fields['birthday'] = convertJToGDate($fields['birthday']);
 
+        if($fields['password']!=''){
+            $fields['password'] = md5($fields['password']);
+
+        }
+
         $result = $artists->setFields($fields);
 
         $temp = implode(",",$artists->fields['category_id']);
@@ -226,7 +234,7 @@ class adminArtistsController
 
 
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=artists'.$action, $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=artists'.$action, $msg);
         die();
     }
 
@@ -248,7 +256,7 @@ class adminArtistsController
             $result = $artists->getArtistsById($fields['Artists_id']);
             if ($result['result'] != '1') {
                 $msg = $result['msg'];
-                redirectPage(RELA_DIR.'admin/index.php?component=artists', $msg);
+                redirectPage(RELA_DIR.'zamin/index.php?component=artists', $msg);
             }
             $export = $artists->fields;
         } else {
@@ -405,10 +413,10 @@ class adminArtistsController
             'formatter' =>function($list,$internal)
             {
                 $st='a'.$list['showstatus'];
-                $st='<a href="'. RELA_DIR.'admin/?component=artists&action=edit&id='.$list['Artists_id'].'&showStatus='.$internal['showstatus']
+                $st='<a href="'. RELA_DIR.'zamin/?component=artists&action=edit&id='.$list['Artists_id'].'&showStatus='.$internal['showstatus']
                     .'">ویرایش</a> <br/>
-                        <a href="'.RELA_DIR.'admin/?component=product&id='.$list['Artists_id'].'">لیست کارها</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=artists&action=delete&id='.$list['Artists_id'].$list['artists_name'].'">حذف</a>';
+                        <a href="'.RELA_DIR.'zamin/?component=product&id='.$list['Artists_id'].'">لیست کارها</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=artists&action=delete&id='.$list['Artists_id'].$list['artists_name'].'">حذف</a>';
                 return $st;
             }
         );
@@ -510,12 +518,12 @@ class adminArtistsController
             formatter =>function($list,$internal)
             {
                 $st= 'a'.$list['showstatus'];
-                $st='<a href="'. RELA_DIR.'admin/?component=artists&action=edit&id='.$list['Artists_id'].'&showStatus='.$internal['showstatus']
+                $st='<a href="'. RELA_DIR.'zamin/?component=artists&action=edit&id='.$list['Artists_id'].'&showStatus='.$internal['showstatus']
                     .'">ویرایش</a> <br/>
-                        <a href="'.RELA_DIR.'admin/?component=product&id='.$list['Artists_id'].'">لیست محصولات</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=honour&id='.$list['Artists_id'].'">لیست افتخارات</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=licence&id='.$list['Artists_id'].'">لیست مجوز ها</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=artists&action=delete&id='.$list['Artists_id'].$list['artists_name'].'">حذف</a>';
+                        <a href="'.RELA_DIR.'zamin/?component=product&id='.$list['Artists_id'].'">لیست محصولات</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=honour&id='.$list['Artists_id'].'">لیست افتخارات</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=licence&id='.$list['Artists_id'].'">لیست مجوز ها</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=artists&action=delete&id='.$list['Artists_id'].$list['artists_name'].'">حذف</a>';
                 return $st;
             }
         );
@@ -599,12 +607,12 @@ class adminArtistsController
             formatter =>function($list,$internal)
             {
                 $st= 'a'.$list['showstatus'];
-                $st='<a href="'. RELA_DIR.'admin/?component=artists&action=edit&id='.$list['Artists_id'].'&showStatus='.$internal['showstatus']
+                $st='<a href="'. RELA_DIR.'zamin/?component=artists&action=edit&id='.$list['Artists_id'].'&showStatus='.$internal['showstatus']
                     .'">ویرایش</a> <br/>
-                        <a href="'.RELA_DIR.'admin/?component=product&id='.$list['Artists_id'].'">لیست محصولات</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=honour&id='.$list['Artists_id'].'">لیست افتخارات</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=licence&id='.$list['Artists_id'].'">لیست مجوز ها</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=artists&action=delete&id='.$list['Artists_id'].$list['artists_name'].'">حذف</a>';
+                        <a href="'.RELA_DIR.'zamin/?component=product&id='.$list['Artists_id'].'">لیست محصولات</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=honour&id='.$list['Artists_id'].'">لیست افتخارات</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=licence&id='.$list['Artists_id'].'">لیست مجوز ها</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=artists&action=delete&id='.$list['Artists_id'].$list['artists_name'].'">حذف</a>';
                 return $st;
             }
         );
@@ -942,7 +950,7 @@ class adminArtistsController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=artists', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=artists', $msg);
     }
 
     /**
@@ -983,7 +991,7 @@ class adminArtistsController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=artists', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=artists', $msg);
     }
     /**
      * importArtistsEmails.
@@ -1022,7 +1030,7 @@ class adminArtistsController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=artists', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=artists', $msg);
     }
     /**
      * importArtistsAddresses.
@@ -1060,7 +1068,7 @@ class adminArtistsController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=artists', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=artists', $msg);
     }
     /**
      * importArtistsWebsites.
@@ -1098,7 +1106,7 @@ class adminArtistsController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=artists', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=artists', $msg);
     }
     /**
      * delete deleteArtists by artists_id.
@@ -1118,14 +1126,14 @@ class adminArtistsController
 
         if (!validator::required($id) and !validator::Numeric($id)) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'admin/index.php?component=artists', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=artists', $msg);
         }
         $result = $artists->getArtistsById($id);
         $file = $result['export']['list']['logo'];
 
         if ($result['result'] != '1') {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR.'admin/index.php?component=artists', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=artists', $msg);
         }
 
         include_once ROOT_DIR.'component/product/admin/model/admin.product.model.php';
@@ -1134,7 +1142,7 @@ class adminArtistsController
 
         if ($product['export']['recordsCount'] > 0) {
             $msg = 'توجه : ابتدا محصولات این کمپانی را حذف تنایید.';
-            redirectPage(RELA_DIR.'admin/index.php?component=artists', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=artists', $msg);
         }
 
         $result = $artists->delete();
@@ -1145,11 +1153,11 @@ class adminArtistsController
 
 
         if ($result['result'] != '1') {
-            redirectPage(RELA_DIR.'admin/index.php?component=artists', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=artists', $msg);
         }
 
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=artists', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=artists', $msg);
         die();
     }
     public function call($fields)

@@ -211,7 +211,7 @@ class categoryController
             $this->showNewsAddForm($fields, $result['msg']);
         }
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=news', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=news', $msg);
         die();
     }
 
@@ -225,13 +225,13 @@ class categoryController
 
         if (!validator::required($fields['News_id']) and !validator::Numeric($fields['News_id'])) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'admin/index.php?component=news', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=news', $msg);
         }
         $result = $news->getNewsById($fields['News_id']);
 
         if ($result['result'] != '1') {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR.'admin/index.php?component=news', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=news', $msg);
         }
 
         $export = $news->fields;
@@ -250,12 +250,12 @@ class categoryController
 
         if (!validator::required($fields['News_id']) and !validator::Numeric($fields['News_id'])) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'admin/index.php?component=news', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=news', $msg);
         }
         $result = $news->getNewsById($fields['News_id']);
         if ($result['result'] != '1') {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR.'admin/index.php?component=news', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=news', $msg);
         }
 
         $result = $news->setFields($fields);
@@ -270,7 +270,7 @@ class categoryController
             $this->showNewsEditForm($fields, $result['msg']);
         }
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=news', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=news', $msg);
         die();
     }
 }

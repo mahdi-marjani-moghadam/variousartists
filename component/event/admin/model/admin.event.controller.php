@@ -49,6 +49,8 @@ class adminEventController
         switch ($this->exportType) {
             case 'html':
 
+
+
                 include ROOT_DIR.'templates/'.CURRENT_SKIN.'/template_start.php';
                 include ROOT_DIR.'templates/'.CURRENT_SKIN.'/template_header.php';
                 include ROOT_DIR.'templates/'.CURRENT_SKIN.'/template_rightMenu_admin.php';
@@ -114,7 +116,7 @@ class adminEventController
         $msg = 'ثبت نام با موفقیت انجام شد.';
         $messageStack->add_session('register', $msg);
 
-        redirectPage(RELA_DIR.'admin/?component=event', $msg);
+        redirectPage(RELA_DIR.'zamin/?component=event', $msg);
         die();
     }
 
@@ -192,7 +194,7 @@ class adminEventController
         $msg = 'ثبت نام با موفقیت انجام شد.';
         $messageStack->add_session('register', $msg);
 
-        redirectPage(RELA_DIR.'admin/?component=event&action=gallery&id='.$_input['event_id'], $msg);
+        redirectPage(RELA_DIR.'zamin/?component=event&action=gallery&id='.$_input['event_id'], $msg);
         die();
     }
 
@@ -252,7 +254,7 @@ class adminEventController
 
 
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=event', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
         die();
     }
 
@@ -274,7 +276,7 @@ class adminEventController
             $result = $event->getEventById($fields['Event_id']);
             if ($result['result'] != '1') {
                 $msg = $result['msg'];
-                redirectPage(RELA_DIR.'admin/index.php?component=event', $msg);
+                redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
             }
             $export = $event->fields;
         } else {
@@ -395,21 +397,21 @@ class adminEventController
         $other['6']=array(
             'formatter' =>function($list)
             {
-                $st =  $list['event_time'] .'<br>'.($list['date']!=''?convertDate($list['date']):'');
+                $st =  $list['event_time'] .'<br>'.($list['date']!='0000-00-00'?convertDate($list['date']):'');
                 return $st;
             }
         );
         $other['7']=array(
             'formatter' =>function($list)
             {
-                $st =  $list['event_time2'] .'<br>'. ($list['date2']!=''?convertDate($list['date2']):'');
+                $st =  $list['event_time2'] .'<br>'. ($list['date2']!='0000-00-00'?convertDate($list['date2']):'');
                 return $st;
             }
         );
         $other['8']=array(
             'formatter' =>function($list)
             {
-                $st =  $list['event_time3'] .'<br>'.($list['date3']!=''?convertDate($list['date3']):'');
+                $st =  $list['event_time3'] .'<br>'.($list['date3']!='0000-00-00'?convertDate($list['date3']):'');
                 return $st;
             }
         );
@@ -447,10 +449,10 @@ class adminEventController
             formatter =>function($list,$internal)
             {
 
-                $st='<a href="'. RELA_DIR.'admin/?component=event&action=edit&id='.$list['Event_id'].'&showStatus='.$internal['showstatus']
+                $st='<a href="'. RELA_DIR.'zamin/?component=event&action=edit&id='.$list['Event_id'].'&showStatus='.$internal['showstatus']
                     .'">ویرایش</a> <br/>
-                        <a href="'.RELA_DIR.'admin/?component=event&action=gallery&id='.$list['Event_id'].'">تصاویر</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=event&action=delete&id='.$list['Event_id'].$list['event_name'].'">حذف</a>';
+                        <a href="'.RELA_DIR.'zamin/?component=event&action=gallery&id='.$list['Event_id'].'">تصاویر</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=event&action=delete&id='.$list['Event_id'].$list['event_name'].'">حذف</a>';
                 return $st;
             }
         );
@@ -537,7 +539,7 @@ class adminEventController
             'formatter' =>function($list,$internal)
             {
 
-                $st='<a href="'.RELA_DIR.'admin/?component=event&action=deleteGallery&id='.$list['Event_gallery_id'].$list['event_name'].'">حذف</a>';
+                $st='<a href="'.RELA_DIR.'zamin/?component=event&action=deleteGallery&id='.$list['Event_gallery_id'].$list['event_name'].'">حذف</a>';
                 return $st;
             }
         );
@@ -638,12 +640,12 @@ class adminEventController
             formatter =>function($list,$internal)
             {
                 $st= 'a'.$list['showstatus'];
-                $st='<a href="'. RELA_DIR.'admin/?component=event&action=edit&id='.$list['Event_id'].'&showStatus='.$internal['showstatus']
+                $st='<a href="'. RELA_DIR.'zamin/?component=event&action=edit&id='.$list['Event_id'].'&showStatus='.$internal['showstatus']
                     .'">ویرایش</a> <br/>
-                        <a href="'.RELA_DIR.'admin/?component=product&id='.$list['Event_id'].'">لیست محصولات</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=honour&id='.$list['Event_id'].'">لیست افتخارات</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=licence&id='.$list['Event_id'].'">لیست مجوز ها</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=event&action=delete&id='.$list['Event_id'].$list['event_name'].'">حذف</a>';
+                        <a href="'.RELA_DIR.'zamin/?component=product&id='.$list['Event_id'].'">لیست محصولات</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=honour&id='.$list['Event_id'].'">لیست افتخارات</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=licence&id='.$list['Event_id'].'">لیست مجوز ها</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=event&action=delete&id='.$list['Event_id'].$list['event_name'].'">حذف</a>';
                 return $st;
             }
         );
@@ -727,12 +729,12 @@ class adminEventController
             formatter =>function($list,$internal)
             {
                 $st= 'a'.$list['showstatus'];
-                $st='<a href="'. RELA_DIR.'admin/?component=event&action=edit&id='.$list['Event_id'].'&showStatus='.$internal['showstatus']
+                $st='<a href="'. RELA_DIR.'zamin/?component=event&action=edit&id='.$list['Event_id'].'&showStatus='.$internal['showstatus']
                     .'">ویرایش</a> <br/>
-                        <a href="'.RELA_DIR.'admin/?component=product&id='.$list['Event_id'].'">لیست محصولات</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=honour&id='.$list['Event_id'].'">لیست افتخارات</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=licence&id='.$list['Event_id'].'">لیست مجوز ها</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=event&action=delete&id='.$list['Event_id'].$list['event_name'].'">حذف</a>';
+                        <a href="'.RELA_DIR.'zamin/?component=product&id='.$list['Event_id'].'">لیست محصولات</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=honour&id='.$list['Event_id'].'">لیست افتخارات</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=licence&id='.$list['Event_id'].'">لیست مجوز ها</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=event&action=delete&id='.$list['Event_id'].$list['event_name'].'">حذف</a>';
                 return $st;
             }
         );
@@ -1070,7 +1072,7 @@ class adminEventController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=event', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
     }
 
     /**
@@ -1111,7 +1113,7 @@ class adminEventController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=event', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
     }
     /**
      * importEventEmails.
@@ -1150,7 +1152,7 @@ class adminEventController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=event', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
     }
     /**
      * importEventAddresses.
@@ -1188,7 +1190,7 @@ class adminEventController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=event', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
     }
     /**
      * importEventWebsites.
@@ -1226,7 +1228,7 @@ class adminEventController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=event', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
     }
     /**
      * delete deleteEvent by event_id.
@@ -1244,13 +1246,13 @@ class adminEventController
 
         if (!validator::required($id) and !validator::Numeric($id)) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'admin/index.php?component=event', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
         }
 
         $event = adminEventModel::find($id);
         if (!is_object($event)) {
             $msg = $event['msg'];
-            redirectPage(RELA_DIR.'admin/index.php?component=event', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
         }
 
 
@@ -1260,7 +1262,7 @@ class adminEventController
 
         if ($result['export']['recordsCount'] > 0) {
             $msg = 'توجه : ابتدا گالری این رویداد را حذف نمایید.';
-            redirectPage(RELA_DIR.'admin/index.php?component=event', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
         }
 
         $dir = ROOT_DIR.'statics/event/';
@@ -1269,11 +1271,11 @@ class adminEventController
         $result = $event->delete();
 
         if ($result['result'] != '1') {
-            redirectPage(RELA_DIR.'admin/index.php?component=event', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
         }
 
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=event', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
         die();
     }
     public function deleteGallery($id)
@@ -1281,7 +1283,7 @@ class adminEventController
 
         if (!validator::required($id) and !validator::Numeric($id)) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'admin/index.php?component=event', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
         }
 
         include_once ROOT_DIR.'component/event_gallery/admin/model/admin.event_gallery.model.php';
@@ -1289,7 +1291,7 @@ class adminEventController
 
         if (!is_object($event)) {
             $msg = $event['msg'];
-            redirectPage(RELA_DIR.'admin/index.php?component=event&action=gallery&id='.$event->fields['event_id'], $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=event&action=gallery&id='.$event->fields['event_id'], $msg);
         }
 
         $dir = ROOT_DIR.'statics/event/';
@@ -1298,11 +1300,11 @@ class adminEventController
         $result = $event->delete();
 
         if ($result['result'] != '1') {
-            redirectPage(RELA_DIR.'admin/index.php?component=event&action=gallery&id='.$event->fields['event_id'], $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=event&action=gallery&id='.$event->fields['event_id'], $msg);
         }
 
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=event&action=gallery&id='.$event->fields['event_id'], $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=event&action=gallery&id='.$event->fields['event_id'], $msg);
         die();
     }
     public function call($fields)

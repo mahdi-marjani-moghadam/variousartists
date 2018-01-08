@@ -163,7 +163,7 @@ class adminArticleController
             $this->showArticleAddForm($fields,$result['msg']);
         }
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=article", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=article", $msg);
         die();
     }
 
@@ -180,14 +180,14 @@ class adminArticleController
         if(!validator::required($fields['Article_id']) and !validator::Numeric($fields['Article_id']))
         {
             $msg= 'یافت نشد';
-            redirectPage(RELA_DIR . "admin/index.php?component=article", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=article", $msg);
         }
         $result    = $article->getArticleById($fields['Article_id']);
 
         if($result['result']!='1')
         {
             $msg=$result['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=article", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=article", $msg);
         }
 
 
@@ -222,13 +222,13 @@ class adminArticleController
         if(!validator::required($fields['Article_id']) and !validator::Numeric($fields['Article_id']))
         {
             $msg= 'یافت نشد';
-            redirectPage(RELA_DIR . "admin/index.php?component=article", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=article", $msg);
         }
         $result    = $article->getArticleById($fields['Article_id']);
         if($result['result']!='1')
         {
             $msg=$result['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=article", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=article", $msg);
         }
 
 
@@ -247,7 +247,7 @@ class adminArticleController
             $this->showArticleEditForm($fields,$result['msg']);
         }
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=article", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=article", $msg);
         die();
     }
 
@@ -266,13 +266,13 @@ class adminArticleController
         if(!validator::required($fields['Article_id']) and !validator::Numeric($fields['Article_id']))
         {
             $msg= 'یافت نشد';
-            redirectPage(RELA_DIR . "admin/index.php?component=article", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=article", $msg);
         }
         $result    = $article->getArticleById($fields['Article_id']);
         if($result['result']!='1')
         {
             $msg=$result['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=article", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=article", $msg);
         }
         $result=$article->setFields($fields);
 
@@ -287,7 +287,7 @@ class adminArticleController
             $this->showArticleEditForm($fields,$result['msg']);
         }
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=article", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=article", $msg);
         die();
     }
 }

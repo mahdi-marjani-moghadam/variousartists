@@ -95,10 +95,10 @@ class admin_member_presentation
             {
                 //$st = '<div class="nice-checkbox"><input type="checkbox" class="checkbox-o" name="box[' . $list['news_id'] . ']" value="' . $list['Title'] . '" id="checkbox-o-' . $i . '"><label for="checkbox-o-' . $i . '"></label></div>';
 
-                $st ='<a href="'.RELA_DIR.'admin/product.php?action=editCode&code_id=' . $list['product_code_id'].'"  rel="tooltip" data-original-title="ویرایش">
+                $st ='<a href="'.RELA_DIR.'zamin/product.php?action=editCode&code_id=' . $list['product_code_id'].'"  rel="tooltip" data-original-title="ویرایش">
                                             <i class="fa fa-pencil text-green"></i>
                                         </a>
-                                        <a href="'.RELA_DIR.'admin/product.php?action=trashCompany&product_id='. $list['product_id'].'"  rel="tooltip" data-original-title="پاک کردن">
+                                        <a href="'.RELA_DIR.'zamin/product.php?action=trashCompany&product_id='. $list['product_id'].'"  rel="tooltip" data-original-title="پاک کردن">
                                             <i class="fa fa-trash text-red"></i>
                                         </a>';
                 return $st;
@@ -179,7 +179,7 @@ class admin_member_presentation
             {
                 //$st = '<div class="nice-checkbox"><input type="checkbox" class="checkbox-o" name="box[' . $list['news_id'] . ']" value="' . $list['Title'] . '" id="checkbox-o-' . $i . '"><label for="checkbox-o-' . $i . '"></label></div>';
                 $st ='
-                <a href="'.RELA_DIR.'admin/members.php?action=editPrice&member_id='. $list['member_id'].'"  rel="tooltip" data-original-title="تعیین قیمت">
+                <a href="'.RELA_DIR.'zamin/members.php?action=editPrice&member_id='. $list['member_id'].'"  rel="tooltip" data-original-title="تعیین قیمت">
                       <i class="fa  text-red">تعیین قیمت</i>
                      </a>';
 
@@ -191,10 +191,10 @@ class admin_member_presentation
             {
                 //$st = '<div class="nice-checkbox"><input type="checkbox" class="checkbox-o" name="box[' . $list['news_id'] . ']" value="' . $list['Title'] . '" id="checkbox-o-' . $i . '"><label for="checkbox-o-' . $i . '"></label></div>';
 
-                $st ='<a href="'.RELA_DIR.'admin/members.php?action=edit&member_id=' . $list['member_id'].'"  rel="tooltip" data-original-title="ویرایش">
+                $st ='<a href="'.RELA_DIR.'zamin/members.php?action=edit&member_id=' . $list['member_id'].'"  rel="tooltip" data-original-title="ویرایش">
                                             <i class="fa fa-pencil text-green"></i>
                     </a>
-                    <a href="'.RELA_DIR.'admin/members.php?action=trashCompany&member_id='. $list['member_id'].'"  rel="tooltip" data-original-title="پاک کردن">
+                    <a href="'.RELA_DIR.'zamin/members.php?action=trashCompany&member_id='. $list['member_id'].'"  rel="tooltip" data-original-title="پاک کردن">
                         <i class="fa fa-trash text-red"></i>
                     </a>';
                 return $st;
@@ -291,7 +291,7 @@ class admin_member_presentation
         {
 
             $msg = "عملیات با موفقیت انجام شد.";
-            redirectPage(RELA_DIR . "admin/members.php", $msg);
+            redirectPage(RELA_DIR . "zamin/members.php", $msg);
         }
 
         die();
@@ -367,7 +367,7 @@ class admin_member_presentation
         if($result['result']==1)
         {
             $msg = "عملیات با موفقیت انجام شد.";
-            redirectPage(RELA_DIR . "admin/product.php",$msg);
+            redirectPage(RELA_DIR . "zmain/product.php",$msg);
         }
         else
         {
@@ -399,7 +399,7 @@ class admin_member_presentation
         if($result['result']==1)
         {
             $msg = "عملیات با موفقیت انجام شد.";
-            redirectPage(RELA_DIR . "admin/members.php",$msg);
+            redirectPage(RELA_DIR . "zamin/members.php",$msg);
         }
         else
         {
@@ -431,7 +431,7 @@ class admin_member_presentation
         if($result['result']==1)
         {
             $msg = "عملیات با موفقیت انجام شد.";
-            redirectPage(RELA_DIR . "admin/members.php",$msg);
+            redirectPage(RELA_DIR . "zamin/members.php",$msg);
         }
         else
         {

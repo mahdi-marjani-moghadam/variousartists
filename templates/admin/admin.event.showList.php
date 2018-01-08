@@ -26,7 +26,7 @@
         var oTable = dataTable.DataTable({
             "processing": true,
             "serverSide": true,
-            "ajax": "<?=RELA_DIR?>admin/?component=event&action=search&status=<?=$list['status']?>",
+            "ajax": "<?=RELA_DIR?>zamin/?component=event&action=search&status=<?=$list['status']?>",
             "ordering": false
         });
 
@@ -58,7 +58,7 @@
             var company_id=$(this).data('company_id');
             $("#loading").show();
             $.ajax({
-                url: '<?=RELA_DIR?>admin/?component=company&action=getCompanyPhone',
+                url: '<?=RELA_DIR?>zamin/?component=company&action=getCompanyPhone',
                 type: "POST",
                 data: "company_id="+company_id,
                 cache: false,
@@ -113,7 +113,7 @@
             </div>
         </div>
         <div class="panel-body">
-            <div class="pull-right"><a href="<?= RELA_DIR ?>admin/?component=event&action=add"
+            <div class="pull-right"><a href="<?= RELA_DIR ?>zamin/?component=event&action=add"
                                        class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن
                     رویداد جدید</a></div>
 

@@ -108,7 +108,7 @@ class adminLicenceController
         $msg='عملیات با موفقیت انجام شد';
         $messageStack->add_session('register',$msg);
 
-        redirectPage(RELA_DIR . "admin/?component=licence&id={$_input['company_id']}", $msg);
+        redirectPage(RELA_DIR . "zamin/?component=licence&id={$_input['company_id']}", $msg);
         die();
 
 
@@ -162,7 +162,7 @@ class adminLicenceController
 
         if($result['result']!=1)
         {
-            redirectPage(RELA_DIR . "admin/index.php?component=licence", $result['msg']);
+            redirectPage(RELA_DIR . "zamin/index.php?component=licence", $result['msg']);
         }
 
         $result=$licence->setFields($fields);
@@ -180,7 +180,7 @@ class adminLicenceController
         }
 
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=licence&id={$fields['company_id']}", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=licence&id={$fields['company_id']}", $msg);
         die();
     }
 
@@ -201,7 +201,7 @@ class adminLicenceController
         if($result['result']!='1')
         {
             $msg=$result['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=licence", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=licence", $msg);
         }
 
         $export=$licence->fields;
@@ -282,11 +282,11 @@ class adminLicenceController
 
         if($result['result']!='1')
         {
-            redirectPage(RELA_DIR . "admin/index.php?component=licence&id=$company_id", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=licence&id=$company_id", $msg);
         }
 
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=licence&id=$company_id", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=licence&id=$company_id", $msg);
         die();
     }
 

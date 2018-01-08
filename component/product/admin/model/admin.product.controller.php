@@ -142,7 +142,7 @@ class adminProductController
         $msg='عملیات با موفقیت انجام شد';
         $messageStack->add_session('register',$msg);
 
-        redirectPage(RELA_DIR . "admin/?component=product&id={$_input['artists_id']}", $msg);
+        redirectPage(RELA_DIR . "zamin/?component=product&id={$_input['artists_id']}", $msg);
         die();
 
 
@@ -195,7 +195,7 @@ class adminProductController
 
         if(!is_object($product))
         {
-            redirectPage(RELA_DIR . "admin/index.php?component=product", $product['msg']);
+            redirectPage(RELA_DIR . "zamin/index.php?component=product", $product['msg']);
         }
 
         if($lang == 'fa')
@@ -247,7 +247,7 @@ class adminProductController
         }
 
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=product&id={$fields['artists_id']}", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=product&id={$fields['artists_id']}", $msg);
         die();
     }
 
@@ -268,7 +268,7 @@ class adminProductController
         if($result['result']!='1')
         {
             $msg=$result['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=product", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=product", $msg);
         }
 
         $export=$product->fields;
@@ -358,11 +358,11 @@ class adminProductController
 
         if($result['result']!='1')
         {
-            redirectPage(RELA_DIR . "admin/index.php?component=product&id=$company_id", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=product&id=$company_id", $msg);
         }
 
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=product&id=$company_id", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=product&id=$company_id", $msg);
         die();
     }
 

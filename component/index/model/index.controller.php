@@ -115,6 +115,7 @@ class indexController
      */
     public function showALL($fields)
     {
+
         //use category model func by getCategoryUlLi
         include_once(ROOT_DIR."component/category/model/category.model.php");
         $category = new categoryModel();

@@ -11,9 +11,9 @@
                 <div class="footer-widgets-wrap clearfix">
 
                     <div class="col-md-4">
-
                         <div class="widget clearfix">
 
+                        <p style="margin: 0"> تمامی حقوق سایت متعلق به موسسه فنی رامشگران گوناگون می باشد.</p>
 
                             <div class="clearfix" style="padding: 0; display: none; ">
                                 
@@ -62,6 +62,7 @@
                     <div class="col-md-4">
                         <div class="col_full nobottommargin center">
                             <p>Music The Great Communicator</p>
+
                             <div class="copyrights-menu copyright-links clearfix">
                                 <a href="<?=RELA_DIR?>">خانه</a>/<a href="<?=RELA_DIR?>aboutus">درباره ما</a>/<a href="<?=RELA_DIR?>contactus">تماس با ما</a>
                             </div>
@@ -73,7 +74,6 @@
                     <div class="col-md-4">
 
                         <div class="widget clearfix">
-                            <h4>دوستان ما</h4>
 
 
                             <div class="col_full masonry-thumbs col-6 clearfix" data-lightbox="gallery">
@@ -81,9 +81,7 @@
                                 <a  href="https://www.instagram.com/bahamzi/">
                                     <img class="image_fade img-circle" src="<?=RELA_DIR.'statics/friends/bahamzi.jpg'?>" alt="Gallery Thumb 1">
                                 </a>
-                                <a  href="https://www.instagram.com/caffemolinariiran/">
-                                    <img class="image_fade img-circle" src="<?=RELA_DIR.'statics/friends/caffemolinariiran.jpg'?>" alt="caffemolinariiran">
-                                </a>
+
                                 <a  href="http://www.zendegicomplex.com">
                                     <img class="image_fade img-circle" src="<?=RELA_DIR.'statics/friends/zendegicomplex.jpg'?>" alt="zendegicomplex">
                                 </a>
@@ -155,6 +153,16 @@
         <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/persianDatepicker.min.js"></script>
 
 
+        <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/persianumber.js"></script>
+        <script type="text/javascript">
+
+            $(document).ready(function(){
+
+                $('html').persiaNumber();
+
+            });
+
+        </script>
 
 
         <script>$('.datepicker').persianDatepicker();</script>

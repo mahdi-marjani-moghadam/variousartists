@@ -50,7 +50,7 @@ table{ margin-bottom: 0;}
 }
 
 .fc-unthemed .fc-today {
-	background: rgba(255,250,255,0.4);
+	background: rgba(256,240,212,1);
 }
 
 .fc-highlight { /* when user is selecting cells */

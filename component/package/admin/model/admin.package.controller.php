@@ -86,7 +86,7 @@ class adminPackageController
             $this->showPackageAddForm($fields, $result['msg']);
         }
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . 'admin/index.php?component=package', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=package', $msg);
         die();
     }
 
@@ -96,7 +96,7 @@ class adminPackageController
         if(!is_object($package))
         {
             $msg = 'صفحه مورد نظر یافت نشد';
-            redirectPage(RELA_DIR.'admin/index.php?component=package', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=package', $msg);
         }
         $export = $package->fields;
         $this->fileName = 'admin.package.editForm.php';
@@ -110,7 +110,7 @@ class adminPackageController
         $Package->setFields($fields);
         $Package->save();
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=package', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=package', $msg);
         die();
     }
     
@@ -122,7 +122,7 @@ class adminPackageController
             $this->showPackageEditForm($fields, $result['msg']);
         }
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=package', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=package', $msg);
         die();
     }
 }

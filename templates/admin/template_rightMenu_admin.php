@@ -3,7 +3,7 @@
             <ul class="sidebar">
                 <!--/sidebar-item-->
                 <li>
-                    <a href="<?php print RELA_DIR; ?>admin/index.php">
+                    <a href="<?php print RELA_DIR; ?>zamin/index.php">
                         <i class="sidebar-icon fa fa-home"></i>
                         <span class="sidebar-text">خانه</span>
                     </a>
@@ -17,12 +17,12 @@
                     </a>
                     <ul class="sidebar-child animated fadeInRight">
                         <li>
-                            <a href="<?=RELA_DIR; ?>admin/?component=category">
+                            <a href="<?=RELA_DIR; ?>zamin/?component=category">
                                 <span class="sidebar-text text-16">لیست دسته بندی</span>
                             </a>
                         </li>
                         <li>
-                            <a href="<?=RELA_DIR; ?>admin/?component=category&action=add">
+                            <a href="<?=RELA_DIR; ?>zamin/?component=category&action=add">
                                 <span class="sidebar-text text-16">افزودن دسته بندی جدید</span>
                             </a>
                         </li><!--/child-item-->
@@ -38,7 +38,7 @@
                     </a>
                     <ul class="sidebar-child animated fadeInRight">
                         <li>
-                            <a href="<?=RELA_DIR; ?>admin/?component=artists">
+                            <a href="<?=RELA_DIR; ?>zamin/?component=artists">
                                 <span class="sidebar-text text-16">لیست هنرمندان</span>
                             </a>
                         </li>
@@ -52,7 +52,7 @@
                     </a>
                     <ul class="sidebar-child animated fadeInRight">
                         <li>
-                            <a href="<?=RELA_DIR; ?>admin/?component=event">
+                            <a href="<?=RELA_DIR; ?>zamin/?component=event">
                                 <span class="sidebar-text text-16">لیست رویدادها</span>
                             </a>
                         </li>
@@ -66,7 +66,7 @@
                     </a>
                     <ul class="sidebar-child animated fadeInRight">
                         <li>
-                            <a href="<?=RELA_DIR; ?>admin/?component=banner">
+                            <a href="<?=RELA_DIR; ?>zamin/?component=banner">
                                 <span class="sidebar-text text-16">لیست بنر</span>
                             </a>
                         </li>
@@ -80,7 +80,7 @@
                     </a>
                     <ul class="sidebar-child animated fadeInRight">
                         <li>
-                            <a href="<?=RELA_DIR; ?>admin/?component=services">
+                            <a href="<?=RELA_DIR; ?>zamin/?component=services">
                                 <span class="sidebar-text text-16">ویرایش خدمات</span>
                             </a>
                         </li>
@@ -94,7 +94,7 @@
                     </a>
                     <ul class="sidebar-child animated fadeInRight">
                         <li>
-                            <a href="<?=RELA_DIR; ?>admin/?component=aboutus&action=addAboutus">
+                            <a href="<?=RELA_DIR; ?>zamin/?component=aboutus&action=addAboutus">
                                 <span class="sidebar-text text-16"> ویرایش</span>
                             </a>
                         </li><!--/child-item-->
@@ -102,7 +102,7 @@
                 </li><!--/sidebar-item-->
 
                 <li>
-                    <a href="<?=RELA_DIR; ?>admin/?component=contactus">
+                    <a href="<?=RELA_DIR; ?>zamin/?component=contactus">
                         <i class="sidebar-icon fa fa-envelope"></i>
                         <span class="sidebar-text">تماس با ما</span>
                     </a>

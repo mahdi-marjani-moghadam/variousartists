@@ -152,7 +152,7 @@ class adminContactusController
             $this->showContactusAddForm($fields, $result['msg']);
         }
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=contactus", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=contactus", $msg);
         die();
     }
 
@@ -169,14 +169,14 @@ class adminContactusController
         if (!validator::required($fields['Contactus_id']) and !validator::Numeric($fields['Contactus_id']))
         {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR . "admin/index.php?component=contactus", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=contactus", $msg);
         }
         $result = $contactus->getContactusById($fields['Contactus_id']);
 
         if ($result['result'] != '1')
         {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=contactus", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=contactus", $msg);
         }
 
         $export = $contactus->fields;
@@ -196,13 +196,13 @@ class adminContactusController
         if (!validator::required($fields['Contactus_id']) and !validator::Numeric($fields['Contactus_id']))
         {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR . "admin/index.php?component=contactus", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=contactus", $msg);
         }
         $result = $contactus->getContactusById($fields['Contactus_id']);
         if ($result['result'] != '1')
         {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=contactus", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=contactus", $msg);
         }
 
 
@@ -221,7 +221,7 @@ class adminContactusController
             $this->showContactusEditForm($fields, $result['msg']);
         }
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=contactus", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=contactus", $msg);
         die();
     }
 
@@ -240,13 +240,13 @@ class adminContactusController
         if (!validator::required($fields['Contact_id']) and !validator::Numeric($fields['Contact_id']))
         {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR . "admin/index.php?component=contactus", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=contactus", $msg);
         }
         $result = $contactus->getContactusById($fields['Contact_id']);
         if ($result['result'] != '1')
         {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=contact", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=contact", $msg);
         }
         $result = $contactus->setFields($fields);
 
@@ -261,7 +261,7 @@ class adminContactusController
             $this->showContactusEditForm($fields, $result['msg']);
         }
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=contactus", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=contactus", $msg);
         die();
     }
 }

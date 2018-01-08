@@ -27,7 +27,7 @@ class adminEventModel extends looeic
     {
         include_once(dirname(__FILE__) . "/admin.event.model.db.php");
 
-
+        ///$fields['order']['Event_id'] =
         $result = adminEventModelDb::getEvent($fields);
 
         if($result['result'] != 1)

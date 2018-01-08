@@ -166,7 +166,7 @@ class adminAdvertiseController
             $this->showAdvertiseAddForm($fields,$result['msg']);
         }
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=advertise", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=advertise", $msg);
         die();
     }
 
@@ -183,14 +183,14 @@ class adminAdvertiseController
         if(!validator::required($fields['Advertise_id']) and !validator::Numeric($fields['Advertise_id']))
         {
             $msg= 'یافت نشد';
-            redirectPage(RELA_DIR . "admin/index.php?component=advertise", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=advertise", $msg);
         }
         $result    = $advertise->getAdvertiseById($fields['Advertise_id']);
 
         if($result['result']!='1')
         {
             $msg=$result['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=advertise", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=advertise", $msg);
         }
 
 
@@ -229,13 +229,13 @@ class adminAdvertiseController
         if(!validator::required($fields['Advertise_id']) and !validator::Numeric($fields['Advertise_id']))
         {
             $msg= 'یافت نشد';
-            redirectPage(RELA_DIR . "admin/index.php?component=advertise", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=advertise", $msg);
         }
         $result    = $advertise->getAdvertiseById($fields['Advertise_id']);
         if($result['result']!='1')
         {
             $msg=$result['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=advertise", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=advertise", $msg);
         }
 
 
@@ -256,7 +256,7 @@ class adminAdvertiseController
             $this->showAdvertiseEditForm($fields,$result['msg']);
         }
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=advertise", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=advertise", $msg);
         die();
     }
 
@@ -275,13 +275,13 @@ class adminAdvertiseController
         if(!validator::required($fields['Advertise_id']) and !validator::Numeric($fields['Advertise_id']))
         {
             $msg= 'یافت نشد';
-            redirectPage(RELA_DIR . "admin/index.php?component=advertise", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=advertise", $msg);
         }
         $result    = $advertise->getAdvertiseById($fields['Advertise_id']);
         if($result['result']!='1')
         {
             $msg=$result['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=advertise", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=advertise", $msg);
         }
         $result=$advertise->setFields($fields);
 
@@ -296,7 +296,7 @@ class adminAdvertiseController
             $this->showAdvertiseEditForm($fields,$result['msg']);
         }
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=advertise", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=advertise", $msg);
         die();
     }
 }

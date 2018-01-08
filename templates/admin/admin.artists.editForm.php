@@ -78,6 +78,17 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
+                                           for="password">رمز:</label>
+                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+
+                                        <input type="password" class="form-control" name="password" id="password"  value="">
+                                        در صورت پر کردن فیلد رمز ویرایش میشود.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="row">
@@ -90,12 +101,32 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="description_fa">بیوگرافی(فارسی):</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="description_fa" id="description_fa"  value="<?= $list['description_fa'] ?>">
+                                        <?php
+
+                                        include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
+                                        include_once ROOT_DIR.'common/ckfinder/ckfinder.php';
+                                        $ckeditor = new CKEditor();
+                                        $ckeditor->basePath = RELA_DIR.'common/ckeditor/';
+
+
+
+
+                                        $config['language'] = 'fa';
+                                        $config['filebrowserBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html';
+                                        $config['filebrowserImageBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html?type=Images';
+                                        $config['filebrowserUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+                                        $config['filebrowserImageUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+
+                                        $tt = $ckeditor->editor('description_fa',$list['description_fa'],$config);
+
+                                        echo $tt;
+                                        ?>
+
                                     </div>
                                 </div>
                             </div>
@@ -111,12 +142,31 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="description_en">بیوگرافی(انگلیسی):</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="description_en" id="description_en"  value="<?= $list['description_en'] ?>">
+                                        <?php
+
+                                        include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
+                                        include_once ROOT_DIR.'common/ckfinder/ckfinder.php';
+                                        $ckeditor = new CKEditor();
+                                        $ckeditor->basePath = RELA_DIR.'common/ckeditor/';
+
+
+
+
+                                        $config['language'] = 'en';
+                                        $config['filebrowserBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html';
+                                        $config['filebrowserImageBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html?type=Images';
+                                        $config['filebrowserUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+                                        $config['filebrowserImageUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+
+                                        $tt = $ckeditor->editor('description_en',$list['description_en'],$config);
+
+                                        echo $tt;
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -148,7 +198,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="birthday">تاریخ تولد:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control date" name="birthday" id="birthday" value="<?= convertDate($list['birthday']) ?>">
+                                        <input type="text" class="form-control date" name="birthday" id="birthday" value="<?= ($list['birthday']) ?>">
                                     </div>
                                 </div>
                             </div>

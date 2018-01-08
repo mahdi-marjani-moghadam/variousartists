@@ -43,7 +43,7 @@
         </div>
         <div class="panel-body">
             <div class="pull-right">
-                <a href="<?= RELA_DIR ?>admin/?component=banner&action=addBanner"
+                <a href="<?= RELA_DIR ?>zamin/?component=banner&action=addBanner"
                    class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i>افزودن بنر جدید </a>
             </div>
             <!-- separator -->
@@ -79,8 +79,8 @@
                             <td><?php echo $fields['priority']; ?></td>
                             <td dir="ltr" align="center"><img height="60px" src="<?=RELA_DIR.'statics/banner/'. $fields['image'] ?>"/></td>
                             <td>
-                                <a href="<?= RELA_DIR ?>admin/?component=banner&action=editBanner&id=<?php echo $fields['Banner_id']; ?>">ویرایش</a>
-                                <a href="<?= RELA_DIR ?>admin/?component=banner&action=deleteBanner&id=<?php echo $fields['Banner_id']; ?>">حذف</a>
+                                <a href="<?= RELA_DIR ?>zamin/?component=banner&action=editBanner&id=<?php echo $fields['Banner_id']; ?>">ویرایش</a>
+                                <a href="<?= RELA_DIR ?>zamin/?component=banner&action=deleteBanner&id=<?php echo $fields['Banner_id']; ?>">حذف</a>
                             </td>
                         </tr>
                     <?

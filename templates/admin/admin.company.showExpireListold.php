@@ -25,7 +25,7 @@
    $("#loading").show();
   $.ajax({
   type:'POST',
-  url:'<?=RELA_DIR?>admin/?component=company&action=call',
+  url:'<?=RELA_DIR?>zamin/?component=company&action=call',
   type: "POST",
   data: dataString,
   cache: false,
@@ -34,7 +34,7 @@
     $("#loading").hide();
     if(data=='yes')
   	{
-  		window.location='<?=RELA_DIR?>admin/?component=company&action=edit&id='+id;
+  		window.location='<?=RELA_DIR?>zamin/?component=company&action=edit&id='+id;
 
   	}else
   	{
@@ -132,11 +132,11 @@
                       </td>
                     <td><img height="60" src="<?php echo $fields['logo'];?>"></td>
                     <td>
-                        <a href="<?=RELA_DIR?>admin/?component=company&action=edit&id=<?php echo $fields['Company_id'];?>">ویرایش</a> <br/>
-                        <a href="<?=RELA_DIR?>admin/?component=product&id=<?php echo $fields['Company_id'];?>">لیست محصولات</a><br/>
-                        <a href="<?=RELA_DIR?>admin/?component=honour&id=<?php echo $fields['Company_id'];?>">لیست افتخارات</a><br/>
-                        <a href="<?=RELA_DIR?>admin/?component=licence&id=<?php echo $fields['Company_id'];?>">لیست مجوز ها</a><br/>
-                        <a href="<?=RELA_DIR?>admin/?component=company&action=delete&id=<?php echo $fields['Company_id'];?>">حذف</a>
+                        <a href="<?=RELA_DIR?>zamin/?component=company&action=edit&id=<?php echo $fields['Company_id'];?>">ویرایش</a> <br/>
+                        <a href="<?=RELA_DIR?>zamin/?component=product&id=<?php echo $fields['Company_id'];?>">لیست محصولات</a><br/>
+                        <a href="<?=RELA_DIR?>zamin/?component=honour&id=<?php echo $fields['Company_id'];?>">لیست افتخارات</a><br/>
+                        <a href="<?=RELA_DIR?>zamin/?component=licence&id=<?php echo $fields['Company_id'];?>">لیست مجوز ها</a><br/>
+                        <a href="<?=RELA_DIR?>zamin/?component=company&action=delete&id=<?php echo $fields['Company_id'];?>">حذف</a>
                     </td>
                   </tr>
               <?php

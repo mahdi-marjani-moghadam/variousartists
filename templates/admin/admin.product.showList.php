@@ -52,7 +52,7 @@
     <div class="panel-body">
       <div class="table-responsive table-responsive-datatables">
           <div class="pull-right">
-              <a href="<?=RELA_DIR?>admin/?component=product&artists_id=<?php echo $list['artists_id']; ?>&action=add" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن محصول جدید</a>
+              <a href="<?=RELA_DIR?>zamin/?component=product&artists_id=<?php echo $list['artists_id']; ?>&action=add" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن محصول جدید</a>
           </div>
           <div class="row smallSpace"></div>
 
@@ -105,8 +105,8 @@
                     <? endif;?>
                 </td>
                 <td>
-                    <a href="<?=RELA_DIR?>admin/?component=product&action=edit&id=<?php echo $fields['Artists_products_id']; ?>">ویرایش</a> <br/>
-                    <a href="<?=RELA_DIR?>admin/?component=product&action=deleteProduct&id=<?php echo $fields['Artists_products_id']; ?>">حذف</a> </td>
+                    <a href="<?=RELA_DIR?>zamin/?component=product&action=edit&id=<?php echo $fields['Artists_products_id']; ?>">ویرایش</a> <br/>
+                    <a href="<?=RELA_DIR?>zamin/?component=product&action=deleteProduct&id=<?php echo $fields['Artists_products_id']; ?>">حذف</a> </td>
               </tr>
               <?
             }

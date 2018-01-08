@@ -7,7 +7,7 @@
  */
 include_once("../../../server.inc.php");
 include_once(ROOT_DIR . "common/db.inc.php");
-include_once(ROOT_DIR . "admin/init.inc.php");
+include_once(ROOT_DIR . "zamin/init.inc.php");
 include_once(ROOT_DIR . "common/func.inc.php");
 include_once(ROOT_DIR."/common/validators.php");
 
@@ -31,7 +31,7 @@ if($_REQUEST['action'] == 'logout')
 if($admin_info['result'] != -1)
 {
 
-    header('Location: '.RELA_DIR.'admin/');
+    header('Location: '.RELA_DIR.'zamin/');
     die();
 }
 

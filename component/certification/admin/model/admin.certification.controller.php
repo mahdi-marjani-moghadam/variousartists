@@ -105,7 +105,7 @@ class adminCertificationController
         $msg = 'ثبت نام با موفقیت انجام شد.';
         $messageStack->add_session('register', $msg);
 
-        redirectPage(RELA_DIR.'admin/?component=certification', $msg);
+        redirectPage(RELA_DIR.'zamin/?component=certification', $msg);
         die();
     }
 
@@ -157,7 +157,7 @@ class adminCertificationController
             $this->showCertificationEditForm($fields, $result['msg']);
         }
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=certification', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=certification', $msg);
         die();
     }
 
@@ -178,7 +178,7 @@ class adminCertificationController
             $result = $certification->getCertificationById($fields['Certification_id']);
             if ($result['result'] != '1') {
                 $msg = $result['msg'];
-                redirectPage(RELA_DIR.'admin/index.php?component=certification', $msg);
+                redirectPage(RELA_DIR.'zamin/index.php?component=certification', $msg);
             }
             $export = $certification->fields;
         } else {
@@ -233,22 +233,22 @@ class adminCertificationController
 
         if (!validator::required($id) and !validator::Numeric($id)) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'admin/index.php?component=certification', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=certification', $msg);
         }
         $result = $certification->getCertificationById($id);
         if ($result['result'] != '1') {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR.'admin/index.php?component=certification', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=certification', $msg);
         }
 
         $result = $certification->delete();
 
         if ($result['result'] != '1') {
-            redirectPage(RELA_DIR.'admin/index.php?component=certification', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=certification', $msg);
         }
 
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=certification', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=certification', $msg);
         die();
     }
 }

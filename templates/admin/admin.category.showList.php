@@ -47,7 +47,7 @@
         </div>
         <div class="panel-body">
             <div class="pull-right">
-                <a href="<?= RELA_DIR ?>admin/?component=category&action=add" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن دسته بندی جدید</a>
+                <a href="<?= RELA_DIR ?>zamin/?component=category&action=add" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن دسته بندی جدید</a>
             </div>
             <!-- separator -->
             <div class="row smallSpace"></div>
@@ -85,8 +85,8 @@
                             <td><?php echo $fields['meta_description']; ?></td>
                             <td style="display: none" dir="ltr" align="center"><img height="60px" src="<?= $fields['img_name'] ?>"/></td>
                             <td>
-                                <a href="<?= RELA_DIR ?>admin/?component=category&action=edit&id=<?php echo $fields['Category_id']; ?>">ویرایش</a>
-                                <a href="<?= RELA_DIR ?>admin/?component=category&action=delete&id=<?php echo $fields['Category_id']; ?>">حذف</a>
+                                <a href="<?= RELA_DIR ?>zamin/?component=category&action=edit&id=<?php echo $fields['Category_id']; ?>">ویرایش</a>
+                                <a href="<?= RELA_DIR ?>zamin/?component=category&action=delete&id=<?php echo $fields['Category_id']; ?>">حذف</a>
                             </td>
                         </tr>
                     <?php

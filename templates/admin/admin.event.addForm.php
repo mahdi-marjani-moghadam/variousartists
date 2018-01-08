@@ -1,4 +1,40 @@
+<script type="text/javascript" src="../common/ckfinder/ckfinder.js" xmlns="http://www.w3.org/1999/html"></script>
+<script type="text/javascript">
 
+    function BrowseServer( startupPath, functionData )
+    {
+        var finder = new CKFinder();
+        finder.basePath = '../';
+        finder.startupPath = startupPath;
+        finder.selectActionFunction = SetFileField;
+        finder.selectActionData = functionData;
+
+        finder.popup();
+    }
+
+    function SetFileField( fileUrl, data )
+    {
+        document.getElementById( data["selectActionData"] ).value = fileUrl;
+    }
+    function ShowThumbnails( fileUrl, data )
+    {
+        // this = CKFinderAPI
+
+        var sFileName = this.getSelectedFile().name;
+        document.getElementById( 'thumbnails' ).innerHTML +=
+            '<div class="thumb">' +
+            '<img src="' + fileUrl + '" />' +
+            '<div class="caption">' +
+            '<a href="' + data["fileUrl"] + '" target="_blank">' + sFileName + '</a> (' + data["fileSize"] + 'KB)' +
+            '</div>' +
+            '</div>';
+
+        document.getElementById( 'preview' ).style.display = "";
+        // It is not  to return any value.
+        // When false is returned, CKFinder will not close automatically.
+        return false;
+    }
+</script>
 
 <div class="content-control">
     <!--control-nav-->
@@ -68,24 +104,65 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="brief_description_en">توضیحات مختصر(انگلیسی):</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="brief_description_en" id="brief_description_en"  value="<?= $list['brief_description_en'] ?>">
+
+
+                                        <?php
+
+                                        include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
+                                        include_once ROOT_DIR.'common/ckfinder/ckfinder.php';
+                                        $ckeditor = new CKEditor();
+                                        $ckeditor->basePath = RELA_DIR.'common/ckeditor/';
+
+
+
+
+                                        $config['language'] = 'fa';
+                                        $config['filebrowserBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html';
+                                        $config['filebrowserImageBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html?type=Images';
+                                        $config['filebrowserUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+                                        $config['filebrowserImageUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+
+                                        $tt = $ckeditor->editor('description_en',$list['description_en'],$config);
+
+                                        echo $tt;
+                                        ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row xsmallSpace hidden-xs"></div>
                         <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="description_fa">توضیحات (فارسی):</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="description_fa" id="description_fa" required value="<?= $list['description_fa'] ?>">
+                                        <?php
+
+                                        include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
+                                        include_once ROOT_DIR.'common/ckfinder/ckfinder.php';
+                                        $ckeditor = new CKEditor();
+                                        $ckeditor->basePath = RELA_DIR.'common/ckeditor/';
+
+
+
+
+                                        $config['language'] = 'fa';
+                                        $config['filebrowserBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html';
+                                        $config['filebrowserImageBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html?type=Images';
+                                        $config['filebrowserUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+                                        $config['filebrowserImageUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+
+                                        $tt = $ckeditor->editor('description_fa',$list['description_fa'],$config);
+
+                                        echo $tt;
+                                        ?>
+
                                     </div>
                                 </div>
                             </div>
@@ -155,7 +232,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="date3">زمان رویداد</label>
+                                           for="date3">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
                                         <input type="text" class="form-control  date" name="date3" id="date3"  value="<?= ($list['date3']!=""? convertDate($list['date3']):"")?>">
                                     </div>
@@ -216,7 +293,7 @@
                                                 value="<?= $value['province_id'] ?>">
                                                 <?= $value["name_$lang"] ?>
                                                 </option><?
-                                        }
+                                            }
                                             ?>
                                         </select>
                                     </div>

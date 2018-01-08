@@ -106,7 +106,7 @@ class adminCompanyController
         $msg = 'ثبت نام با موفقیت انجام شد.';
         $messageStack->add_session('register', $msg);
 
-        redirectPage(RELA_DIR.'admin/?component=company', $msg);
+        redirectPage(RELA_DIR.'zamin/?component=company', $msg);
         die();
     }
 
@@ -194,7 +194,7 @@ class adminCompanyController
             $action='&action='.$fields['showStatus'];
         }
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=company'.$action, $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=company'.$action, $msg);
         die();
     }
 
@@ -216,7 +216,7 @@ class adminCompanyController
             $result = $company->getCompanyById($fields['Company_id']);
             if ($result['result'] != '1') {
                 $msg = $result['msg'];
-                redirectPage(RELA_DIR.'admin/index.php?component=company', $msg);
+                redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
             }
             $export = $company->fields;
         } else {
@@ -360,12 +360,12 @@ class adminCompanyController
             formatter =>function($list,$internal)
             {
                 $st='a'.$list['showstatus'];
-                $st='<a href="'. RELA_DIR.'admin/?component=company&action=edit&id='.$list['Company_id'].'&showStatus='.$internal['showstatus']
+                $st='<a href="'. RELA_DIR.'zamin/?component=company&action=edit&id='.$list['Company_id'].'&showStatus='.$internal['showstatus']
                     .'">ویرایش</a> <br/>
-                        <a href="'.RELA_DIR.'admin/?component=product&id='.$list['Company_id'].'">لیست محصولات</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=honour&id='.$list['Company_id'].'">لیست افتخارات</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=licence&id='.$list['Company_id'].'">لیست مجوز ها</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=company&action=delete&id='.$list['Company_id'].$list['company_name'].'">حذف</a>';
+                        <a href="'.RELA_DIR.'zamin/?component=product&id='.$list['Company_id'].'">لیست محصولات</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=honour&id='.$list['Company_id'].'">لیست افتخارات</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=licence&id='.$list['Company_id'].'">لیست مجوز ها</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=company&action=delete&id='.$list['Company_id'].$list['company_name'].'">حذف</a>';
                 return $st;
             }
         );
@@ -466,12 +466,12 @@ class adminCompanyController
             formatter =>function($list,$internal)
             {
                 $st= 'a'.$list['showstatus'];
-                $st='<a href="'. RELA_DIR.'admin/?component=company&action=edit&id='.$list['Company_id'].'&showStatus='.$internal['showstatus']
+                $st='<a href="'. RELA_DIR.'zamin/?component=company&action=edit&id='.$list['Company_id'].'&showStatus='.$internal['showstatus']
                     .'">ویرایش</a> <br/>
-                        <a href="'.RELA_DIR.'admin/?component=product&id='.$list['Company_id'].'">لیست محصولات</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=honour&id='.$list['Company_id'].'">لیست افتخارات</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=licence&id='.$list['Company_id'].'">لیست مجوز ها</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=company&action=delete&id='.$list['Company_id'].$list['company_name'].'">حذف</a>';
+                        <a href="'.RELA_DIR.'zamin/?component=product&id='.$list['Company_id'].'">لیست محصولات</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=honour&id='.$list['Company_id'].'">لیست افتخارات</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=licence&id='.$list['Company_id'].'">لیست مجوز ها</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=company&action=delete&id='.$list['Company_id'].$list['company_name'].'">حذف</a>';
                 return $st;
             }
         );
@@ -555,12 +555,12 @@ class adminCompanyController
             formatter =>function($list,$internal)
             {
                 $st= 'a'.$list['showstatus'];
-                $st='<a href="'. RELA_DIR.'admin/?component=company&action=edit&id='.$list['Company_id'].'&showStatus='.$internal['showstatus']
+                $st='<a href="'. RELA_DIR.'zamin/?component=company&action=edit&id='.$list['Company_id'].'&showStatus='.$internal['showstatus']
                     .'">ویرایش</a> <br/>
-                        <a href="'.RELA_DIR.'admin/?component=product&id='.$list['Company_id'].'">لیست محصولات</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=honour&id='.$list['Company_id'].'">لیست افتخارات</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=licence&id='.$list['Company_id'].'">لیست مجوز ها</a><br/>
-                        <a href="'.RELA_DIR.'admin/?component=company&action=delete&id='.$list['Company_id'].$list['company_name'].'">حذف</a>';
+                        <a href="'.RELA_DIR.'zamin/?component=product&id='.$list['Company_id'].'">لیست محصولات</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=honour&id='.$list['Company_id'].'">لیست افتخارات</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=licence&id='.$list['Company_id'].'">لیست مجوز ها</a><br/>
+                        <a href="'.RELA_DIR.'zamin/?component=company&action=delete&id='.$list['Company_id'].$list['company_name'].'">حذف</a>';
                 return $st;
             }
         );
@@ -898,7 +898,7 @@ class adminCompanyController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=company', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
     }
 
     /**
@@ -939,7 +939,7 @@ class adminCompanyController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=company', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
     }
     /**
      * importCompanyEmails.
@@ -978,7 +978,7 @@ class adminCompanyController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=company', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
     }
     /**
      * importCompanyAddresses.
@@ -1016,7 +1016,7 @@ class adminCompanyController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=company', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
     }
     /**
      * importCompanyWebsites.
@@ -1054,7 +1054,7 @@ class adminCompanyController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=company', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
     }
     /**
      * delete deleteCompany by company_id.
@@ -1073,12 +1073,12 @@ class adminCompanyController
 
         if (!validator::required($id) and !validator::Numeric($id)) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'admin/index.php?component=company', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
         }
         $result = $company->getCompanyById($id);
         if ($result['result'] != '1') {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR.'admin/index.php?component=company', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
         }
 
         include_once ROOT_DIR.'/component/product/admin/model/admin.product.model.php';
@@ -1088,17 +1088,17 @@ class adminCompanyController
 
         if ($result['export']['recordsCount'] > 0) {
             $msg = 'توجه : ابتدا محصولات این کمپانی را حذف تنایید.';
-            redirectPage(RELA_DIR.'admin/index.php?component=company', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
         }
 
         $result = $company->delete();
 
         if ($result['result'] != '1') {
-            redirectPage(RELA_DIR.'admin/index.php?component=company', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
         }
 
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=company', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
         die();
     }
     public function call($fields)

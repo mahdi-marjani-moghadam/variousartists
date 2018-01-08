@@ -108,7 +108,7 @@ class adminHonourController
         $msg='عملیات با موفقیت انجام شد';
         $messageStack->add_session('register',$msg);
 
-        redirectPage(RELA_DIR . "admin/?component=honour&id={$_input['company_id']}", $msg);
+        redirectPage(RELA_DIR . "zamin/?component=honour&id={$_input['company_id']}", $msg);
         die();
 
 
@@ -162,7 +162,7 @@ class adminHonourController
 
         if($result['result']!=1)
         {
-            redirectPage(RELA_DIR . "admin/index.php?component=honour", $result['msg']);
+            redirectPage(RELA_DIR . "zamin/index.php?component=honour", $result['msg']);
         }
 
         $result=$honour->setFields($fields);
@@ -180,7 +180,7 @@ class adminHonourController
         }
 
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=honour&id={$fields['company_id']}", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=honour&id={$fields['company_id']}", $msg);
         die();
     }
 
@@ -201,7 +201,7 @@ class adminHonourController
         if($result['result']!='1')
         {
             $msg=$result['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=honour", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=honour", $msg);
         }
 
         $export=$honour->fields;
@@ -266,14 +266,14 @@ class adminHonourController
         if(!validator::required($id) and !validator::Numeric($id))
         {
             $msg= 'یافت نشد';
-            redirectPage(RELA_DIR . "admin/index.php", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php", $msg);
         }
         $resultGetHonour = $honour->getHonourById($id);
 
         if($resultGetHonour['result']!='1')
         {
             $msg=$resultGetHonour['msg'];
-            redirectPage(RELA_DIR . "admin/index.php", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php", $msg);
         }
         $company_id=$resultGetHonour['export']['list']['company_id'];
 
@@ -282,11 +282,11 @@ class adminHonourController
 
         if($result['result']!='1')
         {
-            redirectPage(RELA_DIR . "admin/index.php?component=honour&id=$company_id", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=honour&id=$company_id", $msg);
         }
 
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=honour&id=$company_id", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=honour&id=$company_id", $msg);
         die();
     }
 

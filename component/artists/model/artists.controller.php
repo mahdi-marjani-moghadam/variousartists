@@ -89,6 +89,14 @@ class artistsController
 
         if ($result['result'] == '1') {
             $export['list'] = $artists->fields;
+            if ($export['list']['description_fa'] == '' && $export['list']['description_en'] != '')
+            {
+                $export['list']['description'] = $export['list']['description_en'];
+            }
+            else if($export['list']['description_fa'] != '' && $export['list']['description_en'] == ''){
+                $export['list']['description'] = $export['list']['description_fa'];
+            }
+            //print_r_debug($export['list']);
         } else {
             $msg = 'not found';
             redirectPage(RELA_DIR, $msg);
@@ -109,7 +117,7 @@ class artistsController
         }*/
 
         // get artists products
-        include_once ROOT_DIR.'component/product/model/product.model.php';
+        include_once ROOT_DIR . 'component/product/model/product.model.php';
         $product = new productModel();
 
         $resultProduct = $product->getProductByArtistsId($id);
@@ -117,6 +125,9 @@ class artistsController
         if ($resultProduct['result'] == 1) {
             $export['product_list'] = $resultProduct['export']['list'];
         }
+
+
+
 
         //use category model func by getCategoryUlLi
         include_once ROOT_DIR.'component/category/model/category.model.php';

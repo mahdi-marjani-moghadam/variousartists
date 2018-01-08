@@ -91,7 +91,7 @@
 							<? /*<li class="<?=($PARAM[0] == 'services')?'current':'';?>"><a href="<?=RELA_DIR?>services"><div>خدمات</div></a></li>
 							<li class="<?=($PARAM[0] == 'shop')?'current':'';?>"><a href="<?=RELA_DIR?>shop"><div>فروشگاه</div></a></li>*/?>
 							<? if($member_info == -1){?>
-								<li class="<?=($PARAM[0] == 'login')?'current':'';?>"><a href="<?=RELA_DIR?>login"><div>Login / Register</div></a></li>
+								<li class="<?=($PARAM[0] == 'login')?'current':'';?>"><a style="font-size: 10px" href="<?=RELA_DIR?>login"><div>Login / Register</div></a></li>
 							<?   } else{?>
 								<li class="<?=($PARAM[0] == 'account')?'current':'';?>"><a href="<?=RELA_DIR?>account"><div>Account</div></a></li>
 								<li class="<?=($PARAM[0] == 'logout')?'current':'';?>"><a href="<?=RELA_DIR?>login/logout"><div>LogOut</div></a></li>

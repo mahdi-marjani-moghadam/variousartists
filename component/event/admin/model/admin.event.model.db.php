@@ -905,7 +905,7 @@ class adminEventModelDb
         $length=$condition['length'];
         if($condition['list']['order'] =='')
         {
-            $condition['list']['order']= ' ORDER BY `Event_id` ASC ';
+            $condition['list']['order']= ' ORDER BY `Event_id` DESC ';
         }
 
         $sql="

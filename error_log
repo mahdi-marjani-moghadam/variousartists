@@ -1,3 +1,0 @@
-[19-Mar-2017 05:00:02 Asia/Tehran] PHP Fatal error:  Call to a member function exec() on null in /home/variousa/public_html/common/init.inc.php on line 9
-[19-Mar-2017 05:00:04 Asia/Tehran] PHP Fatal error:  Call to a member function exec() on null in /home/variousa/public_html/common/init.inc.php on line 9
-[19-Mar-2017 05:00:07 Asia/Tehran] PHP Fatal error:  Call to a member function exec() on null in /home/variousa/public_html/common/init.inc.php on line 9

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
+
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="author" content="SemiColonWeb" />
 
@@ -49,10 +50,7 @@
     <link rel="stylesheet" href="<?php echo TEMPLATE_DIR; ?>css/fonts.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo TEMPLATE_DIR; ?>css/custom.css" type="text/css"/>
 
-<script>
 
-
-</script>
 
 	<!-- Document Title
 	============================================= -->
@@ -75,11 +73,11 @@
 				<div class="container clearfix">
 
 					<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
-<?session_start();?>
+
 					<!-- Logo
 					============================================= -->
 					<div id="logo">
-						<a href="<?=RELA_DIR?>" class="standard-logo" data-dark-logo="<?php echo TEMPLATE_DIR; ?>/img/logo.png"><img src="<?php  echo TEMPLATE_DIR; ?>img/logo.png" alt="Canvas Logo"></a>
+						<a href="<?=RELA_DIR?>" class="standard-logo" data-dark-logo="<?php echo TEMPLATE_DIR; ?>/img/logo.png"><img src="<?php echo TEMPLATE_DIR; ?>img/logo.png" alt="Canvas Logo"></a>
 						<a href="<?=RELA_DIR?>" class="retina-logo" data-dark-logo="<?php echo TEMPLATE_DIR; ?>/img/logo@2x.png"><img src="<?php echo TEMPLATE_DIR; ?>img/logo@2x.png" alt="Canvas Logo"></a>
 					</div><!-- #logo end -->
 
@@ -93,7 +91,7 @@
 							<? /*<li class="<?=($PARAM[0] == 'services')?'current':'';?>"><a href="<?=RELA_DIR?>services"><div>خدمات</div></a></li>
 							<li class="<?=($PARAM[0] == 'shop')?'current':'';?>"><a href="<?=RELA_DIR?>shop"><div>فروشگاه</div></a></li>*/?>
 							<? if($member_info == -1){?>
-								<li class="<?=($PARAM[0] == 'login')?'current':'';?>"><a href="<?=RELA_DIR?>login"><div>ورود / ثبت نام هنرمند</div></a></li>
+								<li class="<?=($PARAM[0] == 'login')?'current':'';?>"><a style="font-size: 10px" href="<?=RELA_DIR?>login"><div>ورود / ثبت نام هنرمند</div></a></li>
 							<?   } else{?>
 								<li class="<?=($PARAM[0] == 'account')?'current':'';?>"><a href="<?=RELA_DIR?>account"><div>صفحه کاربری</div></a></li>
 								<li class="<?=($PARAM[0] == 'logout')?'current':'';?>"><a href="<?=RELA_DIR?>login/logout"><div>خروج</div></a></li>
@@ -104,7 +102,40 @@
 
 						<!-- Top Cart
 						============================================= -->
-
+                        <? /*<div id="top-cart">
+							<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span>5</span></a>
+							<div class="top-cart-content">
+								<div class="top-cart-title">
+									<h4>Shopping Cart</h4>
+								</div>
+								<div class="top-cart-items">
+									<div class="top-cart-item clearfix">
+										<div class="top-cart-item-image">
+											<a href="#"><img src="images/shop/small/1.jpg" alt="Blue Round-Neck Tshirt" /></a>
+										</div>
+										<div class="top-cart-item-desc">
+											<a href="#">Blue Round-Neck Tshirt</a>
+											<span class="top-cart-item-price">$19.99</span>
+											<span class="top-cart-item-quantity">x 2</span>
+										</div>
+									</div>
+									<div class="top-cart-item clearfix">
+										<div class="top-cart-item-image">
+											<a href="#"><img src="images/shop/small/6.jpg" alt="Light Blue Denim Dress" /></a>
+										</div>
+										<div class="top-cart-item-desc">
+											<a href="#">Light Blue Denim Dress</a>
+											<span class="top-cart-item-price">$24.99</span>
+											<span class="top-cart-item-quantity">x 3</span>
+										</div>
+									</div>
+								</div>
+								<div class="top-cart-action clearfix">
+									<span class="fleft top-checkout-price">$114.95</span>
+									<button class="button button-3d button-small nomargin fright">View Cart</button>
+								</div>
+							</div>
+						</div><!-- #top-cart end --> */?>
 
 						<!-- Top Search
 						============================================= -->

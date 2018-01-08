@@ -46,7 +46,7 @@
     </div>
     <div class="panel-body">
       <div class="pull-right">
-        <a href="<?= RELA_DIR ?>admin/?component=package&action=addPackage" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i>افزودن محصول جدید </a>
+        <a href="<?= RELA_DIR ?>zamin/?component=package&action=addPackage" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i>افزودن محصول جدید </a>
       </div>
 
       <!-- separator -->
@@ -84,8 +84,8 @@
                 <td><?php echo $fields['packagetype']; ?></td>
                 <td><?php echo convertDate($fields['date']); ?></td>
                 <td>
-                  <a href="<?= RELA_DIR ?>admin/?component=package&action=editPackage&id=<?php echo $fields['Package_id']; ?>">ویرایش</a>
-                  <a href="<?= RELA_DIR ?>admin/?component=package&action=deletePackage&id=<?php echo $fields['Package_id']; ?>">حذف</a>
+                  <a href="<?= RELA_DIR ?>zamin/?component=package&action=editPackage&id=<?php echo $fields['Package_id']; ?>">ویرایش</a>
+                  <a href="<?= RELA_DIR ?>zamin/?component=package&action=deletePackage&id=<?php echo $fields['Package_id']; ?>">حذف</a>
                 </td>
 
               </tr>

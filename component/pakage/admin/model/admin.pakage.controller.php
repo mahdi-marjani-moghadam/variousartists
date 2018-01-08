@@ -146,7 +146,7 @@ class adminPakageController
         }
 
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . 'admin/index.php?component=pakage', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=pakage', $msg);
         die();
     }
 
@@ -161,13 +161,13 @@ class adminPakageController
 
             $msg = 'یافت نشد';
             redirectPage('');
-            redirectPage(RELA_DIR . 'admin/index.php?component=pakage', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=pakage', $msg);
         }
         $result = $pakage->getPakageById($fields['Pakage_id']);
 
         if ($result['result'] != '1') {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR . 'admin/index.php?component=pakage', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=pakage', $msg);
         }
 
         $export = $pakage->fields;
@@ -190,13 +190,13 @@ class adminPakageController
         if (!validator::required($fields['Pakage_id']) and !validator::Numeric($fields['Pakage_id'])) {
 
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'admin/index.php?component=pakage', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=pakage', $msg);
         }
 
         $result = $pakage->getPakageById($fields['Pakage_id']);
         if ($result['result'] != '1') {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR.'admin/index.php?component=pakage', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=pakage', $msg);
         }
 
         $result = $pakage->setFields($fields);
@@ -211,7 +211,7 @@ class adminPakageController
             $this->showPakageEditForm($fields, $result['msg']);
         }
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=pakage', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=pakage', $msg);
         die();
     }
 
@@ -233,13 +233,13 @@ class adminPakageController
 
         if (!validator::required($fields['Pakage_id']) and !validator::Numeric($fields['Pakage_id'])) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'admin/index.php?component=pakage', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=pakage', $msg);
         }
         $result = $pakage->getPakageById($fields['Pakage_id']);
      //   print_r_debug($result);
         if ($result['result'] != '1') {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR.'admin/index.php?component=pakage', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=pakage', $msg);
         }
         $result = $pakage->setFields($fields);
 //print_r_debug($result);
@@ -252,7 +252,7 @@ class adminPakageController
             $this->showPakageEditForm($fields, $result['msg']);
         }
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=pakage', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=pakage', $msg);
         die();
     }
 }

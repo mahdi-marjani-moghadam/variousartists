@@ -146,7 +146,7 @@ class adminBannerController
             $this->showBannerAddForm($fields,$result['msg']);
         }
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=banner", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=banner", $msg);
         die();
     }
 
@@ -159,7 +159,7 @@ class adminBannerController
         if(!validator::required($fields['Banner_id']) and !validator::Numeric($fields['Banner_id']))
         {
             $msg= 'یافت نشد';
-            redirectPage(RELA_DIR . "admin/index.php?component=banner", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=banner", $msg);
         }
 
         $banner = adminBannerModel::find($fields['Banner_id']);
@@ -167,7 +167,7 @@ class adminBannerController
         if(!is_object($banner))
         {
             $msg=$banner['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=banner", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=banner", $msg);
         }
 
         $export=$banner->fields;
@@ -189,7 +189,7 @@ class adminBannerController
         if(!validator::required($fields['Banner_id']) and !validator::Numeric($fields['Banner_id']))
         {
             $msg= 'یافت نشد';
-            redirectPage(RELA_DIR . "admin/index.php?component=banner", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=banner", $msg);
         }
 
         $banner = adminBannerModel::find($fields['Banner_id']);
@@ -197,7 +197,7 @@ class adminBannerController
         if(!is_object($banner))
         {
             $msg=$banner['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=banner", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=banner", $msg);
         }
 
 
@@ -234,7 +234,7 @@ class adminBannerController
             $this->showBannerEditForm($fields,$result['msg']);
         }
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=banner", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=banner", $msg);
         die();
     }
 
@@ -260,7 +260,7 @@ class adminBannerController
         if(!is_object($obj))
         {
             $msg=$obj['msg'];
-            redirectPage(RELA_DIR . "admin/index.php?component=banner", $msg);
+            redirectPage(RELA_DIR . "zamin/index.php?component=banner", $msg);
         }
 
         $dir = ROOT_DIR.'statics/banner/';
@@ -273,7 +273,7 @@ class adminBannerController
             $this->showBannerEditForm($fields,$result['msg']);
         }
         $msg='عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "admin/index.php?component=banner", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=banner", $msg);
         die();
     }
 }

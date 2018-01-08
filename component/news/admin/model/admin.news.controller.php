@@ -109,12 +109,12 @@ class adminNewsController
             $result = adminNewsModelDb::insert($fields);
             if ($result['result'] != '1') {
                 $msg = 'خطا در عملیات ایمپورت RSS';
-                redirectPage(RELA_DIR.'admin/index.php?component=news', $msg);
+                redirectPage(RELA_DIR.'zamin/index.php?component=news', $msg);
                 die();
             }
         }
         $msg = 'انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=news', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=news', $msg);
         die();
     }
 
@@ -168,7 +168,7 @@ class adminNewsController
             $this->showNewsAddForm($fields, $result['msg']);
         }
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=news', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=news', $msg);
         die();
     }
 
@@ -182,13 +182,13 @@ class adminNewsController
 
         if (!validator::required($fields['News_id']) and !validator::Numeric($fields['News_id'])) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'admin/index.php?component=news', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=news', $msg);
         }
         $result = $news->getNewsById($fields['News_id']);
 
         if ($result['result'] != '1') {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR.'admin/index.php?component=news', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=news', $msg);
         }
 
         $export = $news->fields;
@@ -207,12 +207,12 @@ class adminNewsController
 
         if (!validator::required($fields['News_id']) and !validator::Numeric($fields['News_id'])) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'admin/index.php?component=news', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=news', $msg);
         }
         $result = $news->getNewsById($fields['News_id']);
         if ($result['result'] != '1') {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR.'admin/index.php?component=news', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=news', $msg);
         }
 
         $result = $news->setFields($fields);
@@ -227,7 +227,7 @@ class adminNewsController
             $this->showNewsEditForm($fields, $result['msg']);
         }
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=news', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=news', $msg);
         die();
     }
 
@@ -247,12 +247,12 @@ class adminNewsController
 
         if (!validator::required($fields['News_id']) and !validator::Numeric($fields['News_id'])) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'admin/index.php?component=news', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=news', $msg);
         }
         $result = $news->getNewsById($fields['News_id']);
         if ($result['result'] != '1') {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR.'admin/index.php?component=news', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=news', $msg);
         }
         $result = $news->setFields($fields);
 
@@ -265,7 +265,7 @@ class adminNewsController
             $this->showNewsEditForm($fields, $result['msg']);
         }
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'admin/index.php?component=news', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=news', $msg);
         die();
     }
 }

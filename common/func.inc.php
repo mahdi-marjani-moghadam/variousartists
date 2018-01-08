@@ -1041,6 +1041,7 @@ function checkPermissions($action)
     $script = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 
     $admin_permission = $admin_info['permission'];
+
     //$newObj=unserialize($PagePermission[$script]);
     $newObj = $PagePermission[$script];
     unset($PagePermission);

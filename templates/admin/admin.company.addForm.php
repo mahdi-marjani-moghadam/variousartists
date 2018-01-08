@@ -579,7 +579,7 @@
 
     $("#province_id").on("change", function(){
         $.ajax({
-            url:"<?php echo RELA_DIR.'admin/?component=company&action=getCityAjax'?>",
+            url:"<?php echo RELA_DIR.'zamin/?component=company&action=getCityAjax'?>",
             data:{province_id : $("#province_id").val()},
             method: 'post',
             success:function(result)

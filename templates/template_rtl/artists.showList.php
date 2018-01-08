@@ -30,7 +30,7 @@
         <div class="col-xs-12 col-sm-12 col-md-10 pull-left">
         <!-- Portfolio Items
         ============================================= -->
-        <div id="portfolio" class="portfolio grid-container portfolio-6  portfolio-nomargin portfolio-full portfolio-masonry mixed-masonry grid-container clearfix">
+        <div id="portfolio" class="portfolio grid-container portfolio-6    portfolio-masonry mixed-masonry grid-container clearfix">
             <?
             if(count($list['list']) == 0 && isset($msg))
             {

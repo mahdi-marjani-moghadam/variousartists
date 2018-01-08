@@ -97,7 +97,7 @@ class adminLoginController
             $this->template('', $result['msg']);
         }
 
-        redirectPage(RELA_DIR . "admin/", $result['msg']);
+        redirectPage(RELA_DIR . "zamin/", $result['msg']);
         die();
     }
 
@@ -112,7 +112,7 @@ class adminLoginController
             $this->template('', $result['msg']);
         }
 
-        redirectPage(RELA_DIR . "admin/", $result['msg']);
+        redirectPage(RELA_DIR . "zamin/", $result['msg']);
         die();
     }
 

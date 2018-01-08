@@ -793,7 +793,7 @@ class memberLogIn
        $code = uniqid();
        $url =   "'<a href='".RELA_DIR.'login/changePass/?email='.$obj['export']['list'][0]->fields['email'].'&code='.$code ."'>".RELA_DIR.'login/changePass/?email='.$obj['export']['list'][0]->fields['email'].'&code='.$code."</a>";
 
-       sendmail($obj['export']['list'][0]->fields['email'],translate('Remember Password'),translate('Your change password link: ').$url);
+       sendmail($obj['export']['list'][0]->fields['email'],translate('Remember Password'),translate('Your change password link: ').$url."<br>".translate('website: www.variousartists.ir'));
 
        $obj1->forgot_code = $code;
        $obj1->save();

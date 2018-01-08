@@ -48,7 +48,7 @@
 					</div>
 				</div>
 
-				<div id="portfolio" class="portfolio portfolio-6 portfolio-nomargin grid-container portfolio-notitle portfolio-full grid-container clearfix">
+				<div id="portfolio" class="portfolio portfolio-6  grid-container portfolio-notitle grid-container clearfix">
 					<? foreach ($list['lastEvent'] as $kEvent => $vEvent):
 						$file = ROOT_DIR.ltrim($vEvent['logo'], '/');
 						$file = (strlen($vEvent['logo']) ? RELA_DIR.'statics/event/'.$vEvent['logo'] : '/templates/'.CURRENT_SKIN.'/assets/images/placeholder.png');
@@ -64,7 +64,7 @@
 					<article class="portfolio-item pf-media pf-icons">
 						<div class="portfolio-image">
 							<a href="<?=RELA_DIR?>event/Detail/<?=$vEvent["Event_id"];?>/<?=$vEvent["event_name_$lang"];?>">
-								<img src="<?=$file;?>" alt="Open Imagination">
+								<img src="<?=$file;?>" alt="<?=$vEvent["event_name_$lang"];?>">
 							</a>
 							<div class="portfolio-overlay">
 								<a href="<?=$file;?>" class="left-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
