@@ -190,6 +190,141 @@ class accountController
         $this->template($export, $msg);
         die();
     }
+    public function showEventList($fields, $msg='')
+    {
+        global $member_info;
+        include_once ROOT_DIR.'component/event/model/event.model.php';
+        $event =new eventModel();
+
+        $object=model::find('artists',$member_info['Artists_id']);
+        if(is_array($object))
+        {
+            $this->fileName = 'account.showPanel.php';
+            $this->template('',$object['msg']);
+            die();
+        }
+
+        $export['list'] = $object->fields;
+
+        $result=$event->getEventByArtistsId($member_info['Artists_id'],$fields);
+        if($result['result'] == -1)
+        {
+            $this->fileName = 'account.invoiceList.php';
+            $this->template('',$result['msg']);
+            die();
+        }
+
+        $export['artistsInvoiceList'] = $event->list;
+
+        $this->recordsCount = $result['export']['recordsCount'];
+
+
+        $export['pagination'] = $result['pagination'];
+        if ($event->recordsCount == '0') {
+            $msg = 'رکوردی یافت نشد.';
+        }
+
+
+        // breadcrumb
+        global $breadcrumb;
+        $breadcrumb->reset();
+        $breadcrumb->add(translate('پیشخوان '), 'account', true);
+        $breadcrumb->add(translate('لیست رویداد ها'));
+        $export['breadcrumb'] = $breadcrumb->trail();
+        $export['page_title'] = translate('لیست رویداد ها');
+
+
+
+        $this->fileName = 'account.eventList.php';
+
+        $this->template($export, $msg);
+        die();
+    }
+    public function addEvent($_input)
+    {
+        global $messageStack,$member_info;
+        include_once ROOT_DIR.'component/event/admin/model/admin.event.model.php';
+        $event = new adminEventModel();
+
+        $_input['date'] = ($_input['date']!=''?convertJToGDate($_input['date']):'0000-00-00');
+        $_input['date2'] = ($_input['date2']!=''?convertJToGDate($_input['date2']):'0000-00-00');
+        $_input['date3'] = ($_input['date3']!=''?convertJToGDate($_input['date3']):'0000-00-00');
+        $_input['category_id'] = ','.implode(',',$_input['category_id'] ).',';
+
+        $result = $event->setFields($_input);
+        if ($result['result'] == -1) {
+            $this->showEventAddForm($_input, $result['msg']);
+        }
+
+        $event->status = 0;
+        $event->member_id= $member_info['Artists_id'];
+        $event->save();
+
+
+        if(file_exists($_FILES['logo']['tmp_name'])){
+
+            $input['upload_dir'] = ROOT_DIR.'statics/event/';
+            $result = fileUploader($input,$_FILES['logo']);
+            //fileRemover($input['upload_dir'],$product->fields['image']);
+            $event->logo = $result['image_name'];
+            $result = $event->save();
+        }
+
+
+        //$result = $event->addEvent();
+
+        if ($result['result'] != '1') {
+            $messageStack->add_session('register', $result['msg']);
+            $this->showEventAddForm($_input, $result['msg']);
+        }
+        $msg = 'رویداد شما ثبت شد بعد از تایید نمایش داده میشود.';
+        $messageStack->add_session('register', $msg);
+
+        redirectPage(RELA_DIR.'account/event', $msg);
+        die();
+    }
+
+    /**
+     * @param $fields
+     * @param $msg
+     */
+    public function showEventAddForm($fields, $msg)
+    {
+        global $member_info;
+
+        include_once(ROOT_DIR."component/category/model/category.model.php");
+        $category = new categoryModel();
+
+        $resultCategory = $category->getCategoryOption();
+
+        if($resultCategory['result'] == 1)
+        {
+            $export['category'] = $category->list;
+        }
+
+        $export['artists_id'] = $member_info['Artists_id'];
+
+        // breadcrumb
+        global $breadcrumb;
+        $breadcrumb->reset();
+        $breadcrumb->add(translate('پیشخوان '), 'account', true);
+        $breadcrumb->add(translate('افزودن اثر'), 'account');
+        $export['breadcrumb'] = $breadcrumb->trail();
+        $export['page_title'] = translate('افزودن اثر');
+
+
+        include_once ROOT_DIR.'component/state/admin/model/admin.state.model.php';
+        $province = new adminStateModel();
+        $resultProvince = $province->getStates();
+        if ($resultProvince['result'] == 1) {
+            $export['provinces'] = $province->list;
+        }
+
+
+        $this->fileName = 'account.event.addForm.php';
+        $this->template($export, $msg);
+        die();
+    }
 
     /**
      * @param $fields

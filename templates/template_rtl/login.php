@@ -187,9 +187,9 @@
                                     </div>
                                     <div class="col_full">
                                         <label for="instagram"><i class="icon icon-instagram2"></i>لینک اینستاگرام: </label>
-                                        <input type="text" id="instagram" style="direction: ltr" name="instagram" value="<?=($_REQUEST['instagram'] =='')?'https://instagram.com/id':$_REQUEST['instagram'];?>" class="form-control" />
+                                        <input type="text" id="instagram" style="direction: ltr" name="instagram" value="<?=($_REQUEST['instagram'] =='')?'insta id':$_REQUEST['instagram'];?>" class="form-control" />
                                     </div>
-                                    <div class="col_full">
+                                    <div class="col_full">`
                                         <label for="site"><i class="icon icon-ie"></i>  سایت: </label>
                                         <input type="text"style="direction: ltr" id="site" name="site" value="<?=($_REQUEST['site'] =='')?'http://sitename.com/':$_REQUEST['site'];?>" class="form-control" />
                                     </div>
@@ -203,7 +203,7 @@
                                     </div>
                                     <div class="col_full">
                                         <label for="telegram"><i class="icon icon-email2"></i>لینک تلگرام: </label>
-                                        <input type="text" style="direction: ltr"   id="telegram" name="telegram" value="<?=($_REQUEST['telegram'] =='')?'https://telegram.me/id':$_REQUEST['telegram'];?>" class="form-control" />
+                                        <input type="text" style="direction: ltr"   id="telegram" name="telegram" value="<?=($_REQUEST['telegram'] =='')?'@id':$_REQUEST['telegram'];?>" class="form-control" />
                                     </div>
                                     <div class="col_full">
                                         <label for="description_fa">بیوگرافی(فارسی):</label>

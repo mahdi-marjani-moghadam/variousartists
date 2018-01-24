@@ -98,12 +98,26 @@
 
                             <div class="p-nav-handle"> <i class=""></i>منو پنل</div>
                             <ul>
-                                <li><a href="<?=RELA_DIR?>account/showProductList" class="button  button-reveal  button-border tright"><i class="icon-caret-right"></i>
+                                <li><a href="<?= RELA_DIR ?>account/showProductList"
+                                       class="button  button-reveal  button-border tright"><i
+                                                class="icon-caret-right"></i>
                                         <span><div class="icon icon-line-box"></div>   نمونه کار ها</span>
-                                    </a> </li>
-                                <li><a href="<?=RELA_DIR?>account/showInvoiceList" class="button  button-reveal  button-border tright"><i class="icon-caret-right"></i>
+                                    </a></li>
+                                <li><a href="<?= RELA_DIR ?>account/showInvoiceList"
+                                       class="button  button-reveal  button-border tright"><i
+                                                class="icon-caret-right"></i>
                                         <span><div class="icon-line-clipboard"></div> لیست پرداختی</span>
-                                    </a> </li>
+                                    </a></li>
+                                <li><a href="<?= RELA_DIR ?>account/addEvent"
+                                       class="button  button-reveal  button-border tright"><i
+                                                class="icon-caret-right"></i>
+                                        <span><div class="icon-line2-bell"></div>افزودن رویداد</span>
+                                    </a></li>
+                                <li><a href="<?= RELA_DIR ?>account/event"
+                                       class="button  button-reveal  button-border tright"><i
+                                                class="icon-caret-right"></i>
+                                        <span><div class="icon-line2-bell"></div>لیست رویدادها</span>
+                                    </a></li>
 
                             </ul>
                         </div>

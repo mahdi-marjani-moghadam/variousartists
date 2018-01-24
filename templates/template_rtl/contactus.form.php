@@ -102,7 +102,7 @@
 
                     </address>
                     <abbr title="Phone Number"><strong>تلفن:</strong></abbr><br><span dir="ltr"> (۰۲۱) ۲۲۷۶۸۱۰۱</span><br>
-                    <abbr title="Email Address"><strong>ایمیل:</strong></abbr><br><span dir="ltr"> info@variousartists.com</span><br>
+                    <abbr title="Email Address"><strong>ایمیل:</strong></abbr><br><span dir="ltr"> info@variousartists.ir</span><br>
                     <abbr title="Email Address"><strong><img src="<?=TEMPLATE_DIR?>img/whatsapp.png" width="30">واتساپ:</strong></abbr><br><span dir="ltr"> ۰۹۱۹۳۱۱۰۱۹۰</span><br>
                     <abbr title="Email Address"><strong> <img style="margin: 0 4px" src="<?=TEMPLATE_DIR?>img/telegram.png" width="20"> تلگرام: </strong></abbr><br><span dir="ltr"><a href="https://telegram.me/VariousArtist"> https://telegram.me/VariousArtist </a></span>
                     </div>

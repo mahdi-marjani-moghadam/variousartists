@@ -92,7 +92,7 @@ if ($_REQUEST["action"] == 'login') {
     }
     else
     {
-        redirectPage(RELA_DIR);
+        redirectPage(RELA_DIR,YouAreLogIn);
     }
 }
 else{

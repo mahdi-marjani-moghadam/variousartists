@@ -187,7 +187,7 @@
                                     </div>
                                     <div class="col_full">
                                         <label for="instagram"><i class="icon icon-instagram2"></i>Instagram address:</label>
-                                        <input type="text" id="instagram" style="direction: ltr" name="instagram" value="<?=($_REQUEST['instagram'] =='')?'https://instagram.com/id':$_REQUEST['instagram'];?>" class="form-control" />
+                                        <input type="text" id="instagram" style="direction: ltr" name="instagram" value="<?=($_REQUEST['instagram'] =='')?'id':$_REQUEST['instagram'];?>" class="form-control" />
                                     </div>
                                     <div class="col_full">
                                         <label for="site"><i class="icon icon-ie"></i> Site address: </label>
@@ -203,7 +203,7 @@
                                     </div>
                                     <div class="col_full">
                                         <label for="telegram"><i class="icon icon-email2"></i>Telegram address:</label>
-                                        <input type="text" style="direction: ltr"   id="telegram" name="telegram" value="<?=($_REQUEST['telegram'] =='')?'https://telegram.me/id':$_REQUEST['telegram'];?>" class="form-control" />
+                                        <input type="text" style="direction: ltr"   id="telegram" name="telegram" value="<?=($_REQUEST['telegram'] =='')?'@id':$_REQUEST['telegram'];?>" class="form-control" />
                                     </div>
                                     <div class="col_full">
                                         <label for="description_fa">Biography (persian): </label>

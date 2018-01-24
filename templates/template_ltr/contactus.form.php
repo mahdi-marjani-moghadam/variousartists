@@ -43,8 +43,8 @@
                             if($msg != '')
                             {
                                 ?>
-                            <div class="col xs-12 col-sm-12 col-md-12 ">
-                                <div class="alert alert-danger fade in "><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><?=$msg?></strong></div></div>
+                                <div class="col xs-12 col-sm-12 col-md-12 ">
+                                    <div class="alert alert-danger fade in "><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><?=$msg?></strong></div></div>
                                 <?
                             }
                             $msg = (strlen($messageStack->output('contactus')) ? $messageStack->output('contactus') : "");
@@ -81,7 +81,7 @@
                             <div class="row xxxsmallSpace"></div>
                             <div class="col-xs-12 col-sm-12 col-md-12 text-left mb">
                                 <button type="submit" class=" center-block btn btn-default btn-login text-center text-ultralight text-white roundCorner transition" tabindex="4">
-Send
+                                    Send
                                 </button>
                             </div>
                         </div>
@@ -97,12 +97,12 @@ Send
                 ============================================= -->
                 <div class="col_two_fifth">
                     <div class="col-md-12">
-                    <address>
-                        <strong>Contact information:</strong><br>
+                        <address>
+                            <strong>Contact information:</strong><br>
 
-                    </address>
-                    <abbr title="Phone Number"><strong>Phone:</strong></abbr><span dir="ltr"> (021) 22768101</span><br>
-                    <abbr title="Email Address"><strong>Email:</strong></abbr><span dir="ltr"> info@variousartists.com</span>
+                        </address>
+                        <abbr title="Phone Number"><strong>Phone:</strong></abbr><span dir="ltr"> (021) 22768101</span><br>
+                        <abbr title="Email Address"><strong>Email:</strong></abbr><span dir="ltr"> info@variousartists.ir</span>
                         <abbr title="Email Address"><strong><img src="<?=TEMPLATE_DIR?>img/whatsapp.png" width="30"> WhatsApp:</strong></abbr><br><span dir="ltr">09193110190</span><br>
                         <abbr title="Email Address"><strong><img style="margin: 0 4px" src="<?=TEMPLATE_DIR?>img/telegram.png" width="20"> Telegram:</strong></abbr><br><span dir="ltr"><a href="https://telegram.me/VariousArtist"> https://telegram.me/VariousArtist </a></span>
                     </div>

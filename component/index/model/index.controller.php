@@ -134,6 +134,7 @@ class indexController
         $limit['limit']['start'] = 0;
         $limit['limit']['length'] = 18;
         $limit['order']['date']='DESC';
+        $limit['where']='status = 1 and (`date` >= date_sub(now(),interval 1 day) or date2 >= date_sub(now(),interval 1 day) or date3 >= date_sub(now(),interval 1 day))';
         $result = $event->getByFilter($limit);
 
         $export['lastEvent'] = $result['export']['list'];

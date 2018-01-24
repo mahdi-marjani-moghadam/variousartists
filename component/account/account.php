@@ -54,6 +54,24 @@ switch ($PARAM[1]) {
         $fields['order']['Artists_products_id']='DESC';
         $accountController->showProductList($fields);
         break;
+    case 'event':
+
+        $fields['limit']['start']=(isset($page))?($page-1)*PAGE_SIZE:'0';
+        $fields['limit']['length']=PAGE_SIZE;
+        $fields['order']['Event_id']='DESC';
+        $accountController->showEventList($fields);
+        break;
+    case 'addEvent':
+
+        if (isset($_POST['action']) & $_POST['action'] == 'add') {
+
+            $accountController->addEvent($_POST);
+        }
+        else
+        {
+            $accountController->showEventAddForm($input, '');
+        }
+        break;
     case 'showInvoiceList':
 
         $fields['limit']['start']=(isset($page))?($page-1)*PAGE_SIZE:'0';

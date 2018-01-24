@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="col_half col_last">
-                    <div class="panel panel-default events-meta">
+                    <div class="panel panel-default events-meta" id="changeNumber">
                         <div class="panel-heading">
                             <h3 class="panel-title">Info:</h3>
                         </div>
@@ -163,5 +163,8 @@
 
 <script type="text/javascript" src="<?=TEMPLATE_DIR?>js/jquery.gmap.js"></script>
 
-
+<script>
+    var str = document.getElementById("changeNumber").innerHTML;
+    var res = str.replace("۱", "1");
+</script>
 

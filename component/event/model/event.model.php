@@ -252,6 +252,42 @@ class eventModel extends looeic
         return $result;
     }
 
+    public function getEventByArtistsId($id,$fields)
+    {
+        include_once dirname(__FILE__).'/event.model.db.php';
+
+        $result = eventModelDb::getEventByArtistsId($id,$fields);
+
+        if ($result['result'] != 1) {
+            return $result;
+        }
+        $this->recordsCount = $result['export']['recordsCount'];
+
+        /*$resultSet=$this->setFields($result['list']);
+        if($resultSet!=1)
+        {
+            return $resultSet;
+        }
+        $result['result']=1;
+        $result['list']= $this->fields;
+        return $result;
+        */
+        //or
+
+        $page = $this->pagination();
+
+        if($page['result'] == 1)
+        {
+            $result['pagination'] = $page['export'];
+        }
+
+        $this->list = $result['list'];
+        $this->list = $result['export']['list'];
+        $this->recordsCount = $result['export']['recordsCount'];
+
+        return $result;
+    }
+
     /**
      * @return mixed
      */

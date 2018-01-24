@@ -6,6 +6,7 @@ include_once ROOT_DIR.'common/init.inc.php';
 include_once ROOT_DIR.'common/func.inc.php';
 include_once ROOT_DIR.'model/db.inc.class.php';
 include_once ROOT_DIR.'common/looeic.php';
+//include_once ROOT_DIR.'common/looeic2.php';
 
 
 

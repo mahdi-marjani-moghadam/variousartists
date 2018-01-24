@@ -92,6 +92,10 @@
                                 <i class="icon-play"></i>
                                 <i class="icon-play"  style=""></i>
                             </a>
+                            <a  href="http://beeptunes.com" class="social-icon si-small si-rounded topmargin-sm si-soundcloud">
+                                <img src="<?=RELA_DIR?>templates/template_rtl/img/beep.svg">
+
+                            </a>
 
 
 

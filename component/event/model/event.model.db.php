@@ -499,4 +499,55 @@ class eventModelDb
 
         return $row;
     }
+    public static function getEventByArtistsId($id,$fields)
+    {
+        global $lang;
+        $conn = dbConn::getConnection();
+
+        include_once(ROOT_DIR."/model/db.inc.class.php");
+        $condition = DataBase::filterBuilder($fields);
+
+        $sql = "SELECT  SQL_CALC_FOUND_ROWS
+                *,event_name_$lang as title
+                FROM
+                    event
+                WHERE
+                    member_id ='$id'   ".$fields['where'].$condition['list']['filter'].$condition['list']['order'].$condition['list']['limit'] ;
+
+        $stmt = $conn->prepare($sql);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+        if (!$stmt) {
+            $result['result'] = -1;
+            $result['Number'] = 1;
+            $result['msg'] = $conn->errorInfo();
+
+            return $result;
+        }
+
+        if (!$stmt->rowCount()) {
+            $result['result'] = -1;
+            $result['no'] = 100;
+            $result['msg'] = 'This Record was Not Found';
+
+            return $result;
+        }
+
+        $sql = ' SELECT FOUND_ROWS() as recCount ';
+
+        $stmTp = $conn->prepare($sql);
+        $stmTp->setFetchMode(PDO::FETCH_ASSOC);
+        $stmTp->execute();
+        $rowP = $stmTp->fetch();
+
+        $result['export']['recordsCount'] = $rowP['recCount'];
+
+        while ($row = $stmt->fetch()) {
+            $list[$row['Event_id']] = $row;
+        }
+
+        $result['result'] = 1;
+        $result['export']['list'] = $list;
+        return $result;
+    }
 }

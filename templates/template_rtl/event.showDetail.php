@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="col_half col_last">
-                    <div class="panel panel-default events-meta">
+                    <div class="panel panel-default events-meta" id="changeNumber">
                         <div class="panel-heading">
                             <h3 class="panel-title">اطلاعات:</h3>
                         </div>
@@ -150,6 +150,8 @@
     </div>
 
 </section><!-- #content end -->
+
+
 
 
 
