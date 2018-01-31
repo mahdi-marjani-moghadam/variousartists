@@ -53,7 +53,7 @@
                                 <i class="icon-play"  style="background: #ea1d5d"></i>
                             </a>
                             <a  href="http://beeptunes.com" class="social-icon si-small si-rounded topmargin-sm si-soundcloud">
-                                <img src="<?=RELA_DIR?>templates/template_rtl/img/beep.svg">
+                                <img src="<?=RELA_DIR?>templates/template_rtl/img/beep.png">
 
                             </a>
 

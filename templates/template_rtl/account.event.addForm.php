@@ -91,9 +91,9 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
+                                    <label style="padding-right: 20px"
                                            for="brief_description_en">توضیحات مختصر(انگلیسی):</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 pull-right">
 
 
                                         <?php
@@ -124,9 +124,9 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
+                                    <label style="padding-right: 20px"
                                            for="description_fa">توضیحات (فارسی):</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 pull-right">
                                         <?php
 
                                         include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
