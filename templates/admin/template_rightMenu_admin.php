@@ -28,6 +28,26 @@
                         </li><!--/child-item-->
                     </ul><!--/sidebar-child-->
                 </li><!--/sidebar-item-->
+                <li>
+                    <a href="#">
+                        <i class="sidebar-icon fa fa-tasks"></i>
+                        <span class="sidebar-text">سالن ها</span>
+                        <b class="fa fa-angle-left"></b>
+
+                    </a>
+                    <ul class="sidebar-child animated fadeInRight">
+                        <li>
+                            <a href="<?=RELA_DIR; ?>zamin/?component=salon">
+                                <span class="sidebar-text text-16">لیست سالن ها</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?=RELA_DIR; ?>zamin/?component=salon&action=add">
+                                <span class="sidebar-text text-16">افزودن سالن جدید</span>
+                            </a>
+                        </li><!--/child-item-->
+                    </ul><!--/sidebar-child-->
+                </li><!--/sidebar-item-->
 
 
                 <li>

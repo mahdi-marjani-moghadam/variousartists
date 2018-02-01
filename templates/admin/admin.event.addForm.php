@@ -247,15 +247,15 @@
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                           for="category_id">انتخاب دسته بندی:</label>
+                                           for="salon_id">انتخاب سالن:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <select name="category_id[]" id="category_id" data-input="select2" multiple>
+                                        <select name="salon_id[]" id="salon_id" data-input="select2" multiple>
                                             <?
-                                            foreach($list['category'] as $category_id => $value)
+                                            foreach($list['salon'] as $category_id => $value)
                                             {
                                                 ?>
-                                                <option <?php echo in_array($value['Category_id'], $list['category_id']) ? 'selected' : '' ?>
-                                                    value="<?= $value['Category_id'] ?>">
+                                                <option <?php echo in_array($value['Salon_id'], $list['salon_id']) ? 'selected' : '' ?>
+                                                    value="<?= $value['Salon_id'] ?>">
                                                     <?= $value['export'] ?>
                                                 </option>
                                                 <?
@@ -267,6 +267,32 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
+                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
+                                           for="category_id">انتخاب دسته بندی:</label>
+                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                        <select name="category_id[]" id="category_id" data-input="select2" multiple>
+                                            <?
+                                            foreach($list['category'] as $category_id => $value)
+                                            {
+                                                ?>
+                                                <option <?php echo in_array($value['Category_id'], $list['category_id']) ? 'selected' : '' ?>
+                                                        value="<?= $value['Category_id'] ?>">
+                                                    <?= $value['export'] ?>
+                                                </option>
+                                                <?
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row xsmallSpace hidden-xs"></div>
+                        <div class="row">
+                            <!-- city -->
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_phone">تلفن</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
@@ -274,10 +300,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row xsmallSpace hidden-xs"></div>
-                        <div class="row">
-                            <!-- city -->
+
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
@@ -299,6 +322,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"

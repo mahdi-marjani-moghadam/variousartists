@@ -37,7 +37,7 @@
                             <h3 class="panel-title">اطلاعات:</h3>
                         </div>
                         <div class="panel-body">
-
+<div class="col_half">
                             <ul class="iconlist nobottommargin">
                                 <?php
                                 $newDate = ($list['list']['date']!="0000-00-00" ? convertDate($list['list']['date']):"");
@@ -52,10 +52,33 @@
                                 <? if($newTime || $newDate):?><li><i class="icon-calendar3"></i> <?=$newDate?> - <?=$newTime?></li><?endif;?>
                                 <? if($newTime2 || $newDate2):?><li><i class="icon-calendar3"></i> <?=$newDate2?> - <?=$newTime2?></li><?endif;?>
                                 <? if($newTime3 || $newDate3):?><li><i class="icon-calendar3"></i> <?=$newDate3?> - <?=$newTime3?></li><?endif;?>
-                                <li><i class="icon-map-marker2"></i><?=$list['list']['city']?> - <?=($list['list']['address']!=""? $list['list']['address']:"-")?></li>
+                                <li><i class="icon-map-marker2"></i><?=$list['list']['city']?> - <?=($list['list']['address']!=""? $list['list']['address']:"-")?>-<?=implode(" ",$list['list']['salon_id'])?></li>
                                 <li><i class="icon-phone-sign"></i> <?=($list['list']['event_phone']!=""? $list['list']['event_phone']:"-")?></li>
                                 <li><i class="icon-dollar"></i> <strong><?=($list['list']['price']!= "")? $list['list']['price']:"-";?> تومان</strong></li>
                             </ul>
+</div>
+                            <div class="col_last">
+                                <ul class="iconlist nobottommargin">
+                              <li></li> <form action="<?= RELA_DIR ?>sales" method="POST" data-validate="form" role="form">
+                                        <input type="hidden" name="action" value="login" />
+                                        <input type="hidden" name="place" value="jaaaa" />
+                                        <input type="hidden" name="event_name" value="<?=$list['list']['event_name'];?>" />
+                                    <select name="time">
+
+                                        <? if($newTime || $newDate):?> <option value="<?=$newDate?> - <?=$newTime?> "><?=$newDate?> - <?=$newTime?></option><?endif;?>
+                                        <? if($newTime2 || $newDate2):?>  <option value="<?=$newDate2?> - <?=$newTime2?>"><?=$newDate2?> - <?=$newTime2?></option><?endif;?>
+                                        <? if($newTime3 || $newDate3):?> <option value="<?=$newDate3?> - <?=$newTime3?>"><?=$newDate3?> - <?=$newTime3?></option><?endif;?>
+
+                                </select>
+                                    <li></li>
+                                        <div class="form-group form-actions">
+                                            <input type="submit" class="btn btn-primary btn-default btn-block text-white text-16" value="خرید آنلاین">
+                                        </div><!--/form-group-->
+
+
+                                    </form>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <!--<a href="#" class="btn btn-success btn-block btn-lg">Buy Tickets</a>-->

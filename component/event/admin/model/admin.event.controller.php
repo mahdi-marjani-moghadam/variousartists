@@ -131,6 +131,14 @@ class adminEventController
             $fields['category'] = $category->list;
         }
 
+        include_once ROOT_DIR.'component/salon/admin/model/admin.salon.model.php';
+        $salon = new adminSAlonModel();
+
+        $resultSalon = $salon->getSalonOption();
+        if ($resultSalon['result'] == 1) {
+            $fields['salon'] = $salon->list;
+        }
+
         include_once ROOT_DIR.'component/city/admin/model/admin.city.model.php';
         $city = new adminCityModel();
         $resultCity = $city->getCities();
@@ -291,7 +299,13 @@ class adminEventController
         if ($resultCategory['result'] == 1) {
             $export['category'] = $category->list;
         }
+        include_once ROOT_DIR.'component/salon/admin/model/admin.salon.model.php';
+        $salon = new adminSAlonModel();
 
+        $resultSalon = $salon->getSalonOption();
+        if ($resultSalon['result'] == 1) {
+            $export['salon'] = $salon->list;
+        }
         include_once ROOT_DIR.'component/province/admin/model/admin.province.model.php';
         //$city = new adminCityModel();
         $province = adminProvinceModel::getAll()->getList();

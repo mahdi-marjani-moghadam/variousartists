@@ -253,6 +253,27 @@
 
 
                         <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
+                                           for="salon_id">انتخاب سالن:</label>
+                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                        <select name="salon_id[]" id="salon_id" data-input="select2" multiple>
+                                            <?
+                                            foreach($list['salon'] as $category_id => $value)
+                                            {
+                                                ?>
+                                                <option <?php echo in_array($value['Salon_id'], $list['salon_id']) ? 'selected' : '' ?>
+                                                        value="<?= $value['Salon_id'] ?>">
+                                                    <?= $value['export'] ?>
+                                                </option>
+                                                <?
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">

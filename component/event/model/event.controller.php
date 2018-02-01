@@ -121,7 +121,7 @@ class eventController
 
         $this->fileName = 'event.showDetail.php';
 
-
+/*print_r_debug($export);*/
         $this->template($export);
         die();
     }
