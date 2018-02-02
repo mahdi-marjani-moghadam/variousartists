@@ -118,7 +118,14 @@ class salesController
     public function showALL($fields)
     {
         //$sales = new salesModel();
+        include_once ROOT_DIR.'component/salon/model/salon.model.php';
+        $salon = new salonModel();
+        $resultSalon = $salon->getSalonByparent($_POST['place']);
+/*        print_r_debug($resultSalon);*/
 
+        if ($resultSalon['result'] == 1) {
+            $export['salon_list'] = $resultSalon['export']['list'];
+        }
         $sales = salesModel::getAll()->getList();
 
 

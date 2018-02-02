@@ -242,11 +242,25 @@ class salonModel
         if ($result['result'] != 1) {
             return $result;
         }
-
         $this->fields = $result['list'];
 
         return $result;
     }
+
+    public function getSalonByparent($id)
+    {
+        include_once dirname(__FILE__).'/salon.model.db.php';
+
+        $result = salonModelDb::getSalonByparent($id);
+
+        if ($result['result'] != 1) {
+            return $result;
+        }
+        $this->fields = $result['list'];
+
+        return $result;
+    }
+
 
     /**
      * @param $_input

@@ -273,7 +273,7 @@ class adminSalonController
         {
             $export['salon_list'] = $salon->list;
         }
-
+print_r_debug($export);
         $this->fileName='admin.salon.editForm.php';
         $this->template($export,$msg);
         die();

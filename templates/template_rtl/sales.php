@@ -40,7 +40,15 @@ sdadasdad
                                     <li><i class="icon-map-marker2"></i> انتخاب مکان استفاده:    <?=$list['list']['event_place']?></li>
                                     <br>
                                     <li> نام منطقه:<br>
-                                        <select></select>
+                                        <select>
+                                            <?php
+
+                                            foreach ($list['salon_list'] as $k => $salon):
+                                            ?>
+                                            <option><?=$salon["title_fa"]?></option>
+                                            <? endforeach; ?>
+
+                                        </select>
 
                                     </li><br>
                                     <li> انتخاب صندلی به تعداد:<br>

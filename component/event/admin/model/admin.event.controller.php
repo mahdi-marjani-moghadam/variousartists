@@ -89,8 +89,10 @@ class adminEventController
         $_input['date2'] = ($_input['date2']!=''?convertJToGDate($_input['date2']):'0000-00-00');
         $_input['date3'] = ($_input['date3']!=''?convertJToGDate($_input['date3']):'0000-00-00');
         $_input['category_id'] = ','.implode(',',$_input['category_id'] ).',';
+        $_input['salon_id'] = ','.implode(',',$_input['salon_id'] ).',';
 
         $result = $event->setFields($_input);
+
         if ($result['result'] == -1) {
             $this->showEventAddForm($_input, $result['msg']);
         }
@@ -236,6 +238,7 @@ class adminEventController
         $fields['date2'] = ($fields['date2']!=''?convertJToGDate($fields['date2']):'0000-00-00');
         $fields['date3'] = ($fields['date3']!=''?convertJToGDate($fields['date3']):'0000-00-00');
         $fields['category_id'] = ",".(implode(",",$fields['category_id'])).",";
+        $fields['salon_id'] = ",".(implode(",",$fields['salon_id'])).",";
 
 
         $result = $event->setFields($fields);

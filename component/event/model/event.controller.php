@@ -113,6 +113,14 @@ class eventController
         if ($resultCategory['result'] == 1) {
             $export['category_list'] = $resultCategory['export']['list'];
         }
+        $salon_id=substr($export['list']['salon_id'],1,1);
+        include_once ROOT_DIR.'component/salon/model/salon.model.php';
+        $salon = new salonModel();
+        $resultSalon = $salon->getSalonById($salon_id);
+
+        if ($resultSalon['result'] == 1) {
+            $export['salon_list'] = $resultSalon['list'];
+        }
 
         ///////////////////////////
         include_once ROOT_DIR.'component/province/model/province.model.php';
