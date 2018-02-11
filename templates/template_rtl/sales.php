@@ -37,7 +37,7 @@ sdadasdad
                                    <li><i class="icon-calendar3"></i>انتخاب زمان استفاده:    <?=$list['list']['event_time']?> </li>
 <br>
 
-                                    <li><i class="icon-map-marker2"></i> انتخاب مکان استفاده:    <?=$list['list']['event_place']?></li>
+                                    <li><i class="icon-map-marker2"></i> انتخاب مکان استفاده:    <?=$list['salonname']['title_fa']?></li>
                                     <br>
                                     <li> نام منطقه:<br>
                                         <select>
