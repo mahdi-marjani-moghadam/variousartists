@@ -46,6 +46,32 @@ class salonModelDb
 
         return $result;
     }
+    public static function getSalonByparent($id)
+    {
+        global $lang;
+        $conn = dbConn::getConnection();
+        $sql = "SELECT * ,title_$lang as title FROM salon WHERE parent_id = '$id'";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+
+        if (!$stmt) {
+            $result['result'] = -1;
+            $result['no'] = 1;
+            $result['msg'] = $conn->errorInfo();
+
+            return $result;
+        }
+
+        while ($row = $stmt->fetch()) {
+            $list[$row['Salon_id']] = $row;
+        }
+        $result['result'] = 1;
+        $result['export']['list'] = $list;
+
+        return $result;
+    }
 
     public function tree_set($parent_id = 0)
     {

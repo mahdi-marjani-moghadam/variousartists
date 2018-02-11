@@ -126,6 +126,15 @@ class salesController
         if ($resultSalon['result'] == 1) {
             $export['salon_list'] = $resultSalon['export']['list'];
         }
+        include_once ROOT_DIR.'component/salon/model/salon.model.php';
+        $salonname = new salonModel();
+        $resultSalonname = $salonname->getSalonByid($_POST['place']);
+/*              klklk print_r_debug($resultSalonname);*/
+
+        if ($resultSalonname['result'] == 1) {
+            $export['salonname'] = $resultSalonname['list'];
+        }
+
         $sales = salesModel::getAll()->getList();
 
 
