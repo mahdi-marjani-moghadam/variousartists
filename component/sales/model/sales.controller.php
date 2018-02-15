@@ -107,6 +107,84 @@ class salesController
         die();
     }
 
+
+
+    public function showMoresandali($input)
+
+    {
+/*print_r_debug($input);*/
+        include_once ROOT_DIR.'component/salon/model/salon.model.php';
+
+        $salonpartname = new salonModel();
+        $resultSalonpartname = $salonpartname->getSalonByid($input['part']);
+        /*              klklk print_r_debug($resultSalonname);*/
+
+        if ($resultSalonpartname['result'] == 1) {
+            $export['salonpartname'] = $resultSalonpartname['list'];
+        }
+
+        $salonname = new salonModel();
+        $resultSalonname = $salonname->getSalonByid($input['place']);
+        /*              klklk print_r_debug($resultSalonname);*/
+
+        if ($resultSalonname['result'] == 1) {
+            $export['salonname'] = $resultSalonname['list'];
+        }
+
+        $sales = salesModel::getAll()->getList();
+
+
+        include_once ROOT_DIR.'component/event/model/event.model.php';
+        $eventname=new eventModel();
+        $resulteventname=$eventname->getEventById($input['Event_id']);
+        if($resulteventname['result']==1){
+            $export['eventname']=$resulteventname['list'];
+
+        }
+        $event=eventModel::getAll()->getList();
+
+
+/*   entekhabe sandali     -----*/
+
+
+$fildes['where']='event_id ='.$input['Event_id'].' and part_id='.$input['part'].' and place_id='.$input['place'].' and event_time="'.$input['event_time'].'"';
+$sandali=new salesModel();
+
+$resultsandali=$sandali->getByFilter($fildes);
+        if($resultsandali['result']==1){
+            $export['sandalipor']=$resultsandali['export'];
+
+        }
+        $sandali=salesModel::getAll()->getList();
+
+
+
+        $export['list'] = $sales->list;
+        $export['eventlist']=$event->eventlist;
+        $export['recordsCount'] = $sales->recordsCount;
+        $export['pagination'] = $sales->pagination;
+        $export['list']['event_name']=$input['event_name'];
+        $export['list']['event_time']=$input['event_time'];
+        $export['list']['event_part']=$input['place'];
+        $export['list']['Event_id']=$input['Event_id'];
+
+
+        $min=$export['salonpartname']['min_sandali'];
+        $max=$export['salonpartname']['max_sandali'];
+        foreach ($export['sandalipor']['list'] as $k => $x):
+            $sandalipor[]=$x["sandali"];
+        endforeach;
+        for ($x=$min;$x<$max ;$x++){
+            $sandalikhali[]=$x;
+        }
+        $result=array_diff($sandalikhali,$sandalipor);
+
+      $export['skhali']=$result;
+
+        $this->fileName = 'salessandali.php';
+        $this->template($export);
+        die();
+    }
     /**
      * @param $fields
      *
@@ -146,6 +224,7 @@ class salesController
         $export['list']['event_name']=$_POST['event_name'];
         $export['list']['event_time']=$_POST['time'];
         $export['list']['event_place']=$_POST['place'];
+        $export['list']['Event_id']=$_POST['event_id'];
         // breadcrumb
         global $breadcrumb;
         $breadcrumb->reset();

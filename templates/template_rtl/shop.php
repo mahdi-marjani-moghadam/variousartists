@@ -1,39 +1,21 @@
-
-<!-- separator -->
-<!--<div class="or-spacer center-block">
-    <div class="mask">
-        <span class="text-center">درباره ما</span>
-    </div>
-</div>--><!-- /end of separator -->
-<!--<section id="page-title" class="page-title-parallax page-title-dark page-title-right" style="padding: 250px 0px; background-image: url(<?/*=RELA_DIR*/?>templates/<?/*=CURRENT_SKIN*/?>/images/about/banner.jpg); background-size: cover; background-position: 50% -129.6px;" data-stellar-background-ratio="0.2">
-
-    <div class="container clearfix">
-        <h1>درباره ما</h1>
-        <span>VA & Founder</span>
-    </div>
-
-</section>-->
-
-
-<section id="slider" class="full-screen dark" style="background: url(<?=TEMPLATE_DIR?>assets/images/the-music-store-banner.jpg) center;">
-
-    <div class="container clearfix vertical-middle">
-
-        <div class="heading-block title-center nobottomborder">
-            <h1>در دست ساخت</h1>
-            <span>فروشگاه سایت VA به زودی بازگشایی میشود</span>
-        </div>
-
-        <div id="countdown-ex1" class="countdown countdown-large coming-soon divcenter bottommargin" style="max-width:700px;"></div>
-
-        <div class="divider divider-center divider-short divider-margin"><i class="icon-time"></i></div>
-
-        <div class="widget-subscribe-form-result"></div>
-
-
-
-    </div>
-
-</section>
-
-
+<?php
+/*{"update_id":321835236,
+"message":{"message_id":130,"from":{"id":96728542,"is_bot":false,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","language_code":"en-US"},"chat":{"id":96728542,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","type":"private"},"date":1517934876,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+{"update_id":321835237,
+"message":{"message_id":131,"from":{"id":96728542,"is_bot":false,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","language_code":"en-US"},"chat":{"id":96728542,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","type":"private"},"date":1517934987,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+{"update_id":321835238,
+"message":{"message_id":132,"from":{"id":96728542,"is_bot":false,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","language_code":"en-US"},"chat":{"id":96728542,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","type":"private"},"date":1517935375,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+{"update_id":321835239,
+"message":{"message_id":133,"from":{"id":96728542,"is_bot":false,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","language_code":"en-US"},"chat":{"id":96728542,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","type":"private"},"date":1517935426,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
+{"update_id":321835240,
+"message":{"message_id":134,"from":{"id":96728542,"is_bot":false,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","language_code":"en-US"},"chat":{"id":96728542,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","type":"private"},"date":1517935654,"text":"hi"}}
+{"update_id":321835241,
+"message":{"message_id":135,"from":{"id":96728542,"is_bot":false,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","language_code":"en-US"},"chat":{"id":96728542,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","type":"private"},"date":1517935726,"photo":[{"file_id":"AgADBAADdKwxG3FT0FOr4M5Rm0Fa32xxjBoABFNc_AiFRzMaEsQBAAEC","file_size":1693,"width":90,"height":90},{"file_id":"AgADBAADdKwxG3FT0FOr4M5Rm0Fa32xxjBoABFMWT8JxzmCrE8QBAAEC","file_size":14543,"width":320,"height":320},{"file_id":"AgADBAADdKwxG3FT0FOr4M5Rm0Fa32xxjBoABE4PcUmOUSEJFMQBAAEC","file_size":44460,"width":800,"height":800},{"file_id":"AgADBAADdKwxG3FT0FOr4M5Rm0Fa32xxjBoABIFKKVeYBeWwEcQBAAEC","file_size":54422,"width":1000,"height":1000}]}}
+{"update_id":321835242,
+"message":{"message_id":136,"from":{"id":96728542,"is_bot":false,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","language_code":"en-US"},"chat":{"id":96728542,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","type":"private"},"date":1517935808,"document":{"file_name":"logo-dark_2x.png","mime_type":"image/png","thumb":{"file_id":"AAQEABN7QZEaAAT_at8DccuCftQIAAIC","file_size":2037,"width":90,"height":11},"file_id":"BQADBAADQgMAAnFT0FPFobZsmGyWEAI","file_size":18590},"caption":"hiii"}}
+{"update_id":321835289,
+"callback_query":{"id":"415445926966960212","from":{"id":96728542,"is_bot":false,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","language_code":"en-US"},"message":{"message_id":181,"from":{"id":540277148,"is_bot":true,"first_name":"mvm264unit","username":"hwinss264bot"},"chat":{"id":96728542,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","type":"private"},"date":1517943260,"text":"u0644u0637u0641u0627 u062eu0648u062fu0631u0648u06cc u0645u0648u0631u062f u0646u0638u0631 u0631u0627 u0627u0646u062au062eu0627u0628 u0628u0641u0631u0645u0627u06ccu06ccu062f
+ u0644u0627u0632u0645 u0628u0647 u0630u06a9u0631 u0627u0633u062a u0627u0637u0644u0627u0639u0627u062a u0634u0631u0627u06ccu0637 u0627u0639u062au0628u0627u0631u06cc u06a9u0647 u0646u0645u0627u06ccu0634 u062fu0627u062fu0647 u0645u06ccu0634u0648u062f u06a9u0645u062au0631u06ccu0646 u0646u0648u0639 u067eu06ccu0634 u067eu0631u062fu0627u062eu062a u0628u0627 u0628u0627u0644u0627u062au0631u06ccu0646 u0637u0648u0644 u0645u062fu062a u0627u0642u0633u0627u0637 u0627u0633u062au060cu0634u0645u0627 u0645u06ccu062au0648u0627u0646u06ccu062f u062cu0647u062a u06a9u0633u0628 u0627u0637u0644u0627u0639u0627u062a u0628u06ccu0634u062au0631 u0628u0647 u0648u0628u0633u0627u06ccu062a u0645u062cu0645u0648u0639u0647 u0645u0631u0627u062cu0639u0647 u0648 u06ccu0627 u0628u0627 u0634u0645u0627u0631u0647 u0647u0627u06cc u0627u06ccu0646 u0645u062cu0645u0648u0639u0647 u062au0645u0627u0633 u062du0627u0635u0644 u0641u0631u0645u0627u06ccu06ccu062f"},"chat_instance":"-6272532825267937534","data":"315"}}
+{"update_id":321835289,
+"callback_query":{"id":"415445926966960212","from":{"id":96728542,"is_bot":false,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","language_code":"en-US"},"message":{"message_id":181,"from":{"id":540277148,"is_bot":true,"first_name":"mvm264unit","username":"hwinss264bot"},"chat":{"id":96728542,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","type":"private"},"date":1517943260,"text":"u0644u0637u0641u0627 u062eu0648u062fu0631u0648u06cc u0645u0648u0631u062f u0646u0638u0631 u0631u0627 u0627u0646u062au062eu0627u0628 u0628u0641u0631u0645u0627u06ccu06ccu062f
+ u0644u0627u0632u0645 u0628u0647 u0630u06a9u0631 u0627u0633u062a u0627u0637u0644u0627u0639u0627u062a u0634u0631u0627u06ccu0637 u0627u0639u062au0628u0627u0631u06cc u06a9u0647 u0646u0645u0627u06ccu0634 u062fu0627u062fu0647 u0645u06ccu0634u0648u062f u06a9u0645u062au0631u06ccu0646 u0646u0648u0639 u067eu06ccu0634 u067eu0631u062fu0627u062eu062a u0628u0627 u0628u0627u0644u0627u062au0631u06ccu0646 u0637u0648u0644 u0645u062fu062a u0627u0642u0633u0627u0637 u0627u0633u062au060cu0634u0645u0627 u0645u06ccu062au0648u0627u0646u06ccu062f u062cu0647u062a u06a9u0633u0628 u0627u0637u0644u0627u0639u0627u062a u0628u06ccu0634u062au0631 u0628u0647 u0648u0628u0633u0627u06ccu062a u0645u062cu0645u0648u0639u0647 u0645u0631u0627u062cu0639u0647 u0648 u06ccu0627 u0628u0627 u0634u0645u0627u0631u0647 u0647u0627u06cc u0627u06ccu0646 u0645u062cu0645u0648u0639u0647 u062au0645u0627u0633 u062du0627u0635u0644 u0641u0631u0645u0627u06ccu06ccu062f"},"chat_instance":"-6272532825267937534","data":"315"}}*/

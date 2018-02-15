@@ -242,7 +242,19 @@ class adminSalonController
 
         $salon->save();
 
+        if(file_exists($_FILES['image']['tmp_name'])){
 
+            $type  = explode('/',$_FILES['image']['type']);
+
+            $input['upload_dir'] = ROOT_DIR.'statics/banner/';
+            $result = fileUploader($input,$_FILES['image']);
+            $salon->image = $result['image_name'];
+            $result = $salon->save();
+        }
+        if($result['result']!='1')
+        {
+            $this->showSalonAddForm($fields,$result['msg']);
+        }
         $msg='عملیات با موفقیت انجام شد';
         redirectPage(RELA_DIR . "zamin/index.php?component=salon", $msg);
         die();
@@ -254,7 +266,6 @@ class adminSalonController
      */
     public function showSalonEditForm($fields,$msg)
     {
-
         $salon=new adminSalonModel();
 
         $result    = $salon->getSalonById($fields['Salon_id']);
@@ -273,7 +284,7 @@ class adminSalonController
         {
             $export['salon_list'] = $salon->list;
         }
-print_r_debug($export);
+        /*print_r_debug($export);*/
         $this->fileName='admin.salon.editForm.php';
         $this->template($export,$msg);
         die();
@@ -283,7 +294,9 @@ print_r_debug($export);
      * @param $fields
      */
     public function editSalon($fields)
+
     {
+/*        print_r_debug($fields);*/
         $object = adminSalonModel::find($fields['Salon_id']);
         if(!is_object($object))
         {

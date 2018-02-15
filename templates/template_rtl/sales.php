@@ -1,6 +1,6 @@
 <!-- Page Title
 		============================================= -->
-sdadasdad
+
 <section id="page-title">
 
     <div class="container clearfix">
@@ -24,44 +24,44 @@ sdadasdad
 
             <div class="single-event col-md-10 col-md-offset-1">
 
-
+                <?$newDate = ($list['list']['date']!="0000-00-00" ? convertDate($list['list']['event_time']):"");?>
                     <div class="panel panel-default events-meta" id="changeNumber">
                         <div class="panel-heading">
                             <h3 class="panel-title">رویداد:<?=$list['list']['event_name']?></h3>
-                        </div>
+                        </div><form action="<?= RELA_DIR ?>sales" method="POST" data-validate="form" role="form">
                         <div class="panel-body">
                             <div class="col_half">
                                 <ul class="iconlist nobottommargin">
 
 
-                                   <li><i class="icon-calendar3"></i>انتخاب زمان استفاده:    <?=$list['list']['event_time']?> </li>
+                                   <li><i class="icon-calendar3"></i>انتخاب زمان استفاده:    <?=$newDate?> </li>
 <br>
 
                                     <li><i class="icon-map-marker2"></i> انتخاب مکان استفاده:    <?=$list['salonname']['title_fa']?></li>
                                     <br>
                                     <li> نام منطقه:<br>
-                                        <select>
+                                        <select name="part" >
                                             <?php
-
                                             foreach ($list['salon_list'] as $k => $salon):
                                             ?>
-                                            <option><?=$salon["title_fa"]?></option>
+                                            <option value="<?=$salon["Salon_id"]?>"><?=$salon["title_fa"]?></option>
                                             <? endforeach; ?>
 
                                         </select>
 
                                     </li><br>
-                                    <li> انتخاب صندلی به تعداد:<br>
-                                        <select></select>
-
-                                    </li>                                </ul>
+                                                                </ul>
                             </div>
                             <div class="col_last">
                                 <ul class="iconlist nobottommargin">
-                                    <li></li> <form action="<?= RELA_DIR ?>zamin/?component=sales&action=addSales" method="POST" data-validate="form" role="form">
-                                        <input type="hidden" name="action" value="login" />
-                                        <input type="hidden" name="place" value="jaaaa" />
-                                   <img  src="<?=RELA_DIR?>statics/test.jpg">
+                                    <li></li>
+
+                                        <input type="hidden" name="action" value="showMoresandali" />
+                                        <input type="hidden" name="place" value="<?=$salon["parent_id"]?>" />
+                                    <input type="hidden" name="event_time" value="<?=$list['list']['event_time']?>" />
+                                    <input type="hidden" name="Event_id" value="<?=$list['list']['Event_id']?>" />
+
+                                        <img  src="<?=RELA_DIR?>statics/salon/<?=$list['image']?>">
                                         <li></li>
                                         <div class="form-group form-actions">
                                             <input type="submit" class="btn btn-primary btn-default btn-block text-white text-16" value="خرید آنلاین">

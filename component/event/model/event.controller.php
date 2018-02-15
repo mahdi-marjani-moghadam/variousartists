@@ -82,11 +82,6 @@ class eventController
     public function showDetail($id)
     {
 
-        $test =  json_decode('{"message":{"message_id":130,"from":{"id":96728542,"is_bot":false,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","language_code":"en-US"},"chat":{"id":96728542,"first_name":"Hossein","last_name":"Khajvandi","username":"hwinss","type":"private"},"date":1517934876,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}} ',true);
-
-       $testid=$test['message']['from']['id'];
-        print_r_debug($testid);
-
         global $lang;
 
         // get event

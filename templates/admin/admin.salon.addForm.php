@@ -138,28 +138,37 @@
             <div class="row xsmallSpace hidden-xs"></div>
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="form-group">
-                  <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="meta_keyword">کلمات کلیدی:</label>
-                  <div class="col-xs-12 col-sm-8 pull-right">
-                    <textarea name="meta_keyword" class="form-control fullFix" id="meta_keyword" autocomplete="off" placeholder="meta_keyword" ><?=$list['meta_keyword']?></textarea>
-                  </div>
-                </div>
               </div>
               <div class="col-xs-12 col-sm-12 col-md-6"></div>
             </div>
-              <div class="row">
-                  <div class="col-xs-12 col-sm-12 col-md-6">
-                    <div class="form-group">
-                      <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="date6">meta_description:</label>
+
+              <div class="col-xs-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                      <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="min_sandali">ابتدای شماره صندلی</label>
                       <div class="col-xs-12 col-sm-8 pull-right">
-                        <textarea name="meta_description" class="form-control fullFix" id="meta_description" autocomplete="off" placeholder="meta_description"><?=$list['meta_description']?>
-                        </textarea>
+                          <input type="number" name="min_sandali" class="form-control fullFix" id="min_sandali"><?=$list['min_sandali']?></input>
                       </div>
-                    </div>
                   </div>
-              <div class="col-xs-12 col-sm-12 col-md-6"></div>
-            </div>
-<div class="row xsmallSpace hidden-xs"></div>
+              </div>
+                  <div class="col-xs-12 col-sm-12 col-md-6">
+                      <div class="form-group">
+                          <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="max_sandali">انتهای شماره صندلی</label>
+                          <div class="col-xs-12 col-sm-8 pull-right">
+                        <input type="number" name="max_sandali" class="form-control fullFix" id="max_sandali"><?=$list['max_sandali']?>
+                        </input>
+                          </div>
+                      </div>
+                  </div>
+
+              <div class="col-xs-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                      <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="xImagePath">تصویر:</label>
+                      <div class="col-xs-12 col-sm-8 pull-right">
+                          <input type="file" name="image">
+                      </div>
+                  </div>
+              </div>
+              <div class="row xsmallSpace hidden-xs"></div>
             <div class="row">
               <div class="col-md-12">
                 <p class="pull-right margin-right">
@@ -174,6 +183,7 @@
             </div>
           </form>
         </div>
+      </div>
       </div>
     </div>
   </div>

@@ -63,11 +63,12 @@
                                         <input type="hidden" name="action" value="login" />
                                         <input type="hidden" name="place" value="<?=$list['salon_list']['Salon_id']?>" />
                                         <input type="hidden" name="event_name" value="<?=$list['list']['event_name'];?>" />
-                                    <select name="time">
+                                        <input type="hidden" name="event_id" value="<?=$list['list']['Event_id'];?>" />
+                                        <select name="time">
 
-                                        <? if($newTime || $newDate):?> <option value="<?=$newDate?> - <?=$newTime?> "><?=$newDate?> - <?=$newTime?></option><?endif;?>
-                                        <? if($newTime2 || $newDate2):?>  <option value="<?=$newDate2?> - <?=$newTime2?>"><?=$newDate2?> - <?=$newTime2?></option><?endif;?>
-                                        <? if($newTime3 || $newDate3):?> <option value="<?=$newDate3?> - <?=$newTime3?>"><?=$newDate3?> - <?=$newTime3?></option><?endif;?>
+                                        <? if($newTime || $newDate):?> <option value="<?=$list['list']['date'];?> "><?=$newDate?> - <?=$newTime?></option><?endif;?>
+                                        <? if($newTime2 || $newDate2):?>  <option value="<?=$list['list']['date2'];?> "><?=$newDate2?> - <?=$newTime2?></option><?endif;?>
+                                        <? if($newTime3 || $newDate3):?> <option value="<?=$list['list']['date3'];?> "><?=$newDate3?> - <?=$newTime3?></option><?endif;?>
 
                                 </select>
                                     <li></li>
