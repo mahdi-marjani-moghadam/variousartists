@@ -180,8 +180,8 @@ $resultsandali=$sandali->getByFilter($fildes);
         $result=array_diff($sandalikhali,$sandalipor);
 
       $export['skhali']=$result;
-
-        $this->fileName = 'salessandali.php';
+/*print_r_debug($export);*/
+        $this->fileName = 'sales.sandali.php';
         $this->template($export);
         die();
     }
@@ -193,6 +193,25 @@ $resultsandali=$sandali->getByFilter($fildes);
      *
      * @version 01.01.01
      */
+    public function acceptpage($input)
+
+    {
+        $export['sandali']=$input['sandali'];
+        $export['place_id']=$input['place_id'];
+        $export['place_name']=$input['place_name'];
+        $export['part_id']=$input['part_id'];
+        $export['part_name']=$input['part_name'];
+
+        $export['event_name']=$input['Event_name'];
+        $export['event_time']=$input['event_time'];
+        $export['Event_id']=$input['Event_id'];
+
+/*print_r_debug($export);*/
+        $this->fileName = 'sales.final.php';
+        $this->template($export);
+        die();
+    }
+
     public function showALL($fields)
     {
         //$sales = new salesModel();

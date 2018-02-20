@@ -61,6 +61,7 @@
                                 <ul class="iconlist nobottommargin">
                               <li></li> <form action="<?= RELA_DIR ?>sales" method="POST" data-validate="form" role="form">
                                         <input type="hidden" name="action" value="login" />
+
                                         <input type="hidden" name="place" value="<?=$list['salon_list']['Salon_id']?>" />
                                         <input type="hidden" name="event_name" value="<?=$list['list']['event_name'];?>" />
                                         <input type="hidden" name="event_id" value="<?=$list['list']['Event_id'];?>" />

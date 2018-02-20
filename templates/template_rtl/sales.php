@@ -28,7 +28,8 @@
                     <div class="panel panel-default events-meta" id="changeNumber">
                         <div class="panel-heading">
                             <h3 class="panel-title">رویداد:<?=$list['list']['event_name']?></h3>
-                        </div><form action="<?= RELA_DIR ?>sales" method="POST" data-validate="form" role="form">
+                        </div>
+                        <form action="<?= RELA_DIR ?>sales" method="POST" data-validate="form" role="form">
                         <div class="panel-body">
                             <div class="col_half">
                                 <ul class="iconlist nobottommargin">

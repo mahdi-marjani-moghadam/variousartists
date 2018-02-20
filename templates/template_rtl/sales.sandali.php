@@ -1,6 +1,6 @@
 <!-- Page Title
 		============================================= -->
-sdadasdad
+
 <section id="page-title">
 
     <div class="container clearfix">
@@ -42,12 +42,12 @@ sdadasdad
                                     <br>
                                     <li><i class="icon-map-marker2"></i> مکان استفاده:    <?=$list['salonpartname']['title_fa']?></li>
                                     <br>
-                                    <select name="part" >
+                                    <select name="sandali" >
                                         <?php
 
                                         foreach ($list['skhali'] as $k => $x):
                                         ?>
-                                            <option value=""><?=$x?></option>
+                                            <option value="<?=$x?>"><?=$x?></option>
                                         <?endforeach; ?>
 
                                     </select>
@@ -60,10 +60,15 @@ sdadasdad
                                 <ul class="iconlist nobottommargin">
                                     <li></li>
 
-                                    <input type="hidden" name="action" value="showMoresandali" />
-                                    <input type="hidden" name="place" value="<?=$salon["parent_id"]?>" />
+                                    <input type="hidden" name="action" value="acceptpage" />
+                                    <input type="hidden" name="place_id" value="<?=$list['salonpartname']['parent_id']?>" />
+                                    <input type="hidden" name="place_name" value="<?=$list['salonname']['title_fa']?>" />
+                                    <input type="hidden" name="part_id" value="<?=$list['salonpartname']['Salon_id']?>" />
+                                    <input type="hidden" name="part_name" value="<?=$list['salonpartname']['title_fa']?>" />
                                     <input type="hidden" name="event_time" value="<?=$list['list']['event_time']?>" />
                                     <input type="hidden" name="Event_id" value="<?=$list['list']['Event_id']?>" />
+                                    <input type="hidden" name="Event_name" value="<?=$list['eventname']['event_name']?>" />
+
 
                                     <img  src="<?=RELA_DIR?>statics/salon/<?=$list['image']?>">
                                     <li></li>

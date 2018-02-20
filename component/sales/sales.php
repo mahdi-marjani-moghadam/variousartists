@@ -28,6 +28,10 @@ switch ($_POST['action']) {
             $salesController->showMoresandali($_POST);
 
             break;
+    case 'acceptpage':
+        $salesController->acceptpage($_POST);
+
+        break;
         case 'addSales':
             if (isset($_POST['action']) & $_POST['action'] == 'add') {
 
