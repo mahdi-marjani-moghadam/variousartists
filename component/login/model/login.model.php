@@ -289,7 +289,7 @@ class memberLogIn
             return $result;
         }
 
-        if (strlen($username) > 40 || checkUser($username)) {
+        if ( !checkMail($username)) {
 
             $result['result'] = -1;
             $result['msg'] = 'err_101 : Your Username Or Password Is Incorrect';

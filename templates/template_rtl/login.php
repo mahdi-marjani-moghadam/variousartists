@@ -72,7 +72,7 @@
                                     <h3>برای ورود اطلاعات خود را وارد کنید</h3>
 
                                     <div class="col_full">
-                                        <label for="login-form-username">نام کاربری:</label>
+                                        <label for="login-form-username"> ایمیل:</label>
                                         <input type="text" id="username" name="username" value="<?=$_REQUEST['username']?>" class="form-control" />
                                     </div>
 
@@ -133,7 +133,7 @@
                                 <form id="register-form" name="register-form" enctype="multipart/form-data" class="nobottommargin" action="<?=RELA_DIR?>login/register" method="post">
 
                                     <div class="col_full">
-                                        <label for="username">نام کاربری:</label>
+                                        <label for="username"> ایمیل:</label>
                                         <input type="text" id="username" name="username" value="<?=$_REQUEST['username']?>" class="form-control" />
                                     </div>
 
@@ -182,28 +182,24 @@
 
 
                                     <div class="col_full">
-                                        <label for="email">ایمیل:</label>
-                                        <input type="text" id="email" name="email" style="direction: ltr" value="<?=$_REQUEST['email']?>" class="form-control" />
-                                    </div>
-                                    <div class="col_full">
-                                        <label for="instagram"><i class="icon icon-instagram2"></i>لینک اینستاگرام: </label>
-                                        <input type="text" id="instagram" style="direction: ltr" name="instagram" value="<?=($_REQUEST['instagram'] =='')?'insta id':$_REQUEST['instagram'];?>" class="form-control" />
+                                        <label for="instagram"><i class="icon icon-instagram2"></i>آی دی اینستاگرام: </label>
+                                        <input type="text" id="instagram" style="direction: ltr" name="instagram" value="<?=($_REQUEST['instagram'] =='')?'':$_REQUEST['instagram'];?>" placeholder="" class="form-control" />
                                     </div>
                                     <div class="col_full">`
                                         <label for="site"><i class="icon icon-ie"></i>  سایت: </label>
-                                        <input type="text"style="direction: ltr" id="site" name="site" value="<?=($_REQUEST['site'] =='')?'http://sitename.com/':$_REQUEST['site'];?>" class="form-control" />
+                                        <input type="text"style="direction: ltr" id="site" name="site" value="<?=($_REQUEST['site'] =='')?'':$_REQUEST['site'];?>" placeholder="" class="form-control" />
                                     </div>
                                     <div class="col_full">
-                                        <label for="facebook"><i class="icon icon-facebook-sign"></i>لینک فیس بوک:</label>
-                                        <input type="text" id="facebook" name="facebook" value="<?=($_REQUEST['facebook'] =='')?'https://facebook.com/id':$_REQUEST['facebook'];?>" class="form-control  " style="direction: ltr"  />
+                                        <label for="facebook"><i class="icon icon-facebook-sign"></i>آی دی فیس بوک:</label>
+                                        <input type="text" id="facebook" name="facebook" value="<?=($_REQUEST['facebook'] =='')?'':$_REQUEST['facebook'];?>" placeholder="" class="form-control  " style="direction: ltr"  />
                                     </div>
                                     <div class="col_full">
-                                        <label for="soundcloud"><i class="icon icon-soundcloud"></i>لینک ساند کلاد: </label>
-                                        <input type="text" id="soundcloud" style="direction: ltr" name="soundcloud"  value="<?=($_REQUEST['soundcloud'] =='')?'https://www.soundcloud.com/id':$_REQUEST['soundcloud'];?>"  class="form-control" />
+                                        <label for="soundcloud"><i class="icon icon-soundcloud"></i>آی دی ساند کلاد: </label>
+                                        <input type="text" id="soundcloud" style="direction: ltr" name="soundcloud"  value="<?=($_REQUEST['soundcloud'] =='')?'':$_REQUEST['soundcloud'];?>" placeholder=""  class="form-control" />
                                     </div>
                                     <div class="col_full">
-                                        <label for="telegram"><i class="icon icon-email2"></i>لینک تلگرام: </label>
-                                        <input type="text" style="direction: ltr"   id="telegram" name="telegram" value="<?=($_REQUEST['telegram'] =='')?'@id':$_REQUEST['telegram'];?>" class="form-control" />
+                                        <label for="telegram"><i class="icon icon-email2"></i>آی دی تلگرام: </label>
+                                        <input type="text" style="direction: ltr"   id="telegram" name="telegram" value="<?=($_REQUEST['telegram'] =='')?'':$_REQUEST['telegram'];?>" placeholder="" class="form-control" />
                                     </div>
                                     <div class="col_full">
                                         <label for="description_fa">بیوگرافی(فارسی):</label>

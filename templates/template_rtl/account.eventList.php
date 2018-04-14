@@ -22,7 +22,7 @@
                                                 ?>
                                             <tr>
                                                 <td><?=$start ;?></td>
-                                                <td><a href="<?=RELA_DIR?>invoice/<?=$list['list']["artists_name_$lang"]?>/<?=$value['Artists_event_id']?>/<?=$value['title']?>"><?=$value['title']?></a></td>
+                                                <td><a href="<?=RELA_DIR?>event/Detail/<?=$value['Event_id']?>/<?=$value['title']?>"><?=$value['title']?></a></td>
 
                                                 <td><?=$value['date']?></td>
                                                 <td>

@@ -197,6 +197,7 @@ class accountController
         $event =new eventModel();
 
         $object=model::find('artists',$member_info['Artists_id']);
+
         if(is_array($object))
         {
             $this->fileName = 'account.showPanel.php';
@@ -207,6 +208,7 @@ class accountController
         $export['list'] = $object->fields;
 
         $result=$event->getEventByArtistsId($member_info['Artists_id'],$fields);
+
         if($result['result'] == -1)
         {
             $this->fileName = 'account.invoiceList.php';
@@ -256,7 +258,7 @@ class accountController
             $this->showEventAddForm($_input, $result['msg']);
         }
 
-        $event->status = 0;
+        $event->status = 1;
         $event->member_id= $member_info['Artists_id'];
         $event->save();
 
@@ -277,7 +279,7 @@ class accountController
             $messageStack->add_session('register', $result['msg']);
             $this->showEventAddForm($_input, $result['msg']);
         }
-        $msg = 'رویداد شما ثبت شد بعد از تایید نمایش داده میشود.';
+        $msg = 'رویداد شما ثبت شد.';
         $messageStack->add_session('register', $msg);
 
         redirectPage(RELA_DIR.'account/event', $msg);

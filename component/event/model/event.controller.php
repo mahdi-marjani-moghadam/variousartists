@@ -87,7 +87,6 @@ class eventController
         // get event
         $event = new eventModel();
         $result = $event->getEventById($id);
-
         if ($result['result'] == '1') {
             $export['list'] = $event->fields;
         } else {

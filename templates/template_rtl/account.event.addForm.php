@@ -89,36 +89,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label style="padding-right: 20px"
-                                           for="brief_description_en">توضیحات مختصر(انگلیسی):</label>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 pull-right">
-
-
-                                        <?php
-
-                                        include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
-                                        include_once ROOT_DIR.'common/ckfinder/ckfinder.php';
-                                        $ckeditor = new CKEditor();
-                                        $ckeditor->basePath = RELA_DIR.'common/ckeditor/';
-
-
-
-
-                                        $config['language'] = 'fa';
-                                        $config['filebrowserBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html';
-                                        $config['filebrowserImageBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html?type=Images';
-                                        $config['filebrowserUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
-                                        $config['filebrowserImageUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
-
-                                        $tt = $ckeditor->editor('description_en',$list['description_en'],$config);
-
-                                        echo $tt;
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="row xsmallSpace hidden-xs"></div>
                         <div class="row">
