@@ -70,7 +70,7 @@
                                     <input type="hidden" name="Event_name" value="<?=$list['eventname']['event_name']?>" />
 
 
-                                    <img  src="<?=RELA_DIR?>statics/salon/<?=$list['image']?>">
+                                    <img  src="<?=RELA_DIR?>statics/salon/<?=$list['salonpartname']['image']?>">
                                     <li></li>
                                     <div class="form-group form-actions">
                                         <input type="submit" class="btn btn-primary btn-default btn-block text-white text-16" value="خرید آنلاین">

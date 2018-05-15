@@ -147,7 +147,7 @@ class salesController
 /*   entekhabe sandali     -----*/
 
 
-$fildes['where']='event_id ='.$input['Event_id'].' and part_id='.$input['part'].' and place_id='.$input['place'].' and event_time="'.$input['event_time'].'"';
+$fildes['where']='status=0 and'.'event_id ='.$input['Event_id'].' and part_id='.$input['part'].' and place_id='.$input['place'].' and event_time="'.$input['event_time'].'"';
 $sandali=new salesModel();
 
 $resultsandali=$sandali->getByFilter($fildes);
@@ -155,9 +155,9 @@ $resultsandali=$sandali->getByFilter($fildes);
             $export['sandalipor']=$resultsandali['export'];
 
         }
-        $sandali=salesModel::getAll()->getList();
-
-
+        $sandali=$resultsandali;
+        //$sandali=salesModel::getAll()->getList();
+        $export['sandalipor']['list'] =$sandali['export']['list'] ;
 
         $export['list'] = $sales->list;
         $export['eventlist']=$event->eventlist;
@@ -167,10 +167,9 @@ $resultsandali=$sandali->getByFilter($fildes);
         $export['list']['event_time']=$input['event_time'];
         $export['list']['event_part']=$input['place'];
         $export['list']['Event_id']=$input['Event_id'];
-
-
         $min=$export['salonpartname']['min_sandali'];
         $max=$export['salonpartname']['max_sandali'];
+        $sandalipor=array();
         foreach ($export['sandalipor']['list'] as $k => $x):
             $sandalipor[]=$x["sandali"];
         endforeach;
@@ -179,8 +178,7 @@ $resultsandali=$sandali->getByFilter($fildes);
         }
         $result=array_diff($sandalikhali,$sandalipor);
 
-      $export['skhali']=$result;
-/*print_r_debug($export);*/
+        $export['skhali']=$result;
         $this->fileName = 'sales.sandali.php';
         $this->template($export);
         die();
@@ -196,6 +194,10 @@ $resultsandali=$sandali->getByFilter($fildes);
     public function acceptpage($input)
 
     {
+        global $member_info;
+        if ($member_info==-1){
+            redirectPage(RELA_DIR.'login','برای خرید لطفا وارد شوید.');
+        }
         $export['sandali']=$input['sandali'];
         $export['place_id']=$input['place_id'];
         $export['place_name']=$input['place_name'];
@@ -206,7 +208,18 @@ $resultsandali=$sandali->getByFilter($fildes);
         $export['event_time']=$input['event_time'];
         $export['Event_id']=$input['Event_id'];
 
-/*print_r_debug($export);*/
+        $finalsave=new salesModel();
+        $finalsave->setFields($input);
+        $finalsave->event_id = $input['Event_id'];
+        $finalsave->user_id = $member_info['Artists_id'];
+
+        $finalsave->save();
+        /*$finalsave->sandali = $input['sandali'];
+        $finalsave->place_id = $input['place_id'];
+        $finalsave->place_name = $input['place_name'];
+        $finalsave->part_id = $input['part_id'];
+        $finalsave->part_name = $input['part_name'];*/
+
         $this->fileName = 'sales.final.php';
         $this->template($export);
         die();

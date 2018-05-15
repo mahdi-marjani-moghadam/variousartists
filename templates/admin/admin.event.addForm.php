@@ -82,7 +82,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div style="display: none" class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="brief_description_fa">توضیحات مختصر(فارسی):</label>
@@ -95,7 +95,7 @@
 
                         <div class="row xsmallSpace hidden-xs"></div>
                         <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div  class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_name_en">نام رویداد(انگلیسی):</label>
@@ -104,7 +104,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div style="display: none"  class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="brief_description_en">توضیحات مختصر(انگلیسی):</label>

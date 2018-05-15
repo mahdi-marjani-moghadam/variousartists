@@ -95,6 +95,8 @@ class adminArtistsController
         $fields['password'] = md5($fields['password']);
 
         $fields['refresh_date'] = convertJToGDate($fields['refresh_date']);
+        $fields['birthday'] = convertJToGDate($fields['birthday']);
+
         $fields['category_id'] = ','.implode(',',$fields['category_id']).',';
 
         $artists->setFields($fields);

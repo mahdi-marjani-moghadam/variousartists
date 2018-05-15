@@ -70,7 +70,7 @@
 
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-8  center-block">
-          <form name="queue" id="queue" role="form" data-validate="form" class="form-horizontal form-bordered" autocomplete="off" novalidate="novalidate" method="post">
+          <form name="queue" enctype="multipart/form-data" id="queue" role="form" data-validate="form" class="form-horizontal form-bordered" autocomplete="off" novalidate="novalidate" method="post">
 
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-6">

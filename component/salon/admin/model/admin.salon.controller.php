@@ -307,7 +307,17 @@ class adminSalonController
         $result=$object->validator();
 
         $result = $object->save();
+        if(file_exists($_FILES['image']['tmp_name'])){
 
+            $type  = explode('/',$_FILES['image']['type']);
+
+            $input['upload_dir'] = ROOT_DIR.'statics/salon/';
+            $result = fileUploader($input,$_FILES['image']);
+            fileRemover($input['upload_dir'],$object->fields['image']);
+            $object->image = $result['image_name'];
+
+            $result = $object->save();
+        }
 
         if($result['result']!='1')
         {

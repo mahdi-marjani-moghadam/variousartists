@@ -16,7 +16,6 @@ if(isset($exportType))
 {
     $salonController->exportType=$exportType;
 }
-
 switch ($_GET['action'])
 {
     case 'showMore':
