@@ -350,7 +350,7 @@ class adminArtistsController
             array( 'db' => 'username', 'dt' =>$i++),
             array( 'db' => 'nickname', 'dt' =>$i++),
             array( 'db' => 'category_id', 'dt' =>$i++),
-            array( 'db' => 'email', 'dt' =>$i++),
+            /*array( 'db' => 'email', 'dt' =>$i++),*/
             array( 'db' => 'artists_phone1', 'dt' => $i++ ),
             array( 'db' => 'artists_name_fa',   'dt' => $i++),
             array( 'db' => 'artists_name_en', 'dt' => $i++ ),

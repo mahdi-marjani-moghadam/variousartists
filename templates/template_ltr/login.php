@@ -72,7 +72,7 @@
                                     <h3>Enter Information</h3>
 
                                     <div class="col_full">
-                                        <label for="login-form-username">Username: </label>
+                                        <label for="login-form-username">email: </label>
                                         <input type="text" id="username" name="username" value="<?=$_REQUEST['username']?>" class="form-control" />
                                     </div>
 
@@ -133,7 +133,7 @@
                                 <form id="register-form" name="register-form" enctype="multipart/form-data" class="nobottommargin" action="<?=RELA_DIR?>login/register" method="post">
 
                                     <div class="col_full">
-                                        <label for="username">Username: </label>
+                                        <label for="username">Email: </label>
                                         <input type="text" id="username" name="username" value="<?=$_REQUEST['username']?>" class="form-control" />
                                     </div>
 
@@ -172,7 +172,10 @@
                                             ?>
                                         </select>
                                     </div>
-
+                                    <div class="col_full">
+                                        <label for="genre">Genre:</label>
+                                        <input type="text" id="genre" name="genre" value="<?=$_REQUEST['genre']?>" class="form-control" />
+                                    </div>
                                     <div class="col_full">
                                         <label for="artists_phone1">Phone:</label>
                                         <input type="text" id="artists_phone1" name="artists_phone1" value="<?=$_REQUEST['artists_phone1']?>" class="form-control" />
@@ -181,29 +184,36 @@
 
 
 
-                                    <div class="col_full">
+                                    <!--<div class="col_full">
                                         <label for="email">Email:</label>
-                                        <input type="text" id="email" name="email" required value="<?=$_REQUEST['email']?>" class="form-control" />
-                                    </div>
-                                    <div class="col_full">
-                                        <label for="instagram"><i class="icon icon-instagram2"></i>Instagram address:</label>
-                                        <input type="text" id="instagram" style="direction: ltr" name="instagram" value="<?=($_REQUEST['instagram'] =='')?'id':$_REQUEST['instagram'];?>" class="form-control" />
-                                    </div>
+                                        <input type="text" id="email" name="email" required value="<?/*=$_REQUEST['email']*/?>" class="form-control" />
+                                    </div>-->
                                     <div class="col_full">
                                         <label for="site"><i class="icon icon-ie"></i> Site address: </label>
-                                        <input type="text"style="direction: ltr" id="site" name="site" value="<?=($_REQUEST['site'] =='')?'http://sitename.com/':$_REQUEST['site'];?>" class="form-control" />
+                                        <input type="text"style="direction: ltr" id="site" name="site" value="<?=($_REQUEST['site'] =='')?'':$_REQUEST['site'];?>" class="form-control" />
                                     </div>
                                     <div class="col_full">
-                                        <label for="facebook"><i class="icon icon-facebook-sign"></i>Facebook address:</label>
-                                        <input type="text" id="facebook" name="facebook" value="<?=($_REQUEST['facebook'] =='')?'https://facebook.com/id':$_REQUEST['facebook'];?>" class="form-control  " style="direction: ltr"  />
+                                        <label for="instagram"><i class="icon icon-instagram2"></i>Instagram Id:</label>
+                                        <input type="text" id="instagram" style="direction: ltr" name="instagram" value="<?=($_REQUEST['instagram'] =='')?'':$_REQUEST['instagram'];?>" class="form-control" />
                                     </div>
                                     <div class="col_full">
-                                        <label for="soundcloud"><i class="icon icon-soundcloud"></i>Sound cloud address:</label>
-                                        <input type="text" id="soundcloud" style="direction: ltr" name="soundcloud"  value="<?=($_REQUEST['soundcloud'] =='')?'https://www.soundcloud.com/id':$_REQUEST['soundcloud'];?>"  class="form-control" />
+                                        <label for="soundcloud"><i class="icon icon-soundcloud"></i>Sound cloud Id:</label>
+                                        <input type="text" id="soundcloud" style="direction: ltr" name="soundcloud"  value="<?=($_REQUEST['soundcloud'] =='')?'':$_REQUEST['soundcloud'];?>"  class="form-control" />
                                     </div>
                                     <div class="col_full">
-                                        <label for="telegram"><i class="icon icon-email2"></i>Telegram address:</label>
-                                        <input type="text" style="direction: ltr"   id="telegram" name="telegram" value="<?=($_REQUEST['telegram'] =='')?'@id':$_REQUEST['telegram'];?>" class="form-control" />
+                                        <label for="beeptunes">  Beeptunes Id: </label>
+                                        <input type="text" id="beeptunes" style="direction: ltr" name="beeptunes"  value="<?=($_REQUEST['beeptunes'] =='')?'':$_REQUEST['beeptunes'];?>" placeholder=""      class="form-control" />
+                                    </div>
+
+                                    <div class="col_full">
+                                        <label for="facebook"><i class="icon icon-facebook-sign"></i>Facebook Id:</label>
+                                        <input type="text" id="facebook" name="facebook" value="<?=($_REQUEST['facebook'] =='')?'':$_REQUEST['facebook'];?>" class="form-control  " style="direction: ltr"  />
+                                    </div>
+
+
+                                    <div class="col_full">
+                                        <label for="telegram"><i class="icon icon-email2"></i>Telegram Id:</label>
+                                        <input type="text" style="direction: ltr"   id="telegram" name="telegram" value="<?=($_REQUEST['telegram'] =='')?'':$_REQUEST['telegram'];?>" class="form-control" />
                                     </div>
                                     <div class="col_full">
                                         <label for="description_fa">Biography (persian): </label>

@@ -65,37 +65,37 @@
                     <span class="pull-right">Social network:</span>
                     <div>
                         <? if($list['list']['facebook'] != ''): ?>
-                        <a href="<?=$list['list']['facebook']?>" class="social-icon si-borderless ">
-                            <i class="icon-facebook"></i>
-                            <i class="icon-facebook"></i>
-                        </a>
+                            <a href="https://facebook.com/<?=$list['list']['facebook']?>" class="social-icon si-borderless ">
+                                <i class="icon-facebook"></i>
+                                <i class="icon-facebook"></i>
+                            </a>
                         <? endif;?>
                         <? if($list['list']['twitter'] != ''): ?>
-                        <a href="<?=$list['list']['twitter']?>" class="social-icon si-borderless ">
-                            <i class="icon-twitter"></i>
-                            <i class="icon-twitter"></i>
-                        </a>
+                            <a href="https://twitter.com/<?=$list['list']['twitter']?>" class="social-icon si-borderless ">
+                                <i class="icon-twitter"></i>
+                                <i class="icon-twitter"></i>
+                            </a>
                         <? endif;?>
                         <? if($list['list']['instagram'] != ''): ?>
-                            <a href="<?=$list['list']['instagram']?>" class="social-icon si-borderless ">
+                            <a href="https://instagram.com/<?=$list['list']['instagram']?>" class="social-icon si-borderless ">
                                 <i class="icon-instagram"></i>
                                 <i class="icon-instagram"></i>
                             </a>
                         <? endif;?>
                         <? if($list['list']['telegram'] != ''): ?>
-                            <a href="<?=$list['list']['telegram']?>" class="social-icon si-borderless ">
+                            <a href="https://telegram.me/<?=$list['list']['telegram']?>" class="social-icon si-borderless ">
                                 <i class="icon-email2"></i>
                                 <i class="icon-email2"></i>
                             </a>
                         <? endif;?>
                         <? if($list['list']['site'] != ''): ?>
-                            <a href="<?=$list['list']['site']?>" class="social-icon si-borderless ">
+                            <a href="http://<?=$list['list']['site']?>" class="social-icon si-borderless ">
                                 <i class="icon-ie"></i>
                                 <i class="icon-ie"></i>
                             </a>
                         <? endif;?>
                         <? if($list['list']['soundcloud'] != ''): ?>
-                            <a href="<?=$list['list']['soundcloud']?>" class="social-icon si-borderless ">
+                            <a href="https://www.soundcloud.com/<?=$list['list']['soundcloud']?>" class="social-icon si-borderless ">
                                 <i class="icon-soundcloud    "></i>
                                 <i class="icon-soundcloud"></i>
                             </a>

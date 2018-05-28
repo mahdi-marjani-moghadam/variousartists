@@ -166,12 +166,31 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="description_en">توضیحات(انگلیسی):</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="description_en" id="description_en" required value="<?= $list['description_en'] ?>">
+                                        <?php
+
+                                        include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
+                                        include_once ROOT_DIR.'common/ckfinder/ckfinder.php';
+                                        $ckeditor = new CKEditor();
+                                        $ckeditor->basePath = RELA_DIR.'common/ckeditor/';
+
+
+
+
+                                        $config['language'] = 'fa';
+                                        $config['filebrowserBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html';
+                                        $config['filebrowserImageBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html?type=Images';
+                                        $config['filebrowserUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+                                        $config['filebrowserImageUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+
+                                        $tt2 = $ckeditor->editor('description_en2',$list['description_en2'],$config);
+
+                                        echo $tt2;
+                                        ?>
                                     </div>
                                 </div>
                             </div>

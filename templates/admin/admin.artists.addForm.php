@@ -224,6 +224,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
+                                           for="genre">سبک :</label>
+                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                        <input type="text" class="form-control" name="genre" id="genre" value="<?= $list['genre'] ?>">
+                                    </div>
+                                </div>
+                            </div>
 
 
                         </div>
@@ -260,12 +269,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="display: none" class="col-xs-12 col-sm-12 col-md-6">
+                            <div style="" class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                           for="twitter">آدرس twitter:</label>
+                                           for="beeptunes">آدرس beeptunes:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="twitter" id="twitter" value="<?= $list['twitter'] ?>">
+                                        <input type="text" class="form-control" name="beeptunes" id="beeptunes" value="<?= $list['beeptunes'] ?>">
                                     </div>
                                 </div>
                             </div>

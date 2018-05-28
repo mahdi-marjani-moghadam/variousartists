@@ -172,7 +172,10 @@
                                             ?>
                                         </select>
                                     </div>
-
+                                    <div class="col_full">
+                                        <label for="genre">سبک:</label>
+                                        <input type="text" id="genre" name="genre" value="<?=$_REQUEST['genre']?>" class="form-control" />
+                                    </div>
                                     <div class="col_full">
                                         <label for="artists_phone1">تلفن:</label>
                                         <input type="text" id="artists_phone1" name="artists_phone1" value="<?=$_REQUEST['artists_phone1']?>" class="form-control" />
@@ -180,23 +183,29 @@
 
 
 
-
                                     <div class="col_full">
-                                        <label for="instagram"><i class="icon icon-instagram2"></i>آی دی اینستاگرام: </label>
-                                        <input type="text" id="instagram" style="direction: ltr" name="instagram" value="<?=($_REQUEST['instagram'] =='')?'':$_REQUEST['instagram'];?>" placeholder="" class="form-control" />
-                                    </div>
-                                    <div class="col_full">`
                                         <label for="site"><i class="icon icon-ie"></i>  سایت: </label>
                                         <input type="text"style="direction: ltr" id="site" name="site" value="<?=($_REQUEST['site'] =='')?'':$_REQUEST['site'];?>" placeholder="" class="form-control" />
                                     </div>
                                     <div class="col_full">
-                                        <label for="facebook"><i class="icon icon-facebook-sign"></i>آی دی فیس بوک:</label>
-                                        <input type="text" id="facebook" name="facebook" value="<?=($_REQUEST['facebook'] =='')?'':$_REQUEST['facebook'];?>" placeholder="" class="form-control  " style="direction: ltr"  />
+                                        <label for="instagram"><i class="icon icon-instagram2"></i>آی دی اینستاگرام: </label>
+                                        <input type="text" id="instagram" style="direction: ltr" name="instagram" value="<?=($_REQUEST['instagram'] =='')?'':$_REQUEST['instagram'];?>" placeholder="" class="form-control" />
                                     </div>
                                     <div class="col_full">
                                         <label for="soundcloud"><i class="icon icon-soundcloud"></i>آی دی ساند کلاد: </label>
                                         <input type="text" id="soundcloud" style="direction: ltr" name="soundcloud"  value="<?=($_REQUEST['soundcloud'] =='')?'':$_REQUEST['soundcloud'];?>" placeholder=""  class="form-control" />
                                     </div>
+                                    <div class="col_full">
+                                        <label for="beeptunes">آی دی beeptunes: </label>
+                                        <input type="text" id="beeptunes" style="direction: ltr" name="beeptunes"  value="<?=($_REQUEST['beeptunes'] =='')?'':$_REQUEST['beeptunes'];?>" placeholder=""      class="form-control" />
+                                    </div>
+
+                                    <div class="col_full">
+                                        <label for="facebook"><i class="icon icon-facebook-sign"></i>آی دی فیس بوک:</label>
+                                        <input type="text" id="facebook" name="facebook" value="<?=($_REQUEST['facebook'] =='')?'':$_REQUEST['facebook'];?>" placeholder="" class="form-control  " style="direction: ltr"  />
+                                    </div>
+
+
                                     <div class="col_full">
                                         <label for="telegram"><i class="icon icon-email2"></i>آی دی تلگرام: </label>
                                         <input type="text" style="direction: ltr"   id="telegram" name="telegram" value="<?=($_REQUEST['telegram'] =='')?'':$_REQUEST['telegram'];?>" placeholder="" class="form-control" />

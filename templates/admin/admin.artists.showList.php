@@ -129,7 +129,6 @@
                         <th>نام کاربری </th>
                         <th>nickname </th>
                         <th>دسته بندی</th>
-                        <th>ایمیل</th>
                         <th>تلفن</th>
                         <th>نام انگلیسی</th>
                         <th>نام فارسی</th>
@@ -148,16 +147,17 @@
                     <th><input type="text" name="search_6" class="search_init form-control"/></th>
                     <th><input type="text" name="search_7" class="search_init form-control"/></th>
                     <th><input type="text" name="search_8" class="search_init form-control"/></th>
-                    <th><input type="text" name="search_9" class="search_init form-control"/></th>
-                    <th><select name="search_10" class="search_init form-control" id="search_9">
+                    <th><select name="search_9" class="search_init form-control" id="search_9">
                             <option value="">همه</option>
                             <option value="1">فعال</option>
                             <option value="0">غیر فعال</option>
                         </select>
                     </th>
+                    <th><input type="text" name="search_10" class="search_init form-control"/></th>
+
 
                     <th><input type="text" name="search_11" class="search_init form-control"/></th>
-                    <th><input type="text" name="search_12" class="search_init form-control"/></th>
+
                     </tfoot>
                 </table>
             </div>

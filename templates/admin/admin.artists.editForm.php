@@ -250,6 +250,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
+                                           for="genre">سبک :</label>
+                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                        <input type="text" class="form-control" name="genre" id="genre" value="<?= $list['genre'] ?>">
+                                    </div>
+                                </div>
+                            </div>
                             <!-- state -->
 
                         </div>
@@ -280,7 +289,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                           for="instagram">آدرس instagram:</label>
+                                           for="instagram"> instagram Id:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
                                         <input type="text" class="form-control" name="instagram" id="instagram" value="<?= $list['instagram'] ?>">
                                     </div>
@@ -289,9 +298,9 @@
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                           for="twitter">آدرس twitter:</label>
+                                           for="beeptunes"> beeptunes Id:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="twitter" id="twitter" value="<?= $list['twitter'] ?>">
+                                        <input type="text" class="form-control" name="beeptunes" id="beeptunes" value="<?= $list['beeptunes'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -301,7 +310,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                           for="telegram">آدرس telegram:</label>
+                                           for="telegram"> telegram Id: </label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
                                         <input type="text" class="form-control" name="telegram" id="telegram" value="<?= $list['telegram'] ?>">
                                     </div>
@@ -310,7 +319,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                           for="soundcloud">آدرس soundcloud:</label>
+                                           for="soundcloud"> soundcloud Id:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
                                         <input type="text" class="form-control" name="soundcloud" id="soundcloud" value="<?= $list['soundcloud'] ?>">
                                     </div>

@@ -362,10 +362,9 @@ class adminSalonModel extends looeic
      */
     public function convert($_input,$temp,$space='-')
     {
-
-
         global $lang;
         static $mainMenu = '';
+
         //echo $this->level;
 
         foreach ($_input as $key => $val) {

@@ -292,7 +292,7 @@ class memberLogIn
         if ( !checkMail($username)) {
 
             $result['result'] = -1;
-            $result['msg'] = 'err_101 : Your Username Or Password Is Incorrect';
+            $result['msg'] = 'err_101 : Your email is incorrect';
             return $result;
         }
 
