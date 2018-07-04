@@ -305,6 +305,27 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
+                                           for="genre_id">سبک:</label>
+                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                        <select name="genre_id[]" id="genre_id" data-input="select2" multiple>
+                                            <?
+                                            foreach($list['genre'] as $genre_id => $value)
+                                            {
+                                                ?>
+                                                <option <?php echo in_array($value['Genre_id'], $list['genre_id']) ? 'selected' : '' ?>
+                                                        value="<?= $value['Genre_id'] ?>">
+                                                    <?= $value['export'] ?>
+                                                </option>
+                                                <?
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                         <div class="row xsmallSpace hidden-xs"></div>
@@ -320,7 +341,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div class="col-xs-12 col-sm-12 col-md-6" style="display: none">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="city_id">انتخاب شهر:</label>
@@ -452,6 +473,15 @@
                                                 value="-1" <?= ($list['status'] == -1) ? 'selected="selected"' : ''; ?>>تایید نشده
                                             </option>
                                         </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
+                                           for="organizer"> Organizer:</label>
+                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                        <input type="text" class="form-control" name="organizer" id="organizer" value="<?= $list['organizer'] ?>">
                                     </div>
                                 </div>
                             </div>

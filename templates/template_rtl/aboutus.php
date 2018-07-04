@@ -5,16 +5,17 @@
         <span class="text-center">درباره ما</span>
     </div>
 </div>--><!-- /end of separator -->
+<? $key = key($list['list']);?>
 <section id="page-title" class="page-title-parallax page-title-dark page-title-right" style="padding: 250px 0px; background-image: url(<?=RELA_DIR?>templates/<?=CURRENT_SKIN?>/images/about/banner.jpg); background-size: cover; background-position: 50% -129.6px;" data-stellar-background-ratio="0.2">
 
-    <div class="container clearfix" style="display: none">
-        <h1>درباره ما</h1>
-        <span>Various Artists & Founder</span>
+    <div class="container clearfix" >
+        <!--<h1>درباره ما</h1>-->
+        <span><?php echo (strlen($list['list'][$key]['text1']) ? $list['list'][$key]['text1'] : ""); ?></span>
     </div>
 
 </section>
-<? $key = key($list['list']);?>
-<section id="content" style="margin-bottom: 0px;">
+
+<section id="content" style="margin-bottom: 0px; display: none">
 
     <div class="content-wrap">
 

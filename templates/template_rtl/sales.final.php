@@ -38,7 +38,11 @@
                                     <br>
                                     <li><i class="icon-paperplane"></i> بخش انتخابی:   <?=$list['part_name']?></li>
                                     <br>
-                                    <li><i class="icon-ticket"></i> صندلی انتخاب شده: شماره     <?=$list['sandali']?></li>
+                                    <li><i class="icon-ticket"></i> صندلی انتخاب شده: شماره
+                                        <? foreach ($list['sandali'] as $v):?>
+                                        <span class="btn btn-info"><?=$v?></span>
+                                        <? endforeach;?>
+                                    </li>
                                     <br>
                                     <li><i class="icon-time"></i> تاریخ و ساعت انتخاب شده:    <?=$newDate?></li>
                                     <br>

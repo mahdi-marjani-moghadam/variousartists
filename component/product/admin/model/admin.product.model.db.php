@@ -240,6 +240,8 @@ class adminProductModelDb
         $row = $stmt->fetch();
         $temp= adminProductModelDb::tagToArray($row['category_id']);
         $row['category_id']=$temp['export']['list'];
+        $temp= adminProductModelDb::tagToArray($row['genre_id']);
+        $row['genre_id']=$temp['export']['list'];
         $result['result'] = 1;
         $result['export']['list'] = $row;
 

@@ -108,6 +108,15 @@
                   </div>
                 </div>
               </div>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="address">آدرس:</label>
+                        <div class="col-xs-12 col-sm-8 pull-right">
+
+                            <textarea class="form-control" name="address" id="address" autocomplete="off" ><?=$list['address']?></textarea>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row xsmallSpace hidden-xs"></div>
             <div class="row" style="display: none">
@@ -129,20 +138,21 @@
                     </div>
                   </div>
                 <div class="col-xs-12 col-sm-12 col-md-6">
-          <div class="form-group">
-                  <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="sort">ترتیب:</label>
-                  <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="sort" id="sort" autocomplete="off"  required value="<?=$list['sort']?>">
-                  </div>
+                    <div class="form-group">
+                        <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="sort">ترتیب:</label>
+                        <div class="col-xs-12 col-sm-8 pull-right">
+                            <input type="text" class="form-control" name="sort" id="sort" autocomplete="off"  required value="<?=$list['sort']?>">
+                        </div>
+                    </div>
                 </div>
-              </div>
+
             </div>
-            <div class="row xsmallSpace hidden-xs"></div>
+            <div class="row xsmallSpace "></div>
               <div class="col-xs-12 col-sm-12 col-md-6">
                   <div class="form-group">
                       <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="min_sandali">ابتدای شماره صندلی</label>
                       <div class="col-xs-12 col-sm-8 pull-right">
-                          <input type="number" name="min_sandali" class="form-control fullFix" id="min_sandali"><?=$list['min_sandali']?></input>
+                          <input type="number" name="min_sandali" class="form-control " id="min_sandali" value="<?=$list['min_sandali']?>">
                       </div>
                   </div>
               </div>
@@ -150,8 +160,8 @@
                   <div class="form-group">
                       <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="max_sandali">انتهای شماره صندلی</label>
                       <div class="col-xs-12 col-sm-8 pull-right">
-                        <input type="number" name="max_sandali" class="form-control fullFix" id="max_sandali"><?=$list['max_sandali']?>
-                        </input>
+                        <input type="number" name="max_sandali" class="form-control " id="max_sandali" value="<?=$list['max_sandali']?>">
+
                       </div>
                   </div>
               </div>

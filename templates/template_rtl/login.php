@@ -155,7 +155,7 @@
                                     </div>
                                     <div class="col_full">
                                         <label for="birthday">تاریخ تولد:</label>
-                                        <input type="text" id="birthday" name="birthday" value="<?=$_REQUEST['birthday']?>" class="form-control datepicker" />
+                                        <input type="text" autocomplete="false" id="birthday" name="birthday" value="<?=$_REQUEST['birthday']?>" class="form-control datepicker" />
                                     </div>
                                     <div class="col_full">
                                         <label for="artists_name">گروه :</label>
@@ -174,10 +174,21 @@
                                     </div>
                                     <div class="col_full">
                                         <label for="genre">سبک:</label>
-                                        <input type="text" id="genre" name="genre" value="<?=$_REQUEST['genre']?>" class="form-control" />
+                                        <select name="genre_id[]" id="genre_id" data-input="select2"  multiple class="form-control">
+                                            <?
+                                            foreach($list['genre'] as $genre_id => $value)
+                                            {
+                                                ?>
+                                                <option  <?php echo $value['Genre_id'] == $list['genre_id'] ? 'selected' : '' ?> value="<?=$value['Genre_id']?>">
+                                                    <?=$value['export']?>
+                                                </option>
+                                                <?
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                     <div class="col_full">
-                                        <label for="artists_phone1">تلفن:</label>
+                                        <label for="artists_phone1"> موبایل (به طور مثال:00989193110190):</label>
                                         <input type="text" id="artists_phone1" name="artists_phone1" value="<?=$_REQUEST['artists_phone1']?>" class="form-control" />
                                     </div>
 
@@ -221,8 +232,8 @@
 
                                     </div>
 
-                                    <div class="col_full">
-                                        <label  for="city_id">انتخاب شهر:</label>
+                                    <div class="col_full" style="display: none">
+                                        <label  for="city_id">محل تولد:</label>
                                             <div class="form-group">
 
 

@@ -52,10 +52,36 @@
                                 <? if($newTime2 || $newDate2):?><li><i class="icon-calendar3"></i> <?=$newDate2?> - <?=$newTime2?></li><?endif;?>
                                 <? if($newTime3 || $newDate3):?><li><i class="icon-calendar3"></i> <?=$newDate3?> - <?=$newTime3?></li><?endif;?>
 
-                                <li><i class="icon-map-marker2"></i><?=$list['list']['city']?> - <?=($list['list']['address']!=""? $list['list']['address']:"-")?></li>
+                                <!--<li><i class="icon-map-marker2"></i><?/*=$list['list']['city']*/?> - <?/*=($list['list']['address']!=""? $list['list']['address']:"-")*/?></li>-->
                                 <li><i class="icon-phone-sign"></i> <?=($list['list']['event_phone']!=""? $list['list']['event_phone']:"-")?></li>
-                                <li><i class="icon-dollar"></i> <strong><?=($list['list']['price']!= "")? $list['list']['price']:"-";?> Toman</strong></li>
+                                <? if($list['list']['price'] != "" && $list['list']['price']!== '0'):?><li><i class="icon-dollar"></i> <strong><?=($list['list']['price']!= "" )? $list['list']['price']:"-";?>Toman</strong></li><?endif;?>
+                                <? if($list['list']['organizer'] != ""):?><li><i class="icon-user"></i> <strong><?=$list['list']['organizer'];?></strong></li><?endif;?>
                             </ul>
+                        </div>
+                            <? if($list['list']['salon_id'] != ""):?>
+                                <div class="col_last">
+                                    <form action="<?= RELA_DIR ?>sales" method="POST" data-validate="form" role="form">
+                                        <input type="hidden" name="action" value="login" />
+
+                                        <input type="hidden" name="place" value="<?=$list['salon_list']['Salon_id']?>" />
+                                        <input type="hidden" name="event_name" value="<?=$list['list']['event_name'];?>" />
+                                        <input type="hidden" name="event_id" value="<?=$list['list']['Event_id'];?>" />
+                                        <select name="time">
+
+                                            <? if($newTime || $newDate):?> <option value="<?=$list['list']['date'];?> "><?=$newDate?> - <?=$newTime?></option><?endif;?>
+                                            <? if($newTime2 || $newDate2):?>  <option value="<?=$list['list']['date2'];?> "><?=$newDate2?> - <?=$newTime2?></option><?endif;?>
+                                            <? if($newTime3 || $newDate3):?> <option value="<?=$list['list']['date3'];?> "><?=$newDate3?> - <?=$newTime3?></option><?endif;?>
+
+                                        </select>
+                                        <li></li>
+                                        <div class="form-group form-actions">
+                                            <input type="submit" class="btn btn-primary btn-default btn-block text-white text-16" value="خرید آنلاین">
+                                        </div><!--/form-group-->
+
+
+                                    </form>
+                                </div>
+                            <?endif;?>
                         </div>
                     </div>
                     <!--<a href="#" class="btn btn-success btn-block btn-lg">Buy Tickets</a>-->

@@ -243,6 +243,34 @@ class searchModel
                 //print_r_debug($this->pagination);
 
             }
+        else if($fields['type'] == 'سبک' || $fields['type'] == 'genre') {
+
+            include_once ROOT_DIR . "component/artists/model/artists.model.php";
+            /** genre */
+            $tt = 'title_' . $lang;
+            $result = artistsModel::query("select * from genre where $tt like '%" . handleData($fields['q']) . "%'")->getList();
+            if ($result['result'] != 1) {
+                return $result;
+            }
+            $genre_id = $result['export']['list'][0]['Genre_id'];
+
+            /** artists */
+            $result = artistsModel::query("select * from artists where genre_id like '%," . handleData($genre_id) . ",%'")->getList();
+            $temp = $result['export']['list'];
+            unset($result['export']);
+            $result['export']['artists'] = $temp;
+
+            /** event */
+            $result2 = artistsModel::query("select * from event where genre_id like '%" . handleData($genre_id) . "%'")->getList();
+            if ($result['result'] != 1 && $result2['result'] != 1) {
+                return $result;
+            }
+            $temp = $result2['export']['list'];
+            unset($result2['export']);
+            $result['export']['events'] = $temp;
+
+
+        }
 
             else{
                 if (isset($fields['order'])) {

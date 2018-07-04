@@ -92,6 +92,7 @@ class adminProductController
         $product=new adminProductModel;
 
         $_input['category_id'] = ",".(implode(",",$_input['category_id'])).",";
+        $_input['genre_id'] = ",".(implode(",",$_input['genre_id'])).",";
         $fields['artists_id'] = $_input['artists_id'] = $_REQUEST['artists_id'];
         if($lang == 'fa')
         {
@@ -131,6 +132,12 @@ class adminProductController
             $product->image = $result['image_name'];
             $result = $product->save();
         }
+
+        /** update artists date  */
+        include_once ROOT_DIR.'component/artists/admin/model/admin.artists.model.php';
+        $artists = adminArtistsModel::find($product->fields['artists_id']);
+        $artists->update_date = date('Y-m-d H:i:s');
+        $result = $artists->save();
 
         //$result=$product->addProduct();
 
@@ -173,6 +180,17 @@ class adminProductController
             $fields['category'] = $category->list;
         }
 
+        /** genre */
+        include_once(ROOT_DIR."component/genre/admin/model/admin.genre.model.php");
+        $genre = new adminGenreModel();
+
+        $resultGenre = $genre->getGenreOption();
+
+        if($resultGenre['result'] == 1)
+        {
+            $fields['genre'] = $genre->list;
+        }
+
 
         $this->fileName='admin.product.addForm.php';
         $this->template($fields,$msg);
@@ -207,6 +225,7 @@ class adminProductController
 
 
         $product->category_id = ",".(implode(",",$product->category_id)).",";
+        $product->genre_id = ",".(implode(",",$product->genre_id)).",";
 
 
 
@@ -246,6 +265,12 @@ class adminProductController
             $result = $product->save();
         }
 
+        /** update artists date  */
+        include_once ROOT_DIR.'component/artists/admin/model/admin.artists.model.php';
+        $artists = adminArtistsModel::find($product->fields['artists_id']);
+        $artists->update_date = date('Y-m-d H:i:s');
+        $result = $artists->save();
+
         $msg='عملیات با موفقیت انجام شد';
         redirectPage(RELA_DIR . "zamin/index.php?component=product&id={$fields['artists_id']}", $msg);
         die();
@@ -281,6 +306,15 @@ class adminProductController
         if($resultCategory['result'] == 1)
         {
             $export['category'] = $category->list;
+        }
+
+        /** genre */
+        include_once(ROOT_DIR."component/genre/admin/model/admin.genre.model.php");
+        $genre = new adminGenreModel();
+        $resultGenre = $genre->getGenreOption();
+        if($resultGenre['result'] == 1)
+        {
+            $export['genre'] = $genre->list;
         }
         /*echo '<pre/>';
         print_r($export);

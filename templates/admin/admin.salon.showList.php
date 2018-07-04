@@ -58,21 +58,19 @@
                     <tr>
                         <th>ردیف</th>
                         <th>نام دسته بندی</th>
-                        <th>آدرس اینترنتی</th>
-                        <th>کلمات کلیدی</th>
-                        <th>توضیحات کلیدی</th>
-                        <!--<th>نام تصویر</th>-->
+                        <th>آدرس </th>
+                        <th>شماره صندلی</th>
+                        <th>تصویر</th>
                         <th>ویرایش</th>
                     </tr>
                     </thead>
                     <tfoot>
-                        <th><input type="text" name="search_10" value="" class="search_init form-control"/></th>
-                        <th><input type="text" name="search_20" value="" class="search_init form-control"/></th>
-                        <th><input type="text" name="search_30" value="" class="search_init form-control"/></th>
-                        <th><input type="text" name="search_40" value="" class="search_init form-control"/></th>
-                        <th><input type="text" name="search_50" value="" class="search_init form-control"/></th>
-                        <!--<th><input type="text" name="search_60" value="" class="search_init form-control"/></th>-->
-                        <th><input type="text" name="search_70" value="" class="search_init form-control"/></th>
+                        <th><input type="text" name="search_1" value="" class="search_init form-control"/></th>
+                        <th><input type="text" name="search_2" value="" class="search_init form-control"/></th>
+                        <th><input type="text" name="search_3" value="" class="search_init form-control"/></th>
+                        <th><input type="text" name="search_4" value="" class="search_init form-control"/></th>
+                        <th><input type="text" name="search_5" value="" class="search_init form-control"/></th>
+                        <th><input type="text" name="search_6" value="" class="search_init form-control"/></th>
                     </tfoot>
                     <tbody>
                     <?php foreach ($list['list'] as $id => $fields) {
@@ -80,10 +78,12 @@
                         <tr>
                             <td><?php echo $fields['dataTableCount']; ?></td>
                             <td><?php echo $fields['export']; ?></td>
-                            <td><?php echo $fields['url']; ?></td>
-                            <td><?php echo $fields['meta_keyword']; ?></td>
-                            <td><?php echo $fields['meta_description']; ?></td>
-                            <td style="display: none" dir="ltr" align="center"><img height="60px" src="<?= $fields['img_name'] ?>"/></td>
+                            <td><?php echo $fields['address']; ?></td>
+                            <td> :از<?php echo $fields['min_sandali']; ?> تا: <? echo $fields['max_sandali'];?></td>
+
+                            <td style="" dir="ltr" align="center">
+                                <img height="60px" src="<?=RELA_DIR?>statics/salon/<?= $fields['image'] ?>"/>
+                            </td>
                             <td>
                                 <a href="<?= RELA_DIR ?>zamin/?component=salon&action=edit&id=<?php echo $fields['Salon_id']; ?>">ویرایش</a>
                                 <a href="<?= RELA_DIR ?>zamin/?component=salon&action=delete&id=<?php echo $fields['Salon_id']; ?>">حذف</a>

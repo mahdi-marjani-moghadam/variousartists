@@ -80,6 +80,7 @@ class salesController
      */
     public function showMore($_input)
     {
+
         if (!is_numeric($_input)) {
             $msg = 'یافت نشد';
             $this->fileName = 'sales.showList.php';
@@ -112,6 +113,7 @@ class salesController
     public function showMoresandali($input)
 
     {
+
 /*print_r_debug($input);*/
         include_once ROOT_DIR.'component/salon/model/salon.model.php';
 
@@ -198,22 +200,33 @@ $resultsandali=$sandali->getByFilter($fildes);
         if ($member_info==-1){
             redirectPage(RELA_DIR.'login','برای خرید لطفا وارد شوید.');
         }
-        $export['sandali']=$input['sandali'];
-        $export['place_id']=$input['place_id'];
-        $export['place_name']=$input['place_name'];
-        $export['part_id']=$input['part_id'];
-        $export['part_name']=$input['part_name'];
 
-        $export['event_name']=$input['Event_name'];
-        $export['event_time']=$input['event_time'];
-        $export['Event_id']=$input['Event_id'];
+        $temp = $input['sandali'];
+        unset($input['sandali']);
 
-        $finalsave=new salesModel();
-        $finalsave->setFields($input);
-        $finalsave->event_id = $input['Event_id'];
-        $finalsave->user_id = $member_info['Artists_id'];
+        foreach ($temp as $k => $sandali){
+            $export['sandali'][$k]=$sandali;
+            $input['sandali']=$sandali;
 
-        $finalsave->save();
+            $export['place_id']=$input['place_id'];
+            $export['place_name']=$input['place_name'];
+            $export['part_id']=$input['part_id'];
+            $export['part_name']=$input['part_name'];
+
+            $export['event_name']=$input['Event_name'];
+            $export['event_time']=$input['event_time'];
+            $export['Event_id']=$input['Event_id'];
+
+            $finalsave=new salesModel();
+            $finalsave->setFields($input);
+            $finalsave->event_id = $input['Event_id'];
+            $finalsave->user_id = $member_info['Artists_id'];
+//            print_r_debug($finalsave);
+            $finalsave->save();
+        }
+
+
+        //
         /*$finalsave->sandali = $input['sandali'];
         $finalsave->place_id = $input['place_id'];
         $finalsave->place_name = $input['place_name'];

@@ -3,7 +3,7 @@
 
                             <div class="p-notification">
 
-                                <div class="col-md-12 col-sm-12 col-xs-12 p-ch text-right" style="margin-top: 20px">
+                                <div class="col-md-12 col-sm-12 col-xs-12 p-ch text-right" style="margin-top: 20px ;display: none">
                                     <div class="col_one_fifth ">
                                         <ul>
                                             <li><i class="icon-star3 font-size2x"></i> </li>

@@ -152,6 +152,15 @@ class adminArtistsController
             $fields['category'] = $category->list;
         }
 
+        /** genre */
+        include_once ROOT_DIR.'component/genre/admin/model/admin.genre.model.php';
+        $genre = new adminGenreModel();
+
+        $resultGenre = $genre->getGenreOption();
+        if ($resultGenre['result'] == 1) {
+            $fields['genre'] = $genre->list;
+        }
+
         /*include_once ROOT_DIR.'component/city/admin/model/admin.city.model.php';
         $city = new adminCityModel();
         $resultCity = $city->getCities();
@@ -199,7 +208,9 @@ class adminArtistsController
 
         if($fields['password']!=''){
             $fields['password'] = md5($fields['password']);
-
+        }
+        else{
+            unset($fields['password']);
         }
 
         $result = $artists->setFields($fields);
@@ -207,11 +218,15 @@ class adminArtistsController
         $temp = implode(",",$artists->fields['category_id']);
         $artists->category_id = ','.$temp.',';
 
+        $temp = implode(",",$artists->fields['genre_id']);
+        $artists->genre_id = ','.$temp.',';
+
+
         if ($result['result'] != 1) {
             $this->showArtistsEditForm($fields, $result['msg']);
         }
 
-
+        $artists->update_date = date('Y-m-d H:i:s');
         $result = $artists->save();
 
         //$result = $artists->edit();
@@ -274,6 +289,15 @@ class adminArtistsController
 
         if ($resultCategory['result'] == 1) {
             $export['category'] = $category->list;
+        }
+
+        /** genre */
+        include_once ROOT_DIR.'component/genre/admin/model/admin.genre.model.php';
+        $genre = new adminGenreModel();
+
+        $resultGenre = $genre->getGenreOption();
+        if ($resultGenre['result'] == 1) {
+            $export['genre'] = $genre->list;
         }
 
 
@@ -352,8 +376,8 @@ class adminArtistsController
             array( 'db' => 'category_id', 'dt' =>$i++),
             /*array( 'db' => 'email', 'dt' =>$i++),*/
             array( 'db' => 'artists_phone1', 'dt' => $i++ ),
-            array( 'db' => 'artists_name_fa',   'dt' => $i++),
             array( 'db' => 'artists_name_en', 'dt' => $i++ ),
+            array( 'db' => 'artists_name_fa',   'dt' => $i++),
             array( 'db' => 'site', 'dt' => $i++ ),
             array( 'db' => 'status', 'dt' => $i++ ),
             array( 'db' => 'logo', 'dt' => $i++ ),
@@ -364,9 +388,9 @@ class adminArtistsController
         $convert->columns=$columns;
 
 
-
         $searchFields= $convert->convertInput();
-
+//        $searchFields['order']['update_date'] = 'desc';
+//        print_r_debug($searchFields);//
         //$date = date('Y-m-d', strtotime(COMPANY_EXPIRE_PERIOD));
         // print_r_debug($date);
         //$searchFields['where'] = 'where refresh_date < '."'$date'";

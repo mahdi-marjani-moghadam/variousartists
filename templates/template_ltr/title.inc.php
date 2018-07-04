@@ -93,7 +93,13 @@
 							<? if($member_info == -1){?>
 								<li class="<?=($PARAM[0] == 'login')?'current':'';?>"><a style="font-size: 10px" href="<?=RELA_DIR?>login"><div>Login / Register</div></a></li>
 							<?   } else{?>
-								<li class="<?=($PARAM[0] == 'account')?'current':'';?>"><a href="<?=RELA_DIR?>account"><div>Account</div></a></li>
+								<li class="<?=($PARAM[0] == 'account')?'current':'';?>">
+                                    <a href="<?=RELA_DIR?>account"><div>
+                                            <? global $lang?>
+                                            <?if($member_info['nickname']){echo $member_info['nickname'];}
+                                            elseif($member_info["artists_name_$lang"]){echo $member_info["artists_name_$lang"];}
+                                            else{echo 'Account';} ?>
+                                        </div></a></li>
 								<li class="<?=($PARAM[0] == 'logout')?'current':'';?>"><a href="<?=RELA_DIR?>login/logout"><div>LogOut</div></a></li>
 							<? }  ?>
                             <li ><a href="<?=RELA_DIR?>index/?lang=fa"><div><img src="<?=RELA_DIR?>templates/<?=CURRENT_SKIN?>/img/flag_fa.png">فارسی </div></a></li>
@@ -146,6 +152,7 @@
                                 <select name="type" class="form-control" style="width: 100%; margin-top: -10px">
                                     <option value="artists"> Search from artists  </option>
                                     <option value="events">Search From events</option>
+                                    <option value="genre">Search From events</option>
                                 </select>
 
                             </form>

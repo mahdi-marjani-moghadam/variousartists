@@ -70,19 +70,6 @@
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="brief_description_fa">توضیحات مختصر(فارسی):</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="brief_description_fa" id="brief_description_fa"  value="<?= $list['brief_description_fa'] ?>">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row xsmallSpace hidden-xs"></div>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_name_en">نام رویداد(انگلیسی):</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
                                         <input type="text" class="form-control" name="event_name_en" id="event_name_en" required value="<?= $list['event_name_en'] ?>">
@@ -121,12 +108,31 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
+                                    <label class=" "
                                            for="description_en">توضیحات(انگلیسی):</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="description_en" id="description_en" required value="<?= $list['description_en'] ?>">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 pull-right">
+                                        <?php
+
+                                        include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
+                                        include_once ROOT_DIR.'common/ckfinder/ckfinder.php';
+                                        $ckeditor = new CKEditor();
+                                        $ckeditor->basePath = RELA_DIR.'common/ckeditor/';
+
+
+
+
+                                        $config['language'] = 'fa';
+                                        $config['filebrowserBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html';
+                                        $config['filebrowserImageBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html?type=Images';
+                                        $config['filebrowserUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+                                        $config['filebrowserImageUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+
+                                        $tt = $ckeditor->editor('description_en',$list['description_en'],$config);
+
+                                        echo $tt;
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -222,6 +228,27 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
+                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
+                                           for="genre_id">انتخاب سبک:</label>
+                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                        <select name="genre_id[]" id="genre_id" data-input="select2" multiple>
+                                            <?
+                                            foreach($list['genre'] as $genre_id => $value)
+                                            {
+                                                ?>
+                                                <option <?php echo in_array($value['Genre_id'], $list['genre_id']) ? 'selected' : '' ?>
+                                                    value="<?= $value['Genre_id'] ?>">
+                                                    <?= $value['export'] ?>
+                                                </option>
+                                                <?
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_phone">تلفن</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
@@ -233,7 +260,7 @@
                         <div class="row xsmallSpace hidden-xs"></div>
                         <div class="row">
                             <!-- city -->
-                            <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div class="col-xs-12 col-sm-12 col-md-6" style="display: none">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="city_id">انتخاب شهر:</label>
@@ -254,6 +281,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
@@ -330,7 +358,15 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
+                                           for="organizer"> Oganizer:</label>
+                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                        <input type="text" class="form-control" name="organizer" id="organizer" value="<?= $list['organizer'] ?>">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row xsmallSpace hidden-xs"></div>
                         <div class="row">

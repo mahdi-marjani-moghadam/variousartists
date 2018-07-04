@@ -1,7 +1,7 @@
 
 <!-- Page Title
 ============================================= -->
-<section id="page-title">
+<section id="page-title" style="display: none">
 
     <div class="container clearfix">
         <h1><?=$list['page_title'];?></h1>
@@ -42,7 +42,7 @@
                         <a href="<?=RELA_DIR?>login/logout" class="p-logout"><img src="<?=TEMPLATE_DIR?>img/p-logout.png"><span> خروج </span></a>
                     </div>
                 </div>
-                <div class="p-shortcuts row  nomargin">
+                <div class="p-shortcuts row  nomargin" style="display: none">
                     <div class="p-nav-handle"> <i class=""></i>مینانبر کلی</div>
                     <ul>
                         <li>
@@ -59,27 +59,7 @@
                                 <div class="p-sh-brief" >پروفایل کاری من</div>
                             </div>
                         </li>
-                        <!--<li>
-                                <div class="p-sh-img"><img src="<?/*=TEMPLATE_DIR*/?>img/p-sh3.png"></div>
-                                <div class="p-sh-ttx hidden-sm ">
-                                    <a href="" >سرویس ها</a>
-                                    <div class="p-sh-brief" >سرویس های من</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="p-sh-img"><img src="<?/*=TEMPLATE_DIR*/?>img/p-sh4.png"></div>
-                                <div class="p-sh-ttx hidden-sm ">
-                                    <a href="" >دامین ها</a>
-                                    <div class="p-sh-brief" >دامنه های من</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="p-sh-img"><img src="<?/*=TEMPLATE_DIR*/?>img/p-sh5.png"></div>
-                                <div class="p-sh-ttx hidden-sm ">
-                                    <a href="" >صورتحساب ها</a>
-                                    <div class="p-sh-brief" >فاکتور سرویس ها</div>
-                                </div>
-                            </li>-->
+
                         <li>
                             <div class="p-sh-img"><img src="<?=TEMPLATE_DIR?>img/p-sh6.png"></div>
                             <div class="p-sh-ttx hidden-sm ">
@@ -98,11 +78,17 @@
 
                             <div class="p-nav-handle"> <i class=""></i>منو پنل</div>
                             <ul>
+                                <li><a href="<?= RELA_DIR ?>account/addProduct"
+                                       class="button  button-reveal  button-border tright"><i
+                                                class="icon-caret-right"></i>
+                                        <span><div class="icon icon-line-box"></div> افزودن اثر</span>
+                                    </a></li>
                                 <li><a href="<?= RELA_DIR ?>account/showProductList"
                                        class="button  button-reveal  button-border tright"><i
                                                 class="icon-caret-right"></i>
                                         <span><div class="icon icon-line-box"></div>   نمونه کار ها</span>
                                     </a></li>
+
                                 <li><a href="<?= RELA_DIR ?>account/showInvoiceList"
                                        class="button  button-reveal  button-border tright"><i
                                                 class="icon-caret-right"></i>
@@ -111,18 +97,26 @@
                                 <li><a href="<?= RELA_DIR ?>account/addEvent"
                                        class="button  button-reveal  button-border tright"><i
                                                 class="icon-caret-right"></i>
-                                        <span><div class="icon-line2-bell"></div>افزودن رویداد</span>
+                                        <span><div class="icon-line2-bell"></div> افزودن رویداد</span>
                                     </a></li>
                                 <li><a href="<?= RELA_DIR ?>account/event"
                                        class="button  button-reveal  button-border tright"><i
                                                 class="icon-caret-right"></i>
-                                        <span><div class="icon-line2-bell"></div>لیست رویدادها</span>
+                                        <span><div class="icon-line2-bell"></div> لیست رویدادها</span>
                                     </a></li>
-
+                                <li><a href="<?= RELA_DIR ?>account/editProfile"
+                                       class="button  button-reveal  button-border tright"><i
+                                                class="icon-caret-right"></i>
+                                        <span><div class="icon icon-user"></div> مشخصات من</span>
+                                    </a></li>
+                                <li><a href="#"
+                                       class="button  button-reveal  button-border tright"><i
+                                                class="icon-caret-right"></i>
+                                        <span><div class="icon icon-money"></div> Donate</span>
+                                    </a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class=" p-left ">
                     <div class="row p-container nopadding nomargin">
-                        <? if($msg != ''):?><div class="alert alert-danger"><?=$msg;?></div><? endif;?>

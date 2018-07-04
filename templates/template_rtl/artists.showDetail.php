@@ -125,7 +125,7 @@
                     <ul id="portfolio-filter" class="portfolio-filter clearfix" data-container="#portfolio">
 
                         <li class="activeFilter"><a href="#" data-filter="*">همه</a></li>
-                        <? foreach ($list['category_list_all'] as $cat_id => $catValue):?>
+                        <? foreach ($list['genre_list_all'] as $cat_id => $catValue):?>
                             <li><a href="#" data-filter=".<?=$cat_id?>"><?=$catValue['title'];?></a></li>
                         <? endforeach; ?>
 
@@ -144,10 +144,10 @@
                         <?php foreach ($list['product_list'] as $id =>$value): ?>
                             <?php
                             $file = ROOT_DIR.ltrim($value['image'], '/');
-                            $cat_id = str_replace(',',' ',$value['category_id']);
+                            $cat_id = str_replace(',',' ',$value['genre_id']);
                             $cat_title = '';
-                            foreach (explode(',',$value['category_id']) as $k => $v ){
-                                $cat_title .= $list['category_list_all'][$v]['title'] .' / ';
+                            foreach (explode(',',$value['genre_id']) as $k => $v ){
+                                $cat_title .= $list['genre_list_all'][$v]['title'] .' / ';
 
                             }
                             $cat_title = substr($cat_title,0,-2);

@@ -48,7 +48,7 @@ switch ($_GET['action'])
         }
         break;
     case 'delete':
-        checkPermissions('deleteSalon');
+        //checkPermissions('deleteSalon');
             $salonController->deleteSalon($_GET['id']);
 
         break;

@@ -81,15 +81,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="brief_description_fa">توضیحات مختصر(فارسی):</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="brief_description_fa" id="brief_description_fa"  value="<?= $list['brief_description_fa'] ?>">
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
 
                         <div class="row xsmallSpace hidden-xs"></div>
@@ -103,15 +95,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="brief_description_en">توضیحات مختصر(انگلیسی):</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="brief_description_en" id="brief_description_en"  value="<?= $list['brief_description_en'] ?>">
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="row xsmallSpace hidden-xs"></div>
                         <div class="row">
@@ -198,7 +182,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control  date" name="date" id="date" required value="<?= ($list['date']!=""? convertDate($list['date']):"") ?>">
+                                        <input type="text" class="form-control  date" name="date" id="date" required value="<?= ($list['date']!="0000-00-00"? convertDate($list['date']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -219,7 +203,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control date" name="date2" id="date2"  value="<?= ($list['date2']!=""? convertDate($list['date2']):"") ?>">
+                                        <input type="text" class="form-control date" name="date2" id="date2"  value="<?= ($list['date2']!="0000-00-00"? convertDate($list['date2']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -240,7 +224,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date3">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control  date" name="date3" id="date3"  value="<?= ($list['date3']!=""? convertDate($list['date3']):"")?>">
+                                        <input type="text" class="form-control  date" name="date3" id="date3"  value="<?= ($list['date3']!="0000-00-00"? convertDate($list['date3']):"")?>">
                                     </div>
                                 </div>
                             </div>
@@ -275,6 +259,7 @@
                                 </div>
                             </div>
 
+
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
@@ -298,6 +283,27 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
+                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
+                                           for="genre_id">سبک:</label>
+                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                        <select name="genre_id[]" id="genre_id" data-input="select2" multiple>
+                                            <?
+                                            foreach($list['genre'] as $genre_id => $value)
+                                            {
+                                                ?>
+                                                <option <?php echo in_array($value['Genre_id'], $list['genre_id']) ? 'selected' : '' ?>
+                                                        value="<?= $value['Genre_id'] ?>">
+                                                    <?= $value['export'] ?>
+                                                </option>
+                                                <?
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_phone">تلفن</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
@@ -309,7 +315,7 @@
                         <div class="row xsmallSpace hidden-xs"></div>
                         <div class="row">
                             <!-- city -->
-                            <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div class="col-xs-12 col-sm-12 col-md-6" style="display: none">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="city_id">انتخاب شهر:</label>
@@ -444,6 +450,15 @@
                                                 value="-1" <?= ($list['status'] == -1) ? 'selected="selected"' : ''; ?>>تایید نشده
                                             </option>
                                         </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
+                                           for="organizer"> Organizer:</label>
+                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                        <input type="text" class="form-control" name="organizer" id="organizer" value="<?= $list['organizer'] ?>">
                                     </div>
                                 </div>
                             </div>

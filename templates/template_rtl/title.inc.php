@@ -94,7 +94,14 @@
 							<? if($member_info == -1){?>
 								<li class="<?=($PARAM[0] == 'login')?'current':'';?>"><a style="font-size: 10px" href="<?=RELA_DIR?>login"><div>ورود / ثبت نام هنرمند</div></a></li>
 							<?   } else{?>
-								<li class="<?=($PARAM[0] == 'account')?'current':'';?>"><a href="<?=RELA_DIR?>account"><div>صفحه کاربری</div></a></li>
+								<li class="<?=($PARAM[0] == 'account')?'current':'';?>">
+                                    <a href="<?=RELA_DIR?>account"><div>
+                                            <? global $lang?>
+                                            <?if($member_info['nickname']){echo $member_info['nickname'];}
+                                            elseif($member_info["artists_name_$lang"]){echo $member_info["artists_name_$lang"];}
+                                            else{echo ' صفحه کاربری';} ?>
+                                        </div></a>
+                                </li>
 								<li class="<?=($PARAM[0] == 'logout')?'current':'';?>"><a href="<?=RELA_DIR?>login/logout"><div>خروج</div></a></li>
 
 							<? }  ?>
@@ -148,6 +155,7 @@
                                     <select name="type" class="form-control" style="width: 100%; margin-top: -10px">
                                         <option value="هنرمندان"> جستجو در دسته هنرمندان </option>
                                         <option value="رویدادها">جستجو در دسته رویدادها</option>
+                                        <option value="سبک">جستجو در سبک</option>
                                     </select>
 
 							</form>

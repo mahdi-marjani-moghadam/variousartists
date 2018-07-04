@@ -46,7 +46,8 @@ class accountController
      */
     public function template($list = [], $msg='')
     {
-        global $PARAM, $lang;
+        global $PARAM, $lang,$member_info;
+
 
         switch ($this->exportType) {
             case 'html':
@@ -252,6 +253,7 @@ class accountController
         $_input['date2'] = ($_input['date2']!=''?convertJToGDate($_input['date2']):'0000-00-00');
         $_input['date3'] = ($_input['date3']!=''?convertJToGDate($_input['date3']):'0000-00-00');
         $_input['category_id'] = ','.implode(',',$_input['category_id'] ).',';
+        $_input['genre_id'] = ','.implode(',',$_input['genre_id'] ).',';
 
         $result = $event->setFields($_input);
         if ($result['result'] == -1) {
@@ -260,6 +262,7 @@ class accountController
 
         $event->status = 1;
         $event->member_id= $member_info['Artists_id'];
+        $event->update_date = date('Y-m-d H:i:s');
         $event->save();
 
 
@@ -306,6 +309,16 @@ class accountController
 
         $export['artists_id'] = $member_info['Artists_id'];
 
+        /** genre */
+        include_once(ROOT_DIR."component/genre/model/genre.model.php");
+        $genre = new genreModel();
+        $resultGenre = $genre->getGenreOption();
+        if($resultGenre['result'] == 1)
+        {
+            $export['genre'] = $genre->list;
+        }
+
+
         // breadcrumb
         global $breadcrumb;
         $breadcrumb->reset();
@@ -324,6 +337,120 @@ class accountController
 
 
         $this->fileName = 'account.event.addForm.php';
+        $this->template($export, $msg);
+        die();
+    }
+
+    public function editEvent($_input)
+    {
+        global $member_info,$lang,$messageStack;
+
+        include_once ROOT_DIR.'component/event/admin/model/admin.event.model.php';
+        //$event = new adminEventModel();
+
+
+        $event = adminEventModel::find($_input['Event_id']);
+        if(!is_object($event))
+        {
+            redirectPage(RELA_DIR,$event['msg']);
+        }
+
+
+
+
+
+        $_input['date'] = ($_input['date']!=''?convertJToGDate($_input['date']):'0000-00-00');
+        $_input['date2'] = ($_input['date2']!=''?convertJToGDate($_input['date2']):'0000-00-00');
+        $_input['date3'] = ($_input['date3']!=''?convertJToGDate($_input['date3']):'0000-00-00');
+        $_input['category_id'] = ','.implode(',',$_input['category_id'] ).',';
+        $_input['genre_id'] = ','.implode(',',$_input['genre_id'] ).',';
+
+        $result = $event->setFields($_input);
+        if ($result['result'] == -1) {
+            $this->showEventAddForm($_input, $result['msg']);
+        }
+
+        $event->status = 1;
+        $event->member_id= $member_info['Artists_id'];
+        $event->update_date = date('Y-m-d H:i:s');
+        $event->save();
+
+
+        if(file_exists($_FILES['logo']['tmp_name'])){
+
+            $input['upload_dir'] = ROOT_DIR.'statics/event/';
+            $result = fileUploader($input,$_FILES['logo']);
+            //fileRemover($input['upload_dir'],$product->fields['image']);
+            $event->logo = $result['image_name'];
+            $result = $event->save();
+        }
+
+
+        //$result = $event->addEvent();
+
+        if ($result['result'] != '1') {
+            $messageStack->add_session('register', $result['msg']);
+            $this->showEventAddForm($_input, $result['msg']);
+        }
+        $msg = 'رویداد شما ویرایش شد.';
+        $messageStack->add_session('register', $msg);
+
+        redirectPage(RELA_DIR.'account/event', $msg);
+        die();
+    }
+    public function showEventEditForm($fields, $msg)
+    {
+        global $member_info;
+
+
+        include_once "component/event/model/event.model.php";
+        $obj = eventModel::find($fields['event_id']);
+        if(!is_object($obj))
+        {
+            redirectPage(RELA_DIR,$obj['msg']);
+        }
+
+        $export = $obj->fields;
+
+        /** category */
+        include_once(ROOT_DIR."component/category/model/category.model.php");
+        $category = new categoryModel();
+        $resultCategory = $category->getCategoryOption();
+        if($resultCategory['result'] == 1)
+        {
+            $export['category'] = $category->list;
+        }
+
+        /** genre */
+        include_once(ROOT_DIR."component/genre/model/genre.model.php");
+        $genre = new genreModel();
+        $resultGenre = $genre->getGenreOption();
+        if($resultGenre['result'] == 1)
+        {
+            $export['genre'] = $genre->list;
+        }
+
+        $export['artists_id'] = $member_info['Artists_id'];
+
+
+        // breadcrumb
+        global $breadcrumb;
+        $breadcrumb->reset();
+        $breadcrumb->add(translate('پیشخوان '), 'account', true);
+        $breadcrumb->add(translate('افزودن اثر'), 'account');
+        $export['breadcrumb'] = $breadcrumb->trail();
+        $export['page_title'] = translate('افزودن اثر');
+
+        /** country */
+        include_once ROOT_DIR.'component/state/admin/model/admin.state.model.php';
+        $province = new adminStateModel();
+        $resultProvince = $province->getStates();
+        if ($resultProvince['result'] == 1) {
+            $export['provinces'] = $province->list;
+        }
+
+//        print_r_debug($export);
+        $this->fileName = 'account.editEventForm.php';
         $this->template($export, $msg);
         die();
     }
@@ -428,6 +555,7 @@ class accountController
         include_once ROOT_DIR.'component/product/model/product.model.php';
         $account = new productModel();
         $fields['category_id'] = ",".(implode(",",$fields['category_id'])).",";
+        $fields['genre_id'] = ",".(implode(",",$fields['genre_id'])).",";
         $fields['artists_id'] = $member_info['Artists_id'];
 
         if($lang == 'fa')
@@ -475,7 +603,11 @@ class accountController
             $this->showPackageAddForm($fields, $result['msg']);
         }
 
-
+        /** update artists date  */
+        include_once ROOT_DIR.'component/artists/admin/model/admin.artists.model.php';
+        $artists = adminArtistsModel::find($account->fields['artists_id']);
+        $artists->update_date = date('Y-m-d H:i:s');
+        $result = $artists->save();
 
         $msg = translate('عملیات با موفقیت انجام شد');
         redirectPage(RELA_DIR . 'account/showProductList', $msg);
@@ -490,14 +622,22 @@ class accountController
     {
         global $member_info;
 
+        /** category */
         include_once(ROOT_DIR."component/category/model/category.model.php");
         $category = new categoryModel();
-
         $resultCategory = $category->getCategoryOption();
-
         if($resultCategory['result'] == 1)
         {
             $export['category'] = $category->list;
+        }
+
+        /** genre */
+        include_once(ROOT_DIR."component/genre/model/genre.model.php");
+        $genre = new genreModel();
+        $resultGenre = $genre->getGenreOption();
+        if($resultGenre['result'] == 1)
+        {
+            $export['genre'] = $genre->list;
         }
 
         $export['artists_id'] = $member_info['Artists_id'];
@@ -531,6 +671,7 @@ class accountController
 
 
         $fields['category_id'] = ",".(implode(",",$fields['category_id'])).",";
+        $fields['genre_id'] = ",".(implode(",",$fields['genre_id'])).",";
         $fields['artists_id'] = $member_info['Artists_id'];
         $fields['status'] = 0;
 
@@ -590,17 +731,31 @@ class accountController
 
         $export = $obj->fields;
 
+        /** category */
         include_once(ROOT_DIR."component/category/model/category.model.php");
         $category = new categoryModel();
-
         $resultCategory = $category->getCategoryOption();
-
         if($resultCategory['result'] == 1)
         {
             $export['category'] = $category->list;
         }
 
+        /** genre */
+        include_once(ROOT_DIR."component/genre/model/genre.model.php");
+        $genre = new genreModel();
+        $resultGenre = $genre->getGenreOption();
+        if($resultGenre['result'] == 1)
+        {
+            $export['genre'] = $genre->list;
+        }
+
         $export['artists_id'] = $member_info['Artists_id'];
+
+        /** update artists date  */
+        include_once ROOT_DIR.'component/artists/admin/model/admin.artists.model.php';
+        $artists = adminArtistsModel::find($obj->fields['artists_id']);
+        $artists->update_date = date('Y-m-d H:i:s');
+        $result = $artists->save();
 
         // breadcrumb
         global $breadcrumb;
@@ -609,6 +764,7 @@ class accountController
         $breadcrumb->add(translate('افزودن اثر'), 'account');
         $export['breadcrumb'] = $breadcrumb->trail();
         $export['page_title'] = translate('افزودن اثر');
+
 
 //        print_r_debug($export);
         $this->fileName = 'account.editProductForm.php';

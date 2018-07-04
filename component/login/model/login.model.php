@@ -235,6 +235,17 @@ class memberLogIn
         }
         //echo "<pre>";print_r($resultCategory);die();
         ///////
+        ///
+        /// /////// genre
+        include_once(ROOT_DIR."component/genre/admin/model/admin.genre.model.php");
+        $genre = new adminGenreModel();
+
+        $resultGenre = $genre->getGenreOption();
+
+        if($resultGenre['result'] == 1)
+        {
+            $fields['genre'] = $genre->list;
+        }
 
         include_once ROOT_DIR.'component/province/model/province.model.php';
         //$province = new adminProvinceModel();
@@ -522,9 +533,13 @@ class memberLogIn
         if(isset($_input['category_id'])){
             $_input['category_id'] = ",".(implode(",",$_input['category_id'])).",";
         }
+        if(isset($_input['genre_id'])){
+            $_input['genre_id'] = ",".(implode(",",$_input['genre_id'])).",";
+        }
         if($lang == 'fa'){ $_input['birthday'] = convertJToGDate($_input['birthday']);}
         $_input['refresh_date'] = date('Y-m-d h:i:s');
         $_input['password']  = md5($_input['password']);
+
         $artists->setFields($_input);
         $result = $artists->validator();
 
@@ -776,8 +791,10 @@ class memberLogIn
    {
        global $member_info;
 
+
        include_once (ROOT_DIR.'component/artists/model/artists.model.php');
-       $obj = artists::getBy_email($fields['email'])->get();
+       $obj = artists::getBy_username($fields['email'])->get();
+
 
 
        if($obj['export']['recordsCount'] != 1)
@@ -791,9 +808,16 @@ class memberLogIn
 
 
        $code = uniqid();
-       $url =   "'<a href='".RELA_DIR.'login/changePass/?email='.$obj['export']['list'][0]->fields['email'].'&code='.$code ."'>".RELA_DIR.'login/changePass/?email='.$obj['export']['list'][0]->fields['email'].'&code='.$code."</a>";
+       $url =   "'<a href='".RELA_DIR.'login/changePass/?email='.$obj['export']['list'][0]->fields['username'].'&code='.$code ."'>".RELA_DIR.'login/changePass/?email='.$obj['export']['list'][0]->fields['username'].'&code='.$code."</a>";
 
-       sendmail($obj['export']['list'][0]->fields['email'],translate('Remember Password'),translate('Your change password link: ').$url."<br>".translate('website: www.variousartists.ir'));
+       $sendEmail = sendmail($obj['export']['list'][0]->fields['username'],translate('Remember Password'),translate('Your change password link: ').$url."<br>".translate('website: www.variousartists.ir'));
+
+       if($sendEmail['result']==-1){
+
+           $result['result'] = -1;
+           $result['msg'] = $sendEmail['msg'];
+           return $result;
+       }
 
        $obj1->forgot_code = $code;
        $obj1->save();

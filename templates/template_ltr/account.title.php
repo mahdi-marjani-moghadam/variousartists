@@ -1,7 +1,7 @@
 
 <!-- Page Title
 ============================================= -->
-<section id="page-title">
+<section id="page-title" style="display: none">
 
     <div class="container clearfix">
         <h1><?=$list['page_title'];?></h1>
@@ -43,7 +43,7 @@
                             <img src="<?=TEMPLATE_DIR?>img/p-logout.png"><span> LogOut </span></a>
                     </div>
                 </div>
-                <div class="p-shortcuts row  nomargin">
+                <div class="p-shortcuts row  nomargin" style="display: none ">
                     <div class="p-nav-handle"> <i class=""></i>مینانبر کلی</div>
                     <ul>
                         <li>
@@ -99,17 +99,42 @@
 
                             <div class="p-nav-handle"> <i class=""></i>Menu</div>
                             <ul>
+                                <li><a href="<?= RELA_DIR ?>account/addProduct"
+                                       class="button  button-reveal  button-border tleft"><i
+                                                class="icon-caret-right"></i>
+                                        <span><div class="icon icon-line-box"></div> Add product</span>
+                                    </a></li>
                                 <li><a href="<?=RELA_DIR?>account/showProductList" class="button  button-reveal  button-border tleft"><i class="icon-caret-right"></i>
-                                        <span><div class="icon icon-line-box"></div>Products</span>
+                                        <span><div class="icon icon-line-box"></div> Products</span>
                                     </a> </li>
                                 <li><a href="<?=RELA_DIR?>account/showInvoiceList" class="button  button-reveal  button-border tleft"><i class="icon-caret-right"></i>
-                                        <span><div class="icon-line-clipboard"></div>Invoice</span>
+                                        <span><div class="icon-line-clipboard"></div> Invoice</span>
                                     </a> </li>
+                                <li><a href="<?= RELA_DIR ?>account/addEvent"
+                                       class="button  button-reveal  button-border tleft"><i
+                                                class="icon-caret-right"></i>
+                                        <span><div class="icon-line2-bell"></div>Add event</span>
+                                    </a></li>
+                                <li><a href="<?= RELA_DIR ?>account/event"
+                                       class="button  button-reveal  button-border tleft"><i
+                                                class="icon-caret-right"></i>
+                                        <span><div class="icon-line2-bell"></div> Events</span>
+                                    </a></li>
+                                <li><a href="<?= RELA_DIR ?>account/editProfile"
+                                       class="button  button-reveal  button-border tleft"><i
+                                                class="icon-caret-right"></i>
+                                        <span><div class="icon icon-user"></div> Profile</span>
+                                    </a></li>
+                                <li><a href="#"
+                                       class="button  button-reveal  button-border tleft"><i
+                                                class="icon-caret-right"></i>
+                                        <span><div class="icon icon-money"></div> Donate</span>
+                                    </a></li>
 
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class=" p-left ">
-                    <div class="row p-container nopadding nomargin">
-                        <? if($msg != ''):?><div class="alert alert-danger"><?=$msg;?></div><? endif;?>
+
+                    <div class="row p-container nopadding nomargin" >

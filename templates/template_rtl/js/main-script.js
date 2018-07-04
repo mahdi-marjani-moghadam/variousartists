@@ -168,12 +168,20 @@ $(document).ready(function () {
 		$(this).next('ul').toggle();
 	});
 
-	if($('body').width() > 767 ){
+	/*if($('body').width() > 767 ){
 		$('.p-right').height($('.p-left').height());
 	}
 	if($('.inbox').height() > $('.information').height()){ $('.information').height($('.inbox').height()) }
-	else { $('.inbox').height($('.information').height()) }
+	else { $('.inbox').height($('.information').height()) }*/
 
 
+	//alert($('.p-left').height());
+	//alert($('.p-right').height());
+
+
+	/*if($('.p-left').height() < $('.p-right').height()){
+    	alert('ssss');
+        $('.p-left').height($('.p-right').height());
+    }*/
 
 });

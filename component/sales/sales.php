@@ -17,7 +17,7 @@ if(isset($exportType))
 }
 
 
-/*print_r_debug($_POST);*/
+//print_r_debug($_POST);
 switch ($_POST['action']) {
         /*case 'showMore':
             $salesController->showMore($_GET['id']);
@@ -33,6 +33,7 @@ switch ($_POST['action']) {
 
         break;
         case 'addSales':
+
             if (isset($_POST['action']) & $_POST['action'] == 'add') {
 
                 $salesController->addSales($_POST);

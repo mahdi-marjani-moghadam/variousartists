@@ -137,9 +137,13 @@ class artistsController
             $export['category_list'] = $resultCategory['export']['list'];
         }
 
-        $resultCategoryAll = $category->allCategory();
-        if ($resultCategoryAll['result'] == 1) {
-            $export['category_list_all'] = $resultCategoryAll['export']['list'];
+
+        /** genre */
+        include_once ROOT_DIR.'component/genre/model/genre.model.php';
+        $genre = new genreModel();
+        $resultGenreAll = $genre->allGenre();
+        if ($resultGenreAll['result'] == 1) {
+            $export['genre_list_all'] = $resultGenreAll['export']['list'];
         }
 
         // include artists licences
@@ -167,31 +171,49 @@ class artistsController
     public function showALL($fields)
     {
         global $PARAM;
-
-
         include_once ROOT_DIR.'component/category/model/category.model.php';
         $category = new categoryModel();
-         $category_id = $fields['chose']['category_id'];
+        include_once ROOT_DIR.'component/genre/model/genre.model.php';
+        $genre = new genreModel();
 
-        $resultCategory = $category->getCategoryChildes($category_id);
-        //print_r_debug($resultCategory);
-        if ($resultCategory['result'] != 1 and $resultCategory['no'] != '100') {
-            $msg = 'not found';
-            redirectPage(RELA_DIR, $msg);
+
+        $category_id = $fields['chose']['category_id'];
+        if(!is_numeric($category_id)){
+            /** if click in genre filter */
+            $genre_id = substr($category_id,2);
+            $resultGenre = $genre->getGenreChildes($genre_id);
+            foreach ($resultGenre['export']['list'] as $key => $value) {
+                $genre_id .= ','.$key;
+            }
+            $fields['condition']['genre_id'] = $genre_id;
         }
+        else{
+            $resultCategory = $category->getCategoryChildes($category_id);
+
+            if ($resultCategory['result'] != 1 and $resultCategory['no'] != '100') {
+                $msg = 'not found';
+                redirectPage(RELA_DIR, $msg);
+            }
+            foreach ($resultCategory['export']['list'] as $key => $value) {
+                $category_id .= ','.$key;
+            }
+            $fields['condition']['category_id'] = $category_id;
+        }
+
+
+
+        /** category menu */
         $resultCategory2 = $category->getCategoryUlLi(0);
-
         $export['export']['category'] = $resultCategory2['export']['list'];
-        //print_r_debug($resultCategory2);
-
-        foreach ($resultCategory['export']['list'] as $key => $value) {
-            $category_id .= ','.$key;
-        }
 
 
+        /** genre menu */
+        $resultGenre2 = $genre->getGenreUlLi(0);
+        $export['export']['genre'] = $resultGenre2['export']['list'];
 
-        $fields['condition']['category_id'] = $category_id;
-        //$fields['condition']['city_id'] = $fields['chose']['city_id'];
+
+
+
 
         $artists = new artistsModel();
         $result = $artists->getArtists($fields);
@@ -199,7 +221,6 @@ class artistsController
             $msg = 'not found';
             redirectPage(RELA_DIR, $msg);
         }
-
 
         $export['list'] = $artists->list;
         $export['recordsCount'] = $artists->recordsCount;

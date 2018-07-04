@@ -34,65 +34,35 @@
           <form name="queue" id="queue" role="form" data-validate="form" class="form-horizontal form-bordered" autocomplete="off" novalidate="novalidate" method="post">
             <input type="hidden" name="language" value="fa">
             <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-6">
+              <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                  <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="head1">عنوان1:</label>
-                  <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="head1" id="head1" autocomplete="off" placeholder="head1"  value="<?=$list['fa']['head1']; ?>">
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="form-group">
-                  <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="text1">متن1:</label>
-                  <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="text1" id="text1" autocomplete="off" placeholder="text1"  value="<?=$list['fa']['text1']?>">
+
+                  <div class="col-xs-12 col-sm-12 pull-right">
+                      <?php
+
+                      include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
+                      include_once ROOT_DIR.'common/ckfinder/ckfinder.php';
+                      $ckeditor = new CKEditor();
+                      $ckeditor->basePath = RELA_DIR.'common/ckeditor/';
+
+
+
+
+                      $config['language'] = 'fa';
+                      $config['filebrowserBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html';
+                      $config['filebrowserImageBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html?type=Images';
+                      $config['filebrowserUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+                      $config['filebrowserImageUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+
+                      $tt = $ckeditor->editor('text1',$list['fa']['text1'],$config);
+
+                      echo $tt;
+                      ?>
                   </div>
                 </div>
               </div>
 
             </div>
-            <div class="row xsmallSpace hidden-xs"></div>
-            <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="form-group">
-                  <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="head2">عنوان2:</label>
-                  <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="head2" id="head2" autocomplete="off" placeholder="head2"  value="<?=$list['fa']['head2']?>">
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="form-group">
-                  <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="text2">متن2:</label>
-                  <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="text2" id="text2" autocomplete="off" placeholder="text2"  value="<?=$list['fa']['text2']?>">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row xsmallSpace hidden-xs"></div>
-            <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="form-group">
-                  <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="head3">عنوان3:</label>
-                  <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="head3" id="head3" autocomplete="off" placeholder="head3"  value="<?=$list['fa']['head3']?>">
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="form-group">
-                  <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="text3">متن3:</label>
-                  <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="text3" id="text3" autocomplete="off" placeholder="text3"  value="<?=$list['fa']['text3']?>">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row xsmallSpace hidden-xs"></div>
-
-
             <div class="row xsmallSpace hidden-xs"></div>
             <div class="row">
               <div class="col-md-12">
@@ -140,65 +110,33 @@
           <form name="queue" id="queue" role="form" data-validate="form" class="form-horizontal form-bordered" autocomplete="off" novalidate="novalidate" method="post">
             <input type="hidden" name="language" value="en">
             <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-6">
+              <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                  <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="head1">عنوان1:</label>
-                  <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="head1" id="head1" autocomplete="off" placeholder="head1"  value="<?=$list['en']['head1']; ?>">
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="form-group">
-                  <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="text1">متن1:</label>
-                  <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="text1" id="text1" autocomplete="off" placeholder="text1"  value="<?=$list['en']['text1']?>">
-                  </div>
-                </div>
-              </div>
+                  <div class="col-xs-12 col-sm-12 pull-right">
+                      <?php
 
-            </div>
-            <div class="row xsmallSpace hidden-xs"></div>
-            <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="form-group">
-                  <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="head2">عنوان2:</label>
-                  <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="head2" id="head2" autocomplete="off" placeholder="head2"  value="<?=$list['en']['head2']?>">
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="form-group">
-                  <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="text2">متن2:</label>
-                  <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="text2" id="text2" autocomplete="off" placeholder="text2"  value="<?=$list['en']['text2']?>">
+                      include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
+                      include_once ROOT_DIR.'common/ckfinder/ckfinder.php';
+                      $ckeditor = new CKEditor();
+                      $ckeditor->basePath = RELA_DIR.'common/ckeditor/';
+
+
+
+
+                      $config['language'] = 'fa';
+                      $config['filebrowserBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html';
+                      $config['filebrowserImageBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html?type=Images';
+                      $config['filebrowserUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+                      $config['filebrowserImageUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+
+                      $tt2 = $ckeditor->editor('text2',$list['en']['text2'],$config);
+
+                      echo $tt2;
+                      ?>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row xsmallSpace hidden-xs"></div>
-            <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="form-group">
-                  <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="head3">عنوان3:</label>
-                  <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="head3" id="head3" autocomplete="off" placeholder="head3"  value="<?=$list['en']['head3']?>">
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="form-group">
-                  <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="text3">متن3:</label>
-                  <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="text3" id="text3" autocomplete="off" placeholder="text3"  value="<?=$list['en']['text3']?>">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row xsmallSpace hidden-xs"></div>
-
-
             <div class="row xsmallSpace hidden-xs"></div>
             <div class="row">
               <div class="col-md-12">

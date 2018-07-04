@@ -79,14 +79,6 @@
                   </div>
                 </div>
               </div>
-              <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="form-group">
-                  <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="brif_description_fa">توضیحات مختصر(فارسی):</label>
-                  <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="brif_description_fa" id="brif_description_fa"  placeholder="brif_description_fa" required value="<?=$list['brif_description_fa']?>">
-                  </div>
-                </div>
-              </div>
             </div>
               <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-6">
@@ -97,31 +89,59 @@
                           </div>
                       </div>
                   </div>
-                  <div class="col-xs-12 col-sm-12 col-md-6">
-                      <div class="form-group">
-                          <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="brif_description_en">توضیحات مختصر(انگلیسی):</label>
-                          <div class="col-xs-12 col-sm-8 pull-right">
-                              <input type="text" class="form-control" name="brif_description_en" id="brif_description_en"  placeholder="brif_description_en" required value="<?=$list['brif_description_en']?>">
-                          </div>
-                      </div>
-                  </div>
               </div>
               <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-6">
+              <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="description_fa">توضیحات(فارسی):</label>
-                  <div class="col-xs-12 col-sm-8 pull-right">
-                    <textarea name="description_fa" class="form-control"
-                    id="description_fa" placeholder="توضیحات" required="required"><?=$list['description_fa']?></textarea>
+                  <div class="col-xs-12 col-sm-12 pull-right">
+                      <?php
+
+                      include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
+                      include_once ROOT_DIR.'common/ckfinder/ckfinder.php';
+                      $ckeditor = new CKEditor();
+                      $ckeditor->basePath = RELA_DIR.'common/ckeditor/';
+
+
+
+
+                      $config['language'] = 'fa';
+                      $config['filebrowserBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html';
+                      $config['filebrowserImageBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html?type=Images';
+                      $config['filebrowserUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+                      $config['filebrowserImageUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+
+                      $tt = $ckeditor->editor('description_fa',$list['description_fa'],$config);
+
+                      echo $tt;
+                      ?>
                   </div>
                 </div>
               </div>
-              <div class="col-xs-12 col-sm-12 col-md-6">
+              <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="description_en">توضیحات(انگلیسی):</label>
-                    <div class="col-xs-12 col-sm-8 pull-right">
-                    <textarea name="description_en" class="form-control"
-                              id="description_en" placeholder="توضیحات" required="required"><?=$list['description_en']?></textarea>
+                    <div class="col-xs-12 col-sm-12 pull-right">
+                        <?php
+
+                        include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
+                        include_once ROOT_DIR.'common/ckfinder/ckfinder.php';
+                        $ckeditor = new CKEditor();
+                        $ckeditor->basePath = RELA_DIR.'common/ckeditor/';
+
+
+
+
+                        $config['language'] = 'fa';
+                        $config['filebrowserBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html';
+                        $config['filebrowserImageBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html?type=Images';
+                        $config['filebrowserUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+                        $config['filebrowserImageUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+
+                        $tt = $ckeditor->editor('description_en',$list['description_en'],$config);
+
+                        echo $tt;
+                        ?>
                     </div>
                 </div>
               </div>
@@ -177,6 +197,26 @@
                                   {
                                       ?>
                                       <option  <?php echo in_array($value['Category_id'],$list['category_id'] ) ? 'selected' : '' ?> value="<?=$value['Category_id']?>">
+                                          <?=$value['export']?>
+                                      </option>
+                                      <?
+                                  }
+                                  ?>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-6">
+                      <div class="form-group">
+                          <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="category_id">genre:</label>
+                          <div class="col-xs-12 col-sm-8 pull-right">
+                              <? $list['genre_id']?>
+                              <select name="genre_id[]" data-input="select2"  multiple>
+                                  <?
+                                  foreach($list['genre'] as $genre_id => $value)
+                                  {
+                                      ?>
+                                      <option  <?php echo in_array($value['Genre_id'],$list['genre_id'] ) ? 'selected' : '' ?> value="<?=$value['Genre_id']?>">
                                           <?=$value['export']?>
                                       </option>
                                       <?

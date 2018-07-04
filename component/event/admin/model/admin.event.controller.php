@@ -125,12 +125,22 @@ class adminEventController
 
     public function showEventAddForm($fields, $msg)
     {
+        /** category */
         include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
         if ($resultCategory['result'] == 1) {
             $fields['category'] = $category->list;
+        }
+
+        /** genre */
+        include_once ROOT_DIR.'component/genre/admin/model/admin.genre.model.php';
+        $genre = new adminGenreModel();
+
+        $resultGenre = $genre->getGenreOption();
+        if ($resultGenre['result'] == 1) {
+            $fields['genre'] = $genre->list;
         }
 
         include_once ROOT_DIR.'component/salon/admin/model/admin.salon.model.php';
@@ -238,11 +248,15 @@ class adminEventController
         $fields['date2'] = ($fields['date2']!=''?convertJToGDate($fields['date2']):'0000-00-00');
         $fields['date3'] = ($fields['date3']!=''?convertJToGDate($fields['date3']):'0000-00-00');
         $fields['category_id'] = ",".(implode(",",$fields['category_id'])).",";
+        $fields['genre_id'] = ",".(implode(",",$fields['genre_id'])).",";
         $fields['salon_id'] = ",".(implode(",",$fields['salon_id'])).",";
 
 
         $result = $event->setFields($fields);
+        $event->update_date = date('Y-m-d H:i:s');
+
         $result=$event->save();
+//        print_r_debug($event);
 
         $fields=$event->fields;
         if($result['result']!='1')
@@ -294,6 +308,7 @@ class adminEventController
             $export = $fields;
         }
 
+        /** category */
         include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
         $category = new adminCategoryModel();
 
@@ -302,6 +317,16 @@ class adminEventController
         if ($resultCategory['result'] == 1) {
             $export['category'] = $category->list;
         }
+        /** genre */
+        include_once ROOT_DIR.'component/genre/admin/model/admin.genre.model.php';
+        $genre = new adminGenreModel();
+
+        $resultGenre = $genre->getGenreOption();
+
+        if ($resultGenre['result'] == 1) {
+            $export['genre'] = $genre->list;
+        }
+
         include_once ROOT_DIR.'component/salon/admin/model/admin.salon.model.php';
         $salon = new adminSAlonModel();
 

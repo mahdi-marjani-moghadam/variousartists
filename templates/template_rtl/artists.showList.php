@@ -24,6 +24,7 @@
             <nav class=" nobottommargin category-ul">
                 <h3 class="text-center"> دسته بندی</h3>
                 <? echo $list['export']['category'];?>
+                <? echo $list['export']['genre'];?>
 
             </nav>
         </div>

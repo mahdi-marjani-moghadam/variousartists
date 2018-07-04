@@ -901,7 +901,7 @@ class adminArtistsModelDb
         $length=$condition['length'];
         if($condition['list']['order'] =='')
         {
-            $condition['list']['order']= ' ORDER BY `Artists_id` DESC ';
+            $condition['list']['order']= ' ORDER BY `update_date` DESC ';
         }
 
         $sql="
@@ -1014,6 +1014,9 @@ class adminArtistsModelDb
 
         $temp = self::tagToArray($row['certification_id']);
         $row['certification_id'] = $temp['export']['list'];
+
+        $temp = self::tagToArray($row['genre_id']);
+        $row['genre_id'] = $temp['export']['list'];
 
         $result['result'] = 1;
         $result['export']['list'] = $row;

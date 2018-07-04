@@ -174,10 +174,21 @@
                                     </div>
                                     <div class="col_full">
                                         <label for="genre">Genre:</label>
-                                        <input type="text" id="genre" name="genre" value="<?=$_REQUEST['genre']?>" class="form-control" />
+                                        <select name="genre_id[]" id="genre_id" data-input="select2"  multiple class="form-control">
+                                            <?
+                                            foreach($list['genre'] as $genre_id => $value)
+                                            {
+                                                ?>
+                                                <option  <?php echo $value['Genre_id'] == $list['genre_id'] ? 'selected' : '' ?> value="<?=$value['Genre_id']?>">
+                                                    <?=$value['export']?>
+                                                </option>
+                                                <?
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                     <div class="col_full">
-                                        <label for="artists_phone1">Phone:</label>
+                                        <label for="artists_phone1">Mobile (ex: 00989193110190):</label>
                                         <input type="text" id="artists_phone1" name="artists_phone1" value="<?=$_REQUEST['artists_phone1']?>" class="form-control" />
                                     </div>
 
@@ -226,7 +237,7 @@
 
                                     </div>
 
-                                    <div class="col_full">
+                                    <div class="col_full" style="display: none">
                                         <label  for="city_id">City: </label>
                                             <div class="form-group">
 

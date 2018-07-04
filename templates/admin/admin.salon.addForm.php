@@ -105,6 +105,15 @@
                   </div>
                 </div>
               </div>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="address">آدرس:</label>
+                        <div class="col-xs-12 col-sm-8 pull-right">
+
+                            <textarea class="form-control" name="address" id="address" autocomplete="off" ><?=$list['address']?></textarea>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="row xsmallSpace hidden-xs"></div>

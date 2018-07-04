@@ -124,6 +124,16 @@ class artistsModelDb
             $sql .= ') ';
         }
 
+        if (isset($fields['condition']['genre_id'])) {
+            $sql .= ' AND (';
+            $categories = explode(',', $fields['condition']['genre_id']);
+            foreach ($categories as $key => $value) {
+                $sql .= "genre_id like '%,".$value.",%' or ";
+            }
+            $sql = substr($sql, 0, -3);
+            $sql .= ') ';
+        }
+
         $sql .= $condition['list']['order'].$condition['list']['limit'];
         $stmt = $conn->prepare($sql);
 

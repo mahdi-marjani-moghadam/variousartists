@@ -905,7 +905,7 @@ class adminEventModelDb
         $length=$condition['length'];
         if($condition['list']['order'] =='')
         {
-            $condition['list']['order']= ' ORDER BY `Event_id` DESC ';
+            $condition['list']['order']= ' ORDER BY `update_date` DESC ';
         }
 
         $sql="
@@ -1016,6 +1016,12 @@ class adminEventModelDb
         $row = $stmt->fetch();
         $temp = self::tagToArray($row['category_id']);
         $row['category_id'] = $temp['export']['list'];
+
+        $temp = self::tagToArray($row['genre_id']);
+        $row['genre_id'] = $temp['export']['list'];
+
+        $temp = self::tagToArray($row['salon_id']);
+        $row['salon_id'] = $temp['export']['list'];
 
         $temp = self::tagToArray($row['certification_id']);
         $row['certification_id'] = $temp['export']['list'];

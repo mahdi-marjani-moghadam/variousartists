@@ -1,7 +1,7 @@
 <div class="content-control">
   <!--control-nav-->
   <ul class="control-nav pull-right">
-    <li><a class="rtl text-24"><i class="sidebar-icon fa fa-info"></i> ویرایش درباره ما</a></li>
+    <li><a class="rtl text-24"><i class="sidebar-icon fa fa-info"></i> ویرایش خدمات</a></li>
   </ul><!--/control-nav-->
 </div><!-- /content-control -->
 <div class="content-body">

@@ -3,6 +3,7 @@
  */
 $(document).ready(function()
 {
+
     var $body = $('body'),
         $html = $('html'),
         $toggleNav = $('#toggleNav'),

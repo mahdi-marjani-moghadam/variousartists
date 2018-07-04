@@ -468,9 +468,10 @@ class looeic
 
     public function setFields($fields)
     {
+        //print_r_debug($this->TABLE_FIELD);
         foreach($this->TABLE_FIELD as $field_name =>$val)
         {
-            // print_r_debug($this->PRI_KEY);
+             //print_r_debug($this->PRI_KEY);
             if($field_name==$this->PRI_KEY)
             {
                 continue;

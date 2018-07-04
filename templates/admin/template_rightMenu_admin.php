@@ -26,6 +26,16 @@
                                 <span class="sidebar-text text-16">افزودن دسته بندی جدید</span>
                             </a>
                         </li><!--/child-item-->
+                        <li>
+                            <a href="<?=RELA_DIR; ?>zamin/?component=genre">
+                                <span class="sidebar-text text-16">لیست سبک</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?=RELA_DIR; ?>zamin/?component=genre&action=add">
+                                <span class="sidebar-text text-16">افزودن سبک جدید</span>
+                            </a>
+                        </li><!--/child-item-->
                     </ul><!--/sidebar-child-->
                 </li><!--/sidebar-item-->
                 <li>

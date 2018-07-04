@@ -306,11 +306,13 @@ function sendmail($email, $subject, $body, $header = '')
 
     if (!$mail->Send()) {
         //echo "<div class='fadeout'>Message was not sent";
-        // echo "Mailer Error: " . $mail->ErrorInfo . "</div>";
-        return 0;
+         //echo "Mailer Error: " . $mail->ErrorInfo . "</div>";
+        $res['result'] = -1;
+        $res['msg'] = "Mailer Error: " . $mail->ErrorInfo;
+        return $res;
     }
-
-    return 1;
+    $res['result'] = 1;
+    return $res;
 }
 
 function sendmails($email, $bcc, $subject, $body, $orderID, $header = '')

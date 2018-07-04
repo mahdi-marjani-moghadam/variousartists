@@ -27,9 +27,9 @@
                                                 <td><?=$value['date']?></td>
                                                 <td>
                                                     <div class="style-msg   <?=($value['status'] == 1)?'':'style-msg-light';?>" style="background-color: <?=($value['status'] == 1)?'#EEE':'#444';?>">
-                                                        <div class="sb-msg"><i class="<?=($value['status'] == 1)?'icon-thumbs-up':'icon-remove';?>"></i>تایید <?=($value['status'] == 1)?'شده':' نشده';?></div>
+                                                        <div class="sb-msg"><i class="<?=($value['status'] == 1)?'icon-thumbs-up':'icon-remove';?>"></i>  <?=($value['status'] == 1)?'Confirm':'Cancel';?></div>
                                                     </div>
-
+                                                    <a href="<?=RELA_DIR?>account/editEvent/<?=$value['Event_id']?>" class="button button-3d button-dirtygreen" >Edit</a>
                                                 </td>
                                                 <!--<td><a href=" "  class="button button-3d button-mini button-rounded button-aqua ">پرداخت فاکتور</a> </td>-->
                                             </tr>

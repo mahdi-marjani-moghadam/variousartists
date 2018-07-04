@@ -72,6 +72,18 @@ switch ($PARAM[1]) {
             $accountController->showEventAddForm($input, '');
         }
         break;
+    case 'editEvent':
+
+        if (isset($_POST['action']) & $_POST['action'] == 'edit') {
+
+            $accountController->editEvent($_POST);
+        }
+        else
+        {
+            $input['event_id']=$PARAM[2];
+            $accountController->showEventEditForm($input, '');
+        }
+        break;
     case 'showInvoiceList':
 
         $fields['limit']['start']=(isset($page))?($page-1)*PAGE_SIZE:'0';

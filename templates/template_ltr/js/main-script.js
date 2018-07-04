@@ -168,11 +168,11 @@ $(document).ready(function () {
 		$(this).next('ul').toggle();
 	});
 
-	if($('body').width() > 767 ){
+	/*if($('body').width() > 767 ){
 		$('.p-right').height($('.p-left').height());
 	}
 	if($('.inbox').height() > $('.information').height()){ $('.information').height($('.inbox').height()) }
-	else { $('.inbox').height($('.information').height()) }
+	else { $('.inbox').height($('.information').height()) }*/
 
 
 
