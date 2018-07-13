@@ -17,17 +17,49 @@ if(isset($exportType))
 }
 
 
-//print_r_debug($_POST);
+if($_POST['action'] == 'addSales'){
+    $salesController->addSales($_POST);
+}
+
+switch ($PARAM[1]) {
+    default:
+        /** url decode*/
+        $fields = $salesController->urlDecode();
+
+        /** show invoice page */
+        if($PARAM[1] == 'invoice'){
+            if($PARAM[2] == 'delete')
+            {
+                $salesController->deleteInvoice($PARAM[3]);
+            }
+            else{
+                $salesController->invoice();
+            }
+        }
+
+        /** if position filling send to step3 */
+        if($fields['position']){
+            $salesController->step3($PARAM[1]);
+        }
+
+        $salesController->step1();
+        break;
+}
+
+
+
+
+print_r_debug($_POST['action']);
 switch ($_POST['action']) {
         /*case 'showMore':
             $salesController->showMore($_GET['id']);
             break;
 
     */
-        case 'showMoresandali':
+        /*case 'showMoresandali':
             $salesController->showMoresandali($_POST);
 
-            break;
+            break;*/
     case 'acceptpage':
         $salesController->acceptpage($_POST);
 
@@ -50,13 +82,13 @@ switch ($_POST['action']) {
                 $salesController->showSalesEditForm($input, '');
             }
             break;
-        default:
+        /*default:
 
             $fields['limit']['start'] = (isset($page)) ? ($page - 1) * PAGE_SIZE : '0';
             $fields['limit']['length'] = PAGE_SIZE;
             $fields['order']['Sales_id'] = 'DESC';
             $salesController->showALL($fields);
-            break;
+            break;*/
 
 
     }

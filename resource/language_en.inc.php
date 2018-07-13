@@ -1374,3 +1374,4 @@ define("couponRegister_04", "enter your email");
 define("couponRegister_05", "enter your bithday");
 define("Register_06", "Your information is not complete for this company. please fill register form again.");
 define("YouAreLogIn","You have log in");
+

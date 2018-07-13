@@ -163,7 +163,27 @@ class contactusModel
         return $result;
     }
 
+    /**
+     * check comment
+     * @param $input
+     * @return mixed
+     * @author marjani
+     * @date 2/27/2015
+     * @version 01.01.01
+     */
+    private function __setName ($input)
+    {
+        if(!Validator::required($input))
+        {
+            $result['result']=-1;
+            $result['msg']=translate('Please enter name');
+        }else
+        {
+            $result['result'] = 1;
+        }
 
+        return $result;
+    }
 
     /**
      * add contact us

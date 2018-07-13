@@ -4,12 +4,12 @@
 <section id="page-title">
 
     <div class="container clearfix">
-        <h1><?=$list['list']['event_name'];?></h1>
-        <ol class="breadcrumb">
-            <li><a href="<?=RELA_DIR?>">خانه</a></li>
-            <li><a href="<?=RELA_DIR?>event">رویدادها</a></li>
-            <li class="active"><?=$list['list']['event_name'];?></li>
-        </ol>
+        <h1><?=$list['event']['event_name'];?></h1>
+        <!--<ol class="breadcrumb">
+            <li><a href="<?/*=RELA_DIR*/?>">خانه</a></li>
+            <li><a href="<?/*=RELA_DIR*/?>event">رویدادها</a></li>
+            <li class="active"><?/*=$list['list']['event_name'];*/?></li>
+        </ol>-->
     </div>
 
 </section><!-- #page-title end -->
@@ -22,69 +22,60 @@
 
         <div class="container clearfix">
 
-            <div class="single-event col-md-10 col-md-offset-1">
+            <div class="single-event col-md-8 col-md-offset-2">
 
-                <?$newDate = ($list['list']['date']!="0000-00-00" ? convertDate($list['list']['event_time']):"");?>
+
 
                 <div class="panel panel-default events-meta" id="changeNumber">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">رویداد:<?=$list['list']['event_name']?></h3>
+                    <div class="panel-heading" style="padding: 10px">
+                        <h3 class="panel-title" >
+                            <span class="hidden-xs" style=" padding: 5px 10px; border-left: 1px solid silver;">
+                                <a href="<?=$list['step1']?>"><span class="badge">1</span>  انتخاب روز و ساعت </a>
+                            </span>
+                            <span style=" padding: 5px 10px; border-left: 1px solid silver;  ">
+                                <a href="<?=$list['step2']?>"> <span class="badge">2</span> انتخاب منطقه</a>
+                            </span>
+                            <span class="hidden-xs" style=" background: #fff; padding: 5px 10px;  ">
+                                <span class="badge">3</span> انتخاب صندلی
+                            </span>
+                            <span class="hidden-xs" style=" padding: 5px 10px; border-right: 1px solid silver">
+                                <span class="badge">4</span> پیش فاکتور
+                            </span>
+                        </h3>
+
                     </div>
-                    <form action="<?= RELA_DIR ?>sales" method="POST" data-validate="form" role="form">
+                    <form action="<?=$list['step3']?>" method="POST" data-validate="form" role="form">
+                        <input name="action" value="addSales" type="hidden">
                         <div class="panel-body">
                             <div class="col_half">
                                 <ul class="iconlist nobottommargin">
-
-
-                                    <li><i class="icon-calendar3"></i> زمان استفاده:    <?=$newDate?> </li>
+                                    <li><i class="icon-calendar3"></i> زمان استفاده:    <?=convertDate($list['get']['date']).' -  '.$list['get']['time']?> </li>
                                     <br>
-
-                                    <li><i class="icon-map-marker2"></i> مکان استفاده:    <?=$list['salonname']['title_fa']?>, <?=$list['salonpartname']['title_fa']?></li>
-
-
-
-
-                                    <? /* ?>
-                                    <select name="sandali" >
-                                        <?php  foreach ($list['skhali'] as $k => $x):?>
-                                            <option value="<?=$x?>"><?=$x?></option>
-                                        <?endforeach; ?>
-
-                                    </select>
-                                    <? */ ?>
-
-
-
+                                    <li><i class="icon-map-marker2"></i>  مکان :    <?=$list['salon']['address']?>,<?=$list['salon']['title_fa']?></li>
+                                    <br>
+                                    <li><i class="icon-line2-pin"></i><?=$list['position']['title']?></li>
+                                    <li><i class="icon-dollar"></i>قیمت: <?=$list['position']['price']?> ریال</li>
+                                    <br>
                                 </ul>
                             </div>
                             <div class="col_half col_last">
                                 <ul class="iconlist nobottommargin">
-                                    <input type="hidden" name="action" value="acceptpage" />
-                                    <input type="hidden" name="place_id" value="<?=$list['salonpartname']['parent_id']?>" />
-                                    <input type="hidden" name="place_name" value="<?=$list['salonname']['title_fa']?>" />
-                                    <input type="hidden" name="part_id" value="<?=$list['salonpartname']['Salon_id']?>" />
-                                    <input type="hidden" name="part_name" value="<?=$list['salonpartname']['title_fa']?>" />
-                                    <input type="hidden" name="event_time" value="<?=$list['list']['event_time']?>" />
-                                    <input type="hidden" name="Event_id" value="<?=$list['list']['Event_id']?>" />
-                                    <input type="hidden" name="Event_name" value="<?=$list['eventname']['event_name']?>" />
-
-
-                                    <img  src="<?=RELA_DIR?>statics/salon/<?=$list['salonpartname']['image']?>">
-
-
+                                    <img  src="<?=RELA_DIR?>statics/salon/<?=$list['position']['image']?>">
                                 </ul>
                             </div>
-
                         <div class="col_full">
-                        <?php  foreach ($list['skhali'] as $k => $x):?>
-                            <label for="sandali<?=$x?>" class="btn-info btn margin topmargin-sm" style="float: none" ><?=$x?>
-                                <input id="sandali<?=$x?>" type="checkbox" name="sandali[]"  value="<?=$x?>">
+                        <?php  foreach ($list['sandali'] as $k => $x):?>
+                            <label for="sandali<?=$x?>" class="btn-default btn margin topmargin-sm" style="float: none" ><?=$x?>
+                                <input id="sandali<?=$x?>" type="checkbox" name="sandali[<?=$x?>]"  value="<?=$x?>">
                             </label>
                         <?endforeach; ?>
                         </div>
-                        <div class="form-group form-actions">
-                            <input type="submit" class="btn btn-primary btn-default btn-block text-white text-16" value="خرید آنلاین">
-                        </div><!--/form-group-->
+                            <div class="col_full">
+
+                                <div class="form-group form-actions center">
+                                    <input type="submit" class="btn  btn-success btn-default  text-white text-16" value="تایید  انتخاب ">
+                                </div><!--/form-group-->
+                            </div>
                     </form>
                 </div>
         <!--<a href="#" class="btn btn-success btn-block btn-lg">Buy Tickets</a>-->

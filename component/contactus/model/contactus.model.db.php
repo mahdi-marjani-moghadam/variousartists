@@ -19,6 +19,7 @@ class contactusModelDb
                     `email`,
                     `comment`,
                     `status`,
+                    `name`,
                     `date`
                     )
                     VALUES(
@@ -26,6 +27,7 @@ class contactusModelDb
                     '" . $fields['email']  . "',
                     '" . $fields['comment']  . "',
                     '0',
+                    '" . $fields['name']  . "',
                     NOW()
                     )";
 

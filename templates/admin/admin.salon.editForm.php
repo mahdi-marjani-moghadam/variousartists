@@ -117,37 +117,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row xsmallSpace hidden-xs"></div>
-            <div class="row" style="display: none">
-                <div class="col-xs-12 col-sm-12 col-md-6">
-                    <div class="form-group">
-                      <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="xImagePath">تصویر:</label>
-                        <div class="col-xs-12 col-sm-8 pull-right">
-                            <div class="input-group" dir="ltr">
-                              <input name="img_name" type="text" class="form-control" id="xImagePath" value="<?=$list['img_name'];?>" />
-                              <span class="input-group-btn">
-                                <input class="btn  btn-info" type="button" value="انتخاب فایل" onclick="BrowseServer( 'Images:/', 'xImagePath' );" />
-                              </span>
-                            </div>
-                            <div id="preview" style="display:none">
-                                <strong>Selected Thumbnails</strong><br/>
-                                <div id="thumbnails"></div>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-                <div class="col-xs-12 col-sm-12 col-md-6">
-                    <div class="form-group">
-                        <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="sort">ترتیب:</label>
-                        <div class="col-xs-12 col-sm-8 pull-right">
-                            <input type="text" class="form-control" name="sort" id="sort" autocomplete="off"  required value="<?=$list['sort']?>">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="row xsmallSpace "></div>
               <div class="col-xs-12 col-sm-12 col-md-6">
                   <div class="form-group">
                       <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="min_sandali">ابتدای شماره صندلی</label>
@@ -165,6 +134,15 @@
                       </div>
                   </div>
               </div>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="price">قیمت(ریال)</label>
+                        <div class="col-xs-12 col-sm-8 pull-right">
+                            <input  name="price" class="form-control " id="price" value="<?=$list['price']?>">
+                            </input>
+                        </div>
+                    </div>
+                </div>
               <div class="col-xs-12 col-sm-12 col-md-6">
                   <div class="form-group">
                       <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="xImagePath">تصویر:</label>

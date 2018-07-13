@@ -56,6 +56,7 @@
           <tr>
             <th>ردیف</th>
             <th>موضوع</th>
+            <th>نام</th>
             <th>ایمیل</th>
             <th>نظرات</th>
             <th>وضعیت</th>
@@ -72,6 +73,7 @@
               <tr>
                 <td><?php echo $fields['Contact_id']; ?></td>
                 <td><?php echo $fields['subject']; ?></td>
+                <td><?php echo $fields['name']; ?></td>
                 <td><?php echo $fields['email']; ?></td>
                 <td><?php echo $fields['comment']; ?></td>
                 <td><?php echo $fields['status']; ?></td>
@@ -93,7 +95,8 @@
           <th><input type="text" name="search_4" class="search_init form-control" /></th>
           <th><input type="text" name="search_5" class="search_init form-control" /></th>
           <th><input type="text" name="search_6" class="search_init form-control" /></th>
-          <th><input type="hidden" name="search_7" class="search_init form-control" /></th>
+          <th><input type="text" name="search_7" class="search_init form-control" /></th>
+          <th><input type="hidden" name="search_8" class="search_init form-control" /></th>
 
           </tfoot>
         </table>

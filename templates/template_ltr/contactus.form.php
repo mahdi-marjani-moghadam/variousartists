@@ -61,6 +61,11 @@
                             ?>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
+                                    <input type="text" name="name" id="name" class="form-control rtl transition ltr" required data-error="لطفا نام خود را وارد نمایید"   placeholder="نام و نام خانوادگی"  value="<?php echo (isset($list) && strlen($list['list']['name']) ? $list['list']['name'] : "");?>" tabindex="1">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
                                     <input type="email" name="email" id="email" class="form-control  transition ltr" required data-error="لطفا آدرس پست الکترونیکی را وارد نمایید"   placeholder="Email"  value="<?php echo (isset($list) && strlen($list['list']['email']) ? $list['list']['email'] : "");?>" tabindex="1">
                                 </div>
                             </div>
@@ -101,9 +106,9 @@
                             <strong>Contact information:</strong><br>
 
                         </address>
-                        <abbr title="Phone Number"><strong>Phone:</strong></abbr><span dir="ltr"> (021) 22768101</span><br>
+                        <abbr title="Phone Number"><strong>Phone:</strong></abbr><span dir="ltr"> (+9821) 22768101</span><br>
                         <abbr title="Email Address"><strong>Email:</strong></abbr><span dir="ltr"> info@variousartists.ir</span>
-                        <abbr title="Email Address"><strong><img src="<?=TEMPLATE_DIR?>img/whatsapp.png" width="30"> WhatsApp:</strong></abbr><br><span dir="ltr">09193110190</span><br>
+                        <abbr title="Email Address"><strong><img src="<?=TEMPLATE_DIR?>img/whatsapp.png" width="30"> WhatsApp:</strong></abbr><br><span dir="ltr">+989193110190</span><br>
                         <abbr title="Email Address"><strong><img style="margin: 0 4px" src="<?=TEMPLATE_DIR?>img/telegram.png" width="20"> Telegram:</strong></abbr><br><span dir="ltr"><a href="https://telegram.me/VariousArtist"> https://telegram.me/VariousArtist </a></span>
                     </div>
                 </div><!-- Contact Info End -->
