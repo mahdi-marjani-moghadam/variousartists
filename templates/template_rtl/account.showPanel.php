@@ -32,7 +32,6 @@
                             <div class="clearfix"></div>
                             <? if(isset($list['invoice'])): ?>
                             <div class="p-invoice row ">
-
                                 <h4 class="text-center">آخرین صورتحصاب ها</h4>
                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                     <div class="col-md-12 col-sm-12 col-xs-12" style="overflow: scroll">

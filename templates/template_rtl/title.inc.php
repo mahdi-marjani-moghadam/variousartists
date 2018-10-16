@@ -3,13 +3,15 @@
 <head>
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="author" content="SemiColonWeb" />
+	<meta name="author" content="marjani" />
 
     <link rel="icon" href="img/fav.png" type="image/png" sizes="16x16">
 	<!-- Stylesheets
 	============================================= -->
     <!-- SLIDER REVOLUTION 5.x CSS SETTINGS -->
     <link rel="stylesheet" type="text/css" href="<?php echo TEMPLATE_DIR; ?>css/rv-settings.css" media="screen"/>
+
+	<link rel="stylesheet" href="<?php echo TEMPLATE_DIR; ?>css/font-awesome.min.css" type="text/css" />
 
 	<link rel="stylesheet" href="<?php echo TEMPLATE_DIR; ?>css/bootstrap.css" type="text/css" />
     <link rel="stylesheet" href="<?php echo TEMPLATE_DIR; ?>css/bootstrap-rtl.css" type="text/css"/>
@@ -37,7 +39,7 @@
     <link href="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/css/persianDatepicker-default.css" rel="stylesheet">
 
 
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
 	<!--[if lt IE 9]>
 		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
@@ -51,6 +53,8 @@
     <link rel="stylesheet" href="<?php echo TEMPLATE_DIR; ?>css/fonts.css" type="text/css"/>
     <link rel="stylesheet" href="<?php echo TEMPLATE_DIR; ?>css/custom.css" type="text/css"/>
 
+
+    <script type="text/javascript" src="<?php echo TEMPLATE_DIR; ?>js/jquery.js"></script>
 
 
 	<!-- Document Title
@@ -92,7 +96,12 @@
 							<? /*<li class="<?=($PARAM[0] == 'services')?'current':'';?>"><a href="<?=RELA_DIR?>services"><div>خدمات</div></a></li>
 							<li class="<?=($PARAM[0] == 'shop')?'current':'';?>"><a href="<?=RELA_DIR?>shop"><div>فروشگاه</div></a></li>*/?>
 							<? if($member_info == -1){?>
-								<li class="<?=($PARAM[0] == 'login')?'current':'';?>"><a style="font-size: 10px" href="<?=RELA_DIR?>login"><div>ورود / ثبت نام هنرمند</div></a></li>
+                                <li class="<?=($PARAM[0] == 'login')?'current':'';?>">
+                                    <a href="<?=RELA_DIR?>login"><div><?=login?></div></a>
+                                </li>
+                                <li class="<?=($PARAM[0] == 'register')?'current':'';?>">
+                                    <a href="<?=RELA_DIR?>register"><div><?=register?></div></a>
+                                </li>
 							<?   } else{?>
 								<li class="<?=($PARAM[0] == 'account')?'current':'';?>">
                                     <a href="<?=RELA_DIR?>account"><div>

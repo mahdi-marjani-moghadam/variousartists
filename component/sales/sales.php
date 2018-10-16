@@ -42,6 +42,16 @@ switch ($PARAM[1]) {
             $salesController->step3($PARAM[1]);
         }
 
+        /** pay */
+        if($PARAM[1]== 'pay')
+        {
+            $salesController->pay($PARAM[2]);
+        }
+        if($PARAM[1]== 'returnbank')
+        {
+            $salesController->returnBank($PARAM[2]);
+        }
+
         $salesController->step1();
         break;
 }

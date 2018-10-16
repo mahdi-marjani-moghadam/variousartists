@@ -22,7 +22,7 @@
         <div class="col-xs-12 col-sm-12 col-md-2 pull-right ">
             <?php //include_once("categoryList.php");?>
             <nav class=" nobottommargin category-ul">
-                <h3 class="text-center"> دسته بندی</h3>
+
                 <? echo $list['export']['category'];?>
                 <? echo $list['export']['genre'];?>
 

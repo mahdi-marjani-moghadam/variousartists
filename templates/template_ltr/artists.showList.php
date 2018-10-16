@@ -22,9 +22,9 @@
         <div class="col-xs-12 col-sm-12 col-md-2  ">
             <?php //include_once("categoryList.php");?>
             <nav class=" nobottommargin category-ul">
-                <h3 class="text-center"> Category</h3>
+                <h3 class="text-center"> </h3>
                 <? echo $list['export']['category'];?>
-
+                <? echo $list['export']['genre'];?>
             </nav>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-10 pull-left">

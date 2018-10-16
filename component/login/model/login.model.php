@@ -223,39 +223,6 @@ class memberLogIn
 
     function showLoginForm($fields , $msg ='')
     {
-        /////// category
-        include_once(ROOT_DIR."component/category/admin/model/admin.category.model.php");
-        $category = new adminCategoryModel();
-
-        $resultCategory = $category->getCategoryOption();
-
-        if($resultCategory['result'] == 1)
-        {
-            $fields['category'] = $category->list;
-        }
-        //echo "<pre>";print_r($resultCategory);die();
-        ///////
-        ///
-        /// /////// genre
-        include_once(ROOT_DIR."component/genre/admin/model/admin.genre.model.php");
-        $genre = new adminGenreModel();
-
-        $resultGenre = $genre->getGenreOption();
-
-        if($resultGenre['result'] == 1)
-        {
-            $fields['genre'] = $genre->list;
-        }
-
-        include_once ROOT_DIR.'component/province/model/province.model.php';
-        //$province = new adminProvinceModel();
-        $province = province::getAll()->getList();
-
-        //$resultProvince = $province->getStates();
-        if ($province['result'] == 1) {
-            $fields['provinces'] = $province['export']['list'];
-        }
-
 
 
         $this->fileName = 'login.php';
@@ -282,8 +249,6 @@ class memberLogIn
         include_once ROOT_DIR.'/model/db.inc.class.php';
 
         if ($username == '') {
-
-
             $username = (handleData($_REQUEST["username"]));
         }
         if ($password == '') {
@@ -292,6 +257,7 @@ class memberLogIn
         }
 
 
+        /** validate */
         $remember_me = 1;
         if ($username == "") {
 
@@ -299,22 +265,13 @@ class memberLogIn
             $result['msg'] = 'err_01' . '102 : Your Username Or Password Is Incorrect';
             return $result;
         }
-
-        if ( !checkMail($username)) {
-
-            $result['result'] = -1;
-            $result['msg'] = 'err_101 : Your email is incorrect';
-            return $result;
-        }
-
         if ($password == "") {
             $result['result'] = -1;
             $result['msg'] = 'err_103 : Your Username Or Password Is Incorrect';
             return $result;
         }
 
-
-
+        /** delete session */
         $sql = "DELETE FROM sessions
                     WHERE
                     (last_access_time < (NOW()-36000) and remember_me <> 1 )||  last_access_time < (NOW()-2592000) ";
@@ -331,12 +288,13 @@ class memberLogIn
             return $result;
         }
 
-
+        /** find user by email or password */
         $sql = "
                 SELECT Artists_id 
                       ,status
 				FROM   artists
-				WHERE  username = '" . $username . "'
+				WHERE  
+				(username = '" . $username . "')
 				AND    password = '" . md5($password) . "'
 				";
 
@@ -509,11 +467,95 @@ class memberLogIn
         die();
     }
 
+    function showRegisterForm($fields , $msg ='')
+    {
+        /////// category
+        include_once(ROOT_DIR."component/category/admin/model/admin.category.model.php");
+        $category = new adminCategoryModel();
 
-    function register($_input)
+        $resultCategory = $category->getCategoryOption();
+
+        if($resultCategory['result'] == 1)
+        {
+            $fields['category'] = $category->list;
+        }
+        //echo "<pre>";print_r($resultCategory);die();
+        ///////
+        ///
+        /// /////// genre
+        include_once(ROOT_DIR."component/genre/admin/model/admin.genre.model.php");
+        $genre = new adminGenreModel();
+
+        $resultGenre = $genre->getGenreOption();
+
+        if($resultGenre['result'] == 1)
+        {
+            $fields['genre'] = $genre->list;
+        }
+
+        include_once ROOT_DIR.'component/province/model/province.model.php';
+        //$province = new adminProvinceModel();
+        $province = province::getAll()->getList();
+
+        //$resultProvince = $province->getStates();
+        if ($province['result'] == 1) {
+            $fields['provinces'] = $province['export']['list'];
+        }
+
+        global $dataStack;
+        //////////////////////////////////////////////////
+        ////                get country               ////
+        //////////////////////////////////////////////////
+        include_once(ROOT_DIR . "model/country.class.php");
+        $COUNTRY = new clsCountry();
+        $COUNTRY->countryFieldName = array("iso", "phone_code", "name", "max_length", "sample");
+
+        $fields['data'] = $dataStack->output('data');
+
+        if (isset($fields['data']['areacode']) && count($fields['data']) > 0 && $fields['data']['areacode'] != '') {
+            $COUNTRY->condition = array("phone_code" => $fields['data']['areacode']);// or "iso"=>"ir"
+        } else {
+            $COUNTRY->condition = array("phone_code" => "98");// or "iso"=>"us"
+        }
+
+        //set input country when come in page
+        $COUNTRY->getAllCountryCode();
+        $fields['default'] = $COUNTRY->country;
+
+        //$countries = $COUNTRY->country;
+
+        $COUNTRY->unsetCondition();
+
+        //get select country area code
+        $COUNTRY->multiIso         = array("CN","us","IR","de");
+        $COUNTRY->getAllCountryCode();
+        $fields['country'] = $COUNTRY->country;
+
+
+        $this->fileName = 'register.php';
+        $this->template($fields, $msg);
+
+        die();
+    }
+
+    function    register($_input)
     {
         global $messageStack,$lang;
         include_once (ROOT_DIR."component/artists/model/artists.model.php");
+        $_input['username'] = $_input['artists_phone1'];
+        if($_input['email']!=''){
+            $_input['username'] = $_input['email'];
+        }
+
+        if($_input['password']=='' )
+        {
+            $messageStack->add_session('register',password_not_empty);
+            $this->showRegisterForm($_input,password_not_empty);
+        }
+
+        if($_input['check_birthday']!=''){
+            $_input['show_birthday'] = $_input['check_birthday'];
+        }
 
 
         $result = artists::getBy_username($_input['username'])->getList();
@@ -521,14 +563,16 @@ class memberLogIn
         if($result['export']['recordsCount'] > 0)
         {
             $messageStack->add_session('register',translate('Exist user'));
-            $this->showLoginForm($_input,translate('Exist user'));
+            $this->showRegisterForm($_input,translate('Exist user'));
         }
-
-
 
         $artists=new artists;
 
-
+        if($_input['category_id']=='' and $_input['check1'] == 'on')
+        {
+            $messageStack->add_session('register',category_id_not_empty);
+            $this->showRegisterForm($_input,category_id_not_empty);
+        }
 
         if(isset($_input['category_id'])){
             $_input['category_id'] = ",".(implode(",",$_input['category_id'])).",";
@@ -536,8 +580,10 @@ class memberLogIn
         if(isset($_input['genre_id'])){
             $_input['genre_id'] = ",".(implode(",",$_input['genre_id'])).",";
         }
-        if($lang == 'fa'){ $_input['birthday'] = convertJToGDate($_input['birthday']);}
-        $_input['refresh_date'] = date('Y-m-d h:i:s');
+        if($_input['birthday']==''){unset($_input['birthday']);}
+
+        if($lang == 'fa' && $_input['birthday']!=''){ $_input['birthday'] = convertJToGDate($_input['birthday']);}
+        $_input['refresh_date'] = date('Y-m-d H:i:s');
         $_input['password']  = md5($_input['password']);
 
         $artists->setFields($_input);
@@ -546,11 +592,15 @@ class memberLogIn
 
         if($result['result']==-1)
         {
-            $this->showLoginForm($_input,translate($result['msg']));
+            $this->showRegisterForm($_input,translate($result['msg']));
             die();
         }
-
+        if($_input['check1'] == 'on'){
+            $artists->type = 1;
+        }
         $result=$artists->save();
+
+
 
 
         if(file_exists($_FILES['logo']['tmp_name'])){
@@ -572,6 +622,62 @@ class memberLogIn
 
 
         $result['msg'] = translate('Congratulation. You are registered successfuly.');
+        return $result;
+    }
+
+    function memberregister($_input)
+    {
+        global $messageStack,$lang;
+        include_once (ROOT_DIR."component/artists/model/artists.model.php");
+
+        if(checkMail($_input['username'])==0)
+        {
+            $messageStack->add_session('register',email_is_not_valid);
+            $this->showLoginForm($_input,email_is_not_valid);
+        }
+
+        $result = artists::getBy_username($_input['username'])->getList();
+
+        if($result['export']['recordsCount'] > 0)
+        {
+            $messageStack->add_session('register',translate('Exist user'));
+            $this->showLoginForm($_input,translate('Exist user'));
+        }
+
+
+
+        $artists=new artists;
+
+
+        $_input['refresh_date'] = date('Y-m-d h:i:s');
+        $_input['password']  = md5($_input['password']);
+
+        $artists->setFields($_input);
+        $result = $artists->validator();
+
+
+        /*if($result['result']==-1)
+        {
+            $this->showLoginForm($_input,translate($result['msg']));
+            die();
+        }*/
+
+        $artists->status = 1;
+        $result=$artists->save();
+
+
+
+        if($result['result']!='1')
+        {
+            $messageStack->add_session('register',$result['msg']);
+            $this->showLoginForm($_input,$result['msg']);
+        }
+        $msg='عملیات با موفقیت انجام شد';
+        $messageStack->add_session('register',$msg);
+
+
+
+        $result['msg'] = register_successfully;
         return $result;
     }
 
@@ -706,34 +812,6 @@ class memberLogIn
      * @param $compId
      * @return int
      */
-    private function checkOnline($macAddress, $username, $compId)
-    {
-        global $conn;
-
-        $sql = "SELECT      *
-                FROM        `radacct`
-                WHERE       `acctstoptime` IS NULL
-                AND         `username`         = '" . $username . "'
-                AND         `callingstationid` = '" . $macAddress . "'
-                AND         `compid`           = '" . $compId . "'
-                " . "";
-
-        $onlineRS = $conn->Execute($sql);
-        if (!$onlineRS) {
-            echo $conn->ErrorMsg();
-            die();
-        }
-
-        if ($onlineRS->RecordCount() == 0) {
-
-            $onlineRS->close();
-            return 0;
-        }
-        else {
-            $onlineRS->close();
-            return 1;
-        }
-    }
 
 
     private function _checkLoginBySession()
@@ -806,25 +884,41 @@ class memberLogIn
        $obj1 = $obj['export']['list'][0];
 
 
-
        $code = uniqid();
-       $url =   "'<a href='".RELA_DIR.'login/changePass/?email='.$obj['export']['list'][0]->fields['username'].'&code='.$code ."'>".RELA_DIR.'login/changePass/?email='.$obj['export']['list'][0]->fields['username'].'&code='.$code."</a>";
+       $url =   "'<a href='".RELA_DIR.'login/changePass/?user='.$obj['export']['list'][0]->fields['username'].'&code='.$code ."'>".RELA_DIR.'login/changePass/?email='.$obj['export']['list'][0]->fields['username'].'&code='.$code."</a>";
 
-       $sendEmail = sendmail($obj['export']['list'][0]->fields['username'],translate('Remember Password'),translate('Your change password link: ').$url."<br>".translate('website: www.variousartists.ir'));
+       if(checkMail($obj['username'])){
+           $sendEmail = sendmail($obj['export']['list'][0]->fields['username'],translate('Remember Password'),translate('Your change password link: ').$url."<br>".translate('website: www.variousartists.ir'));
 
-       if($sendEmail['result']==-1){
+           if($sendEmail['result']==-1){
 
-           $result['result'] = -1;
-           $result['msg'] = $sendEmail['msg'];
-           return $result;
+               $result['result'] = -1;
+               $result['msg'] = $sendEmail['msg'];
+               return $result;
+           }
+       }
+       else{
+           // TODO: sms panel
        }
 
+
        $obj1->forgot_code = $code;
+       if($obj1->date == ''){
+           $obj1->date = date('Y-m-d H:i:s');
+       }
+       if($obj1->birthday == ''){
+           $obj1->birthday = date('Y-m-d H:i:s');
+       }
+       if($obj1->state_id == ''){
+           $obj1->state_id = 1;
+       }
+
        $obj1->save();
 
 
+
        $result['result'] = 1;
-       $result['msg'] = translate('Send Password To Email.');
+       $result['msg'] = Password_sent;
        return $result;
 
    }
@@ -834,7 +928,7 @@ class memberLogIn
    {
 
        include_once (ROOT_DIR.'component/artists/model/artists.model.php');
-       $obj = artists::getBy_email_and_forgot_code($fields['email'],$fields['code'])->get();
+       $obj = artists::getBy_username_and_forgot_code($fields['user'],$fields['code'])->get();
        if($obj['export']['recordsCount'] == 0)
        {
            $result['result'] = -1;

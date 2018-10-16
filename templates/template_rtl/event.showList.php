@@ -6,13 +6,34 @@
         <script>
 
             $(document).ready(function() {
+                var initialLocaleCode = 'fa';
+//                $('#fullcalendar').fullCalendar({
+//                    defaultDate: '<?//=date('Y-m-d');?>//',
+//                    editable: true,
+//                    eventLimit: true, // allow "more" link when too many events
+//                    events:<?//=$list['calendar']?>//,
+//                    isJalaali:true,
+//                    isRTL:true,
+//                    lang:'fa',
+//                    locale: initialLocaleCode,
+//
+//                });
 
                 $('#fullcalendar').fullCalendar({
-                    defaultDate: '<?=date('Y-m-d');?>',
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay,listMonth'
+                    },
+                    isJalaali : true,
+                    //defaultDate: '2016-09-12',
+                    locale: initialLocaleCode,
+                    buttonIcons: false, // show the prev/next text
+                    //weekNumbers: true,
+                    navLinks: true, // can click day/week names to navigate views
                     editable: true,
                     eventLimit: true, // allow "more" link when too many events
-                    events:<?=$list['calendar']?>
-
+                    events:<?=$list['calendar']?>//,
                 });
 
             });

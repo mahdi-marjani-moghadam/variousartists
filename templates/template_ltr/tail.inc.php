@@ -10,20 +10,14 @@
                 ============================================= -->
                 <div class="footer-widgets-wrap clearfix">
 
-                    <div class="col-md-4">
+                    <div class="col-md-2">
 
                         <div class="widget clearfix">
 
 
                             <div class="col_full masonry-thumbs col-6 clearfix" data-lightbox="gallery">
 
-                                <a  href="https://www.instagram.com/bahamzi/">
-                                    <img class="image_fade img-circle" src="<?=RELA_DIR.'statics/friends/bahamzi.jpg'?>" alt="Gallery Thumb 1">
-                                </a>
-                                
-                                <a  href="http://www.zendegicomplex.com">
-                                    <img class="image_fade img-circle" src="<?=RELA_DIR.'statics/friends/zendegicomplex.jpg'?>" alt="zendegicomplex">
-                                </a>
+
                                 <a  href="https://www.instagram.com/nymadteam/">
                                     <img class="image_fade img-circle" src="<?=RELA_DIR.'statics/friends/nymadteam.jpg'?>" alt="nymadteam">
                                 </a>
@@ -37,6 +31,16 @@
                         </div>
 
                     </div>
+                    <div class="col-md-2">
+                        <div class="row">
+                            <div class="col-md-6" style="padding: 0">
+                                <img src="https://trustseal.enamad.ir/logo.aspx?id=76601&p=fQKhswjpL00DbiRr" onclick="window.open('https://trustseal.enamad.ir/Verify.aspx?id=76601&p=fQKhswjpL00DbiRr','Popup','toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30')" style="cursor: pointer" id="fQKhswjpL00DbiRr" />
+                            </div>
+                            <div class="col-md-6" style="padding: 0">
+                                <img id='fukzoeukoeukjxlzjxlz' style='cursor:pointer' onclick='window.open("https://logo.samandehi.ir/Verify.aspx?id=68811&p=gvkamcsimcsirfthrfth", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt='logo-samandehi' src='https://logo.samandehi.ir/logo.aspx?id=68811&p=wlbqaqgwaqgwnbpdnbpd'/>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-4 ">
                         <div class="col_full nobottommargin center">
                             <p>Music The Great Communicator</p>
@@ -49,7 +53,6 @@
                             <div style="font-size: 8px; "><a style="color: #ccc" href="http://www.webgem.ir" target="_blank">Powered By WebGem &copy; Copyrights 2016</a></div>
                         </div>
                     </div>
-
                     <div class="col-md-4">
 
                         <div class="widget clearfix">
@@ -123,7 +126,7 @@
 
 	<!-- External JavaScripts
 	============================================= -->
-	<script type="text/javascript" src="<?php echo TEMPLATE_DIR; ?>js/jquery.js"></script>
+	
 	<script type="text/javascript" src="<?php echo TEMPLATE_DIR; ?>js/plugins.js"></script>
 
         <script type="text/javascript" src="<?=TEMPLATE_DIR?>js/components/star-rating.js"></script>

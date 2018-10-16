@@ -581,6 +581,7 @@ class looeic
     }
     public function save ()
     {
+
         if($this->fields[$this->PRI_KEY]=='')
         {
             $this->insert();

@@ -11,8 +11,8 @@ class artists extends looeic{
 
     protected $rules = array(
         'username' => 'required',
-        'password' => 'required',
-        'category_id' => 'required'
+        'password' => 'required'
+        //'category_id' => 'required'
     );
 
 }

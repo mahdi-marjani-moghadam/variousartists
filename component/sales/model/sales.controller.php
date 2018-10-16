@@ -543,4 +543,17 @@ $resultsandali=$sandali->getByFilter($fildes);
         redirectPage(RELA_DIR.'sales/invoice',success);
 
     }
+
+    function pay()
+    {
+        redirectPage(RELA_DIR.'sales/returnbank',success);
+    }
+
+    function returnBank($input)
+    {
+
+        $this->fileName = 'returnbank.php';
+        $this->template($export);
+        die();
+    }
 }

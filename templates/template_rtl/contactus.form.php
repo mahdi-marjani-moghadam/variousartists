@@ -106,9 +106,9 @@
                         <strong>اطلاعات تماس:</strong><br>
 
                     </address>
-                    <abbr title="Phone Number"><strong>تلفن:</strong></abbr><br><span dir="ltr"> (+۹۸۲۱) ۲۲۷۶۸۱۰۱</span><br>
+                    <abbr title="Phone Number"><strong>تلفن:</strong></abbr><br><span dir="ltr"> +۹۸ (۲۱) ۲۲۷۶ ۸۱۰۱</span><br>
                     <abbr title="Email Address"><strong>ایمیل:</strong></abbr><br><span dir="ltr"> info@variousartists.ir</span><br>
-                    <abbr title="Email Address"><strong><img src="<?=TEMPLATE_DIR?>img/whatsapp.png" width="30">واتساپ:</strong></abbr><br><span dir="ltr"> +۹۸۹۱۹۳۱۱۰۱۹۰</span><br>
+                    <abbr title="Email Address"><strong><img src="<?=TEMPLATE_DIR?>img/whatsapp.png" width="30">واتساپ:</strong></abbr><br><span dir="ltr"> +۹۸ (۹۱۹) ۳۱۱ ۰۱۹۰</span><br>
                     <abbr title="Email Address"><strong> <img style="margin: 0 4px" src="<?=TEMPLATE_DIR?>img/telegram.png" width="20"> تلگرام: </strong></abbr><br><span dir="ltr"><a href="https://telegram.me/VariousArtist"> https://telegram.me/VariousArtist </a></span>
                     </div>
                 </div><!-- Contact Info End -->

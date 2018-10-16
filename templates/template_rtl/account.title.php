@@ -78,6 +78,7 @@
 
                             <div class="p-nav-handle"> <i class=""></i>منو پنل</div>
                             <ul>
+                                <? if($member_info['type']==1):?>
                                 <li><a href="<?= RELA_DIR ?>account/addProduct"
                                        class="button  button-reveal  button-border tright"><i
                                                 class="icon-caret-right"></i>
@@ -114,6 +115,13 @@
                                                 class="icon-caret-right"></i>
                                         <span><div class="icon icon-money"></div> Donate</span>
                                     </a></li>
+                                    <? else:?>
+                                    <li><a href="<?= RELA_DIR ?>sales/invoice"
+                                           class="button  button-reveal  button-border tright"><i
+                                                    class="icon-caret-right"></i>
+                                            <span><div class="icon-line-clipboard"></div>سبد خرید</span>
+                                        </a></li>
+                                <? endif;?>
                             </ul>
                         </div>
                     </div>

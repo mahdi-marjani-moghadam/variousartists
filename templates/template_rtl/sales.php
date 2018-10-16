@@ -33,16 +33,22 @@
 
 
                         <div class="panel-body">
+
                             <? global $messageStack;
                             $msg = $messageStack->output('message');
                             if($msg){ echo $msg; }?>
                             <div class="col_half">
+
+
                                 <ul class="iconlist nobottommargin">
                                     <li><i class="icon-calendar3"></i> زمان استفاده:    <?=convertDate($list['get']['date']).' -  '.$list['get']['time']?> </li>
                                     <br>
                                     <li><i class="icon-map-marker2"></i>  مکان :    <?=$list['salon']['address']?>,<?=$list['salon']['title_fa']?></li>
                                     <br>
                                 </ul>
+
+
+
                                 <?php  foreach ($list['position'] as $k => $position): ?>
 
                                     <a  href="<?=$position['nextUrl']?>" class="btn btn-warning" value="<?=$salon["Salon_id"]?>"><?=$position["title"]?> <?=$position["price"]?> ریال</a>

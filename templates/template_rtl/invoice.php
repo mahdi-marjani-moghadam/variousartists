@@ -34,8 +34,7 @@
 
 
 
-                                <form action="" method="POST" data-validate="form" role="form">
-                                <input name="action" value="addSales" type="hidden">
+                                <form action="<?=RELA_DIR?>sales/pay" method="POST" data-validate="form" role="form">
                                     <div class="col_two_third">
                                         <ul class="iconlist nobottommargin">
                                             <li><i class="icon-calendar3"></i> زمان استفاده:    <?=convertDate($invoice['date']).' -  '.$invoice['event_time']?> </li>

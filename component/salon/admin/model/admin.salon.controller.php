@@ -115,6 +115,7 @@ class adminSalonController
 
         $result=$model->getSalonOption();
 
+
         if($result['result']!='1')
         {
             $this->fileName='admin.salon.showList.php';
