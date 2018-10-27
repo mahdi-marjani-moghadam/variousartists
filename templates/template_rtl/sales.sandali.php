@@ -76,11 +76,7 @@
                             <div class="clearfix"></div>
 
 
-                        <?php  foreach ($list['sandali'] as $k => $x):?>
-                            <label for="sandali<?=$x?>" class="btn-default btn margin topmargin-sm" style="float: none" ><?=$x?>
-                                <input id="sandali<?=$x?>" type="checkbox" name="sandali[<?=$x?>]"  value="<?=$x?>">
-                            </label>
-                        <?endforeach; ?>
+
                         </div>
                             <div class="col_full">
 

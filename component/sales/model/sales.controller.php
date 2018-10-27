@@ -290,6 +290,7 @@ $resultsandali=$sandali->getByFilter($fildes);
         ($fields['event_id'],$objPosition['parent_id'],$fields['position'],$fields['time'],0)
             ->getList();
 
+
         $sandalipor=array();
 
         foreach ($objSales['export']['list'] as $userSandali => $v):
@@ -299,9 +300,10 @@ $resultsandali=$sandali->getByFilter($fildes);
         endforeach;
         $sandalipor = array_unique($sandalipor);
 
-        for ($x=$objPosition['min_sandali'];$x<$objPosition['max_sandali'] ;$x++){
+        for ($x=$objPosition['min_sandali'];$x<=$objPosition['max_sandali'] ;$x++){
             $sandalikhali[]=$x;
         }
+
         $result=array_diff($sandalikhali,$sandalipor);
 
 

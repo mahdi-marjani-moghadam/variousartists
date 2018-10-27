@@ -52,10 +52,11 @@
                                         </div>
                                     </div>
                                     <div class="col_full">
-
+                                        <? if($invoice['status'] == 0): ?>
                                         <div class="form-group form-actions center">
                                             <input type="submit" class="btn  btn-success btn-default  text-white text-16" value="  پرداخت آنلاین (بانک پاسارگاد) ">
                                         </div><!--/form-group-->
+                                        <? endif; ?>
                                     </div>
                                 </form>
                             </div>

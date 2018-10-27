@@ -105,23 +105,27 @@
                                                 class="icon-caret-right"></i>
                                         <span><div class="icon-line2-bell"></div> لیست رویدادها</span>
                                     </a></li>
-                                <li><a href="<?= RELA_DIR ?>account/editProfile"
-                                       class="button  button-reveal  button-border tright"><i
-                                                class="icon-caret-right"></i>
-                                        <span><div class="icon icon-user"></div> مشخصات من</span>
-                                    </a></li>
+
+
                                 <li><a href="#"
                                        class="button  button-reveal  button-border tright"><i
                                                 class="icon-caret-right"></i>
                                         <span><div class="icon icon-money"></div> Donate</span>
                                     </a></li>
                                     <? else:?>
+
                                     <li><a href="<?= RELA_DIR ?>sales/invoice"
                                            class="button  button-reveal  button-border tright"><i
                                                     class="icon-caret-right"></i>
-                                            <span><div class="icon-line-clipboard"></div>سبد خرید</span>
+                                            <span><div class="icon-line-clipboard"></div>فاکتورها</span>
                                         </a></li>
                                 <? endif;?>
+
+                                <li><a href="<?= RELA_DIR ?>account/editProfile"
+                                       class="button  button-reveal  button-border tright"><i
+                                                class="icon-caret-right"></i>
+                                        <span><div class="icon icon-user"></div> مشخصات من</span>
+                                    </a></li>
                             </ul>
                         </div>
                     </div>

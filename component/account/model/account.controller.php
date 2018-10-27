@@ -780,6 +780,7 @@ class accountController
 
 
         $account = artists::find($fields['Artists_id']);
+
         if(!is_object($account))
         {
             redirectPage(RELA_DIR,$account['msg']);
@@ -794,7 +795,10 @@ class accountController
         $account->setFields($fields);
 
         $result = $account->validator();
-
+        $account->state_id = 0;
+        $account->date = date('Y-m-d H:i:s');
+        $account->birthday = date('Y-m-d H:i:s');
+        $account->priority = 1;
         $account->save();
 
 

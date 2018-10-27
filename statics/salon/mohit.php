@@ -18,15 +18,19 @@
         if(input.is(':checked')){
             input.prop('checked',false);
             $(this).css({'fill':'#FCFCFC','opacity':'.5'});
-
         }else{
             input.prop('checked',true);
             $(this).css({'fill':'#1790b1','opacity':'.8'});
         }
-
     });
 </script>
 
 
 
-1<input type="checkbox" data-item="tbl1" >
+
+<?php  foreach ($list['sandali'] as $k => $x):?>
+    <label for="sandali<?=$x?>" class="btn-default btn margin topmargin-sm" style="float: none" ><?=$x?>
+        <input id="sandali<?=$x?>"  data-item="tbl<?=$k?>" type="checkbox" name="sandali[<?=$x?>]"  value="<?=$x?>">
+    </label>
+<?endforeach; ?>
+
