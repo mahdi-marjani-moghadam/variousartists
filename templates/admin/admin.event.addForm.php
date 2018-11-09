@@ -82,25 +82,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="display: none" class="col-xs-12 col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="brief_description_fa">توضیحات مختصر(فارسی):</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="brief_description_fa" id="brief_description_fa"  value="<?= $list['brief_description_fa'] ?>">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row xsmallSpace hidden-xs"></div>
-                        <div class="row">
                             <div  class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_name_en">نام رویداد(انگلیسی):</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="event_name_en" id="event_name_en" required value="<?= $list['event_name_en'] ?>">
+                                        <input type="text" class="form-control ltr" name="event_name_en" id="event_name_en" required value="<?= $list['event_name_en'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -211,7 +198,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control  date" name="date" id="date" required value="<?= ($list['date']!=""? convertDate($list['date']):"") ?>">
+                                        <input autocomplete="off" type="text" class="form-control  date" name="date" id="date" required value="<?= ($list['date']!=""? convertDate($list['date']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -232,7 +219,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control date" name="date2" id="date2"  value="<?= ($list['date2']!=""? convertDate($list['date2']):"") ?>">
+                                        <input type="text"  autocomplete="off" class="form-control date" name="date2" id="date2"  value="<?= ($list['date2']!=""? convertDate($list['date2']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -253,7 +240,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date3">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control  date" name="date3" id="date3"  value="<?= ($list['date3']!=""? convertDate($list['date3']):"")?>">
+                                        <input type="text" autocomplete="off" class="form-control  date" name="date3" id="date3"  value="<?= ($list['date3']!=""? convertDate($list['date3']):"")?>">
                                     </div>
                                 </div>
                             </div>

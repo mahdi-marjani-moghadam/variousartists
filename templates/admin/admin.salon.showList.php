@@ -81,8 +81,13 @@
                             <td><?php echo $fields['address']; ?></td>
                             <td> :از<?php echo $fields['min_sandali']; ?> تا: <? echo $fields['max_sandali'];?></td>
 
-                            <td style="" dir="ltr" align="center">
-                                <img height="60px" src="<?=RELA_DIR?>statics/salon/<?= $fields['image'] ?>"/>
+                            <td style="" dir="ltr" align="">
+                                <div class="col-md-6">
+                                    <img height="" class="img-responsive" src="<?=RELA_DIR?>statics/salon/<?= $fields['image'] ?>"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <? include(ROOT_DIR.'statics/salon/'.$fields['file']) ?>
+                                </div>
                             </td>
                             <td>
                                 <a href="<?= RELA_DIR ?>zamin/?component=salon&action=edit&id=<?php echo $fields['Salon_id']; ?>">ویرایش</a>

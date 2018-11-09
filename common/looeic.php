@@ -608,6 +608,7 @@ class looeic
         $conn = dbConn::getConnection();
         $sql = "
                     INSERT INTO ".$this->TABLE_NAME."( ".$sql_key ." ) VALUES ( ".$sql_val." ) ";
+        print_r_debug($sql);
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);

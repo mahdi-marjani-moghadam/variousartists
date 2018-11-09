@@ -62,7 +62,7 @@
 
                 <li>
                     <a href="#">
-                        <i class="sidebar-icon fa fa-adn"></i>
+                        <i class="sidebar-icon fa fa-user"></i>
                         <span class="sidebar-text"> هنرمندان</span>
                         <b class="fa fa-angle-left"></b>
                     </a>
@@ -70,6 +70,20 @@
                         <li>
                             <a href="<?=RELA_DIR; ?>zamin/?component=artists">
                                 <span class="sidebar-text text-16">لیست هنرمندان</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="sidebar-icon fa fa-users"></i>
+                        <span class="sidebar-text">اعضا</span>
+                        <b class="fa fa-angle-left"></b>
+                    </a>
+                    <ul class="sidebar-child animated fadeInRight">
+                        <li>
+                            <a href="<?=RELA_DIR; ?>zamin/?component=membership">
+                                <span class="sidebar-text text-16">لیست اعضا</span>
                             </a>
                         </li>
                     </ul>

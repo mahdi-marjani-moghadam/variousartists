@@ -6,13 +6,11 @@
 
     .fill{'fill':'#1790b1','opacity':'.8'}
 </style>
-<? include_once('all1.svg') ?>
+<? include('mohit-1.svg') ?>
 <script>
-    $('.st0 , .st1').click(function (e) {
-
+    $('.st1').click(function (e) {
         //$(this).css({'fill':'#1790b1','opacity':'.8'});
         //$(this).addClass('fill');
-
         var id = $(this).attr('id');
         var input = $('input[data-item='+id+']');
         if(input.is(':checked')){
@@ -23,14 +21,33 @@
             $(this).css({'fill':'#1790b1','opacity':'.8'});
         }
     });
+
+
 </script>
 
 
-
-
 <?php  foreach ($list['sandali'] as $k => $x):?>
-    <label for="sandali<?=$x?>" class="btn-default btn margin topmargin-sm" style="float: none" ><?=$x?>
-        <input id="sandali<?=$x?>"  data-item="tbl<?=$k?>" type="checkbox" name="sandali[<?=$x?>]"  value="<?=$x?>">
+    <label  for="sandali<?=$x?>" class="btn-default btn margin topmargin-sm" style="display: none" ><?=$x?>
+        <input id="sandali<?=$x?>" class="sandali"  data-item="tbl<?=$k+1?>" type="checkbox" name="sandali[<?=$x?>]"  value="<?=$x?>">
     </label>
 <?endforeach; ?>
 
+
+<script>
+    $(document).ready(function (e) {
+        $('.st1').each(function (i,item) {
+            var notExist = 0;
+
+            $('.sandali').each(function (j,chair) {
+                if(item.id === $(this).data('item'))
+                {
+                    notExist++;
+                }
+            });
+            if(notExist === 0){
+                console.log(item.id + ' not exit');
+                $('#'+item.id).css({'fill':'#1790b1','opacity':'.8'});
+            }
+        });
+    });
+</script>

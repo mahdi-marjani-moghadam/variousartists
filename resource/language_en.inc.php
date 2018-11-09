@@ -1415,3 +1415,6 @@ define("bio_fa","Biography(persian): ");
 define("bio_en","Biography(english): ");
 define("own_image","Picture");
 define("picture_is_square_and_jpeg","Picture is square by jpg format");
+define("category_id_not_empty","Category id is not empty");
+define("password_not_empty","Password is not empty");
+define("please_login_before_choose_chair","Please login before choose chair ");

@@ -237,10 +237,10 @@ class adminLoginModel
         if ($result['result'] != 1) {
             return $result;
         }
-        $_SESSION["sessionID"] = $this->encrypt($result['export']['insert_id'], $this->GetHash());
+        $_SESSION["sessionIDAdmin"] = $this->encrypt($result['export']['insert_id'], $this->GetHash());
         /*$_SESSION["adminUsername"] = $obj->name . " " . $obj->family;*/
         //remember me
-        setcookie("sessionID", $_SESSION["sessionID"], time() + 3600000000000, "/", $_SERVER['HTTP_HOST']);
+        setcookie("sessionIDAdmin", $_SESSION["sessionIDAdmin"], time() + 3600000000000, "/", $_SERVER['HTTP_HOST']);
 
         $admin_info = $this->checkLogin();
 
@@ -255,16 +255,16 @@ class adminLoginModel
     {
         include_once(dirname(__FILE__) . "/admin.login.model.db.php");
 
-        if (!isset($_SESSION["sessionID"])) {
-            if (!isset($_COOKIE["sessionID"])) {
+        if (!isset($_SESSION["sessionIDAdmin"])) {
+            if (!isset($_COOKIE["sessionIDAdmin"])) {
                 $result['result'] = -1;
                 $result['no'] = 1;
                 $result['msg'] = 'This Record was Not Found';
             } else {
-                $sessionID = $this->decrypt($_COOKIE["sessionID"], $this->GetHash());
+                $sessionID = $this->decrypt($_COOKIE["sessionIDAdmin"], $this->GetHash());
             }
         } else {
-            $sessionID = $this->decrypt($_SESSION["sessionID"], $this->GetHash());
+            $sessionID = $this->decrypt($_SESSION["sessionIDAdmin"], $this->GetHash());
         }
 
 
@@ -289,16 +289,16 @@ class adminLoginModel
     function logout()
     {
 
-        if (isset($_SESSION["sessionID"])) {
-            $sessionID = $this->decrypt($_SESSION["sessionID"], $this->GetHash());
+        if (isset($_SESSION["sessionIDAdmin"])) {
+            $sessionID = $this->decrypt($_SESSION["sessionIDAdmin"], $this->GetHash());
 
-            setcookie("sessionID", $sessionID, time() - 10000, "/", $_SERVER['HTTP_HOST']);
+            setcookie("sessionIDAdmin", $sessionID, time() - 10000, "/", $_SERVER['HTTP_HOST']);
 
 
-        } elseif (isset($_COOKIE["sessionID"])) {
-            $sessionID = $this->decrypt($_COOKIE["sessionID"], $this->GetHash());
+        } elseif (isset($_COOKIE["sessionIDAdmin"])) {
+            $sessionID = $this->decrypt($_COOKIE["sessionIDAdmin"], $this->GetHash());
 
-            setcookie("sessionID", $sessionID, time() - 10000, "/", $_SERVER['HTTP_HOST']);
+            setcookie("sessionIDAdmin", $sessionID, time() - 10000, "/", $_SERVER['HTTP_HOST']);
 
         }
         $result = adminLoginModelDb::deleteSessionWithSession_id($sessionID);

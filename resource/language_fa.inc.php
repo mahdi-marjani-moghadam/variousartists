@@ -1,6 +1,5 @@
 <?php
 define("username", "نام کاربری");
-define("password", "رمز عبور");
 define("artists_name", "نام کامل");
 define("EXIST_USER", "این نام کاربری وجود دارد");
 
@@ -1431,4 +1430,5 @@ define("own_image","تصویر:");
 define("picture_is_square_and_jpeg","تصویر مربع با فرمت jpg");
 define("category_id_not_empty","گروه می بایست انتخاب شود.");
 define("password_not_empty","پسورد می بایست پر شود.");
+define("please_login_before_choose_chair","لطفا قبل از انتخاب صندلی لاگین نمایید.");
 

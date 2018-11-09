@@ -901,8 +901,8 @@ class memberLogIn
            // TODO: sms panel
        }
 
-
        $obj1->forgot_code = $code;
+
        if($obj1->date == ''){
            $obj1->date = date('Y-m-d H:i:s');
        }
@@ -912,8 +912,8 @@ class memberLogIn
        if($obj1->state_id == ''){
            $obj1->state_id = 1;
        }
-
        $obj1->save();
+
 
 
 

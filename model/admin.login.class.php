@@ -57,7 +57,7 @@ class adminLogin
 	function login() 
 	{
 		global $admin_info, $messageStack,$company_info;
-
+        die();
         $db = new dbConn();
         $db = $db->getConnection();
 
@@ -74,7 +74,7 @@ class adminLogin
 			//redirectPage($_SERVER['HTTP_REFERER'],"");
 		}
 
-        $sql = "DELETE FROM sessions WHERE last_access_time < (NOW()-3000000)";
+        $sql = "DELETE FROM sessions_admin WHERE last_access_time < (NOW()-3000000)";
 
         $db->query($sql);
 
@@ -103,13 +103,13 @@ class adminLogin
 		elseif($count)
 		{
 			
-			$sql = "DELETE FROM sessions WHERE admin_id='". $obj->admin_id . "'";
+			$sql = "DELETE FROM sessions_admin WHERE admin_id='". $obj->admin_id . "'";
             $db->exec($sql);
 			$sql = "DELETE FROM login_as WHERE admin_id='". $obj->admin_id . "'";
 			$db->exec($sql);
 
 			$sql = "
-					  insert into sessions(admin_id,comp_id,remote_addr,last_access_time)
+					  insert into sessions_admin(admin_id,comp_id,remote_addr,last_access_time)
 			  values
 			  		  (" . $obj->admin_id . ",'".$obj->comp_id."', '". $_SERVER["REMOTE_ADDR"] . "', '" .getDateTime(). "')";
 			$rs = $db->query($sql);
@@ -119,16 +119,16 @@ class adminLogin
                 print_r($db->errorInfo());
 			}
 
-			$_SESSION["sessionID"] = $this->encrypt($db->lastInsertId(),$this->GetHash());
+			$_SESSION["sessionIDAdmin"] = $this->encrypt($db->lastInsertId(),$this->GetHash());
 			$_SESSION["adminUsername"] = $obj->name . " " . $obj->family;
 
 			if(isset($remember_me))
 			{
-				setcookie("sessionID",$_SESSION["sessionID"], time()+3600000000000, "/", $_SERVER['HTTP_HOST']);
+				setcookie("sessionIDAdmin",$_SESSION["sessionIDAdmin"], time()+3600000000000, "/", $_SERVER['HTTP_HOST']);
 			}
 			else
 			{
-				setcookie("sessionID", $_SESSION["sessionID"], time()+3600, "/", $_SERVER['HTTP_HOST']);
+				setcookie("sessionIDAdmin", $_SESSION["sessionIDAdmin"], time()+3600, "/", $_SERVER['HTTP_HOST']);
 			}
 			
 			$admin_info = $this->checkLogin();
@@ -147,21 +147,21 @@ class adminLogin
 	{
         global $db;
 
-		if(!isset($_SESSION["sessionID"]))
+		if(!isset($_SESSION["sessionIDAdmin"]))
 		{
-			if(!isset($_COOKIE["sessionID"]))
+			if(!isset($_COOKIE["sessionIDAdmin"]))
 			{
 
 				return -1;
 			}
 			else
 			{
-				$sessionID = $this->decrypt($_COOKIE["sessionID"],$this->GetHash());
+				$sessionID = $this->decrypt($_COOKIE["sessionIDAdmin"],$this->GetHash());
 			}
 		}
 		else
 		{
-			$sessionID = $this->decrypt($_SESSION["sessionID"],$this->GetHash());
+			$sessionID = $this->decrypt($_SESSION["sessionIDAdmin"],$this->GetHash());
 		}
 
 		$row = $db->query("SELECT admin_id FROM sessions_admin WHERE session_id = '$sessionID'");
@@ -195,13 +195,13 @@ class adminLogin
         $db = new dbConn();
         $db = $db->getConnection();
 
-		if(isset($_SESSION["sessionID"]))		
+		if(isset($_SESSION["sessionIDAdmin"]))
 		{
-			$sessionID = $this->decrypt($_SESSION["sessionID"],$this->GetHash());
+			$sessionID = $this->decrypt($_SESSION["sessionIDAdmin"],$this->GetHash());
 			
-			setcookie("sessionID", $sessionID, time()-10000, "/", $_SERVER['HTTP_HOST']);
+			setcookie("sessionIDAdmin", $sessionID, time()-10000, "/", $_SERVER['HTTP_HOST']);
 
-			$sql = "delete from sessions where session_id='$sessionID'";
+			$sql = "delete from sessions_admin where session_id='$sessionID'";
             $rs = $db->query($sql);
 
 			$sql = "delete from login_as where session_id='$sessionID'";
@@ -212,13 +212,13 @@ class adminLogin
                 print_r($db->errorInfo());
             }
 		}
-		elseif(isset($_COOKIE["sessionID"]))		
+		elseif(isset($_COOKIE["sessionIDAdmin"]))
 		{
-			$sessionID = $this->decrypt($_COOKIE["sessionID"],$this->GetHash());
+			$sessionID = $this->decrypt($_COOKIE["sessionIDAdmin"],$this->GetHash());
 			
-			setcookie("sessionID", $sessionID, time()-10000, "/", $_SERVER['HTTP_HOST']);
+			setcookie("sessionIDAdmin", $sessionID, time()-10000, "/", $_SERVER['HTTP_HOST']);
 
-			$sql = "delete from sessions where session_id='$sessionID'";
+			$sql = "delete from sessions_admin where session_id='$sessionID'";
             $rs = $db->query($sql);
 
 			$sql = "delete from login_as where session_id='$sessionID'";

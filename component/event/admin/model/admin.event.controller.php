@@ -82,15 +82,14 @@ class adminEventController
         global $messageStack;
 
 
-
         $event = new adminEventModel();
 
-        $_input['date'] = ($_input['date']!=''?convertJToGDate($_input['date']):'0000-00-00');
-        $_input['date2'] = ($_input['date2']!=''?convertJToGDate($_input['date2']):'0000-00-00');
-        $_input['date3'] = ($_input['date3']!=''?convertJToGDate($_input['date3']):'0000-00-00');
+        $_input['date'] = ($_input['date']!=''?convertJToGDate($_input['date']):NULL);
+        $_input['date2'] = ($_input['date2']!=''?convertJToGDate($_input['date2']):NULL);
+        $_input['date3'] = ($_input['date3']!=''?convertJToGDate($_input['date3']):NULL);
         $_input['category_id'] = ','.implode(',',$_input['category_id'] ).',';
         $_input['salon_id'] = ','.implode(',',$_input['salon_id'] ).',';
-
+        print_r_debug($_input);
         $result = $event->setFields($_input);
 
         if ($result['result'] == -1) {
@@ -98,6 +97,7 @@ class adminEventController
         }
         $event->save();
 
+        print_r_debug($event);
 
         if(file_exists($_FILES['logo']['tmp_name'])){
 
@@ -115,7 +115,7 @@ class adminEventController
             $messageStack->add_session('register', $result['msg']);
             $this->showEventAddForm($_input, $result['msg']);
         }
-        $msg = 'ثبت نام با موفقیت انجام شد.';
+        $msg = ' با موفقیت انجام شد.';
         $messageStack->add_session('register', $msg);
 
         redirectPage(RELA_DIR.'zamin/?component=event', $msg);

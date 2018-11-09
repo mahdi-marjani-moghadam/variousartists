@@ -68,7 +68,7 @@
 
                             <div class="pos1 ">
 
-                                <? include_once(ROOT_DIR.'statics/salon/'.$list['salon']['file']) ?>
+                                <? include_once(ROOT_DIR.'statics/salon/'.$list['position']['file']) ?>
 
 
                             </div>

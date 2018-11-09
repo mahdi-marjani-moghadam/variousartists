@@ -15,7 +15,14 @@ if(isset($exportType))
 {
     $salesController->exportType=$exportType;
 }
-
+if($member_info == -1){
+    if($PARAM[0]== 'sales'){
+        redirectPage(RELA_DIR.'login',please_login_before_choose_chair);
+    }
+    else{
+        redirectPage($_SERVER['HTTP_REFERER'],please_login_before_choose_chair);
+    }
+}
 
 if($_POST['action'] == 'addSales'){
     $salesController->addSales($_POST);

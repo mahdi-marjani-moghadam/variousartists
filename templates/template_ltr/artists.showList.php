@@ -1,3 +1,15 @@
+<style>
+    .category-detail{        display: none;    }
+    .category-ul h2{ cursor: pointer;}
+</style>
+<script>
+    $(document).ready(function () {
+        $('.category-ul h2').click(function (e) {
+            var div = $(this).next();
+            div.toggle();
+        });
+    });
+</script>
 <!-- Page Title
 		============================================= -->
 <section id="page-title" >
@@ -22,9 +34,14 @@
         <div class="col-xs-12 col-sm-12 col-md-2  ">
             <?php //include_once("categoryList.php");?>
             <nav class=" nobottommargin category-ul">
-                <h3 class="text-center"> </h3>
-                <? echo $list['export']['category'];?>
-                <? echo $list['export']['genre'];?>
+                <h2><?=category?></h2>
+                <div class="category-detail">
+                    <? echo $list['export']['category'];?>
+                </div>
+                <h2><?=genre?></h2>
+                <div class="category-detail">
+                    <? echo $list['export']['genre'];?>
+                </div>
             </nav>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-10 pull-left">
