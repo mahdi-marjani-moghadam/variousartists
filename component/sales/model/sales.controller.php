@@ -44,7 +44,7 @@ class salesController
      */
     public function template($list = [], $msg)
     {
-        // global $conn, $lang;
+         global $member_info;
 
         switch ($this->exportType) {
             case 'html':

@@ -163,26 +163,24 @@ class adminContactusController
     public function showContactusEditForm($fields, $msg)
     {
 
-        $contactus = new adminContactusModel();
+        $contactus=new adminContactusModel();
+        $query = "select * from contactus_content ";
+        $result    = $contactus->getByFilter('',$query);
 
-
-        if (!validator::required($fields['Contactus_id']) and !validator::Numeric($fields['Contactus_id']))
+        if($result['result']!='1')
         {
-            $msg = 'یافت نشد';
-            redirectPage(RELA_DIR . "zamin/index.php?component=contactus", $msg);
+            $msg=$result['msg'];
+            redirectPage(RELA_DIR . "zamin/index.php?component=contactus&action=edit", $msg);
         }
-        $result = $contactus->getContactusById($fields['Contactus_id']);
-
-        if ($result['result'] != '1')
-        {
-            $msg = $result['msg'];
-            redirectPage(RELA_DIR . "zamin/index.php?component=contactus", $msg);
+        $export=$result['export']['list'];
+        foreach ($export as $v){
+            $list[$v['lang']] =$v;
         }
 
-        $export = $contactus->fields;
 
-        $this->fileName = 'admin.contactus.editForm.php';
-        $this->template($export, $msg);
+
+        $this->fileName='admin.contactus.editForm.php';
+        $this->template($list,$msg);
         die();
     }
 
@@ -191,37 +189,17 @@ class adminContactusController
      */
     public function editContactus($fields)
     {
-        $contactus = new adminContactusModel();
+        include_once ROOT_DIR.'component/contactus/admin/model/admin.contactus_content.model.php';
+        $contactus=new contactus_content();
 
-        if (!validator::required($fields['Contactus_id']) and !validator::Numeric($fields['Contactus_id']))
-        {
-            $msg = 'یافت نشد';
-            redirectPage(RELA_DIR . "zamin/index.php?component=contactus", $msg);
-        }
-        $result = $contactus->getContactusById($fields['Contactus_id']);
-        if ($result['result'] != '1')
-        {
-            $msg = $result['msg'];
-            redirectPage(RELA_DIR . "zamin/index.php?component=contactus", $msg);
-        }
+        $result    = $contactus::getBy_lang($fields['language'])->get()['export']['list'][0];
+        $result->setFields($fields);
+        $result->save();
 
 
-        $result = $contactus->setFields($fields);
 
-
-        if ($result['result'] != 1)
-        {
-            $this->showContactusEditForm($fields, $result['msg']);
-        }
-
-        $result = $contactus->edit();
-
-        if ($result['result'] != '1')
-        {
-            $this->showContactusEditForm($fields, $result['msg']);
-        }
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR . "zamin/index.php?component=contactus", $msg);
+        redirectPage(RELA_DIR . "zamin/index.php?component=contactus&action=edit", $msg);
         die();
     }
 

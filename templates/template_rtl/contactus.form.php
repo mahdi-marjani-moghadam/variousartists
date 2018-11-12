@@ -102,14 +102,8 @@
                 ============================================= -->
                 <div class="col_two_fifth">
                     <div class="col-md-12">
-                    <address>
-                        <strong>اطلاعات تماس:</strong><br>
-
-                    </address>
-                    <abbr title="Phone Number"><strong>تلفن:</strong></abbr><br><span dir="ltr"> +۹۸ (۲۱) ۲۲۷۶ ۸۱۰۱</span><br>
-                    <abbr title="Email Address"><strong>ایمیل:</strong></abbr><br><span dir="ltr"> info@variousartists.ir</span><br>
-                    <abbr title="Email Address"><strong><img src="<?=TEMPLATE_DIR?>img/whatsapp.png" width="30">واتساپ:</strong></abbr><br><span dir="ltr"> +۹۸ (۹۱۹) ۳۱۱ ۰۱۹۰</span><br>
-                    <abbr title="Email Address"><strong> <img style="margin: 0 4px" src="<?=TEMPLATE_DIR?>img/telegram.png" width="20"> تلگرام: </strong></abbr><br><span dir="ltr"><a href="https://telegram.me/VariousArtist"> https://telegram.me/VariousArtist </a></span>
+                        <?php echo (strlen($list['text1']) ? $list['text1'] : ""); ?>
+                        <?php echo (strlen($list['text2']) ? $list['text2'] : ""); ?>
                     </div>
                 </div><!-- Contact Info End -->
 

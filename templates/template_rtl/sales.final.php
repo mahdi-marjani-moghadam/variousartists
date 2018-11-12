@@ -48,7 +48,7 @@
                                     <br>
                                     <li><i class="icon-calculator"></i>جمع فاکتور:    </li>
                                    <br>
-                                    <li><i class="icon-paypal"></i>درگاه پرداخت : بانک پاسارگاد    </li>
+                                    <li><i class="icon-paypal"></i>درگاه پرداخت : بانک اقتصاد نوین    </li>
                                     </li><br>
                                     <br><br><br>   </ul>
                                </div>

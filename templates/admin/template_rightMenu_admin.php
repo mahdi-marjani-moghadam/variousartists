@@ -63,7 +63,7 @@
                 <li>
                     <a href="#">
                         <i class="sidebar-icon fa fa-user"></i>
-                        <span class="sidebar-text"> هنرمندان</span>
+                        <span class="sidebar-text">اعضا</span>
                         <b class="fa fa-angle-left"></b>
                     </a>
                     <ul class="sidebar-child animated fadeInRight">
@@ -72,15 +72,6 @@
                                 <span class="sidebar-text text-16">لیست هنرمندان</span>
                             </a>
                         </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="sidebar-icon fa fa-users"></i>
-                        <span class="sidebar-text">اعضا</span>
-                        <b class="fa fa-angle-left"></b>
-                    </a>
-                    <ul class="sidebar-child animated fadeInRight">
                         <li>
                             <a href="<?=RELA_DIR; ?>zamin/?component=membership">
                                 <span class="sidebar-text text-16">لیست اعضا</span>
@@ -88,6 +79,7 @@
                         </li>
                     </ul>
                 </li>
+
                 <li>
                     <a href="#">
                         <i class="sidebar-icon fa fa-adn"></i>
@@ -100,57 +92,51 @@
                                 <span class="sidebar-text text-16">لیست رویدادها</span>
                             </a>
                         </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="sidebar-icon fa fa-image"></i>
-                        <span class="sidebar-text">بنر</span>
-                        <b class="fa fa-angle-left"></b>
-                    </a>
-                    <ul class="sidebar-child animated fadeInRight">
                         <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=banner">
-                                <span class="sidebar-text text-16">لیست بنر</span>
+                            <a href="<?=RELA_DIR; ?>zamin/?component=shop">
+                                <span class="sidebar-text text-16">فروش</span>
                             </a>
                         </li>
                     </ul>
                 </li>
+
+
                 <li>
                     <a href="#">
-                        <i class="sidebar-icon fa fa-list"></i>
-                        <span class="sidebar-text">خدمات</span>
+                        <i class="sidebar-icon fa fa-info"></i>
+                        <span class="sidebar-text">تنظیمات</span>
                         <b class="fa fa-angle-left"></b>
                     </a>
                     <ul class="sidebar-child animated fadeInRight">
+                        <li>
+                            <a href="<?=RELA_DIR; ?>zamin/?component=contactus">
+                                <span class="sidebar-text text-16">Inbox</span>
+                            </a>
+                        </li><!--/child-item-->
+                        <li>
+                            <a href="<?=RELA_DIR; ?>zamin/?component=banner">
+                                <span class="sidebar-text text-16"> بنر</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?=RELA_DIR; ?>zamin/?component=contactus&action=edit">
+                                <span class="sidebar-text text-16">تماس با ما</span>
+                            </a>
+                        </li><!--/child-item-->
+                        <li>
+                            <a href="<?=RELA_DIR; ?>zamin/?component=aboutus&action=addAboutus">
+                                <span class="sidebar-text text-16"> درباره ما</span>
+                            </a>
+                        </li><!--/child-item-->
                         <li>
                             <a href="<?=RELA_DIR; ?>zamin/?component=services">
                                 <span class="sidebar-text text-16">ویرایش خدمات</span>
                             </a>
                         </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="sidebar-icon fa fa-info"></i>
-                        <span class="sidebar-text">درباره ما</span>
-                        <b class="fa fa-angle-left"></b>
-                    </a>
-                    <ul class="sidebar-child animated fadeInRight">
-                        <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=aboutus&action=addAboutus">
-                                <span class="sidebar-text text-16"> ویرایش</span>
-                            </a>
-                        </li><!--/child-item-->
                     </ul><!--/sidebar-child-->
                 </li><!--/sidebar-item-->
 
-                <li>
-                    <a href="<?=RELA_DIR; ?>zamin/?component=contactus">
-                        <i class="sidebar-icon fa fa-envelope"></i>
-                        <span class="sidebar-text">تماس با ما</span>
-                    </a>
-                </li><!--/sidebar-item-->
+
             </ul><!--/sidebar-->
         </aside><!--/side-left-->
 

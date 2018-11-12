@@ -199,6 +199,7 @@ class eventController
 
         $count = 0;
         $temp='';
+
         foreach ($calendar['export']['list'] as $k => $v)
         {
             if($v['date']!='0000-00-00')
@@ -211,24 +212,24 @@ class eventController
             }
             if( $v['date2']!='0000-00-00' && $v['date2'] != $v['date'])
             {
-                    $temp[$count]['start'] = $v["date2"];
-                    $temp[$count]['title'] = $v["event_name_$lang"];
-                    $temp[$count]['color'] = '#ffad33';
-                    $temp[$count]['url'] = RELA_DIR . 'event/Detail/' . $v['Event_id'] . '/' . $v["event_name_$lang"];
-                    $count =$count+1;
+                $temp[$count]['start'] = $v["date2"];
+                $temp[$count]['title'] = $v["event_name_$lang"];
+                $temp[$count]['color'] = '#ffad33';
+                $temp[$count]['url'] = RELA_DIR . 'event/Detail/' . $v['Event_id'] . '/' . $v["event_name_$lang"];
+                $count =$count+1;
             }
             if( $v['date3']!='0000-00-00' && $v['date3'] != $v['date'] && $v['date3'] != $v['date2'])
             {
-                    $temp[$count]['start'] = $v["date3"];
-                    $temp[$count]['title'] = $v["event_name_$lang"];
-                    $temp[$count]['color'] = '#ffad33';
-                    $temp[$count]['url'] = RELA_DIR . 'event/Detail/' . $v['Event_id'] . '/' . $v["event_name_$lang"];
-                    $count = $count + 1;
+                $temp[$count]['start'] = $v["date3"];
+                $temp[$count]['title'] = $v["event_name_$lang"];
+                $temp[$count]['color'] = '#ffad33';
+                $temp[$count]['url'] = RELA_DIR . 'event/Detail/' . $v['Event_id'] . '/' . $v["event_name_$lang"];
+                $count = $count + 1;
             }
         }
 
         $export['calendar'] = json_encode($temp);
-        //print_r_debug(json_decode($export['calendar']));
+        //print_r_debug($export['calendar']);
 
         ///////////////// article
         /*include_once ROOT_DIR.'/component/article/model/article.model.php';

@@ -34,9 +34,7 @@ switch ($_GET['action'])
             $contactusController->showContactusAddForm('','');
         }
         break;
-    case 'editContactus':
-
-
+    case 'edit':
         if(isset($_POST['action']) & $_POST['action']=='edit')
         {
 
@@ -44,8 +42,7 @@ switch ($_GET['action'])
         }
         else
         {
-            $input['Contactus_id']=$_GET['id'];
-            $contactusController->showContactusEditForm($input, '');
+            $contactusController->showContactusEditForm('');
         }
         break;
     case 'deleteContactus':

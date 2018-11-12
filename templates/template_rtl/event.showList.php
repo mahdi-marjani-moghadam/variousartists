@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="<?=TEMPLATE_DIR?>css/calendar.css" type="text/css" />
-<div class="parallax bottommargin-lg dark" style="padding: 60px 0; /*background-image: url('<?//=TEMPLATE_DIR?>img/calendar.jpg'); background-repeat: repeat-y;*/ height: auto;" data-stellar-background-ratio="0.3">
+<div class="parallax bottommargin-lg dark" style="padding: 60px 0; height: auto;" data-stellar-background-ratio="0.3">
 
     <div class="container clearfix">
         <script type="text/javascript" src="<?=TEMPLATE_DIR?>js/jquery.js"></script>
@@ -31,7 +31,7 @@
                     buttonIcons: false, // show the prev/next text
                     //weekNumbers: true,
                     navLinks: true, // can click day/week names to navigate views
-                    editable: true,
+                    editable: false,
                     eventLimit: true, // allow "more" link when too many events
                     events:<?=$list['calendar']?>//,
                 });
@@ -39,6 +39,7 @@
             });
 
         </script>
+
         <div id='fullcalendar'></div>
 
     </div>

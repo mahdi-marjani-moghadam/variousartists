@@ -115,14 +115,18 @@ class contactusController
     public function showContactusForm($_input, $msg)
     {
         // breadcrumb
-        global $breadcrumb;
+        global $breadcrumb,$lang;
+
+        include_once ROOT_DIR.'component/contactus/admin/model/admin.contactus_content.model.php';
+        $obj = contactus_content::getAll()->where('lang','=',$lang)->getList()['export']['list'][0];
+
         $breadcrumb->reset();
         $breadcrumb->add('تماس با ما');
         $export['list'] = $_input;
         $export['breadcrumb'] = $breadcrumb->trail();
 
         $this->fileName = 'contactus.form.php';
-        $this->template($export, $msg);
+        $this->template($obj, $msg);
         die();
     }
 }

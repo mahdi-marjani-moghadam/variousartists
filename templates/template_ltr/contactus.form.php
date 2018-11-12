@@ -102,14 +102,8 @@
                 ============================================= -->
                 <div class="col_two_fifth">
                     <div class="col-md-12">
-                        <address>
-                            <strong>Contact information:</strong><br>
-
-                        </address>
-                        <abbr title="Phone Number"><strong>Phone:</strong></abbr><br><span dir="ltr"> +98 (21) 22768101</span><br>
-                        <abbr title="Email Address"><strong>Email:</strong></abbr><span dir="ltr"> info@variousartists.ir</span>
-                        <abbr title="Email Address"><strong><img src="<?=TEMPLATE_DIR?>img/whatsapp.png" width="30"> WhatsApp:</strong></abbr><br><span dir="ltr">+98 (919) 3110190</span><br>
-                        <abbr title="Email Address"><strong><img style="margin: 0 4px" src="<?=TEMPLATE_DIR?>img/telegram.png" width="20"> Telegram:</strong></abbr><br><span dir="ltr"><a href="https://telegram.me/VariousArtist"> https://telegram.me/VariousArtist </a></span>
+                        <?php echo (strlen($list['text1']) ? $list['text1'] : ""); ?>
+                        <?php echo (strlen($list['text2']) ? $list['text2'] : ""); ?>
                     </div>
                 </div><!-- Contact Info End -->
 
