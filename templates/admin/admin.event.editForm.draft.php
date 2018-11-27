@@ -35,18 +35,17 @@
         return false;
     }
 </script>
-
 <div class="content-control">
     <!--control-nav-->
     <ul class="control-nav pull-right">
-        <li><a class="rtl text-24"><i class="sidebar-icon fa fa-adn"></i> افزودن رویداد جدید</a></li>
+        <li><a class="rtl text-24"><i class="sidebar-icon fa fa-adn"></i> ویرایش رویداد</a></li>
     </ul><!--/control-nav-->
 </div><!-- /content-control -->
 
 <div class="content-body">
     <div id="panel-tablesorter" class="panel panel-warning">
         <div class="panel-heading bg-white">
-            <h3 class="panel-title rtl">رویداد جدید</h3>
+            <h3 class="panel-title rtl">جزییات</h3>
             <div class="panel-actions">
                 <button data-expand="#panel-tablesorter" title="" class="btn-panel rtl" data-original-title="تمام صفحه">
                     <i class="fa fa-expand"></i>
@@ -59,7 +58,7 @@
         </div><!-- /panel-heading -->
 
         <?php if($msg != null)
-        {?>
+        { ?>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
                 <?= $msg ?>
             </div>
@@ -68,10 +67,10 @@
         ?>
         <div class="panel-body">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-8 center-block">
+                <div class="col-xs-12 col-sm-12 col-md-8  center-block">
                     <form name="queue" id="queue" role="form" data-validate="form" enctype="multipart/form-data"  class="form-horizontal form-bordered"
                           novalidate="novalidate" method="post">
-
+                        <input name="Event_id" type="hidden"  value="<?=$list['Event_id'];?>"/>
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
@@ -82,45 +81,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div  class="col-xs-12 col-sm-12 col-md-6">
+
+                        </div>
+
+                        <div class="row xsmallSpace hidden-xs"></div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_name_en">نام رویداد(انگلیسی):</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control ltr" name="event_name_en" id="event_name_en" required value="<?= $list['event_name_en'] ?>">
+                                        <input type="text" class="form-control" name="event_name_en" id="event_name_en" required value="<?= $list['event_name_en'] ?>">
                                     </div>
                                 </div>
                             </div>
-                            <div style="display: none"  class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="brief_description_en">توضیحات مختصر(انگلیسی):</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
 
-
-                                        <?php
-
-                                        include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
-                                        include_once ROOT_DIR.'common/ckfinder/ckfinder.php';
-                                        $ckeditor = new CKEditor();
-                                        $ckeditor->basePath = RELA_DIR.'common/ckeditor/';
-
-
-
-
-                                        $config['language'] = 'fa';
-                                        $config['filebrowserBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html';
-                                        $config['filebrowserImageBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html?type=Images';
-                                        $config['filebrowserUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
-                                        $config['filebrowserImageUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
-
-                                        $tt = $ckeditor->editor('description_en',$list['description_en'],$config);
-
-                                        echo $tt;
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="row xsmallSpace hidden-xs"></div>
                         <div class="row">
@@ -129,6 +104,8 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="description_fa">توضیحات (فارسی):</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+
+
                                         <?php
 
                                         include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
@@ -150,6 +127,9 @@
                                         echo $tt;
                                         ?>
 
+
+
+
                                     </div>
                                 </div>
                             </div>
@@ -158,6 +138,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="description_en">توضیحات(انگلیسی):</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+
                                         <?php
 
                                         include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
@@ -174,15 +155,18 @@
                                         $config['filebrowserUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
                                         $config['filebrowserImageUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
 
-                                        $tt2 = $ckeditor->editor('description_en2',$list['description_en2'],$config);
+                                        $tt = $ckeditor->editor('description_en',$list['description_en'],$config);
 
-                                        echo $tt2;
+                                        echo $tt;
                                         ?>
+
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row xsmallSpace hidden-xs"></div>
+
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
@@ -198,7 +182,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input autocomplete="off" type="text" class="form-control  date" name="date" id="date" required value="<?= ($list['date']!=""? convertDate($list['date']):"") ?>">
+                                        <input type="text" class="form-control  date" name="date" id="date" required value="<?= ($list['date']!="0000-00-00"? convertDate($list['date']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -219,7 +203,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text"  autocomplete="off" class="form-control date" name="date2" id="date2"  value="<?= ($list['date2']!=""? convertDate($list['date2']):"") ?>">
+                                        <input type="text" class="form-control date" name="date2" id="date2"  value="<?= ($list['date2']!="0000-00-00"? convertDate($list['date2']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -240,16 +224,19 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date3">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" autocomplete="off" class="form-control  date" name="date3" id="date3"  value="<?= ($list['date3']!=""? convertDate($list['date3']):"")?>">
+                                        <input type="text" class="form-control  date" name="date3" id="date3"  value="<?= ($list['date3']!="0000-00-00"? convertDate($list['date3']):"")?>">
                                     </div>
                                 </div>
                             </div>
 
                         </div>
 
-                        <div class="row xsmallSpace hidden-xs"></div>
-                        <div class="row">
 
+
+
+
+
+                        <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
@@ -261,7 +248,7 @@
                                             {
                                                 ?>
                                                 <option <?php echo in_array($value['Salon_id'], $list['salon_id']) ? 'selected' : '' ?>
-                                                    value="<?= $value['Salon_id'] ?>">
+                                                        value="<?= $value['Salon_id'] ?>">
                                                     <?= $value['title_'.$lang] ?>
                                                 </option>
                                                 <?
@@ -271,6 +258,8 @@
                                     </div>
                                 </div>
                             </div>
+
+
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
@@ -282,7 +271,7 @@
                                             {
                                                 ?>
                                                 <option <?php echo in_array($value['Category_id'], $list['category_id']) ? 'selected' : '' ?>
-                                                        value="<?= $value['Category_id'] ?>">
+                                                    value="<?= $value['Category_id'] ?>">
                                                     <?= $value['export'] ?>
                                                 </option>
                                                 <?
@@ -297,7 +286,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="genre_id">سبک:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <select name="genre_id[]" id="genre_id" data-input="select2" multiple autocomplete="off" >
+                                        <select name="genre_id[]" id="genre_id" data-input="select2"  multiple>
                                             <?
                                             foreach($list['genre'] as $genre_id => $value)
                                             {
@@ -313,11 +302,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                        </div>
-                        <div class="row xsmallSpace hidden-xs"></div>
-                        <div class="row">
-                            <!-- city -->
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
@@ -327,19 +311,23 @@
                                     </div>
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="row xsmallSpace hidden-xs"></div>
+                        <div class="row">
+                            <!-- city -->
                             <div class="col-xs-12 col-sm-12 col-md-6" style="display: none">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="city_id">انتخاب شهر:</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                        <? ?>
                                         <select name="city_id" id="city_id" data-input="select2">
 
                                             <?
                                             foreach($list['provinces'] as $province_id => $value)
                                             {?>
                                             <option
-                                                <?= $value['province_id'] == $list['province_id'] ? 'selected' : '' ?>
+                                                <?= $value['province_id'] == $list['city_id'] ? 'selected' : '' ?>
                                                 value="<?= $value['province_id'] ?>">
                                                 <?= $value["name_$lang"] ?>
                                                 </option><?
@@ -349,7 +337,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
@@ -359,6 +346,7 @@
                                     </div>
                                 </div>
                             </div>
+
 
                         </div>
 
@@ -436,7 +424,9 @@
                                            for="xImagePath">تصویر:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
                                         <div class="input-group" dir="ltr">
-                                            <input type="file" class="form-control"name="logo" >
+                                            <input type="file" class="form-control" name="logo" >
+                                            <img class="img-thumbnail" src="<?=RELA_DIR?>statics/event/<?= $list['logo'] ?>">
+
                                         </div>
 
 
@@ -480,13 +470,10 @@
                             <div class="col-md-12">
                                 <p class="pull-right">
                                     <button type="submit" name="update" id="submit"
-                                            class="btn btn-icon btn-success rtl"><input name="action" type="hidden" id="action" value="add"/>
+                                            class="btn btn-icon btn-success rtl"><input name="action" type="hidden" id="action" value="edit"/>
                                         <i class="fa fa-plus"></i>
                                         ثبت
                                     </button>
-                                    <button type="submit" name="update" id="submit"
-                                            class="btn btn-icon btn-default rtl"><input name="action" type="hidden" id="action" value="addDraft"/>
-                                        <i class="fa fa-plus"></i>ذخیره در پیش نویس</button>
                                 </p>
                             </div>
                         </div>
@@ -496,6 +483,3 @@
         </div>
     </div>
 </div>
-
-
-

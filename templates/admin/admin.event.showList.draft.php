@@ -26,7 +26,7 @@
         var oTable = dataTable.DataTable({
             "processing": true,
             "serverSide": true,
-            "ajax": "<?=RELA_DIR?>zamin/?component=event&action=search&status=<?=$list['status']?>",
+            "ajax": "<?=RELA_DIR?>zamin/?component=event&action=searchDraft&status=<?=$list['status']?>",
             "ordering": false
         });
 
@@ -94,7 +94,7 @@
 <div class="content-control">
     <!--control-nav-->
     <ul class="control-nav pull-right">
-        <li><a class="rtl text-24"><i class="sidebar-icon fa fa-adn"></i> لیست رویدادها</a></li>
+        <li><a class="rtl text-24"><i class="sidebar-icon fa fa-adn"></i> پیش نویس رویدادها</a></li>
     </ul>
     <!--/control-nav-->
 </div>
@@ -105,7 +105,7 @@
     <div class="row xsmallSpace"></div>
     <div id="panel-1" class="panel panel-default border-blue">
         <div class="panel-heading bg-blue">
-            <h3 class="panel-title rtl ">لیست رویدادها</h3>
+            <h3 class="panel-title rtl ">لیست پیش نویس رویدادها</h3>
             <div class="panel-actions">
                 <button data-expand="#panel-1" title="نمایش" class="btn-panel"><i class="fa fa-expand"></i></button>
                 <button data-collapse="#panel-1" title="بازکردن" class="btn-panel"><i class="fa fa-caret-down"></i>
@@ -113,13 +113,8 @@
             </div>
         </div>
         <div class="panel-body">
-            <div class="pull-right"><a href="<?= RELA_DIR ?>zamin/?component=event&action=add"
-                                       class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن
-                    رویداد جدید</a>
-
-                <a href="<?= RELA_DIR ?>zamin/?component=event&action=draft"
-                                           class="btn  btn-sm btn-icon text-13"><i class="fa fa-link"></i>لیست پیش نویس رویدادها</a>
-            </div>
+            <div class="pull-right"><a href="<?= RELA_DIR ?>zamin/?component=event"
+                                       class="btn  btn-sm btn-icon text-13"><i class="fa fa-arrow-circle-left"></i>لیست رویدادها</a></div>
 
 
             <!-- separator -->

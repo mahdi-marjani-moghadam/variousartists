@@ -10,6 +10,51 @@
                 </li><!--/sidebar-item-->
                 <li>
                     <a href="#">
+                        <i class="sidebar-icon fa fa-bell"></i>
+                        <span class="sidebar-text">رویدادها</span>
+                        <b class="fa fa-angle-left"></b>
+                    </a>
+                    <ul class="sidebar-child animated fadeInRight">
+                        <li>
+                            <a href="<?=RELA_DIR; ?>zamin/?component=event">
+                                <span class="sidebar-text text-16">لیست رویدادها</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?=RELA_DIR; ?>zamin/?component=event&action=draft">
+                                <span class="sidebar-text text-16">لیست رویدادهای پیش نویس</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="<?=RELA_DIR; ?>zamin/?component=shop">
+                        <i class="sidebar-icon fa fa-money"></i>
+                        <span class="sidebar-text">فروش</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="sidebar-icon fa fa-user"></i>
+                        <span class="sidebar-text">اعضا</span>
+                        <b class="fa fa-angle-left"></b>
+                    </a>
+                    <ul class="sidebar-child animated fadeInRight">
+                        <li>
+                            <a href="<?=RELA_DIR; ?>zamin/?component=artists">
+                                <span class="sidebar-text text-16">لیست هنرمندان</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?=RELA_DIR; ?>zamin/?component=membership">
+                                <span class="sidebar-text text-16">لیست اعضا</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
                         <i class="sidebar-icon fa fa-tasks"></i>
                         <span class="sidebar-text">دسته بندی</span>
                         <b class="fa fa-angle-left"></b>
@@ -60,45 +105,9 @@
                 </li><!--/sidebar-item-->
 
 
-                <li>
-                    <a href="#">
-                        <i class="sidebar-icon fa fa-user"></i>
-                        <span class="sidebar-text">اعضا</span>
-                        <b class="fa fa-angle-left"></b>
-                    </a>
-                    <ul class="sidebar-child animated fadeInRight">
-                        <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=artists">
-                                <span class="sidebar-text text-16">لیست هنرمندان</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=membership">
-                                <span class="sidebar-text text-16">لیست اعضا</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
-                <li>
-                    <a href="#">
-                        <i class="sidebar-icon fa fa-adn"></i>
-                        <span class="sidebar-text">رویدادها</span>
-                        <b class="fa fa-angle-left"></b>
-                    </a>
-                    <ul class="sidebar-child animated fadeInRight">
-                        <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=event">
-                                <span class="sidebar-text text-16">لیست رویدادها</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=shop">
-                                <span class="sidebar-text text-16">فروش</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+
+
 
 
                 <li>

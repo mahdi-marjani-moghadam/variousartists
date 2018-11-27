@@ -15,16 +15,20 @@ if (isset($exportType)) {
 }
 
 switch ($_GET['action']) {
-    case 'expired':
+    /*case 'expired':
         $eventController->showExpiredList();
         break;
     case 'unverified':
         $eventController->showUnverifiedList();
-        break;
+        break;*/
     case 'add':
+
         if (isset($_POST['action']) & $_POST['action'] == 'add') {
             $eventController->addEvent($_POST);
-        } else {
+        }
+        if (isset($_POST['action']) & $_POST['action'] == 'addDraft') {
+            $eventController->addEventDraft($_POST);
+        }else {
             $eventController->showEventAddForm('', '');
         }
         break;
@@ -37,11 +41,24 @@ switch ($_GET['action']) {
             $eventController->showEventEditForm($input, '');
         }
         break;
+    case 'editDraft':
+        if (isset($_POST['action']) & $_POST['action'] == 'edit') {
+            $eventController->editEventDraft($_POST);
+        } else {
+            $input['Event_id'] = $_GET['id'];
+            $input['showStatus'] = $_GET['showStatus'];
+            $eventController->showEventEditFormDraft($input, '');
+        }
+        break;
     case 'delete':
         checkPermissions('deleteEvent');
         $eventController->deleteEvent($_GET['id']);
         break;
-    case 'call':
+    case 'deleteDraft':
+        checkPermissions('deleteEvent');
+        $eventController->deleteEventDraft($_GET['id']);
+        break;
+    /*case 'call':
         $eventController->call($_POST);
         break;
     case 'importCompanies':
@@ -60,15 +77,18 @@ switch ($_GET['action']) {
         $eventController->importEventAddresses();
         break;
     case 'importEventWebsites':
-        $eventController->importEventWebsites();
+        $eventController->importEventWebsites();*/
         break;
     case 'search':
         $eventController->search($_GET);
         break;
+    case 'searchDraft':
+        $eventController->searchDraft($_GET);
+        break;
     case 'searchGallery':
         $eventController->searchGallery($_GET);
         break;
-    case 'searchExpire':
+    /*case 'searchExpire':
         $eventController->searchExpire($_GET);
         break;
     case 'getEventPhone':
@@ -77,7 +97,7 @@ switch ($_GET['action']) {
         break;
     case 'searchUnverified':
         $eventController->searchUnverified($_GET);
-        break;
+        break;*/
     case 'getCityAjax':
         $eventController->getCityAjax($_POST);
         break;
@@ -96,6 +116,8 @@ switch ($_GET['action']) {
             $eventController->showGalleryAddForm($_GET, '');
         }
         break;
+    case 'draft':
+        $eventController->showListDraft($msg);
         break;
     default:
 

@@ -39,6 +39,22 @@ class adminEventModel extends looeic
 
         return $result;
     }
+    public function getEventDraft($fields)
+    {
+        include_once(dirname(__FILE__) . "/admin.event.model.db.php");
+
+        ///$fields['order']['Event_id'] =
+        $result = adminEventModelDb::getEventDraft($fields);
+
+        if($result['result'] != 1)
+        {
+            return $result;
+        }
+        $this->list = $result['export']['list'];
+        $this->recordsCount = $result['export']['recordsCount'];
+
+        return $result;
+    }
 
     /**
      * get getEventById
@@ -89,4 +105,8 @@ class adminEventModel extends looeic
         return $result;
     }
 
+}
+
+class adminEventDraftModel extends looeic{
+    protected $TABLE_NAME = 'event_draft';
 }

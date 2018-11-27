@@ -981,6 +981,94 @@ class adminEventModelDb
         $result['export']['list'] = $list;
         return $result;
     }
+    public function getEventDraft($fields = '')
+    {
+
+        $conn = dbConn::getConnection();
+
+        include_once ROOT_DIR.'/model/db.inc.class.php';
+
+        $condition = DataBase::filterBuilder($fields);
+
+        $length=$condition['length'];
+        if($condition['list']['order'] =='')
+        {
+            $condition['list']['order']= ' ORDER BY `update_date` DESC ';
+        }
+
+        $sql="
+                select
+                SQL_CALC_FOUND_ROWS
+                `t1`.* FROM
+                 (
+                    SELECT `event_draft`.*
+                    
+                      FROM `event_draft`
+                        ".
+            $fields['where']
+            ."GROUP BY `event_draft`.`Event_id`
+                  ) as t1 "
+            .$condition['list']['useWhere'].$condition['list']['filter'].$condition['list']['order'].$condition['list']['limit'];
+
+        $stmt = $conn->prepare($sql);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+
+        if (!$stmt) {
+            $result['result'] = -1;
+            $result['no'] = 1;
+            $result['msg'] = $conn->errorInfo();
+
+            return $result;
+        }
+
+
+        $sql = ' SELECT FOUND_ROWS() as recCount ';
+
+        $stmTp = $conn->prepare($sql);
+        $stmTp->setFetchMode(PDO::FETCH_ASSOC);
+        $stmTp->execute();
+        $row_count = $stmTp->fetch();
+        $result['export']['recordsCount'] = $row_count['recCount'];
+
+
+        include_once ROOT_DIR."component/category/admin/model/admin.category.model.php";
+
+        //$cat = new adminCategoryModel();
+        //$obj = adminCategoryModel::getBy_not_Category_id(0)->getList();
+
+        global $lang;
+        while ($row = $stmt->fetch()) {
+
+            $cat_title = '';
+
+            foreach (explode(',',$row['category_id']) as $k => $v ){
+
+                if($v == ''){ continue;}
+                $obj = adminCategoryModel::find($v);
+
+                $cat_title .= $obj->fields["title_$lang"] .' / ';
+
+            }
+
+            $row['category_id'] = substr($cat_title,0,-2);
+
+            //$temp = self::tagToArray($row['category_id']);
+            //$row['category_id'] = $temp['export']['list'];
+            $list[$row['Event_id']] = $row;
+
+            //$temp = self::tagToArray($row['certification_id']);
+            //$row['certification_id'] = $temp['export']['list'];
+
+            $list[$row['Event_id']] = $row;
+
+        }
+
+
+        $result['result'] = 1;
+        $result['export']['list'] = $list;
+        return $result;
+    }
 
     public static function getEventById($id)
     {

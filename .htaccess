@@ -2,6 +2,7 @@ RewriteEngine On
 
 RewriteRule ^zamin.*$ - [L,nc]
 
+
 RewriteRule ^sitemap.php.*$ - [L,nc]
 
 RewriteRule \.(js|JS|Js|ico|gif|jpg|JPG|png|css|txt|xml|eot|otf|svg|ttf|woff)$  -  [L]

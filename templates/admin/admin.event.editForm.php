@@ -249,7 +249,7 @@
                                                 ?>
                                                 <option <?php echo in_array($value['Salon_id'], $list['salon_id']) ? 'selected' : '' ?>
                                                         value="<?= $value['Salon_id'] ?>">
-                                                    <?= $value['export'] ?>
+                                                    <?= $value['title_'.$lang] ?>
                                                 </option>
                                                 <?
                                             }

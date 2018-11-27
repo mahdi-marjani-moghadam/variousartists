@@ -378,6 +378,11 @@
          margin-bottom: .8em;
          padding: .2em .5em !important;
     }
+     @media only screen and (max-width:425px)  {
+         .form-group input[type="tel"]{
+             width: 75%;
+         }
+     }
     .form-group .input-group-addon {
 
 
