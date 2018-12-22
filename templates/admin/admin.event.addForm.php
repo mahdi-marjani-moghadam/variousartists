@@ -355,7 +355,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="price">قیمت</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="price" id="price"  value="<?= $list['price'] ?>">
+                                        <input type="text" class="form-control" name="price" id="price"  value="<?= $list['price'] ?>">ریال
                                     </div>
                                 </div>
                             </div>
@@ -479,13 +479,13 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <p class="pull-right">
-                                    <button type="submit" name="update" id="submit"
-                                            class="btn btn-icon btn-success rtl"><input name="action" type="hidden" id="action" value="add"/>
-                                        <i class="fa fa-plus"></i>
-                                        ثبت
-                                    </button>
-                                    <button type="submit" name="update" id="submit"
-                                            class="btn btn-icon btn-default rtl"><input name="action" type="hidden" id="action" value="addDraft"/>
+
+                                    <button type="submit" name="add" id="submit"
+                                            class="btn btn-icon btn-success rtl">
+                                        <i class="fa fa-plus"></i>ثبت</button>
+
+                                    <button type="submit" name="addDraft" id="submit"
+                                            class="btn btn-icon btn-default rtl">
                                         <i class="fa fa-plus"></i>ذخیره در پیش نویس</button>
                                 </p>
                             </div>

@@ -1,5 +1,5 @@
 <?php
-include(ROOT_DIR . "common/lib/adodb.inc.php");
+/*include(ROOT_DIR . "common/lib/adodb.inc.php");
 
 
 function connectDB()
@@ -10,7 +10,7 @@ function connectDB()
     $conn->Connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
     boxLogin::boxController();
     return $conn;
-}
+}*/
 
 
 class dbConn

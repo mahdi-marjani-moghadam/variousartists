@@ -7,9 +7,10 @@
  * Time: 9:21 AM.
  */
 include_once dirname(__FILE__).'/model/admin.membership.controller.php';
+//include_once ROOT_DIR.'component/membership/admin/model/admin.membership.model.php';
 
 global $admin_info,$PARAM;
-$artistsController = new adminArtistsController();
+$artistsController = new adminMembershipController();
 if (isset($exportType)) {
     $artistsController->exportType = $exportType;
 }
@@ -43,6 +44,7 @@ switch ($_GET['action']) {
         break;
 
     default:
+
         $artistsController->showList($msg);
         break;
 }

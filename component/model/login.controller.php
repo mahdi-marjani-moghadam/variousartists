@@ -42,7 +42,7 @@ class loginController
      *
      * @return string
      */
-    public function template($list = [], $msg)
+    public function template($list = [], $msg='')
     {
          global $PARAM, $member_info;
 

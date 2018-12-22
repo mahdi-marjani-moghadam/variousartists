@@ -178,7 +178,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="artists_phone1">تلفن:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="artists_phone1" id="artists_phone1"  value="<?= $list['artists_phone1'] ?>">
+                                        <input type="text" class="form-control ltr" name="artists_phone1" id="artists_phone1"  value="<?= $list['artists_phone1'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -198,7 +198,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="birthday">تاریخ تولد:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control date" name="birthday" id="birthday" value="<?= ($list['birthday']) ?>">
+                                        <input type="text" class="form-control date" name="birthday" autocomplete="off" id="birthday" value="<?=($list['birthday']!='')?convertDate($list['birthday']):''; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -274,8 +274,8 @@
                             <!-- state -->
 
                         </div>
-                        <div class="row xsmallSpace hidden-xs"></div>
-                        <div class="row">
+                        <div class="row xsmallSpace hidden"></div>
+                        <div class="row hidden" >
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
@@ -382,7 +382,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="refresh_date">تاریخ بروزرسانی</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control date" name="refresh_date" id="refresh_date" value="<?= convertDate($list['refresh_date']) ?>">
+                                        <input type="text" class="form-control date" name="refresh_date" id="refresh_date" value="<?=($list['refresh_date']!='')?convertDate($list['refresh_date']):''; ?>">
                                     </div>
                                 </div>
                             </div>

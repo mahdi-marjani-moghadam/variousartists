@@ -1,5 +1,4 @@
 <?php
-
 include_once 'server.inc.php';
 include_once ROOT_DIR.'common/db.inc.php';
 include_once ROOT_DIR.'common/init.inc.php';
@@ -7,7 +6,6 @@ include_once ROOT_DIR.'common/func.inc.php';
 include_once ROOT_DIR.'model/db.inc.class.php';
 include_once ROOT_DIR.'common/looeic.php';
 //include_once ROOT_DIR.'common/looeic2.php';
-
 
 
 
@@ -22,6 +20,7 @@ if (strlen($url_main) == 0) {
 
 $PARAM = explode('/', $url_main);
 $PARAM = array_filter($PARAM, 'strlen');
+
 
 
 if (array_search('exportType', $PARAM)) {

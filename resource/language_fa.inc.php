@@ -1429,6 +1429,27 @@ define("bio_en","بیوگرافی(لاتین):");
 define("own_image","تصویر:");
 define("picture_is_square_and_jpeg","تصویر مربع با فرمت jpg");
 define("category_id_not_empty","گروه می بایست انتخاب شود.");
-define("password_not_empty","پسورد می بایست پر شود.");
+define("password_not_empty","پسورد می بایست پر شو   د.");
 define("please_login_before_choose_chair","لطفا قبل از انتخاب صندلی لاگین نمایید.");
 
+define("wait_to_send","در حال ارسال به بانک ...");
+define("canceled_by_user","انصراف از پرداخت توسط کاربر.");
+define("return_back_to_account","بازگشت به صفحه کاربری");
+define("pay_success","پرداخت با موفقیت انجام شد.");
+define("pay_not_success","پرداخت ناموفق");
+define("pay_result","نتیجه پرداخت ");
+
+define("invoices","پیش فاکتور ها");
+define("invoice_time"," زمان استفاده:    ");
+define("invoice_place","  مکان :    ");
+define("price","قیمت: ");
+define("rial"," ریال");
+define("sandali_number","شماره صندلی");
+define("pay_by_eghtesad_novin","  پرداخت آنلاین (بانک اقتصاد نوین) ");
+define("delete_invoice","حذف پیش فاکتور");
+define("description_fa","توضیحات(فارسی):");
+define("description_en","توضیحات(انگلیسی):");
+define("telephone","تلفن:");
+define("image","تصویر:");
+define("edit","ویرایش");
+define("edited_password_if_filling","در صورت پر کردن فیلد رمز ویرایش میشود.");

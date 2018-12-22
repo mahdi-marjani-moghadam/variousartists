@@ -40,7 +40,7 @@ class salonController
      *
      * @return string
      */
-    public function template($list = array(), $msg)
+    public function template($list = array(), $msg='')
     {
         // global $conn, $lang;
 

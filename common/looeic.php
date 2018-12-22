@@ -171,7 +171,7 @@ class looeic extends DB
         //echo '__call';
     }
 
-    function validator($rules, $fields)
+    function validator($rules=array(), $fields='')
     {
         if (!isset($rules)) {
             $rules = $this->rules;
@@ -180,6 +180,7 @@ class looeic extends DB
             $fields = $this->fields;
         }
 
+        $result = array();
         if (count($rules) < 1) {
             $result['result'] = '1';
 
@@ -292,7 +293,7 @@ class looeic extends DB
 
     }
 
-    private function get_object_or_list($object = 1, $key)
+    private function get_object_or_list($object = 1, $key='')
     {
 
         if (strlen($this->sql) < 1) {
@@ -378,7 +379,7 @@ class looeic extends DB
 
     }
 
-    public function get($key)
+    public function get($key='')
     {
 
         /*if ( strlen($this->sql) < 1 ) {
@@ -690,7 +691,7 @@ class looeic extends DB
     }*/
 
 
-    public function getByFilter($fields = '', $query, $returnData = 0)
+    public function getByFilter($fields = '', $query='', $returnData = 0)
     {
         //$obj->TABLE_NAME=get_called_class();
         $this->getTableName(get_called_class());
@@ -816,6 +817,7 @@ class looeic extends DB
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
+
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
         if (!$stmt) {
@@ -897,7 +899,7 @@ class looeic extends DB
 
     }
 
-    private function updateModel($fields)
+    private function updateModel($fields='')
     {
         $sql_key = '';
         $sql_val = '';
@@ -923,7 +925,6 @@ class looeic extends DB
         $conn = $this->getConnection();
         $sql = " UPDATE " . $this->TABLE_NAME . " SET " . $sql_key_val . " 
          WHERE " . $this->PRI_KEY . " = '" . $this->fields[$this->PRI_KEY] . "' ";
-
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();

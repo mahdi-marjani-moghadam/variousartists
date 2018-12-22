@@ -46,7 +46,9 @@
                 <!-- Portfolio Single - Meta
                 ============================================= -->
                 <ul class="portfolio-meta bottommargin">
+                    <? if($list['list']['show_birthday'] == 'on'):?>
                     <li><span><i class="icon-user"></i>Birthday:</span><?=($list['list']['birthday'])?></li>
+                    <? endif; ?>
 
                     <li><i class="icon-trophy"></i>Rate<?=$list['list']['rate']?> From (  <?=$list['list']['rate_count']?>  ):
                         <div  dir="ltr">

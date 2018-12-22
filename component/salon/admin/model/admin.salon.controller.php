@@ -40,7 +40,7 @@ class adminSalonController
      * @param $msg
      * @return string
      */
-    function template($list=array(),$msg)
+    function template($list=array(),$msg='')
     {
         // global $conn, $lang;
 

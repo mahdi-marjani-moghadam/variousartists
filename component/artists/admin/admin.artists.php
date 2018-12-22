@@ -26,7 +26,7 @@ switch ($_GET['action']) {
         if (isset($_POST['action']) & $_POST['action'] == 'add') {
             $artistsController->addArtists($_POST);
         } else {
-            $artistsController->showArtistsAddForm('', '');
+            $artistsController->showArtistsAddForm();
         }
         break;
     case 'edit':

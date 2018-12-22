@@ -90,8 +90,8 @@ global $admin_info,$member_info;
 //$admin_info = $admin->checkLogin();
 //$member_info = $admin->checkLogin();
 
-function __autoload($name)
-{
+
+ spl_autoload_register(function ($name){
     $modelFileName = ROOT_DIR . 'model/' . $name . '.class.php';
     $adminModelFileName = ROOT_DIR . 'model/admin.' . $name . '.class.php';
 
@@ -100,7 +100,8 @@ function __autoload($name)
     } elseif (file_exists($adminModelFileName)) {
         require_once($adminModelFileName);
     }
-}
+});
+
 //$member_info='';
 //$member_info['member_id']=1;
 

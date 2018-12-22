@@ -253,11 +253,14 @@ class categoryModel
      *
      * @return mixed
      */
-    public function convert($_input, $temp, $space = '-')
+    public function convert($_input='', $temp='', $space = '-')
     {
-        static $mainMenu = '';
+//        static $mainMenu = '';
+
+        $mainMenu = array();
         //echo $this->level;
         foreach ($_input as $key => $val) {
+
             $mainMenu[$val['Category_id']]['export'] = $temp.$val['title'];
             $mainMenu[$val['Category_id']]['title'] = $val['title'];
             $mainMenu[$val['Category_id']]['level'] = $this->level;

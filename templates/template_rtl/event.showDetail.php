@@ -95,8 +95,7 @@
 
                                     <? if ($list['list']['price'] != "" && $list['list']['price'] !== '0'): ?>
                                         <li><i class="icon-dollar"></i>
-                                        <strong><?= ($list['list']['price'] != "") ? $list['list']['price'] : "-"; ?>
-                                            تومان</strong></li><? endif; ?>
+                                        <strong><?= ($list['list']['price'] != "") ? $list['list']['price'] : "-"; ?><?=rial?></strong></li><? endif; ?>
 
                                     <? if ($list['list']['organizer'] != ""): ?>
                                         <li><i class="icon-user"></i>

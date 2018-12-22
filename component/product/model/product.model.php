@@ -128,7 +128,7 @@ class productModel extends looeic
 
         return $result;
     }
-    public function getProductByArtistsId($id,$fields)
+    public function getProductByArtistsId($id='',$fields='')
     {
         include_once dirname(__FILE__).'/product.model.db.php';
 

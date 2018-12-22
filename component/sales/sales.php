@@ -52,11 +52,11 @@ switch ($PARAM[1]) {
         /** pay */
         if($PARAM[1]== 'pay')
         {
-            $salesController->pay($PARAM[2]);
+            $salesController->pay($_POST);
         }
         if($PARAM[1]== 'returnbank')
         {
-            $salesController->returnBank($PARAM[2]);
+            $salesController->returnBank($_POST);
         }
 
         $salesController->step1();

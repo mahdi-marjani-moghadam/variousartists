@@ -255,7 +255,7 @@ class genreModel
      */
     public function convert($_input, $temp, $space = '-')
     {
-        static $mainMenu = '';
+        static $mainMenu = array();
         //echo $this->level;
         foreach ($_input as $key => $val) {
             $mainMenu[$val['Genre_id']]['export'] = $temp.$val['title'];

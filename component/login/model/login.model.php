@@ -221,7 +221,7 @@ class memberLogIn
     }
 
 
-    function showLoginForm($fields , $msg ='')
+    function showLoginForm($fields='' , $msg ='')
     {
 
 
@@ -467,7 +467,7 @@ class memberLogIn
         die();
     }
 
-    function showRegisterForm($fields , $msg ='')
+    function showRegisterForm($fields=array() , $msg ='')
     {
         /////// category
         include_once(ROOT_DIR."component/category/admin/model/admin.category.model.php");
@@ -527,7 +527,7 @@ class memberLogIn
         $COUNTRY->unsetCondition();
 
         //get select country area code
-        $COUNTRY->multiIso         = array("CN","us","IR","de");
+        //$COUNTRY->multiIso         = array("CN","us","IR","de");
         $COUNTRY->getAllCountryCode();
         $fields['country'] = $COUNTRY->country;
 
@@ -597,6 +597,9 @@ class memberLogIn
         }
         if($_input['check1'] == 'on'){
             $artists->type = 1;
+        }
+        else{
+            $artists->type = 0;
         }
         $result=$artists->save();
 

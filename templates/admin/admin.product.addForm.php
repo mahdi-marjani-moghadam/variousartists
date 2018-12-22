@@ -32,7 +32,7 @@
 
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-8  center-block">
-          <form name="queue" id="queue" role="form" data-validate="form" class="form-horizontal form-bordered"  novalidate="novalidate" method="post">
+          <form name="queue" enctype="multipart/form-data" id="queue" role="form" data-validate="form" class="form-horizontal form-bordered"  novalidate="novalidate" method="post">
 
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-6">
@@ -146,7 +146,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="category_id">category_id:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <select name="category_id[]" data-input="select2" placeholder="Multiple select" multiple>
+                    <select name="category_id[]" data-input="select2" multiple>
                       <?
                       foreach($list['category'] as $category_id => $value)
                       {
@@ -198,7 +198,7 @@
                     <div class="form-group">
                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="creation_date">تاریخ تولید:</label>
                         <div class="col-xs-12 col-sm-8 pull-right">
-                            <input type="text" class="form-control date" name="creation_date" id="creation_date"  placeholder="" required value="<?=$list['creation_date']?>">
+                            <input type="text" class="form-control date" autocomplete="off" name="creation_date" id="creation_date"  required value="<?=$list['creation_date']?>">
                         </div>
                     </div>
                 </div>

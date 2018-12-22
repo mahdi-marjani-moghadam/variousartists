@@ -31,21 +31,29 @@
 
                         </div>
 
-                            <? if($list['State'] == 'Canceled By User'): ?>
+                            <? if($list['ResNum'] == '6'): ?>
                                 <div class="panel-body " style="background: rgba(255,157,126,0.51)">
+
                                     <input name="action" value="addSales" type="hidden">
-                                    <div class="col-md-12"><?=pay_not_success?><?=$list['msg']?></div>
+
+                                    <div class="col-md-12"><?=pay_not_success?><?=$list['State']?></div>
                                     <div class="col-md-12">
-                                        <a href="<?=RELA_DIR?>account/sales/invoice"><?=return_back_to_account?></a>
+                                        <a href="<?=RELA_DIR?>account"><?=return_back_to_account?></a>
                                     </div>
+
+
                                 </div>
                             <? else: ?>
                                 <div class="panel-body " style="background: rgba(170,255,150,0.51)">
+
                                     <input name="action" value="addSales" type="hidden">
+
                                     <div class="col-md-12"><?=pay_success?></div>
                                     <div class="col-md-12">
-                                        <a href="<?=RELA_DIR?>account/sales/invoice"><?=return_back_to_account?></a>
+                                        <a href="<?=RELA_DIR?>account"><?=return_back_to_account?></a>
                                     </div>
+
+
                                 </div>
                             <? endif; ?>
 

@@ -46,7 +46,9 @@
                 <!-- Portfolio Single - Meta
                 ============================================= -->
                 <ul class="portfolio-meta bottommargin">
+                    <? if($list['list']['show_birthday'] == 'on'):?>
                     <li><span><i class="icon-user"></i>تاریخ تولد:</span><?=convertDate($list['list']['birthday'])?></li>
+                    <? endif; ?>
 
                     <li><i class="icon-trophy"></i>جمع امتیازات <?=$list['list']['rate']?> ( از <?=$list['list']['rate_count']?> نظر ):
                         <div  dir="ltr">

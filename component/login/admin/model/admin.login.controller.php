@@ -40,7 +40,7 @@ class adminLoginController
      * @param $msg
      * @return string
      */
-    function template($list = [], $msg)
+    function template($list = [], $msg='')
     {
         // global $conn, $lang;
         global $messageStack;

@@ -82,6 +82,7 @@ class accountController
 
         $invoice = invoice::getBy_member_id($member_info['Artists_id'])->getList();
 
+
         if($invoice['export']['recordsCount'] >0)
         {
             $export['invoice'] = $invoice['export']['list'];
@@ -252,10 +253,12 @@ class accountController
         $_input['date'] = ($_input['date']!=''?convertJToGDate($_input['date']):'0000-00-00');
         $_input['date2'] = ($_input['date2']!=''?convertJToGDate($_input['date2']):'0000-00-00');
         $_input['date3'] = ($_input['date3']!=''?convertJToGDate($_input['date3']):'0000-00-00');
+
         $_input['category_id'] = ','.implode(',',$_input['category_id'] ).',';
         $_input['genre_id'] = ','.implode(',',$_input['genre_id'] ).',';
 
         $result = $event->setFields($_input);
+
         if ($result['result'] == -1) {
             $this->showEventAddForm($_input, $result['msg']);
         }
@@ -302,10 +305,12 @@ class accountController
 
         $resultCategory = $category->getCategoryOption();
 
+
         if($resultCategory['result'] == 1)
         {
             $export['category'] = $category->list;
         }
+
 
         $export['artists_id'] = $member_info['Artists_id'];
 
@@ -551,6 +556,7 @@ class accountController
 
     public function addProduct($fields)
     {
+
         global $member_info,$lang;
         include_once ROOT_DIR.'component/product/model/product.model.php';
         $account = new productModel();
@@ -562,12 +568,12 @@ class accountController
         {
             $fields['creation_date'] = convertJToGDate($fields['creation_date']);
         }
-
         $result =$account->setFields($fields);
 
 
         $account->save();
-        
+
+
         if ($result['result'] == -1) {
             return $result;
         }
@@ -613,11 +619,6 @@ class accountController
         redirectPage(RELA_DIR . 'account/showProductList', $msg);
         die();
     }
-
-    /**
-     * @param $fields
-     * @param $msg
-     */
     public function showProductAddForm($fields, $msg)
     {
         global $member_info;
@@ -791,6 +792,11 @@ class accountController
         }
         $fields['artists_id'] = $member_info['Artists_id'];
         //$fields['status'] = 0;
+        if($fields['password']!=''){
+            $fields['password'] = md5($fields['password']);
+        }else{
+            unset($fields['password']);
+        }
 
         $account->setFields($fields);
 
@@ -799,6 +805,10 @@ class accountController
         $account->date = date('Y-m-d H:i:s');
         $account->birthday = date('Y-m-d H:i:s');
         $account->priority = 1;
+
+
+
+
         $account->save();
 
 

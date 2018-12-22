@@ -20,7 +20,7 @@ class clsNews extends looeic
     public $exportType;
     protected $TABLE_NAME = 'news';
 
-    public function template($list = array(), $msg)
+    public function template($list = array(), $msg='')
     {
         // global $conn, $lang;
         global $PARAM,$member_info;

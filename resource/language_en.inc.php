@@ -1418,3 +1418,25 @@ define("picture_is_square_and_jpeg","Picture is square by jpg format");
 define("category_id_not_empty","Category id is not empty");
 define("password_not_empty","Password is not empty");
 define("please_login_before_choose_chair","Please login before choose chair ");
+
+define("wait_to_send","Wait To Send ...");
+define("canceled_by_user","Canceled by user");
+define("return_back_to_account","back to account");
+define("pay_not_success","pay not success");
+define("pay_success","pay success");
+define("pay_result","pay result");
+
+define("invoices","Invoices");
+define("invoice_time","Time: ");
+define("invoice_place","Location: ");
+define("price","Price: ");
+define("rial","Rial");
+define("sandali_number","Place");
+define("pay_by_eghtesad_novin","Pay by eghtesad novin");
+define("delete_invoice","delete invoice");
+define("description_fa","Persian description:");
+define("description_en","English description:");
+define("telephone","Telephone");
+define("image","Image");
+define("edit","Edit");
+define("edited_password_if_filling","Edited password if filling this field");

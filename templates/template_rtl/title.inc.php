@@ -65,6 +65,7 @@
 
 <body class="stretched  no-transition">
 
+
 	<!-- Document Wrapper
 	============================================= -->
 	<div id="wrapper" class="clearfix">
@@ -89,11 +90,10 @@
 					<!-- Primary Navigation
 					============================================= -->
 					<nav id="primary-menu" class="dark style-6 style-2">
-
 						<ul>
 							<li class="<?=($PARAM[0] == 'event')?'current':'';?>" ><a href="<?=RELA_DIR?>event"><div>رویدادها</div></a></li>
 							<li class="<?=($PARAM[0] == 'artists')?'current':'';?>"><a href="<?=RELA_DIR?>artists"><div> هنرمندان</div></a></li>
-							<? /*<li class="<?=($PARAM[0] == 'services')?'current':'';?>"><a href="<?=RELA_DIR?>services"><div>خدمات</div></a></li>
+							<?php /*<li class="<?=($PARAM[0] == 'services')?'current':'';?>"><a href="<?=RELA_DIR?>services"><div>خدمات</div></a></li>
 							<li class="<?=($PARAM[0] == 'shop')?'current':'';?>"><a href="<?=RELA_DIR?>shop"><div>فروشگاه</div></a></li>*/?>
 							<? if($member_info == -1){?>
                                 <li class="<?=($PARAM[0] == 'login')?'current':'';?>">
@@ -116,6 +116,7 @@
 							<? }  ?>
                             <li ><a href="<?=RELA_DIR?>index/?lang=en"><div><img src="<?=RELA_DIR?>templates/<?=CURRENT_SKIN?>/img/flag_en.png"> English</div></a></li>
 						</ul>
+
 
 						<!-- Top Cart
 						============================================= -->

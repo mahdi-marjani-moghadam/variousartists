@@ -95,7 +95,7 @@ class adminAboutusModelDb
         return $result;
     }
 
-    public function getAboutus($fields='')
+    public function getAboutus($fields=array())
     {
         global $lang;
         $conn = dbConn::getConnection();

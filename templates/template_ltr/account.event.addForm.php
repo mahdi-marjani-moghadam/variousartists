@@ -153,7 +153,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control   datepicker" name="date" id="date" required value="<?= ($list['date']!=""? convertDate($list['date']):"") ?>">
+                                        <input type="text" class="form-control   datepicker" name="date" autocomplete="off" id="date" required value="<?= ($list['date']!=""? convertDate($list['date']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -174,7 +174,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control datepicker" name="date2" id="date2"  value="<?= ($list['date2']!=""? convertDate($list['date2']):"") ?>">
+                                        <input type="text" class="form-control datepicker" name="date2" autocomplete="off" id="date2"  value="<?= ($list['date2']!=""? convertDate($list['date2']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -195,7 +195,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date3">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control  datepicker" name="date3" id="date3"  value="<?= ($list['date3']!=""? convertDate($list['date3']):"")?>">
+                                        <input type="text" class="form-control  datepicker" name="date3" autocomplete="off" id="date3"  value="<?= ($list['date3']!=""? convertDate($list['date3']):"")?>">
                                     </div>
                                 </div>
                             </div>
@@ -285,7 +285,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="price">قیمت</label>
+                                           for="price">قیمت<?=rail?></label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
                                         <input type="text" class="form-control" name="price" id="price"  value="<?= $list['price'] ?>">
                                     </div>

@@ -73,7 +73,7 @@ class Validator
      * @version 1.0.2
      * @access public
      */
-    public static function Email($value, $require)
+    public static function Email($value='', $require='')
     {
         $x = ($require) ? ((self::required($value)) ?: -1) : '';
         $y = (filter_var($value, FILTER_VALIDATE_EMAIL) == true) ? 1 : 0;

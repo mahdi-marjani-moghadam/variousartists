@@ -42,7 +42,7 @@ class salesController
      *
      * @return string
      */
-    public function template($list = [], $msg)
+    public function template($list = [], $msg='')
     {
          global $member_info;
 
@@ -69,8 +69,9 @@ class salesController
     }
 
 
-    public function showMore($_input)
+    public function showMore($_input='')
     {
+
 
         if (!is_numeric($_input)) {
             $msg = 'یافت نشد';
@@ -223,9 +224,11 @@ $resultsandali=$sandali->getByFilter($fildes);
     function urlDecode()
     {
         global $PARAM;
+
         $input = base64_decode($PARAM[1]);
         $temp = explode('&',rawurldecode($input));
-        $fields ='';
+        $fields =array();
+
         foreach ($temp as $v){
             $temp = explode('=',$v);
             $fields[$temp[0]] = $temp[1];
@@ -546,14 +549,127 @@ $resultsandali=$sandali->getByFilter($fildes);
 
     }
 
-    function pay()
+    function pay($input)
     {
-        redirectPage(RELA_DIR.'sales/returnbank',success);
+        global $member_info;
+        /** get sales */
+        $salesObj = salesModel::getBy_user_id_and_sales_id($member_info['Artists_id'],$input['sid'])->getList();
+        if($salesObj['export']['recordsCount']==0){
+            redirectPage(RELA_DIR,invoice_not_found);
+        }
+
+
+
+        /**
+         *
+         * BANK
+         *
+         */
+
+        include_once(ROOT_DIR.'model/ipg/enpayment.php');
+        $resNum =$salesObj['export']['list'][0]['Sales_id'];
+        $redirectUrl =RELA_DIR."sales/returnbank/";
+        $amount =$salesObj['export']['list'][0]['price'];
+
+        /////////////////State1
+        $payment = new Payment();
+        $login = $payment->login(bank_username,bank_password);
+
+
+
+        $login = $login['return'];
+        $sessionId = $login['SessionId'];
+
+        $params['ReserveNum'] = $resNum;
+        $params['Amount'] = $amount;
+        $params['RedirectUrl'] = $redirectUrl;
+        $params['WSContext'] = array('SessionId' => $sessionId , 'UserId' => username, 'Password' => password);
+        $params['TransType'] = "enGoods";
+        $getPurchaseParamsToSign = $payment-> getPurchaseParamsToSign($params);
+        $getPurchaseParamsToSign =  $getPurchaseParamsToSign['return'];
+        $uniqueId =  $getPurchaseParamsToSign['UniqueId'];
+        $dataToSign = $getPurchaseParamsToSign['DataToSign'];
+
+        ///////////////////////State3
+        $params['UniqueId'] = $uniqueId;
+        $params['Signature'] = $dataToSign;
+        $params['WSContext'] = array('SessionId' => $sessionId , 'UserId' => username, 'Password' => password);
+
+        $generateSignedPurchaseToken = $payment-> generateSignedPurchaseToken($params);
+        $generateSignedPurchaseToken = $generateSignedPurchaseToken['return'];
+        $generateSignedPurchaseToken = $generateSignedPurchaseToken['Token'];
+
+        /** end bank */
+        $export['gspt'] = $generateSignedPurchaseToken;
+
+        $salesObj2 = salesModel::getBy_user_id_and_sales_id($member_info['Artists_id'],$input['sid'])->get()['export']['list'][0];
+        $salesObj2->bank_token = $generateSignedPurchaseToken;
+        $salesObj2->save();
+
+        $this->fileName = 'bankRequest.php';
+        $this->template($export);
+
+        die();
+
     }
 
     function returnBank($input)
     {
+        global $member_info;
 
+        $msg = array(6=>canceled_by_user);
+
+        $salesObj2 = salesModel::getBy_user_id_and_bank_token($member_info['Artists_id'],$input['token'])
+            ->get()['export']['list'][0];
+
+
+        if($input['State']== 'OK') {
+
+
+            /** verify bank */
+            include_once(ROOT_DIR.'model/ipg/enpayment.php');
+            $amount = $salesObj2->price;
+
+            $payment = new Payment();
+
+            $login = $payment->login(bank_username,bank_password);
+            $login = $login['return'];
+            $sessionId = $login['SessionId'];
+            $params['WSContext'] = array('SessionId' => $sessionId , 'UserId' => bank_username, 'Password' => bank_password);
+            $params['Token']= $input['token'];
+            $params['RefNum']= $input['RefNum'];
+
+/////////////////////////////////////////////Option 1--->VerifyTransaction
+            $VerifyTrans = $payment->tokenPurchaseVerifyTransaction($params);
+            $VerifyTrans = $VerifyTrans['return'];
+            $VerifyTrans = $VerifyTrans['Amount'];
+            if($amount == $VerifyTrans){
+                //echo "Transaction Verified.";
+
+                /** sataus update */
+                $salesObj2->status = 1;
+                $salesObj2->save();
+
+            }
+
+            /**********
+            /////////////////////////////////////////////Option 2--->ReversTransaction
+            $params['WSContext'] = array('SessionId' => $sessionId , 'UserId' => username, 'Password' => password);
+            $params['Token']= $_POST['token'];
+            $params['RefNum']= $_POST['RefNum'];
+            $reverseTrans = $payment->ReverseTrans($params);
+            $reverseTrans  = $reverseTrans['return'];
+            $reverseTrans  = $reverseTrans['RefNum'];
+            echo "Transaction Reversed.";
+            //echo $reverseTrans ;
+             ************/
+        }
+
+
+
+        $export['State'] = $input['State'];
+        $export['msg'] = $msg[$input['ResNum']];
+        $export['ResNum'] = $input['ResNum'];
         $this->fileName = 'returnbank.php';
         $this->template($export);
         die();

@@ -390,7 +390,7 @@ class DB {
     }
 
 
-    protected function _addWhereOn($cond1, $operand, $cond2, $type, $property,$openAppend,$closeAppend) {
+    protected function _addWhereOn($cond1='', $operand='', $cond2='', $type='', $property='',$openAppend='',$closeAppend='') {
 
 
         // echo ' <br/>start <br/>';

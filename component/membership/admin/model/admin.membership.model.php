@@ -71,7 +71,7 @@ class adminArtistsModel extends looeic
             return $result;
         }
 
-        include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
+        include_once(dirname(__FILE__) . "/admin.membership.model.db.php");
 
         // echo "<pre>";
         // print_r($this->fields);
@@ -135,7 +135,7 @@ class adminArtistsModel extends looeic
             return $result;
         }
 
-        include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
+        include_once(dirname(__FILE__) . "/admin.membership.model.db.php");
         // companies
         $result = adminArtistsModelDb::update($this->fields);
         if($result['result'] != 1)
@@ -202,7 +202,7 @@ class adminArtistsModel extends looeic
      */
     public function getArtists($fields)
     {
-        include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
+        include_once(dirname(__FILE__) . "/admin.membership.model.db.php");
 
 
         $result = adminArtistsModelDb::getArtists($fields);
@@ -225,7 +225,7 @@ class adminArtistsModel extends looeic
      */
     public function getArtistsById($id)
     {
-        include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
+        include_once(dirname(__FILE__) . "/admin.membership.model.db.php");
 
         $result = adminArtistsModelDb::getArtistsById($id);
 
@@ -260,7 +260,7 @@ class adminArtistsModel extends looeic
      */
     public function delete()
     {
-        include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
+        include_once(dirname(__FILE__) . "/admin.membership.model.db.php");
         $result = adminArtistsModelDb::delete($this->fields['Artists_id']);
 
         return $result;

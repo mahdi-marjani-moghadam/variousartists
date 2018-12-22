@@ -95,7 +95,7 @@
             var $self           = $(this),
                 selfCountry     = $self.data('country'),
                 $dropDown       = $self.parents('ul'),
-                $phoneNumber    = $('#phoneNumber'),
+                $phoneNumber    = $('#artists_phone1'),
                 $areaCodeHolder = $('#areaCodeHolder'),
                 $areaCodeValue  = $('#areacode'),
                 areaCode        = $self.data('areacode'),
@@ -114,14 +114,15 @@
             $areaCodeValue.val(areaCode.substr(1, areaCode.length));
 
 
-            // start ///////////////// for adding another number (matbah)
+            // start ///////////////// for adding another number
             if(selfCountry == 'IR')
             {
                 $phoneNumber.attr("maxlength",maxLength);
             }
             else
             {
-                $phoneNumber.removeAttrs("maxlength");
+
+                $phoneNumber.removeAttr("maxlength");
                 //$phoneNumber.attr("maxlength",'');
             }
             // end //////////////////////////////////////////////
@@ -183,7 +184,7 @@
 
                                                         ?>
                                                         <li><a data-country="<?=$value['iso']?>" data-max="<?=$value['max_length']?>" data-areacode="+<?=$value['phone_code']?>"
-                                                               data-pattern="<?=$value['sample']?>"><span class="fa bfh-flag-<?=$value['iso']?>"></span><?=$value['name']?></a>
+                                                               data-pattern="<?=$value['sample']?>"><?=$value['name']?><span class="fa bfh-flag-<?=$value['iso']?>"></span></a>
                                                         </li>
 
                                                         <?
@@ -195,9 +196,7 @@
                                             <div id="areaCodeHolder" class="input-group-addon">+<?=$list['default'][0]['phone_code']?></div>
                                             <input type="tel" <? if($list['default'][0]['iso'] == 'IR'){?>maxlength="<?=$list['default'][0]['max_length']?>" <? }?> class="phone form-control" id="artists_phone1" name="artists_phone1" placeholder="<?=$list['default'][0]['sample']?>" required value="<?=$_REQUEST['artists_phone1']?>">
                                             <input name="areacode" id="areacode" type="hidden" value="<?=$list['default'][0]['phone_code']?>">
-                                            <span class="input-group-btn">
-
-                                    </span>
+                                            <span class="input-group-btn"></span>
                                         </div><!-- /input-group -->
 
 
@@ -236,7 +235,7 @@
                                         <div ><?=birthday?>
                                             <span class="pull-left"><input type="checkbox" name="check_birthday" id="check_birthday"><label for="check_birthday"> <?=show_birthday_for_public?></label></span>
                                         </div>
-                                        <input type="<?=($lang=='en')?'date':'';?>" autocomplete="false" id="birthday" name="birthday" value="<?=$_REQUEST['birthday']?>" class="form-control <?=($lang=='en')?'':'datepicker';?> " />
+                                        <input type="<?=($lang=='en')?'date':'';?>" autocomplete="off" id="birthday" name="birthday" value="<?=$_REQUEST['birthday']?>" class="form-control <?=($lang=='en')?'':'datepicker';?> " />
                                     </div>
                                     <div class="col_full art">
                                         <label for="artists_name"><?=category?></label>
@@ -360,6 +359,7 @@
 </section><!-- #content end -->
 
 <style>
+
     .input-group{
         width: 100%;
         max-width: 450px;
@@ -380,7 +380,7 @@
     }
      @media only screen and (max-width:425px)  {
          .form-group input[type="tel"]{
-             width: 75%;
+             width: 70%;
          }
      }
     .form-group .input-group-addon {

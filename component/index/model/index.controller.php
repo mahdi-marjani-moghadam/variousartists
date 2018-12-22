@@ -51,8 +51,10 @@ class indexController
 
         switch($this->exportType)
         {
+
             case 'html':
                 include(ROOT_DIR . "templates/" . CURRENT_SKIN . "/title.inc.php");
+
                 include(ROOT_DIR . "templates/" . CURRENT_SKIN . "/$this->fileName");
                 include(ROOT_DIR . "templates/" . CURRENT_SKIN . "/tail.inc.php");
                 break;
@@ -130,7 +132,6 @@ class indexController
 
         include_once(ROOT_DIR."component/event/model/event.model.php");
         $event = new eventModel();
-
         $limit['limit']['start'] = 0;
         $limit['limit']['length'] = 18;
         $limit['order']['date']='DESC';
@@ -154,6 +155,7 @@ class indexController
 
         $this->fileName = "index.php";
         //print_r_debug($export);
+
         $this->template($export);
         die();
     }

@@ -42,7 +42,7 @@ class adminCompanyController
      *
      * @return string
      */
-    public function template($list = [], $msg)
+    public function template($list = [], $msg='')
     {
         global $messageStack,$admin_info;
 

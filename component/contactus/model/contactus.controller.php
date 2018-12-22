@@ -42,7 +42,7 @@ class contactusController
      *
      * @return string
      */
-    public function template($list = array(), $msg)
+    public function template($list = array(), $msg='')
     {
         global $messageStack,$member_info;
 
@@ -112,7 +112,7 @@ class contactusController
      *
      * @version 01.01.01
      */
-    public function showContactusForm($_input, $msg)
+    public function showContactusForm($_input=array(), $msg='')
     {
         // breadcrumb
         global $breadcrumb,$lang;

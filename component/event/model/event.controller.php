@@ -42,8 +42,9 @@ class eventController
      *
      * @return string
      */
-    public function template($list = [], $msg)
+    public function template($list = array(), $msg='')
     {
+
         // global $conn, $lang;
         global $PARAM,$member_info;
         switch ($this->exportType) {
@@ -81,12 +82,12 @@ class eventController
      */
     public function showDetail($id)
     {
-
         global $lang;
 
         // get event
         $event = new eventModel();
         $result = $event->getEventById($id);
+
         if ($result['result'] == '1') {
             $export['list'] = $event->fields;
         } else {
@@ -131,6 +132,7 @@ class eventController
         $this->fileName = 'event.showDetail.php';
 
 /*print_r_debug($export);*/
+
         $this->template($export);
         die();
     }
@@ -198,7 +200,7 @@ class eventController
         $calendar  = $res;
 
         $count = 0;
-        $temp='';
+        $temp=array();
 
         foreach ($calendar['export']['list'] as $k => $v)
         {

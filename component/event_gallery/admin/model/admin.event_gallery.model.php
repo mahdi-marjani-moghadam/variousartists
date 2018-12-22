@@ -9,5 +9,6 @@
 include_once(ROOT_DIR . "/common/validators.php");
 
 class adminEvent_galleryModel extends looeic{
+    protected $TABLE_NAME = 'event_gallery';
 
 }

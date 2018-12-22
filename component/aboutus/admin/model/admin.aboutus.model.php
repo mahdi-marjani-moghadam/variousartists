@@ -345,7 +345,7 @@ class adminAboutusModel
      * @date 2/28/2015
      * @version 01.01.01
      */
-    public function getAboutus($fields)
+    public function getAboutus($fields=array())
     {
         include_once(dirname(__FILE__)."/admin.aboutus.model.db.php");
 

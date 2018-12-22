@@ -1,7 +1,7 @@
 <?php
 
-include("nusoap.php");
-include_once('enpayment.conf.php');
+include(ROOT_DIR."model/ipg/nusoap.php");
+include_once(ROOT_DIR.'model/ipg/enpayment.conf.php');
 
 class Payment
 {
@@ -9,16 +9,21 @@ class Payment
 public function login($username, $password) 
 	{
 		$client = new nusoap_client('https://pna.shaparak.ir/ref-payment2/jax/merchantService?wsdl',true);
+//		  $client = new nusoap_client('https://pna.shaparak.ir:443/ref-payment2/RestServices/mts/merchantLogin/',true);
+
 		$err = $client->getError();
+
 		if ($err) {
 			echo '<h2>Constructor error</h2><pre>' . $err . '</pre>';
 			echo '<h2>Debug</h2><pre>' . htmlspecialchars($client->getDebug(), ENT_QUOTES) . '</pre>';
 			exit();
 		}
+
 		$params = array('param' => array('Password' => $password, 'UserName' => $username));
-		$result = $client->call('MerchantLogin', array('param' => array('Password' => $password, 'UserName' => $username)));
-		
-		if ($client->fault) {
+        //$client->param = $params;
+        $result = $client->call('MerchantLogin', array('param' => array('Password' => $password, 'UserName' => $username)));
+
+        if ($client->fault) {
 			echo '<h2>Fault (Expect - The request contains an invalid SOAP body)</h2><pre>'; print_r($result); echo '</pre>';
 			} else {
 				$err = $client->getError();

@@ -23,10 +23,12 @@ switch ($_GET['action']) {
         break;*/
     case 'add':
 
-        if (isset($_POST['action']) & $_POST['action'] == 'add') {
+        if ( isset($_POST['add']) ) {
+
             $eventController->addEvent($_POST);
         }
-        if (isset($_POST['action']) & $_POST['action'] == 'addDraft') {
+        if (isset($_POST['addDraft'])) {
+
             $eventController->addEventDraft($_POST);
         }else {
             $eventController->showEventAddForm('', '');

@@ -365,7 +365,7 @@ class adminCategoryModel extends looeic
 
 
         global $lang;
-        static $mainMenu = '';
+        static $mainMenu = array();
         //echo $this->level;
 
         foreach ($_input as $key => $val) {
@@ -504,9 +504,11 @@ class adminCategoryModel extends looeic
         $this->list = $export;
         $this->recordsCount = count($export);
 
+        $result = array();
         $result['result'] = 1;
         $result['export']['list'] = $export;
         $result['export']['recordsCount'] = $this->recordsCount;
+
 
         return $result;
     }

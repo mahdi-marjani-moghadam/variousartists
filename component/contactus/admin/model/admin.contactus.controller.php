@@ -40,7 +40,7 @@ class adminContactusController
      * @param $msg
      * @return string
      */
-    function template($list = array(), $msg)
+    function template($list = array(), $msg='')
     {
         // global $conn, $lang;
 
@@ -101,7 +101,7 @@ class adminContactusController
     /**
      * @param $fields
      */
-    public function showList($fields, $msg)
+    public function showList($fields=array(), $msg='')
     {
         $contactus = new adminContactusModel();
         $result = $contactus->getContactus($fields);
@@ -160,7 +160,7 @@ class adminContactusController
      * @param $fields
      * @param $msg
      */
-    public function showContactusEditForm($fields, $msg)
+    public function showContactusEditForm($fields=array(), $msg='')
     {
 
         $contactus=new adminContactusModel();

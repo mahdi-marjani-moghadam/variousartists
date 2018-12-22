@@ -28,7 +28,7 @@ class notFoundController
         $this->exportType='html';
 
     }
-    function template($list=array(),$msg)
+    function template($list=array(),$msg='')
     {
         global $PARAM, $member_info;
 

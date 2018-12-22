@@ -54,7 +54,7 @@
 
                                 <!--<li><i class="icon-map-marker2"></i><?/*=$list['list']['city']*/?> - <?/*=($list['list']['address']!=""? $list['list']['address']:"-")*/?></li>-->
                                 <li><i class="icon-phone-sign"></i> <?=($list['list']['event_phone']!=""? $list['list']['event_phone']:"-")?></li>
-                                <? if($list['list']['price'] != "" && $list['list']['price']!== '0'):?><li><i class="icon-dollar"></i> <strong><?=($list['list']['price']!= "" )? $list['list']['price']:"-";?>Toman</strong></li><?endif;?>
+                                <? if($list['list']['price'] != "" && $list['list']['price']!== '0'):?><li><i class="icon-dollar"></i> <strong><?=($list['list']['price']!= "" )? $list['list']['price']:"-";?><?=rial?></strong></li><?endif;?>
                                 <? if($list['list']['organizer'] != ""):?><li><i class="icon-user"></i> <strong><?=$list['list']['organizer'];?></strong></li><?endif;?>
                             </ul>
                         </div>
@@ -75,7 +75,7 @@
                                         </select>
                                         <li></li>
                                         <div class="form-group form-actions">
-                                            <input type="submit" class="btn btn-primary btn-default btn-block text-white text-16" value="خرید آنلاین">
+                                            <input type="submit" class="btn btn-primary btn-default btn-block text-white text-16" value="sss">
                                         </div><!--/form-group-->
 
 

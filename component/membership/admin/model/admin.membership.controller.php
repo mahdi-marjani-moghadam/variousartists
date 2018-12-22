@@ -5,12 +5,12 @@
  * Date: 3/6/2016
  * Time: 11:21 AM.
  */
-include_once dirname(__FILE__).'/admin.artists.model.php';
+include_once dirname(__FILE__).'/admin.membership.model.php';
 
 /**
  * Class registerController.
  */
-class adminArtistsController
+class adminMembershipController
 {
     /**
      * Contains file type.
@@ -86,10 +86,65 @@ class adminArtistsController
      *
      * @version 01.01.01
      */
-
-    public function showArtistsAddForm($fields=array(), $msg='')
+    public function addArtists($fields)
     {
+        global $messageStack;
 
+        $artists = new adminArtistsModel();
+
+        $fields['password'] = md5($fields['password']);
+
+        $fields['refresh_date'] = convertJToGDate($fields['refresh_date']);
+        $fields['date'] = date('Y-m-d H:i:s');
+
+        $fields['category_id'] = ','.implode(',',$fields['category_id']).',';
+        $fields['type'] = 0;
+        $fields['status'] = 1;
+
+        $fields['username'] = $fields['artists_phone1'];
+
+
+        $artists->setFields($fields);
+        $result = $artists->save();
+//        print_r_debug($artists);
+
+        $fields['Artists_id'] = $artists->fields['Artists_id'];
+
+        if(file_exists($_FILES['logo']['tmp_name'])){
+            $input['upload_dir'] = ROOT_DIR.'statics/files/'.$fields['Artists_id'].'/';
+            $result = fileUploader($input,$_FILES['logo']);
+            fileRemover($input['upload_dir'],$artists->fields['logo']);
+            $artists->logo = $result['image_name'];
+            $result = $artists->save();
+        }
+
+
+        if ($result['result'] != '1') {
+            $messageStack->add_session('register', $result['msg']);
+            $this->showArtistsAddForm($fields, $result['msg']);
+        }
+        $msg = 'ثبت نام با موفقیت انجام شد.';
+        $messageStack->add_session('register', $msg);
+
+        redirectPage(RELA_DIR.'zamin/?component=membership', $msg);
+        die();
+    }
+
+    /**
+     * call register form.
+     *
+     * @param $fields
+     * @param $msg
+     *
+     * @return mixed
+     *
+     * @author malekloo
+     * @date 14/03/2016
+     *
+     * @version 01.01.01
+     */
+    public function showArtistsAddForm($fields, $msg)
+    {
         include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
         $category = new adminCategoryModel();
 
@@ -97,6 +152,7 @@ class adminArtistsController
         if ($resultCategory['result'] == 1) {
             $fields['category'] = $category->list;
         }
+
         /** genre */
         include_once ROOT_DIR.'component/genre/admin/model/admin.genre.model.php';
         $genre = new adminGenreModel();
@@ -123,151 +179,58 @@ class adminArtistsController
         }
 
 
+        //////////////////////////////////////////////////
+        ////                get country               ////
+        //////////////////////////////////////////////////
+        global $dataStack;
+        include_once(ROOT_DIR . "model/country.class.php");
+        $COUNTRY = new clsCountry();
+        $COUNTRY->countryFieldName = array("iso", "phone_code", "name", "max_length", "sample");
+        $fields['data'] = $dataStack->output('data');
+
+        if (isset($fields['data']['areacode']) && count($fields['data']) > 0 && $fields['data']['areacode'] != '') {
+            $COUNTRY->condition = array("phone_code" => $fields['data']['areacode']);// or "iso"=>"ir"
+        } else {
+            $COUNTRY->condition = array("phone_code" => "98");// or "iso"=>"us"
+        }
+
+        //set input country when come in page
+        $COUNTRY->getAllCountryCode();
+        $fields['default'] = $COUNTRY->country;
+
+        //$countries = $COUNTRY->country;
+
+        $COUNTRY->unsetCondition();
+
+        //get select country area code
+        $COUNTRY->multiIso         = array("CN","us","IR","de");
+        $COUNTRY->getAllCountryCode();
+        $fields['country'] = $COUNTRY->country;
 
 
-        $this->fileName = 'admin.artists.addForm.php';
+        $this->fileName = 'admin.membership.addForm.php';
         $this->template($fields, $msg);
         die();
     }
-    public function addArtists($fields)
-    {
-        global $messageStack;
 
-        $artists = new adminArtistsModel();
-
-        $fields['password'] = md5($fields['password']);
-
-
-        if($fields['refresh_date'] == ''){
-            unset($fields['refresh_date']);
-        }else{
-            $fields['refresh_date'] = convertJToGDate($fields['refresh_date']);
-        }
-        if($fields['birthday'] == ''){
-            unset($fields['birthday']);
-        }else {
-            $fields['birthday'] = convertJToGDate($fields['birthday']);
-        }
-        $fields['category_id'] = ','.implode(',',$fields['category_id']).',';
-        $fields['genre_id'] = ','.implode(',',$fields['genre_id']).',';
-
-        $artists->setFields($fields);
-        //$result = $artists->validator();
-
-        /*if ($result['result'] == -1) {
-            $this->showArtistsAddForm($fields, $result['msg']);
-        }*/
-        $artists->type = 1;
-        $result = $artists->save();
-        $fields['Artists_id'] = $artists->fields['Artists_id'];
-
-        if(file_exists($_FILES['logo']['tmp_name'])){
-            $input['upload_dir'] = ROOT_DIR.'statics/files/'.$fields['Artists_id'].'/';
-            $result = fileUploader($input,$_FILES['logo']);
-            fileRemover($input['upload_dir'],$artists->fields['logo']);
-            $artists->logo = $result['image_name'];
-            $result = $artists->save();
-        }
-        //print_r_debug($artists);
-        //print_r_debug($_FILES);
-
-        if ($result['result'] != '1') {
-            $messageStack->add_session('register', $result['msg']);
-            $this->showArtistsAddForm($fields, $result['msg']);
-        }
-        $msg = 'ثبت نام با موفقیت انجام شد.';
-        $messageStack->add_session('register', $msg);
-
-        redirectPage(RELA_DIR.'zamin/?component=artists', $msg);
-        die();
-    }
-
-    public function showArtistsEditForm($fields, $msg)
-    {
-        $showStatus=$fields['showStatus'];
-        if (strtoupper($_SERVER['REQUEST_METHOD']) != 'POST') {
-            $artists = new adminArtistsModel();
-            $result = $artists->getArtistsById($fields['Artists_id']);
-            if ($result['result'] != '1') {
-                $msg = $result['msg'];
-                redirectPage(RELA_DIR.'zamin/index.php?component=artists', $msg);
-            }
-            $export = $artists->fields;
-        } else {
-            $export = $fields;
-        }
-
-
-
-        include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
-        $category = new adminCategoryModel();
-
-        $resultCategory = $category->getCategoryOption();
-
-        if ($resultCategory['result'] == 1) {
-            $export['category'] = $category->list;
-        }
-
-        /** genre */
-        include_once ROOT_DIR.'component/genre/admin/model/admin.genre.model.php';
-        $genre = new adminGenreModel();
-
-        $resultGenre = $genre->getGenreOption();
-        if ($resultGenre['result'] == 1) {
-            $export['genre'] = $genre->list;
-        }
-
-
-        include_once ROOT_DIR.'component/province/admin/model/admin.province.model.php';
-        //$province = new adminProvinceModel();
-        $province = adminProvinceModel::getAll()->getList();
-
-        //$resultProvince = $province->getStates();
-        if ($province['result'] == 1) {
-            $export['cities'] = $province['export']['list'];
-        }
-
-        /*include_once ROOT_DIR.'component/city/admin/model/admin.city.model.php';
-        $city = new adminCityModel();
-        $resultCity = $city->getCities();
-        if ($resultCity['result'] == 1) {
-            $export['cities'] = $city->list;
-        }*/
-
-        /*include_once ROOT_DIR.'component/state/admin/model/admin.state.model.php';
-        $state = new adminStateModel();
-        $resultState = $state->getStates();
-        if ($resultState['result'] == 1) {
-            $export['states'] = $state->list;
-        }
-
-        include_once ROOT_DIR.'component/certification/admin/model/admin.certification.model.php';
-        $certification = new adminCertificationModel();
-
-        $resultCertification = $certification->getCertification();
-        if ($resultCity['result'] == 1) {
-            $export['certifications'] = $certification->list;
-        }*/
-
-
-
-        $export['showStatus']=$showStatus;
-        $this->fileName = 'admin.artists.editForm.php';
-        $this->template($export, $msg);
-        die();
-    }
+    /**
+     * @param $fields
+     *
+     * @return mixed
+     *
+     * @author malekloo
+     * @date 3/16/2015
+     *
+     * @version 01.01.01
+     */
     public function editArtists($fields)
     {
-        //$artists = new adminArtistsModel();
-
 
 
         $artists = adminArtistsModel::find($fields['Artists_id']);
 
-        $fields['refresh_date'] = convertJToGDate($fields['refresh_date']);
-        if($fields['birthday']!='') {
-            $fields['birthday'] = convertJToGDate($fields['birthday']);
-        }
+        //$fields['refresh_date'] = convertJToGDate($fields['refresh_date']);
+        //$fields['birthday'] = convertJToGDate($fields['birthday']);
 
         if($fields['password']!=''){
             $fields['password'] = md5($fields['password']);
@@ -276,13 +239,11 @@ class adminArtistsController
             unset($fields['password']);
         }
 
+
         $result = $artists->setFields($fields);
 
-        $temp = implode(",",$artists->fields['category_id']);
-        $artists->category_id = ','.$temp.',';
 
-        $temp = implode(",",$artists->fields['genre_id']);
-        $artists->genre_id = ','.$temp.',';
+
 
 
         if ($result['result'] != 1) {
@@ -290,7 +251,11 @@ class adminArtistsController
         }
 
         $artists->update_date = date('Y-m-d H:i:s');
+
         $result = $artists->save();
+
+
+        //$result = $artists->edit();
 
         if ($result['result'] != '1') {
             $this->showArtistsEditForm($fields, $result['msg']);
@@ -312,17 +277,94 @@ class adminArtistsController
 
 
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=artists'.$action, $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=membership'.$action, $msg);
         die();
     }
+
+    /**
+     * @param $fields
+     *
+     * @return mixed
+     *
+     * @author malekloo
+     * @date 3/6/2015
+     *
+     * @version 01.01.01
+     */
+    public function showArtistsEditForm($fields, $msg)
+    {
+//        $showStatus=$fields['showStatus'];
+        if (strtoupper($_SERVER['REQUEST_METHOD']) != 'POST') {
+            $artists = new adminArtistsModel();
+            $result = $artists->getArtistsById($fields['Artists_id']);
+            if ($result['result'] != '1') {
+                $msg = $result['msg'];
+                redirectPage(RELA_DIR.'zamin/index.php?component=membership', $msg);
+            }
+            $export = $artists->fields;
+        } else {
+            $export = $fields;
+        }
+
+        //////////////////////////////////////////////////
+        ////                get country               ////
+        //////////////////////////////////////////////////
+        global $dataStack;
+        include_once(ROOT_DIR . "model/country.class.php");
+        $COUNTRY = new clsCountry();
+        $COUNTRY->countryFieldName = array("iso", "phone_code", "name", "max_length", "sample");
+        $fields['data'] = $dataStack->output('data');
+
+        if (isset($fields['data']['areacode']) && count($fields['data']) > 0 && $fields['data']['areacode'] != '') {
+            $COUNTRY->condition = array("phone_code" => $fields['data']['areacode']);// or "iso"=>"ir"
+        } else {
+            $COUNTRY->condition = array("phone_code" => "98");// or "iso"=>"us"
+        }
+
+        //set input country when come in page
+        $COUNTRY->getAllCountryCode();
+        $fields['default'] = $COUNTRY->country;
+
+        //$countries = $COUNTRY->country;
+
+        $COUNTRY->unsetCondition();
+
+        //get select country area code
+        $COUNTRY->multiIso         = array("CN","us","IR","de");
+        $COUNTRY->getAllCountryCode();
+        $fields['country'] = $COUNTRY->country;
+
+
+
+        $export['data']    = $fields['data'];
+        $export['default'] = $fields['default'];
+        $export['country'] = $fields['country'];
+//        $export['showStatus']=$showStatus;
+        $this->fileName = 'admin.membership.editForm.php';
+        $this->template($export, $msg);
+        die();
+    }
+
+
 
     public function showList($msg)
     {
         $export['status']='showAll';
-        $this->fileName = 'admin.artists.showList.php';
+        $this->fileName = 'admin.membership.showList.php';
         $this->template($export);
         die();
     }
+
+    /**
+     * @param $fields
+     *
+     * @return mixed
+     *
+     * @author malekloo
+     * @date 3/6/2015
+     *
+     * @version 01.01.01
+     */
     public function search($fields)
     {
 
@@ -335,14 +377,10 @@ class adminArtistsController
         $columns = array(
             array( 'db' => 'Artists_id', 'dt' =>$i++),
             array( 'db' => 'username', 'dt' =>$i++),
-            array( 'db' => 'nickname', 'dt' =>$i++),
-            array( 'db' => 'category_id', 'dt' =>$i++),
             array( 'db' => 'artists_phone1', 'dt' => $i++ ),
             array( 'db' => 'artists_name_en', 'dt' => $i++ ),
             array( 'db' => 'artists_name_fa',   'dt' => $i++),
-            array( 'db' => 'site', 'dt' => $i++ ),
             array( 'db' => 'status', 'dt' => $i++ ),
-            array( 'db' => 'logo', 'dt' => $i++ ),
             array( 'db' => 'Artists_id', 'dt' => $i++ )
         );
         $convert=new convertDatatableIO();
@@ -351,13 +389,7 @@ class adminArtistsController
 
 
         $searchFields= $convert->convertInput();
-//        $searchFields['order']['update_date'] = 'desc';
-//        print_r_debug($searchFields);//
-        //$date = date('Y-m-d', strtotime(COMPANY_EXPIRE_PERIOD));
-        // print_r_debug($date);
-        //$searchFields['where'] = 'where refresh_date < '."'$date'";
-        $searchFields['filter']['type'] = '1';
-        //print_r_debug($searchFields);
+        $searchFields['filter']['type'] = '0';
 
         $result = $artists->getArtists($searchFields);
 
@@ -371,14 +403,8 @@ class adminArtistsController
 
         $list['paging']=$artists->recordsCount;
 
-        /*$other['2']=array(
-            'formatter' =>function($list)
-            {
-                $st='<div data-artists_id="'.$list['Artists_id'].'" class="artists_phone">'.$list['phone_number'].'</div>';
-                return $st;
-            }
-        );*/
-        $other['8']=array(
+
+        $other['5']=array(
             'formatter' =>function($list)
             {
                 if($list['status']==1) {
@@ -389,23 +415,15 @@ class adminArtistsController
                 return $st;
             }
         );
-        $other['9']=array(
-            'formatter' =>function($list)
-            {
-                $st = "<img height='50' src='".RELA_DIR.'statics/files/'.$list['Artists_id'].'/'.$list['logo']."'>";
 
-                return $st;
-            }
-        );
         $internalVariable['showstatus']=$fields['status'];
         $other[$i-1]=array(
             'formatter' =>function($list,$internal)
             {
                 $st='a'.$list['showstatus'];
-                $st='<a href="'. RELA_DIR.'zamin/?component=artists&action=edit&id='.$list['Artists_id'].'&showStatus='.$internal['showstatus']
+                $st='<a href="'. RELA_DIR.'zamin/?component=membership&action=edit&id='.$list['Artists_id'].'&showStatus='.$internal['showstatus']
                     .'">ویرایش</a> <br/>
-                        <a href="'.RELA_DIR.'zamin/?component=product&id='.$list['Artists_id'].'">لیست کارها</a><br/>
-                        <a href="'.RELA_DIR.'zamin/?component=artists&action=delete&id='.$list['Artists_id'].$list['artists_name'].'">حذف</a>';
+                        <a href="'.RELA_DIR.'zamin/?component=membership&action=delete&id='.$list['Artists_id'].$list['artists_name'].'">حذف</a>';
                 return $st;
             }
         );
@@ -416,6 +434,7 @@ class adminArtistsController
         die();
     }
 
+
     public function deleteArtists($id)
     {
         $artists = new adminArtistsModel();
@@ -423,39 +442,55 @@ class adminArtistsController
 
         if (!validator::required($id) and !validator::Numeric($id)) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'zamin/index.php?component=artists', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=membership', $msg);
         }
         $result = $artists->getArtistsById($id);
         $file = $result['export']['list']['logo'];
 
         if ($result['result'] != '1') {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR.'zamin/index.php?component=artists', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=membership', $msg);
         }
 
-        include_once ROOT_DIR.'component/product/admin/model/admin.product.model.php';
-        $product = adminProductModel::getBy_artists_id($id)->get();
 
-
-        if ($product['export']['recordsCount'] > 0) {
-            $msg = 'توجه : ابتدا محصولات این کمپانی را حذف تنایید.';
-            redirectPage(RELA_DIR.'zamin/index.php?component=artists', $msg);
-        }
 
         $result = $artists->delete();
         fileRemover(ROOT_DIR.'statics/files/'.$id.'/',$file);
 
-        include_once (ROOT_DIR.'component/product/admin/model/admin.product.model.php');
-
 
 
         if ($result['result'] != '1') {
-            redirectPage(RELA_DIR.'zamin/index.php?component=artists', $msg);
+            redirectPage(RELA_DIR.'zamin/index.php?component=membership', $msg);
         }
 
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=artists', $msg);
+        redirectPage(RELA_DIR.'zamin/index.php?component=membership', $msg);
         die();
+    }
+    public function call($fields)
+    {
+        include_once dirname(__FILE__).'/php-ami-class.php';
+        $conn = new AstMan();
+        $ret = $conn->clickToCall($fields['number']);
+        die();
+    }
+
+    public function getArtistsphone($input)
+    {
+        $artists_id =   $input['artists_id'];
+        include_once dirname(__FILE__).'/admin.artists.model.php';
+        $model = new adminArtistsModel();
+        $result = $model->getArtistsphoneAll($artists_id);
+        $phone='';
+        foreach ($result['export']['list'] as $key => $value ){
+            $phone .='<h4><a class="btn btn-default artists_allphone label label-default" href="#" role="button" data-myphonenumber="'.$value.'" data-myartistsid="'.$artists_id.'"><span class="glyphicon glyphicon-phone-alt"></span></a><span>'.$value.'</span></h4>';
+
+        }
+        echo $phone;
+        //print_r_debug($result );
+        //json_encode($result);
+         die();
+
     }
 
     public function getCityAjax($input)

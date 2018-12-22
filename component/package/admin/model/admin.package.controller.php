@@ -23,7 +23,7 @@ class adminPackageController
         $this->exportType = 'html';
     }
 
-    public function template($list = array(), $msg)
+    public function template($list = array(), $msg='')
     {
 
         switch ($this->exportType) {

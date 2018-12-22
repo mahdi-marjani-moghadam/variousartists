@@ -151,7 +151,7 @@ class adminGenreModel extends looeic
 
 
         global $lang;
-        static $mainMenu = '';
+        static $mainMenu = array();
         //echo $this->level;
 
         foreach ($_input as $key => $val) {

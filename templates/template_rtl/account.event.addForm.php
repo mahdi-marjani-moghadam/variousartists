@@ -153,7 +153,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control   datepicker" name="date" id="date" required value="<?= ($list['date']!=""? convertDate($list['date']):"") ?>">
+                                        <input type="text" class="form-control   datepicker" autocomplete="off" name="date" id="date" required value="<?= ($list['date']!=""? convertDate($list['date']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -174,7 +174,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control datepicker" name="date2" id="date2"  value="<?= ($list['date2']!=""? convertDate($list['date2']):"") ?>">
+                                        <input type="text" class="form-control datepicker" autocomplete="off" name="date2" id="date2"  value="<?= ($list['date2']!=""? convertDate($list['date2']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -195,7 +195,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date3">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control  datepicker" name="date3" id="date3"  value="<?= ($list['date3']!=""? convertDate($list['date3']):"")?>">
+                                        <input type="text" class="form-control  datepicker" autocomplete="off" name="date3" id="date3"  value="<?= ($list['date3']!=""? convertDate($list['date3']):"")?>">
                                     </div>
                                 </div>
                             </div>
@@ -209,14 +209,15 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="category_id">انتخاب دسته بندی:</label>
-                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                    <div class="col-xs-12 col-sm-8 pull-right ltr">
+
                                         <select name="category_id[]" id="category_id" data-input="select2" multiple>
                                             <?
                                             foreach($list['category'] as $category_id => $value)
                                             {
                                                 ?>
-                                                <option <?php echo in_array($value['Category_id'], $list['category_id']) ? 'selected' : '' ?>
-                                                    value="<?= $value['Category_id'] ?>">
+                                                <option <?php echo in_array($category_id, $list['category_id']) ? 'selected' : '' ?>
+                                                    value="<?= $category_id ?>">
                                                     <?= $value['export'] ?>
                                                 </option>
                                                 <?
@@ -236,8 +237,8 @@
                                             foreach($list['genre'] as $genre_id => $value)
                                             {
                                                 ?>
-                                                <option <?php echo in_array($value['Genre_id'], $list['genre_id']) ? 'selected' : '' ?>
-                                                    value="<?= $value['Genre_id'] ?>">
+                                                <option <?php echo in_array($genre_id, $list['genre_id']) ? 'selected' : '' ?>
+                                                    value="<?=$genre_id?>">
                                                     <?= $value['export'] ?>
                                                 </option>
                                                 <?
@@ -285,7 +286,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="price">قیمت</label>
+                                           for="price">قیمت (<?=rial?>)</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
                                         <input type="text" class="form-control" name="price" id="price"  value="<?= $list['price'] ?>">
                                     </div>

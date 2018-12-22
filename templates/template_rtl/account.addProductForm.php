@@ -67,7 +67,7 @@
                                                     <div class="form-group">
                                                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="creation_date">تاریخ تولید:</label>
                                                         <div class="col-xs-12 col-sm-8 pull-right">
-                                                            <input type="text" class="form-control datepicker" name="creation_date" id="creation_date"  placeholder=""  value="<?=($list['creation_date'] != '')? convertDate($list['creation_date']) :'';?>">
+                                                            <input type="text" class="form-control datepicker" name="creation_date" id="creation_date" autocomplete="off" value="<?=($list['creation_date'] != '')? convertDate($list['creation_date']) :'';?>">
                                                         </div>
                                                     </div>
                                                 </div>

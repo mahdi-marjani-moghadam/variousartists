@@ -62,8 +62,6 @@
             <th>ردیف</th>
             <th>عنوان(فارسی)</th>
             <th>عنوان(انگلیسی)</th>
-            <th>توضیحات مختصر(فارسی)</th>
-            <th>توضیحات مختصر(انگلیسی)</th>
             <th>توضیحات(فارسی)</th>
             <th>توضیحات(انگلیسی)</th>
             <th>تصویر</th>
@@ -82,8 +80,6 @@
                 <td><?php echo $fields['Artists_products_id']; ?></td>
                 <td><?php echo $fields['title_fa']; ?></td>
                 <td><?php echo $fields['title_en']; ?></td>
-                <td><?php echo $fields['brif_description_fa']; ?></td>
-                <td><?php echo $fields['brif_description_en']; ?></td>
                 <td><?php echo $fields['description_fa']; ?></td>
                 <td><?php echo $fields['description_en']; ?></td>
                 <td dir="ltr" align="center"> <img height="100px" src="<?=RELA_DIR.'statics/files/'.$fields['artists_id'].'/'.$fields['image']?>"/> </td>
@@ -122,9 +118,6 @@
             <th><input type="text" name="search_6" class="search_init form-control" /></th>
             <th><input type="text" name="search_7" class="search_init form-control" /></th>
             <th><input type="hidden" name="search_8" class="search_init form-control" /></th>
-            <th><input type="hidden" name="search_9" class="search_init form-control" /></th>
-            <th><input type="hidden" name="search_10" class="search_init form-control" /></th>
-
           </tfoot>
         </table>
       </div>

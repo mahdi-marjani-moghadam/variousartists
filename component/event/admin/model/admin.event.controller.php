@@ -42,7 +42,7 @@ class adminEventController
      *
      * @return string
      */
-    public function template($list = [], $msg)
+    public function template($list = array(), $msg='')
     {
         global $messageStack,$admin_info,$lang;
 
@@ -87,10 +87,12 @@ class adminEventController
         $_input['date2'] = ($_input['date2']!=''?convertJToGDate($_input['date2']):'0000-00-00');
         $_input['date3'] = ($_input['date3']!=''?convertJToGDate($_input['date3']):'0000-00-00');
         $_input['category_id'] = ','.implode(',',$_input['category_id'] ).',';
+        $_input['genre_id'] = ','.implode(',',$_input['genre_id'] ).',';
         $_input['salon_id'] = ','.implode(',',$_input['salon_id'] ).',';
 
 
         $result = $event->setFields($_input);
+
 
         if ($result['result'] == -1) {
             $this->showEventAddForm($_input, $result['msg']);
@@ -120,8 +122,6 @@ class adminEventController
         redirectPage(RELA_DIR.'zamin/?component=event', $msg);
         die();
     }
-
-
     public function showEventAddForm($fields, $msg)
     {
         /** category */
@@ -143,6 +143,7 @@ class adminEventController
         }
 
         /** salon */
+
         include_once ROOT_DIR.'component/salon/admin/model/admin.salon.model.php';
         $salon = new adminSAlonModel();
         $obj = $salon->getAll()
@@ -150,7 +151,7 @@ class adminEventController
             ->getList();
 
         if ($obj['result'] == 1) {
-            $export['salon'] = $obj['export']['list'];
+            $fields['salon'] = $obj['export']['list'];
         }
 
         include_once ROOT_DIR.'component/city/admin/model/admin.city.model.php';
@@ -230,6 +231,7 @@ class adminEventController
     {
         global $messageStack;
 
+
         include_once ROOT_DIR.'component/event_gallery/admin/model/admin.event_gallery.model.php';
         $event = new adminEvent_galleryModel();
 
@@ -239,7 +241,6 @@ class adminEventController
             $this->showEventAddForm($_input, $result['msg']);
         }
         $event->save();
-
 
 
         if(file_exists($_FILES['image']['tmp_name'])){

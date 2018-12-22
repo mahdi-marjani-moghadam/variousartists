@@ -40,7 +40,7 @@ class adminNewsController
      *
      * @return string
      */
-    public function template($list = [], $msg)
+    public function template($list = [], $msg='')
     {
         // global $conn, $lang;
 

@@ -55,45 +55,6 @@ class eventModel extends looeic
         }
     }
 
-    /**
-     * @param $input
-     *
-     * @return int
-     */
-    public function setFields($input)
-    {
-        foreach ($input as $field => $val) {
-            $funcName = '__set'.ucfirst($field);
-            if (method_exists($this, $funcName)) {
-                $result = $this->$funcName($val);
-                if ($result['result']) {
-                    $this->fields[$field] = $val;
-                } else {
-                    return $result;
-                }
-            }
-        }
-        $result = 1;
-
-        return $result;
-    }
-
-    /**
-     * @param $input
-     *
-     * @return mixed
-     */
-    private function __setTitle($input)
-    {
-        if (!Validator::required($input)) {
-            $result['result'] = -1;
-            $result['msg'] = 'pleas enter title';
-        } else {
-            $result['result'] = 1;
-        }
-
-        return $result;
-    }
 
     /**
      * get article.

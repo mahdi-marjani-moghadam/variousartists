@@ -236,7 +236,7 @@
                                         <div ><?=birthday?>
                                             <span class="pull-right"><input type="checkbox" name="check_birthday" id="check_birthday"><label for="check_birthday"> <?=show_birthday_for_public?></label></span>
                                         </div>
-                                        <input type="<?=($lang=='en')?'date':'';?>" autocomplete="false" id="birthday" name="birthday" value="<?=$_REQUEST['birthday']?>" class="form-control <?=($lang=='en')?'':'datepicker';?> " />
+                                        <input type="<?=($lang=='en')?'date':'';?>" autocomplete="off" id="birthday" name="birthday" value="<?=$_REQUEST['birthday']?>" class="form-control <?=($lang=='en')?'':'datepicker';?> " />
                                     </div>
                                     <div class="col_full art">
                                         <label for="artists_name"><?=category?></label>

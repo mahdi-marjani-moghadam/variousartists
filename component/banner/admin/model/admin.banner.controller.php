@@ -40,7 +40,7 @@ class adminBannerController
      * @param $msg
      * @return string
      */
-    function template($list=[],$msg)
+    function template($list=array(),$msg='')
     {
         // global $conn, $lang;
 

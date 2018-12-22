@@ -42,7 +42,7 @@ class searchController
      *
      * @return string
      */
-    public function template($list = [], $msg)
+    public function template($list = [], $msg='')
     {
          global  $lang;
 
