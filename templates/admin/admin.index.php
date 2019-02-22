@@ -22,10 +22,14 @@
 
           <ul class="list-percentages row ">
 
-            <li class="col-xs-12">
+            <li class="col-xs-6">
               <p class="text-ellipsis">هنرمندان</p>
               <p class="text-lg"><strong><?php echo $list['artists_count'];?></strong></p>
             </li>
+              <li class="col-xs-6">
+                  <p class="text-ellipsis">اعضا</p>
+                  <p class="text-lg"><strong><?php echo $list['members_count'];?></strong></p>
+              </li>
 
 
           </ul><!--/list-percentages-->

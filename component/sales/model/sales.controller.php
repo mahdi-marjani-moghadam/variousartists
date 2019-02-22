@@ -161,6 +161,7 @@ $resultsandali=$sandali->getByFilter($fildes);
         $min=$export['salonpartname']['min_sandali'];
         $max=$export['salonpartname']['max_sandali'];
         $sandalipor=array();
+
         foreach ($export['sandalipor']['list'] as $k => $x):
             $sandalipor[]=$x["sandali"];
         endforeach;
@@ -289,18 +290,30 @@ $resultsandali=$sandali->getByFilter($fildes);
         $fields = $this->urlDecode();
 
         include_once ROOT_DIR.'component/sales/model/sales.model.php';
-        $objSales = salesModel::getBy_event_id_and_place_id_and_part_id_and_event_time_and_status
-        ($fields['event_id'],$objPosition['parent_id'],$fields['position'],$fields['time'],0)
-            ->getList();
+        $obj = new salesModel();
 
+        $objSales = $obj->getAll()
+            ->where('event_id','=',$fields['event_id'])
+            ->andWhere('place_id','=',$objPosition['parent_id'])
+            ->andWhere('part_id','=',$fields['position'])
+            ->andWhere('event_time','=',$fields['time'])
+            ->andWhere('event_date','=',$fields['date'])
+            ->andWhere('status','=',0)
+            ->getList();
+        //getBy_event_id_and_place_id_and_part_id_and_event_time_and_status
+        //($fields['event_id'],$objPosition['parent_id'],$fields['position'],$fields['time'],0)
+
+        //print_r_debug($objSales);
 
         $sandalipor=array();
 
         foreach ($objSales['export']['list'] as $userSandali => $v):
             foreach (explode(',',$v['sandali']) as $k => $x):
-                $sandalipor[]=$x["sandali"];
+                $sandalipor[]=$x;
             endforeach;
         endforeach;
+
+
         $sandalipor = array_unique($sandalipor);
 
         for ($x=$objPosition['min_sandali'];$x<=$objPosition['max_sandali'] ;$x++){

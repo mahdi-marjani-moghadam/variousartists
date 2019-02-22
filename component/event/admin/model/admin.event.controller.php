@@ -77,6 +77,69 @@ class adminEventController
     }
 
 
+
+    public function showEventAddForm($fields=array(), $msg='')
+    {
+        /** category */
+        include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
+        $category = new adminCategoryModel();
+
+        $resultCategory = $category->getCategoryOption();
+        if ($resultCategory['result'] == 1) {
+
+            //$fields['category'] = $category->list;
+            $export['category'] = $category->list;
+
+        }
+
+        /** genre */
+        include_once ROOT_DIR.'component/genre/admin/model/admin.genre.model.php';
+        $genre = new adminGenreModel();
+
+        $resultGenre = $genre->getGenreOption();
+        if ($resultGenre['result'] == 1) {
+            $export['genre'] = $genre->list;
+        }
+
+        /** salon */
+
+        include_once ROOT_DIR.'component/salon/admin/model/admin.salon.model.php';
+        $salon = new adminSAlonModel();
+        $obj = $salon->getAll()
+            ->where('parent_id','=',0)
+            ->getList();
+
+        if ($obj['result'] == 1) {
+            $export['salon'] = $obj['export']['list'];
+        }
+
+
+        /*include_once ROOT_DIR.'component/city/admin/model/admin.city.model.php';
+        $city = new adminCityModel();
+        $resultCity = $city->getCities();
+        if ($resultCity['result'] == 1) {
+            $fields['cities'] = $city->list;
+        }*/
+        /** city */
+        include_once ROOT_DIR.'component/state/admin/model/admin.state.model.php';
+        $province = new adminStateModel();
+        $resultProvince = $province->getStates();
+        if ($resultProvince['result'] == 1) {
+            $export['provinces'] = $province->list;
+        }
+
+        /*include_once ROOT_DIR.'component/certification/admin/model/admin.certification.model.php';
+        $certification = new adminCertificationModel();
+
+        $resultCertification = $certification->getCertification();
+        if ($resultCity['result'] == 1) {
+            $fields['certifications'] = $certification->list;
+        }*/
+
+        $this->fileName = 'admin.event.addForm.php';
+        $this->template($export, $msg);
+        die();
+    }
     public function addEvent($_input)
     {
         global $messageStack;
@@ -120,64 +183,6 @@ class adminEventController
         $messageStack->add_session('register', $msg);
 
         redirectPage(RELA_DIR.'zamin/?component=event', $msg);
-        die();
-    }
-    public function showEventAddForm($fields, $msg)
-    {
-        /** category */
-        include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
-        $category = new adminCategoryModel();
-
-        $resultCategory = $category->getCategoryOption();
-        if ($resultCategory['result'] == 1) {
-            $fields['category'] = $category->list;
-        }
-
-        /** genre */
-        include_once ROOT_DIR.'component/genre/admin/model/admin.genre.model.php';
-        $genre = new adminGenreModel();
-
-        $resultGenre = $genre->getGenreOption();
-        if ($resultGenre['result'] == 1) {
-            $fields['genre'] = $genre->list;
-        }
-
-        /** salon */
-
-        include_once ROOT_DIR.'component/salon/admin/model/admin.salon.model.php';
-        $salon = new adminSAlonModel();
-        $obj = $salon->getAll()
-            ->where('parent_id','=',0)
-            ->getList();
-
-        if ($obj['result'] == 1) {
-            $fields['salon'] = $obj['export']['list'];
-        }
-
-        include_once ROOT_DIR.'component/city/admin/model/admin.city.model.php';
-        $city = new adminCityModel();
-        $resultCity = $city->getCities();
-        if ($resultCity['result'] == 1) {
-            $fields['cities'] = $city->list;
-        }
-
-        include_once ROOT_DIR.'component/state/admin/model/admin.state.model.php';
-        $province = new adminStateModel();
-        $resultProvince = $province->getStates();
-        if ($resultProvince['result'] == 1) {
-            $fields['provinces'] = $province->list;
-        }
-
-        /*include_once ROOT_DIR.'component/certification/admin/model/admin.certification.model.php';
-        $certification = new adminCertificationModel();
-
-        $resultCertification = $certification->getCertification();
-        if ($resultCity['result'] == 1) {
-            $fields['certifications'] = $certification->list;
-        }*/
-
-        $this->fileName = 'admin.event.addForm.php';
-        $this->template($fields, $msg);
         die();
     }
 
@@ -369,10 +374,12 @@ class adminEventController
         $fields['salon_id'] = ",".(implode(",",$fields['salon_id'])).",";
 
 
-        $result = $event->setFields($fields);
+
+        $event->setFields($fields);
         $event->update_date = date('Y-m-d H:i:s');
 
         $result=$event->save();
+
 //        print_r_debug($event);
 
         $fields=$event->fields;

@@ -39,7 +39,7 @@
 <div class="content-body">
     <div id="panel-tablesorter" class="panel panel-warning">
         <div class="panel-heading bg-white">
-            <h3 class="panel-title rtl">رویداد جدید</h3>
+            <h3 class="panel-title "><?=new_event?></h3>
 
         </div><!-- /panel-heading -->
 
@@ -60,18 +60,18 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="event_name_fa">نام رویداد(فارسی):</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                    <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                           for="event_name_fa"><?=event_name_fa?></label>
+                                    <div class="col-xs-12 col-sm-8 col-md-8 ">
                                         <input type="text" class="form-control" name="event_name_fa" id="event_name_fa" required value="<?= $list['event_name_fa'] ?>">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="event_name_en">نام رویداد(انگلیسی):</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                    <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                           for="event_name_en"><?=event_name_en?></label>
+                                    <div class="col-xs-12 col-sm-8 col-md-8 ">
                                         <input type="text" class="form-control" name="event_name_en" id="event_name_en" required value="<?= $list['event_name_en'] ?>">
                                     </div>
                                 </div>
@@ -81,9 +81,11 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
                                     <label style="padding-right: 20px"
-                                           for="description_fa">توضیحات (فارسی):</label>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 pull-right">
+                                           for="description_fa"><?=description_fa?></label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 ">
                                         <?php
 
                                         include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
@@ -94,7 +96,7 @@
 
 
 
-                                        $config['language'] = 'fa';
+                                        $config['language'] = 'en';
                                         $config['filebrowserBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html';
                                         $config['filebrowserImageBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html?type=Images';
                                         $config['filebrowserUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
@@ -110,9 +112,10 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label class=" "
-                                           for="description_en">توضیحات(انگلیسی):</label>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 pull-right">
+                                    <div class="col-xs-12 col-sm-12 col-md-12" ><label class=" "
+                                           for="description_en"><?=description_en?></label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 ">
                                         <?php
 
                                         include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
@@ -123,7 +126,7 @@
 
 
 
-                                        $config['language'] = 'fa';
+                                        $config['language'] = 'en';
                                         $config['filebrowserBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html';
                                         $config['filebrowserImageBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html?type=Images';
                                         $config['filebrowserUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
@@ -141,19 +144,19 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="event_time">زمان رویداد</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                    <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                           for="event_time"><?=event_time?></label>
+                                    <div class="col-xs-12 col-sm-8 col-md-8 ">
                                         <input type="text" class="form-control" name="event_time" id="event_time" required value="<?= $list['event_time'] ?>">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="date">تاریخ رویداد</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control   datepicker" name="date" autocomplete="off" id="date" required value="<?= ($list['date']!=""? convertDate($list['date']):"") ?>">
+                                    <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                           for="date"><?=event_date?></label>
+                                    <div class="col-xs-12 col-sm-8 col-md-8 ">
+                                        <input type="date" class="form-control   " name="date" autocomplete="off" id="date" required value="<?= ($list['date']!=""? convertDate($list['date']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -162,19 +165,19 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="event_time2">زمان رویداد</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                    <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                           for="event_time2"><?=event_time?></label>
+                                    <div class="col-xs-12 col-sm-8 col-md-8 ">
                                         <input type="text" class="form-control" name="event_time2" id="event_time2"  value="<?= $list['event_time2'] ?>">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="date">تاریخ رویداد</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control datepicker" name="date2" autocomplete="off" id="date2"  value="<?= ($list['date2']!=""? convertDate($list['date2']):"") ?>">
+                                    <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                           for="date"><?=event_date?></label>
+                                    <div class="col-xs-12 col-sm-8 col-md-8 ">
+                                        <input type="date" class="form-control " name="date2" autocomplete="off" id="date2"  value="<?= ($list['date2']!=""? convertDate($list['date2']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -183,19 +186,19 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="event_time3">زمان رویداد</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                    <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                           for="event_time3"><?=event_time?></label>
+                                    <div class="col-xs-12 col-sm-8 col-md-8 ">
                                         <input type="text" class="form-control" name="event_time3" id="event_time3"  value="<?= $list['event_time3'] ?>">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="date3">تاریخ رویداد</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control  datepicker" name="date3" autocomplete="off" id="date3"  value="<?= ($list['date3']!=""? convertDate($list['date3']):"")?>">
+                                    <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                           for="date3"><?=event_date?></label>
+                                    <div class="col-xs-12 col-sm-8 col-md-8 ">
+                                        <input type="date" class="form-control  " name="date3" autocomplete="off" id="date3"  value="<?= ($list['date3']!=""? convertDate($list['date3']):"")?>">
                                     </div>
                                 </div>
                             </div>
@@ -207,9 +210,9 @@
 
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                           for="category_id">انتخاب دسته بندی:</label>
-                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                    <label class="col-xs-12 col-sm-4  control-label "
+                                           for="category_id"><?=category?></label>
+                                    <div class="col-xs-12 col-sm-8 ">
                                         <select name="category_id[]" id="category_id" data-input="select2" multiple>
                                             <?
                                             foreach($list['category'] as $category_id => $value)
@@ -228,9 +231,9 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                           for="genre_id">انتخاب سبک:</label>
-                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                    <label class="col-xs-12 col-sm-4  control-label "
+                                           for="genre_id"><?=genre?></label>
+                                    <div class="col-xs-12 col-sm-8 ">
                                         <select name="genre_id[]" id="genre_id" data-input="select2" multiple>
                                             <?
                                             foreach($list['genre'] as $genre_id => $value)
@@ -249,9 +252,9 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="event_phone">تلفن</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                    <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                           for="event_phone"><?=telephone?></label>
+                                    <div class="col-xs-12 col-sm-8 col-md-8 ">
                                         <input type="text" class="form-control " name="event_phone" id="event_phone"  value="<?= ($list['event_phone']!=""? ($list['event_phone']):"")?>">
                                     </div>
                                 </div>
@@ -262,9 +265,9 @@
                             <!-- city -->
                             <div class="col-xs-12 col-sm-12 col-md-6" style="display: none">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="city_id">انتخاب شهر:</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                    <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                           for="city_id"><?=city?></label>
+                                    <div class="col-xs-12 col-sm-8 col-md-8 ">
                                         <select name="city_id" id="city_id" data-input="select2">
 
                                             <?
@@ -282,15 +285,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="price">قیمت<?=rail?></label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="price" id="price"  value="<?= $list['price'] ?>">
-                                    </div>
-                                </div>
-                            </div>
+
 
                         </div>
 
@@ -298,18 +293,18 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                           for="address_fa">آدرس (فارسی):</label>
-                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                    <label class="col-xs-12 col-sm-4  control-label "
+                                           for="address_fa"><?=address_fa?></label>
+                                    <div class="col-xs-12 col-sm-8 ">
                                         <input type="text" class="form-control" name="address_fa" id="address_fa" value="<?= $list['address_fa'] ?>">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                           for="address_en">آدرس (انگلیسی):</label>
-                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                    <label class="col-xs-12 col-sm-4  control-label "
+                                           for="address_en"><?=address_en?></label>
+                                    <div class="col-xs-12 col-sm-8 ">
                                         <input type="text" class="form-control" name="address_en" id="address_en" value="<?= $list['address_en'] ?>">
                                     </div>
                                 </div>
@@ -317,21 +312,21 @@
                         </div>
 
                         <div class="row xsmallSpace hidden-xs"></div>
-                        <div class="row">
+                        <div class="row" style="display: none;">
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
+                                    <label class="col-xs-12 col-sm-4  control-label "
                                            for="meta_keyword">کلمات کلیدی:</label>
-                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                    <div class="col-xs-12 col-sm-8 ">
                                         <input type="text" class="form-control" name="meta_keyword" id="meta_keyword" value="<?= $list['meta_keyword'] ?>">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
+                                    <label class="col-xs-12 col-sm-4  control-label "
                                            for="meta_description">توضیحات متا:</label>
-                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                    <div class="col-xs-12 col-sm-8 ">
                                         <input type="text" class="form-control" name="meta_description" id="meta_description" value="<?= $list['meta_description'] ?>">
                                     </div>
                                 </div>
@@ -342,27 +337,27 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
+                                    <label class="col-xs-12 col-sm-4  control-label "
                                            for="lat"> lat:</label>
-                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                    <div class="col-xs-12 col-sm-8 ">
                                         <input type="text" class="form-control" name="lat" id="lat" value="<?= $list['lat'] ?>">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
+                                    <label class="col-xs-12 col-sm-4  control-label "
                                            for="longe"> long:</label>
-                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                    <div class="col-xs-12 col-sm-8 ">
                                         <input type="text" class="form-control" name="longe" id="longe" value="<?= $list['longe'] ?>">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
+                                    <label class="col-xs-12 col-sm-4  control-label "
                                            for="organizer"> Oganizer:</label>
-                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                    <div class="col-xs-12 col-sm-8 ">
                                         <input type="text" class="form-control" name="organizer" id="organizer" value="<?= $list['organizer'] ?>">
                                     </div>
                                 </div>
@@ -372,9 +367,9 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                           for="xImagePath">تصویر:</label>
-                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                    <label class="col-xs-12 col-sm-4  control-label "
+                                           for="xImagePath"><?=image?></label>
+                                    <div class="col-xs-12 col-sm-8 ">
                                         <div class="input-group" dir="ltr">
                                             <input type="file" class="form-control"name="logo" >
                                         </div>
@@ -391,11 +386,11 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <p class="pull-right">
+                                <p class="">
                                     <button type="submit" name="update" id="submit"
-                                            class="btn btn-icon btn-success rtl"><input name="action" type="hidden" id="action" value="add"/>
+                                            class="btn btn-icon btn-success "><input name="action" type="hidden" id="action" value="add"/>
                                         <i class="fa fa-plus"></i>
-                                        ثبت
+                                        <?=submit?>
                                     </button>
                                 </p>
                             </div>

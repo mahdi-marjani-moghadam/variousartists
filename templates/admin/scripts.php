@@ -121,3 +121,13 @@
         <!-- custom.js -->
         <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/campains.js"></script>
 
+
+
+
+        <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/dataTables.buttons.min.js"></script>
+        <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/buttons.flash.min.js"></script>
+        <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/jszip.min.js"></script>
+        <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/pdfmake.min.js"></script>
+        <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/vfs_fonts.js"></script>
+        <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/buttons.html5.min.js"></script>
+        <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/buttons.print.min.js"></script>

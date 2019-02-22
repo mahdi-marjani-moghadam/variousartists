@@ -79,39 +79,38 @@
                             <div class="p-nav-handle"> <i class=""></i>منو پنل</div>
                             <ul>
                                 <? if($member_info['type']==1):?>
-                                <li><a href="<?= RELA_DIR ?>account/addProduct"
+                                    <li><a href="<?= RELA_DIR ?>account/addEvent"
+                                           class="button  button-reveal  button-border tright"><i
+                                                    class="icon-caret-right"></i>
+                                            <span><div class="icon-line2-bell"></div> افزودن رویداد</span>
+                                        </a></li>
+                                    <li><a href="<?= RELA_DIR ?>account/addProduct"
                                        class="button  button-reveal  button-border tright"><i
                                                 class="icon-caret-right"></i>
                                         <span><div class="icon icon-line-box"></div> افزودن اثر</span>
                                     </a></li>
+
                                 <li><a href="<?= RELA_DIR ?>account/showProductList"
                                        class="button  button-reveal  button-border tright"><i
                                                 class="icon-caret-right"></i>
                                         <span><div class="icon icon-line-box"></div>   نمونه کار ها</span>
                                     </a></li>
+                                    <li><a href="<?= RELA_DIR ?>account/event"
+                                           class="button  button-reveal  button-border tright"><i
+                                                    class="icon-caret-right"></i>
+                                            <span><div class="icon-line2-bell"></div> لیست رویدادها</span>
+                                        </a></li>
 
                                 <li><a href="<?= RELA_DIR ?>account/showInvoiceList"
                                        class="button  button-reveal  button-border tright"><i
                                                 class="icon-caret-right"></i>
                                         <span><div class="icon-line-clipboard"></div> لیست پرداختی</span>
                                     </a></li>
-                                <li><a href="<?= RELA_DIR ?>account/addEvent"
-                                       class="button  button-reveal  button-border tright"><i
-                                                class="icon-caret-right"></i>
-                                        <span><div class="icon-line2-bell"></div> افزودن رویداد</span>
-                                    </a></li>
-                                <li><a href="<?= RELA_DIR ?>account/event"
-                                       class="button  button-reveal  button-border tright"><i
-                                                class="icon-caret-right"></i>
-                                        <span><div class="icon-line2-bell"></div> لیست رویدادها</span>
-                                    </a></li>
 
 
-                                <li><a href="#"
-                                       class="button  button-reveal  button-border tright"><i
-                                                class="icon-caret-right"></i>
-                                        <span><div class="icon icon-money"></div> Donate</span>
-                                    </a></li>
+
+
+
                                     <? else:?>
 
                                     <li><a href="<?= RELA_DIR ?>sales/invoice"
@@ -125,6 +124,12 @@
                                        class="button  button-reveal  button-border tright"><i
                                                 class="icon-caret-right"></i>
                                         <span><div class="icon icon-user"></div> مشخصات من</span>
+                                    </a></li>
+
+                                <li><a href="#"
+                                       class="button  button-reveal  button-border tright"><i
+                                                class="icon-caret-right"></i>
+                                        <span><div class="icon icon-money"></div> Donate</span>
                                     </a></li>
                             </ul>
                         </div>

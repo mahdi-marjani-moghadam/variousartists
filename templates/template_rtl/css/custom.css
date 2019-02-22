@@ -155,7 +155,7 @@
 @media (max-width:480px) {
     .p-shortcuts li{float: none;}
     .p-right{width: 100%; float: right; }
-    .p-right ul{display: none}
+    /*.p-right ul{display: none}*/
     .p-shortcuts ul{display: none}
 
     .p-nav-handle{background: #fff; min-height: 50px; position: relative; display: block; line-height: 43px; padding:0 40px;}
@@ -177,3 +177,5 @@
     .p-left{ min-height: 11em;}
 }
 #page-menu, #page-menu-wrap{ background: #000}
+
+

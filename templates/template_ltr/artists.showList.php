@@ -34,11 +34,12 @@
         <div class="col-xs-12 col-sm-12 col-md-2  ">
             <?php //include_once("categoryList.php");?>
             <nav class=" nobottommargin category-ul">
-                <h2><?=category?></h2>
+                <h2 class="btn btn-default btn-block" ><?=category_arrow_down?> ... </h2>
                 <div class="category-detail">
                     <? echo $list['export']['category'];?>
                 </div>
-                <h2><?=genre?></h2>
+                <br>
+                <h2 class="btn btn-block btn-default" " ><?=genre_arrow_down?> ...</h2>
                 <div class="category-detail">
                     <? echo $list['export']['genre'];?>
                 </div>

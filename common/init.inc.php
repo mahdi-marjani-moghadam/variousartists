@@ -102,6 +102,23 @@ global $admin_info,$member_info;
     }
 });
 
+
+/** delete ticket date more than 10 min */
+ include_once ROOT_DIR.'component/sales/model/sales.model.php';
+ $checkreservesale = salesModel::getAll()
+     ->where('status','=',0)
+     ->andWhere('date','<',date('Y-m-d H:i:s',strtotime('-10 minutes')))
+     ->get();
+ if($checkreservesale['export']['recordsCount']>0){
+     foreach ($checkreservesale['export']['list'] as $deleteOldReserve){
+         $deleteOldReserve->delete();
+    }
+ }
+
+
+
+
+
 //$member_info='';
 //$member_info['member_id']=1;
 

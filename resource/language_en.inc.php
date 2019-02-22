@@ -1404,7 +1404,9 @@ define("are_you_artists_please_click_here","Are you an artist please click here"
 define("birthday","Birthday:");
 define("show_birthday_for_public","Show birthday for public");
 define("category","Group: ");
+define("category_arrow_down","Group ");
 define("genre","Genre: ");
+define("genre_arrow_down","Genre ");
 define("site","Site: ");
 define("instagram","Instagram:");
 define("sound_cloud","Sound cloud: ");
@@ -1440,3 +1442,16 @@ define("telephone","Telephone");
 define("image","Image");
 define("edit","Edit");
 define("edited_password_if_filling","Edited password if filling this field");
+
+define("event_name_fa","Event Name (fa)");
+define("event_name_en","Event Name (en)");
+define("event_time","Event time");
+define("new_event","New event");
+define("event_date","Event date");
+define("city","City");
+define("address_fa","Address (fa)");
+define("address_en","Address (en)");
+define("submit","Submit");
+
+define("your_event_has_been_recorded","Your event has been recorded");
+define("sanladi_number","numbers");

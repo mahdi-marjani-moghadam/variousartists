@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/css/buttons.dataTables.min.css">
+
 <script type="text/javascript" language="javascript" class="init">
 
     $(document).ready(function () {
@@ -8,11 +11,15 @@
         var dataTable = $('#example');
 
         var oTable = dataTable.DataTable({
+            dom :"Bfrltip",
             "processing": true,
             "serverSide": false,
             "ajax": "<?=RELA_DIR?>zamin/?component=shop&action=shopListAjax&status=<?=$list['status']?>",
             "ordering": false,
-            "searching":false
+            "searching":true,
+            buttons: [
+                'copy', 'excel', 'print'
+            ]
         });
 
 
@@ -29,10 +36,6 @@
         // Apply the search
 
     });
-
-
-
-
 </script>
 
 <div class="content-control">
@@ -80,21 +83,16 @@
                     </thead>
                     <tfoot>
                     <th><input type="hidden" name="search_1" class="search_init form-control"/></th>
-                    <th><input type="hidden" name="search_1" class="search_init form-control"/></th>
-                    <th><input type="hidden" name="search_2" class="search_init form-control"/></th>
-                    <th><input type="hidden" name="search_3" class="search_init form-control"/></th>
-                    <th><input type="hidden" name="search_4" class="search_init form-control"/></th>
-                    <th><input type="hidden" name="search_5" class="search_init form-control"/></th>
-                    <th><input type="hidden" name="search_6" class="search_init form-control"/></th>
-                    <th><input type="hidden" name="search_7" class="search_init form-control"/></th>
-                    <th><select style="width: 60px !important; display: none" name="search_8" class="search_init " id="search_9">
-                            <option value="">همه</option>
-                            <option value="1">فعال</option>
-                            <option value="0">غیر فعال</option>
-                        </select>
-                    </th>
-                    <th><input type="hidden" name="search_9" class="search_init form-control"/></th>
-                    <th><input type="hidden" name="search_10" class="search_init form-control"/></th>
+                    <th><input type="text" name="search_1" class="search_init form-control"/></th>
+                    <th><input type="text" name="search_2" class="search_init form-control"/></th>
+                    <th><input type="text" name="search_3" class="search_init form-control"/></th>
+                    <th><input type="text" name="search_4" class="search_init form-control"/></th>
+                    <th><input type="text" name="search_5" class="search_init form-control"/></th>
+                    <th><input type="text" name="search_6" class="search_init form-control"/></th>
+                    <th><input type="text" name="search_7" class="search_init form-control"/></th>
+                    <th><input type="text" name="search_8" class="search_init form-control"/></th>
+                    <th><input type="text" name="search_9" class="search_init form-control"/></th>
+                    <th><input type="text" name="search_10" class="search_init form-control"/></th>
                     </tfoot>
                 </table>
             </div>

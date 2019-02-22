@@ -1,6 +1,13 @@
 <!-- Page Title
 		============================================= -->
+<style>
+    @media (min-width: 0px){
+    .container{
+            width:  auto !important;
+        }
 
+    }
+</style>
 <section id="page-title">
 
     <div class="container clearfix">
@@ -22,7 +29,7 @@
 
         <div class="container clearfix">
 
-            <div class="single-event col-md-8 col-md-offset-2">
+            <div class="single-event col-md-8 col-md-offset-2 col-sm-12 col-xs-12 ">
 
 
 

@@ -80,9 +80,14 @@ class adminIndexController
     public function showList($fields)
     {
 
+        /** artists */
         include_once(ROOT_DIR."component/artists/admin/model/admin.artists.model.php");
-        $result = adminArtistsModel::query('select count(Artists_id) as count from artists')->getList();
-        $export['artists_count'] = $result['export']['list'][0]['count'];
+        $result = adminArtistsModel::query('select type,count(Artists_id) as count from artists group by `type` ')->getList();
+
+        $export['artists_count'] = $result['export']['list'][1]['count'];
+        $export['members_count'] = $result['export']['list'][0]['count'];
+
+
 
         include_once(ROOT_DIR."component/product/admin/model/admin.product.model.php");
         $result = adminProductModel::query('select count(Artists_products_id) as count from artists_products')->getList();

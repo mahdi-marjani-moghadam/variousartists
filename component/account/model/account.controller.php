@@ -285,7 +285,7 @@ class accountController
             $messageStack->add_session('register', $result['msg']);
             $this->showEventAddForm($_input, $result['msg']);
         }
-        $msg = 'رویداد شما ثبت شد.';
+        $msg = your_event_has_been_recorded;
         $messageStack->add_session('register', $msg);
 
         redirectPage(RELA_DIR.'account/event', $msg);

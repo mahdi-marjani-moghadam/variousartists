@@ -86,7 +86,7 @@
 					<nav id="primary-menu" class="dark style-6 style-2">
 
 						<ul>
-							<li class="<?=($PARAM[0] == 'event')?'current':'';?>" ><a href="<?=RELA_DIR?>event"><div>Event</div></a></li>
+							<li class="<?=($PARAM[0] == 'event')?'current':'';?> hidden-xs"  ><a href="<?=RELA_DIR?>event"><div>Event</div></a></li>
 							<li class="<?=($PARAM[0] == 'artists')?'current':'';?>"><a href="<?=RELA_DIR?>artists"><div>Artists</div></a></li>
 							<? /*<li class="<?=($PARAM[0] == 'services')?'current':'';?>"><a href="<?=RELA_DIR?>services"><div>خدمات</div></a></li>
 							<li class="<?=($PARAM[0] == 'shop')?'current':'';?>"><a href="<?=RELA_DIR?>shop"><div>فروشگاه</div></a></li>*/?>

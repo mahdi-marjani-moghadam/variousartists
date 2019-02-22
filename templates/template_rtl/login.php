@@ -80,8 +80,11 @@
                                     <div class="col_full nobottommargin">
                                         <button class="button button-3d button-black nomargin" id="login-form-submit" name="login-form-submit" value="login"><?=login?></button>
                                         <a href="<?=RELA_DIR?>register"><?=register?></a>
-                                        <a  class="fleft" style="" data-toggle="modal" data-target=".bs-example-modal-sm"><?=forgot_password?></a>
-
+                                        <div class="xxsmallSpace"></div>
+                                        <div class="largeSpace hidden-lg hidden-md hidden-sm"><br></div>
+                                        <div class="text-center col-xs-12">
+                                            <a  class="" style="" data-toggle="modal" data-target=".bs-example-modal-sm"><?=forgot_password?></a>
+                                        </div>
                                         <!-- Small modal -->
 
                                         <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">

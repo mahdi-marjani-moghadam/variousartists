@@ -100,7 +100,12 @@
                             <div class="p-nav-handle"> <i class=""></i>Menu</div>
                             <ul>
                                 <? if($member_info['type']==1):?>
-                                <li><a href="<?= RELA_DIR ?>account/addProduct"
+                                    <li><a href="<?= RELA_DIR ?>account/addEvent"
+                                           class="button  button-reveal  button-border tleft"><i
+                                                    class="icon-caret-right"></i>
+                                            <span><div class="icon-line2-bell"></div>Add event</span>
+                                        </a></li>
+                                    <li><a href="<?= RELA_DIR ?>account/addProduct"
                                        class="button  button-reveal  button-border tleft"><i
                                                 class="icon-caret-right"></i>
                                         <span><div class="icon icon-line-box"></div> Add product</span>
@@ -108,19 +113,25 @@
                                 <li><a href="<?=RELA_DIR?>account/showProductList" class="button  button-reveal  button-border tleft"><i class="icon-caret-right"></i>
                                         <span><div class="icon icon-line-box"></div> Products</span>
                                     </a> </li>
+                                    <li><a href="<?= RELA_DIR ?>account/event"
+                                           class="button  button-reveal  button-border tleft"><i
+                                                    class="icon-caret-right"></i>
+                                            <span><div class="icon-line2-bell"></div> Events</span>
+                                        </a></li>
                                 <li><a href="<?=RELA_DIR?>account/showInvoiceList" class="button  button-reveal  button-border tleft"><i class="icon-caret-right"></i>
                                         <span><div class="icon-line-clipboard"></div> Invoice</span>
                                     </a> </li>
-                                <li><a href="<?= RELA_DIR ?>account/addEvent"
-                                       class="button  button-reveal  button-border tleft"><i
-                                                class="icon-caret-right"></i>
-                                        <span><div class="icon-line2-bell"></div>Add event</span>
-                                    </a></li>
-                                <li><a href="<?= RELA_DIR ?>account/event"
-                                       class="button  button-reveal  button-border tleft"><i
-                                                class="icon-caret-right"></i>
-                                        <span><div class="icon-line2-bell"></div> Events</span>
-                                    </a></li>
+
+
+
+                                <? else:?>
+                                    <li><a href="<?= RELA_DIR ?>sales/invoice"
+                                           class="button  button-reveal  button-border tright"><i
+                                                    class="icon-caret-right"></i>
+                                            <span><div class="icon-line-clipboard"></div>Basket</span>
+                                        </a></li>
+                                <? endif;?>
+
                                 <li><a href="<?= RELA_DIR ?>account/editProfile"
                                        class="button  button-reveal  button-border tleft"><i
                                                 class="icon-caret-right"></i>
@@ -131,13 +142,6 @@
                                                 class="icon-caret-right"></i>
                                         <span><div class="icon icon-money"></div> Donate</span>
                                     </a></li>
-                                <? else:?>
-                                    <li><a href="<?= RELA_DIR ?>sales/invoice"
-                                           class="button  button-reveal  button-border tright"><i
-                                                    class="icon-caret-right"></i>
-                                            <span><div class="icon-line-clipboard"></div>Basket</span>
-                                        </a></li>
-                                <? endif;?>
                             </ul>
                         </div>
                     </div>

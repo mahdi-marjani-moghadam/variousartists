@@ -39,7 +39,7 @@
     <link href="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/css/persianDatepicker-default.css" rel="stylesheet">
 
 
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3" />
 	<!--[if lt IE 9]>
 		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
@@ -91,7 +91,7 @@
 					============================================= -->
 					<nav id="primary-menu" class="dark style-6 style-2">
 						<ul>
-							<li class="<?=($PARAM[0] == 'event')?'current':'';?>" ><a href="<?=RELA_DIR?>event"><div>رویدادها</div></a></li>
+							<li class="<?=($PARAM[0] == 'event')?'current':'';?> hidden-xs" ><a href="<?=RELA_DIR?>event"><div>رویدادها</div></a></li>
 							<li class="<?=($PARAM[0] == 'artists')?'current':'';?>"><a href="<?=RELA_DIR?>artists"><div> هنرمندان</div></a></li>
 							<?php /*<li class="<?=($PARAM[0] == 'services')?'current':'';?>"><a href="<?=RELA_DIR?>services"><div>خدمات</div></a></li>
 							<li class="<?=($PARAM[0] == 'shop')?'current':'';?>"><a href="<?=RELA_DIR?>shop"><div>فروشگاه</div></a></li>*/?>

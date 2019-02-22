@@ -40,7 +40,7 @@
 
 <div id="" class="">
     <div class="panel-heading bg-white">
-        <h3 class="panel-title rtl">رویداد</h3>
+        <h3 class="panel-title "><?=event?></h3>
 
     </div><!-- /panel-heading -->
 
@@ -61,9 +61,9 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                       for="event_name_fa">نام رویداد(فارسی):</label>
-                                <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                       for="event_name_fa"><?=event_name_fa?></label>
+                                <div class="col-xs-12 col-sm-8 col-md-8 ">
                                     <input type="text" class="form-control" name="event_name_fa" id="event_name_fa" required value="<?= $list['event_name_fa'] ?>">
                                 </div>
                             </div>
@@ -72,9 +72,9 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                       for="event_name_en">نام رویداد(انگلیسی):</label>
-                                <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                       for="event_name_en"><?=event_name_en?></label>
+                                <div class="col-xs-12 col-sm-8 col-md-8 ">
                                     <input type="text" class="form-control" name="event_name_en" id="event_name_en" required value="<?= $list['event_name_en'] ?>">
                                 </div>
                             </div>
@@ -84,9 +84,9 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                       for="description_fa">توضیحات (فارسی):</label>
-                                <div class="col-xs-12 col-sm-8 col-md-12 pull-right">
+                                <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                       for="description_fa"><?=description_fa?></label>
+                                <div class="col-xs-12 col-sm-8 col-md-12 ">
 
 
                                     <?php
@@ -118,9 +118,9 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                       for="description_en">توضیحات(انگلیسی):</label>
-                                <div class="col-xs-12 col-sm-8 col-md-12 pull-right">
+                                <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                       for="description_en"><?=description_en?></label>
+                                <div class="col-xs-12 col-sm-8 col-md-12 ">
 
                                     <?php
 
@@ -153,18 +153,18 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                       for="event_time">زمان رویداد</label>
-                                <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                       for="event_time"><?=event_time?></label>
+                                <div class="col-xs-12 col-sm-8 col-md-8 ">
                                     <input type="text" class="form-control" name="event_time" id="event_time" required value="<?= $list['event_time'] ?>">
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                       for="date">تاریخ رویداد</label>
-                                <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                       for="date"><?=event_date?></label>
+                                <div class="col-xs-12 col-sm-8 col-md-8 ">
                                     <input type="text" class="form-control  date" name="date" id="date" required value="<?= ($list['date']!="0000-00-00"? convertDate($list['date']):"") ?>">
                                 </div>
                             </div>
@@ -174,18 +174,18 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                       for="event_time2">زمان رویداد</label>
-                                <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                       for="event_time2"><?=event_time?></label>
+                                <div class="col-xs-12 col-sm-8 col-md-8 ">
                                     <input type="text" class="form-control" name="event_time2" id="event_time2"  value="<?= $list['event_time2'] ?>">
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                       for="date">تاریخ رویداد</label>
-                                <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                       for="date"><?=event_date?></label>
+                                <div class="col-xs-12 col-sm-8 col-md-8 ">
                                     <input type="text" class="form-control date" name="date2" id="date2"  value="<?= ($list['date2']!="0000-00-00"? convertDate($list['date2']):"") ?>">
                                 </div>
                             </div>
@@ -195,18 +195,18 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                       for="event_time3">زمان رویداد</label>
-                                <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                       for="event_time3"><?=event_time?></label>
+                                <div class="col-xs-12 col-sm-8 col-md-8 ">
                                     <input type="text" class="form-control" name="event_time3" id="event_time3"  value="<?= $list['event_time3'] ?>">
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                       for="date3">تاریخ رویداد</label>
-                                <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                       for="date3"><?=event_date?></label>
+                                <div class="col-xs-12 col-sm-8 col-md-8 ">
                                     <input type="text" class="form-control  date" name="date3" id="date3"  value="<?= ($list['date3']!="0000-00-00"? convertDate($list['date3']):"")?>">
                                 </div>
                             </div>
@@ -223,8 +223,8 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="category_id">category_id:</label>
-                                <div class="col-xs-12 col-sm-8 pull-right">
+                                <label class="col-xs-12 col-sm-4  control-label " for="category_id"><?=category?></label>
+                                <div class="col-xs-12 col-sm-8 ">
 
                                     <select name="category_id[]" data-input="select2" placeholder="Multiple select" multiple>
                                         <?
@@ -243,8 +243,8 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="category_id">genre:</label>
-                                <div class="col-xs-12 col-sm-8 pull-right">
+                                <label class="col-xs-12 col-sm-4  control-label " for="category_id"><?=genre?></label>
+                                <div class="col-xs-12 col-sm-8 ">
 
                                     <select name="genre_id[]" data-input="select2"  multiple>
                                         <?
@@ -264,9 +264,9 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                       for="event_phone">تلفن</label>
-                                <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                       for="event_phone"><?=telephone?></label>
+                                <div class="col-xs-12 col-sm-8 col-md-8 ">
                                     <input type="text" class="form-control " name="event_phone" id="event_phone"  value="<?= ($list['event_phone']!=""? ($list['event_phone']):"")?>">
                                 </div>
                             </div>
@@ -277,9 +277,9 @@
                         <!-- city -->
                         <div class="col-xs-12 col-sm-12 col-md-6" style="display: none">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                       for="city_id">انتخاب شهر:</label>
-                                <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                <label class="col-xs-12 col-sm-4 col-md-4  control-label "
+                                       for="city_id"><?=city?></label>
+                                <div class="col-xs-12 col-sm-8 col-md-8 ">
                                     <? ?>
                                     <select name="city_id" id="city_id" data-input="select2">
 
@@ -297,15 +297,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                       for="price">قیمت</label>
-                                <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                    <input type="text" class="form-control" name="price" id="price"  value="<?= $list['price'] ?>">
-                                </div>
-                            </div>
-                        </div>
 
 
                     </div>
@@ -314,75 +305,34 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                       for="address_fa">آدرس (فارسی):</label>
-                                <div class="col-xs-12 col-sm-8 pull-right">
+                                <label class="col-xs-12 col-sm-4  control-label "
+                                       for="address_fa"><?=address_fa?></label>
+                                <div class="col-xs-12 col-sm-8 ">
                                     <input type="text" class="form-control" name="address_fa" id="address_fa" value="<?= $list['address_fa'] ?>">
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                       for="address_en">آدرس (انگلیسی):</label>
-                                <div class="col-xs-12 col-sm-8 pull-right">
+                                <label class="col-xs-12 col-sm-4  control-label "
+                                       for="address_en"><?=address_en?></label>
+                                <div class="col-xs-12 col-sm-8 ">
                                     <input type="text" class="form-control" name="address_en" id="address_en" value="<?= $list['address_en'] ?>">
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row xsmallSpace hidden-xs"></div>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                       for="meta_keyword">کلمات کلیدی:</label>
-                                <div class="col-xs-12 col-sm-8 pull-right">
-                                    <input type="text" class="form-control" name="meta_keyword" id="meta_keyword" value="<?= $list['meta_keyword'] ?>">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                       for="meta_description">توضیحات متا:</label>
-                                <div class="col-xs-12 col-sm-8 pull-right">
-                                    <input type="text" class="form-control" name="meta_description" id="meta_description" value="<?= $list['meta_description'] ?>">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+
 
                     <div class="row xsmallSpace hidden-xs"></div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                       for="lat"> lat:</label>
-                                <div class="col-xs-12 col-sm-8 pull-right">
-                                    <input type="text" class="form-control" name="lat" id="lat" value="<?= $list['lat'] ?>">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                       for="longe"> long:</label>
-                                <div class="col-xs-12 col-sm-8 pull-right">
-                                    <input type="text" class="form-control" name="longe" id="longe" value="<?= $list['longe'] ?>">
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row xsmallSpace hidden-xs"></div>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
+                                <label class="col-xs-12 col-sm-4  control-label "
                                        for="organizer"> Organizer:</label>
-                                <div class="col-xs-12 col-sm-8 pull-right">
+                                <div class="col-xs-12 col-sm-8 ">
                                     <input type="text" class="form-control" name="organizer" id="organizer" value="<?= $list['organizer'] ?>">
                                 </div>
                             </div>
@@ -392,9 +342,9 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                       for="xImagePath">تصویر:</label>
-                                <div class="col-xs-12 col-sm-8 pull-right">
+                                <label class="col-xs-12 col-sm-4  control-label "
+                                       for="xImagePath"><?=image?></label>
+                                <div class="col-xs-12 col-sm-8 ">
                                     <div class="input-group" dir="ltr">
                                         <input type="file" class="form-control" name="logo" >
                                         <img class="img-thumbnail" src="<?=RELA_DIR?>statics/event/<?= $list['logo'] ?>">
@@ -414,12 +364,12 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <p class="pull-right">
+                            <p class="">
                                 <button type="submit" name="update" id="submit"
-                                        class="btn btn-icon btn-success rtl">
+                                        class="btn btn-icon btn-success ">
                                     <input name="action" type="hidden" id="action" value="edit"/>
                                     <i class="fa fa-plus"></i>
-                                    ثبت
+                                    <?=submit?>
                                 </button>
                             </p>
                         </div>

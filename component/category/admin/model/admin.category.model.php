@@ -500,8 +500,8 @@ class adminCategoryModel extends looeic
             $export[$key]['dataTableCount']=$count;
             $count++;
         }
-
         $this->list = $export;
+
         $this->recordsCount = count($export);
 
         $result = array();

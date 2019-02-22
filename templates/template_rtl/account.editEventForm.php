@@ -297,15 +297,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="price">قیمت</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="price" id="price"  value="<?= $list['price'] ?>">
-                                    </div>
-                                </div>
-                            </div>
 
 
                         </div>
@@ -332,50 +323,9 @@
                             </div>
                         </div>
 
-                        <div class="row xsmallSpace hidden-xs"></div>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                           for="meta_keyword">کلمات کلیدی:</label>
-                                    <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="meta_keyword" id="meta_keyword" value="<?= $list['meta_keyword'] ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                           for="meta_description">توضیحات متا:</label>
-                                    <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="meta_description" id="meta_description" value="<?= $list['meta_description'] ?>">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="row xsmallSpace hidden-xs"></div>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                           for="lat"> lat:</label>
-                                    <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="lat" id="lat" value="<?= $list['lat'] ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                           for="longe"> long:</label>
-                                    <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="longe" id="longe" value="<?= $list['longe'] ?>">
-                                    </div>
-                                </div>
-                            </div>
 
-                        </div>
+
                         <div class="row xsmallSpace hidden-xs"></div>
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6">

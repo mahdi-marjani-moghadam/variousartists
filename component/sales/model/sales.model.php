@@ -6,6 +6,7 @@
  * Time: 10:21 AM
  */
 include_once(ROOT_DIR."/common/validators.php");
+include_once(ROOT_DIR."/common/looeic.php");
 
 class salesModel extends looeic {
     protected $TABLE_NAME = 'sales';

@@ -481,18 +481,18 @@ function getPrototypeOf(object) {
     Languages
 ************************************/
 extend(getPrototypeOf(moment.localeData()),
-  { _jMonths: [ 'Farvardin'
-              , 'Ordibehesht'
-              , 'Khordaad'
-              , 'Tir'
-              , 'Amordaad'
-              , 'Shahrivar'
-              , 'Mehr'
-              , 'Aabaan'
-              , 'Aazar'
-              , 'Dey'
-              , 'Bahman'
-              , 'Esfand'
+  { _jMonths: [ 'فروردین'
+              , 'اردیبهشت'
+              , 'خرداد'
+              , 'تیر'
+              , 'مرداد'
+              , 'شهریور'
+              , 'مهر'
+              , 'آبان'
+              , 'آذر'
+              , 'دی'
+              , 'بهمن'
+              , 'اسفند'
               ]
   , jMonths: function (m) {
       return this._jMonths[m.jMonth()]

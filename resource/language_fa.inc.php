@@ -1409,7 +1409,7 @@ define("forgot_password","یاد آوری رمز عبور؟");
 define("login_by_account","ورود با حساب کاربری");
 define("Password_sent","کد ارسال شد.");
 define("create_new_account","ساخت اکانت جدید");
-define("mobile"," موبایل (به طور مثال:00989193110190):");
+define("mobile"," موبایل :");
 define("name_fa","نام کامل(فارسی):");
 define("name_en","نام کامل(لاتین):");
 define("email","ایمیل");
@@ -1417,7 +1417,9 @@ define("are_you_artists_please_click_here","در صورتی که هنرمند ه
 define("birthday"," تاریخ تولد:");
 define("show_birthday_for_public","نمایش تاریخ تولد برای همه");
 define("category","گروه :");
+define("category_arrow_down","گروه ");
 define("genre","سبک:");
+define("genre_arrow_down","سبک");
 define("site","سایت:");
 define("instagram","آی دی اینستاگرام:");
 define("sound_cloud","آی دی ساند کلاد: ");
@@ -1453,3 +1455,16 @@ define("telephone","تلفن:");
 define("image","تصویر:");
 define("edit","ویرایش");
 define("edited_password_if_filling","در صورت پر کردن فیلد رمز ویرایش میشود.");
+
+define("event_name_fa","نام رویداد (فارسی)");
+define("event_name_en","نام رویداد (انگلیسی)");
+define("event_time","زمان رویداد");
+define("new_event","رویداد جدید");
+define("event_date","تاریخ رویداد");
+define("city","شهر");
+define("address_fa","آدرس (فارسی)");
+define("address_en","آدرس (انگلیسی)");
+define("submit","ارسال");
+
+define("your_event_has_been_recorded","رویداد شما ثبت شد.");
+define("sanladi_number","شماره صندلی");

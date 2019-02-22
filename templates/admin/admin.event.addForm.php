@@ -297,7 +297,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="genre_id">سبک:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <select name="genre_id[]" id="genre_id" data-input="select2" multiple autocomplete="off" >
+                                        <select name="genre_id[]" id="genre_id" data-input="select2"  multiple autocomplete="off" >
                                             <?
                                             foreach($list['genre'] as $genre_id => $value)
                                             {
