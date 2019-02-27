@@ -14,6 +14,11 @@ if (isset($exportType)) {
     $indexController->exportType = $exportType;
 }
 
+include_once ROOT_DIR.'/component/magfa/magfa.model.php';
+$wsObj = new WebServiceSample();
+$res = $wsObj->simpleEnqueueSample('09331181877','test');
+print_r($res);
+die();
 $indexController->showALL($fields);
 
 ?>
