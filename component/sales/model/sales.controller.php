@@ -628,12 +628,13 @@ $resultsandali=$sandali->getByFilter($fildes);
 
     function returnBank($input)
     {
-        global $member_info;
+        global $member_info,$lang;
 
         $msg = array(6=>canceled_by_user);
 
         $salesObj2 = salesModel::getBy_user_id_and_bank_token($member_info['Artists_id'],$input['token'])
             ->get()['export']['list'][0];
+
 
 
         if($input['State']== 'OK') {
@@ -678,6 +679,16 @@ $resultsandali=$sandali->getByFilter($fildes);
              ************/
         }
 
+        if($member_info['artists_phone1'] !=''){
+            include_once ROOT_DIR.'component/magfa/magfa.model.php';
+            $sms = new WebServiceSample;
+
+            if($lang=='fa'){$message = 'صندلی رزرو شده ' . $salesObj2->sandali ."می باشد.". " \n ". "http://variousartist.ir ";}
+            else{$message = 'Your chair number is: '.$salesObj2->sandali." \n http://variousartist.ir";}
+
+
+            $sms->simpleEnqueueSample($member_info['artists_phone1'],$message);
+        }
 
 
         $export['State'] = $input['State'];

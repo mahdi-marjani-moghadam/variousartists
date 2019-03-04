@@ -14,10 +14,12 @@ class WebServiceSample{
     private  $USERNAME = "rameshgaran_75148";
 
     // your password (fill it with your password)
-    private  $PASSWORD = "@83Music69ir";
+    private  $PASSWORD = "SteFvvWDIYWAiRJq";
 
     // your domain (fill it with your domain - usually: "magfa")
     private  $DOMAIN = "magfa";
+
+    private $NUMBER = '300075148';
 
     // base webservice url
     private  $BASE_WEBSERVICE_URL = "http://sms.magfa.com/services/urn:SOAPSmsQueue?wsdl";
@@ -37,6 +39,7 @@ class WebServiceSample{
      * @return void
      */
     public function __construct(){
+        
         include_once(ROOT_DIR.'component/magfa/errors.php');
         $this->errors = $errors;
         
@@ -59,19 +62,21 @@ class WebServiceSample{
      * @return void
      */
     public function simpleEnqueueSample($recipientNumber,$message){
+        
         $method = "enqueue"; // name of the service
         //$message = "MAGFA webservice-enqueue test"; // [FILL] your message to send
-        $senderNumber = "300075148"; // [FILL] sender number; which is your 3000xxx number
+        //$senderNumber = "300075148"; // [FILL] sender number; which is your 3000xxx number
         //$recipientNumber = "09XXXXXXXXX"; // [FILL] recipient number; the mobile number which will receive the message (e.g 0912XXXXXXX)
         // creating the parameter array
         $params = array(
             'domain'=>$this->DOMAIN,
             'messageBodies'=>array($message),
             'recipientNumbers'=>array($recipientNumber),
-            'senderNumbers'=>array($senderNumber)
+            'senderNumbers'=>array($this->NUMBER)
         );
         // sending the request via webservice
         $response = $this->call($method,$params);
+        
 
         $result = $response[0];
         // compare the response with the ERROR_MAX_VALUE
@@ -94,10 +99,10 @@ class WebServiceSample{
      * @see simpleEnqueueSample()
      * @return void
      */
-    public function enqueueSample(){
+    public function enqueueSample($number,$text){
         $method = "enqueue"; // name of the service
-        $message = "MAGFA webservice-enqueue test"; // [FILL] your message to send
-        $senderNumber = "3000XXX"; // [FILL] sender number; which is your 3000xxx number
+        //$message = "MAGFA webservice-enqueue test"; // [FILL] your message to send
+        //$senderNumber = "3000XXX"; // [FILL] sender number; which is your 3000xxx number
         // [FILL] recipient number; here we have multiple recipients (2)
         $recipientNumbers = array(
             new soapval('item1','string','09XXXXXXXXX'), // [FILL]
