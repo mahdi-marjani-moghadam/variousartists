@@ -116,6 +116,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="priority">priority:</label>
+                        <div class="col-xs-12 col-sm-8 pull-right">
+                            <input type="text" class="form-control" name="priority" id="priority" autocomplete="off" required value="<?=$list['priority']?>">
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row xsmallSpace hidden-xs"></div>
             <div class="row" style="display: none">

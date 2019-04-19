@@ -683,8 +683,8 @@ $resultsandali=$sandali->getByFilter($fildes);
             include_once ROOT_DIR.'component/magfa/magfa.model.php';
             $sms = new WebServiceSample;
 
-            if($lang=='fa'){$message = 'صندلی رزرو شده ' . $salesObj2->sandali ."می باشد.". " \n ". "http://variousartist.ir ";}
-            else{$message = 'Your chair number is: '.$salesObj2->sandali." \n http://variousartist.ir";}
+            if($lang=='fa'){$message = 'صندلی رزرو شده ' . $salesObj2->fields['sandali'] ."می باشد.". " \n ". "http://variousartist.ir ";}
+            else{$message = 'Your chair number is: '.$salesObj2->fields['sandali']." \n http://variousartist.ir";}
 
 
             $sms->simpleEnqueueSample($member_info['artists_phone1'],$message);

@@ -138,6 +138,7 @@ class artistsController
         }
 
 
+
         /** genre */
         include_once ROOT_DIR.'component/genre/model/genre.model.php';
         $genre = new genreModel();
@@ -205,6 +206,7 @@ class artistsController
         /** category menu */
         $resultCategory2 = $category->getCategoryUlLi(0);
         $export['export']['category'] = $resultCategory2['export']['list'];
+
 
 
         /** genre menu */

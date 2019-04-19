@@ -55,7 +55,7 @@ class genreModelDb
 				SELECT
 					`genre`.*,title_$lang as title
 				FROM genre
-					ORDER BY genre.Genre_id  ASC";
+					ORDER BY genre.priority  ASC";
 
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);

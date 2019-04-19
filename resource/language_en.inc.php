@@ -1389,6 +1389,7 @@ define("email_is_not_valid","Email is not valid.");
 
 define("info_login","Please enter your information fo login.");
 define("email_or_number","Email or mobile:");
+define("number_or_email","Mobile / Email:");
 define("password","Password: ");
 define("login","Login");
 define("register","Register");
@@ -1396,7 +1397,7 @@ define("forgot_password","Forgot password?");
 define("login_by_account","I have account");
 define("Password_sent","Password sent.");
 define("create_new_account","Create new account");
-define("mobile","Mobile (exe:989331181877):");
+define("mobile","Mobile (exe:9193110190):");
 define("name_fa","Name and family(persian):");
 define("name_en","Name and family(english):");
 define("email","Email");
@@ -1455,3 +1456,7 @@ define("submit","Submit");
 
 define("your_event_has_been_recorded","Your event has been recorded");
 define("sanladi_number","numbers");
+
+define("persian_name_is_empty","Persian name is empty");
+define("latin_name_is_empty","Latin name is empty");
+define("email_is_empty","Email is empty");

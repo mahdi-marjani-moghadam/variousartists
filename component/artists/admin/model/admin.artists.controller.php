@@ -262,7 +262,10 @@ class adminArtistsController
 
 
 
+
         $artists = adminArtistsModel::find($fields['Artists_id']);
+
+        $oldStatus = $artists->fields['status'];
 
         $fields['refresh_date'] = convertJToGDate($fields['refresh_date']);
         if($fields['birthday']!='') {
@@ -310,6 +313,28 @@ class adminArtistsController
             $result = $artists->save();
         }
 
+
+        if($artists->fields['status']==1 && $oldStatus != $artists->fields['status']){
+
+            include_once ROOT_DIR.'component/magfa/magfa.model.php';
+            $sms = new WebServiceSample;
+
+            global $lang;
+            if($lang=='fa'){
+                $message =
+                    'اکانت شما تایید شد.'. " \n ".
+                    " \n ".
+                    "http://variousartist.ir";
+            }
+            else{
+                $message =
+                    'Your account has been activated'. " \n ".
+                    " \n ".
+                    "http://variousartist.ir";}
+
+
+            $sms->simpleEnqueueSample($artists->fields['artists_phone1'],$message);
+        }
 
         $msg = 'عملیات با موفقیت انجام شد';
         redirectPage(RELA_DIR.'zamin/index.php?component=artists'.$action, $msg);

@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: malekloo
- * Date: 3/6/2016
- * Time: 11:21 AM.
- */
+
 include_once dirname(__FILE__).'/register.model.php';
 
 /**
@@ -70,78 +65,57 @@ class registerController
         }
     }
 
-    /**
-     * add register.
-     *
-     * @param $_input
-     *
-     * @return int|mixed
-     *
-     * @author marjani
-     * @date 2/27/2015
-     *
-     * @version 01.01.01
-     */
-    public function addregister($_input)
-    {
-        global $messageStack,$dataStack;
 
-        $register = new registerModel();
-        $result = $register->setFields($_input);
+//    public function addregister222222($_input)
+//    {
+//        global $messageStack,$dataStack;
+//
+//
+//        $register = new registerModel();
+//        $result = $register->setFields($_input);
+//
+//
+//        if ($result['result'] == -1) {
+//            $messageStack->add_session('register', $result['msg']);
+//
+//            $dataStack->add_session('register', $_input);
+//
+//            redirectPage(RELA_DIR.'register', $result['msg']);
+//        }
+//
+//        $result = $register->addRegister();
+//
+//        if ($result['result'] != '1') {
+//            $messageStack->add_session('register', $result['msg']);
+//
+//            $dataStack->add_session('register', $_input);
+//
+//            redirectPage(RELA_DIR.'register', $result['msg']);
+//        }
+//
+//        $msg = 'ثبت نام با موفقیت انجام شد.';
+//        $messageStack->add_session('register', $msg, 'success');
+//
+//        redirectPage(RELA_DIR.'register', $msg);
+//        die();
+//    }
 
 
-        if ($result['result'] == -1) {
-            $messageStack->add_session('register', $result['msg']);
-
-            $dataStack->add_session('register', $_input);
-
-            redirectPage(RELA_DIR.'register', $result['msg']);
-        }
-
-        $result = $register->addRegister();
-
-        if ($result['result'] != '1') {
-            $messageStack->add_session('register', $result['msg']);
-
-            $dataStack->add_session('register', $_input);
-
-            redirectPage(RELA_DIR.'register', $result['msg']);
-        }
-
-        $msg = 'ثبت نام با موفقیت انجام شد.';
-        $messageStack->add_session('register', $msg, 'success');
-
-        redirectPage(RELA_DIR.'register', $msg);
-        die();
-    }
-
-    /**
-     * call register form.
-     *
-     * @param $_input
-     * @param $msg
-     *
-     * @return mixed
-     *
-     * @author malekloo
-     * @date 3/6/2015
-     *
-     * @version 01.01.01
-     */
-    public function showRegisterForm($_input, $msg)
-    {
-        global $dataStack;
-
-        $export['list'] = $dataStack->output('register');
-
-        // breadcrumb
-        global $breadcrumb;
-        $breadcrumb->reset();
-        $breadcrumb->add('درخواست ثبت تولیدی');
-        $export['breadcrumb'] = $breadcrumb->trail();
-
-        $this->fileName = 'register.form.php';
-        $this->template($export, $msg);
-        die();
-    }
+//    public function showRegisterForm222($_input, $msg)
+//    {
+//        global $dataStack;
+//
+//
+//        $export['list'] = $dataStack->output('register');
+//
+//        // breadcrumb
+//        global $breadcrumb;
+//        $breadcrumb->reset();
+//        $breadcrumb->add('درخواست ثبت تولیدی');
+//        $export['breadcrumb'] = $breadcrumb->trail();
+//
+//        $this->fileName = 'register.form.php';
+//        $this->template($export, $msg);
+//        die();
+//    }
 }

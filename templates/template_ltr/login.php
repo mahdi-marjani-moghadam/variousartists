@@ -68,7 +68,7 @@
                                     <h3><?=info_login?></h3>
 
                                     <div class="col_full">
-                                        <label for="login-form-username"><?=email_or_number?></label>
+                                        <label for="login-form-username"><?=number_or_email?></label>
                                         <input type="text" id="username" name="username" value="<?=$_REQUEST['username']?>" class="form-control" />
                                     </div>
 

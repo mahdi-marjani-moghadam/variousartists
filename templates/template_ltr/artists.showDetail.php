@@ -50,7 +50,7 @@
                     <li><span><i class="icon-user"></i>Birthday:</span><?=($list['list']['birthday'])?></li>
                     <? endif; ?>
 
-                    <li><i class="icon-trophy"></i>Rate<?=$list['list']['rate']?> From (  <?=$list['list']['rate_count']?>  ):
+                    <li style="display: none;"><i class="icon-trophy"></i>Rate<?=$list['list']['rate']?> From (  <?=$list['list']['rate_count']?>  ):
                         <div  dir="ltr">
 
                                 <!--<input id="input-1" disabled type="number" class="rating"  value="<?/*=$list['list']['rate']*/?>"  max="10"  data-step="0.1" data-size="sm" data-glyphicon="false" data-rating-class="fontawesome-icon">-->

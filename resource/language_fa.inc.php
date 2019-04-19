@@ -1402,6 +1402,7 @@ define("email_is_not_valid","ایمیل به درستی وارد نشده است
 
 define("info_login","برای ورود اطلاعات خود را وارد کنید");
 define("email_or_number"," ایمیل یا موبایل:");
+define("number_or_email","موبایل یا ایمیل: (به طور مثال: ۹۱۲۱۲۳۴۵۶۷)");
 define("password","رمز عبور:");
 define("login","ورود");
 define("register","ثبت نام");
@@ -1409,7 +1410,7 @@ define("forgot_password","یاد آوری رمز عبور؟");
 define("login_by_account","ورود با حساب کاربری");
 define("Password_sent","کد ارسال شد.");
 define("create_new_account","ساخت اکانت جدید");
-define("mobile"," موبایل :");
+define("mobile"," موبایل :(مثال: 9193110190)");
 define("name_fa","نام کامل(فارسی):");
 define("name_en","نام کامل(لاتین):");
 define("email","ایمیل");
@@ -1431,7 +1432,7 @@ define("bio_en","بیوگرافی(لاتین):");
 define("own_image","تصویر:");
 define("picture_is_square_and_jpeg","تصویر مربع با فرمت jpg");
 define("category_id_not_empty","گروه می بایست انتخاب شود.");
-define("password_not_empty","پسورد می بایست پر شو   د.");
+define("password_not_empty","پسورد می بایست پر شود.");
 define("please_login_before_choose_chair","لطفا قبل از انتخاب صندلی لاگین نمایید.");
 
 define("wait_to_send","در حال ارسال به بانک ...");
@@ -1468,3 +1469,7 @@ define("submit","ارسال");
 
 define("your_event_has_been_recorded","رویداد شما ثبت شد.");
 define("sanladi_number","شماره صندلی");
+
+define("persian_name_is_empty","نام فارسی می بایست پر شود.");
+define("latin_name_is_empty","نام لاتین می بایست پر شود.");
+define("email_is_empty","ایمیل می بایست پر شود.");

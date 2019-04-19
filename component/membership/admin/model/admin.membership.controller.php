@@ -143,24 +143,24 @@ class adminMembershipController
      *
      * @version 01.01.01
      */
-    public function showArtistsAddForm($fields, $msg)
+    public function showArtistsAddForm($fieldss=array(), $msg)
     {
-        include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
-        $category = new adminCategoryModel();
+        //include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
+        //$category = new adminCategoryModel();
 
-        $resultCategory = $category->getCategoryOption();
+        /*$resultCategory = $category->getCategoryOption();
         if ($resultCategory['result'] == 1) {
             $fields['category'] = $category->list;
-        }
-
+        }*/
         /** genre */
-        include_once ROOT_DIR.'component/genre/admin/model/admin.genre.model.php';
+        /*include_once ROOT_DIR.'component/genre/admin/model/admin.genre.model.php';
         $genre = new adminGenreModel();
+
 
         $resultGenre = $genre->getGenreOption();
         if ($resultGenre['result'] == 1) {
             $fields['genre'] = $genre->list;
-        }
+        }*/
 
         /*include_once ROOT_DIR.'component/city/admin/model/admin.city.model.php';
         $city = new adminCityModel();
@@ -169,14 +169,12 @@ class adminMembershipController
             $fields['cities'] = $city->list;
         }*/
 
-        include_once ROOT_DIR.'component/province/admin/model/admin.province.model.php';
-        //$province = new adminProvinceModel();
+        /*include_once ROOT_DIR.'component/province/admin/model/admin.province.model.php';
         $province = adminProvinceModel::getAll()->getList();
 
-        //$resultProvince = $province->getStates();
         if ($province['result'] == 1) {
             $fields['provinces'] = $province['export']['list'];
-        }
+        }*/
 
 
         //////////////////////////////////////////////////
@@ -206,6 +204,7 @@ class adminMembershipController
         $COUNTRY->multiIso         = array("CN","us","IR","de");
         $COUNTRY->getAllCountryCode();
         $fields['country'] = $COUNTRY->country;
+
 
 
         $this->fileName = 'admin.membership.addForm.php';

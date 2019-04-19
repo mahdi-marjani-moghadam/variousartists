@@ -194,7 +194,7 @@
                                                 </ul>
                                             </div>
                                             <div id="areaCodeHolder" class="input-group-addon">+<?=$list['default'][0]['phone_code']?></div>
-                                            <input type="tel" <? if($list['default'][0]['iso'] == 'IR'){?>maxlength="<?=$list['default'][0]['max_length']?>" <? }?> class="phone form-control" id="artists_phone1" name="artists_phone1" placeholder="<?=$list['default'][0]['sample']?>" required value="<?=$_REQUEST['artists_phone1']?>">
+                                            <input style="direction: ltr; box-shadow: none" type="tel" <? if($list['default'][0]['iso'] == 'IR'){?>maxlength="<?=$list['default'][0]['max_length']?>" <? }?> class="phone form-control" id="artists_phone1" name="artists_phone1" placeholder="<?=$list['default'][0]['sample']?>" required value="<?=$_REQUEST['artists_phone1']?>">
                                             <input name="areacode" id="areacode" type="hidden" value="<?=$list['default'][0]['phone_code']?>">
                                             <span class="input-group-btn"></span>
                                         </div><!-- /input-group -->

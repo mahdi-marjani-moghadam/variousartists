@@ -110,9 +110,18 @@
               </div>
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
-                        <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="meta_keyword"> url:</label>
+                        <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="url"> url:</label>
                         <div class="col-xs-12 col-sm-8 pull-right">
                             <input value="<?=$list['url'];?>" name="url" class="form-control" id="url" autocomplete="off" >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="priority"> priority:</label>
+                        <div class="col-xs-12 col-sm-8 pull-right">
+                            <input value="<?=$list['priority'];?>" name="priority" class="form-control" id="priority" autocomplete="off" >
                         </div>
                     </div>
                 </div>

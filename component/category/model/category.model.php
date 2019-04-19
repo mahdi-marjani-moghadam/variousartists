@@ -308,7 +308,7 @@ class categoryModel
         return $result;
     }    
 
-    public function convertTreetoLiUl($array, $root = 0, $all)
+    public function convertTreetoLiUl($array=array(), $root = 0, $all='')
     {
         static $mainMenu = '';
         static $mainList;

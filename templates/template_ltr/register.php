@@ -193,7 +193,7 @@
                                                 </ul>
                                             </div>
                                             <div id="areaCodeHolder" class="input-group-addon">+<?=$list['default'][0]['phone_code']?></div>
-                                            <input type="tel" <? if($list['default'][0]['iso'] == 'IR'){?>maxlength="<?=$list['default'][0]['max_length']?>" <? }?> class="phone form-control" id="artists_phone1" name="artists_phone1" placeholder="<?=$list['default'][0]['sample']?>" required value="<?=$_REQUEST['artists_phone1']?>">
+                                            <input style="box-shadow: none" type="tel" <? if($list['default'][0]['iso'] == 'IR'){?>maxlength="<?=$list['default'][0]['max_length']?>" <? }?> class="phone form-control" id="artists_phone1" name="artists_phone1" placeholder="<?=$list['default'][0]['sample']?>" required value="<?=$_REQUEST['artists_phone1']?>">
                                             <input name="areacode" id="areacode" type="hidden" value="<?=$list['default'][0]['phone_code']?>">
                                             <span class="input-group-btn">
 
@@ -209,8 +209,8 @@
                                         <input type="text" id="password" name="password" value="<?=$_REQUEST['password']?>" class="form-control" />
                                     </div>
                                     <div class="col_full">
-                                        <label for="artists_name_fa"><?=name_fa?></label>
-                                        <input type="text" id="artists_name_fa" name="artists_name_fa" value="<?=$_REQUEST['artists_name_fa']?>" class="form-control" />
+                                        <label for="artists_name_fa"><?=name_en?></label>
+                                        <input type="text" id="artists_name_en" name="artists_name_en" value="<?=$_REQUEST['artists_name_en']?>" class="form-control" />
                                     </div>
 
                                     <div class="col_full">
@@ -229,8 +229,8 @@
                                         <input type="text" id="nickname" name="nickname" value="<?=$_REQUEST['nickname']?>" class="form-control" />
                                     </div>
                                     <div class="col_full art">
-                                        <label for="artists_name_en"><?=name_en?></label>
-                                        <input type="text" id="artists_name_en" name="artists_name_en" value="<?=$_REQUEST['artists_name_en']?>" class="form-control" />
+                                        <label for="artists_name_en"><?=name_fa?></label>
+                                        <input type="text" id="artists_name_fa" name="artists_name_fa" value="<?=$_REQUEST['artists_name_fa']?>" class="form-control" />
                                     </div>
                                     <div class="col_full art">
                                         <div ><?=birthday?>

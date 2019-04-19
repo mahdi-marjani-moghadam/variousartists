@@ -55,7 +55,7 @@ class categoryModelDb
 				SELECT
 					`category`.*,title_$lang as title
 				FROM category
-					ORDER BY category.Category_id  ASC";
+					ORDER BY category.priority asc";
 
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);

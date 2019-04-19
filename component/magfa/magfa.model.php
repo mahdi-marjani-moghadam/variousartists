@@ -81,11 +81,14 @@ class WebServiceSample{
         $result = $response[0];
         // compare the response with the ERROR_MAX_VALUE
         if ($result <= $this->ERROR_MAX_VALUE) {
-            echo "An error occured <br> ";
-            echo "Error Code : $result ; Error Title : " . $this->errors[$result]['title'] . ' {' . $this->errors[$result]['desc'] . '}';
+            //echo "An error occured <br> ";
+            //echo "Error Code : $result ; Error Title : " . $this->errors[$result]['title'] . ' {' . $this->errors[$result]['desc'] . '}';
+            return false;
         } else {
-            echo "Message has been successfully sent ; MessageId : $result";
+            //echo "Message has been successfully sent ; MessageId : $result";
+            return true;
         }
+
 
     }
 

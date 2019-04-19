@@ -19,8 +19,6 @@ if(isset($exportType))
 if($PARAM[0]  == 'register')
 {
 
-
-
     if($_POST){
         $result = $login->register($_POST);
         if($result['result'] == -1)

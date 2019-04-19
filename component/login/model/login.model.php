@@ -540,26 +540,30 @@ class memberLogIn
 
     function    register($_input)
     {
+
         global $messageStack,$lang;
+
+
         include_once (ROOT_DIR."component/artists/model/artists.model.php");
         $_input['username'] = $_input['artists_phone1'];
         if($_input['email']!=''){
             $_input['username'] = $_input['email'];
         }
 
+        /** check pass */
         if($_input['password']=='' )
         {
             $messageStack->add_session('register',password_not_empty);
             $this->showRegisterForm($_input,password_not_empty);
         }
 
+        /** check birthday */
         if($_input['check_birthday']!=''){
             $_input['show_birthday'] = $_input['check_birthday'];
         }
 
-
+        /** exist user */
         $result = artists::getBy_username($_input['username'])->getList();
-
         if($result['export']['recordsCount'] > 0)
         {
             $messageStack->add_session('register',translate('Exist user'));
@@ -568,10 +572,26 @@ class memberLogIn
 
         $artists=new artists;
 
+        /** check category */
         if($_input['category_id']=='' and $_input['check1'] == 'on')
         {
             $messageStack->add_session('register',category_id_not_empty);
             $this->showRegisterForm($_input,category_id_not_empty);
+        }
+
+        if($_input['check1'] == 'on'){
+            if($_input['artists_name_fa']==''){
+                $messageStack->add_session('register',persian_name_is_empty);
+                $this->showRegisterForm($_input,persian_name_is_empty);
+            }
+            if($_input['artists_name_en']==''){
+                $messageStack->add_session('register',latin_name_is_empty);
+                $this->showRegisterForm($_input,latin_name_is_empty);
+            }
+            if($_input['email']==''){
+                $messageStack->add_session('register',email_is_empty);
+                $this->showRegisterForm($_input,email_is_empty);
+            }
         }
 
         if(isset($_input['category_id'])){
@@ -582,8 +602,10 @@ class memberLogIn
         }
         if($_input['birthday']==''){unset($_input['birthday']);}
 
+
         if($lang == 'fa' && $_input['birthday']!=''){ $_input['birthday'] = convertJToGDate($_input['birthday']);}
         $_input['refresh_date'] = date('Y-m-d H:i:s');
+        $pass = $_input['password'];
         $_input['password']  = md5($_input['password']);
 
         $artists->setFields($_input);
@@ -597,9 +619,53 @@ class memberLogIn
         }
         if($_input['check1'] == 'on'){
             $artists->type = 1;
+
+            include_once ROOT_DIR.'component/magfa/magfa.model.php';
+            $sms = new WebServiceSample;
+
+            if($lang=='fa'){
+                $message =
+                    'اکانت شما بعد از تایید ادمین فعال می شود.'. " \n ".
+                    'اطلاعات حساب شما'. " \n ".
+                    "username: ". $artists->username. " \n ".
+                    "password: ". $pass." \n ".
+                    "http://variousartist.ir";
+            }
+            else{
+                $message =
+                    'Your account will be activated after verifying your admin'. " \n ".
+                    'Your account information'. " \n ".
+                    "username: ". $artists->username. " \n ".
+                    "password: ". $pass." \n ".
+                    "http://variousartist.ir";}
+
+
+            $sms->simpleEnqueueSample($artists->artists_phone1,$message);
         }
         else{
             $artists->type = 0;
+            $artists->status = 1;
+
+            include_once ROOT_DIR.'component/magfa/magfa.model.php';
+            $sms = new WebServiceSample;
+
+            if($lang=='fa'){
+                $message =
+                    'اطلاعات حساب شما'. " \n ".
+                    "username: ". $artists->username. " \n ".
+                    "password: ". $pass." \n ".
+                    "http://variousartist.ir";
+            }
+            else{
+                $message =
+                    'Your account information'. " \n ".
+                    "username: ". $artists->username. " \n ".
+                    "password: ". $pass." \n ".
+                    "http://variousartist.ir";}
+
+
+            $sms->simpleEnqueueSample($artists->artists_phone1,$message);
+
         }
         $result=$artists->save();
 

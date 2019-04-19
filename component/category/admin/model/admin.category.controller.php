@@ -211,7 +211,8 @@ class adminCategoryController
      */
     public function showCategoryAddForm($fields,$msg)
     {
-
+        if($fields=='')
+            $fields = array();
 
         $category = new adminCategoryModel();
 

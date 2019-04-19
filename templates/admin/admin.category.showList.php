@@ -59,6 +59,7 @@
                         <th>ردیف</th>
                         <th>نام دسته بندی</th>
                         <th>آدرس اینترنتی</th>
+                        <th>priority</th>
                         <th>کلمات کلیدی</th>
                         <th>توضیحات کلیدی</th>
                         <!--<th>نام تصویر</th>-->
@@ -73,6 +74,7 @@
                         <th><input type="text" name="search_50" value="" class="search_init form-control"/></th>
                         <!--<th><input type="text" name="search_60" value="" class="search_init form-control"/></th>-->
                         <th><input type="text" name="search_70" value="" class="search_init form-control"/></th>
+                        <th><input type="text" name="search_60" value="" class="search_init form-control"/></th>
                     </tfoot>
                     <tbody>
                     <?php foreach ($list['list'] as $id => $fields) {
@@ -81,6 +83,7 @@
                             <td><?php echo $fields['dataTableCount']; ?></td>
                             <td><?php echo $fields['export']; ?></td>
                             <td><?php echo $fields['url']; ?></td>
+                            <td><?php echo $fields['priority']; ?></td>
                             <td><?php echo $fields['meta_keyword']; ?></td>
                             <td><?php echo $fields['meta_description']; ?></td>
                             <td style="display: none" dir="ltr" align="center"><img height="60px" src="<?= $fields['img_name'] ?>"/></td>
