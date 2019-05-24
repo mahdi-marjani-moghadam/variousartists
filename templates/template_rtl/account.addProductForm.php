@@ -12,16 +12,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="brif_description_fa">توضیحات مختصر(فارسی):</label>
-                                                        <div class="col-xs-12 col-sm-8 pull-right">
-                                                            <input type="text" class="form-control" name="brif_description_fa" id="brif_description_fa"  placeholder="" required value="<?=$list['brif_description_fa']?>">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
+
+
                                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                                     <div class="form-group">
                                                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="title_en">عنوان(انگلیسی):</label>
@@ -30,14 +22,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="brif_description_en">توضیحات مختصر(انگلیسی):</label>
-                                                        <div class="col-xs-12 col-sm-8 pull-right">
-                                                            <input type="text" class="form-control" name="brif_description_en" id="brif_description_en"  placeholder="" required value="<?=$list['brif_description_en']?>">
-                                                        </div>
-                                                    </div>
-                                                </div>
+
                                             </div>
 
                                             <div class="row">
@@ -103,7 +88,7 @@
                                                     <div class="form-group">
                                                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="category_id">category_id:</label>
                                                         <div class="col-xs-12 col-sm-8 pull-right">
-                                                            <select name="category_id[]" data-input="select2" placeholder="Multiple select" multiple>
+                                                            <select class="form-control" name="category_id[]" data-input="select2" placeholder="Multiple select" multiple>
                                                                 <?
                                                                 foreach($list['category'] as $category_id => $value)
                                                                 {
@@ -122,7 +107,7 @@
                                                     <div class="form-group">
                                                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="genre_id">genre:</label>
                                                         <div class="col-xs-12 col-sm-8 pull-right">
-                                                            <select name="genre_id[]" data-input="select2"  multiple>
+                                                            <select class="form-control" name="genre_id[]" data-input="select2"  multiple>
                                                                 <?
                                                                 foreach($list['genre'] as $genre_id => $value)
                                                                 {

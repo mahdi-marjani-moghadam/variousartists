@@ -113,7 +113,9 @@
         <script class="re-execute" src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/jquery.print.js"></script>
 
         <!-- persianDatePicker.js -->
-        <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/persianDatepicker.min.js"></script>
+        <!--<script src="<?php /*echo RELA_DIR; */?>templates/<?php /*echo CURRENT_SKIN; */?>/assets/js/persianDatepicker.min.js"></script>-->
+        <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/persianDatepicker2.min.js"></script>
+        <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/persianDatepicker3.min.js"></script>
 
         <!-- accounting.js -->
         <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/accounting.min.js"></script>
@@ -131,3 +133,22 @@
         <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/vfs_fonts.js"></script>
         <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/buttons.html5.min.js"></script>
         <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/buttons.print.min.js"></script>
+
+        <script>
+            $('.datepicker').persianDatepicker({
+                format:"L",
+                initialValueType: 'persian',
+                initialValue: false,
+                calendarType:"persian",
+                toolbox:{
+                    calendarSwitch:{
+                        enabled: false
+                    }
+                },
+                calendar:{
+                    persian: {
+                        locale: 'en'
+                    }
+                }
+            });
+        </script>

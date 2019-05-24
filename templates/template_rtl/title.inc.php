@@ -36,7 +36,7 @@
 
 	<link rel="stylesheet" href="<?php echo TEMPLATE_DIR; ?>js/calendar/fullcalendar.css" type="text/css"/>
 
-    <link href="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/css/persianDatepicker-default.css" rel="stylesheet">
+    <link href="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/css/persianDatepicker.css" rel="stylesheet">
 
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3" />

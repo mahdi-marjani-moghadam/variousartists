@@ -41,7 +41,8 @@
     <link rel="stylesheet" href="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/css/jquery.tablesorter.pager.css">
 
     <!-- persian datePicker style -->
-    <link href="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/css/persianDatepicker-default.css" rel="stylesheet">
+    <!--<link href="<?php /*echo RELA_DIR; */?>templates/<?php /*echo CURRENT_SKIN; */?>/assets/css/persianDatepicker.css" rel="stylesheet">-->
+    <link href="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/css/persianDatepicker.css" rel="stylesheet">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>

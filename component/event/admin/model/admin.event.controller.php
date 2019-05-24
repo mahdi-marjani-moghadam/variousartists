@@ -121,11 +121,19 @@ class adminEventController
             $fields['cities'] = $city->list;
         }*/
         /** city */
-        include_once ROOT_DIR.'component/state/admin/model/admin.state.model.php';
+        /*include_once ROOT_DIR.'component/state/admin/model/admin.state.model.php';
         $province = new adminStateModel();
         $resultProvince = $province->getStates();
         if ($resultProvince['result'] == 1) {
             $export['provinces'] = $province->list;
+        }*/
+
+        /** country */
+        include_once ROOT_DIR.'component/country/model/country.model.php';
+        $country = new country();
+        $resultCountry = $country::getAll()->getList();
+        if ($resultCountry['result'] == 1) {
+            $export['country'] = $resultCountry['export']['list'];
         }
 
         /*include_once ROOT_DIR.'component/certification/admin/model/admin.certification.model.php';
@@ -136,7 +144,7 @@ class adminEventController
             $fields['certifications'] = $certification->list;
         }*/
 
-        $this->fileName = 'admin.event.addForm.php';
+            $this->fileName = 'admin.event.addForm.php';
         $this->template($export, $msg);
         die();
     }

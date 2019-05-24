@@ -226,7 +226,7 @@
                                 <label class="col-xs-12 col-sm-4  control-label " for="category_id"><?=category?></label>
                                 <div class="col-xs-12 col-sm-8 ">
 
-                                    <select name="category_id[]" data-input="select2" placeholder="Multiple select" multiple>
+                                    <select class="form-control" name="category_id[]" data-input="select2" placeholder="Multiple select" multiple>
                                         <?
                                         foreach($list['category'] as $category_id => $value)
                                         {
@@ -246,7 +246,7 @@
                                 <label class="col-xs-12 col-sm-4  control-label " for="category_id"><?=genre?></label>
                                 <div class="col-xs-12 col-sm-8 ">
 
-                                    <select name="genre_id[]" data-input="select2"  multiple>
+                                    <select class="form-control" name="genre_id[]" data-input="select2"  multiple>
                                         <?
                                         foreach($list['genre'] as $genre_id => $value)
                                         {
@@ -275,21 +275,20 @@
                     <div class="row xsmallSpace hidden-xs"></div>
                     <div class="row">
                         <!-- city -->
-                        <div class="col-xs-12 col-sm-12 col-md-6" style="display: none">
+                        <div class="col-xs-12 col-sm-12 col-md-6" style="">
                             <div class="form-group">
-                                <label class="col-xs-12 col-sm-4 col-md-4  control-label "
-                                       for="city_id"><?=city?></label>
-                                <div class="col-xs-12 col-sm-8 col-md-8 ">
-                                    <? ?>
-                                    <select name="city_id" id="city_id" data-input="select2">
+                                <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
+                                       for="country_id"><?=country?></label>
+                                <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                    <select name="country_id" id="country_id" data-input="select2">
 
                                         <?
-                                        foreach($list['provinces'] as $province_id => $value)
+                                        foreach($list['country'] as $province_id => $value)
                                         {?>
                                         <option
-                                            <?= $value['province_id'] == $list['city_id'] ? 'selected' : '' ?>
-                                                value="<?= $value['province_id'] ?>">
-                                            <?= $value["name_$lang"] ?>
+                                            <?= $value['id'] == $list['country_id'] ? 'selected' : '' ?>
+                                                value="<?= $value['id'] ?>">
+                                            <?= $value["nice_name"] ?>
                                             </option><?
                                         }
                                         ?>

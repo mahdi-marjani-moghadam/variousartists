@@ -246,13 +246,18 @@ class accountController
     }
     public function addEvent($_input)
     {
+
+
+
         global $messageStack,$member_info;
         include_once ROOT_DIR.'component/event/admin/model/admin.event.model.php';
         $event = new adminEventModel();
 
+
         $_input['date'] = ($_input['date']!=''?convertJToGDate($_input['date']):'0000-00-00');
         $_input['date2'] = ($_input['date2']!=''?convertJToGDate($_input['date2']):'0000-00-00');
         $_input['date3'] = ($_input['date3']!=''?convertJToGDate($_input['date3']):'0000-00-00');
+
 
         $_input['category_id'] = ','.implode(',',$_input['category_id'] ).',';
         $_input['genre_id'] = ','.implode(',',$_input['genre_id'] ).',';
@@ -333,11 +338,12 @@ class accountController
         $export['page_title'] = translate('افزودن اثر');
 
 
-        include_once ROOT_DIR.'component/state/admin/model/admin.state.model.php';
-        $province = new adminStateModel();
-        $resultProvince = $province->getStates();
-        if ($resultProvince['result'] == 1) {
-            $export['provinces'] = $province->list;
+        /** country */
+        include_once ROOT_DIR.'component/country/model/country.model.php';
+        $country = new country();
+        $resultCountry = $country::getAll()->getList();
+        if ($resultCountry['result'] == 1) {
+            $export['country'] = $resultCountry['export']['list'];
         }
 
 
@@ -381,8 +387,10 @@ class accountController
         $event->save();
 
 
+
         if(file_exists($_FILES['logo']['tmp_name'])){
 
+            $input['upload_dir'] = ROOT_DIR.'statics/event/';
             $input['upload_dir'] = ROOT_DIR.'statics/event/';
             $result = fileUploader($input,$_FILES['logo']);
             //fileRemover($input['upload_dir'],$product->fields['image']);
@@ -447,11 +455,11 @@ class accountController
         $export['page_title'] = translate('افزودن اثر');
 
         /** country */
-        include_once ROOT_DIR.'component/state/admin/model/admin.state.model.php';
-        $province = new adminStateModel();
-        $resultProvince = $province->getStates();
-        if ($resultProvince['result'] == 1) {
-            $export['provinces'] = $province->list;
+        include_once ROOT_DIR.'component/country/model/country.model.php';
+        $country = new country();
+        $resultCountry = $country::getAll()->getList();
+        if ($resultCountry['result'] == 1) {
+            $export['country'] = $resultCountry['export']['list'];
         }
 
 //        print_r_debug($export);
@@ -790,6 +798,11 @@ class accountController
         if(isset($fields['category_id'])){
             $fields['category_id'] = ",".(implode(",",$fields['category_id'])).",";
         }
+
+        if(isset($fields['genre_id'])){
+            $fields['genre_id'] = ",".(implode(",",$fields['genre_id'])).",";
+        }
+
         $fields['artists_id'] = $member_info['Artists_id'];
         //$fields['status'] = 0;
         if($fields['password']!=''){
@@ -800,7 +813,9 @@ class accountController
 
         $account->setFields($fields);
 
+
         $result = $account->validator();
+
         $account->state_id = 0;
         $account->date = date('Y-m-d H:i:s');
         $account->birthday = date('Y-m-d H:i:s');
@@ -841,8 +856,11 @@ class accountController
         }
 
 
+
+
         $export = $obj->fields;
         $export['category_id'] = explode(',',$export['category_id']);
+        $export['genre_id'] = explode(',',$export['genre_id']);
 
         include_once(ROOT_DIR."component/category/model/category.model.php");
         $category = new categoryModel();
@@ -852,6 +870,14 @@ class accountController
         if($resultCategory['result'] == 1)
         {
             $export['category'] = $category->list;
+        }
+        /** genre */
+        include_once(ROOT_DIR."component/genre/model/genre.model.php");
+        $genre = new genreModel();
+        $resultGenre = $genre->getGenreOption();
+        if($resultGenre['result'] == 1)
+        {
+            $export['genre'] = $genre->list;
         }
 
         // breadcrumb

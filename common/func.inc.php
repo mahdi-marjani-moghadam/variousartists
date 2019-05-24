@@ -1220,12 +1220,18 @@ function paginationButtom($recordCount = 0, $countButtom = 10)
 
 function fileUploader($input = array(), $file = array())
 {
+
+    $ext = pathinfo(basename($file["name"]), PATHINFO_EXTENSION);
+
+
     $msg = "";
 //check type of Image
     if (isset($input['new_name'])) {
         $new_name = $input['new_name'];
     } else {
+        $new_name = strtotime("now").'.'.$ext;
     }
+
 
 //check type of Image
     if (isset($input['type'])) {
@@ -1298,15 +1304,15 @@ function fileUploader($input = array(), $file = array())
         $success_msg = "The file " . basename($file["name"]) . " has been uploaded.";
     }
 
-    $target_file = $target_dir . strtotime("now") . "._" . basename($file["name"]);
-    $result['image_name'] = (strtotime("now") . "._" . basename($file["name"]));
+    $target_file = $target_dir . $new_name;
+    $result['image_name'] = $new_name;
 
     $uploadOk = 1;
      $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
 //print_r_debug($fileType );
 
-    $nameFile = ((str_ireplace("." . $fileType, "", $file["name"])) . "._" . strtotime("now") . "." . $fileType);
+
     $check = getimagesize($file["tmp_name"]);
 
 
@@ -1338,6 +1344,8 @@ function fileUploader($input = array(), $file = array())
 
 
 
+
+
 // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         $result['msg']['error_msg'] = $error_msg;
@@ -1348,7 +1356,9 @@ function fileUploader($input = array(), $file = array())
             $result['msg']['error_msg'] = $error_msg;
         }
     }
-    
+
+
+
     return $result;
 }
 

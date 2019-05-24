@@ -165,7 +165,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control  date" name="date" id="date" required value="<?= ($list['date']!="0000-00-00"? convertDate($list['date']):"") ?>">
+                                        <input type="text" class="form-control  datepicker" name="date" id="date" required value="<?= ($list['date']!="0000-00-00"? convertDate($list['date']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -186,7 +186,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control date" name="date2" id="date2"  value="<?= ($list['date2']!="0000-00-00"? convertDate($list['date2']):"") ?>">
+                                        <input type="text" class="form-control datepicker" name="date2" id="date2"  value="<?= ($list['date2']!="0000-00-00"? convertDate($list['date2']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -207,7 +207,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date3">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control  date" name="date3" id="date3"  value="<?= ($list['date3']!="0000-00-00"? convertDate($list['date3']):"")?>">
+                                        <input type="text" class="form-control  datepicker" name="date3" id="date3"  value="<?= ($list['date3']!="0000-00-00"? convertDate($list['date3']):$list['date3'])?>">
                                     </div>
                                 </div>
                             </div>
@@ -226,7 +226,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="category_id">category_id:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
 
-                                        <select name="category_id[]" data-input="select2" placeholder="Multiple select" multiple>
+                                        <select class="form-control" name="category_id[]" data-input="select2" placeholder="Multiple select" multiple>
                                             <?
                                             foreach($list['category'] as $category_id => $value)
                                             {
@@ -246,7 +246,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="category_id">genre:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
 
-                                        <select name="genre_id[]" data-input="select2"  multiple>
+                                        <select class="form-control" name="genre_id[]" data-input="select2"  multiple>
                                             <?
                                             foreach($list['genre'] as $genre_id => $value)
                                             {
@@ -275,21 +275,20 @@
                         <div class="row xsmallSpace hidden-xs"></div>
                         <div class="row">
                             <!-- city -->
-                            <div class="col-xs-12 col-sm-12 col-md-6" style="display: none">
+                            <div class="col-xs-12 col-sm-12 col-md-6" style="">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="city_id">انتخاب شهر:</label>
+                                           for="country_id"><?=country?></label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <? ?>
-                                        <select name="city_id" id="city_id" data-input="select2">
+                                        <select name="country_id" id="country_id" data-input="select2">
 
                                             <?
-                                            foreach($list['provinces'] as $province_id => $value)
+                                            foreach($list['country'] as $province_id => $value)
                                             {?>
                                             <option
-                                                <?= $value['province_id'] == $list['city_id'] ? 'selected' : '' ?>
-                                                value="<?= $value['province_id'] ?>">
-                                                <?= $value["name_$lang"] ?>
+                                                <?= $value['id'] == $list['country_id'] ? 'selected' : '' ?>
+                                                    value="<?= $value['id'] ?>">
+                                                <?= $value["nice_name"] ?>
                                                 </option><?
                                             }
                                             ?>

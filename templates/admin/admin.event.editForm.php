@@ -82,10 +82,7 @@
                                 </div>
                             </div>
 
-                        </div>
 
-                        <div class="row xsmallSpace hidden-xs"></div>
-                        <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
@@ -182,7 +179,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control  date" name="date" id="date" required value="<?= ($list['date']!="0000-00-00"? convertDate($list['date']):"") ?>">
+                                        <input type="text" class="form-control  datepicker" name="date" id="date" required value="<?= ($list['date']!="0000-00-00"? convertDate($list['date']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -203,7 +200,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control date" name="date2" id="date2"  value="<?= ($list['date2']!="0000-00-00"? convertDate($list['date2']):"") ?>">
+                                        <input type="text" class="form-control datepicker" name="date2" id="date2"  value="<?= ($list['date2']!="0000-00-00"? convertDate($list['date2']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -224,7 +221,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date3">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control  date" name="date3" id="date3"  value="<?= ($list['date3']!="0000-00-00"? convertDate($list['date3']):"")?>">
+                                        <input type="text" class="form-control  datepicker" name="date3" id="date3"  value="<?= ($list['date3']!="0000-00-00"? convertDate($list['date3']):"")?>">
                                     </div>
                                 </div>
                             </div>
@@ -242,7 +239,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="salon_id">انتخاب سالن:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <select name="salon_id[]" id="salon_id" data-input="select2" multiple>
+                                        <select name="salon_id[]" id="salon_id" data-input="select2" >
                                             <?
                                             foreach($list['salon'] as $category_id => $value)
                                             {
@@ -265,7 +262,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="category_id">انتخاب دسته بندی:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <select name="category_id[]" id="category_id" data-input="select2" multiple>
+                                        <select name="category_id[]" id="category_id" data-input="select2" >
                                             <?
                                             foreach($list['category'] as $category_id => $value)
                                             {
@@ -286,7 +283,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="genre_id">سبک:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <select name="genre_id[]" id="genre_id" data-input="select2" multiple>
+                                        <select name="genre_id[]" id="genre_id" data-input="select2" >
                                             <?
                                             foreach($list['genre'] as $genre_id => $value)
                                             {

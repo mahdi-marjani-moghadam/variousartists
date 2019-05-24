@@ -321,12 +321,14 @@ class adminArtistsController
 
             global $lang;
             if($lang=='fa'){
+                $subject = 'اکانت شما تایید شد';
                 $message =
                     'اکانت شما تایید شد.'. " \n ".
                     " \n ".
                     "http://variousartist.ir";
             }
             else{
+                $subject = 'اکانت شما تایید شد';
                 $message =
                     'Your account has been activated'. " \n ".
                     " \n ".
@@ -334,6 +336,13 @@ class adminArtistsController
 
 
             $sms->simpleEnqueueSample($artists->fields['artists_phone1'],$message);
+
+
+            ///email
+            if(checkMail($artists->fields['artists_phone1']) ==  1){
+                sendmail($artists->fields['artists_phone1'],$subject,$message);
+            }
+
         }
 
         $msg = 'عملیات با موفقیت انجام شد';

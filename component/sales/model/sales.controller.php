@@ -683,12 +683,18 @@ $resultsandali=$sandali->getByFilter($fildes);
             include_once ROOT_DIR.'component/magfa/magfa.model.php';
             $sms = new WebServiceSample;
 
-            if($lang=='fa'){$message = 'صندلی رزرو شده ' . $salesObj2->fields['sandali'] ."می باشد.". " \n ". "http://variousartist.ir ";}
-            else{$message = 'Your chair number is: '.$salesObj2->fields['sandali']." \n http://variousartist.ir";}
+            if($lang=='fa'){$subject='صندلی رزرو';$message = 'صندلی رزرو شده ' . $salesObj2->fields['sandali'] ."می باشد.". " \n ". "http://variousartist.ir ";}
+            else{$subject='chair number';$message = 'Your chair number is: '.$salesObj2->fields['sandali']." \n http://variousartist.ir";}
 
 
             $sms->simpleEnqueueSample($member_info['artists_phone1'],$message);
+
+            ///email
+            if(checkMail($member_info['email']) ==  1){
+                sendmail($member_info['email'],$subject,$message);
+            }
         }
+
 
 
         $export['State'] = $input['State'];

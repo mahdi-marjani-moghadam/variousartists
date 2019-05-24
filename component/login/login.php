@@ -30,6 +30,7 @@ elseif($PARAM[1]  == 'sendForgot')
 
 elseif($PARAM[1]  == 'changePass')
 {
+
     $result = $login->checkCode($_GET);
     if($result['result'] == -1)
     {

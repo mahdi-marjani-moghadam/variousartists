@@ -11,6 +11,11 @@
                     <label for="artists_name_fa"><?=name_fa?></label>
                     <input type="text" id="artists_name_en" name="artists_name_fa" value="<?=$list['artists_name_fa']?>" class="form-control" />
                 </div>
+
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <label for="artists_phone1"><?=telephone?></label>
+                    <input type="text" id="artists_phone1" name="artists_phone1" value="<?=$list['artists_phone1']?>" class="form-control" />
+                </div>
                 <? if($member_info['type'] == 1):?>
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <label for="">گروه :</label>
@@ -27,10 +32,25 @@
                             ?>
                         </select>
                     </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <label for=""><?=genre?> </label>
+                        <select name="genre_id[]" id="genre_id" data-input="select2"  multiple class="form-control">
+                            <?
+                            foreach($list['genre'] as $category_id => $value)
+                            {
+                                ?>
+                                <option  <?php echo (in_array($category_id, $list['genre_id'])) ? 'selected' : '' ?> value="<?=$category_id?>">
+                                    <?=$value['export']?>
+                                </option>
+                                <?
+                            }
+                            ?>
+                        </select>
+                    </div>
                 <?php endif; ?>
                 <div class="col-md-6 col-sm-12 col-xs-12">
-                    <label for="artists_phone1"><?=telephone?></label>
-                    <input type="text" id="artists_phone1" name="artists_phone1" value="<?=$list['artists_phone1']?>" class="form-control" />
+                    <label for="birthday"><?=birthday?></label>
+                    <input  type="text" id="birthday" name="birthday" value="<?=$list['birthday']?>" class="form-control datepicker" />
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <label for="email"><?=email?></label>

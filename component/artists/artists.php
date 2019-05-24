@@ -40,8 +40,8 @@ else if (isset($PARAM[1]) and $PARAM[1] != 'category') {
 
 else{
 
-    $fields['limit']['start'] = (isset($page)) ? ($page - 1) * PAGE_SIZE : '0';
-    $fields['limit']['length'] = PAGE_SIZE;
+    $fields['limit']['start'] = (isset($page)) ? ($page - 1) * 40 : '0';
+    $fields['limit']['length'] = 40;
     $fields['order']['artists_id'] = 'DESC';
     $fields['chose']['category_id'] = 0;
     $artistsController->showALL($fields);

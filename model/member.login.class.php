@@ -242,6 +242,7 @@ class memberLogIns
 
 	function changePass()
 	{
+
 		global $conn ;
 
 		$key 	= handleData($_REQUEST['key']);

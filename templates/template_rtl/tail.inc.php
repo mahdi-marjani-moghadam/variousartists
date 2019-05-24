@@ -159,7 +159,8 @@
     <script type="text/javascript" src="<?php echo TEMPLATE_DIR; ?>js/calendar/fullcalendar.min.js"></script>
     <script type="text/javascript" src="<?php echo TEMPLATE_DIR; ?>js/calendar/locale-all.js"></script>
 
-        <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/persianDatepicker.min.js"></script>
+        <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/persianDatepicker2.min.js"></script>
+        <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/persianDatepicker3.min.js"></script>
 
 
         <script src="<?php echo RELA_DIR; ?>templates/<?php echo CURRENT_SKIN; ?>/assets/js/persianumber.js"></script>
@@ -169,12 +170,33 @@
 
                 $('html').persiaNumber();
 
+
+
             });
 
         </script>
 
 
-        <script>$('.datepicker').persianDatepicker();</script>
+        <script>
+            $('.datepicker').persianDatepicker({
+                format:"L",
+                initialValueType: 'persian',
+                initialValue: false,
+                calendarType:"persian",
+                toolbox:{
+                    calendarSwitch:{
+                        enabled: false
+                    }
+                },
+                calendar:{
+                    persian: {
+                        locale: 'en'
+                    }
+                }
+
+
+            });
+        </script>
 
         <script>
             $('form').on('keyup keypress', function(e) {

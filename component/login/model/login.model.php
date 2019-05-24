@@ -564,6 +564,7 @@ class memberLogIn
 
         /** exist user */
         $result = artists::getBy_username($_input['username'])->getList();
+
         if($result['export']['recordsCount'] > 0)
         {
             $messageStack->add_session('register',translate('Exist user'));
@@ -607,8 +608,8 @@ class memberLogIn
         $_input['refresh_date'] = date('Y-m-d H:i:s');
         $pass = $_input['password'];
         $_input['password']  = md5($_input['password']);
-
         $artists->setFields($_input);
+
         $result = $artists->validator();
 
 
@@ -617,6 +618,7 @@ class memberLogIn
             $this->showRegisterForm($_input,translate($result['msg']));
             die();
         }
+
         if($_input['check1'] == 'on'){
             $artists->type = 1;
 
@@ -624,6 +626,7 @@ class memberLogIn
             $sms = new WebServiceSample;
 
             if($lang=='fa'){
+                $subject = 'ثبت نام';
                 $message =
                     'اکانت شما بعد از تایید ادمین فعال می شود.'. " \n ".
                     'اطلاعات حساب شما'. " \n ".
@@ -632,6 +635,7 @@ class memberLogIn
                     "http://variousartist.ir";
             }
             else{
+                $subject = 'register';
                 $message =
                     'Your account will be activated after verifying your admin'. " \n ".
                     'Your account information'. " \n ".
@@ -641,6 +645,12 @@ class memberLogIn
 
 
             $sms->simpleEnqueueSample($artists->artists_phone1,$message);
+
+            ///email
+            if(checkMail($artists->email) ==  1){
+                sendmail($artists->email,$subject,$message);
+            }
+
         }
         else{
             $artists->type = 0;
@@ -650,6 +660,7 @@ class memberLogIn
             $sms = new WebServiceSample;
 
             if($lang=='fa'){
+                $subject = 'ثبت نام';
                 $message =
                     'اطلاعات حساب شما'. " \n ".
                     "username: ". $artists->username. " \n ".
@@ -657,6 +668,7 @@ class memberLogIn
                     "http://variousartist.ir";
             }
             else{
+                $subject = 'register';
                 $message =
                     'Your account information'. " \n ".
                     "username: ". $artists->username. " \n ".
@@ -665,7 +677,10 @@ class memberLogIn
 
 
             $sms->simpleEnqueueSample($artists->artists_phone1,$message);
-
+            ///email
+            if(checkMail($artists->email) ==  1){
+                sendmail($artists->email,$subject,$message);
+            }
         }
         $result=$artists->save();
 
@@ -940,8 +955,18 @@ class memberLogIn
 
 
        include_once (ROOT_DIR.'component/artists/model/artists.model.php');
-       $obj = artists::getBy_username($fields['email'])->get();
 
+       if(checkMail($fields['email'])==1){
+            $obj = artists::getBy_username($fields['email'])->get();
+       }else{
+            $phone1 = substr($fields['email'],1);// 0
+
+            $phone2 = '0'.substr($fields['email'],2); // 98
+            $phone3 = substr($fields['email'],2); // 98
+
+            $obj = artists::getAll()->where('artists_phone1','in',$fields['email'].','.$phone1.','.$phone2.','.$phone3)->get();
+
+       }
 
 
        if($obj['export']['recordsCount'] != 1)
@@ -956,7 +981,7 @@ class memberLogIn
        $code = uniqid();
        $url =   "'<a href='".RELA_DIR.'login/changePass/?user='.$obj['export']['list'][0]->fields['username'].'&code='.$code ."'>".RELA_DIR.'login/changePass/?email='.$obj['export']['list'][0]->fields['username'].'&code='.$code."</a>";
 
-       if(checkMail($obj['username'])){
+       if(checkMail($obj['username'])==1){
            $sendEmail = sendmail($obj['export']['list'][0]->fields['username'],translate('Remember Password'),translate('Your change password link: ').$url."<br>".translate('website: www.variousartists.ir'));
 
            if($sendEmail['result']==-1){
@@ -966,8 +991,14 @@ class memberLogIn
                return $result;
            }
        }
-       else{
-           // TODO: sms panel
+       if($obj['export']['list'][0]->fields['artists_phone1']!= ''){
+           include_once ROOT_DIR.'component/magfa/magfa.model.php';
+           $sms = new WebServiceSample;
+           $url =  RELA_DIR.'login/changePass/?email='.$obj['export']['list'][0]->fields['username'].'&code='.$code;
+           $message =translate('Your change password link: ')."\n".$url."\n\n".translate('website: www.variousartists.ir');
+
+           $sms->simpleEnqueueSample($obj['export']['list'][0]->fields['artists_phone1'],$message);
+
        }
 
        $obj1->forgot_code = $code;
@@ -995,9 +1026,10 @@ class memberLogIn
 
    function checkCode($fields)
    {
-
        include_once (ROOT_DIR.'component/artists/model/artists.model.php');
-       $obj = artists::getBy_username_and_forgot_code($fields['user'],$fields['code'])->get();
+
+       $obj = artists::getBy_username_and_forgot_code($fields['email'],$fields['code'])->get();
+
        if($obj['export']['recordsCount'] == 0)
        {
            $result['result'] = -1;
@@ -1011,6 +1043,7 @@ class memberLogIn
    }
    function changePass($fields)
    {
+
        $result = $this->checkCode($fields);
        if($result['result'] == -1)
        {
