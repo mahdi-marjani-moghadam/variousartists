@@ -97,7 +97,7 @@
         </div><!-- #portfolio end -->
             <div class="clearfix"></div>
             <?
-            if(count($list['pagination']))
+            if(count($list['pagination']) == 0)
             {
                 ?>
                 <ul class="pagination">

@@ -83,6 +83,7 @@ class artistsController
     public function showDetail($id)
     {
 
+
         // get artists
         $artists = new artistsModel();
         $result = $artists->getArtistsById($id);

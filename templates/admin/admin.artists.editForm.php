@@ -198,7 +198,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="birthday">تاریخ تولد:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control date" name="birthday" autocomplete="off" id="birthday" value="<?=($list['birthday']!='')?convertDate($list['birthday']):''; ?>">
+                                        <input type="text" class="form-control datepicker" name="birthday" autocomplete="off" id="birthday" value="<?=($list['birthday']!='')?convertDate($list['birthday']):''; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -382,7 +382,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="refresh_date">تاریخ بروزرسانی</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control date" name="refresh_date" id="refresh_date" value="<?=($list['refresh_date']!='')?convertDate($list['refresh_date']):''; ?>">
+                                        <input type="text" class="form-control datepicker" name="refresh_date" id="refresh_date" value="<?=($list['refresh_date']!='')?convertDate($list['refresh_date']):''; ?>">
                                     </div>
                                 </div>
                             </div>

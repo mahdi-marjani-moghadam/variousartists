@@ -10,7 +10,7 @@
                 ============================================= -->
                 <div class="footer-widgets-wrap clearfix">
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="display: none">
 
                         <div class="widget clearfix">
 

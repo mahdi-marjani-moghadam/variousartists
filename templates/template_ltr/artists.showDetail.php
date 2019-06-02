@@ -24,17 +24,17 @@
 
             <!-- Portfolio Single Image
             ============================================= -->
-            <div class="col_two_third portfolio-single-image nobottommargin">
+            <div class="col portfolio-single-image nobottommargin">
                 <img src="<?=RELA_DIR.'statics/files/'.$list['list']['Artists_id'].'/'.$list['list']['logo'];?>" alt="">
             </div><!-- .portfolio-single-image end -->
 
             <!-- Portfolio Single Content
             ============================================= -->
-            <div class="col_one_third portfolio-single-content col_last nobottommargin">
+            <div class="col portfolio-single-content col_last nobottommargin">
 
                 <!-- Portfolio Single - Description
                 ============================================= -->
-                <div class="fancy-title title-bottom-border">
+                <div class="fancy-title title-bottom-border topmargin-sm">
                     <h2>biography:</h2>
                 </div>
                 <p><?=$list['list']['description']?></p>
@@ -91,7 +91,7 @@
                             </a>
                         <? endif;?>
                         <? if($list['list']['site'] != ''): ?>
-                            <a href="http://<?=$list['list']['site']?>" class="social-icon si-borderless ">
+                            <a href="<?=$list['list']['site']?>" class="social-icon si-borderless ">
                                 <i class="icon-ie"></i>
                                 <i class="icon-ie"></i>
                             </a>
