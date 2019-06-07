@@ -175,5 +175,6 @@
 
 @media (min-width:1200px){
     .p-left{ min-height: 11em;}
+    .artists_img img{ width: 50%; }
 }
 #page-menu, #page-menu-wrap{ background: #000}

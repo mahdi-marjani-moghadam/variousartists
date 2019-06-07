@@ -24,7 +24,7 @@
 
             <!-- Portfolio Single Image
             ============================================= -->
-            <div class="col portfolio-single-image nobottommargin">
+            <div class="col artists_img nobottommargin">
                 <img src="<?=RELA_DIR.'statics/files/'.$list['list']['Artists_id'].'/'.$list['list']['logo'];?>" alt="">
             </div><!-- .portfolio-single-image end -->
 
