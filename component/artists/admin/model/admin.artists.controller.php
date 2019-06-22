@@ -368,6 +368,7 @@ class adminArtistsController
         $i=0;
         $columns = array(
             array( 'db' => 'Artists_id', 'dt' =>$i++),
+            array( 'db' => 'Artists_id', 'dt' =>$i++),
             array( 'db' => 'username', 'dt' =>$i++),
             array( 'db' => 'nickname', 'dt' =>$i++),
             array( 'db' => 'category_id', 'dt' =>$i++),
@@ -412,7 +413,17 @@ class adminArtistsController
                 return $st;
             }
         );*/
-        $other['8']=array(
+        $other['1']=array(
+            'formatter' =>function($list)
+            {
+                $checked = ($list['blog']==1)?'checked':'';
+                $value = ($list['blog']==1)?1:0;
+                $st ="<input type='checkbox' value='$value' data-a='{$list['Artists_id']}' class='changeBlog' $checked >";
+
+                return $st;
+            }
+        );
+        $other['9']=array(
             'formatter' =>function($list)
             {
                 if($list['status']==1) {
@@ -423,10 +434,15 @@ class adminArtistsController
                 return $st;
             }
         );
-        $other['9']=array(
+        $other['10']=array(
             'formatter' =>function($list)
             {
-                $st = "<img height='50' src='".RELA_DIR.'statics/files/'.$list['Artists_id'].'/'.$list['logo']."'>";
+                if(file_exists(ROOT_DIR.'statics/files/'.$list['Artists_id'].'/'.$list['logo'])){
+                    $st = "<img height='50' src='".RELA_DIR.'statics/files/'.$list['Artists_id'].'/'.$list['logo']."'>";
+                }
+                else{
+                    $st = '';
+                }
 
                 return $st;
             }
@@ -506,6 +522,20 @@ class adminArtistsController
         echo $option;
 
         die();
+
+    }
+
+    public function activeBlog($id){
+        if (!validator::required($id) and !validator::Numeric($id)) {
+            $msg = 'یافت نشد';
+            redirectPage(RELA_DIR.'zamin/index.php?component=artists', $msg);
+        }
+        $artists = new adminArtistsModel();
+        $result = $artists::getAll()->where('Artists_id','=',$id)->get();
+        $result['export']['list'][0]->fields['blog'] = ($result['export']['list'][0]->fields['blog'] == 1)?0:1;
+        $result['export']['list'][0]->save();
+        redirectPage(RELA_DIR.'zamin/index.php?component=artists', 'عملیات با موفقیت انجام شد.');
+
 
     }
 

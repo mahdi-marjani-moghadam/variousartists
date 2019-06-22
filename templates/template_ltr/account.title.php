@@ -100,10 +100,22 @@
                             <div class="p-nav-handle"> <i class=""></i>Menu</div>
                             <ul>
                                 <? if($member_info['type']==1):?>
+                                    <? if($member_info['blog']==1):?>
+                                        <li><a href="<?= RELA_DIR ?>account/addBlog"
+                                               class="button  button-reveal  button-border tleft"><i
+                                                        class="icon-caret-right"></i>
+                                                <span><div class="icon-blogger"></div> Add Blog</span>
+                                            </a></li>
+                                        <li><a href="<?= RELA_DIR ?>account/showBlogList"
+                                               class="button  button-reveal  button-border tleft"><i
+                                                        class="icon-caret-right"></i>
+                                                <span><div class="icon-blogger"></div> blog</span>
+                                            </a></li>
+                                    <? endif; ?>
                                     <li><a href="<?= RELA_DIR ?>account/addEvent"
                                            class="button  button-reveal  button-border tleft"><i
                                                     class="icon-caret-right"></i>
-                                            <span><div class="icon-line2-bell"></div>Add event</span>
+                                            <span><div class="icon-line2-bell"></div> Add event</span>
                                         </a></li>
                                     <li><a href="<?= RELA_DIR ?>account/addProduct"
                                        class="button  button-reveal  button-border tleft"><i

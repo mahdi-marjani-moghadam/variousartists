@@ -210,6 +210,7 @@ class looeic extends DB
 
     /*function limit($limit,$offset=0)
     {
+
         if($offset==0)
         {
             $this->sql .= " limit $limit";
@@ -299,6 +300,7 @@ class looeic extends DB
         if (strlen($this->sql) < 1) {
             $this->sql = $this->build();
         }
+
         if (strlen($this->sql) < 1) {
             $result['result'] = -1;
             $result['Number'] = 1;
@@ -435,6 +437,7 @@ class looeic extends DB
     public static function getAll()
     {
 
+
         $className = get_called_class();
         $obj = new $className('', get_called_class());
         $obj->getFieldsName();
@@ -443,7 +446,7 @@ class looeic extends DB
         //$obj->_operation='SELECT';
         //$obj->select();
         //$appendSql = '';
-        $obj->getFieldsName();
+        //$obj->getFieldsName();
         //$sql = " FROM " . $obj->TABLE_NAME . " ";
         //$obj->sql = $sql;
         //$obj->_useWhere=1;

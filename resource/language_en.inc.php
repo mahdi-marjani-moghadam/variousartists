@@ -1460,3 +1460,11 @@ define("sanladi_number","numbers");
 define("persian_name_is_empty","Persian name is empty");
 define("latin_name_is_empty","Latin name is empty");
 define("email_is_empty","Email is empty");
+
+define("not_exists","Not Exist.");
+define("image_not_exist","Image not exist");
+define("title_fa","Title (farsi)");
+define("title_en","Title (English)");
+define("description_fa","description (Persian)");
+define("description_en","description (Latin)");
+define("add","Add");

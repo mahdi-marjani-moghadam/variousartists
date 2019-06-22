@@ -10,7 +10,7 @@ include_once ROOT_DIR.'common/looeic.php';
 
 
 
-global $admin_info,$PARAM;
+global $admin_info,$PARAM,$PAGE;
 $url_main = substr($_SERVER['REQUEST_URI'], strlen(SUB_FOLDER) + 1);
 
 $url_main = urldecode($url_main);
@@ -36,13 +36,15 @@ if (array_search('exportType', $PARAM)) {
 
 if (array_search('page', $PARAM)) {
     $index_pageSize = array_search('page', $PARAM);
-    $page = $PARAM[$index_pageSize + 1];
+    $PAGE = $PARAM[$index_pageSize + 1];
     unset($PARAM[$index_pageSize]);
     unset($PARAM[$index_pageSize + 1]);
     $PARAM = implode('/', $PARAM);
     $PARAM = explode('/', $PARAM);
     $PARAM = array_filter($PARAM, 'strlen');
 }
+
+
 
 /*if (isset($PARAM['0']) && $PARAM['0'] != 'index') {
     include_once ROOT_DIR.'component/city/admin/model/admin.city.model.db.php';

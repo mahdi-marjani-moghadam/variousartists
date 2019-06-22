@@ -79,6 +79,18 @@
                             <div class="p-nav-handle"> <i class=""></i>منو پنل</div>
                             <ul>
                                 <? if($member_info['type']==1):?>
+                                    <? if($member_info['blog']==1):?>
+                                        <li><a href="<?= RELA_DIR ?>account/addBlog"
+                                               class="button  button-reveal  button-border tright"><i
+                                                        class="icon-caret-right"></i>
+                                                <span><div class="icon-blogger"></div> افزودن وبلاگ</span>
+                                            </a></li>
+                                        <li><a href="<?= RELA_DIR ?>account/showBlogList"
+                                               class="button  button-reveal  button-border tright"><i
+                                                        class="icon-caret-right"></i>
+                                                <span><div class="icon-blogger"></div>وبلاگ</span>
+                                            </a></li>
+                                    <? endif; ?>
                                     <li><a href="<?= RELA_DIR ?>account/addEvent"
                                            class="button  button-reveal  button-border tright"><i
                                                     class="icon-caret-right"></i>

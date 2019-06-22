@@ -75,6 +75,7 @@ class accountController
 
     public function showPanel()
     {
+
         global $member_info;
 
         include_once ROOT_DIR."component/invoice/model/invoice.model.php";
@@ -132,66 +133,9 @@ class accountController
         die();
     }
 
-
-    /**
-     * @param $fields
-     * @param $msg
-     */
-    public function showProductList($fields, $msg='')
-    {
-        global $member_info;
-
-        include_once ROOT_DIR.'component/product/model/product.model.php';
-        $products=new productModel();
-
-        $object=model::find('artists',$member_info['Artists_id']);
-        if(is_array($object))
-        {
-            $this->fileName = 'account.showPanel.php';
-            $this->template('',$object['msg']);
-            die();
-        }
-
-
-        $export['list'] = $object->fields;
-
-        $result=productModel::getBy_artists_id($member_info['Artists_id'])->getList();
-
-        if($result['result'] == -1)
-        {
-            $this->fileName = 'account.productList.php';
-            $this->template('',$result['msg']);
-            die();
-        }
-        $export['artistsProductList'] = $result['export']['list'];
-
-
-        $this->recordsCount = $result['export']['recordsCount'];
-
-
-        $export['pagination'] = $result['pagination'];
-        if ($products->recordsCount == '0') {
-            $msg = 'رکوردی یافت نشد.';
-        }
-
-
-
-
-
-        // breadcrumb
-        global $breadcrumb;
-        $breadcrumb->reset();
-        $breadcrumb->add(translate('پیشخوان '), 'account', true);
-        $breadcrumb->add(translate('نمونه کارها'));
-        $export['breadcrumb'] = $breadcrumb->trail();
-        $export['page_title'] = translate('نمونه کارها');
-
-
-        $this->fileName = 'account.productList.php';
-
-        $this->template($export, $msg);
-        die();
-    }
+    
+    /** Event */
+    
     public function showEventList($fields, $msg='')
     {
         global $member_info;
@@ -296,11 +240,6 @@ class accountController
         redirectPage(RELA_DIR.'account/event', $msg);
         die();
     }
-
-    /**
-     * @param $fields
-     * @param $msg
-     */
     public function showEventAddForm($fields, $msg)
     {
         global $member_info;
@@ -351,7 +290,6 @@ class accountController
         $this->template($export, $msg);
         die();
     }
-
     public function editEvent($_input)
     {
         global $member_info,$lang,$messageStack;
@@ -468,10 +406,7 @@ class accountController
         die();
     }
 
-    /**
-     * @param $fields
-     * @param $msg
-     */
+    /** Invoice */
     public function showInvoiceList($fields, $msg='')
     {
         global $member_info;
@@ -530,38 +465,64 @@ class accountController
         die();
     }
 
-    /**
-     * @param $fields
-     */
 
-    public function showList($fields)
+
+    /** Products */
+    public function showProductList($fields=array(), $msg='')
     {
-        //$fields['where']['list']
-       // print_r_debug($fields);
-        $account = new accountModel();
-        $result =$account->getByFilter();
+        global $member_info;
 
-        //print_r_debug($export);
+        include_once ROOT_DIR.'component/product/model/product.model.php';
+        $products=new productModel();
 
-        //$account=accountModel::getByFilter();
-        //print_r_debug($account);
-       // $account = new accountModel();
-        //$result = $account->getPackage($fields);
-        // print_r_debug($fields);
-       if ($result['result'] != '1') {
-            $this->fileName = 'account.showList.php';
-            $this->template('', $result['msg']);
+        $object=model::find('artists',$member_info['Artists_id']);
+        if(is_array($object))
+        {
+            $this->fileName = 'account.showPanel.php';
+            $this->template('',$object['msg']);
             die();
         }
-        $export['list'] = $result['export']['list'];
-        $export['recordsCount'] =  $result['export']['recordsCount'];
-        $this->fileName = 'account.showList.php';
-        $this->template($export);
+
+
+        $export['list'] = $object->fields;
+
+        $result=productModel::getBy_artists_id($member_info['Artists_id'])->getList();
+
+        if($result['result'] == -1)
+        {
+            $this->fileName = 'account.productList.php';
+            $this->template('',$result['msg']);
+            die();
+        }
+        $export['artistsProductList'] = $result['export']['list'];
+
+
+        $this->recordsCount = $result['export']['recordsCount'];
+
+
+        $export['pagination'] = $result['pagination'];
+        if ($products->recordsCount == '0') {
+            $msg = 'رکوردی یافت نشد.';
+        }
+
+
+
+
+
+        // breadcrumb
+        global $breadcrumb;
+        $breadcrumb->reset();
+        $breadcrumb->add(translate('پیشخوان '), 'account', true);
+        $breadcrumb->add(translate('نمونه کارها'));
+        $export['breadcrumb'] = $breadcrumb->trail();
+        $export['page_title'] = translate('نمونه کارها');
+
+
+        $this->fileName = 'account.productList.php';
+
+        $this->template($export, $msg);
         die();
     }
-
-
-
     public function addProduct($fields)
     {
 
@@ -627,7 +588,7 @@ class accountController
         redirectPage(RELA_DIR . 'account/showProductList', $msg);
         die();
     }
-    public function showProductAddForm($fields, $msg)
+    public function showProductAddForm($fields=array(), $msg)
     {
         global $member_info;
 
@@ -664,8 +625,6 @@ class accountController
         $this->template($export, $msg);
         die();
     }
-
-
     public function editProduct($fields)
     {
         global $member_info,$lang;
@@ -780,8 +739,37 @@ class accountController
         $this->template($export, $msg);
         die();
     }
+    public function deleteProduct($id)
+    {
+        if (!validator::required($id) and !validator::Numeric($id)) {
+            $msg = 'یافت نشد';
+            redirectPage(RELA_DIR.'account/showProductList', $msg);
+        }
 
+        include_once ROOT_DIR.'component/product/model/product.model.php';
+        $obj = productModel::find($id);
 
+        if (!is_object($obj)) {
+            $msg = $obj['msg'];
+            redirectPage(RELA_DIR.'account/showProductList', $msg);
+        }
+
+        $dir = ROOT_DIR.'statics/event/';
+        fileRemover($dir,$obj->fields['image']);
+
+        $result = $obj->delete();
+
+        if ($result['result'] != '1') {
+            redirectPage(RELA_DIR.'account/showProductList', $msg);
+        }
+
+        $msg = translate('عملیات با موفقیت انجام شد');
+        redirectPage(RELA_DIR.'account/showProductList', $msg);
+        die();
+    }
+    
+
+    /** Profile */
     public function editProfile($fields)
     {
         global $member_info;
@@ -893,36 +881,9 @@ class accountController
         die();
     }
 
-    public function deleteProduct($id)
-    {
-        if (!validator::required($id) and !validator::Numeric($id)) {
-            $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'account/showProductList', $msg);
-        }
-
-        include_once ROOT_DIR.'component/product/model/product.model.php';
-        $obj = productModel::find($id);
-
-        if (!is_object($obj)) {
-            $msg = $obj['msg'];
-            redirectPage(RELA_DIR.'account/showProductList', $msg);
-        }
-
-        $dir = ROOT_DIR.'statics/event/';
-        fileRemover($dir,$obj->fields['image']);
-
-        $result = $obj->delete();
-
-        if ($result['result'] != '1') {
-            redirectPage(RELA_DIR.'account/showProductList', $msg);
-        }
-
-        $msg = translate('عملیات با موفقیت انجام شد');
-        redirectPage(RELA_DIR.'account/showProductList', $msg);
-        die();
-    }
 
 
+    /** Package */
     public function showPackageEditForm($fields, $msg)
     {
 
@@ -954,13 +915,7 @@ class accountController
         $this->template($export, $msg);
         die();
     }
-
-
-    /**
-     * @param $fields
-     */
-
-   public function editPackage($fields)
+    public function editPackage($fields)
     {
 
        // print_r_debug($fields);
@@ -1004,19 +959,6 @@ class accountController
         redirectPage(RELA_DIR.'zamin/index.php?component=package', $msg);
         die();
     }
-
-
-    /**
-     * delete package by package_id.
-     *
-     * @param $fields
-     *
-     * @author malekloo,marjani
-     * @date 2/24/2015
-     *
-     * @version 01.01.01
-     */
-
     public function deletePackage($fields)
     {
         $account = new accountModel();
@@ -1047,5 +989,292 @@ class accountController
     }
 
 
+    /** Blog */
+    public function showBlogList($fields=array(), $msg='')
+    {
+        global $member_info;
 
+        include_once ROOT_DIR.'component/blog/model/blog.model.php';
+        $blogs =new blog();
+
+        $object = model::find('artists',$member_info['Artists_id']);
+        if(is_array($object))
+        {
+            $this->fileName = 'account.showPanel.php';
+            $this->template('',$object['msg']);
+            die();
+        }
+
+
+
+        $export['list'] = $object->fields;
+
+        $result=blog::getBy_artists_id($member_info['Artists_id'])->orderBy('id','desc')->getList();
+
+        if($result['result'] == -1)
+        {
+            $this->fileName = 'account.blogList.php';
+            $this->template('',$result['msg']);
+            die();
+        }
+        $export['artistsBlogList'] = $result['export']['list'];
+
+
+        $this->recordsCount = $result['export']['recordsCount'];
+
+
+        $export['pagination'] = $result['pagination'];
+        if ($blogs->recordsCount == '0') {
+            $msg = 'رکوردی یافت نشد.';
+        }
+
+
+
+
+
+        // breadcrumb
+        global $breadcrumb;
+        $breadcrumb->reset();
+        $breadcrumb->add(translate('پیشخوان '), 'account', true);
+        $breadcrumb->add(translate('نمونه کارها'));
+        $export['breadcrumb'] = $breadcrumb->trail();
+        $export['page_title'] = translate('نمونه کارها');
+
+
+        $this->fileName = 'account.blogList.php';
+
+        $this->template($export, $msg);
+        die();
+    }
+
+    public function showBlogAddForm($export=array(), $msg='')
+    {
+        global $member_info;
+
+
+        /** category */
+        include_once(ROOT_DIR."component/category/model/category.model.php");
+        $category = new categoryModel();
+        $resultCategory = $category->getCategoryOption();
+        if($resultCategory['result'] == 1)
+        {
+            $export['category'] = $category->list;
+        }
+
+
+
+        $export['artists_id'] = $member_info['Artists_id'];
+
+        // breadcrumb
+        global $breadcrumb;
+        $breadcrumb->reset();
+        $breadcrumb->add(translate('پیشخوان '), 'account', true);
+        $breadcrumb->add(translate('افزودن اثر'), 'account');
+        $export['breadcrumb'] = $breadcrumb->trail();
+        $export['page_title'] = translate('افزودن اثر');
+
+
+        $this->fileName = 'account.addBlogForm.php';
+        $this->template($export, $msg);
+        die();
+    }
+    public function addBlog($fields=array())
+    {
+
+
+        global $member_info;
+        include_once ROOT_DIR.'component/blog/model/blog.model.php';
+        $account = new blog();
+
+        $fields['category_id'] = ",".(implode(",",$fields['category_id'])).",";
+        $fields['artists_id'] = $member_info['Artists_id'];
+        $fields['status'] = 1;
+
+
+        if(!file_exists($_FILES['image']['tmp_name'])){
+            $result['msg'] = image_not_exist;
+            $this->showBlogAddForm($fields, $result['msg']);
+
+        }
+
+        $result =$account->setFields($fields);
+
+        $account->save();
+
+        if ($result['result'] == -1) {
+            $result['msg'] = 'Error: blog error 1';
+            return $result;
+        }
+
+        if(file_exists($_FILES['image']['tmp_name'])){
+            $input = array();
+            $input['upload_dir'] = ROOT_DIR.'statics/blog/';
+
+            $result = fileUploader($input,$_FILES['image']);
+
+            $account->image = $result['image_name'];
+            $result = $account->save();
+        }
+
+        if ($result['result'] != '1') {
+            $this->showBlogAddForm($fields, $result['msg']);
+        }
+
+        /** update artists date  */
+        include_once ROOT_DIR.'component/artists/admin/model/admin.artists.model.php';
+        $artists = adminArtistsModel::find($account->fields['artists_id']);
+        $artists->update_date = date('Y-m-d H:i:s');
+        $result = $artists->save();
+
+        $msg = translate('عملیات با موفقیت انجام شد');
+        redirectPage(RELA_DIR . 'account/showBlogList', $msg);
+        die();
+    }
+    public function showBlogEditForm($fields=array(), $msg='')
+    {
+        global $member_info;
+
+
+        include_once "component/blog/model/blog.model.php";
+        $obj = blog::find($fields['id']);
+        if(!is_object($obj))
+        {
+            redirectPage(RELA_DIR,$obj['msg']);
+        }
+
+        $export = $obj->fields;
+
+        /** category */
+        include_once(ROOT_DIR."component/category/model/category.model.php");
+        $category = new categoryModel();
+        $resultCategory = $category->getCategoryOption();
+        if($resultCategory['result'] == 1)
+        {
+            $export['category'] = $category->list;
+        }
+
+
+
+        $export['artists_id'] = $member_info['Artists_id'];
+
+        /** update artists date  */
+        /*include_once ROOT_DIR.'component/artists/admin/model/admin.artists.model.php';
+        $artists = adminArtistsModel::find($obj->fields['artists_id']);
+        $artists->update_date = date('Y-m-d H:i:s');
+        $result = $artists->save();*/
+
+        // breadcrumb
+        global $breadcrumb;
+        $breadcrumb->reset();
+        $breadcrumb->add(translate('پیشخوان '), 'account', true);
+        $breadcrumb->add(translate('افزودن اثر'), 'account');
+        $export['breadcrumb'] = $breadcrumb->trail();
+        $export['page_title'] = translate('افزودن اثر');
+
+
+//        print_r_debug($export);
+        $this->fileName = 'account.editBlogForm.php';
+        $this->template($export, $msg);
+        die();
+    }
+    public function editBlog($fields=array())
+    {
+        global $member_info,$lang;
+        include_once ROOT_DIR.'component/blog/model/blog.model.php';
+
+
+        $account = blog::find($fields['id']);
+        if(!is_object($account))
+        {
+            redirectPage(RELA_DIR,$account['msg']);
+        }
+
+
+        $fields['category_id'] = ",".(implode(",",$fields['category_id'])).",";
+        $fields['artists_id'] = $member_info['Artists_id'];
+        $fields['status'] = 1;
+
+        /*if($lang == 'fa')
+        {
+            $fields['creation_date'] = convertJToGDate($fields['creation_date']);
+        }*/
+
+        $result =$account->setFields($fields);
+
+        $account->save();
+
+
+
+        if(file_exists($_FILES['image']['tmp_name'])){
+
+            $input['upload_dir'] = ROOT_DIR.'statics/blog/';
+            $result = fileUploader($input,$_FILES['image']);
+            fileRemover($input['upload_dir'],$account->fields['image']);
+            $account->image = $result['image_name'];
+
+            $result = $account->save();
+        }
+
+
+
+
+        $msg = translate('عملیات با موفقیت انجام شد');
+        redirectPage(RELA_DIR . 'account/showBlogList', $msg);
+        die();
+    }
+    public function deleteBlog($id)
+    {
+        if (!validator::required($id) and !validator::Numeric($id)) {
+            $msg = 'یافت نشد';
+            redirectPage(RELA_DIR.'account/showBlogList', $msg);
+        }
+
+        include_once ROOT_DIR.'component/blog/model/blog.model.php';
+        $obj = blogModel::find($id);
+
+        if (!is_object($obj)) {
+            $msg = $obj['msg'];
+            redirectPage(RELA_DIR.'account/showBlogList', $msg);
+        }
+
+        $dir = ROOT_DIR.'statics/event/';
+        fileRemover($dir,$obj->fields['image']);
+
+        $result = $obj->delete();
+
+        if ($result['result'] != '1') {
+            redirectPage(RELA_DIR.'account/showBlogList', $msg);
+        }
+
+        $msg = translate('عملیات با موفقیت انجام شد');
+        redirectPage(RELA_DIR.'account/showBlogList', $msg);
+        die();
+    }
+
+    public function showList($fields)
+    {
+
+        //$fields['where']['list']
+        // print_r_debug($fields);
+        $account = new accountModel();
+        $result =$account->getByFilter();
+
+        //print_r_debug($export);
+
+        //$account=accountModel::getByFilter();
+        //print_r_debug($account);
+        // $account = new accountModel();
+        //$result = $account->getPackage($fields);
+        // print_r_debug($fields);
+        if ($result['result'] != '1') {
+            $this->fileName = 'account.showList.php';
+            $this->template('', $result['msg']);
+            die();
+        }
+        $export['list'] = $result['export']['list'];
+        $export['recordsCount'] =  $result['export']['recordsCount'];
+        $this->fileName = 'account.showList.php';
+        $this->template($export);
+        die();
+    }
 }

@@ -84,8 +84,20 @@
         } );
 
         //end show other phone
+
+
+
+
     });
 
+    $(document).ajaxComplete(function () {
+        $('.changeBlog').change(function () {
+            var AID = $(this).data('a');
+            location.href = window.location.origin + '/zamin/?component=artists&action=activeBlog&a='+AID;
+
+        });
+
+    })
 
 
 
@@ -126,6 +138,7 @@
                     <thead>
                     <tr>
                         <th>ردیف</th>
+                        <th>blog</th>
                         <th>نام کاربری </th>
                         <th>nickname </th>
                         <th>دسته بندی</th>
@@ -147,15 +160,14 @@
                     <th><input type="text" name="search_6" class="search_init form-control"/></th>
                     <th><input type="text" name="search_7" class="search_init form-control"/></th>
                     <th><input type="text" name="search_8" class="search_init form-control"/></th>
-                    <th><select name="search_9" class="search_init form-control" id="search_9">
+                    <th><input type="text" name="search_9" class="search_init form-control"/></th>
+                    <th><select name="search_10" class="search_init form-control" id="search_10">
                             <option value="">همه</option>
                             <option value="1">فعال</option>
                             <option value="0">غیر فعال</option>
                         </select>
                     </th>
-                    <th><input type="text" name="search_10" class="search_init form-control"/></th>
-
-
+                    <th><input type="text" name="search_11" class="search_init form-control"/></th>
                     <th><input type="text" name="search_11" class="search_init form-control"/></th>
 
                     </tfoot>

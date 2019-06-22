@@ -42,10 +42,6 @@ switch ($_GET['action']) {
         checkPermissions('deleteArtists');
         $artistsController->deleteArtists($_GET['id']);
         break;
-    case 'activeBlog':
-        //checkPermissions('deleteArtists');
-        $artistsController->activeBlog($_GET['a']);
-        break;
     /*case 'call':
         $artistsController->call($_POST);
         break;
@@ -54,7 +50,7 @@ switch ($_GET['action']) {
         break;*/
     case 'updateCity':
         $artistsController->updateCity();
-        break;    
+        break;
 
     case 'search':
         $artistsController->search($_GET);

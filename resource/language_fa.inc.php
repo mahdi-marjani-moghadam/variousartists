@@ -1473,3 +1473,12 @@ define("sanladi_number","شماره صندلی");
 define("persian_name_is_empty","نام فارسی می بایست پر شود.");
 define("latin_name_is_empty","نام لاتین می بایست پر شود.");
 define("email_is_empty","ایمیل می بایست پر شود.");
+
+define("not_exists","وجود ندارد");
+define("image_not_exist","تصویر وجود ندارد");
+define("title_fa","عنوان(فارسی):");
+define("title_en","عنوان(انگلیسی):");
+define("description_fa","توضیح (فارسی):");
+define("description_en","توضیح (انگلیسی):");
+define("add","افزودن");
+

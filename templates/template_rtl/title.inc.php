@@ -93,7 +93,9 @@
 						<ul>
 							<li class="<?=($PARAM[0] == 'event')?'current':'';?> hidden-xs" ><a href="<?=RELA_DIR?>event"><div>رویدادها</div></a></li>
 							<li class="<?=($PARAM[0] == 'artists')?'current':'';?>"><a href="<?=RELA_DIR?>artists"><div> هنرمندان</div></a></li>
-							<?php /*<li class="<?=($PARAM[0] == 'services')?'current':'';?>"><a href="<?=RELA_DIR?>services"><div>خدمات</div></a></li>
+							<li class="<?=($PARAM[0] == 'artists')?'current':'';?>"><a href="<?=RELA_DIR?>blog"><div> وبلاگ</div></a></li>
+
+                                <?php /*<li class="<?=($PARAM[0] == 'services')?'current':'';?>"><a href="<?=RELA_DIR?>services"><div>خدمات</div></a></li>
 							<li class="<?=($PARAM[0] == 'shop')?'current':'';?>"><a href="<?=RELA_DIR?>shop"><div>فروشگاه</div></a></li>*/?>
 							<? if($member_info == -1){?>
                                 <li class="<?=($PARAM[0] == 'login')?'current':'';?>">

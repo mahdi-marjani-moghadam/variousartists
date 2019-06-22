@@ -47,13 +47,7 @@ switch ($PARAM[1]) {
     //    print_r_debug($input);
         $accountController->deletePackage($input);
         break;
-    case 'showProductList':
 
-        $fields['limit']['start']=(isset($page))?($page-1)*PAGE_SIZE:'0';
-        $fields['limit']['length']=PAGE_SIZE;
-        $fields['order']['Artists_products_id']='DESC';
-        $accountController->showProductList($fields);
-        break;
     case 'event':
 
         $fields['limit']['start']=(isset($page))?($page-1)*PAGE_SIZE:'0';
@@ -84,12 +78,21 @@ switch ($PARAM[1]) {
             $accountController->showEventEditForm($input, '');
         }
         break;
+
     case 'showInvoiceList':
 
         $fields['limit']['start']=(isset($page))?($page-1)*PAGE_SIZE:'0';
         $fields['limit']['length']=PAGE_SIZE;
         $fields['order']['Invoice_id']='DESC';
         $accountController->showInvoiceList($fields);
+        break;
+
+    case 'showProductList':
+
+        $fields['limit']['start']=(isset($page))?($page-1)*PAGE_SIZE:'0';
+        $fields['limit']['length']=PAGE_SIZE;
+        $fields['order']['Artists_products_id']='DESC';
+        $accountController->showProductList($fields);
         break;
     case 'addProduct':
 
@@ -102,9 +105,7 @@ switch ($PARAM[1]) {
             $accountController->showProductAddForm($input, '');
         }
         break;
-
     case 'editProduct':
-
         if (isset($_POST['action']) & $_POST['action'] == 'edit') {
 
             $accountController->editProduct($_POST);
@@ -115,6 +116,43 @@ switch ($PARAM[1]) {
             $accountController->showProductEditForm($input, '');
         }
         break;
+    case 'deleteProduct':
+        $accountController->deleteProduct($PARAM[2]);
+        break;
+
+
+
+    case 'showBlogList':
+
+        $fields['limit']['start']=(isset($page))?($page-1)*PAGE_SIZE:'0';
+        $fields['limit']['length']=PAGE_SIZE;
+        $fields['order']['id']='DESC';
+        $accountController->showBlogList($fields);
+        break;
+    case 'addBlog':
+
+        if (isset($_POST['action']) & $_POST['action'] == 'add') {
+            $result = $accountController->addBlog($_POST);
+            redirectPage(RELA_DIR . 'account/showBlogList', $result['msg']);
+        }
+        else
+        {
+            $accountController->showBlogAddForm();
+        }
+        break;
+    case 'editBlog':
+        if (isset($_POST['action']) & $_POST['action'] == 'edit') {
+
+            $accountController->editBlog($_POST);
+        }
+        else
+        {
+            $input['id']=$PARAM[2];
+            $accountController->showBlogEditForm($input, '');
+        }
+        break;
+
+
     case 'editProfile':
 
         if (isset($_POST['action']) & $_POST['action'] == 'edit') {
@@ -127,10 +165,7 @@ switch ($PARAM[1]) {
             $accountController->showProfileEditForm();
         }
         break;
-    case 'deleteProduct':
 
-        $accountController->deleteProduct($PARAM[2]);
-        break;
     default:
         
         $accountController->showPanel();

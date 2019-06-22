@@ -280,11 +280,13 @@ class DB {
     }
 
     public function limit($offset=0,$limit =  0) {
+
         $limit  = (int)abs($limit);
         $offset = (int)abs($offset);
 
         $this->_limit = $limit;
         $this->_offset = $offset;
+
         return $this;
     }
 
@@ -833,13 +835,14 @@ class DB {
 
     private function _buildLimit(&$statement) {
 
-        if ($this->_offset > 0 && $this->_limit > 0) {
+        if ($this->_offset >= 0 && $this->_limit > 0) {
             $statement[] = 'LIMIT ' . $this->_offset . ', ' . $this->_limit;
         } elseif ($this->_offset > 0) {
             $statement[] = 'LIMIT ' . $this->_offset;
         } elseif ($this->_limit > 0) {
             $statement[] = 'LIMIT ' . $this->_limit;
         }
+        return;
     }
 }
 
