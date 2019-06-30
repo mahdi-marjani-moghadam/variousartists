@@ -3,7 +3,7 @@
 class blog extends looeic{
 
     function getAllBlog($page=''){
-        global $PAGE;
+        global $PAGE,$lang;
 
         $offset = ($page!='') ? ($page-1) * PAGE_SIZE : (($PAGE!='')?$PAGE-1:0) * PAGE_SIZE ;
 
@@ -11,9 +11,11 @@ class blog extends looeic{
 
 
         $arr = blog::getAll()
-            ->where('status','=',1)
+            ->select('blog.*,artists_name_'.$lang.' as artists_name')
+            ->leftJoin('artists','artists.Artists_id','=','blog.artists_id')
+            ->where('blog.status','=',1)
             ->limit($offset ,PAGE_SIZE)
-            ->orderBy('id','desc')
+            ->orderBy('blog.id','desc')
             ->getList();
 
         $obj = new blog();
@@ -26,9 +28,13 @@ class blog extends looeic{
     }
 
     function getBlog($id){
+        global $lang;
         $arr = blog::getAll()
+            ->select('blog.*,artists_name_'.$lang.' as artists_name')
+            ->leftJoin('artists','artists.Artists_id','=','blog.artists_id')
             ->where('id','=',$id)
             ->getList();
+
         return $arr;
     }
 

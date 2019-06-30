@@ -1468,3 +1468,7 @@ define("title_en","Title (English)");
 define("description_fa","description (Persian)");
 define("description_en","description (Latin)");
 define("add","Add");
+define("artists","Artists");
+define("show_all_famous_artists","Show all famous artists");
+define("home","Home");
+define("blog","Blog");

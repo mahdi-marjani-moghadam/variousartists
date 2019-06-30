@@ -15,11 +15,11 @@
 <section id="page-title" >
 
     <div class="container clearfix">
-        <h1> هنرمندان</h1>
-        <span>نمایش تمامی هنرمندان مطرح ایران</span>
+        <h1> <?=artists?></h1>
+        <span><?=show_all_famous_artists?></span>
         <ol class="breadcrumb">
-            <li><a href="<?=RELA_DIR?>">خانه</a></li>
-            <li class="active"> وبلاگ</li>
+            <li><a href="<?=RELA_DIR?>"><?=home?></a></li>
+            <li class="active"><?=blog?></li>
         </ol>
     </div>
 
@@ -46,53 +46,67 @@
                 </div>
             </nav>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 pull-left">
-        <!-- Portfolio Items
-        ============================================= -->
-        <div id="portfolio" class="portfolio grid-container portfolio-3    portfolio-masonry mixed-masonry grid-container clearfix">
-            <?
-            if(count($blog['export']['list']) == 0 && isset($blog['export']['list']))
-            {
-            ?>
-            <div class="whiteBg boxBorder roundCorner clear fullWidth ">
-                <!-- separator -->
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <div class="alert alert-warning">
-                            <strong>توجه! </strong><? echo $msg;?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <?
-            }
+        <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-2 ">
 
-            foreach($blog['export']['list'] as $k => $value)
-            {
-                ?>
-                <article class="portfolio-item pf-media pf-icons <? /* if($k % 4 ==0){echo 'wide';} */?> ">
-                    <div class="portfolio-image">
-                        <a href="portfolio-single.html">
-                            <img src="<?php echo (strlen($value['image']) ? RELA_DIR.'statics/blog/'.$value['image'] : TEMPLATE_DIR.'/assets/images/placeholder.png'); ?>" alt="Open Imagination">
-                        </a>
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-desc">
-                                <h3><a href="<?php echo RELA_DIR . 'blog/detail/' . $value['id'] . '/'; ?>"><?php echo($value['title_'.$lang] != "" ? $value['title_'.$lang] : "-"); ?> </a></h3>
+
+
+            <div class="postcontent nobottommargin  clearfix" style="display: ;">
+
+                <div id="posts" class="small-thumbs">
+                    <?
+                    if(count($blog['export']['list']) == 0 && isset($blog['export']['list']))
+                    {
+                        ?>
+                        <div class="whiteBg boxBorder roundCorner clear fullWidth ">
+                            <!-- separator -->
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                    <div class="alert alert-warning">
+                                        <strong>توجه! </strong><? echo $msg;?>
+                                    </div>
+                                </div>
                             </div>
-                            <a href="<?php echo (strlen($value['image']) ? RELA_DIR.'statics/blog/'.$value['image'] : RELA_DIR.'templates/'.CURRENT_SKIN.'/assets/images/placeholder.png'); ?>" class="left-icon" data-lightbox="image"><i
-                                    class="icon-line-zoom-in"></i></a>
-                            <a href="<?php echo RELA_DIR . 'blog/detail/' . $value['id'] . '/'; ?>" class="right-icon"><i title="جزییات" class="icon-line-ellipsis"></i></a>
+                        </div>
+                        <?
+                    }
+
+                    foreach($blog['export']['list'] as $k => $value)
+                    {
+                    ?>
+                    <div class="entry clearfix">
+                        <div class="entry-image">
+                            <a href="<?php echo (strlen($value['image']) ? RELA_DIR.'statics/blog/'.$value['image'] : TEMPLATE_DIR.'/assets/images/placeholder.png'); ?>" data-lightbox="image">
+                                <img class="image_fade" src="<?php echo (strlen($value['image']) ? RELA_DIR.'statics/blog/'.$value['image'] : TEMPLATE_DIR.'/assets/images/placeholder.png'); ?>" alt="" style="opacity: 1;">
+                            </a>
+                        </div>
+                        <div class="entry-c">
+                            <div class="entry-title">
+                                <h2><a href="<?php echo RELA_DIR . 'blog/detail/' . $value['id'] . '/'; ?>"><?php echo($value['title_'.$lang] != "" ? $value['title_'.$lang] : "-"); ?></a></h2>
+                            </div>
+                            <ul class="entry-meta clearfix">
+                                <li><i class="icon-calendar3"></i> <?=convertDate($value['date'])?></li>
+                                <li><a href="#"><i class="icon-user"></i> <?=$value['artists_name']?></a></li>
+                                <!--<li><i class="icon-folder-open"></i> <a href="#">General</a>, <a href="#">Media</a></li>-->
+                                <!--<li><a href="blog-single.html#comments"><i class="icon-comments"></i> 13</a></li>-->
+                                <!--<li><a href="#"><i class="icon-camera-retro"></i></a></li>-->
+                            </ul>
+                            <div class="entry-content">
+                                <p><?=$value['description_'.$lang]?></p>
+                                <a href="<?php echo RELA_DIR . 'blog/detail/' . $value['id'] . '/'; ?>" class="more-link">Read More</a>
+                            </div>
                         </div>
                     </div>
-                </article>
 
-                <?php
-            }
-            ?>
+                        <?php
+                    }
+                    ?>
+                </div>
+
+               
+
+            </div>
 
 
-
-        </div><!-- #portfolio end -->
             <div class="clearfix"></div>
             <?
             if(($blog['export']['rows']) != 0)

@@ -26,7 +26,6 @@ class looeic extends DB
     private $relation;
     private $keyBy = '';
     private $overWrite = 1;
-    protected $DB;
 
     //query
     //private $_operation = '';
@@ -36,18 +35,8 @@ class looeic extends DB
     private $selectFields;
     private $select;
     private $finalQuery = '0';
+    private $config ='';
 
-    public function getConnection()
-    {
-        $server = constant("SERVER");
-        if (!strlen($server) or $server == 'cloud' or $this->DB=='') {
-            return dbConn::getConnection();
-        } else  {
-            $funcName=$this->DB;
-            return dbConn::$funcName();
-        }
-
-    }
 
     public function hasOne($model, $key, $local_key, $component)
     {
@@ -102,7 +91,7 @@ class looeic extends DB
         $this->appendFields('*', 1);
         //echo '****************';
 
-        $conn = $this->getConnection();
+        $conn = dbConn::getConnection();
         $stmt = $conn->prepare($this->sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
@@ -132,13 +121,18 @@ class looeic extends DB
     public function __construct($fields = '')
     {
 
+        $conf=looeicConfig;
+        if($conf=='api')
+        {
+            $this->config = looeicConfig::getConfig();
+
+        }
         $input = func_get_args();
 
         if ($input[1] != '') {
 
             $this->getTableName($input[1]);
         }
-
         $this->getFieldsName();
         if ($fields != '') {
             $this->setFields($fields);
@@ -171,8 +165,9 @@ class looeic extends DB
         //echo '__call';
     }
 
-    function validator($rules=array(), $fields='')
+    function validator($rules, $fields)
     {
+
         if (!isset($rules)) {
             $rules = $this->rules;
         }
@@ -180,12 +175,12 @@ class looeic extends DB
             $fields = $this->fields;
         }
 
-        $result = array();
         if (count($rules) < 1) {
             $result['result'] = '1';
 
             return $result;
         }
+
 
         $validator = new GUMP();
         $valid = $validator->validate($fields, $rules);
@@ -210,7 +205,6 @@ class looeic extends DB
 
     /*function limit($limit,$offset=0)
     {
-
         if($offset==0)
         {
             $this->sql .= " limit $limit";
@@ -237,7 +231,7 @@ class looeic extends DB
     /////////////
     function first()
     {
-        $conn = $this->getConnection();
+        $conn = dbConn::getConnection();
 
         $this->sql = $this->build();
 
@@ -251,7 +245,7 @@ class looeic extends DB
 
         //$this->appendFields();
 
-        $conn = $this->getConnection();
+        $conn = dbConn::getConnection();
 
         $stmt = $conn->prepare($this->sql);
 
@@ -293,14 +287,36 @@ class looeic extends DB
         return $this;
 
     }
-
-    private function get_object_or_list($object = 1, $key='')
+    public function appendRelation($field,$internal)
     {
+        $this->_appendRelation['external']=$field;
+        $this->_appendRelation['internal']=$internal;
+        return $this;
+    }
+    public function append($field,$internal)
+    {
+        $this->_appendRelationAll['external']=$field;
+        $this->_appendRelationAll['internal']=$internal;
+        return $this;
+    }
+    private function get_object_or_list_api($object = 1, $key)
+    {
+        $result['data'] = array();
+
 
         if (strlen($this->sql) < 1) {
             $this->sql = $this->build();
-        }
+        }else
+        {
+            if(isset ($this->PageConfig['perPage']))
+            {
+                $statement = array();
+                $this->_buildLimit($statement);
+                $limitPage= implode(' ', $statement);
+                $this->sql = $this->sql.$limitPage;
+            }
 
+        }
         if (strlen($this->sql) < 1) {
             $result['result'] = -1;
             $result['Number'] = 1;
@@ -308,7 +324,8 @@ class looeic extends DB
 
             return $result;
         }
-        $conn = $this->getConnection();
+        $conn = dbConn::getConnection();
+
 
         $stmt = $conn->prepare($this->sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -319,6 +336,199 @@ class looeic extends DB
             $result['msg'] = $conn->errorInfo();
 
             return $result;
+        }
+        $result['result'] = 1;
+
+        if(isset ($this->PageConfig['perPage']))
+        {
+
+            $sql = " SELECT FOUND_ROWS() as recCount ";
+
+            $stmTp = $conn->prepare($sql);
+            $stmTp->setFetchMode(PDO::FETCH_ASSOC);
+            $stmTp->execute();
+            $rowP = $stmTp->fetch();
+            $result['recordsCount'] = (int)$rowP['recCount'];
+
+            $result['meta']['total'] = (int)$rowP['recCount'];
+            $result['meta']['current_page'] = $this->PageConfig['currentPage'];
+            $result['meta']['per_page'] = $this->PageConfig['perPage'];
+            $result['meta']['from'] = $this->PageConfig['start']+1;
+            $result['meta']['to'] = $this->PageConfig['end'];
+            if($result['meta']['to'] > $result['meta']['total'])
+            {
+                $result['meta']['to'] = $result['meta']['total'];
+
+            }
+            //$result['export']['paginate']['count_buttom']=10;
+
+
+            /* $a=paginationButtom($result['export']['paginate']['total'],
+                 3,
+                 $result['export']['paginate']['per_page']);*/
+
+
+            if($this->PageConfig['link']===1)
+            {
+                //$temp=$this->links($result['export']['paginate']);
+                //$result['export']['links']=
+
+            }
+            //print_r_debug($result);
+
+            /*//function
+            $r= paginationButtom($result['export']['paginate']['total'],10,
+                $countButtom = 10,$result['export']['paginate']['per_page']);
+
+            $result['export']['link']=$r['export']['list'];*/
+
+
+        }else
+        {
+            $result['recordsCount'] = $stmt->rowCount();
+
+        }
+        $key = '';
+        if ($this->keyBy != '') {
+
+            if ($this->keyBy == 'PRI') {
+                $key = $this->getPriKey();
+            } else {
+                $key = $this->keyBy;
+            }
+
+        }
+
+        if ($object == 1) {
+
+
+            while ($row = $stmt->fetch()) {
+
+                //$temp_object = $this->findModel($row[ $this->PRI_KEY ]);
+
+                $temp_object = clone ($this);
+                // print_r_debug($row);
+                $temp_object->fields = $row;
+                //print_r_debug($temp_object);
+
+                //$temp_object = $this->findModel($row[$this->PRI_KEY]);
+
+                if ($key != '') {
+                    if ($this->overWrite == 0) {
+                        $result['data'][$temp_object->$key][] = clone ($temp_object);
+                    } else {
+                        $result['data'][$temp_object->$key] = clone ($temp_object);
+
+                    }
+                } else {
+                    $result['data'][] = clone ($temp_object);
+                }
+            }
+
+        } else {
+            while ($row = $stmt->fetch()) {
+
+                if($this->_appendRelationAll!='') {
+
+                    $row=$this->_appendRelationAll['external']['formatter']($row,$this->_appendRelationAll['internal']);
+                }
+
+                if($this->_appendRelation!='')
+                {
+
+                    foreach ($this->_appendRelation['external'] as $appendKey =>$func)
+                    {
+                        $row[$appendKey]=$this->_appendRelation['external'][$appendKey]['formatter']($row,$this->_appendRelation['internal']);
+                    }
+
+                }
+
+                if ($key != '') {
+                    if ($this->overWrite == 0) {
+                        $result['data'][$row[$key]][] = $row;
+
+                    } else {
+                        $result['data'][$row[$key]] = $row;
+
+                    }
+                } else {
+                    $result['data'][] = $row;
+                }
+
+            }
+        }
+
+        // print_r_debug($result);
+        return $result;
+
+    }
+
+    private function get_object_or_list($object = 1, $key='')
+    {
+
+        if (strlen($this->sql) < 1) {
+            $this->sql = $this->build();
+        }
+        if (strlen($this->sql) < 1) {
+            $result['result'] = -1;
+            $result['Number'] = 1;
+            $result['msg'] = 'not found';
+
+            return $result;
+        }
+        $conn = dbConn::getConnection();
+
+//        print_r($this->sql);
+
+
+        $stmt = $conn->prepare($this->sql);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+        if (!$stmt) {
+            $result['result'] = -1;
+            $result['Number'] = 1;
+            $result['msg'] = $conn->errorInfo();
+
+            return $result;
+        }
+
+        if(isset ($this->PageConfig['perPage']))
+        {
+
+            $sql = " SELECT FOUND_ROWS() as recCount ";
+
+            $stmTp = $conn->prepare($sql);
+            $stmTp->setFetchMode(PDO::FETCH_ASSOC);
+            $stmTp->execute();
+            $rowP = $stmTp->fetch();
+            $result['export']['meta']['total'] = $rowP['recCount'];
+            $result['export']['meta']['current_page'] = $this->PageConfig['currentPage'];
+            $result['export']['meta']['per_page'] = $this->PageConfig['perPage'];
+            $result['export']['meta']['from'] = $this->PageConfig['start']+1;
+            $result['export']['meta']['to'] = $this->PageConfig['end'];
+            //$result['export']['paginate']['count_buttom']=10;
+
+
+            /* $a=paginationButtom($result['export']['paginate']['total'],
+                 3,
+                 $result['export']['paginate']['per_page']);*/
+
+
+            if($this->PageConfig['link']===1)
+            {
+                //$temp=$this->links($result['export']['paginate']);
+                //$result['export']['links']=
+
+            }
+            //print_r_debug($result);
+
+            /*//function
+            $r= paginationButtom($result['export']['paginate']['total'],10,
+                $countButtom = 10,$result['export']['paginate']['per_page']);
+
+            $result['export']['link']=$r['export']['list'];*/
+
+
         }
         $result['export']['recordsCount'] = $stmt->rowCount();
         $key = '';
@@ -377,9 +587,112 @@ class looeic extends DB
 
         $result['result'] = 1;
 
+        //print_r_debug($r);
         return $result;
 
     }
+    function links($config)
+    {
+
+
+        $recordCount=$config['total'];
+        $pageSize=$config['per_page'];
+        $countButtom=$config['count_buttom'];
+
+        //$result['export']['paginate']['current_page'] = $this->PageConfig['currentPage'];
+
+        //$result['export']['paginate']['from'] = $this->PageConfig['start']+1;
+        //$result['export']['paginate']['to'] = $this->PageConfig['end'];
+
+
+
+        global $page, $PARAM;
+
+        if ((settype($pageSize, "integer")) <= 0) {
+            $pageSize = 10;
+        }
+
+        if ($pageSize <= 0 || trim($pageSize) == '') {
+            return $result['result'] = 1;
+        }
+        if (($countButtom != 0) and ($recordCount != 0)) {
+            $pageCount = ceil($recordCount / PAGE_SIZE);
+            $pagination = array();
+            $pAddress = implode('/', $PARAM);
+            $pAddress .= '/';
+
+            if (!isset($page)) {
+                $page = 1;
+            }
+
+            $fPagination = 0;
+            $lPagination = 0;
+
+            $num = $countButtom;
+            if ($pageCount < $num) {
+                $fPagination = 1;
+                $lPagination = $pageCount;
+                $nPage = false;
+                $pPage = false;
+            } elseif ($page == 1) {
+                $fPagination = 1;
+                $lPagination = $num;
+                $nPage = true;
+                $pPage = false;
+            } elseif (($pageCount == $page)) {
+                $fPagination = $pageCount - ($num - 1);
+                $lPagination = $pageCount;
+                $nPage = false;
+                $pPage = true;
+            } else {
+                $fPagination = $page - floor($num / 2);
+                if (($num % 2) == 0) {
+                    $lPagination = $page + ((floor($num / 2)) - 1);
+                } else {
+                    $lPagination = $page + ((floor($num / 2)));
+                }
+                $nPage = true;
+                $pPage = true;
+                if ($fPagination <= 0) {
+                    $fPagination = 1;
+                    $lPagination = $num;
+                } elseif ($pageCount < $lPagination) {
+                    $fPagination = $pageCount - (($num - 1));
+                    $lPagination = $pageCount;
+                }
+            }
+
+            for ($i = $fPagination; $i <= $lPagination; $i++) {
+                if (($i == $fPagination) and ($pPage == true)) {
+                    $pagination[] = [address => $pAddress . 'page/' . ($page - 1), label => ">", number => $i];
+                    $pPage == false;
+                }
+                if ($page == $i) {
+                    $activePage = " activePage";
+                } else {
+                    $activePage = "";
+                }
+                $pagination[] = [address => $pAddress . 'page/' . $i, number => $i, label => $i, "activePage" => $activePage];
+                if (($i == $lPagination) and ($nPage == true)) {
+                    $pagination[] = [address => $pAddress . 'page/' . ($page + 1), label => "<", number => $i];
+                    $pPage == false;
+                }
+            }
+        } else {
+            $result['result'] = -1;
+            $result['export']['list'] = '';
+
+            return $result;
+        }
+        $result['result'] = 1;
+        $result['export']['list'] = $pagination;
+        $result['export']['pageCount'] = $pageCount;
+        $result['export']['rowCount'] = $recordCount;
+
+        //print_r_debug($pageCount);
+        return $result;
+    }
+
 
     public function get($key='')
     {
@@ -406,6 +719,11 @@ class looeic extends DB
         }*/
         //$this->appendFields();
 
+
+        if($this->config['export_type']=='api')
+        {
+            return $this->get_object_or_list_api(0, $key);
+        }
         return $this->get_object_or_list(0, $key);
 
     }
@@ -437,7 +755,6 @@ class looeic extends DB
     public static function getAll()
     {
 
-
         $className = get_called_class();
         $obj = new $className('', get_called_class());
         $obj->getFieldsName();
@@ -446,7 +763,7 @@ class looeic extends DB
         //$obj->_operation='SELECT';
         //$obj->select();
         //$appendSql = '';
-        //$obj->getFieldsName();
+        $obj->getFieldsName();
         //$sql = " FROM " . $obj->TABLE_NAME . " ";
         //$obj->sql = $sql;
         //$obj->_useWhere=1;
@@ -549,12 +866,11 @@ class looeic extends DB
         $this->TABLE_NAME = $this->getTableName(get_called_class());
 
         if (!is_array($this->TABLE_FIELD)) {
-            $conn = $this->getConnection();
+            $conn = dbConn::getConnection();
             $sql = "SHOW COLUMNS FROM " . $this->TABLE_NAME . " ";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
-
             if (!$stmt) {
                 $result['result'] = -1;
                 $result['Number'] = 1;
@@ -638,12 +954,12 @@ class looeic extends DB
         return $result;
     }
 
-    /*public function getByFilter($fields = '', $query)
+    public function getByFilter($fields = array(), $query='')
     {
 
         //$obj->TABLE_NAME=get_called_class();
         $this->getTableName(get_called_class());
-        $conn = $this->getConnection();
+        $conn = dbConn::getConnection();
         include_once(ROOT_DIR . "/model/db.inc.class.php");
         $condition = DataBase::filterBuilder($fields);
 
@@ -660,6 +976,7 @@ class looeic extends DB
                 $condition['list']['WHERE'] . $condition['list']['filter'] .
                 $condition['list']['order'] . $condition['list']['limit'];
         }
+
 
         $stmt = $conn->prepare($sql);
 
@@ -691,68 +1008,8 @@ class looeic extends DB
 
         return $result;
 
-    }*/
-
-
-    public function getByFilter($fields = '', $query='', $returnData = 0)
-    {
-        //$obj->TABLE_NAME=get_called_class();
-        $this->getTableName(get_called_class());
-        $conn = $this->getConnection();
-        include_once(ROOT_DIR . "/model/db.inc.class.php");
-
-
-        $condition = DataBase::filterBuilder($fields);
-
-
-        if ($query != '') {
-            $sql = "SELECT SQL_CALC_FOUND_ROWS
-                `t1`.* FROM( $query ) as t1 " .
-                $condition['list']['useWhere'] .
-                $condition['list']['WHERE'] . $condition['list']['filter'] .
-                $condition['list']['order'] . $condition['list']['limit'];
-        } else {
-            $sql = "SELECT SQL_CALC_FOUND_ROWS
-                 *
-    		     FROM 	" . $this->TABLE_NAME . " " . $condition['list']['useWhere'] .
-                $condition['list']['WHERE'] . $condition['list']['filter'] .
-                $condition['list']['order'] . $condition['list']['limit'];
-        }
-
-        $stmt = $conn->prepare($sql);
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $stmt->execute();
-
-        if (!$stmt) {
-            $result['result'] = -1;
-            $result['no'] = 1;
-            $result['msg'] = $conn->errorInfo();
-            return $result;
-        }
-
-        $sql = " SELECT FOUND_ROWS() as recCount ";
-
-        $stmTp = $conn->prepare($sql);
-        $stmTp->setFetchMode(PDO::FETCH_ASSOC);
-        $stmTp->execute();
-        $rowP = $stmTp->fetch();
-
-        $result['export']['recordsCount'] = $rowP['recCount'];
-
-        if ($returnData == 0) {
-            while ($row = $stmt->fetch()) {
-                $list[] = $row;
-            }
-        } else {
-            $list = $stmt;
-        }
-
-        $result['result'] = 1;
-        $result['export']['list'] = $list;
-
-        return $result;
-
     }
+
 
     private function getTableName($className)
     {
@@ -814,13 +1071,12 @@ class looeic extends DB
         $sql_key = substr($sql_key, 0, -1);
         $sql_val = substr($sql_val, 0, -1);
 
-        $conn = $this->getConnection();
+        $conn = dbConn::getConnection();
         $sql = "
                     INSERT INTO " . $this->TABLE_NAME . "( " . $sql_key . " ) VALUES ( " . $sql_val . " ) ";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
-
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
         if (!$stmt) {
@@ -881,7 +1137,7 @@ class looeic extends DB
 
         $sql_key_val = substr($sql_key_val, 0, -1);
 
-        $conn = $obj->getConnection();
+        $conn = dbConn::getConnection();
         $sql = " UPDATE " . $obj->TABLE_NAME . " SET " . $sql_key_val . " 
          WHERE " . $where . " ";
 
@@ -902,10 +1158,11 @@ class looeic extends DB
 
     }
 
-    private function updateModel($fields='')
+    private function updateModel($fields=array())
     {
         $sql_key = '';
         $sql_val = '';
+
         $sql_key_val = '';
         foreach ($this->fields as $key => $value) {
             if ($key == $this->PRI_KEY) {
@@ -925,13 +1182,15 @@ class looeic extends DB
 
         $sql_key_val = substr($sql_key_val, 0, -1);
 
-        $conn = $this->getConnection();
+        $conn = dbConn::getConnection();
         $sql = " UPDATE " . $this->TABLE_NAME . " SET " . $sql_key_val . " 
          WHERE " . $this->PRI_KEY . " = '" . $this->fields[$this->PRI_KEY] . "' ";
+
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
         if (!$stmt) {
             $result['result'] = -1;
             $result['Number'] = 1;
@@ -955,7 +1214,7 @@ class looeic extends DB
 
             return $result;
         }
-        $conn = $this->getConnection();
+        $conn = dbConn::getConnection();
         $sql = " DELETE FROM " . $this->TABLE_NAME . "  WHERE " . $this->PRI_KEY . " = '" . $this->fields[$this->PRI_KEY] . "' ";
 
         $stmt = $conn->prepare($sql);
@@ -976,7 +1235,7 @@ class looeic extends DB
 
     private function findModel($id)
     {
-        $conn = $this->getConnection();
+        $conn = dbConn::getConnection();
 
         $sql = "SELECT
                 *

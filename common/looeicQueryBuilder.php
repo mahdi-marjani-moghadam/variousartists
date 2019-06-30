@@ -34,7 +34,7 @@ class DB {
     private $_values = array();
     protected $_tables = array();
 
-    protected $_join = '';
+    protected $_join = array();
     protected $_using = '';
     protected $_raw = 0;
 
@@ -77,6 +77,7 @@ class DB {
     private function get_object_or_list( $object = 1,$key )
     {
 
+
         if(strlen($this->sql)<1)
         {
             $this->sql=$this->build();
@@ -88,6 +89,8 @@ class DB {
             return $result;
         }
         $conn = dbConn::getConnection();
+
+
 
         $stmt = $conn->prepare($this->sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -138,7 +141,7 @@ class DB {
 
     }
 
-    public function get($key)
+    public function get($key='')
     {
 
         /*if ( strlen($this->sql) < 1 ) {
@@ -153,7 +156,7 @@ class DB {
         return $this->get_object_or_list(1,$key);
     }
 
-    public function getList($key = '')
+    public function getList($key)
     {
         /*if ( strlen($this->sql) < 1 ) {
             $result['result'] = - 1;
@@ -280,13 +283,11 @@ class DB {
     }
 
     public function limit($offset=0,$limit =  0) {
-
         $limit  = (int)abs($limit);
         $offset = (int)abs($offset);
 
         $this->_limit = $limit;
         $this->_offset = $offset;
-
         return $this;
     }
 
@@ -355,10 +356,6 @@ class DB {
 
     public function andWhereOpen($cond1, $operand, $cond2) {
         return $this->_addWhereOn($cond1, $operand, $cond2, 'AND', 'where','(');
-    }
-    public function whereOpen($cond1, $operand, $cond2) {
-        return $this->_addWhereOn($cond1, $operand, $cond2, '', 'where','(');
-
     }
     public function andWhereClose($cond1, $operand, $cond2) {
         return $this->_addWhereOn($cond1, $operand, $cond2, 'AND', 'where','',')');
@@ -835,14 +832,13 @@ class DB {
 
     private function _buildLimit(&$statement) {
 
-        if ($this->_offset >= 0 && $this->_limit > 0) {
+        if ($this->_offset > 0 && $this->_limit > 0) {
             $statement[] = 'LIMIT ' . $this->_offset . ', ' . $this->_limit;
         } elseif ($this->_offset > 0) {
             $statement[] = 'LIMIT ' . $this->_offset;
         } elseif ($this->_limit > 0) {
             $statement[] = 'LIMIT ' . $this->_limit;
         }
-        return;
     }
 }
 

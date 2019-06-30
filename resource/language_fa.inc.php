@@ -1481,4 +1481,8 @@ define("title_en","عنوان(انگلیسی):");
 define("description_fa","توضیح (فارسی):");
 define("description_en","توضیح (انگلیسی):");
 define("add","افزودن");
+define("artists","هنرمندان");
+define("show_all_famous_artists","نمایش تمامی هنرمندان مطرح ایران");
+define("home","خانه");
+define("blog","وبلاگ");
 
