@@ -15,8 +15,8 @@
 <section id="page-title" >
 
     <div class="container clearfix">
-        <h1> <?=artists?></h1>
-        <span><?=show_all_famous_artists?></span>
+        <h1> <?=blog?></h1>
+
         <ol class="breadcrumb">
             <li><a href="<?=RELA_DIR?>"><?=home?></a></li>
             <li class="active"><?=blog?></li>
@@ -92,7 +92,7 @@
                                 </ul>
                                 <div class="entry-content">
                                     <p><?=$value['description_'.$lang]?></p>
-                                    <a href="<?php echo RELA_DIR . 'blog/detail/' . $value['id'] . '/'; ?>" class="more-link">Read More</a>
+                                    <? /*<a href="<?php echo RELA_DIR . 'blog/detail/' . $value['id'] . '/'; ?>" class="more-link">Read More</a>*/?>
                                 </div>
                             </div>
                         </div>

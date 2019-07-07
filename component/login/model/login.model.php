@@ -593,6 +593,10 @@ class memberLogIn
                 $messageStack->add_session('register',email_is_empty);
                 $this->showRegisterForm($_input,email_is_empty);
             }
+            if(!file_exists($_FILES['logo']['tmp_name'])){
+                $messageStack->add_session('register',image_is_empty);
+                $this->showRegisterForm($_input,image_is_empty);
+            }
         }
 
         if(isset($_input['category_id'])){
@@ -609,8 +613,8 @@ class memberLogIn
         $pass = $_input['password'];
         $_input['password']  = md5($_input['password']);
         $artists->setFields($_input);
-
         $result = $artists->validator();
+
 
 
         if($result['result']==-1)

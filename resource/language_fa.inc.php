@@ -1402,7 +1402,7 @@ define("email_is_not_valid","ایمیل به درستی وارد نشده است
 
 define("info_login","برای ورود اطلاعات خود را وارد کنید");
 define("email_or_number"," ایمیل یا موبایل:");
-define("number_or_email","موبایل یا ایمیل: (به طور مثال: ۹۱۲۱۲۳۴۵۶۷)");
+define("number_or_email","موبایل یا ایمیل: (به طور مثال: ۹۱۹۳۱۱۰۱۹۰)");
 define("password","رمز عبور:");
 define("login","ورود");
 define("register","ثبت نام");
@@ -1473,6 +1473,7 @@ define("sanladi_number","شماره صندلی");
 define("persian_name_is_empty","نام فارسی می بایست پر شود.");
 define("latin_name_is_empty","نام لاتین می بایست پر شود.");
 define("email_is_empty","ایمیل می بایست پر شود.");
+define("image_is_empty","تصویر می بایست پر شود.");
 
 define("not_exists","وجود ندارد");
 define("image_not_exist","تصویر وجود ندارد");
@@ -1485,4 +1486,5 @@ define("artists","هنرمندان");
 define("show_all_famous_artists","نمایش تمامی هنرمندان مطرح ایران");
 define("home","خانه");
 define("blog","وبلاگ");
+define("biography","بیوگرافی:");
 

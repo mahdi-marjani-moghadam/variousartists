@@ -369,6 +369,8 @@ body:not(.device-sm):not(.device-xs):not(.device-xxs) #primary-menu.style-2.cent
 
 @media (min-width: 992px) {
 
+
+
 .overlay-menu:not(.top-search-open) #primary-menu-trigger {
 	right: auto;
 	left: 75px;
@@ -3491,3 +3493,4 @@ label.checkbox {
 	right:0;
 	left: auto;
 }
+.no-border{border: none}

@@ -33,7 +33,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-2  ">
             <?php //include_once("categoryList.php");?>
-            <nav class=" nobottommargin category-ul">
+            <nav class="  category-ul">
                 <h2 class="btn btn-default btn-block" ><?=category_arrow_down?> ... </h2>
                 <div class="category-detail">
                     <? echo $list['export']['category'];?>

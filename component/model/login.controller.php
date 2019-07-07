@@ -80,6 +80,7 @@ class loginController
      */
     public function showLoginForm($fields)
     {
+        die('sss');
         $this->fileName = 'login.showLoginForm.php';
         $this->template();
         die();

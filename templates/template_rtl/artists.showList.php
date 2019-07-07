@@ -15,8 +15,8 @@
 <section id="page-title" >
 
     <div class="container clearfix">
-        <h1> هنرمندان</h1>
-        <span>نمایش تمامی هنرمندان مطرح ایران</span>
+
+        <span>نمایش تمامی هنرمندان مطرح ایرانی</span>
         <ol class="breadcrumb">
             <li><a href="<?=RELA_DIR?>">خانه</a></li>
             <li class="active"> هنرمندان</li>
@@ -33,7 +33,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-2 pull-right ">
             <?php //include_once("categoryList.php");?>
-            <nav class=" nobottommargin category-ul">
+            <nav class="  category-ul">
                 <h2 class="btn btn-default btn-block" ><?=category_arrow_down?> ... </h2>
                 <div class="category-detail">
                     <? echo $list['export']['category'];?>

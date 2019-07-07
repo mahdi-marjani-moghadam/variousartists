@@ -165,7 +165,7 @@ class looeic extends DB
         //echo '__call';
     }
 
-    function validator($rules, $fields)
+    function validator($rules=array(), $fields=array())
     {
 
         if (!isset($rules)) {

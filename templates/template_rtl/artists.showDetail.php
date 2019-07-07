@@ -7,7 +7,7 @@
     <div class="container clearfix">
         <h1> <?=$list['list']['artists_name'];?> / <?=$list['list']['nickname'];?>  </h1>
         <ol class="breadcrumb">
-            <li><a href="<?=RELA_DIR?>artists"> هنرمندان</a></li>
+            <li><a href="<?=RELA_DIR?>artists"> <?=artists?></a></li>
             <li class="active"><?=$list['list']['artists_name'];?> </li>
         </ol>
     </div>
@@ -24,59 +24,22 @@
 
             <!-- Portfolio Single Image
             ============================================= -->
-            <div class="col artists_img nobottommargin text-center">
-                <img src="<?=RELA_DIR.'statics/files/'.$list['list']['Artists_id'].'/'.$list['list']['logo'];?>" alt="">
-            </div><!-- .portfolio-single-image end -->
-
-            <!-- Portfolio Single Content
-            ============================================= -->
-            <div class="col portfolio-single-content col_last nobottommargin">
-
-                <!-- Portfolio Single - Description
-                ============================================= -->
-                <div class="fancy-title title-bottom-border topmargin-sm">
-                    <h2>بیوگرافی:</h2>
-                </div>
-                <p ><?=$list['list']['description']?></p>
-
-                <!-- Portfolio Single - Description End -->
-
-                <div class="line"></div>
-
-                <!-- Portfolio Single - Meta
-                ============================================= -->
-                <ul class="portfolio-meta bottommargin">
-                    <? if($list['list']['show_birthday'] == 'on'):?>
-                    <li><span><i class="icon-user"></i>تاریخ تولد:</span><?=convertDate($list['list']['birthday'])?></li>
-                    <? endif; ?>
-
-                    <li style="display: none;" ><i class="icon-trophy"></i>جمع امتیازات <?=$list['list']['rate']?> ( از <?=$list['list']['rate_count']?> نظر ):
-                        <div  dir="ltr">
-
-                                <!--<input id="input-1" disabled type="number" class="rating"  value="<?/*=$list['list']['rate']*/?>"  max="10"  data-step="0.1" data-size="sm" data-glyphicon="false" data-rating-class="fontawesome-icon">-->
-
-
-                        </div>
-                    </li>
-                </ul>
-                <!-- Portfolio Single - Meta End -->
-
-                <!-- Portfolio Single - Share
-                ============================================= -->
-                <div class="si-share clearfix">
-                    <span class="pull-right">شبکه های اجتماعی:</span>
-                    <div>
+            <div class="col artists_img nobottommargin text-center" >
+                <img width="100%" src="<?=RELA_DIR.'statics/files/'.$list['list']['Artists_id'].'/'.$list['list']['logo'];?>" alt="">
+                <div class="si-share clearfix no-border mt-1  ">
+                    <span class="pull-right">شبکه های اجتماعی <?=$list['list']['artists_name'];?> را دنبال کنید:</span>
+                    <div class="">
                         <? if($list['list']['facebook'] != ''): ?>
-                        <a href="https://facebook.com/<?=$list['list']['facebook']?>" class="social-icon si-borderless ">
-                            <i class="icon-facebook"></i>
-                            <i class="icon-facebook"></i>
-                        </a>
+                            <a href="https://facebook.com/<?=$list['list']['facebook']?>" class="social-icon si-borderless ">
+                                <i class="icon-facebook"></i>
+                                <i class="icon-facebook"></i>
+                            </a>
                         <? endif;?>
                         <? if($list['list']['twitter'] != ''): ?>
-                        <a href="https://twitter.com/<?=$list['list']['twitter']?>" class="social-icon si-borderless ">
-                            <i class="icon-twitter"></i>
-                            <i class="icon-twitter"></i>
-                        </a>
+                            <a href="https://twitter.com/<?=$list['list']['twitter']?>" class="social-icon si-borderless ">
+                                <i class="icon-twitter"></i>
+                                <i class="icon-twitter"></i>
+                            </a>
                         <? endif;?>
                         <? if($list['list']['instagram'] != ''): ?>
                             <a href="https://instagram.com/<?=$list['list']['instagram']?>" class="social-icon si-borderless ">
@@ -104,19 +67,53 @@
                         <? endif;?>
                     </div>
                 </div>
-                <!-- Portfolio Single - Share End -->
+            </div><!-- .portfolio-single-image end -->
+
+            <!-- Portfolio Single Content
+            ============================================= -->
+            <div class="col portfolio-single-content col_last nobottommargin">
+
+                <!-- Portfolio Single - Description
+                ============================================= -->
+                <div class="fancy-title title-bottom-border topmargin-sm">
+                    <h2><?=biography?></h2>
+                </div>
+                <p ><?=$list['list']['description']?></p>
+
+                <!-- Portfolio Single - Description End -->
+
+
+
+                <!-- Portfolio Single - Meta
+                ============================================= -->
+                <ul class="portfolio-meta bottommargin">
+                    <? if($list['list']['show_birthday'] == 'on'):?>
+                        <div class="line"></div>
+                    <li><span><i class="icon-user"></i>تاریخ تولد:</span><?=convertDate($list['list']['birthday'])?></li>
+                    <? endif; ?>
+
+                    <li style="display: none;" ><i class="icon-trophy"></i>جمع امتیازات <?=$list['list']['rate']?> ( از <?=$list['list']['rate_count']?> نظر ):
+                        <div  dir="ltr">
+
+                                <!--<input id="input-1" disabled type="number" class="rating"  value="<?/*=$list['list']['rate']*/?>"  max="10"  data-step="0.1" data-size="sm" data-glyphicon="false" data-rating-class="fontawesome-icon">-->
+
+
+                        </div>
+                    </li>
+                </ul>
+                <!-- Portfolio Single - Meta End -->
+
 
             </div><!-- .portfolio-single-content end -->
 
-            <div class="clear"></div>
 
-            <div class="divider divider-center"><i class="icon-circle"></i></div>
 
             <!-- Related Portfolio Items
             ============================================= -->
             <!-- Related Portfolio Items
            ============================================= -->
             <?php if(count($list['product_list'])) : ?>
+                <div class="divider divider-center"><i class="icon-circle"></i></div>
                 <h4>نمونه کارها:</h4>
 
                 <div class="section nobottommargin" style="padding-right:10px; padding-left: 10px; ">
@@ -182,7 +179,7 @@
                 </div>
 
             <? endif; ?>
-
+            <div class="divider divider-center"><i class="icon-circle"></i></div>
 
 
 

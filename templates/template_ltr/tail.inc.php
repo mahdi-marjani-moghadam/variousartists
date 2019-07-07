@@ -10,59 +10,16 @@
                 ============================================= -->
                 <div class="footer-widgets-wrap clearfix">
 
-                    <div class="col-md-2" style="display: none">
-
-                        <div class="widget clearfix">
-
-
-                            <div class="col_full masonry-thumbs col-6 clearfix" data-lightbox="gallery">
-
-
-                                <a  href="https://www.instagram.com/nymadteam/">
-                                    <img class="image_fade img-circle" src="<?=RELA_DIR.'statics/friends/nymadteam.jpg'?>" alt="nymadteam">
-                                </a>
-
-                                <a  href="https://www.instagram.com/hamedvfx/">
-                                    <img class="image_fade img-circle   " src="<?=RELA_DIR.'statics/friends/hamedvfx.jpg'?>" alt="hamedvfx">
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="col-md-2">
-                        <div class="row">
-                            <div class="col-md-6" style="padding: 0">
-                                <img src="https://trustseal.enamad.ir/logo.aspx?id=76601&p=fQKhswjpL00DbiRr" onclick="window.open('https://trustseal.enamad.ir/Verify.aspx?id=76601&p=fQKhswjpL00DbiRr','Popup','toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30')" style="cursor: pointer" id="fQKhswjpL00DbiRr" />
-                            </div>
-                            <div class="col-md-6" style="padding: 0">
-                                <img id='fukzoeukoeukjxlzjxlz' style='cursor:pointer' onclick='window.open("https://logo.samandehi.ir/Verify.aspx?id=68811&p=gvkamcsimcsirfthrfth", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt='logo-samandehi' src='https://logo.samandehi.ir/logo.aspx?id=68811&p=wlbqaqgwaqgwnbpdnbpd'/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 ">
-                        <div class="col_full nobottommargin center">
-                            <p>Music The Great Communicator</p>
-                            <div class="copyrights-menu copyright-links clearfix">
-                                <a href="<?=RELA_DIR?>">Home</a>/<a href="<?=RELA_DIR?>aboutus">About us</a>/<a href="<?=RELA_DIR?>contactus">Contact us</a>
-                            </div>
-
-
-                            <br>
-                            <div style="font-size: 8px; "><a style="color: #ccc" href="http://www.webgem.ir" target="_blank">Powered By WebGem &copy; Copyrights 2016</a></div>
-                        </div>
-                    </div>
                     <div class="col-md-4">
-
                         <div class="widget clearfix">
 
                             <p style="margin: 0">Technical Institute of Ramshgaran Goonagoon</p>
-                            <div class="clearfix" style="padding: 0; display: none ">
+
+                            <div class="clearfix" style="padding: 0; display: none; ">
 
                                 <div class="col_full col_last">
-                                    <abbr title="Phone Number"><strong>Phone:</strong></abbr><span dir="ltr"> (021) 22768101 </span><br>
-                                    <abbr title="Email Address"><strong>Email:</strong></abbr><span dir="ltr"> info@variousartists.ir </span>
+                                    <abbr title="Phone Number"><strong>تلفن:</strong></abbr><span dir="ltr"> (۰۲۱) ۲۲۷۶۸۱۰۱ </span><br>
+                                    <abbr title="Email Address"><strong>ایمیل:</strong></abbr><span dir="ltr"> info@variousartists.ir </span>
                                 </div>
                             </div>
 
@@ -91,11 +48,11 @@
                                 <i class="icon-soundcloud"></i>
                             </a>
 
-                            <a  href="http://www.aparat.com/variousartists.ir" class="social-icon si-small si-rounded topmargin-sm si-soundcloud">
+                            <a  href="http://www.aparat.com/variousartists.ir" class="social-icon si-small si-rounded topmargin-sm ">
                                 <i class="icon-play"></i>
-                                <i class="icon-play"  style=""></i>
+                                <i class="icon-play"  style="background: #ea1d5d"></i>
                             </a>
-                            <a  href="http://beeptunes.com" class="social-icon si-small si-rounded topmargin-sm si-soundcloud hidden">
+                            <a   href="http://beeptunes.com" class="social-icon si-small si-rounded topmargin-sm si-soundcloud hidden">
                                 <img src="<?=RELA_DIR?>templates/template_rtl/img/beep.png">
 
                             </a>
@@ -106,6 +63,50 @@
                         </div>
 
                     </div>
+                    <div class="col-md-4">
+                        <div class="col_full nobottommargin center">
+                            <p>Music The Great Communicator</p>
+
+                            <div class="copyrights-menu copyright-links clearfix">
+                                <a href="<?=RELA_DIR?>">Home</a>/<a href="<?=RELA_DIR?>aboutus">About Ss</a>/<a href="<?=RELA_DIR?>contactus">Contact Us</a>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="row">
+                            <div class="col-md-6" style="padding: 0">
+                                <img src="https://trustseal.enamad.ir/logo.aspx?id=76601&p=fQKhswjpL00DbiRr" onclick="window.open('https://trustseal.enamad.ir/Verify.aspx?id=76601&p=fQKhswjpL00DbiRr','Popup','toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30')" style="cursor: pointer" id="fQKhswjpL00DbiRr" />
+                            </div>
+                            <div class="col-md-6" style="padding: 0">
+                                <img id='fukzoeukoeukjxlzjxlz' style='cursor:pointer' onclick='window.open("https://logo.samandehi.ir/Verify.aspx?id=68811&p=gvkamcsimcsirfthrfth", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt='logo-samandehi' src='https://logo.samandehi.ir/logo.aspx?id=68811&p=wlbqaqgwaqgwnbpdnbpd'/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2" style="display: none">
+
+                        <div class="widget clearfix">
+
+
+                            <div class="col_full masonry-thumbs col-6 clearfix" data-lightbox="gallery">
+
+
+                                <a  href="https://www.instagram.com/nymadteam/">
+                                    <img class="image_fade img-circle" src="<?=RELA_DIR.'statics/friends/nymadteam.jpg'?>" alt="nymadteam">
+                                </a>
+
+                                <a  href="https://www.instagram.com/hamedvfx/">
+                                    <img class="image_fade img-circle   " src="<?=RELA_DIR.'statics/friends/hamedvfx.jpg'?>" alt="hamedvfx">
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
 
 
                 </div><!-- .footer-widgets-wrap end -->

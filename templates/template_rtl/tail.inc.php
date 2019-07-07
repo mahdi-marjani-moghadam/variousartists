@@ -71,7 +71,7 @@
                                 <a href="<?=RELA_DIR?>">خانه</a>/<a href="<?=RELA_DIR?>aboutus">درباره ما</a>/<a href="<?=RELA_DIR?>contactus">تماس با ما</a>
                             </div>
 
-                            <div style="font-size: 8px; "><a style="color: #ccc" href="http://www.webgem.ir" target="_blank">Powered By WebGem. Copyrights &copy;2016</a></div>
+
                         </div>
                     </div>
                     <div class="col-md-2">

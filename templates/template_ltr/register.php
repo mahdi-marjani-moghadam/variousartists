@@ -153,7 +153,7 @@
                 <div class="tab-container">
                     <div class="tab-content clearfix" id="tab-member" style="background: rgba(255,255,255,0.3)">
                         <div class="panel panel-default nobottommargin">
-                            <div class="panel-body" style="padding: 40px;">
+                            <div class="panel-body" style="padding: 10px;">
                                 <? if($msg != ''): ?>
 
                                     <div id="alertMessage"><div class="alert alert-danger rtl"><?=$msg?></div></div>
@@ -362,7 +362,6 @@
 <style>
     .input-group{
         width: 100%;
-        max-width: 450px;
     }
     .form-group input[type="tel"]{
 
@@ -378,9 +377,19 @@
         margin-bottom: .8em;
         padding: .2em .5em !important;
     }
-    @media only screen and (max-width:425px)  {
+    @media  (max-width:479px)  {
         .form-group input[type="tel"]{
-            width: 70%;
+            width: 179px;
+        }
+    }
+    @media (min-width:480px) and (max-width:767px)  {
+        .form-group input[type="tel"]{
+            width: 322px;
+        }
+    }
+    @media  (min-width:768px)  {
+        .form-group input[type="tel"]{
+            width: 376px;
         }
     }
     .form-group .input-group-addon {
@@ -414,7 +423,7 @@
     }
     .form-group .input-group-addon.countryFlagHolder {
         position: relative;
-        padding: 0 1.5em;
+
         font-size: .875em;
         border-left: solid 1px #D3D3D3;
         border-top-right-radius: 0;
@@ -430,7 +439,8 @@
         user-select: none;
 
 
-        width: 15%;
+        padding: 0;
+        width: 50px;
         float: left;
         display: block;
         height: 42px;
@@ -1452,10 +1462,6 @@
     .form-group .input-group-addon.countryFlagHolder ul {
         max-height: 200px;
         bottom: 39px;
-    }
-    .form-group .input-group-addon.countryFlagHolder {
-        width: 15%;
-        float: left;
     }
     .form-group .input-group-addon.countryFlagHolder i {
         position: absolute;

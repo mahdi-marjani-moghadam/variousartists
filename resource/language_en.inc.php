@@ -1389,7 +1389,7 @@ define("email_is_not_valid","Email is not valid.");
 
 define("info_login","Please enter your information fo login.");
 define("email_or_number","Email or mobile:");
-define("number_or_email","Mobile / Email:");
+define("number_or_email","Mobile / Email: (EXE:9193110190)");
 define("password","Password: ");
 define("login","Login");
 define("register","Register");
@@ -1460,6 +1460,7 @@ define("sanladi_number","numbers");
 define("persian_name_is_empty","Persian name is empty");
 define("latin_name_is_empty","Latin name is empty");
 define("email_is_empty","Email is empty");
+define("image_is_empty","Image is empty");
 
 define("not_exists","Not Exist.");
 define("image_not_exist","Image not exist");
@@ -1472,3 +1473,4 @@ define("artists","Artists");
 define("show_all_famous_artists","Show all famous artists");
 define("home","Home");
 define("blog","Blog");
+define("biography","Biography");
