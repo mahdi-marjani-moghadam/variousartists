@@ -51,7 +51,7 @@
                                     $newTime = ($list['list']['event_time'] != "" ? $list['list']['event_time'] : "");
                                     $newTime2 = ($list['list']['event_time2'] != "" ? $list['list']['event_time2'] : "");
                                     $newTime3 = ($list['list']['event_time3'] != "" ? $list['list']['event_time3'] : "");
-
+                                    $sale_type = ($list['list']['sale_type'] == 'class')?'ثبت نام کلاس':'خرید بلیط';
                                     ?>
 
                                     <? if ($newTime || $newDate): ?>
@@ -62,7 +62,7 @@
                                             $enc = base64_encode('event_id='.$list['list']['Event_id'].'&date='.$list['list']['date'].'&time='.$list['list']['event_time']);
                                             ?>
                                             <a href="<?= RELA_DIR ?>sales/<?=$enc?>"
-                                               class="btn btn-primary btn-sm text-white text-16 ">خرید بلیط</a>
+                                               class="btn btn-primary btn-sm text-white text-16 "><?=$sale_type?></a>
                                         <? endif; ?>
 
                                         </li><? endif; ?>
@@ -74,7 +74,7 @@
                                             $enc = base64_encode('event_id='.$list['list']['Event_id'].'&date='.$list['list']['date2'].'&time='.$list['list']['event_time2']);
                                             ?>
                                             <a href="<?= RELA_DIR ?>sales/<?=$enc?>"
-                                               class="btn btn-primary btn-sm text-white text-16 ">خرید بلیط </a>
+                                               class="btn btn-primary btn-sm text-white text-16 "><?=$sale_type?></a>
                                         <? endif; ?>
                                         </li><? endif; ?>
                                     <? if ($newTime3 || $newDate3): ?>
@@ -85,7 +85,7 @@
                                             $enc = base64_encode('event_id='.$list['list']['Event_id'].'&date='.$list['list']['date3'].'&time='.$list['list']['event_time3']);
                                             ?>
                                             <a href="<?= RELA_DIR ?>sales/<?=$enc?>"
-                                               class="btn btn-primary btn-sm text-white text-16 ">خرید بلیط </a>
+                                               class="btn btn-primary btn-sm text-white text-16 "><?=$sale_type?></a>
                                         <? endif; ?>
                                         </li><? endif; ?>
                                     <li>

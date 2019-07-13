@@ -236,6 +236,21 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
+                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="sale_type">نوع فروش:</label>
+                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                        <select name="sale_type" id="sale_type"  >
+                                            <option <?=($list['sale_type']== 'class') ? 'selected' : '' ?>
+                                                    value="class">ثبت نام کلاس
+                                            </option>
+                                            <option <?=($list['sale_type']== 'concert') ? 'selected' : '' ?>
+                                                    value="concert">فروش بلیط
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="salon_id">انتخاب سالن:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">

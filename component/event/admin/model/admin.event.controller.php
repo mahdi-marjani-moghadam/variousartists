@@ -386,6 +386,7 @@ class adminEventController
         $event->setFields($fields);
         $event->update_date = date('Y-m-d H:i:s');
 
+
         $result=$event->save();
 
 //        print_r_debug($event);

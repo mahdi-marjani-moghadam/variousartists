@@ -1,5 +1,5 @@
 
-		<section id="slider" class="slider-parallax swiper_wrapper full-screen clearfix">
+		<section id="slider" class=" swiper_wrapper full-screen clearfix">
 			<div class="slider-parallax-inner">
 
 				<div class="swiper-container swiper-parent">
@@ -31,6 +31,30 @@
 			</div>
 		</section>
 
+
+        <section class="section">
+            <div class="container">
+                <div class="col-md-12 text-center" >
+                    <h1 >View all leading artists of Iran</h1>
+
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="col-md-4">
+                    <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/647205381&color=%230e0c0f&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+                </div>
+                <div class="col-md-4">
+                    <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/513290091&color=%230e0c0f&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+                </div>
+                <div class="col-md-4">
+                    <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/442072704&color=%23340e0c&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+                </div>
+            </div>
+
+
+        </section>
 		<!-- Content
 		============================================= -->
 		<section id="content">

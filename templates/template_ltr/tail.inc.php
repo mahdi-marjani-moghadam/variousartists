@@ -68,7 +68,7 @@
                             <p>Music The Great Communicator</p>
 
                             <div class="copyrights-menu copyright-links clearfix">
-                                <a href="<?=RELA_DIR?>">Home</a>/<a href="<?=RELA_DIR?>aboutus">About Ss</a>/<a href="<?=RELA_DIR?>contactus">Contact Us</a>
+                                <a href="<?=RELA_DIR?>">Home</a>/<a href="<?=RELA_DIR?>aboutus">About Us</a>/<a href="<?=RELA_DIR?>contactus">Contact Us</a>
                             </div>
 
 

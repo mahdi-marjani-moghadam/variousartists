@@ -390,7 +390,7 @@
     }
     @media  (min-width:768px)  {
         .form-group input[type="tel"]{
-            width: 376px;
+            width: 375px;
         }
     }
     .form-group .input-group-addon {

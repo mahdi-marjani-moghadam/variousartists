@@ -46,6 +46,7 @@
                                 $newTime = ($list['list']['event_time']!=""?   $list['list']['event_time']:"");
                                 $newTime2 = ($list['list']['event_time2']!=""? $list['list']['event_time2']:"");
                                 $newTime3 = ($list['list']['event_time3']!=""? $list['list']['event_time3']:"");
+                                $sale_type = ($list['list']['sale_type'] == 'class')?'ثبت نام کلاس':'خرید بلیط';
                                 ?>
 
                                 <? if($newTime || $newDate):?><li><i class="icon-calendar3"></i> <?=$newDate?> - <?=$newTime?></li><?endif;?>
