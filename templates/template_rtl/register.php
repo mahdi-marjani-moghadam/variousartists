@@ -162,13 +162,7 @@
                                 <h3><?=create_new_account?></h3>
                                 <form id="register-form" name="register-form" enctype="multipart/form-data" class="nobottommargin" action="<?=RELA_DIR?>register" method="post">
                                     <div class="col_full form-group">
-                                        <label for="artists_phone1"><?=mobile?></label>
-
-
-
-
-
-
+                                        <label for="artists_phone1"><?=mobile?> <span class="red-text">*</span> </label>
 
 
 
@@ -194,7 +188,7 @@
                                                 </ul>
                                             </div>
                                             <div id="areaCodeHolder" class="input-group-addon">+<?=$list['default'][0]['phone_code']?></div>
-                                            <input style="direction: ltr; box-shadow: none" type="tel" <? if($list['default'][0]['iso'] == 'IR'){?>maxlength="<?=$list['default'][0]['max_length']?>" <? }?> class="phone form-control" id="artists_phone1" name="artists_phone1" placeholder="<?=$list['default'][0]['sample']?>" required value="<?=$_REQUEST['artists_phone1']?>">
+                                            <input style="direction: ltr; box-shadow: none" type="tel" <? if($list['default'][0]['iso'] == 'IR'){?>maxlength="<?=$list['default'][0]['max_length']?>" <? }?> class="phone form-control " id="artists_phone1" name="artists_phone1" placeholder="<?=$list['default'][0]['sample']?>" required value="<?=$_REQUEST['artists_phone1']?>">
                                             <input name="areacode" id="areacode" type="hidden" value="<?=$list['default'][0]['phone_code']?>">
                                             <span class="input-group-btn"></span>
                                         </div><!-- /input-group -->
@@ -204,11 +198,11 @@
 
                                     </div>
                                     <div class="col_full">
-                                        <label for="password"><?=password?></label>
+                                        <label for="password"><?=password?> <span class="red-text">*</span></label>
                                         <input type="text" id="password" name="password" value="<?=$_REQUEST['password']?>" class="form-control" />
                                     </div>
                                     <div class="col_full">
-                                        <label for="artists_name_fa"><?=name_fa?></label>
+                                        <label for="artists_name_fa"><?=name_fa?> <span class="red-text">*</span></label>
                                         <input type="text" id="artists_name_fa" name="artists_name_fa" value="<?=$_REQUEST['artists_name_fa']?>" class="form-control" />
                                     </div>
 
@@ -220,7 +214,7 @@
 
 
                                     <div class="col_full art"  >
-                                        <label for="email"><?=email?></label>
+                                        <label for="email"><?=email?> <span class="red-text">*</span></label>
                                         <input type="text" id="email" name="email" value="<?=$_REQUEST['email']?>" class="form-control" />
                                     </div>
                                     <div class="col_full art">
@@ -228,23 +222,23 @@
                                         <input type="text" id="nickname" name="nickname" value="<?=$_REQUEST['nickname']?>" class="form-control" />
                                     </div>
                                     <div class="col_full art">
-                                        <label for="artists_name_en"><?=name_en?></label>
+                                        <label for="artists_name_en"><?=name_en?> <span class="red-text">*</span></label>
                                         <input type="text" id="artists_name_en" name="artists_name_en" value="<?=$_REQUEST['artists_name_en']?>" class="form-control" />
                                     </div>
                                     <div class="col_full art">
                                         <div ><?=birthday?>
-                                            <span class="pull-left"><input type="checkbox" name="check_birthday" id="check_birthday"><label for="check_birthday"> <?=show_birthday_for_public?></label></span>
+                                            <span class="pull-left"><input type="checkbox" <?=($_REQUEST['show_birthday'] == 'on')?'checked':'';?> name="show_birthday" id="show_birthday"><label for="show_birthday"> <?=show_birthday_for_public?></label></span>
                                         </div>
                                         <input type="<?=($lang=='en')?'date':'';?>" autocomplete="off" id="birthday" name="birthday" value="<?=$_REQUEST['birthday']?>" class="form-control <?=($lang=='en')?'':'datepicker';?> " />
                                     </div>
                                     <div class="col_full art">
-                                        <label for="artists_name"><?=category?></label>
+                                        <label for="artists_name"><?=category?> <span class="red-text">*</span></label>
                                         <select name="category_id[]" id="category_id" data-input="select2"  multiple class="form-control">
                                             <?
                                             foreach($list['category'] as $category_id => $value)
                                             {
                                                 ?>
-                                                <option  <?php echo $value['Category_id'] == $list['category_id'] ? 'selected' : '' ?> value="<?=$value['Category_id']?>">
+                                                <option  <?php echo in_array($value['Category_id'] , $_REQUEST['category_id']) ? 'selected' : '' ?> value="<?=$value['Category_id']?>">
                                                     <?=$value['export']?>
                                                 </option>
                                                 <?
@@ -327,7 +321,7 @@
                                     </div>
 
                                     <div class="col_full art">
-                                        <label for="logo"><?=own_image?></label>
+                                        <label for="logo"><?=own_image?> <span class="red-text">*</span></label>
                                         <input type="file" class="form-control" style="font-size: 12px" id="logo" name="logo">
                                         <br>
                                         <?=picture_is_square_and_jpeg?>

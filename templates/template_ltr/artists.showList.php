@@ -15,8 +15,8 @@
 <section id="page-title" >
 
     <div class="container clearfix">
-        <h1>Artists</h1>
-        <span>View all leading artists of Iran</span>
+
+
         <ol class="breadcrumb">
             <li><a href="<?=RELA_DIR?>">Home</a></li>
             <li class="active">Artists</li>

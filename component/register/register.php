@@ -5,15 +5,15 @@
  * Date: 2/27/2016
  * Time: 9:21 AM
  */
-include_once(dirname(__FILE__). "/model/register.controller.php");
+//include_once(dirname(__FILE__). "/model/register.controller.php");
 
 global $admin_info,$PARAM;
 
-$registerController = new registerController();
-if(isset($exportType))
+//$registerController = new registerController();
+/*if(isset($exportType))
 {
     $registerController->exportType=$exportType;
-}
+}*/
 
 
 if($PARAM[0]  == 'register')
@@ -63,7 +63,7 @@ elseif($PARAM[1]  == 'memberregister')
 
 
 
-
+/*
 if(isset($_POST['action']) & $_POST['action']=='add')
 {
     $registerController->addRegister($_POST);
@@ -72,7 +72,7 @@ if(isset($_POST['action']) & $_POST['action']=='add')
 else
 {
     $registerController->showRegisterForm();
-}
+}*/
 die();
 
 

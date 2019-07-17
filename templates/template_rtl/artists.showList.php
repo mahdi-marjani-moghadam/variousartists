@@ -16,7 +16,7 @@
 
     <div class="container clearfix">
 
-        <span>نمایش تمامی هنرمندان مطرح ایرانی</span>
+
         <ol class="breadcrumb">
             <li><a href="<?=RELA_DIR?>">خانه</a></li>
             <li class="active"> هنرمندان</li>

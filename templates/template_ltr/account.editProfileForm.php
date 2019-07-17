@@ -5,16 +5,23 @@
 
             <div class="row">
 
-
-
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <label for="artists_name_fa"><?=name_fa?></label>
-                    <input type="text" id="artists_name_en" name="artists_name_fa" value="<?=$list['artists_name_fa']?>" class="form-control" />
+                    <input type="text" id="artists_name_fa" name="artists_name_fa" value="<?=$list['artists_name_fa']?>" class="form-control" />
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <label for="artists_name_en"><?=name_en?></label>
+                    <input type="text" id="artists_name_en" name="artists_name_en" value="<?=$list['artists_name_en']?>" class="form-control" />
                 </div>
 
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <label for="artists_phone1"><?=telephone?></label>
                     <input type="text" id="artists_phone1" name="artists_phone1" value="<?=$list['artists_phone1']?>" class="form-control" />
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <span class="pull-left"><input type="checkbox" name="show_birthday" id="show_birthday" <?=($list['show_birthday']=='on')?'checked':'';?>><label for="check_birthday"> <?=show_birthday_for_public?></label></span>
+                    <label for="birthday"><?=birthday?></label>
+                    <input  type="text" id="birthday" name="birthday" value="<?=$list['birthday']?>" class="form-control datepicker" />
                 </div>
                 <? if($member_info['type'] == 1):?>
                     <div class="col-md-6 col-sm-12 col-xs-12">
@@ -48,10 +55,7 @@
                         </select>
                     </div>
                 <?php endif; ?>
-                <div class="col-md-6 col-sm-12 col-xs-12">
-                    <label for="birthday"><?=birthday?></label>
-                    <input  type="text" id="birthday" name="birthday" value="<?=$list['birthday']?>" class="form-control datepicker" />
-                </div>
+
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <label for="email"><?=email?></label>
                     <input type="text" id="email" name="email" value="<?=$list['email']?>" class="form-control" />

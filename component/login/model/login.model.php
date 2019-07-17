@@ -538,7 +538,7 @@ class memberLogIn
         die();
     }
 
-    function    register($_input)
+    function register($_input)
     {
 
         global $messageStack,$lang;
@@ -557,10 +557,6 @@ class memberLogIn
             $this->showRegisterForm($_input,password_not_empty);
         }
 
-        /** check birthday */
-        if($_input['check_birthday']!=''){
-            $_input['show_birthday'] = $_input['check_birthday'];
-        }
 
         /** exist user */
         $result = artists::getBy_username($_input['username'])->getList();

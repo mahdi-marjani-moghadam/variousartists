@@ -161,7 +161,7 @@
                                 <select name="type" class="form-control" style="width: 100%; margin-top: -10px">
                                     <option value="artists"> Search from artists  </option>
                                     <option value="events">Search From events</option>
-                                    <option value="genre">Search From events</option>
+                                    <option value="genre">Search From genre</option>
                                 </select>
 
                             </form>
