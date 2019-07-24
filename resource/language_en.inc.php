@@ -1474,3 +1474,5 @@ define("show_all_famous_artists","Show all famous artists");
 define("home","Home");
 define("blog","Blog");
 define("biography","Biography");
+define("buy_ticket","buy ticket");
+define("class_register","class register");

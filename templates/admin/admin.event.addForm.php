@@ -174,7 +174,7 @@
                                         $config['filebrowserUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
                                         $config['filebrowserImageUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
 
-                                        $tt2 = $ckeditor->editor('description_en2',$list['description_en2'],$config);
+                                        $tt2 = $ckeditor->editor('description_en',$list['description_en'],$config);
 
                                         echo $tt2;
                                         ?>

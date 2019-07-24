@@ -18,12 +18,13 @@
                     <label for="artists_phone1"><?=telephone?></label>
                     <input type="text" id="artists_phone1" name="artists_phone1" value="<?=$list['artists_phone1']?>" class="form-control" />
                 </div>
-                <div class="col-md-6 col-sm-12 col-xs-12">
-                    <span class="pull-left"><input type="checkbox" name="show_birthday" id="show_birthday" <?=($list['show_birthday']=='on')?'checked':'';?>><label for="check_birthday"> <?=show_birthday_for_public?></label></span>
-                    <label for="birthday"><?=birthday?></label>
-                    <input  type="text" id="birthday" name="birthday" value="<?=$list['birthday']?>" class="form-control datepicker" />
-                </div>
                 <? if($member_info['type'] == 1):?>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <span class="pull-left"><input type="checkbox" name="show_birthday" id="show_birthday" <?=($list['show_birthday']=='on')?'checked':'';?>><label for="check_birthday"> <?=show_birthday_for_public?></label></span>
+                        <label for="birthday"><?=birthday?></label>
+                        <input  type="date" id="birthday" name="birthday" value="<?=$list['birthday']?>" class="form-control " />
+                    </div>
+
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <label for="">گروه :</label>
                         <select name="category_id[]" id="category_id" data-input="select2"  multiple class="form-control">

@@ -380,6 +380,7 @@ function convertJToGDate($date)
 
     list($j_y, $j_m, $j_d) = jalali_to_gregorian($g_y, $g_m, $g_d);
     if($j_d<10){$j_d = '0'.$j_d;}
+    if($j_m<10){$j_m = '0'.$j_m;}
     $date = "$j_y-$j_m-$j_d";
 
     return $date;

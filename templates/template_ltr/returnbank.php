@@ -4,7 +4,7 @@
 <section id="page-title">
 
     <div class="container clearfix">
-        <h1>بازگشت از بانک</h1>
+        <h1>Return from bank</h1>
         <!--<ol class="breadcrumb">
             <li><a href="<?/*=RELA_DIR*/?>">خانه</a></li>
             <li><a href="<?/*=RELA_DIR*/?>event">رویدادها</a></li>

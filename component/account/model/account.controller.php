@@ -772,7 +772,7 @@ class accountController
     /** Profile */
     public function editProfile($fields)
     {
-        global $member_info;
+        global $member_info,$lang;
         include_once ROOT_DIR.'component/artists/model/artists.model.php';
 
 
@@ -799,14 +799,20 @@ class accountController
             unset($fields['password']);
         }
 
+
+        if($lang == 'fa'){
+            $fields['birthday']  =  convertJToGDate($fields['birthday']);
+        }
+
         $account->setFields($fields);
+
 
 
         $result = $account->validator();
 
         $account->state_id = 0;
         $account->date = date('Y-m-d H:i:s');
-        $account->birthday = date('Y-m-d H:i:s');
+
         $account->priority = 1;
 
 
@@ -1230,7 +1236,7 @@ class accountController
         }
 
         include_once ROOT_DIR.'component/blog/model/blog.model.php';
-        $obj = blogModel::find($id);
+        $obj = blog::find($id);
 
         if (!is_object($obj)) {
             $msg = $obj['msg'];

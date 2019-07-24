@@ -151,7 +151,9 @@ switch ($PARAM[1]) {
             $accountController->showBlogEditForm($input, '');
         }
         break;
-
+    case 'deleteBlog':
+        $accountController->deleteBlog($PARAM[2]);
+        break;
 
     case 'editProfile':
 

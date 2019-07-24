@@ -29,24 +29,24 @@
 
         <div class="container clearfix">
 
-            <div class="single-event col-md-12 ">
+            <div class="single-event col-md-8 col-md-offset-2 col-sm-12 col-xs-12 ">
 
 
 
                 <div class="panel panel-default events-meta" id="changeNumber">
                     <div class="panel-heading" style="padding: 10px">
                         <h3 class="panel-title" >
-                            <span class="hidden-xs" style=" padding: 5px 10px; border-left: 1px solid silver;">
-                                <a href="<?=$list['step1']?>"><span class="badge">1</span>  انتخاب روز و ساعت </a>
+                            <span class="hidden-xs" style=" padding: 5px 10px; border-right: 1px solid silver;">
+                                <a href="<?=$list['step1']?>"><span class="badge">1</span>  Choose Date and hour </a>
                             </span>
-                            <span style=" padding: 5px 10px; border-left: 1px solid silver;  ">
-                                <a href="<?=$list['step2']?>"> <span class="badge">2</span> انتخاب منطقه</a>
+                            <span style=" padding: 5px 10px; border-right: 1px solid silver;  ">
+                                <a href="<?=$list['step2']?>"> <span class="badge">2</span> Choose part</a>
                             </span>
                             <span class="hidden-xs" style=" background: #fff; padding: 5px 10px;  ">
-                                <span class="badge">3</span> انتخاب صندلی
+                                <span class="badge">3</span> Choose chair
                             </span>
-                            <span class="hidden-xs" style=" padding: 5px 10px; border-right: 1px solid silver">
-                                <span class="badge">4</span> پیش فاکتور
+                            <span class="hidden-xs" style=" padding: 5px 10px; border-left: 1px solid silver">
+                                <span class="badge">4</span> Order
                             </span>
                         </h3>
 
@@ -56,12 +56,12 @@
                         <div class="panel-body">
                             <div class="col_half">
                                 <ul class="iconlist nobottommargin">
-                                    <li><i class="icon-calendar3"></i> زمان استفاده:    <?=convertDate($list['get']['date']).' -  '.$list['get']['time']?> </li>
+                                    <li><i class="icon-calendar3"></i>  Date:    <?=($list['get']['date']).' -  '.$list['get']['time']?> </li>
                                     <br>
-                                    <li><i class="icon-map-marker2"></i>  مکان :    <?=$list['salon']['address']?>,<?=$list['salon']['title_fa']?></li>
+                                    <li><i class="icon-map-marker2"></i>  Place :    <?=$list['salon']['address_en']?>,<?=$list['salon']['title_en']?></li>
                                     <br>
                                     <li><i class="icon-line2-pin"></i><?=$list['position']['title']?></li>
-                                    <li><i class="icon-dollar"></i>قیمت: <?=$list['position']['price']?> ریال</li>
+                                    <li><i class="icon-dollar"></i>Price: <?=$list['position']['price']?> Rial</li>
                                     <br>
                                 </ul>
                             </div>
@@ -88,7 +88,7 @@
                             <div class="col_full">
 
                                 <div class="form-group form-actions center">
-                                    <input type="submit" class="btn  btn-success btn-default  text-white text-16" value="تایید  انتخاب ">
+                                    <input type="submit" class="btn  btn-success btn-default  text-white text-16" value="Submit">
                                 </div><!--/form-group-->
                             </div>
                     </form>

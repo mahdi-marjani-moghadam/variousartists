@@ -110,10 +110,19 @@
               </div>
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
-                        <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="address">آدرس:</label>
+                        <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="address_fa">fa:آدرس</label>
                         <div class="col-xs-12 col-sm-8 pull-right">
 
-                            <textarea class="form-control" name="address" id="address" autocomplete="off" ><?=$list['address']?></textarea>
+                            <textarea class="form-control" name="address_fa" id="address_fa" autocomplete="off" ><?=$list['address_fa']?></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="address_en">آدرس:en</label>
+                        <div class="col-xs-12 col-sm-8 pull-right">
+
+                            <textarea class="form-control" name="address_en" id="address_en" autocomplete="off" ><?=$list['address_en']?></textarea>
                         </div>
                     </div>
                 </div>

@@ -89,7 +89,7 @@
                 <ul class="portfolio-meta bottommargin">
                     <? if($list['list']['show_birthday'] == 'on'):?>
                         <div class="line"></div>
-                        <li><span><i class="icon-user"></i>تاریخ تولد:</span><?=convertDate($list['list']['birthday'])?></li>
+                        <li><span><i class="icon-user"></i><?=birthday?></span><?=($list['list']['birthday'])?></li>
                     <? endif; ?>
 
                     <li style="display: none;" ><i class="icon-trophy"></i>جمع امتیازات <?=$list['list']['rate']?> ( از <?=$list['list']['rate_count']?> نظر ):
@@ -114,7 +114,7 @@
            ============================================= -->
             <?php if(count($list['product_list'])) : ?>
                 <div class="divider divider-center"><i class="icon-circle"></i></div>
-                <h4>نمونه کارها:</h4>
+                <h4>Products:</h4>
 
                 <div class="section nobottommargin" style="padding-right:10px; padding-left: 10px; ">
 
