@@ -27,7 +27,7 @@
             <div class="col artists_img nobottommargin text-center" >
                 <img width="100%" src="<?=RELA_DIR.'statics/files/'.$list['list']['Artists_id'].'/'.$list['list']['logo'];?>" alt="">
                 <div class="si-share clearfix no-border mt-1  ">
-                    <span class="pull-right">شبکه های اجتماعی <?=$list['list']['artists_name'];?> را دنبال کنید:</span>
+                    <div class="pull-right">شبکه های اجتماعی <?=$list['list']['artists_name'];?> را دنبال کنید:</div>
                     <div class="">
                         <? if($list['list']['facebook'] != ''): ?>
                             <a href="https://facebook.com/<?=$list['list']['facebook']?>" class="social-icon si-borderless ">

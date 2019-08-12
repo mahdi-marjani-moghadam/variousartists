@@ -5,7 +5,7 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="author" content="marjani" />
 
-    <link rel="icon" href="<?php echo TEMPLATE_DIR; ?>img/favication.png" type="image/png" sizes="16x16">
+        <link rel="icon" href="<?php echo TEMPLATE_DIR; ?>img/favication.png" type="image/png" sizes="16x16">
 
     <link rel="icon" sizes="192x192" href="<?php echo TEMPLATE_DIR; ?>img/favication.png">
     <link rel="apple-touch-icon" sizes="128x128" href="<?php echo TEMPLATE_DIR; ?>img/favication.png">

@@ -153,6 +153,16 @@ class indexController
         $banner = $banner->getByFilter($fields);
         $export['banner'] = $banner['export']['list'];
 
+
+
+        /** sound cloud */
+        include_once(ROOT_DIR."component/soundcloud/model/soundcloud.model.php");
+        $soundcloud = new soundcloud();
+        $sc_rs = $soundcloud->getByFilter();
+        $export['soundcloud'] = $sc_rs['export']['list'];
+
+
+
         $this->fileName = "index.php";
         //print_r_debug($export);
 

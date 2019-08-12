@@ -142,6 +142,11 @@
                                 <span class="sidebar-text text-16">ویرایش خدمات</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="<?=RELA_DIR; ?>zamin/?component=soundcloud">
+                                <span class="sidebar-text text-16">Sound cloud</span>
+                            </a>
+                        </li>
                     </ul><!--/sidebar-child-->
                 </li><!--/sidebar-item-->
 
