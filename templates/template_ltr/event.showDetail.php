@@ -158,43 +158,7 @@
                         <? endif; ?>
 
                     </div>
-                    <div class="col_full nobottommargin">
 
-
-                        <div id="map" style="width:100%;height:250px"></div>
-
-                        <script>
-                            function myMap() {
-                                var mapCanvas = document.getElementById("map");
-                                var mapOptions = {
-                                    center: new google.maps.LatLng(<?=$list['list']['lat'];?>,<?=$list['list']['longe'];?>),
-                                    zoom: 15
-
-                                }
-                                var map = new google.maps.Map(mapCanvas, mapOptions);
-
-                                var marker = new google.maps.Marker({
-                                    position: new google.maps.LatLng(<?=$list['list']['lat'];?>,<?=$list['list']['longe'];?>),
-                                    map: map,
-                                    animation: google.maps.Animation.DROP,
-                                    //icon:'img/fav.png',
-                                    title: 'Snazzy!'
-                                });
-
-                                var infowindow = new google.maps.InfoWindow({
-                                    content: "Hello World!"
-                                });
-
-                                google.maps.event.addListener(marker, 'click', function () {
-                                    infowindow.open(map, marker);
-                                });
-                            }
-                        </script>
-
-                        <script src="https://maps.googleapis.com/maps/api/js?callback=myMap&key=AIzaSyCIh9IvVEgJFsmTg0UcXLn8LDoPnz2CnRc"></script>
-
-
-                    </div>
                 </div>
 
                 <div class="clear"></div>

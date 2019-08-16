@@ -159,7 +159,7 @@ class adminEventController
         $_input['date3'] = ($_input['date3']!=''?convertJToGDate($_input['date3']):'0000-00-00');
         $_input['category_id'] = ','.implode(',',$_input['category_id'] ).',';
         $_input['genre_id'] = ','.implode(',',$_input['genre_id'] ).',';
-        $_input['salon_id'] = ','.implode(',',$_input['salon_id'] ).',';
+        $_input['salon_id'] = (",".(implode(",",$_input['salon_id']))."," == ',,')?'':",".(implode(",",$_input['salon_id'])).",";
 
 
         $result = $event->setFields($_input);
@@ -348,6 +348,13 @@ class adminEventController
             $export['states'] = $state->list;
         }*/
 
+        /** country */
+        include_once ROOT_DIR.'component/country/model/country.model.php';
+        $country = new country();
+        $resultCountry = $country::getAll()->getList();
+        if ($resultCountry['result'] == 1) {
+            $export['country'] = $resultCountry['export']['list'];
+        }
 
         $export['showStatus']=$showStatus;
         $this->fileName = 'admin.event.editForm.php';
@@ -379,8 +386,8 @@ class adminEventController
         $fields['date3'] = ($fields['date3']!=''?convertJToGDate($fields['date3']):'0000-00-00');
         $fields['category_id'] = ",".(implode(",",$fields['category_id'])).",";
         $fields['genre_id'] = ",".(implode(",",$fields['genre_id'])).",";
-        $fields['salon_id'] = ",".(implode(",",$fields['salon_id'])).",";
 
+        $fields['salon_id'] = (",".(implode(",",$fields['salon_id']))."," == ',,')?'':",".(implode(",",$fields['salon_id'])).",";
 
 
         $event->setFields($fields);
@@ -665,11 +672,11 @@ class adminEventController
         $other['5']=array(
             'formatter' =>function($list)
             {
-                include_once ROOT_DIR."component/province/admin/model/admin.province.model.php";
-                $city = adminProvinceModel::find($list['city_id']);
+                include_once ROOT_DIR."component/country/model/country.model.php";
+                $city = country::find($list['country_id']);
 
-                global $lang;
-                return $city->fields["name_$lang"];
+
+                return $city->fields["nice_name"];
             }
         );
         $other['12']=array(

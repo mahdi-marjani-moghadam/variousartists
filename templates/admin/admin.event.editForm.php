@@ -234,27 +234,14 @@
 
 
                         <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="sale_type">نوع فروش:</label>
-                                    <div class="col-xs-12 col-sm-8 pull-right">
-                                        <select name="sale_type" id="sale_type"  >
-                                            <option <?=($list['sale_type']== 'class') ? 'selected' : '' ?>
-                                                    value="class">ثبت نام کلاس
-                                            </option>
-                                            <option <?=($list['sale_type']== 'concert') ? 'selected' : '' ?>
-                                                    value="concert">فروش بلیط
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="salon_id">انتخاب سالن:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
                                         <select name="salon_id[]" id="salon_id" data-input="select2" >
+                                            <option value="">در صورت انتخاب فروش فعال میشود.</option>
                                             <?
                                             foreach($list['salon'] as $category_id => $value)
                                             {
@@ -270,7 +257,21 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="sale_type">نوع فروش:</label>
+                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                        <select name="sale_type" id="sale_type"  >
+                                            <option <?=($list['sale_type']== 'class') ? 'selected' : '' ?>
+                                                    value="class">ثبت نام کلاس
+                                            </option>
+                                            <option <?=($list['sale_type']== 'concert') ? 'selected' : '' ?>
+                                                    value="concert">فروش بلیط
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
@@ -323,6 +324,28 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6" style="">
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
+                                           for="country_id"><?=country?></label>
+                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+                                        <select name="country_id" id="country_id" data-input="select2">
+
+                                            <?
+                                            foreach($list['country'] as $province_id => $value)
+                                            {?>
+                                            <option
+                                                <?= $value['id'] == $list['country_id'] ? 'selected' : '' ?>
+                                                    value="<?= $value['id'] ?>">
+                                                <?= $value["nice_name"] ?>
+                                                </option><?
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="row xsmallSpace hidden-xs"></div>
                         <div class="row">

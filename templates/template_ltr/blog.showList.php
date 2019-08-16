@@ -46,8 +46,8 @@
                 </div>
             </nav>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 ">
-            <div class="postcontent nobottommargin  clearfix" style="display: ;">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 ">
+            <div class=" nobottommargin  clearfix" style="display: ;">
                 <div id="posts" class="">
                     <?
                     if(count($blog['export']['list']) == 0 && isset($blog['export']['list']))
@@ -72,7 +72,7 @@
                         <div class="entry clearfix">
                             <div class="entry-image">
                                 <a href="<?php echo (strlen($value['image']) ? RELA_DIR.'statics/blog/'.$value['image'] : TEMPLATE_DIR.'/assets/images/placeholder.png'); ?>" data-lightbox="image">
-                                    <img class="image_fade" src="<?php echo (strlen($value['image']) ? RELA_DIR.'statics/blog/'.$value['image'] : TEMPLATE_DIR.'/assets/images/placeholder.png'); ?>" alt="" style="opacity: 1;">
+                                    <img  class="image_fade" src="<?php echo (strlen($value['image']) ? RELA_DIR.'statics/blog/'.$value['image'] : TEMPLATE_DIR.'/assets/images/placeholder.png'); ?>" alt="" style="opacity: 1;">
                                 </a>
                             </div>
                             <div class="entry-c">

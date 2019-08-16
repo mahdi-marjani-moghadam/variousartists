@@ -91,36 +91,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="display: none"  class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="brief_description_en">توضیحات مختصر(انگلیسی):</label>
-                                    <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-
-
-                                        <?php
-
-                                        include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
-                                        include_once ROOT_DIR.'common/ckfinder/ckfinder.php';
-                                        $ckeditor = new CKEditor();
-                                        $ckeditor->basePath = RELA_DIR.'common/ckeditor/';
-
-
-
-
-                                        $config['language'] = 'fa';
-                                        $config['filebrowserBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html';
-                                        $config['filebrowserImageBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html?type=Images';
-                                        $config['filebrowserUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
-                                        $config['filebrowserImageUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
-
-                                        $tt = $ckeditor->editor('description_en',$list['description_en'],$config);
-
-                                        echo $tt;
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="row xsmallSpace hidden-xs"></div>
                         <div class="row">
@@ -155,10 +125,11 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
+                                    <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label "
                                            for="description_en">توضیحات(انگلیسی):</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
                                         <?php
+
 
                                         include_once ROOT_DIR.'common/ckeditor/ckeditor.php';
                                         include_once ROOT_DIR.'common/ckfinder/ckfinder.php';
@@ -168,15 +139,15 @@
 
 
 
-                                        $config['language'] = 'fa';
+                                        $config['language'] = 'en';
                                         $config['filebrowserBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html';
                                         $config['filebrowserImageBrowseUrl'] = RELA_DIR.'common/ckfinder/ckfinder.html?type=Images';
                                         $config['filebrowserUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
                                         $config['filebrowserImageUploadUrl'] = RELA_DIR.'common/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
 
-                                        $tt2 = $ckeditor->editor('description_en',$list['description_en'],$config);
+                                        $tt = $ckeditor->editor('description_en',$list['description_en'],$config);
 
-                                        echo $tt2;
+                                        echo $tt;
                                         ?>
                                     </div>
                                 </div>
@@ -256,6 +227,7 @@
                                            for="salon_id">انتخاب سالن:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
                                         <select name="salon_id[]" id="salon_id" data-input="select2" >
+                                            <option value="">در صورت انتخاب فروش فعال میشود.</option>
                                             <?
                                             foreach($list['salon'] as $category_id => $value)
                                             {
@@ -267,6 +239,21 @@
                                                 <?
                                             }
                                             ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="sale_type">نوع فروش:</label>
+                                    <div class="col-xs-12 col-sm-8 pull-right">
+                                        <select name="sale_type" id="sale_type"  >
+                                            <option <?=($list['sale_type']== 'class') ? 'selected' : '' ?>
+                                                    value="class">ثبت نام کلاس
+                                            </option>
+                                            <option <?=($list['sale_type']== 'concert') ? 'selected' : '' ?>
+                                                    value="concert">فروش بلیط
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
