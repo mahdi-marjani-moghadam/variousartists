@@ -969,7 +969,8 @@ class memberLogIn
        }
 
 
-       if($obj['export']['recordsCount'] != 1)
+
+       if($obj['export']['recordsCount'] == 0)
        {
            $result['result'] = -1;
            $result['msg'] = translate('This user in not exist');

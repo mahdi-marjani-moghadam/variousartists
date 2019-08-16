@@ -46,13 +46,9 @@
                 </div>
             </nav>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-2 ">
-
-
-
+        <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 ">
             <div class="postcontent nobottommargin  clearfix" style="display: ;">
-
-                <div id="posts" class="small-thumbs">
+                <div id="posts" class="">
                     <?
                     if(count($blog['export']['list']) == 0 && isset($blog['export']['list']))
                     {
@@ -86,27 +82,17 @@
                                 <ul class="entry-meta clearfix">
                                     <li><i class="icon-calendar3"></i> <?=($value['date'])?></li>
                                     <li><a href="#"><i class="icon-user"></i> <?=$value['artists_name']?></a></li>
-                                    <!--<li><i class="icon-folder-open"></i> <a href="#">General</a>, <a href="#">Media</a></li>-->
-                                    <!--<li><a href="blog-single.html#comments"><i class="icon-comments"></i> 13</a></li>-->
-                                    <!--<li><a href="#"><i class="icon-camera-retro"></i></a></li>-->
                                 </ul>
                                 <div class="entry-content">
                                     <p><?=$value['description_'.$lang]?></p>
-                                    <? /*<a href="<?php echo RELA_DIR . 'blog/detail/' . $value['id'] . '/'; ?>" class="more-link">Read More</a>*/?>
                                 </div>
                             </div>
                         </div>
-
                         <?php
                     }
                     ?>
                 </div>
-
-
-
             </div>
-
-
             <div class="clearfix"></div>
             <?
             if(($blog['export']['rows']) != 0)

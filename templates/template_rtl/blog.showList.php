@@ -30,29 +30,9 @@
 <section id="content">
 
     <div class="content-wrap" style="padding: 1px 0 0 0;">
-
-        <div class="col-xs-12 col-sm-12 col-md-2 pull-right hidden">
-            <?php //include_once("categoryList.php");?>
-            <nav class=" nobottommargin category-ul">
-                <h2 class="btn btn-default btn-block" ><?=category_arrow_down?> ... </h2>
-                <div class="category-detail">
-                    <? echo $list['export']['category'];?>
-                </div>
-
-                <br>
-                <h2 class="btn btn-default btn-block"  ><?=genre_arrow_down?> ...</h2>
-                <div class="category-detail">
-                    <? echo $list['export']['genre'];?>
-                </div>
-            </nav>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-2 ">
-
-
-
-            <div class="postcontent nobottommargin  clearfix" style="display: ;">
-
-                <div id="posts" class="small-thumbs">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
+            <div class=" nobottommargin  clearfix">
+                <div id="posts" class="">
                     <?
                     if(count($blog['export']['list']) == 0 && isset($blog['export']['list']))
                     {
@@ -69,7 +49,6 @@
                         </div>
                         <?
                     }
-
                     foreach($blog['export']['list'] as $k => $value)
                     {
                     ?>
@@ -86,24 +65,16 @@
                             <ul class="entry-meta clearfix">
                                 <li><i class="icon-calendar3"></i> <?=convertDate($value['date'])?></li>
                                 <li><a href="#"><i class="icon-user"></i> <?=$value['artists_name']?></a></li>
-                                <!--<li><i class="icon-folder-open"></i> <a href="#">General</a>, <a href="#">Media</a></li>-->
-                                <!--<li><a href="blog-single.html#comments"><i class="icon-comments"></i> 13</a></li>-->
-                                <!--<li><a href="#"><i class="icon-camera-retro"></i></a></li>-->
                             </ul>
                             <div class="entry-content">
                                 <p><?=$value['description_'.$lang]?></p>
-                                <? /*<a href="<?php echo RELA_DIR . 'blog/detail/' . $value['id'] . '/'; ?>" class="more-link">Read More</a>*/?>
                             </div>
                         </div>
                     </div>
-
                         <?php
                     }
                     ?>
                 </div>
-
-               
-
             </div>
 
 
