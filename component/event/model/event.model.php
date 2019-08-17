@@ -86,6 +86,7 @@ class eventModel extends looeic
 
         $this->fields = $result['list'];
 
+
         return $result;
     }
 

@@ -46,7 +46,7 @@ class eventController
     {
 
         // global $conn, $lang;
-        global $PARAM,$member_info;
+        global $PARAM,$member_info,$lang;
         switch ($this->exportType) {
             case 'html':
 
@@ -125,13 +125,13 @@ class eventController
         }
 
         ///////////////////////////
-        include_once ROOT_DIR.'component/province/model/province.model.php';
-        $obj = province::find($export['list']['city_id']);
-        $export['list']['city'] = $obj->fields["name_$lang"];
+        include_once ROOT_DIR.'component/country/model/country.model.php';
+        $obj = country::find($export['list']['country_id']);
+        $export['list']['country'] = $obj->fields["nice_name"];
 
         $this->fileName = 'event.showDetail.php';
 
-/*print_r_debug($export);*/
+//print_r_debug($export);
 
         $this->template($export);
         die();

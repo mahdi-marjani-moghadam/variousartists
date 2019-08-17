@@ -113,6 +113,8 @@ class adminArtistsController
             $fields['cities'] = $city->list;
         }*/
 
+
+
         include_once ROOT_DIR.'component/province/admin/model/admin.province.model.php';
         //$province = new adminProvinceModel();
         $province = adminProvinceModel::getAll()->getList();

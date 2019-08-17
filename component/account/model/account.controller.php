@@ -244,8 +244,8 @@ class accountController
     {
         global $member_info;
 
-        include_once(ROOT_DIR."component/category/model/category.model.php");
-        $category = new categoryModel();
+        include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
+        $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
 
@@ -364,8 +364,9 @@ class accountController
         $export = $obj->fields;
 
         /** category */
-        include_once(ROOT_DIR."component/category/model/category.model.php");
-        $category = new categoryModel();
+        include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
+        $category = new adminCategoryModel();
+
         $resultCategory = $category->getCategoryOption();
         if($resultCategory['result'] == 1)
         {

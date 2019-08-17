@@ -278,7 +278,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="category_id">انتخاب دسته بندی:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <select name="category_id[]" id="category_id" data-input="select2" >
+                                        <select name="category_id[]" id="category_id" data-input="select2" multiple>
                                             <?
                                             foreach($list['category'] as $category_id => $value)
                                             {
@@ -299,7 +299,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="genre_id">سبک:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <select name="genre_id[]" id="genre_id" data-input="select2" >
+                                        <select name="genre_id[]" id="genre_id" data-input="select2" multiple>
                                             <?
                                             foreach($list['genre'] as $genre_id => $value)
                                             {

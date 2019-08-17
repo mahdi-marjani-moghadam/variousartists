@@ -98,6 +98,12 @@
                                     <? if ($list['list']['organizer'] != ""): ?>
                                         <li><i class="icon-user"></i>
                                         <strong><?= $list['list']['organizer']; ?></strong></li><? endif; ?>
+                                    <? if ($list['list']["country"] != ""): ?>
+                                        <li><i class="icon-pinboard"></i>
+                                        <strong><?= $list['list']["country"]; ?></strong></li><? endif; ?>
+                                    <? if ($list['list']["address"] != ""): ?>
+                                        <li><i class="icon-pinboard"></i>
+                                        <strong><?= $list['list']["address"]; ?></strong></li><? endif; ?>
                                 </ul>
                             </div>
                             <? if ($list['list']['salon_id'] != ""): ?>

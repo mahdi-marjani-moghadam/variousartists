@@ -206,7 +206,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="city_id">انتخاب شهر:</label>
+                                           for="city_id">انتخاب کشور:</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
                                         <select name="city_id" id="city_id" data-input="select2">
 

@@ -270,7 +270,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="country_id"><?=country?></label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <select name="country_id" id="country_id" data-input="select2">
+                                        <select name="country_id" id="country_id" data-input="select2" multiple>
 
                                             <?
                                             foreach($list['country'] as $province_id => $value)

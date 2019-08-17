@@ -13,7 +13,7 @@ class eventModelDb
         global $lang;
         $conn = dbConn::getConnection();
         $sql = "SELECT
-                    Event_id,category_id,salon_id,city_id,event_name_$lang as event_name,event_phone,sale_type,
+                    Event_id,category_id,salon_id,city_id,country_id,event_name_$lang as event_name,event_phone,sale_type,
                 event_time,event_time2,event_time3,address_$lang as address,meta_keyword,meta_description,
                 logo,brief_description_$lang as brief_description,description_$lang as description,`date`,`date2`,`date3`,priority,status,lat,`longe`,price,organizer
                 FROM
