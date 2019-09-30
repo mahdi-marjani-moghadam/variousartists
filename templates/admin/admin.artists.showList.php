@@ -27,7 +27,8 @@
             "processing": true,
             "serverSide": true,
             "ajax": "<?=RELA_DIR?>zamin/?component=artists&action=search&status=<?=$list['status']?>",
-            "ordering": false
+            "ordering": false,
+            "pageLength": 500
         });
 
         /*$('#example').dataTable( {

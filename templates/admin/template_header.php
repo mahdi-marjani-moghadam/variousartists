@@ -2,7 +2,7 @@
         <header class="header fixed">
 
             <!-- header-profile -->
-            <?php if(admin_info!=-1){?>
+            <?php if($admin_info['result']!=-1){?>
             <div class="header-profile pull-left">
 
                 <div class="profile-nav">

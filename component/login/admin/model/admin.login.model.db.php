@@ -172,6 +172,7 @@ class adminLoginModelDb
 
     static function getAdminByUsername($fields)
     {
+
         //global $lang;
         $conn = dbConn::getConnection();
         /*$sql = "SELECT
@@ -180,7 +181,7 @@ class adminLoginModelDb
                     login
                 WHERE
                     Login_id= '$id'";*/
-        $sql = "SELECT `admin_id` , `name`, `family` FROM `admin` where  `username` = '".$fields['username']."' AND password = '".$fields['password']."'";
+        $sql = "SELECT `admin_id` , `name`, `family` FROM `admin` where  `username` = '".handleData($fields['username'])."' AND password = '".handleData($fields['password'])."'";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();

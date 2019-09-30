@@ -394,6 +394,7 @@ class adminArtistsController
         // print_r_debug($date);
         //$searchFields['where'] = 'where refresh_date < '."'$date'";
         $searchFields['filter']['type'] = '1';
+        //$searchFields['filter']['limit'] = '0,1000';
         //print_r_debug($searchFields);
 
         $result = $artists->getArtists($searchFields);
@@ -457,7 +458,7 @@ class adminArtistsController
                 $st='<a href="'. RELA_DIR.'zamin/?component=artists&action=edit&id='.$list['Artists_id'].'&showStatus='.$internal['showstatus']
                     .'">ویرایش</a> <br/>
                         <a href="'.RELA_DIR.'zamin/?component=product&id='.$list['Artists_id'].'">لیست کارها</a><br/>
-                        <a href="'.RELA_DIR.'zamin/?component=artists&action=delete&id='.$list['Artists_id'].$list['artists_name'].'">حذف</a>';
+                        <a onclick="return confirm(\'آیا مطمئن هستید؟\')" href="'.RELA_DIR.'zamin/?component=artists&action=delete&id='.$list['Artists_id'].$list['artists_name'].'">حذف</a>';
                 return $st;
             }
         );

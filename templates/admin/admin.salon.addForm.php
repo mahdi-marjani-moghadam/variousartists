@@ -37,14 +37,14 @@
 <div class="content-control">
     <!--control-nav-->
     <ul class="control-nav pull-right">
-        <li><a class="rtl text-24"><i class="sidebar-icon fa fa-tasks"></i> افزودن دسته بندی جدید</a></li>
+        <li><a class="rtl text-24"><i class="sidebar-icon fa fa-tasks"></i> افزودن سالن جدید</a></li>
     </ul><!--/control-nav-->
 </div><!-- /content-control -->
 
 <div class="content-body">
   <div id="panel-tablesorter" class="panel panel-warning">
     <div class="panel-heading bg-white">
-      <h3 class="panel-title rtl">فرم دسته بندی</h3>
+      <h3 class="panel-title rtl">فرم</h3>
       <div class="panel-actions">
         <button data-expand="#panel-tablesorter" title="" class="btn-panel rtl" data-original-title="تمام صفحه">
           <i class="fa fa-expand"></i>

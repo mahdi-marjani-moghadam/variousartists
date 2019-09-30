@@ -43,7 +43,7 @@ class adminLoginController
     function template($list = [], $msg='')
     {
         // global $conn, $lang;
-        global $messageStack;
+        global $messageStack,$admin_info;
 
         switch ($this->exportType) {
             case 'html':
@@ -76,6 +76,7 @@ class adminLoginController
      */
     public function showLoginform()
     {
+
         $this->fileName = 'admin.login.form.php';
         $this->template();
         die();

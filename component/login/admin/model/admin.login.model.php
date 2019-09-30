@@ -188,6 +188,7 @@ class adminLoginModel
         global $admin_info;
 
         $result = $this->setFields($fields);
+
         if ($result['result'] != 1) {
             return $result;
         }

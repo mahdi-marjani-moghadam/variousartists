@@ -42,15 +42,13 @@
         </section>
         <section>
             <div class="container">
-                <div class="col-md-4">
-                    <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/647205381&color=%230e0c0f&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
-                </div>
-                <div class="col-md-4">
-                    <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/513290091&color=%230e0c0f&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
-                </div>
-                <div class="col-md-4">
-                    <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/442072704&color=%23340e0c&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
-                </div>
+                <?php
+                foreach ($list['soundcloud'] as $k => $soundcloud):
+                    ?>
+                    <div class="col-md-4">
+                        <?=$soundcloud['embed']?>
+                    </div>
+                <? endforeach; ?>
             </div>
 
 

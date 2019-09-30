@@ -77,6 +77,21 @@
                 ============================================= -->
                 <div class="fancy-title title-bottom-border topmargin-sm">
                     <h2><?=biography?></h2>
+                    <br>
+                    <ul class="portfolio-meta ">
+                        <? if($list['list']['show_birthday'] == 'on'):?>
+                            <li><span><i class="icon-user"></i>تاریخ تولد:</span><?=convertDate($list['list']['birthday'])?></li>
+                        <? endif; ?>
+
+                        <li style="display: none;" ><i class="icon-trophy"></i>جمع امتیازات <?=$list['list']['rate']?> ( از <?=$list['list']['rate_count']?> نظر ):
+                            <div  dir="ltr">
+
+                                <!--<input id="input-1" disabled type="number" class="rating"  value="<?/*=$list['list']['rate']*/?>"  max="10"  data-step="0.1" data-size="sm" data-glyphicon="false" data-rating-class="fontawesome-icon">-->
+
+
+                            </div>
+                        </li>
+                    </ul>
                 </div>
                 <p ><?=$list['list']['description']?></p>
 
@@ -84,24 +99,6 @@
 
 
 
-                <!-- Portfolio Single - Meta
-                ============================================= -->
-                <ul class="portfolio-meta bottommargin">
-                    <? if($list['list']['show_birthday'] == 'on'):?>
-                        <div class="line"></div>
-                    <li><span><i class="icon-user"></i>تاریخ تولد:</span><?=convertDate($list['list']['birthday'])?></li>
-                    <? endif; ?>
-
-                    <li style="display: none;" ><i class="icon-trophy"></i>جمع امتیازات <?=$list['list']['rate']?> ( از <?=$list['list']['rate_count']?> نظر ):
-                        <div  dir="ltr">
-
-                                <!--<input id="input-1" disabled type="number" class="rating"  value="<?/*=$list['list']['rate']*/?>"  max="10"  data-step="0.1" data-size="sm" data-glyphicon="false" data-rating-class="fontawesome-icon">-->
-
-
-                        </div>
-                    </li>
-                </ul>
-                <!-- Portfolio Single - Meta End -->
 
 
             </div><!-- .portfolio-single-content end -->

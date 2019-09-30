@@ -1410,7 +1410,7 @@ define("forgot_password","یاد آوری رمز عبور؟");
 define("login_by_account","ورود با حساب کاربری");
 define("Password_sent","کد ارسال شد.");
 define("create_new_account","ساخت اکانت جدید");
-define("mobile"," موبایل :(مثال: 9193110190)");
+define("mobile","موبایل :(مثال: ۹۱۹۳۱۱۰۱۹۰)");
 define("name_fa","نام کامل(فارسی):");
 define("name_en","نام کامل(لاتین):");
 define("email","ایمیل");
