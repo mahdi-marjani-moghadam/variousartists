@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="<?php echo TEMPLATE_DIR; ?>css/magnific-popup.css" type="text/css"/>
 
     <link rel="stylesheet" href="<?php echo TEMPLATE_DIR; ?>css/responsive.css" type="text/css"/>
-    <link rel="stylesheet" href="<?php echo TEMPLATE_DIR; ?>css/responsive-rtl.css" type="text/css"/>
+
     <link rel="stylesheet" href="<?php echo TEMPLATE_DIR; ?>css/magnific-popup.css" type="text/css"/>
 
     <link rel="stylesheet" href="<?php echo TEMPLATE_DIR; ?>css/owl.carousel.css" type="text/css"/>

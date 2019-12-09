@@ -135,7 +135,7 @@ class artistsModelDb
         }
 
         $sql .= $condition['list']['order'].$condition['list']['limit'];
-        //print_r_debug($fields);
+        //print_r($sql);die();
         $stmt = $conn->prepare($sql);
 
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
