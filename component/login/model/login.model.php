@@ -656,6 +656,7 @@ class memberLogIn
             $artists->type = 0;
             $artists->status = 1;
 
+
             include_once ROOT_DIR.'component/magfa/magfa.model.php';
             $sms = new WebServiceSample;
 
@@ -683,6 +684,7 @@ class memberLogIn
             }
         }
         $result=$artists->save();
+
 
 
 

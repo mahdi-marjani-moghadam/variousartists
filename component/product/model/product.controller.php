@@ -132,7 +132,13 @@ class productController
             $export['category_list_all'] = $resultCategoryAll['export']['list'];
         }
 
-
+        /** genre */
+        include_once ROOT_DIR.'component/genre/model/genre.model.php';
+        $genre = new genreModel();
+        $resultGenreAll = $genre->allGenre();
+        if ($resultGenreAll['result'] == 1) {
+            $export['genre_list_all'] = $resultGenreAll['export']['list'];
+        }
 
 
         // other products
