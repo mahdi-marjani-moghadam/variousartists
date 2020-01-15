@@ -13,21 +13,26 @@ session_start();
 define("DB_TYPE","mysql");
 // define("DB_HOST","172.18.205.250");
 define("DB_HOST","localhost");
-define("DB_USER","root");
-define("DB_PASSWORD","12345678");
-define("DB_DATABASE","variousartists");
+define("DB_USER","variousa_user");
+define("DB_PASSWORD","83music69ir");
+define("DB_DATABASE","variousa_db");
     define("ROOT_DIR",dirname(__FILE__) ."/");
 
 define("SUB_FOLDER","");
-
-define("RELA_DIR","http://".$_SERVER['HTTP_HOST']."/");
+//echo "<pre>";print_r($_SERVER);die();
+if($_SERVER['HTTPS'] == 'on'){$http = 'https';}
+else{$http = 'http';}
+define("RELA_DIR",$http."://".$_SERVER['HTTP_HOST']."/");
 
 define("PRODUCT_IMAGE",RELA_DIR . "templates/images/product/product_image/");
 define("PRODUCT_IMAGE_ROOT",ROOT_DIR . "templates/images/product/product_image/");
 define("STATIC_ROOT_DIR",ROOT_DIR . "statics");
 
-define("SMTP_SERVER","mail.variousartist.ir");
-define("SMTP_USERNAME","support@variousartist.ir");
+define("SMTP_USERNAME","info@variousartists.ir");
+define("SMTP_PASSWORD","66008190");
+
+define("SMTP_SERVER","mail.variousartists.ir");
+define("SMTP_USERNAME","support@variousartists.ir");
 define("SMTP_PASSWORD","66008190@");
 define("SMTP_SENDER","Various Artists");
 

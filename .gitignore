@@ -8,3 +8,9 @@
 .idea/va.iml
 
 .idea/vcs.xml
+
+statics
+
+*.xml
+
+.vscode
