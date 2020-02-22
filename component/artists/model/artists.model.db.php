@@ -110,7 +110,7 @@ class artistsModelDb
 
          $sql = "SELECT SQL_CALC_FOUND_ROWS 
                       *,artists_name_$lang as artists_name 
-                      FROM artists WHERE  status='1'";
+                      FROM artists WHERE type=1 and status='1'";
         /*if (isset($fields['condition']['city_id'])) {
             $sql .= ' AND city_id = '.$fields['condition']['city_id'];
         }*/

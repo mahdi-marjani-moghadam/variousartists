@@ -244,6 +244,8 @@ class memberLogIn
     public function logIn($username = '', $password = '', $reffer = '')
     {
         global  $member_info, $messageStack;
+        
+        
 
         $conn = dbConn::getConnection();
         include_once ROOT_DIR.'/model/db.inc.class.php';
@@ -299,7 +301,7 @@ class memberLogIn
 				";
 
         $stmt = $conn->prepare($sql);
-
+        
         //$stmt->setFetchMode(PDO::FETCH_ASSOC);
 
         $stmt->execute();
@@ -984,11 +986,11 @@ class memberLogIn
        $code = uniqid();
        $url =   "'<a href='".RELA_DIR.'login/changePass/?user='.$obj['export']['list'][0]->fields['username'].'&code='.$code ."'>".RELA_DIR.'login/changePass/?email='.$obj['export']['list'][0]->fields['username'].'&code='.$code."</a>";
 
-       if(checkMail($obj['username'])==1){
+       if(checkMail($obj['export']['list'][0]->fields['username'])==1){
            $sendEmail = sendmail($obj['export']['list'][0]->fields['username'],translate('Remember Password'),translate('Your change password link: ').$url."<br>".translate('website: www.variousartists.ir'));
-
+            
            if($sendEmail['result']==-1){
-
+                
                $result['result'] = -1;
                $result['msg'] = $sendEmail['msg'];
                return $result;

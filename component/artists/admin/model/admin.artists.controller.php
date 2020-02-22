@@ -198,7 +198,7 @@ class adminArtistsController
         } else {
             $export = $fields;
         }
-
+        
 
 
         include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
@@ -251,7 +251,37 @@ class adminArtistsController
             $export['certifications'] = $certification->list;
         }*/
 
+        global $dataStack;
+        //////////////////////////////////////////////////
+        ////                get country               ////
+        //////////////////////////////////////////////////
+        include_once(ROOT_DIR . "model/country.class.php");
+        $COUNTRY = new clsCountry();
+        $COUNTRY->countryFieldName = array("iso", "phone_code", "name", "max_length", "sample");
+        
+        $export['data'] = $dataStack->output('data');
 
+        if (isset($export['data']['areacode']) && count($export['data']) > 0 && $export['data']['areacode'] != '') {
+            $COUNTRY->condition = array("phone_code" => $export['data']['areacode']);// or "iso"=>"ir"
+        } else {
+            $COUNTRY->condition = array("phone_code" => "98");// or "iso"=>"us"
+        }
+
+        //set input country when come in page
+        $COUNTRY->getAllCountryCode();
+        $export['default'] = $COUNTRY->country;
+
+        //$countries = $COUNTRY->country;
+
+        $COUNTRY->unsetCondition();
+
+        //get select country area code
+        //$COUNTRY->multiIso         = array("CN","us","IR","de");
+        $COUNTRY->getAllCountryCode();
+        $export['country'] = $COUNTRY->country;
+
+        
+        
 
         $export['showStatus']=$showStatus;
         $this->fileName = 'admin.artists.editForm.php';

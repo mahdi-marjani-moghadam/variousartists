@@ -301,6 +301,7 @@ function sendmail($email, $subject, $body, $header = '')
     $mail->Subject = $subject;
     $mail->Body = $body;
     $mail->AltBody = $body;
+    $mail->SMTPDebug  = 1;
     $mail->ClearAddresses();
     $mail->AddAddress($email);
 

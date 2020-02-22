@@ -505,7 +505,7 @@ div.tagsinput div {
 .select2-container {
     position: relative;
     margin: 0;
-    min-width: 220px;
+    min-width: 200px;
     display: inline-block;
     /* inline-block for ie7 */
     zoom: 1;
