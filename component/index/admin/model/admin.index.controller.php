@@ -82,10 +82,10 @@ class adminIndexController
 
         /** artists */
         include_once(ROOT_DIR."component/artists/admin/model/admin.artists.model.php");
-        $result = adminArtistsModel::query('select type,count(Artists_id) as count from artists group by `type` ')->getList();
+        $result = adminArtistsModel::query('select type,count(Artists_id) as count from artists group by `type` order by type desc')->getList();
 
-        $export['artists_count'] = $result['export']['list'][1]['count'];
-        $export['members_count'] = $result['export']['list'][0]['count'];
+        $export['artists_count'] = $result['export']['list'][0]['count'];
+        $export['members_count'] = $result['export']['list'][1]['count'];
 
 
 

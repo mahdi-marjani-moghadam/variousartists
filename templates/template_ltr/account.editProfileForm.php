@@ -13,6 +13,11 @@
                     <label for="artists_name_en"><?=name_en?></label>
                     <input type="text" id="artists_name_en" name="artists_name_en" value="<?=$list['artists_name_en']?>" class="form-control" />
                 </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <label for="nickname"><?='Nick name'?></label>
+                    <input type="text" id="nickname" name="nickname" value="<?=$list['nickname']?>" class="form-control" />
+                </div>
+
 
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <label for="artists_phone1"><?=telephone?></label>

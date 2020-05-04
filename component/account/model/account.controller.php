@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: daba
@@ -6,7 +7,7 @@
  * Time: 9:23 AM
  */
 
-include_once dirname(__FILE__).'/account.model.php';
+include_once dirname(__FILE__) . '/account.model.php';
 
 
 /**
@@ -44,9 +45,9 @@ class accountController
      *
      * @return string
      */
-    public function template($list = [], $msg='')
+    public function template($list = [], $msg = '')
     {
-        global $PARAM, $lang,$member_info;
+        global $PARAM, $lang, $member_info;
 
 
         switch ($this->exportType) {
@@ -78,39 +79,36 @@ class accountController
 
         global $member_info;
 
-        include_once ROOT_DIR."component/invoice/model/invoice.model.php";
+        include_once ROOT_DIR . "component/invoice/model/invoice.model.php";
 
 
         $invoice = invoice::getBy_member_id($member_info['Artists_id'])->getList();
 
 
-        if($invoice['export']['recordsCount'] >0)
-        {
+        if ($invoice['export']['recordsCount'] > 0) {
             $export['invoice'] = $invoice['export']['list'];
         }
 
 
 
-        $object=model::find('artists',$member_info['Artists_id']);
-        if(is_array($object))
-        {
+        $object = model::find('artists', $member_info['Artists_id']);
+        if (is_array($object)) {
             $this->fileName = 'account.showPanel.php';
-            $this->template('',$object['msg']);
+            $this->template('', $object['msg']);
             die();
         }
 
 
         $export['list'] = $object->fields;
 
-        include_once ROOT_DIR.'component/product/model/product.model.php';
-        $products=new productModel();
+        include_once ROOT_DIR . 'component/product/model/product.model.php';
+        $products = new productModel();
 
 
-        $result=$products->getProductByArtistsId($member_info['Artists_id']);
-        if($result['result'] == -1)
-        {
+        $result = $products->getProductByArtistsId($member_info['Artists_id']);
+        if ($result['result'] == -1) {
             $this->fileName = 'account.showPanel.php';
-            $this->template('',$result['msg']);
+            $this->template('', $result['msg']);
             die();
         }
 
@@ -123,7 +121,7 @@ class accountController
         // breadcrumb
         global $breadcrumb;
         $breadcrumb->reset();
-//        $breadcrumb->add('پیشخوان ', 'account', true);
+        //        $breadcrumb->add('پیشخوان ', 'account', true);
         $breadcrumb->add(translate('پیشخوان '), 'account');
         $export['breadcrumb'] = $breadcrumb->trail();
         $export['page_title'] = translate('پنل کاربری');
@@ -133,32 +131,30 @@ class accountController
         die();
     }
 
-    
+
     /** Event */
-    
-    public function showEventList($fields, $msg='')
+
+    public function showEventList($fields, $msg = '')
     {
         global $member_info;
-        include_once ROOT_DIR.'component/event/model/event.model.php';
-        $event =new eventModel();
+        include_once ROOT_DIR . 'component/event/model/event.model.php';
+        $event = new eventModel();
 
-        $object=model::find('artists',$member_info['Artists_id']);
+        $object = model::find('artists', $member_info['Artists_id']);
 
-        if(is_array($object))
-        {
+        if (is_array($object)) {
             $this->fileName = 'account.showPanel.php';
-            $this->template('',$object['msg']);
+            $this->template('', $object['msg']);
             die();
         }
 
         $export['list'] = $object->fields;
 
-        $result=$event->getEventByArtistsId($member_info['Artists_id'],$fields);
+        $result = $event->getEventByArtistsId($member_info['Artists_id'], $fields);
 
-        if($result['result'] == -1)
-        {
+        if ($result['result'] == -1) {
             $this->fileName = 'account.invoiceList.php';
-            $this->template('',$result['msg']);
+            $this->template('', $result['msg']);
             die();
         }
 
@@ -193,18 +189,18 @@ class accountController
 
 
 
-        global $messageStack,$member_info;
-        include_once ROOT_DIR.'component/event/admin/model/admin.event.model.php';
+        global $messageStack, $member_info;
+        include_once ROOT_DIR . 'component/event/admin/model/admin.event.model.php';
         $event = new adminEventModel();
 
 
-        $_input['date'] = ($_input['date']!=''?convertJToGDate($_input['date']):'0000-00-00');
-        $_input['date2'] = ($_input['date2']!=''?convertJToGDate($_input['date2']):'0000-00-00');
-        $_input['date3'] = ($_input['date3']!=''?convertJToGDate($_input['date3']):'0000-00-00');
+        $_input['date'] = ($_input['date'] != '' ? convertJToGDate($_input['date']) : '0000-00-00');
+        $_input['date2'] = ($_input['date2'] != '' ? convertJToGDate($_input['date2']) : '0000-00-00');
+        $_input['date3'] = ($_input['date3'] != '' ? convertJToGDate($_input['date3']) : '0000-00-00');
 
 
-        $_input['category_id'] = ','.implode(',',$_input['category_id'] ).',';
-        $_input['genre_id'] = ','.implode(',',$_input['genre_id'] ).',';
+        $_input['category_id'] = ',' . implode(',', $_input['category_id']) . ',';
+        $_input['genre_id'] = ',' . implode(',', $_input['genre_id']) . ',';
 
         $result = $event->setFields($_input);
 
@@ -213,15 +209,15 @@ class accountController
         }
 
         $event->status = 1;
-        $event->member_id= $member_info['Artists_id'];
+        $event->member_id = $member_info['Artists_id'];
         $event->update_date = date('Y-m-d H:i:s');
         $event->save();
 
 
-        if(file_exists($_FILES['logo']['tmp_name'])){
+        if (file_exists($_FILES['logo']['tmp_name'])) {
 
-            $input['upload_dir'] = ROOT_DIR.'statics/event/';
-            $result = fileUploader($input,$_FILES['logo']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/event/';
+            $result = fileUploader($input, $_FILES['logo']);
             //fileRemover($input['upload_dir'],$product->fields['image']);
             $event->logo = $result['image_name'];
             $result = $event->save();
@@ -237,21 +233,20 @@ class accountController
         $msg = your_event_has_been_recorded;
         $messageStack->add_session('register', $msg);
 
-        redirectPage(RELA_DIR.'account/event', $msg);
+        redirectPage(RELA_DIR . 'account/event', $msg);
         die();
     }
     public function showEventAddForm($fields, $msg)
     {
         global $member_info;
 
-        include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
+        include_once ROOT_DIR . 'component/category/admin/model/admin.category.model.php';
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
 
 
-        if($resultCategory['result'] == 1)
-        {
+        if ($resultCategory['result'] == 1) {
             $export['category'] = $category->list;
         }
 
@@ -259,11 +254,10 @@ class accountController
         $export['artists_id'] = $member_info['Artists_id'];
 
         /** genre */
-        include_once(ROOT_DIR."component/genre/model/genre.model.php");
+        include_once(ROOT_DIR . "component/genre/model/genre.model.php");
         $genre = new genreModel();
         $resultGenre = $genre->getGenreOption();
-        if($resultGenre['result'] == 1)
-        {
+        if ($resultGenre['result'] == 1) {
             $export['genre'] = $genre->list;
         }
 
@@ -278,7 +272,7 @@ class accountController
 
 
         /** country */
-        include_once ROOT_DIR.'component/country/model/country.model.php';
+        include_once ROOT_DIR . 'component/country/model/country.model.php';
         $country = new country();
         $resultCountry = $country::getAll()->getList();
         if ($resultCountry['result'] == 1) {
@@ -292,27 +286,26 @@ class accountController
     }
     public function editEvent($_input)
     {
-        global $member_info,$lang,$messageStack;
+        global $member_info, $lang, $messageStack;
 
-        include_once ROOT_DIR.'component/event/admin/model/admin.event.model.php';
+        include_once ROOT_DIR . 'component/event/admin/model/admin.event.model.php';
         //$event = new adminEventModel();
 
 
         $event = adminEventModel::find($_input['Event_id']);
-        if(!is_object($event))
-        {
-            redirectPage(RELA_DIR,$event['msg']);
+        if (!is_object($event)) {
+            redirectPage(RELA_DIR, $event['msg']);
         }
 
 
 
 
 
-        $_input['date'] = ($_input['date']!=''?convertJToGDate($_input['date']):'0000-00-00');
-        $_input['date2'] = ($_input['date2']!=''?convertJToGDate($_input['date2']):'0000-00-00');
-        $_input['date3'] = ($_input['date3']!=''?convertJToGDate($_input['date3']):'0000-00-00');
-        $_input['category_id'] = ','.implode(',',$_input['category_id'] ).',';
-        $_input['genre_id'] = ','.implode(',',$_input['genre_id'] ).',';
+        $_input['date'] = ($_input['date'] != '' ? convertJToGDate($_input['date']) : '0000-00-00');
+        $_input['date2'] = ($_input['date2'] != '' ? convertJToGDate($_input['date2']) : '0000-00-00');
+        $_input['date3'] = ($_input['date3'] != '' ? convertJToGDate($_input['date3']) : '0000-00-00');
+        $_input['category_id'] = ',' . implode(',', $_input['category_id']) . ',';
+        $_input['genre_id'] = ',' . implode(',', $_input['genre_id']) . ',';
 
         $result = $event->setFields($_input);
         if ($result['result'] == -1) {
@@ -320,17 +313,17 @@ class accountController
         }
 
         $event->status = 1;
-        $event->member_id= $member_info['Artists_id'];
+        $event->member_id = $member_info['Artists_id'];
         $event->update_date = date('Y-m-d H:i:s');
         $event->save();
 
 
 
-        if(file_exists($_FILES['logo']['tmp_name'])){
+        if (file_exists($_FILES['logo']['tmp_name'])) {
 
-            $input['upload_dir'] = ROOT_DIR.'statics/event/';
-            $input['upload_dir'] = ROOT_DIR.'statics/event/';
-            $result = fileUploader($input,$_FILES['logo']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/event/';
+            $input['upload_dir'] = ROOT_DIR . 'statics/event/';
+            $result = fileUploader($input, $_FILES['logo']);
             //fileRemover($input['upload_dir'],$product->fields['image']);
             $event->logo = $result['image_name'];
             $result = $event->save();
@@ -346,7 +339,7 @@ class accountController
         $msg = 'رویداد شما ویرایش شد.';
         $messageStack->add_session('register', $msg);
 
-        redirectPage(RELA_DIR.'account/event', $msg);
+        redirectPage(RELA_DIR . 'account/event', $msg);
         die();
     }
     public function showEventEditForm($fields, $msg)
@@ -356,29 +349,26 @@ class accountController
 
         include_once "component/event/model/event.model.php";
         $obj = eventModel::find($fields['event_id']);
-        if(!is_object($obj))
-        {
-            redirectPage(RELA_DIR,$obj['msg']);
+        if (!is_object($obj)) {
+            redirectPage(RELA_DIR, $obj['msg']);
         }
 
         $export = $obj->fields;
 
         /** category */
-        include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
+        include_once ROOT_DIR . 'component/category/admin/model/admin.category.model.php';
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
-        if($resultCategory['result'] == 1)
-        {
+        if ($resultCategory['result'] == 1) {
             $export['category'] = $category->list;
         }
 
         /** genre */
-        include_once(ROOT_DIR."component/genre/model/genre.model.php");
+        include_once(ROOT_DIR . "component/genre/model/genre.model.php");
         $genre = new genreModel();
         $resultGenre = $genre->getGenreOption();
-        if($resultGenre['result'] == 1)
-        {
+        if ($resultGenre['result'] == 1) {
             $export['genre'] = $genre->list;
         }
 
@@ -394,44 +384,42 @@ class accountController
         $export['page_title'] = translate('افزودن اثر');
 
         /** country */
-        include_once ROOT_DIR.'component/country/model/country.model.php';
+        include_once ROOT_DIR . 'component/country/model/country.model.php';
         $country = new country();
         $resultCountry = $country::getAll()->getList();
         if ($resultCountry['result'] == 1) {
             $export['country'] = $resultCountry['export']['list'];
         }
 
-//        print_r_debug($export);
+        //        print_r_debug($export);
         $this->fileName = 'account.editEventForm.php';
         $this->template($export, $msg);
         die();
     }
 
     /** Invoice */
-    public function showInvoiceList($fields, $msg='')
+    public function showInvoiceList($fields, $msg = '')
     {
         global $member_info;
 
-        include_once ROOT_DIR.'component/invoice/model/invoice.model.php';
-        $invoice=new invoice();
+        include_once ROOT_DIR . 'component/invoice/model/invoice.model.php';
+        $invoice = new invoice();
 
 
-        $object=model::find('artists',$member_info['Artists_id']);
-        if(is_array($object))
-        {
+        $object = model::find('artists', $member_info['Artists_id']);
+        if (is_array($object)) {
             $this->fileName = 'account.showPanel.php';
-            $this->template('',$object['msg']);
+            $this->template('', $object['msg']);
             die();
         }
 
 
         $export['list'] = $object->fields;
 
-        $result=$invoice->getInvoiceByArtistsId($member_info['Artists_id'],$fields);
-        if($result['result'] == -1)
-        {
+        $result = $invoice->getInvoiceByArtistsId($member_info['Artists_id'], $fields);
+        if ($result['result'] == -1) {
             $this->fileName = 'account.invoiceList.php';
-            $this->template('',$result['msg']);
+            $this->template('', $result['msg']);
             die();
         }
 
@@ -469,30 +457,28 @@ class accountController
 
 
     /** Products */
-    public function showProductList($fields=array(), $msg='')
+    public function showProductList($fields = array(), $msg = '')
     {
         global $member_info;
 
-        include_once ROOT_DIR.'component/product/model/product.model.php';
-        $products=new productModel();
+        include_once ROOT_DIR . 'component/product/model/product.model.php';
+        $products = new productModel();
 
-        $object=model::find('artists',$member_info['Artists_id']);
-        if(is_array($object))
-        {
+        $object = model::find('artists', $member_info['Artists_id']);
+        if (is_array($object)) {
             $this->fileName = 'account.showPanel.php';
-            $this->template('',$object['msg']);
+            $this->template('', $object['msg']);
             die();
         }
 
 
         $export['list'] = $object->fields;
 
-        $result=productModel::getBy_artists_id($member_info['Artists_id'])->getList();
+        $result = productModel::getBy_artists_id($member_info['Artists_id'])->getList();
 
-        if($result['result'] == -1)
-        {
+        if ($result['result'] == -1) {
             $this->fileName = 'account.productList.php';
-            $this->template('',$result['msg']);
+            $this->template('', $result['msg']);
             die();
         }
         $export['artistsProductList'] = $result['export']['list'];
@@ -527,18 +513,17 @@ class accountController
     public function addProduct($fields)
     {
 
-        global $member_info,$lang;
-        include_once ROOT_DIR.'component/product/model/product.model.php';
+        global $member_info, $lang;
+        include_once ROOT_DIR . 'component/product/model/product.model.php';
         $account = new productModel();
-        $fields['category_id'] = ",".(implode(",",$fields['category_id'])).",";
-        $fields['genre_id'] = ",".(implode(",",$fields['genre_id'])).",";
+        $fields['category_id'] = "," . (implode(",", $fields['category_id'])) . ",";
+        $fields['genre_id'] = "," . (implode(",", $fields['genre_id'])) . ",";
         $fields['artists_id'] = $member_info['Artists_id'];
 
-        if($lang == 'fa')
-        {
+        if ($lang == 'fa') {
             $fields['creation_date'] = convertJToGDate($fields['creation_date']);
         }
-        $result =$account->setFields($fields);
+        $result = $account->setFields($fields);
 
 
         $account->save();
@@ -550,12 +535,12 @@ class accountController
 
 
 
-        if(file_exists($_FILES['file']['tmp_name'])){
+        if (file_exists($_FILES['file']['tmp_name'])) {
 
-            $type  = explode('/',$_FILES['file']['type']);
+            $type  = explode('/', $_FILES['file']['type']);
             $input['max_size'] = $_FILES['file']['size'];
-            $input['upload_dir'] = ROOT_DIR.'statics/files/'.$member_info['Artists_id'].'/';
-            $result = fileUploader($input,$_FILES['file']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/files/' . $member_info['Artists_id'] . '/';
+            $result = fileUploader($input, $_FILES['file']);
 
             //fileRemover($input['upload_dir'],$product->fields['file']);
 
@@ -565,12 +550,12 @@ class accountController
             $result = $account->save();
         }
 
-        if(file_exists($_FILES['image']['tmp_name'])){
+        if (file_exists($_FILES['image']['tmp_name'])) {
 
-            $type  = explode('/',$_FILES['image']['type']);
+            $type  = explode('/', $_FILES['image']['type']);
 
-            $input['upload_dir'] = ROOT_DIR.'statics/files/'.$member_info['Artists_id'].'/';
-            $result = fileUploader($input,$_FILES['image']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/files/' . $member_info['Artists_id'] . '/';
+            $result = fileUploader($input, $_FILES['image']);
             //fileRemover($input['upload_dir'],$product->fields['image']);
             $account->image = $result['image_name'];
             $result = $account->save();
@@ -580,7 +565,7 @@ class accountController
         }
 
         /** update artists date  */
-        include_once ROOT_DIR.'component/artists/admin/model/admin.artists.model.php';
+        include_once ROOT_DIR . 'component/artists/admin/model/admin.artists.model.php';
         $artists = adminArtistsModel::find($account->fields['artists_id']);
         $artists->update_date = date('Y-m-d H:i:s');
         $result = $artists->save();
@@ -589,25 +574,23 @@ class accountController
         redirectPage(RELA_DIR . 'account/showProductList', $msg);
         die();
     }
-    public function showProductAddForm($fields=array(), $msg)
+    public function showProductAddForm($fields = array(), $msg)
     {
         global $member_info;
 
         /** category */
-        include_once(ROOT_DIR."component/category/model/category.model.php");
+        include_once(ROOT_DIR . "component/category/model/category.model.php");
         $category = new categoryModel();
         $resultCategory = $category->getCategoryOption();
-        if($resultCategory['result'] == 1)
-        {
+        if ($resultCategory['result'] == 1) {
             $export['category'] = $category->list;
         }
 
         /** genre */
-        include_once(ROOT_DIR."component/genre/model/genre.model.php");
+        include_once(ROOT_DIR . "component/genre/model/genre.model.php");
         $genre = new genreModel();
         $resultGenre = $genre->getGenreOption();
-        if($resultGenre['result'] == 1)
-        {
+        if ($resultGenre['result'] == 1) {
             $export['genre'] = $genre->list;
         }
 
@@ -628,40 +611,38 @@ class accountController
     }
     public function editProduct($fields)
     {
-        global $member_info,$lang;
-        include_once ROOT_DIR.'component/product/model/product.model.php';
+        global $member_info, $lang;
+        include_once ROOT_DIR . 'component/product/model/product.model.php';
 
 
         $account = productModel::find($fields['artists_products_id']);
-        if(!is_object($account))
-        {
-            redirectPage(RELA_DIR,$account['msg']);
+        if (!is_object($account)) {
+            redirectPage(RELA_DIR, $account['msg']);
         }
 
 
-        $fields['category_id'] = ",".(implode(",",$fields['category_id'])).",";
-        $fields['genre_id'] = ",".(implode(",",$fields['genre_id'])).",";
+        $fields['category_id'] = "," . (implode(",", $fields['category_id'])) . ",";
+        $fields['genre_id'] = "," . (implode(",", $fields['genre_id'])) . ",";
         $fields['artists_id'] = $member_info['Artists_id'];
         $fields['status'] = 0;
 
-        if($lang == 'fa')
-        {
+        if ($lang == 'fa') {
             $fields['creation_date'] = convertJToGDate($fields['creation_date']);
         }
 
-        $result =$account->setFields($fields);
+        $result = $account->setFields($fields);
 
         $account->save();
 
 
-        if(file_exists($_FILES['fileT']['tmp_name'])){
+        if (file_exists($_FILES['fileT']['tmp_name'])) {
 
-            $type  = explode('/',$_FILES['fileT']['type']);
+            $type  = explode('/', $_FILES['fileT']['type']);
             $input['max_size'] = $_FILES['fileT']['size'];
-            $input['upload_dir'] = ROOT_DIR.'statics/files/'.$member_info['Artists_id'].'/';
-            $result = fileUploader($input,$_FILES['fileT']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/files/' . $member_info['Artists_id'] . '/';
+            $result = fileUploader($input, $_FILES['fileT']);
 
-            fileRemover($input['upload_dir'],$account->fields['file']);
+            fileRemover($input['upload_dir'], $account->fields['file']);
 
             $account->file_type = $type[0];
             $account->extension = $type[1];
@@ -669,11 +650,11 @@ class accountController
             $result = $account->save();
         }
 
-        if(file_exists($_FILES['imageT']['tmp_name'])){
+        if (file_exists($_FILES['imageT']['tmp_name'])) {
 
-            $input['upload_dir'] = ROOT_DIR.'statics/files/'.$member_info['Artists_id'].'/';
-            $result = fileUploader($input,$_FILES['imageT']);
-            fileRemover($input['upload_dir'],$account->fields['image']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/files/' . $member_info['Artists_id'] . '/';
+            $result = fileUploader($input, $_FILES['imageT']);
+            fileRemover($input['upload_dir'], $account->fields['image']);
             $account->image = $result['image_name'];
 
             $result = $account->save();
@@ -693,35 +674,32 @@ class accountController
 
         include_once "component/product/model/product.model.php";
         $obj = productModel::find($fields['product_id']);
-        if(!is_object($obj))
-        {
-            redirectPage(RELA_DIR,$obj['msg']);
+        if (!is_object($obj)) {
+            redirectPage(RELA_DIR, $obj['msg']);
         }
 
         $export = $obj->fields;
 
         /** category */
-        include_once(ROOT_DIR."component/category/model/category.model.php");
+        include_once(ROOT_DIR . "component/category/model/category.model.php");
         $category = new categoryModel();
         $resultCategory = $category->getCategoryOption();
-        if($resultCategory['result'] == 1)
-        {
+        if ($resultCategory['result'] == 1) {
             $export['category'] = $category->list;
         }
 
         /** genre */
-        include_once(ROOT_DIR."component/genre/model/genre.model.php");
+        include_once(ROOT_DIR . "component/genre/model/genre.model.php");
         $genre = new genreModel();
         $resultGenre = $genre->getGenreOption();
-        if($resultGenre['result'] == 1)
-        {
+        if ($resultGenre['result'] == 1) {
             $export['genre'] = $genre->list;
         }
 
         $export['artists_id'] = $member_info['Artists_id'];
 
         /** update artists date  */
-        include_once ROOT_DIR.'component/artists/admin/model/admin.artists.model.php';
+        include_once ROOT_DIR . 'component/artists/admin/model/admin.artists.model.php';
         $artists = adminArtistsModel::find($obj->fields['artists_id']);
         $artists->update_date = date('Y-m-d H:i:s');
         $result = $artists->save();
@@ -735,7 +713,7 @@ class accountController
         $export['page_title'] = translate('افزودن اثر');
 
 
-//        print_r_debug($export);
+        //        print_r_debug($export);
         $this->fileName = 'account.editProductForm.php';
         $this->template($export, $msg);
         die();
@@ -744,64 +722,63 @@ class accountController
     {
         if (!validator::required($id) and !validator::Numeric($id)) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'account/showProductList', $msg);
+            redirectPage(RELA_DIR . 'account/showProductList', $msg);
         }
 
-        include_once ROOT_DIR.'component/product/model/product.model.php';
+        include_once ROOT_DIR . 'component/product/model/product.model.php';
         $obj = productModel::find($id);
 
         if (!is_object($obj)) {
             $msg = $obj['msg'];
-            redirectPage(RELA_DIR.'account/showProductList', $msg);
+            redirectPage(RELA_DIR . 'account/showProductList', $msg);
         }
 
-        $dir = ROOT_DIR.'statics/event/';
-        fileRemover($dir,$obj->fields['image']);
+        $dir = ROOT_DIR . 'statics/event/';
+        fileRemover($dir, $obj->fields['image']);
 
         $result = $obj->delete();
 
         if ($result['result'] != '1') {
-            redirectPage(RELA_DIR.'account/showProductList', $msg);
+            redirectPage(RELA_DIR . 'account/showProductList', $msg);
         }
 
         $msg = translate('عملیات با موفقیت انجام شد');
-        redirectPage(RELA_DIR.'account/showProductList', $msg);
+        redirectPage(RELA_DIR . 'account/showProductList', $msg);
         die();
     }
-    
+
 
     /** Profile */
     public function editProfile($fields)
     {
-        global $member_info,$lang;
-        include_once ROOT_DIR.'component/artists/model/artists.model.php';
+        global $member_info, $lang;
+        include_once ROOT_DIR . 'component/artists/model/artists.model.php';
 
 
         $account = artists::find($fields['Artists_id']);
 
-        if(!is_object($account))
-        {
-            redirectPage(RELA_DIR,$account['msg']);
+        if (!is_object($account)) {
+            redirectPage(RELA_DIR, $account['msg']);
         }
 
-        if(isset($fields['category_id'])){
-            $fields['category_id'] = ",".(implode(",",$fields['category_id'])).",";
+        if (isset($fields['category_id'])) {
+            $fields['category_id'] = "," . (implode(",", $fields['category_id'])) . ",";
         }
 
-        if(isset($fields['genre_id'])){
-            $fields['genre_id'] = ",".(implode(",",$fields['genre_id'])).",";
+        if (isset($fields['genre_id'])) {
+            $fields['genre_id'] = "," . (implode(",", $fields['genre_id'])) . ",";
         }
 
         $fields['artists_id'] = $member_info['Artists_id'];
         //$fields['status'] = 0;
-        if($fields['password']!=''){
+        if ($fields['password'] != '') {
             $fields['password'] = md5($fields['password']);
-        }else{
+        } else {
             unset($fields['password']);
         }
 
 
-        if($lang == 'fa'){
+        if ($lang == 'fa') {
             $fields['birthday']  =  convertJToGDate($fields['birthday']);
         }
 
@@ -822,12 +799,12 @@ class accountController
         $account->save();
 
 
-        if(file_exists($_FILES['logo']['tmp_name'])){
+        if (file_exists($_FILES['logo']['tmp_name'])) {
 
-            $input['upload_dir'] = ROOT_DIR.'statics/files/'.$member_info['Artists_id'].'/';
+            $input['upload_dir'] = ROOT_DIR . 'statics/files/' . $member_info['Artists_id'] . '/';
 
-            $result = fileUploader($input,$_FILES['logo']);
-            fileRemover($input['upload_dir'],$account->fields['logo']);
+            $result = fileUploader($input, $_FILES['logo']);
+            fileRemover($input['upload_dir'], $account->fields['logo']);
             $account->logo = $result['image_name'];
 
             $result = $account->save();
@@ -839,39 +816,37 @@ class accountController
         redirectPage(RELA_DIR . 'account/editProfile', $msg);
         die();
     }
-    public function showProfileEditForm($fields='', $msg='')
+    public function showProfileEditForm($fields = '', $msg = '')
     {
         global $member_info;
 
         include_once "component/artists/model/artists.model.php";
         $obj = artistsModel::find($member_info['Artists_id']);
-        if(!is_object($obj))
-        {
-            redirectPage(RELA_DIR,$obj['msg']);
+        // print_r_debug($obj);
+        if (!is_object($obj)) {
+            redirectPage(RELA_DIR, $obj['msg']);
         }
 
 
 
 
         $export = $obj->fields;
-        $export['category_id'] = explode(',',$export['category_id']);
-        $export['genre_id'] = explode(',',$export['genre_id']);
+        $export['category_id'] = explode(',', $export['category_id']);
+        $export['genre_id'] = explode(',', $export['genre_id']);
 
-        include_once(ROOT_DIR."component/category/model/category.model.php");
+        include_once(ROOT_DIR . "component/category/model/category.model.php");
         $category = new categoryModel();
 
         $resultCategory = $category->getCategoryOption();
 
-        if($resultCategory['result'] == 1)
-        {
+        if ($resultCategory['result'] == 1) {
             $export['category'] = $category->list;
         }
         /** genre */
-        include_once(ROOT_DIR."component/genre/model/genre.model.php");
+        include_once(ROOT_DIR . "component/genre/model/genre.model.php");
         $genre = new genreModel();
         $resultGenre = $genre->getGenreOption();
-        if($resultGenre['result'] == 1)
-        {
+        if ($resultGenre['result'] == 1) {
             $export['genre'] = $genre->list;
         }
 
@@ -882,7 +857,7 @@ class accountController
         $breadcrumb->add(translate('ویرایش پروفایل '), 'account');
         $export['breadcrumb'] = $breadcrumb->trail();
         $export['page_title'] = translate('ویرایش پروفایل');
-//        print_r_debug($export);
+        //    print_r_debug($export);
         $this->fileName = 'account.editProfileForm.php';
         $this->template($export, $msg);
         die();
@@ -894,18 +869,18 @@ class accountController
     public function showPackageEditForm($fields, $msg)
     {
 
-//        if (!validator::required($fields['Package_id']) and !validator::Numeric($fields['Package_id'])) {
-//
-//            $msg = 'یافت نشد';
-//            redirectPage('');
-//            redirectPage(RELA_DIR . 'zamin/index.php?component=package', $msg);
-//        }
+        //        if (!validator::required($fields['Package_id']) and !validator::Numeric($fields['Package_id'])) {
+        //
+        //            $msg = 'یافت نشد';
+        //            redirectPage('');
+        //            redirectPage(RELA_DIR . 'zamin/index.php?component=package', $msg);
+        //        }
 
         //$result = $account->getPackageById($fields['Package_id']);
         //$account = new accountModel();
 
 
-        $account=accountModel::find($fields['Package_id']);
+        $account = accountModel::find($fields['Package_id']);
 
 
 
@@ -917,7 +892,7 @@ class accountController
         //print_r_debug($account->fields);
 
         $export = $account->fields;
-      //  print_r_debug($export);
+        //  print_r_debug($export);
         $this->fileName = 'account.editForm.php';
         $this->template($export, $msg);
         die();
@@ -925,9 +900,9 @@ class accountController
     public function editPackage($fields)
     {
 
-       // print_r_debug($fields);
+        // print_r_debug($fields);
 
-        $Account=accountModel::find($fields['Package_id']);
+        $Account = accountModel::find($fields['Package_id']);
         $Account->setFields($fields);
 
         //$n->title='omid111';
@@ -937,7 +912,7 @@ class accountController
 
 
 
-      /*  if (!validator::required($fields['Package_id']) and !validator::Numeric($fields['Package_id'])) {
+        /*  if (!validator::required($fields['Package_id']) and !validator::Numeric($fields['Package_id'])) {
 
             $msg = 'یافت نشد';
             redirectPage(RELA_DIR.'zamin/index.php?component=package', $msg);
@@ -963,7 +938,7 @@ class accountController
             $this->showPackageEditForm($fields, $result['msg']);
         }*/
         $msg = translate('عملیات با موفقیت انجام شد');
-        redirectPage(RELA_DIR.'zamin/index.php?component=package', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=package', $msg);
         die();
     }
     public function deletePackage($fields)
@@ -972,16 +947,16 @@ class accountController
 
         if (!validator::required($fields['Package_id']) and !validator::Numeric($fields['Package_id'])) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'zamin/index.php?component=package', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=package', $msg);
         }
         $result = $account->getPackageById($fields['Package_id']);
-     //   print_r_debug($result);
+        //   print_r_debug($result);
         if ($result['result'] != '1') {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR.'zamin/index.php?component=package', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=package', $msg);
         }
         $result = $account->setFields($fields);
-//print_r_debug($result);
+        //print_r_debug($result);
         if ($result['result'] != 1) {
             $this->showPackageEditForm($fields, $result['msg']);
         }
@@ -991,24 +966,23 @@ class accountController
             $this->showPackageEditForm($fields, $result['msg']);
         }
         $msg = translate('عملیات با موفقیت انجام شد');
-        redirectPage(RELA_DIR.'zamin/index.php?component=package', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=package', $msg);
         die();
     }
 
 
     /** Blog */
-    public function showBlogList($fields=array(), $msg='')
+    public function showBlogList($fields = array(), $msg = '')
     {
         global $member_info;
 
-        include_once ROOT_DIR.'component/blog/model/blog.model.php';
-        $blogs =new blog();
+        include_once ROOT_DIR . 'component/blog/model/blog.model.php';
+        $blogs = new blog();
 
-        $object = model::find('artists',$member_info['Artists_id']);
-        if(is_array($object))
-        {
+        $object = model::find('artists', $member_info['Artists_id']);
+        if (is_array($object)) {
             $this->fileName = 'account.showPanel.php';
-            $this->template('',$object['msg']);
+            $this->template('', $object['msg']);
             die();
         }
 
@@ -1016,12 +990,11 @@ class accountController
 
         $export['list'] = $object->fields;
 
-        $result=blog::getBy_artists_id($member_info['Artists_id'])->orderBy('id','desc')->getList();
+        $result = blog::getBy_artists_id($member_info['Artists_id'])->orderBy('id', 'desc')->getList();
 
-        if($result['result'] == -1)
-        {
+        if ($result['result'] == -1) {
             $this->fileName = 'account.blogList.php';
-            $this->template('',$result['msg']);
+            $this->template('', $result['msg']);
             die();
         }
         $export['artistsBlogList'] = $result['export']['list'];
@@ -1054,17 +1027,16 @@ class accountController
         die();
     }
 
-    public function showBlogAddForm($export=array(), $msg='')
+    public function showBlogAddForm($export = array(), $msg = '')
     {
         global $member_info;
 
 
         /** category */
-        include_once(ROOT_DIR."component/category/model/category.model.php");
+        include_once(ROOT_DIR . "component/category/model/category.model.php");
         $category = new categoryModel();
         $resultCategory = $category->getCategoryOption();
-        if($resultCategory['result'] == 1)
-        {
+        if ($resultCategory['result'] == 1) {
             $export['category'] = $category->list;
         }
 
@@ -1085,26 +1057,25 @@ class accountController
         $this->template($export, $msg);
         die();
     }
-    public function addBlog($fields=array())
+    public function addBlog($fields = array())
     {
 
 
         global $member_info;
-        include_once ROOT_DIR.'component/blog/model/blog.model.php';
+        include_once ROOT_DIR . 'component/blog/model/blog.model.php';
         $account = new blog();
 
-        $fields['category_id'] = ",".(implode(",",$fields['category_id'])).",";
+        $fields['category_id'] = "," . (implode(",", $fields['category_id'])) . ",";
         $fields['artists_id'] = $member_info['Artists_id'];
         $fields['status'] = 1;
 
 
-        if(!file_exists($_FILES['image']['tmp_name'])){
+        if (!file_exists($_FILES['image']['tmp_name'])) {
             $result['msg'] = image_not_exist;
             $this->showBlogAddForm($fields, $result['msg']);
-
         }
 
-        $result =$account->setFields($fields);
+        $result = $account->setFields($fields);
 
         $account->save();
 
@@ -1113,11 +1084,11 @@ class accountController
             return $result;
         }
 
-        if(file_exists($_FILES['image']['tmp_name'])){
+        if (file_exists($_FILES['image']['tmp_name'])) {
             $input = array();
-            $input['upload_dir'] = ROOT_DIR.'statics/blog/';
+            $input['upload_dir'] = ROOT_DIR . 'statics/blog/';
 
-            $result = fileUploader($input,$_FILES['image']);
+            $result = fileUploader($input, $_FILES['image']);
 
             $account->image = $result['image_name'];
             $result = $account->save();
@@ -1128,7 +1099,7 @@ class accountController
         }
 
         /** update artists date  */
-        include_once ROOT_DIR.'component/artists/admin/model/admin.artists.model.php';
+        include_once ROOT_DIR . 'component/artists/admin/model/admin.artists.model.php';
         $artists = adminArtistsModel::find($account->fields['artists_id']);
         $artists->update_date = date('Y-m-d H:i:s');
         $result = $artists->save();
@@ -1137,26 +1108,68 @@ class accountController
         redirectPage(RELA_DIR . 'account/showBlogList', $msg);
         die();
     }
-    public function showBlogEditForm($fields=array(), $msg='')
+    public function editBlog($fields = array())
+    {
+        global $member_info, $lang;
+        include_once ROOT_DIR . 'component/blog/model/blog.model.php';
+        
+
+        $account = blog::find($fields['id']);
+        if (!is_object($account)) {
+            redirectPage(RELA_DIR, $account['msg']);
+        }
+
+
+        $fields['category_id'] = "," . (implode(",", $fields['category_id'])) . ",";
+        $fields['artists_id'] = $member_info['Artists_id'];
+        $fields['status'] = 1;
+
+        /*if($lang == 'fa')
+        {
+            $fields['creation_date'] = convertJToGDate($fields['creation_date']);
+        }*/
+
+        $result = $account->setFields($fields);
+
+        $account->save();
+
+
+
+        if (file_exists($_FILES['image']['tmp_name'])) {
+
+            $input['upload_dir'] = ROOT_DIR . 'statics/blog/';
+            $result = fileUploader($input, $_FILES['image']);
+            fileRemover($input['upload_dir'], $account->fields['image']);
+            $account->image = $result['image_name'];
+
+            $result = $account->save();
+        }
+
+
+
+
+        $msg = translate('عملیات با موفقیت انجام شد');
+        redirectPage(RELA_DIR . 'account/showBlogList', $msg);
+        die();
+    }
+    public function showBlogEditForm($fields = array(), $msg = '')
     {
         global $member_info;
 
 
         include_once "component/blog/model/blog.model.php";
         $obj = blog::find($fields['id']);
-        if(!is_object($obj))
-        {
-            redirectPage(RELA_DIR,$obj['msg']);
+        if (!is_object($obj)) {
+            redirectPage(RELA_DIR, $obj['msg']);
         }
 
         $export = $obj->fields;
 
         /** category */
-        include_once(ROOT_DIR."component/category/model/category.model.php");
+        include_once(ROOT_DIR . "component/category/model/category.model.php");
         $category = new categoryModel();
         $resultCategory = $category->getCategoryOption();
-        if($resultCategory['result'] == 1)
-        {
+        if ($resultCategory['result'] == 1) {
             $export['category'] = $category->list;
         }
 
@@ -1179,82 +1192,38 @@ class accountController
         $export['page_title'] = translate('افزودن اثر');
 
 
-//        print_r_debug($export);
+        //        print_r_debug($export);
         $this->fileName = 'account.editBlogForm.php';
         $this->template($export, $msg);
         die();
     }
-    public function editBlog($fields=array())
-    {
-        global $member_info,$lang;
-        include_once ROOT_DIR.'component/blog/model/blog.model.php';
-
-
-        $account = blog::find($fields['id']);
-        if(!is_object($account))
-        {
-            redirectPage(RELA_DIR,$account['msg']);
-        }
-
-
-        $fields['category_id'] = ",".(implode(",",$fields['category_id'])).",";
-        $fields['artists_id'] = $member_info['Artists_id'];
-        $fields['status'] = 1;
-
-        /*if($lang == 'fa')
-        {
-            $fields['creation_date'] = convertJToGDate($fields['creation_date']);
-        }*/
-
-        $result =$account->setFields($fields);
-
-        $account->save();
-
-
-
-        if(file_exists($_FILES['image']['tmp_name'])){
-
-            $input['upload_dir'] = ROOT_DIR.'statics/blog/';
-            $result = fileUploader($input,$_FILES['image']);
-            fileRemover($input['upload_dir'],$account->fields['image']);
-            $account->image = $result['image_name'];
-
-            $result = $account->save();
-        }
-
-
-
-
-        $msg = translate('عملیات با موفقیت انجام شد');
-        redirectPage(RELA_DIR . 'account/showBlogList', $msg);
-        die();
-    }
+    
     public function deleteBlog($id)
     {
         if (!validator::required($id) and !validator::Numeric($id)) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'account/showBlogList', $msg);
+            redirectPage(RELA_DIR . 'account/showBlogList', $msg);
         }
 
-        include_once ROOT_DIR.'component/blog/model/blog.model.php';
+        include_once ROOT_DIR . 'component/blog/model/blog.model.php';
         $obj = blog::find($id);
 
         if (!is_object($obj)) {
             $msg = $obj['msg'];
-            redirectPage(RELA_DIR.'account/showBlogList', $msg);
+            redirectPage(RELA_DIR . 'account/showBlogList', $msg);
         }
 
-        $dir = ROOT_DIR.'statics/event/';
-        fileRemover($dir,$obj->fields['image']);
+        $dir = ROOT_DIR . 'statics/event/';
+        fileRemover($dir, $obj->fields['image']);
 
         $result = $obj->delete();
 
         if ($result['result'] != '1') {
-            redirectPage(RELA_DIR.'account/showBlogList', $msg);
+            redirectPage(RELA_DIR . 'account/showBlogList', $msg);
         }
 
         $msg = translate('عملیات با موفقیت انجام شد');
-        redirectPage(RELA_DIR.'account/showBlogList', $msg);
+        redirectPage(RELA_DIR . 'account/showBlogList', $msg);
         die();
     }
 
@@ -1264,7 +1233,7 @@ class accountController
         //$fields['where']['list']
         // print_r_debug($fields);
         $account = new accountModel();
-        $result =$account->getByFilter();
+        $result = $account->getByFilter();
 
         //print_r_debug($export);
 

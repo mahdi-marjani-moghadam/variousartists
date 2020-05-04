@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: marjani
@@ -6,7 +7,7 @@
  * Time: 10:35 AM
  */
 
-include_once(ROOT_DIR."/common/validators.php");
+include_once(ROOT_DIR . "/common/validators.php");
 class registerModel
 {
     private $fields;  // other record fields
@@ -21,9 +22,9 @@ class registerModel
     {
 
         $this->requiredFields = array(
-            'company_name'=>  '',
-            'company_phone1'=>  '',
-            'email'=>  ''
+            'company_name' =>  '',
+            'company_phone1' =>  '',
+            'email' =>  ''
         );
     }
 
@@ -36,26 +37,15 @@ class registerModel
      */
     public function __get($field)
     {
-        if ($field == 'result')
-        {
+        if ($field == 'result') {
             return $this->result;
-        }
-        else if ($field == 'fields')
-        {
+        } else if ($field == 'fields') {
             return $this->fields;
-        }
-        else if ($field == 'list')
-        {
+        } else if ($field == 'list') {
             return $this->list;
-        }
-
-
-
-        else
-        {
+        } else {
             return $this->fields[$field];
         }
-
     }
 
     /**
@@ -67,29 +57,23 @@ class registerModel
      * @date 3/6/2015
      * @version 01.01.01
      */
-    public function setFields ($input)
+    public function setFields($input)
     {
-        foreach($input as $field =>$val)
-        {
-            $funcName='__set'.ucfirst($field);
-            if(method_exists($this,$funcName))
-            {
-                $result=$this->$funcName($val);
+        foreach ($input as $field => $val) {
+            $funcName = '__set' . ucfirst($field);
+            if (method_exists($this, $funcName)) {
+                $result = $this->$funcName($val);
 
-                if($result['result'] == '1')
-                {
-                    $this->fields[$field]=$val;
-                }else
-                {
+                if ($result['result'] == '1') {
+                    $this->fields[$field] = $val;
+                } else {
 
                     return $result;
                 }
-
             }
         }
-        $result['result']=1;
+        $result['result'] = 1;
         return $result;
-
     }
 
     /**
@@ -101,14 +85,12 @@ class registerModel
      * @date 3/6/2015
      * @version 01.01.01
      */
-    private function __setCompany_name ($input)
+    private function __setCompany_name($input)
     {
-        if(!Validator::required($input))
-        {
-            $result['result']=-1;
-            $result['msg']='لطفا نام کمپانی را وارد نمایید.';
-        }else
-        {
+        if (!Validator::required($input)) {
+            $result['result'] = -1;
+            $result['msg'] = 'لطفا نام کمپانی را وارد نمایید.';
+        } else {
             $result['result'] = 1;
         }
 
@@ -124,14 +106,12 @@ class registerModel
      * @date 3/6/2015
      * @version 01.01.01
      */
-    private function __setEmail ($input)
+    private function __setEmail($input)
     {
-        if(Validator::Email($input) != '1')
-        {
-            $result['result']=-1;
-            $result['msg']='ایمیل را به درستی وارد نمایید.';
-        }else
-        {
+        if (Validator::Email($input) != '1') {
+            $result['result'] = -1;
+            $result['msg'] = 'ایمیل را به درستی وارد نمایید.';
+        } else {
             $result['result'] = 1;
         }
 
@@ -147,7 +127,7 @@ class registerModel
      * @date 3/6/2015
      * @version 01.01.01
      */
-    private function __setAddress ($input)
+    private function __setAddress($input)
     {
         /*if(!Validator::required($input))
         {
@@ -170,14 +150,12 @@ class registerModel
      * @date 3/6/2015
      * @version 01.01.01
      */
-    private function __setCompany_phone1 ($input)
+    private function __setCompany_phone1($input)
     {
-        if(!Validator::required($input))
-        {
-            $result['result']=-1;
-            $result['msg']='لطفا تلفن را وارد نمایید.';
-        }else
-        {
+        if (!Validator::required($input)) {
+            $result['result'] = -1;
+            $result['msg'] = 'لطفا تلفن را وارد نمایید.';
+        } else {
             $result['result'] = 1;
         }
 
@@ -195,14 +173,12 @@ class registerModel
      * @date 3/6/2015
      * @version 01.01.01
      */
-    private function __setCoordinator_name ($input)
+    private function __setCoordinator_name($input)
     {
-        if(!Validator::required($input))
-        {
-            $result['result']=-1;
-            $result['msg']='لطفا نام نماینده را وارد نمایید.';
-        }else
-        {
+        if (!Validator::required($input)) {
+            $result['result'] = -1;
+            $result['msg'] = 'لطفا نام نماینده را وارد نمایید.';
+        } else {
             $result['result'] = 1;
         }
 
@@ -218,14 +194,12 @@ class registerModel
      * @date 3/6/2015
      * @version 01.01.01
      */
-    private function __setCoordinator_family  ($input)
+    private function __setCoordinator_family($input)
     {
-        if(!Validator::required($input))
-        {
-            $result['result']=-1;
-            $result['msg']='لطفا نام خانوادگی نماینده را وارد نمایید.';
-        }else
-        {
+        if (!Validator::required($input)) {
+            $result['result'] = -1;
+            $result['msg'] = 'لطفا نام خانوادگی نماینده را وارد نمایید.';
+        } else {
             $result['result'] = 1;
         }
 
@@ -241,15 +215,13 @@ class registerModel
      * @date 3/6/2015
      * @version 01.01.01
      */
-    private function __setCoordinator_phone  ($input)
+    private function __setCoordinator_phone($input)
     {
-        if(!Validator::required($input))
-        {
-            $result['result']=-1;
-            $result['msg']='لطفا تلفن نماینده را وارد نمایید.';
-        }else
-        {
-             $result['result'] = 1;
+        if (!Validator::required($input)) {
+            $result['result'] = -1;
+            $result['msg'] = 'لطفا تلفن نماینده را وارد نمایید.';
+        } else {
+            $result['result'] = 1;
         }
 
         return $result;
@@ -266,33 +238,28 @@ class registerModel
     public function addRegister()
     {
 
-        foreach($this->requiredFields as $field =>$val)
-        {
-            $requiredList[$field]=$this->fields[$field];
+        foreach ($this->requiredFields as $field => $val) {
+            $requiredList[$field] = $this->fields[$field];
         }
-        $result=$this->setFields($requiredList);
+        $result = $this->setFields($requiredList);
 
-        if($result['result']==-1)
-        {
+        if ($result['result'] == -1) {
             return $result;
         }
 
-        include_once(dirname(__FILE__)."/register.model.db.php");
+        include_once(dirname(__FILE__) . "/register.model.db.php");
 
 
 
 
-        $result=registerModelDb::insert($this->fields);
+        $result = registerModelDb::insert($this->fields);
 
-        if($result['result']!=1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
 
-        $this->fields['Register_id']=$result['export']['insert_id'];
+        $this->fields['Register_id'] = $result['export']['insert_id'];
 
         return $result;
     }
-
-
 }

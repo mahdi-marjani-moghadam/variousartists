@@ -445,7 +445,8 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="refresh_date">تاریخ بروزرسانی</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control datepicker" name="refresh_date" id="refresh_date" value="<?= ($list['refresh_date'] != '') ? convertDate($list['refresh_date']) : ''; ?>">
+                                        <?= ($list['refresh_date'] != '') ? convertDate($list['refresh_date']) : ''; ?>
+
                                     </div>
                                 </div>
                             </div>
