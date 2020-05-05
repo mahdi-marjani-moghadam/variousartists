@@ -14,3 +14,5 @@ statics
 *.xml
 
 .vscode
+
+server.inc.php
