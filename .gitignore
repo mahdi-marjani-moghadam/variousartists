@@ -1,18 +1,13 @@
 
-.idea/workspace.xml
-
-.idea/copyright/profiles_settings.xml
-
-.idea/modules.xml
-
-.idea/va.iml
-
-.idea/vcs.xml
-
-statics
-
-*.xml
-
+.idea
 .vscode
+statics/banner/*
+statics/event/*
+statics/files/*
+statics/friends/*
+statics/friends_link/*
+statics/salon/*
+
+# *.xml
 
 server.inc.php
