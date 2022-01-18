@@ -9,6 +9,7 @@
 
 global $admin_info,$PARAM;
 
+
 if($PARAM[0]  == 'register')
 {
 
@@ -33,6 +34,7 @@ if($PARAM[0]  == 'register')
 }
 elseif($PARAM[1]  == 'memberregister')
 {
+    // don't use
 
     if($_POST){
         $result = $login->memberregister($_POST);

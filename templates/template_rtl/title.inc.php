@@ -87,46 +87,46 @@
 					<!-- Logo
 					============================================= -->
 					<div id="logo">
-						<a href="<?=RELA_DIR?>" class="standard-logo" data-dark-logo="<?php echo TEMPLATE_DIR; ?>/img/logo.png"><img src="<?php echo TEMPLATE_DIR; ?>img/logo.png" alt="Canvas Logo"></a>
-						<a href="<?=RELA_DIR?>" class="retina-logo" data-dark-logo="<?php echo TEMPLATE_DIR; ?>/img/logo@2x.png"><img src="<?php echo TEMPLATE_DIR; ?>img/logo@2x.png" alt="Canvas Logo"></a>
+						<a href="<?php echo RELA_DIR?>" class="standard-logo" data-dark-logo="<?php echo TEMPLATE_DIR; ?>/img/logo.png"><img src="<?php echo TEMPLATE_DIR; ?>img/logo.png" alt="Canvas Logo"></a>
+						<a href="<?php echo RELA_DIR?>" class="retina-logo" data-dark-logo="<?php echo TEMPLATE_DIR; ?>/img/logo@2x.png"><img src="<?php echo TEMPLATE_DIR; ?>img/logo@2x.png" alt="Canvas Logo"></a>
 					</div><!-- #logo end -->
 
 					<!-- Primary Navigation
 					============================================= -->
 					<nav id="primary-menu" class="dark style-6 style-2">
 						<ul>
-							<li class="<?=($PARAM[0] == 'event')?'current':'';?> hidden-xs" ><a href="<?=RELA_DIR?>event"><div>رویدادها</div></a></li>
-							<li class="<?=($PARAM[0] == 'artists')?'current':'';?>"><a href="<?=RELA_DIR?>artists"><div> هنرمندان</div></a></li>
-							<li class="<?=($PARAM[0] == 'artists')?'current':'';?>"><a href="<?=RELA_DIR?>blog"><div> وبلاگ</div></a></li>
+							<li class="<?php echo ($PARAM[0] == 'event')?'current':'';?> hidden-xs" ><a href="<?php echo RELA_DIR?>event"><div>رویدادها</div></a></li>
+							<li class="<?php echo ($PARAM[0] == 'artists')?'current':'';?>"><a href="<?php echo RELA_DIR?>artists"><div> هنرمندان</div></a></li>
+							<li class="<?php echo ($PARAM[0] == 'artists')?'current':'';?>"><a href="<?php echo RELA_DIR?>blog"><div> وبلاگ</div></a></li>
 
-                                <?php /*<li class="<?=($PARAM[0] == 'services')?'current':'';?>"><a href="<?=RELA_DIR?>services"><div>خدمات</div></a></li>
-							<li class="<?=($PARAM[0] == 'shop')?'current':'';?>"><a href="<?=RELA_DIR?>shop"><div>فروشگاه</div></a></li>*/?>
-							<? if($member_info == -1){?>
-                                <li class="<?=($PARAM[0] == 'login')?'current':'';?>">
-                                    <a href="<?=RELA_DIR?>login"><div><?=login?></div></a>
+                                <?php /*<li class="<?php echo ($PARAM[0] == 'services')?'current':'';?>"><a href="<?php echo RELA_DIR?>services"><div>خدمات</div></a></li>
+							<li class="<?php echo ($PARAM[0] == 'shop')?'current':'';?>"><a href="<?php echo RELA_DIR?>shop"><div>فروشگاه</div></a></li>*/?>
+							<?php if($member_info == -1){?>
+                                <li class="<?php echo ($PARAM[0] == 'login')?'current':'';?>">
+                                    <a href="<?php echo RELA_DIR?>login"><div><?php echo login?></div></a>
                                 </li>
-                                <li class="<?=($PARAM[0] == 'register')?'current':'';?>">
-                                    <a href="<?=RELA_DIR?>register"><div><?=register?></div></a>
+                                <li class="<?php echo ($PARAM[0] == 'register')?'current':'';?>">
+                                    <a href="<?php echo RELA_DIR?>register"><div><?php echo register?></div></a>
                                 </li>
-							<?   } else{?>
-								<li class="<?=($PARAM[0] == 'account')?'current':'';?>">
-                                    <a href="<?=RELA_DIR?>account"><div>
-                                            <? global $lang?>
+							<?php   } else{?>
+								<li class="<?php echo ($PARAM[0] == 'account')?'current':'';?>">
+                                    <a href="<?php echo RELA_DIR?>account"><div>
+                                            <?php global $lang?>
                                             <?if($member_info['nickname']){echo $member_info['nickname'];}
                                             elseif($member_info["artists_name_$lang"]){echo $member_info["artists_name_$lang"];}
                                             else{echo ' صفحه کاربری';} ?>
                                         </div></a>
                                 </li>
-								<li class="<?=($PARAM[0] == 'logout')?'current':'';?>"><a href="<?=RELA_DIR?>login/logout"><div>خروج</div></a></li>
+								<li class="<?php echo ($PARAM[0] == 'logout')?'current':'';?>"><a href="<?php echo RELA_DIR?>login/logout"><div>خروج</div></a></li>
 
-							<? }  ?>
-                            <li ><a href="<?=RELA_DIR?>index/?lang=en"><div><img src="<?=RELA_DIR?>templates/<?=CURRENT_SKIN?>/img/flag_en.png"> English</div></a></li>
+							<?php }  ?>
+                            <li ><a href="<?php echo RELA_DIR?>index/?lang=en"><div><img src="<?php echo RELA_DIR?>templates/<?php echo CURRENT_SKIN?>/img/flag_en.png"> English</div></a></li>
 						</ul>
 
 
 						<!-- Top Cart
 						============================================= -->
-                        <? /*<div id="top-cart">
+                        <?php /*<div id="top-cart">
 							<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span>5</span></a>
 							<div class="top-cart-content">
 								<div class="top-cart-title">
@@ -165,7 +165,7 @@
 						============================================= -->
 						<div id="top-search">
 							<a href="#" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>
-							<form action="<?=RELA_DIR?>search/" method="get">
+							<form action="<?php echo RELA_DIR?>search/" method="get">
 
                                     <input type="text" name="q"  class="form-control" value="" placeholder="به دنبال چه میگردید">
                                     <select name="type" class="form-control" style="width: 100%; margin-top: -10px">

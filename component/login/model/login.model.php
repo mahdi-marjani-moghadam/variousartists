@@ -522,8 +522,6 @@ class memberLogIn
 
         global $messageStack, $lang;
 
-        
-
         include_once(ROOT_DIR . "component/artists/model/artists.model.php");
         $_input['username'] = $_input['artists_phone1'];
         if ($_input['email'] != '') {
@@ -566,6 +564,7 @@ class memberLogIn
                 $messageStack->add_session('register', email_is_empty);
                 $this->showRegisterForm($_input, email_is_empty);
             }
+            // dd($_FILES['logo']);
             if (!file_exists($_FILES['logo']['tmp_name'])) {
                 $messageStack->add_session('register', image_is_empty);
                 $this->showRegisterForm($_input, image_is_empty);
@@ -589,8 +588,19 @@ class memberLogIn
         $_input['refresh_date'] = date('Y-m-d H:i:s');
         $pass = $_input['password'];
         $_input['password']  = md5($_input['password']);
+
+        // $_input['certification_id'] = '';
+        // $_input['registration_number'] = '';
+        // $_input['national_id'] = '';
+        // $_input['beeptunes'] = '';
+        // $_input['show_birthday'] = '';
+        // $_input['priority'] = 0;
+        // $_input['forgot_code'] = '';
+        // $_input['genre_id'] = '';
+        // $_input['birthday_city'] = '';
+
         $artists->setFields($_input);
-        
+
         $result = $artists->validator();
 
 
@@ -601,15 +611,24 @@ class memberLogIn
         }
 
         if ($_input['check1'] == 'on') {
+
             $artists->type = 1;
+            
             $result = $artists->save();
+            
+            
+            // file
             if (file_exists($_FILES['logo']['tmp_name'])) {
                 $input['upload_dir'] = ROOT_DIR . 'statics/files/' . $artists->fields['Artists_id'] . '/';
+                $input['max_size'] = '20480000';
+                // dd($_FILES['logo']["size"]);
                 $result = fileUploader($input, $_FILES['logo']);
                 $artists->logo = $result['image_name'];
                 $result = $artists->save();
             }
-            
+
+
+            // sms
             include_once ROOT_DIR . 'component/magfa/magfa.model.php';
             $sms = new WebServiceSample;
 
@@ -633,6 +652,7 @@ class memberLogIn
 
 
             $sms->simpleEnqueueSample($artists->artists_phone1, $message);
+
 
             ///email
             if (checkMail($artists->email) ==  1) {
@@ -682,13 +702,15 @@ class memberLogIn
 
 
 
-        
+
 
 
         if ($result['result'] != '1') {
             $messageStack->add_session('register', $result['msg']);
             $this->showLoginForm($_input, $result['msg']);
         }
+
+
         $msg = 'عملیات با موفقیت انجام شد';
         $messageStack->add_session('register', $msg);
 

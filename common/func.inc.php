@@ -203,23 +203,23 @@ function redirectPage($page, $message = '')
 {
     global $conn, $messageStack;
 
-    ?>
+?>
     <html>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <script language="javascript">
-
-            setTimeout("window.location='<?=$page ?>'", 1500);
+            setTimeout("window.location='<?= $page ?>'", 1500);
         </script>
         <style>
             body {
                 font-family: sans-serif;
-                background: url(<?=TEMPLATE_DIR?>images/background.png);
+                background: url(<?= TEMPLATE_DIR ?>images/background.png);
                 line-height: 30px;
             }
 
             .a {
-                background: url(<?=TEMPLATE_DIR?>images/back_light.png) bottom repeat-x #ffffff;
+                background: url(<?= TEMPLATE_DIR ?>images/back_light.png) bottom repeat-x #ffffff;
                 border: 3px solid #ccc;
                 width: 500px;
                 margin-top: 10%;
@@ -238,29 +238,30 @@ function redirectPage($page, $message = '')
             }
         </style>
     </head>
+
     <body>
-    <center>
-        <div class="a">
-            <?php
+        <center>
+            <div class="a">
+                <?php
 
-            echo $message;
+                echo $message;
 
-            ?>
-            <img src="<?php echo RELA_DIR . 'templates/' . CURRENT_SKIN . '/images/logo@2x.png' ?> "
-                 align="left" style="position:absolute; left:40px;padding-top:15px; " height="60">
-            <div style="clear:both"></div>
-            <a href="<?= $page ?>">در صورت عدم ارسال اتوماتیک کلیک نمایید </a>
+                ?>
+                <img src="<?php echo RELA_DIR . 'templates/' . CURRENT_SKIN . '/images/logo@2x.png' ?> " align="left" style="position:absolute; left:40px;padding-top:15px; " height="60">
+                <div style="clear:both"></div>
+                <a href="<?= $page ?>">در صورت عدم ارسال اتوماتیک کلیک نمایید </a>
 
-            <small>Loding ...</small>
-            <div style="clear:both"></div>
-            <br>
-        </div>
-    </center>
+                <small>Loding ...</small>
+                <div style="clear:both"></div>
+                <br>
+            </div>
+        </center>
     </body>
+
     </html>
 
 
-    <?php
+<?php
     die();
 }
 
@@ -305,15 +306,26 @@ function sendmail($email, $subject, $body, $header = '')
     $mail->ClearAddresses();
     $mail->AddAddress($email);
 
-    if (!$mail->Send()) {
-        //echo "<div class='fadeout'>Message was not sent";
-         //echo "Mailer Error: " . $mail->ErrorInfo . "</div>";
+
+    try {
+        $mail->Send();
+        $res['result'] = 1;
+        return $res;
+    } catch (Exception $e) {
         $res['result'] = -1;
         $res['msg'] = "Mailer Error: " . $mail->ErrorInfo;
         return $res;
     }
-    $res['result'] = 1;
-    return $res;
+
+    // if (!$mail->Send()) {
+    //     //echo "<div class='fadeout'>Message was not sent";
+    //     //echo "Mailer Error: " . $mail->ErrorInfo . "</div>";
+    //     $res['result'] = -1;
+    //     $res['msg'] = "Mailer Error: " . $mail->ErrorInfo;
+    //     return $res;
+    // }
+    // $res['result'] = 1;
+    // return $res;
 }
 
 function sendmails($email, $bcc, $subject, $body, $orderID, $header = '')
@@ -380,8 +392,12 @@ function convertJToGDate($date)
 
 
     list($j_y, $j_m, $j_d) = jalali_to_gregorian($g_y, $g_m, $g_d);
-    if($j_d<10){$j_d = '0'.$j_d;}
-    if($j_m<10){$j_m = '0'.$j_m;}
+    if ($j_d < 10) {
+        $j_d = '0' . $j_d;
+    }
+    if ($j_m < 10) {
+        $j_m = '0' . $j_m;
+    }
     $date = "$j_y-$j_m-$j_d";
 
     return $date;
@@ -604,12 +620,12 @@ function initPage($rs, $pageSize, &$currentPage, &$pageCount, &$totalRecord)
 
 function showPageButton($currentPage, $pageCount, $totalRecord, $webaddress, $n = '')
 {
-    ?>
+?>
     <div class="pagination">
         <?php
         if ($currentPage > 1) {
             if ($currentPage < $pageCount) {
-                ?>
+        ?>
                 <a href="<?= $webaddress ?>&currentPage<?= $n ?>=1" title="">&laquo; First</a>
                 <a href="<?= $webaddress ?>&currentPage<?= $n ?>=<?= $currentPage - 1 ?>" title="">&laquo; pre</a>
                 <?php
@@ -617,19 +633,18 @@ function showPageButton($currentPage, $pageCount, $totalRecord, $webaddress, $n 
                     if ($i < 1 || $i > $pageCount) {
                         continue;
                     }
-                    ?>
-                    <a href="<?= ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>"
-                       class="number <?= ($i != $currentPage ? '' : 'current') ?>"><?= $i ?></a>
-                    <?php
+                ?>
+                    <a href="<?= ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?= ($i != $currentPage ? '' : 'current') ?>"><?= $i ?></a>
+                <?php
 
                 }
                 ?>
                 <a href="<?= $webaddress ?>&currentPage<?= $n ?>=<?= $currentPage + 1 ?>" title="">Next Page &raquo;</a>
                 <a href="<?= $webaddress ?>&currentPage<?= $n ?>=<?= $pageCount ?>" title="">Last &raquo;</a>
-                <?php
+            <?php
 
             } else {
-                ?>
+            ?>
                 <a href="<?= $webaddress ?>&currentPage<?= $n ?>=1" title="">&laquo; First</a>
                 <a href="<?= $webaddress ?>&currentPage<?= $n ?>=<?= $currentPage - 1 ?>" title="">&laquo; Previous
                     Page</a>
@@ -639,21 +654,20 @@ function showPageButton($currentPage, $pageCount, $totalRecord, $webaddress, $n 
                     if ($i < 1 || $i > $pageCount) {
                         continue;
                     }
-                    ?>
-                    <a href="<?= ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>"
-                       class="number <?= ($i != $currentPage ? '' : 'current') ?>" title=""><?= $i ?></a>
-                    <?php
+                ?>
+                    <a href="<?= ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?= ($i != $currentPage ? '' : 'current') ?>" title=""><?= $i ?></a>
+                <?php
 
                 }
                 ?>
                 <a href="javascript:;" title="">Next Page &raquo;</a>
                 <a href="javascript:;" title="">Last &raquo;</a>
-                <?php
+            <?php
 
             }
         } else {
             if ($currentPage < $pageCount) {
-                ?>
+            ?>
                 <a href="javascript:;" title="">&laquo; First</a>
                 <a href="javascript:;" title="">&laquo; Previous Page</a>
                 <?php
@@ -662,20 +676,19 @@ function showPageButton($currentPage, $pageCount, $totalRecord, $webaddress, $n 
                     if ($i < 1 || $i > $pageCount) {
                         continue;
                     }
-                    ?>
-                    <a href="<?= ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>"
-                       class="number <?= ($i != $currentPage ? '' : 'current') ?>"><?= $i ?></a>
-                    <?php
+                ?>
+                    <a href="<?= ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?= ($i != $currentPage ? '' : 'current') ?>"><?= $i ?></a>
+                <?php
 
                 }
                 ?>
                 <a href="<?= $webaddress ?>&currentPage<?= $n ?>=<?= $currentPage + 1 ?>" title="">Next Page &raquo;</a>
 
                 <a href="<?= $webaddress ?>&currentPage<?= $n ?>=<?= $pageCount ?>" title="">Last &raquo;</a>
-                <?php
+            <?php
 
             } else {
-                ?>
+            ?>
                 <a href="javascript:;" title="">&laquo; First</a>
                 <a href="javascript:;" title="">&laquo; Previous Page</a>
                 <?php
@@ -683,16 +696,15 @@ function showPageButton($currentPage, $pageCount, $totalRecord, $webaddress, $n 
                     if ($i < 1 || $i > $pageCount) {
                         continue;
                     }
-                    ?>
-                    <a href="<?= ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>"
-                       class="number <?= ($i != $currentPage ? '' : 'current') ?>"><?= $i ?></a>
-                    <?php
+                ?>
+                    <a href="<?= ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?= ($i != $currentPage ? '' : 'current') ?>"><?= $i ?></a>
+                <?php
 
                 }
                 ?>
                 <a href="javascript:;" title="">Next Page &raquo;</a>
                 <a href="javascript:;" title="">Last &raquo;</a>
-                <?php
+        <?php
 
             }
         }
@@ -705,13 +717,13 @@ function showPageButton($currentPage, $pageCount, $totalRecord, $webaddress, $n 
 
     <div class="clear"></div>
 
-    <?php
+<?php
 
 }
 
 function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
 {
-    ?>
+?>
 
     <div class="pagination">
 
@@ -719,7 +731,7 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
 
         if ($currentPage > 1) {
             if ($currentPage < $pageCount) {
-                ?>
+        ?>
 
                 <a href="<?= $webaddress ?>PG-1" title="ابتدا">&laquo; ابتدا</a>
 
@@ -732,12 +744,11 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
                         continue;
                     }
 
-                    ?>
+                ?>
 
-                    <a href="<?= ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>"
-                       class="number <?= ($i != $currentPage ? '' : 'current') ?>" title="<?= $i ?>"><?= $i ?></a>
+                    <a href="<?= ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?= ($i != $currentPage ? '' : 'current') ?>" title="<?= $i ?>"><?= $i ?></a>
 
-                    <?php
+                <?php
 
                 }
 
@@ -747,10 +758,10 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
 
                 <a href="<?= $webaddress ?>PG-<?= $pageCount ?>" title="انتها">انتها &raquo;</a>
 
-                <?php
+            <?php
 
             } else {
-                ?>
+            ?>
 
                 <a href="<?= $webaddress ?>PG-1" title="ابتدا">&laquo; ابتدا</a>
 
@@ -763,12 +774,11 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
                         continue;
                     }
 
-                    ?>
+                ?>
 
-                    <a href="<?= ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>"
-                       class="number <?= ($i != $currentPage ? '' : 'current') ?>" title="<?= $i ?>"><?= $i ?></a>
+                    <a href="<?= ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?= ($i != $currentPage ? '' : 'current') ?>" title="<?= $i ?>"><?= $i ?></a>
 
-                    <?php
+                <?php
 
                 }
 
@@ -778,12 +788,12 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
 
                 <a href="javascript:;" title="انتها">انتها &raquo;</a>
 
-                <?php
+            <?php
 
             }
         } else {
             if ($currentPage < $pageCount) {
-                ?>
+            ?>
 
                 <a href="javascript:;" title="ابتدا">&laquo; ابتدا</a>
 
@@ -796,12 +806,11 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
                         continue;
                     }
 
-                    ?>
+                ?>
 
-                    <a href="<?= ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>"
-                       class="number <?= ($i != $currentPage ? '' : 'current') ?>" title="<?= $i ?>"><?= $i ?></a>
+                    <a href="<?= ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?= ($i != $currentPage ? '' : 'current') ?>" title="<?= $i ?>"><?= $i ?></a>
 
-                    <?php
+                <?php
 
                 }
 
@@ -811,10 +820,10 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
 
                 <a href="<?= $webaddress ?>PG-<?= $pageCount ?>" title="انتها">انتها &raquo;</a>
 
-                <?php
+            <?php
 
             } else {
-                ?>
+            ?>
 
                 <a href="javascript:;" title="ابتدا">&laquo; ابتدا</a>
 
@@ -827,12 +836,11 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
                         continue;
                     }
 
-                    ?>
+                ?>
 
-                    <a href="<?= ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>"
-                       class="number <?= ($i != $currentPage ? '' : 'current') ?>" title="<?= $i ?>"><?= $i ?></a>
+                    <a href="<?= ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?= ($i != $currentPage ? '' : 'current') ?>" title="<?= $i ?>"><?= $i ?></a>
 
-                    <?php
+                <?php
 
                 }
 
@@ -842,7 +850,7 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
 
                 <a href="javascript:;" title="انتها">انتها &raquo;</a>
 
-                <?php
+        <?php
 
             }
         }
@@ -886,16 +894,14 @@ function showAdminErrorMsg($msg)
 function showAlertMsg($msg)
 {
     if ($msg != '') {
-        ?>
+    ?>
         <div class="alert border">
-            <a href="#" class="close" style="display:block"><img
-                    src="<?php echo RELA_DIR ?>templates/<?php echo CURRENT_SKIN ?>/images/alert.png" align="left"
-                    title="Close this notification" alt="close"/></a>
+            <a href="#" class="close" style="display:block"><img src="<?php echo RELA_DIR ?>templates/<?php echo CURRENT_SKIN ?>/images/alert.png" align="left" title="Close this notification" alt="close" /></a>
             <span><?= $msg ?></span>
         </div>
 
 
-        <?php
+    <?php
 
     }
 }
@@ -903,16 +909,15 @@ function showAlertMsg($msg)
 function showWarningMsg($msg)
 {
     if ($msg) {
-        ?>
+    ?>
         <div class="notification error png_bg">
-            <a class="close" href="#"><img alt="close" title="Close this notification"
-                                           src="<?= TEMPLATE_DIR ?>admin/images/cross_grey_small.png"></a>
+            <a class="close" href="#"><img alt="close" title="Close this notification" src="<?= TEMPLATE_DIR ?>admin/images/cross_grey_small.png"></a>
             <div>
                 <?= $msg ?>
             </div>
         </div>
 
-        <?php
+    <?php
 
     }
 }
@@ -920,18 +925,16 @@ function showWarningMsg($msg)
 function showMsg($redirect)
 {
     if ($redirect) {
-        ?>
+    ?>
         <div class="notification png_bg">
             <div class="success">
-                <a href="#" class="close"><img
-                        src="<?php echo RELA_DIR ?>templates/<?php echo CURRENT_SKIN ?>/admin/images/icons/cross_grey_small.png"
-                        title="Close this notification" alt="close"/></a>
+                <a href="#" class="close"><img src="<?php echo RELA_DIR ?>templates/<?php echo CURRENT_SKIN ?>/admin/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
                 <div>
                     <?= $redirect ?>
                 </div>
             </div>
         </div>
-        <?php
+    <?php
 
     }
 }
@@ -939,11 +942,11 @@ function showMsg($redirect)
 function showWarningMsg1($msg)
 {
     if ($msg) {
-        ?>
+    ?>
 
         <div class="fadeout"><?php echo $msg ?></div>
 
-        <?php
+    <?php
 
     }
 }
@@ -1025,7 +1028,7 @@ function decrypt($string, $key)
 function showAccessError()
 {
     //$path=$_SERVER['HTTP_REFERER'];
-    $path = RELA_DIR.'admin';
+    $path = RELA_DIR . 'admin';
     ?>
 
     <script type="text/javascript">
@@ -1033,7 +1036,7 @@ function showAccessError()
         window.location = '<?php echo $path ?>';
     </script>
 
-    <?php
+<?php
     die();
 }
 
@@ -1055,7 +1058,7 @@ function checkPermissions($action)
     unset($PagePermission);
 
     $return = $newObj->check($action, $admin_permission);
-//    echo $return;die();
+    //    echo $return;die();
     if ($return['result'] != 1) {
         showAccessError();
     }
@@ -1227,30 +1230,30 @@ function fileUploader($input = array(), $file = array())
 
 
     $msg = "";
-//check type of Image
+    //check type of Image
     if (isset($input['new_name'])) {
         $new_name = $input['new_name'];
     } else {
-        $new_name = strtotime("now").'.'.$ext;
+        $new_name = strtotime("now") . '.' . $ext;
     }
 
 
-//check type of Image
+    //check type of Image
     if (isset($input['type'])) {
         $input['type'] = strtolower($input['type']);
         $type = explode(',', $input['type']);
     } else {
-        $type = array('jpg','mp4','mp3','png','jpeg');
+        $type = array('jpg', 'mp4', 'mp3', 'png', 'jpeg');
     }
 
-//check size of Image
+    //check size of Image
     if (isset($input['max_size'])) {
         $maxSize = $input['max_size'];
     } else {
         $maxSize = '2048000';  //max size is 2 MB
     }
 
-//check size of Image
+    //check size of Image
     if (isset($input['upload_dir'])) {
         $target_dir = $input['upload_dir'];
     } else {
@@ -1258,24 +1261,23 @@ function fileUploader($input = array(), $file = array())
     }
 
     //Create directory
-    $dirs="";
-    if(!(is_dir($target_dir))){
+    $dirs = "";
+    if (!(is_dir($target_dir))) {
 
-        $dir=explode("/",$target_dir);
+        $dir = explode("/", $target_dir);
 
-        foreach($dir as $value){
+        foreach ($dir as $value) {
             //if($value != ""){
 
-                if((is_dir($dirs.$value)) != 1){
-                    mkdir($dirs.$value);
+            if ((is_dir($dirs . $value)) != 1) {
+                mkdir($dirs . $value);
 
-                    $dirs .=$value."/";
-                }else{
-                    $dirs .= $value. "/" ;
-                }
+                $dirs .= $value . "/";
+            } else {
+                $dirs .= $value . "/";
+            }
             //}
         }
-
     }
 
 
@@ -1310,31 +1312,31 @@ function fileUploader($input = array(), $file = array())
     $result['image_name'] = $new_name;
 
     $uploadOk = 1;
-     $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-//print_r_debug($fileType );
+    //print_r_debug($fileType );
 
 
     $check = getimagesize($file["tmp_name"]);
 
 
-//Check if file already exists
+    //Check if file already exists
     if (file_exists($target_file)) {
         $result['msg']['file_exists'] = "Sorry, file already exists.";
         $uploadOk = 0;
     }
 
-// Check file size
+    // Check file size
     if ($file["size"] > $maxSize) {
         $result['msg']['size'] = "Sorry, your file is too large.";
         $uploadOk = 0;
     }
 
-// Allow certain file formats
+    // Allow certain file formats
     $uploadOk = 0;
 
     foreach ($type as $key => $value) {
-        if ($value == $fileType){
+        if ($value == $fileType) {
             $uploadOk = 1;
             break;
         }
@@ -1348,7 +1350,7 @@ function fileUploader($input = array(), $file = array())
 
 
 
-// Check if $uploadOk is set to 0 by an error
+    // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         $result['msg']['error_msg'] = $error_msg;
     } else {
@@ -1365,18 +1367,18 @@ function fileUploader($input = array(), $file = array())
 }
 
 
-function fileRemover($dir,$fileName)
+function fileRemover($dir, $fileName)
 {
-    if(trim($fileName)!= ''){
-        if (file_exists($dir.$fileName)) {
-            unlink($dir.$fileName);
+    if (trim($fileName) != '') {
+        if (file_exists($dir . $fileName)) {
+            unlink($dir . $fileName);
             $result['result'] = "1";
             $result['msg'] = "file removed.";
-        }else{
+        } else {
             $result['result'] = "-1";
             $result['msg'] = "Sorry, file not exists.";
         }
-    }else{
+    } else {
         $result['result'] = "-1";
         $result['msg'] = "Sorry, file name is empety.";
     }
@@ -1384,17 +1386,67 @@ function fileRemover($dir,$fileName)
     return $result;
 }
 
-function translate($text,$lang='')
+function translate($text, $lang = '')
 {
-    if($lang == ''){global $lang;}
+    if ($lang == '') {
+        global $lang;
+    }
 
     include_once 'component/dictionary/model/dictionary.model.php';
-    $obj = dictionary::getBy_text_and_lang($text,$lang)->first();
+    $obj = dictionary::getBy_text_and_lang($text, $lang)->first();
 
-    if(is_object($obj)){$result = $obj->fields['translate'];}
-    else{$result = $text;}
+    if (is_object($obj)) {
+        $result = $obj->fields['translate'];
+    } else {
+        $result = $text;
+    }
 
     return $result;
-
 }
-?>
+
+function dd($object, $continue = false)
+{
+    echo "<pre>";
+    print_r($object);
+    $continue == false ? die() : '';
+}
+
+
+
+function get_caller($function = NULL, $use_stack = NULL) {
+    echo "<pre>";
+    if ( is_array($use_stack) ) {
+        // If a function stack has been provided, used that.
+        $stack = $use_stack;
+    } else {
+        // Otherwise create a fresh one.
+        $stack = debug_backtrace();
+        echo "\nPrintout of Function Stack: \n\n";
+        print_r($stack);
+        echo "\n";
+    }
+
+    if ($function == NULL) {
+        // We need $function to be a function name to retrieve its caller. If it is omitted, then
+        // we need to first find what function called get_caller(), and substitute that as the
+        // default $function. Remember that invoking get_caller() recursively will add another
+        // instance of it to the function stack, so tell get_caller() to use the current stack.
+        $function = get_caller(__FUNCTION__, $stack);
+    }
+
+    if ( is_string($function) && $function != "" ) {
+        // If we are given a function name as a string, go through the function stack and find
+        // it's caller.
+        for ($i = 0; $i < count($stack); $i++) {
+            $curr_function = $stack[$i];
+            // Make sure that a caller exists, a function being called within the main script
+            // won't have a caller.
+            if ( $curr_function["function"] == $function && ($i + 1) < count($stack) ) {
+                return $stack[$i + 1]["function"];
+            }
+        }
+    }
+
+    // At this stage, no caller has been found, bummer.
+    return "";
+}
