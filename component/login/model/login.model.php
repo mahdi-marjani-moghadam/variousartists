@@ -450,6 +450,7 @@ class memberLogIn
 
     function showRegisterForm($fields = array(), $msg = '')
     {
+
         /////// category
         include_once(ROOT_DIR . "component/category/admin/model/admin.category.model.php");
         $category = new adminCategoryModel();
@@ -521,6 +522,24 @@ class memberLogIn
     {
 
         global $messageStack, $lang;
+
+        $token = $_input['token'];
+        $action = $_input['action'];
+        // call curl to POST request
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('secret' => RECAPTCHA_V3_SECRET_KEY, 'response' => $token)));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $arrResponse = json_decode($response, true);
+
+        // verify the response
+        if ($arrResponse["success"] != '1' && $arrResponse["action"] != $action && $arrResponse["score"] < 0.5) {
+            $messageStack->add_session('register', captcha_not_true);
+            $this->showRegisterForm($_input, captcha_not_true);
+        }
 
         include_once(ROOT_DIR . "component/artists/model/artists.model.php");
         $_input['username'] = $_input['artists_phone1'];
@@ -613,10 +632,10 @@ class memberLogIn
         if ($_input['check1'] == 'on') {
 
             $artists->type = 1;
-            
+
             $result = $artists->save();
-            
-            
+
+
             // file
             if (file_exists($_FILES['logo']['tmp_name'])) {
                 $input['upload_dir'] = ROOT_DIR . 'statics/files/' . $artists->fields['Artists_id'] . '/';

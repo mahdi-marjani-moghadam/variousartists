@@ -119,6 +119,8 @@
         });
     });
 </script>
+
+
 <style>
     <?php if ($_REQUEST['check1'] == 'on') : ?>.art {
         display: block;
@@ -168,7 +170,7 @@
                                                 <i id="flagHolder" class="fa bfh-flag-<?php echo  $list['default'][0]['iso'] ?>"></i>
                                                 <i class="fa fa-caret-down"></i>
                                                 <ul>
-                                                    <?php 
+                                                    <?php
 
                                                     foreach ($list['country'] as $k => $value) {
 
@@ -177,7 +179,7 @@
                                                         <li><a data-country="<?php echo  $value['iso'] ?>" data-max="<?php echo  $value['max_length'] ?>" data-areacode="+<?php echo  $value['phone_code'] ?>" data-pattern="<?php echo  $value['sample'] ?>"><?php echo  $value['name'] ?><span class="fa bfh-flag-<?php echo  $value['iso'] ?>"></span></a>
                                                         </li>
 
-                                                    <?php 
+                                                    <?php
                                                     }
                                                     ?>
 
@@ -225,20 +227,20 @@
                                     </div>
                                     <div class="col_full art">
                                         <div><?php echo  birthday ?>
-                                            <span class="pull-left"><input type="checkbox" <?php echo  ($_REQUEST['show_birthday'] == 'on') ? 'checked' : ''; ?> name="show_birthday" id="show_birthday"><label for="show_birthday"> <?php echo  show_birthday_for_public ?></label></span>
+                                            <span class="pull-left"><input type="checkbox" <?php echo ($_REQUEST['show_birthday'] == 'on') ? 'checked' : ''; ?> name="show_birthday" id="show_birthday"><label for="show_birthday"> <?php echo  show_birthday_for_public ?></label></span>
                                         </div>
-                                        <input type="<?php echo  ($lang == 'en') ? 'date' : ''; ?>" autocomplete="off" id="birthday" name="birthday" value="<?php echo  $_REQUEST['birthday'] ?>" class="form-control <?php echo  ($lang == 'en') ? '' : 'datepicker'; ?> " />
+                                        <input type="<?php echo ($lang == 'en') ? 'date' : ''; ?>" autocomplete="off" id="birthday" name="birthday" value="<?php echo  $_REQUEST['birthday'] ?>" class="form-control <?php echo ($lang == 'en') ? '' : 'datepicker'; ?> " />
                                     </div>
                                     <div class="col_full art">
                                         <label for="artists_name"><?php echo  category ?> <span class="red-text">*</span></label>
                                         <select name="category_id[]" id="category_id" data-input="select2" multiple class="form-control">
-                                            <?php 
+                                            <?php
                                             foreach ($list['category'] as $category_id => $value) {
                                             ?>
                                                 <option <?php echo in_array($value['Category_id'], $_REQUEST['category_id']) ? 'selected' : '' ?> value="<?php echo  $value['Category_id'] ?>">
                                                     <?php echo  $value['export'] ?>
                                                 </option>
-                                            <?php 
+                                            <?php
                                             }
                                             ?>
                                         </select>
@@ -246,41 +248,41 @@
                                     <div class="col_full art">
                                         <label for="genre"><?php echo  genre ?></label>
                                         <select name="genre_id[]" id="genre_id" data-input="select2" multiple class="form-control">
-                                            <?php 
+                                            <?php
                                             foreach ($list['genre'] as $genre_id => $value) {
                                             ?>
                                                 <option <?php echo $value['Genre_id'] == $list['genre_id'] ? 'selected' : '' ?> value="<?php echo  $value['Genre_id'] ?>">
                                                     <?php echo  $value['export'] ?>
                                                 </option>
-                                            <?php 
+                                            <?php
                                             }
                                             ?>
                                         </select>
                                     </div>
                                     <div class="col_full art">
                                         <label for="site"><i class="icon icon-ie"></i> <?php echo  site ?> </label>
-                                        <input type="text" style="direction: ltr" id="site" name="site" value="<?php echo  ($_REQUEST['site'] == '') ? '' : $_REQUEST['site']; ?>" placeholder="" class="form-control" />
+                                        <input type="text" style="direction: ltr" id="site" name="site" value="<?php echo ($_REQUEST['site'] == '') ? '' : $_REQUEST['site']; ?>" placeholder="" class="form-control" />
                                     </div>
                                     <div class="col_full art">
                                         <label for="instagram"><i class="icon icon-instagram2"></i><?php echo  instagram ?> </label>
-                                        <input type="text" id="instagram" style="direction: ltr" name="instagram" value="<?php echo  ($_REQUEST['instagram'] == '') ? '' : $_REQUEST['instagram']; ?>" placeholder="" class="form-control" />
+                                        <input type="text" id="instagram" style="direction: ltr" name="instagram" value="<?php echo ($_REQUEST['instagram'] == '') ? '' : $_REQUEST['instagram']; ?>" placeholder="" class="form-control" />
                                     </div>
                                     <div class="col_full art">
                                         <label for="soundcloud"><i class="icon icon-soundcloud"></i><?php echo  sound_cloud ?></label>
-                                        <input type="text" id="soundcloud" style="direction: ltr" name="soundcloud" value="<?php echo  ($_REQUEST['soundcloud'] == '') ? '' : $_REQUEST['soundcloud']; ?>" placeholder="" class="form-control" />
+                                        <input type="text" id="soundcloud" style="direction: ltr" name="soundcloud" value="<?php echo ($_REQUEST['soundcloud'] == '') ? '' : $_REQUEST['soundcloud']; ?>" placeholder="" class="form-control" />
                                     </div>
                                     <div class="col_full art">
                                         <label for="beeptunes"><?php echo  beeptunes ?></label>
-                                        <input type="text" id="beeptunes" style="direction: ltr" name="beeptunes" value="<?php echo  ($_REQUEST['beeptunes'] == '') ? '' : $_REQUEST['beeptunes']; ?>" placeholder="" class="form-control" />
+                                        <input type="text" id="beeptunes" style="direction: ltr" name="beeptunes" value="<?php echo ($_REQUEST['beeptunes'] == '') ? '' : $_REQUEST['beeptunes']; ?>" placeholder="" class="form-control" />
                                     </div>
 
                                     <div class="col_full art">
                                         <label for="facebook"><i class="icon icon-facebook-sign"></i><?php echo  facebook ?></label>
-                                        <input type="text" id="facebook" name="facebook" value="<?php echo  ($_REQUEST['facebook'] == '') ? '' : $_REQUEST['facebook']; ?>" placeholder="" class="form-control  " style="direction: ltr" />
+                                        <input type="text" id="facebook" name="facebook" value="<?php echo ($_REQUEST['facebook'] == '') ? '' : $_REQUEST['facebook']; ?>" placeholder="" class="form-control  " style="direction: ltr" />
                                     </div>
                                     <div class="col_full art">
                                         <label for="telegram"><i class="icon icon-email2"></i><?php echo  telegram ?></label>
-                                        <input type="text" style="direction: ltr" id="telegram" name="telegram" value="<?php echo  ($_REQUEST['telegram'] == '') ? '' : $_REQUEST['telegram']; ?>" placeholder="" class="form-control" />
+                                        <input type="text" style="direction: ltr" id="telegram" name="telegram" value="<?php echo ($_REQUEST['telegram'] == '') ? '' : $_REQUEST['telegram']; ?>" placeholder="" class="form-control" />
                                     </div>
                                     <div class="col_full art">
                                         <label for="description_fa"><?php echo  bio_fa ?></label>
@@ -300,11 +302,11 @@
 
                                             <select class="form-control" name="city_id" id="city_id" data-input="select2">
 
-                                                <?php 
+                                                <?php
                                                 foreach ($list['provinces'] as $province_id => $value) { ?>
                                                     <option <?php echo  $value['province_id'] == $list['province_id'] ? 'selected' : '' ?> value="<?php echo  $value['province_id'] ?>">
                                                         <?php echo  $value["name_$lang"] ?>
-                                                    </option><?php 
+                                                    </option><?php
                                                             }
                                                                 ?>
                                             </select>
@@ -326,7 +328,33 @@
 
 
                                     <div class="col_full nobottommargin">
-                                        <button class="button button-3d button-black nomargin"><?php echo  register ?></button>
+                                        <!-- <button class="button button-3d button-black nomargin">< ?php echo  register ?></button> -->
+
+                                        <button class="g-recaptcha button button-3d button-black nomargin"><?php echo  register ?></button>
+
+                                        <script src="https://www.google.com/recaptcha/api.js?render=6LcUQeEeAAAAAJwaRS6BsBVQt3og5hAX3I9z7XrW"></script>
+                                        <script>
+                                            $('#register-form').submit(function(event) {
+                                                // function onClick(e) {
+                                                event.preventDefault();
+                                                grecaptcha.ready(function() {
+                                                    grecaptcha.execute('6LcUQeEeAAAAAJwaRS6BsBVQt3og5hAX3I9z7XrW', {
+                                                        action: 'registerform'
+                                                    }).then(function(token) {
+                                                        // Add your logic to submit to your backend server here.
+                                                        $('#register-form').prepend('<input type="hidden" name="token" value="' + token + '">');
+                                                        $('#register-form').prepend('<input type="hidden" name="action" value="registerform">');
+                                                        $('#register-form').unbind('submit').submit();
+                                                        // alert(1);
+                                                    });
+                                                });
+                                            });
+                                        </script>
+
+
+
+
+
                                         <a class="pull-left" href="<?php echo  RELA_DIR ?>login"><?php echo  login_by_account ?></a>
                                     </div>
 

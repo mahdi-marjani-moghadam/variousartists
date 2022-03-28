@@ -11378,7 +11378,7 @@ button.toast-close-button {
 
 
 #footer {
-	position: relative;
+	/* position: relative; */
 	background-color: #EEE;
 	/*border-top: 5px solid rgba(0,0,0,0.2);*/
 }

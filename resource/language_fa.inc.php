@@ -1479,8 +1479,6 @@ define("not_exists","وجود ندارد");
 define("image_not_exist","تصویر وجود ندارد");
 define("title_fa","عنوان(فارسی):");
 define("title_en","عنوان(انگلیسی):");
-define("description_fa","توضیح (فارسی):");
-define("description_en","توضیح (انگلیسی):");
 define("add","افزودن");
 define("artists","هنرمندان");
 define("show_all_famous_artists","نمایش تمامی هنرمندان مطرح ایران");
@@ -1488,3 +1486,4 @@ define("home","خانه");
 define("blog","وبلاگ");
 define("biography","بیوگرافی:");
 
+define("captcha_not_true","کپچا مشکل دارد. مجدد صفحه را رفرش نمایید.");
