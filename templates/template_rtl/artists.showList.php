@@ -50,7 +50,7 @@
         <!-- Portfolio Items
         ============================================= -->
         <div id="portfolio" class="portfolio grid-container portfolio-6    portfolio-masonry mixed-masonry grid-container clearfix">
-            <?
+            <?php
             if(count($list['list']) == 0 && isset($msg))
             {
             ?>
@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            <?
+            <?php
             }
 
             foreach($list['list'] as $k => $value)
@@ -96,19 +96,19 @@
 
         </div><!-- #portfolio end -->
             <div class="clearfix"></div>
-            <?
+            <?php
             if(count($list['pagination']) == 0)
             {
                 ?>
                 <ul class="pagination">
                     <li><a href="#">&laquo;</a></li>
-                    <?
+                    <?php
                     foreach($list['pagination'] as $key => $link)
                     {
                         if($key === 'current'){ continue;}
                         ?>
                         <li class="<?=(($key+1 == $list['pagination']['current']) || (empty($list['pagination']['current']) && $key == 0 ))?'active':'';?>" ><a href="<?=RELA_DIR.$link;?>"><?=$key+1?></a></li>
-                        <?
+                        <?php
                     }
                     ?>
 
