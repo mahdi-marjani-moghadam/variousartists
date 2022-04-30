@@ -371,6 +371,8 @@ function sendmails($email, $bcc, $subject, $body, $orderID, $header = '')
 function convertDate($date)
 {
     include_once 'jdf.php';
+    if($date == '0000-00-00 00:00:00') return '';
+    
     list($date, $time) = explode(' ', $date);
     list($g_y, $g_m, $g_d) = explode('-', $date);
     list($j_y, $j_m, $j_d) = gregorian_to_jalali($g_y, $g_m, $g_d);

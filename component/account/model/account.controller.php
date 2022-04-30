@@ -1253,4 +1253,50 @@ class accountController
         $this->template($export);
         die();
     }
+
+    public function showRefForm($var = null)
+    {
+        $this->fileName = 'account.refForm.php';
+        $this->template();
+        die();
+    }
+
+    public function sendInvitation($post = null)
+    {
+        global $member_info;
+
+        if(!is_numeric($post['mobile'])){
+            $this->fileName = 'account.refForm.php';
+            $this->template('', translate('شماره مشکل دارد'));
+            die();
+        }
+
+        // sms
+        include_once ROOT_DIR . 'component/magfa/magfa.model.php';
+        $sms = new WebServiceSample;
+
+        if ($lang == 'fa') {
+            $message =
+                'دوست عزیز شما توسط '.$member_info['artists_name_fa'].' به سایت variousartist.ir دعوت شده اید.' . " \n " .
+                'لطفا لینک زیر را بزنید و وارد سایت شوید.' . " \n " .
+                RELA_DIR."register/?ref=".$member_info['Artists_id'];
+        } else {
+            $message =
+            'دوست عزیز شما توسط '.$member_info['artists_name_fa'].' به سایت variousartist.ir دعوت شده اید.' . " \n " .
+            'لطفا لینک زیر را بزنید و وارد سایت شوید.' . " \n " .
+            RELA_DIR."register/?ref=".$member_info['Artists_id'];
+        }
+
+        // dd($message);
+        // $sms->simpleEnqueueSample($post['mobile'], $message);
+        $res = $sms->send($post['mobile'], $message);
+        if(is_array($res)){
+            dd($res);
+        }
+
+        $msg = translate('عملیات با موفقیت انجام شد');
+        redirectPage(RELA_DIR . 'account/ref', $msg);
+
+        die();
+    }
 }

@@ -155,6 +155,12 @@
                                                 class="icon-caret-right"></i>
                                         <span><div class="icon icon-money"></div> Donate</span>
                                     </a></li>
+
+                                <li><a href="<?php echo  RELA_DIR ?>account/ref"
+                                       class="button  button-reveal  button-border tright"><i
+                                                class="icon-caret-right"></i>
+                                        <span><div class="icon icon-send"></div> Send Invitation</span>
+                                    </a></li>
                             </ul>
                         </div>
                     </div>

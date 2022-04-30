@@ -14,11 +14,14 @@ class artistsModelDb
 
         $conn = dbConn::getConnection();
         $sql = "SELECT
-                    *,artists_name_$lang as artists_name,description_$lang as description
+                    child.*, child.artists_name_$lang as artists_name, child.description_$lang as description, 
+                    parent.artists_name_$lang as ref_name, parent.logo as ref_logo
                 FROM
-                    artists
+                    artists child
+                LEFT OUTER JOIN 
+                    artists parent on child.ref = parent.Artists_id
                 WHERE
-                    Artists_id= '$id' and status='1' ";
+                    child.Artists_id= '$id' and child.status='1' ";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();

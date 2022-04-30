@@ -23,7 +23,10 @@ class WebServiceSample
     private $NUMBER = '300075148';
 
     // base webservice url
-    private  $BASE_WEBSERVICE_URL = "http://sms.magfa.com/services/urn:SOAPSmsQueue?wsdl";
+    // private  $BASE_WEBSERVICE_URL = "http://sms.magfa.com/services/urn:SOAPSmsQueue?wsdl";
+    // private  $BASE_WEBSERVICE_URL = "https://sms.magfa.com/api/soap/sms/v1/server?wsdl";
+    // private  $BASE_WEBSERVICE_URL = "https://sms.magfa.com/api/http/sms/v2/send";
+    private  $BASE_WEBSERVICE_URL    = 'https://sms.magfa.com/api/soap/sms/v2/server?wsdl';
 
     private $client; // nusoap client object
 
@@ -49,17 +52,51 @@ class WebServiceSample
 
         try {
 
-            $this->client = new nusoap_client($this->BASE_WEBSERVICE_URL); // creating an instance of nusoap client object
-            // set the character set to utf-8 (inorder to prevent corrupting persian messages sending via webservice )
+            // $this->client = new nusoap_client($this->BASE_WEBSERVICE_URL); // creating an instance of nusoap client object
+            // // set the character set to utf-8 (inorder to prevent corrupting persian messages sending via webservice )
 
-            $this->client->soap_defencoding = 'UTF-8';
-            $this->client->decode_utf8 = false;
-            $this->client->setCredentials($this->USERNAME, $this->PASSWORD, "basic"); // authentication
+            // $this->client->soap_defencoding = 'UTF-8';
+            // $this->client->decode_utf8 = false;
+            // $this->client->setCredentials($this->USERNAME, $this->PASSWORD, "basic"); // authentication
+
+
+            $options = [
+                'login' => "$this->USERNAME/$this->DOMAIN",'password' => $this->PASSWORD, // -Credientials
+                'cache_wsdl' => WSDL_CACHE_NONE, // -No WSDL Cache
+                'compression' => (SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP | 5), // -Compression *
+                'trace' => false // -Optional (debug)
+            ];
+
+            // $options = [
+            //     'login' => $this->USERNAME, 'password' => $this->PASSWORD, // -Credientials
+            //     'cache_wsdl' => WSDL_CACHE_NONE, // -No WSDL Cache
+            //     'trace' => false // -Optional (debug)
+            // ];
+
+            
+            $this->client = new SoapClient($this->BASE_WEBSERVICE_URL, $options);
+                
         } catch (Exception $e) {
             $this->client = null;
         }
     }
 
+
+
+    public function send($mobile ,$message)
+    {
+        return $this->client->send(
+            [$message], // messages
+            [$this->NUMBER], // short numbers can be 1 or same count as recipients (mobiles)
+            [$mobile], // recipients
+            [123], // Encodings are optional, The system will guess it, itself ;)
+            [], // Encodings are optional, The system will guess it, itself ;)
+            [], // UDHs, Please read Magfa UDH Documnet
+            [] // Message priorities (unused).
+        );
+
+
+    }
 
 
 
@@ -70,6 +107,10 @@ class WebServiceSample
      */
     public function simpleEnqueueSample($recipientNumber, $message)
     {
+
+        return $this->send($recipientNumber, $message);
+        
+        // change algorithm
 
         $method = "enqueue"; // name of the service
         //$message = "MAGFA webservice-enqueue test"; // [FILL] your message to send
@@ -88,7 +129,7 @@ class WebServiceSample
         $response = $this->call($method, $params);
 
         // Error soap
-        if(isset($response['result']) and $response['result'] != -1 ){
+        if (isset($response['result']) and $response['result'] != -1) {
             $result = $response[0];
             // compare the response with the ERROR_MAX_VALUE
             if ($result <= $this->ERROR_MAX_VALUE) {
@@ -99,12 +140,9 @@ class WebServiceSample
                 //echo "Message has been successfully sent ; MessageId : $result";
                 return true;
             }
-        }
-        else{
+        } else {
             return false;
         }
-
-        
     }
 
 
@@ -401,7 +439,7 @@ class WebServiceSample
      */
     private function call($method, $params)
     {
-        if ($this->client == null) return array('result'=>-1,'msg'=>'soap error');
+        if ($this->client == null) return array('result' => -1, 'msg' => 'soap error');
 
         $result = $this->client->call($method, $params);
 

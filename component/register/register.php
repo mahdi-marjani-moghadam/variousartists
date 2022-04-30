@@ -35,6 +35,7 @@ if($PARAM[0]  == 'register')
 elseif($PARAM[1]  == 'memberregister')
 {
     // don't use
+    dd(1);
 
     if($_POST){
         $result = $login->memberregister($_POST);

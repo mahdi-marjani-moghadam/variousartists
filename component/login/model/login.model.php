@@ -460,9 +460,11 @@ class memberLogIn
         if ($resultCategory['result'] == 1) {
             $fields['category'] = $category->list;
         }
-        //echo "<pre>";print_r($resultCategory);die();
         ///////
-        ///
+
+
+
+
         /// /////// genre
         include_once(ROOT_DIR . "component/genre/admin/model/admin.genre.model.php");
         $genre = new adminGenreModel();
@@ -473,14 +475,20 @@ class memberLogIn
             $fields['genre'] = $genre->list;
         }
 
+
+
+        //////////// province
         include_once ROOT_DIR . 'component/province/model/province.model.php';
-        //$province = new adminProvinceModel();
         $province = province::getAll()->getList();
 
         //$resultProvince = $province->getStates();
         if ($province['result'] == 1) {
             $fields['provinces'] = $province['export']['list'];
         }
+
+
+
+
 
         global $dataStack;
         //////////////////////////////////////////////////
@@ -512,6 +520,23 @@ class memberLogIn
         $fields['country'] = $COUNTRY->country;
 
 
+
+
+
+        if (isset($_GET['ref']) ) {
+            include_once ROOT_DIR . 'component/artists/model/artists.model.php';
+            $ref = (new artists)->find($_GET['ref']);
+            if (is_object($ref)) {
+                $fields['refferer'] = $ref;
+            }
+        }
+
+        
+
+        
+        
+
+
         $this->fileName = 'register.php';
         $this->template($fields, $msg);
 
@@ -522,6 +547,23 @@ class memberLogIn
     {
 
         global $messageStack, $lang;
+
+        include_once(ROOT_DIR . "component/artists/model/artists.model.php");
+
+
+         ///////////////////////// ref 
+         if (isset($_input['ref']) && is_numeric($_input['ref'])) {
+            $ref = (new artists)->find($_input['ref']);
+            if(is_object($ref)){
+                $_input['refferer'] = $ref;
+            }
+        }
+        /////////////////////////////////////////////////////
+
+
+
+
+        ///////////////// captcha
 
         $token = $_input['token'];
         $action = $_input['action'];
@@ -541,7 +583,6 @@ class memberLogIn
             $this->showRegisterForm($_input, captcha_not_true);
         }
 
-        include_once(ROOT_DIR . "component/artists/model/artists.model.php");
         $_input['username'] = $_input['artists_phone1'];
         if ($_input['email'] != '') {
             $_input['username'] = $_input['email'];
@@ -552,6 +593,12 @@ class memberLogIn
             $messageStack->add_session('register', password_not_empty);
             $this->showRegisterForm($_input, password_not_empty);
         }
+        //////////////////////////////////////////////////////////////////////
+
+
+        
+
+       
 
 
         /** exist user */
@@ -562,6 +609,9 @@ class memberLogIn
             $this->showRegisterForm($_input, translate('Exist user'));
         }
 
+
+
+
         $artists = new artists;
 
         /** check category */
@@ -570,6 +620,8 @@ class memberLogIn
             $this->showRegisterForm($_input, category_id_not_empty);
         }
 
+
+        /////////////////////// artists
         if ($_input['check1'] == 'on') {
             if ($_input['artists_name_fa'] == '') {
                 $messageStack->add_session('register', persian_name_is_empty);
@@ -589,6 +641,8 @@ class memberLogIn
                 $this->showRegisterForm($_input, image_is_empty);
             }
         }
+
+
 
         if (isset($_input['category_id'])) {
             $_input['category_id'] = "," . (implode(",", $_input['category_id'])) . ",";
@@ -617,6 +671,8 @@ class memberLogIn
         // $_input['forgot_code'] = '';
         // $_input['genre_id'] = '';
         // $_input['birthday_city'] = '';
+
+        
 
         $artists->setFields($_input);
 
@@ -670,8 +726,9 @@ class memberLogIn
             }
 
 
-            $sms->simpleEnqueueSample($artists->artists_phone1, $message);
-
+            // $sms->simpleEnqueueSample($artists->artists_phone1, $message);
+            $res = $sms->send($artists->artists_phone1, $message);
+            
 
             ///email
             if (checkMail($artists->email) ==  1) {
@@ -709,7 +766,10 @@ class memberLogIn
             }
 
 
-            $sms->simpleEnqueueSample($artists->artists_phone1, $message);
+            // $sms->simpleEnqueueSample($artists->artists_phone1, $message);
+            $res = $sms->send($artists->artists_phone1, $message);
+            
+            
             ///email
             if (checkMail($artists->email) ==  1) {
                 sendmail($artists->email, $subject, $message);

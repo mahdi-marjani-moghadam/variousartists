@@ -168,6 +168,13 @@ switch ($PARAM[1]) {
         }
         break;
 
+    case 'ref':
+        if($_POST){
+            $accountController->sendInvitation($_POST);
+        }else{
+            $accountController->showRefForm();
+        }
+
     default:
         
         $accountController->showPanel();

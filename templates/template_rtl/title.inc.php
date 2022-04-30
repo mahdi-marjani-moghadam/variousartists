@@ -111,8 +111,8 @@
 							<?php   } else{?>
 								<li class="<?php echo ($PARAM[0] == 'account')?'current':'';?>">
                                     <a href="<?php echo RELA_DIR?>account"><div>
-                                            <?php global $lang?>
-                                            <?if($member_info['nickname']){echo $member_info['nickname'];}
+                                            <?php global $lang ?>
+                                            <?php if($member_info['nickname']){echo $member_info['nickname'];}
                                             elseif($member_info["artists_name_$lang"]){echo $member_info["artists_name_$lang"];}
                                             else{echo ' صفحه کاربری';} ?>
                                         </div></a>

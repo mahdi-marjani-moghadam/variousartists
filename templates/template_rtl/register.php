@@ -158,8 +158,11 @@
                                         <div class="alert alert-danger rtl"><?php echo  $msg ?></div>
                                     </div>
                                 <?php endif; ?>
-                                <h3><?php echo  create_new_account ?></h3>
+                                <h3><?php echo  create_new_account ?> <span style="float: left; font-size:.7em"><?php echo (is_object( $list['refferer'])) ? 'معرف: ' . $list['refferer']->artists_name_fa : '' ?></span> </h3>
                                 <form id="register-form" name="register-form" enctype="multipart/form-data" class="nobottommargin" action="<?php echo  RELA_DIR ?>register" method="post">
+                                    
+                                    <input type="hidden" name="ref" value="<?php echo $list['refferer']->Artists_id ?? '' ?>">
+                                    
                                     <div class="col_full form-group">
                                         <label for="artists_phone1"><?php echo  mobile ?> <span class="red-text">*</span> </label>
 
