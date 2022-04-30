@@ -95,7 +95,7 @@
 					============================================= -->
 					<nav id="primary-menu" class="dark style-6 style-2">
 						<ul>
-							<li class="<?php echo ($PARAM[0] == 'event')?'current':'';?> hidden-xs" ><a href="<?php echo RELA_DIR?>event"><div>رویدادها</div></a></li>
+							<li class="<?php echo ($PARAM[0] == 'event')?'current':'';?> " ><a href="<?php echo RELA_DIR?>event"><div>رویدادها</div></a></li>
 							<li class="<?php echo ($PARAM[0] == 'artists')?'current':'';?>"><a href="<?php echo RELA_DIR?>artists"><div> هنرمندان</div></a></li>
 							<li class="<?php echo ($PARAM[0] == 'artists')?'current':'';?>"><a href="<?php echo RELA_DIR?>blog"><div> وبلاگ</div></a></li>
 
