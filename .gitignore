@@ -1,6 +1,7 @@
 
 .idea
 .vscode
+!.vscode/sftp.json
 statics/banner/*
 statics/event/*
 statics/files/*

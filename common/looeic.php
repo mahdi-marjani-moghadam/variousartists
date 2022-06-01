@@ -864,7 +864,7 @@ class looeic extends DB
         $this->getFieldsName();
         if ($name == 'fields') {
             return $this->fields;
-        } elseif (array_key_exists($name, $this->fields)) {
+        } elseif ( array_key_exists($name, $this->fields)) {
             return $this->fields[$name];
         } elseif (is_callable([$this, $name])) {
             return $this->$name();
@@ -1266,53 +1266,53 @@ class looeic extends DB
     }
 }
 
-class model extends looeic
-{
-    protected $TABLE_NAME;
-    protected $fields;
-    protected $rules;
-    protected static $obj;
+// class model extends looeic
+// {
+//     protected $TABLE_NAME;
+//     protected $fields;
+//     protected $rules;
+//     protected static $obj;
 
-    public function __construct($table, $fields = '', $rules = '')
-    {
+//     public function __construct($table, $fields = '', $rules = '')
+//     {
 
-        $this->TABLE_NAME = $table;
-        $this->setExtendClass('model');
-        if (is_array($fields)) {
-            $this->fields = $fields;
-        }
-        if (is_array($rules)) {
-            $this->rules = $rules;
-        }
-        parent::__construct('', $table);
-        $obj = $this;
-    }
+//         $this->TABLE_NAME = $table;
+//         $this->setExtendClass('model');
+//         if (is_array($fields)) {
+//             $this->fields = $fields;
+//         }
+//         if (is_array($rules)) {
+//             $this->rules = $rules;
+//         }
+//         parent::__construct('', $table);
+//         $obj = $this;
+//     }
 
-    static function find($table, $id)
-    {
-        $obj = new model($table);
+//     static function find($table, $id)
+//     {
+//         $obj = new model($table);
 
-        return $obj->findModel($id);
-    }
+//         return $obj->findModel($id);
+//     }
 
 
-    public static function __callStatic($name, $arguments)
-    {
-        if (strpos($name, 'getBy') === 0) {
-            return self::getby($name, $arguments);
-        }
+//     public static function __callStatic($name, $arguments)
+//     {
+//         if (strpos($name, 'getBy') === 0) {
+//             return self::getby($name, $arguments);
+//         }
 
-        return parent::__callStatic($name, $arguments);
-    }
+//         return parent::__callStatic($name, $arguments);
+//     }
 
-    static function getby($name, $arguments)
-    {
+//     static function getby($name, $arguments)
+//     {
 
-        $table = $arguments[0];
-        $obj = new model($table);
-        array_shift($arguments);
-        $obj->getbyModel($name, $arguments);
+//         $table = $arguments[0];
+//         $obj = new model($table);
+//         array_shift($arguments);
+//         $obj->getbyModel($name, $arguments);
 
-        return $obj;
-    }
-}
+//         return $obj;
+//     }
+// }
