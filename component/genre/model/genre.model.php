@@ -253,7 +253,7 @@ class genreModel
      *
      * @return mixed
      */
-    public function convert($_input, $temp, $space = '-')
+    public function convert($_input, $temp=null, $space = '-')
     {
         static $mainMenu = array();
         //echo $this->level;
@@ -305,7 +305,7 @@ class genreModel
         return $result;
     }    
 
-    public function convertTreetoLiUl($array, $root = 0, $all)
+    public function convertTreetoLiUl($array, $root = 0, $all=null)
     {
         static $mainMenu = '';
         static $mainList;
@@ -342,7 +342,7 @@ class genreModel
         return $mainMenu;
 
     }
-    public function convertTreetoLiUlSearch($array, $root = 0, $all)
+    public function convertTreetoLiUlSearch($array, $root = 0, $all = null)
     {
         static $mainMenu = '';
         static $mainList;
@@ -438,7 +438,7 @@ class genreModel
     public function getGenreTree($fields='')
     {
         include_once dirname(__FILE__).'/genre.model.db.php';
-        $result = genreModelDb::tree_set();
+        $result = (new genreModelDb)->tree_set();
         $this->list = $result['export']['list'];
         $this->recordsCount = $result['export']['recordsCount'];
 
@@ -488,7 +488,7 @@ class genreModel
     {
         include_once dirname(__FILE__).'/admin.genre.model.db.php';
 
-        $result = adminGenreModelDb::tree_set();
+        $result = (new adminGenreModelDb)->tree_set();
         $fields = $result['export']['list'];
         $this->listCat = $fields;
         $result = $this->convert($fields['1']);

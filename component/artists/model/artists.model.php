@@ -171,7 +171,7 @@ class artistsModel extends looeic
     {
         include_once dirname(__FILE__).'/artists.model.db.php';
 
-        $result = artistsModelDb::getArtists($fields);
+        $result = (new artistsModelDb)->getArtists($fields);
         
 
         if ($result['result'] != 1) {

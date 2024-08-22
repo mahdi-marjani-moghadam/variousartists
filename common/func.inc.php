@@ -1408,7 +1408,7 @@ function translate($text, $lang = '')
 
 function dd($object, $continue = false)
 {
-    echo "<pre>";
+    echo "<pre style='background:black;color:#00ff00;padding:1em;direction:ltr'>";
     print_r($object);
     $continue == false ? die() : '';
 }

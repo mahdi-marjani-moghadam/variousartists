@@ -851,6 +851,7 @@ class looeic extends DB
 
     function __set($name, $value)
     {
+        
         $value = trim($value);
         $this->getFieldsName();
         if (!array_key_exists($name, $this->TABLE_FIELD)) {
