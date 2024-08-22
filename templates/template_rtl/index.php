@@ -60,7 +60,7 @@
 
 
 
-                <?php if(count($list['lastEvent']) > 0 ): ?>
+                <?php if($list['lastEvent'] && count($list['lastEvent']) > 0 ): ?>
 				<div class=" topmargin nobottommargin nobottomborder">
 					<div class="container clearfix">
 						<div class="heading-block center nomargin">

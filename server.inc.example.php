@@ -14,11 +14,12 @@ define("DB_TYPE","mysql");
 // define("DB_HOST","172.18.205.250");
 define("DB_HOST","localhost");
 define("DB_USER","root");
-define("DB_PASSWORD","12345678");
-define("DB_DATABASE","variousartists");
+define("DB_PASSWORD","root");
+define("DB_DATABASE","variousa_sd");
     define("ROOT_DIR",dirname(__FILE__) ."/");
 
 define("SUB_FOLDER","");
+define("looeicConfig","");
 //echo "<pre>";print_r($_SERVER);die();
 if($_SERVER['HTTPS'] == 'on'){$http = 'https';}
 else{$http = 'http';}
@@ -38,6 +39,7 @@ define("SMTP_SENDER","Various Artists");
 
 define("ADMIN_EMAIL","");
 
+define("RECAPTCHA_V3_SECRET_KEY", '6LcUQeEeAAAAAAtcVPA0oFdA7m23hZZA05EonyXj');
 
 
 date_default_timezone_set('Asia/Tehran');

@@ -74,7 +74,7 @@ class DataBase
             }
         }
 
-        if (count($columnSearch)) {
+        if ($columnSearch && count($columnSearch)) {
             $filter = $filter === '' ?
                 implode(' AND ', $columnSearch) :
                 $filter.' AND '.implode(' AND ', $columnSearch);

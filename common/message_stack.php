@@ -57,7 +57,7 @@ class messageStack
 	{
         $messages = '';
       	//$messages = '<a href="#" class="close"><img src="'.RELA_DIR.'templates/'.CURRENT_SKIN.'/admin/images/icons/cross_grey_small.png" title="حذف" alt="حذف" /></a>';
-      	for ($i=0, $n=sizeof($this->messages); $i<$n; $i++) 
+      	for ($i=0, $n=sizeof($this->messages??[]); $i<$n; $i++) 
 		{
         	if ($this->messages[$i]['class'] == $class) 
 			{

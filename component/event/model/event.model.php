@@ -148,7 +148,7 @@ class eventModel extends looeic
     {
         include_once dirname(__FILE__).'/event.model.db.php';
 
-        $result = eventModelDb::getEvent($fields);
+        $result = (new eventModelDb)->getEvent($fields);
 
         if ($result['result'] != 1) {
             return $result;

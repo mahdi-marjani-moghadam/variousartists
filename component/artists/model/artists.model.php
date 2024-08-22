@@ -71,23 +71,23 @@ class artistsModel extends looeic
      *
      * @return int
      */
-    public function setFields($input)
-    {
-        foreach ($input as $field => $val) {
-            $funcName = '__set'.ucfirst($field);
-            if (method_exists($this, $funcName)) {
-                $result = $this->$funcName($val);
-                if ($result['result']) {
-                    $this->fields[$field] = $val;
-                } else {
-                    return $result;
-                }
-            }
-        }
-        $result = 1;
+    // public function setFields($input)
+    // {
+    //     foreach ($input as $field => $val) {
+    //         $funcName = '__set'.ucfirst($field);
+    //         if (method_exists($this, $funcName)) {
+    //             $result = $this->$funcName($val);
+    //             if ($result['result']) {
+    //                 $this->fields[$field] = $val;
+    //             } else {
+    //                 return $result;
+    //             }
+    //         }
+    //     }
+    //     $result = 1;
 
-        return $result;
-    }
+    //     return $result;
+    // }
 
     /**
      * @param $input

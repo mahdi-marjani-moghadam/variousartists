@@ -1,8 +1,8 @@
 <?php
 
-error_reporting(1);
 error_reporting(E_ALL ^ E_STRICT ^ E_NOTICE ^ E_DEPRECATED ^ E_WARNING);
-ini_set('display_errors',1);
+ini_set('display_errors',"1");
+ini_set('error_prepend_string',"<pre style='white-space: pre-line; line-height:1.5em;'>");
 
 $db = dbConn::getConnection();
 
