@@ -28,6 +28,7 @@
  * @version 1.1.1
  * @access public
  */
+namespace Common;
 class DB {
     protected $_operation = '';
     private $_fields = array();

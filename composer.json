@@ -2,7 +2,8 @@
     "name": "mahdi/variousartists",
     "autoload": {
         "psr-4": {
-            "Component\\": "component/"
+            "Component\\": "component/",
+            "Common\\": "common/"
         }
     },
     "authors": [

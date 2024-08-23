@@ -6,6 +6,12 @@
  * Date: 2/20/2016
  * Time: 4:24 AM
  */
+
+namespace Component\category\admin\model;
+
+use Common\looeic;
+use Component\category\admin\model\adminCategoryModelDb;
+
 include_once ROOT_DIR."common/validators.php";
 class adminCategoryModel extends looeic
 {
@@ -471,7 +477,7 @@ class adminCategoryModel extends looeic
     public function getCategoryOption($space='|-- ',$parent_id=0,$selectRoot='0',$where='')
     {
 
-        include_once(dirname(__FILE__) . "/admin.category.model.db.php");
+        // include_once(dirname(__FILE__) . "/admin.category.model.db.php");
 
         $result = adminCategoryModelDb::tree_set($where);
 

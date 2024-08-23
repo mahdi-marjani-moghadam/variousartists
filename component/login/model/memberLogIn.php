@@ -1,5 +1,10 @@
 <?php
 
+namespace Component\login\model;
+
+use Common\dbConn;
+use Component\category\admin\model\adminCategoryModel;
+use Component\genre\admin\model\adminGenreModel;
 
 class memberLogIn
 {
@@ -350,6 +355,7 @@ class memberLogIn
     {
 
         global  $member_info;
+        
         $conn = dbConn::getConnection();
         //print_r($_COOKIE["sessionID"]);
         if (!isset($_SESSION["sessionID"])) {
@@ -454,7 +460,7 @@ class memberLogIn
     {
 
         /////// category
-        include_once(ROOT_DIR . "component/category/admin/model/admin.category.model.php");
+        // include_once(ROOT_DIR . "component/category/admin/model/admin.category.model.php");
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();

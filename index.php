@@ -2,23 +2,19 @@
 // phpinfo();
 // die();
 
+
 error_reporting(E_ALL ^ E_STRICT ^ E_NOTICE ^ E_DEPRECATED ^ E_WARNING);
 ini_set('display_errors', "1");
 ini_set('error_prepend_string', "<pre style='white-space: pre-line; line-height:1.5em; font-size:16px'>");
 
-// require __DIR__ . '/vendor/autoload.php';
 
-// use Component\Login\Model\memberLogIn;
-
-// $login = new memberLogIn();
-// echo $login->login();
-// die();
+require __DIR__ . '/vendor/autoload.php';
 include_once 'server.inc.php';
 include_once ROOT_DIR . 'common/func.inc.php';
-include_once ROOT_DIR . 'common/db.inc.php';
+// include_once ROOT_DIR . 'common/db.inc.php';
 
 include_once ROOT_DIR . 'common/init.inc.php';
-include_once ROOT_DIR . 'model/db.inc.class.php';
+// include_once ROOT_DIR . 'model/db.inc.class.php';
 include_once ROOT_DIR . 'common/looeic.php';
 //include_once ROOT_DIR.'common/looeic2.php';
 

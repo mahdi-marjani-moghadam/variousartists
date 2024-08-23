@@ -1,6 +1,10 @@
 <?php
+namespace Common;
 
-class dbConn{
+use PDO;
+use PDOException;
+
+class dbConn2{
 
     protected static $db;
 

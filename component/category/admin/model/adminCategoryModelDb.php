@@ -6,6 +6,11 @@
  * Date: 2/20/2016
  * Time: 4:33 AM
  */
+namespace Component\category\admin\model;
+
+use Common\dbConn;
+use PDO;
+
 class adminCategoryModelDb
 {
 

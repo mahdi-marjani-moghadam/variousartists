@@ -6,9 +6,12 @@
  * Date: 2/20/2016
  * Time: 4:33 AM
  */
+namespace Common;
+use Common\dbConn;
+use PDO;
 
 include_once ROOT_DIR . 'common/GUMP-master/gump.class.php';
-include_once ROOT_DIR . 'common/looeicQueryBuilder.php';
+// include_once ROOT_DIR . 'common/looeicQueryBuilder.php';
 
 
 class looeic extends DB

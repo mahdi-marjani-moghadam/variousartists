@@ -1,6 +1,7 @@
 <?php
 
-// use Component\Login\Model\memberLogIn;
+use Common\dbConn;
+use Component\login\model\memberLogIn;
 
 
 
@@ -73,7 +74,7 @@ include(ROOT_DIR . "resource/language_$lang.inc.php");
 include(ROOT_DIR . "common/message_stack.php");
 include(ROOT_DIR . "common/data_stack.php");
 
-include(ROOT_DIR . "component/login/model/login.model.php");
+// include(ROOT_DIR . "component/login/model/login.model.php");
 
 $login = new memberLogIn();
 

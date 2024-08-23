@@ -11,7 +11,10 @@ function connectDB()
     boxLogin::boxController();
     return $conn;
 }*/
+namespace Common;
 
+use PDO;
+use PDOException;
 
 class dbConn
 {

@@ -5,6 +5,9 @@
  * Date: 3/10/2016
  * Time: 10:21 AM
  */
+
+use Common\looeic;
+
 include_once(ROOT_DIR."/common/validators.php");
 include_once(ROOT_DIR."/common/looeic.php");
 

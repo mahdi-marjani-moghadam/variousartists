@@ -6,6 +6,10 @@
  * Date: 2/20/2016
  * Time: 4:24 AM
  */
+namespace Component\genre\admin\model;
+
+use Common\looeic;
+
 include_once ROOT_DIR."common/validators.php";
 class adminGenreModel extends looeic
 {
