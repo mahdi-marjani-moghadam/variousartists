@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Component\vontactus\admin\model;
+namespace  Component\contactus\admin\model;
 
 use Common\looeic;
 use Component\contactus\admin\model\adminContactusModelDb;
@@ -10,7 +10,7 @@ class adminContactusModel extends looeic
 {
     public $list;
     public $recordsCount;
-    protected $TABLE_NAME = 'event';
+    protected $TABLE_NAME = 'contactus';
 
 
     public function getContactusById($id)

@@ -1,19 +1,10 @@
 <?php
 
+namespace Component\Contactus\Admin\Model;
+
 use Common\validators;
-use Component\vontactus\admin\model\adminContactusModel;
-/**
- * Created by PhpStorm.
- * User: malek
- * Date: 2/20/2016
- * Time: 4:24 PM
- */
 
-// include_once(dirname(__FILE__) . "/admin.contactus.model.php");
 
-/**
- * Class contactusController
- */
 class adminContactusController
 {
 
@@ -35,7 +26,6 @@ class adminContactusController
     public function __construct()
     {
         $this->exportType = 'html';
-
     }
 
     /**
@@ -43,13 +33,12 @@ class adminContactusController
      * @param $msg
      * @return string
      */
-    function template($list = array(), $msg='') : void
+    function template($list = array(), $msg = ''): void
     {
         // global $conn, $lang;
 
 
-        switch ($this->exportType)
-        {
+        switch ($this->exportType) {
             case 'html':
 
                 include(ROOT_DIR . "templates/" . CURRENT_SKIN . "/template_start.php");
@@ -70,7 +59,6 @@ class adminContactusController
             default:
                 break;
         }
-
     }
 
     /**
@@ -79,16 +67,14 @@ class adminContactusController
      */
     public function showMore($_input)
     {
-        if (!is_numeric($_input))
-        {
+        if (!is_numeric($_input)) {
             $msg = 'یافت نشد';
             $this->showList('', $msg);
         }
         $contactus = new adminContactusModel();
         $result = $contactus->getContactusById($_input);
 
-        if ($result['result'] != 1)
-        {
+        if ($result['result'] != 1) {
             $msg = 'یافت نشد';
             $this->showList('', $msg);
         }
@@ -101,12 +87,11 @@ class adminContactusController
     /**
      * @param $fields
      */
-    public function showList($fields=array(), $msg='')
+    public function showList($fields = array(), $msg = '')
     {
         $contactus = new adminContactusModel();
         $result = $contactus->getContactus($fields);
-        if ($result['result'] != '1')
-        {
+        if ($result['result'] != '1') {
             $this->fileName = 'admin.contactus.showList.php';
             $this->template('', $result['msg']);
             die();
@@ -141,14 +126,12 @@ class adminContactusController
 
         $result = $contactus->setFields($fields);
 
-        if ($result['result'] == -1)
-        {
+        if ($result['result'] == -1) {
             return $result;
         }
         $result = $contactus->add();
 
-        if ($result['result'] != '1')
-        {
+        if ($result['result'] != '1') {
             $this->showContactusAddForm($fields, $result['msg']);
         }
         $msg = 'عملیات با موفقیت انجام شد';
@@ -160,27 +143,26 @@ class adminContactusController
      * @param $fields
      * @param $msg
      */
-    public function showContactusEditForm($fields=array(), $msg='')
+    public function showContactusEditForm($fields = array(), $msg = '')
     {
 
-        $contactus=new adminContactusModel();
+        $contactus = new adminContactusModel();
         $query = "select * from contactus_content ";
-        $result    = $contactus->getByFilter('',$query);
+        $result    = $contactus->getByFilter('', $query);
 
-        if($result['result']!='1')
-        {
-            $msg=$result['msg'];
+        if ($result['result'] != '1') {
+            $msg = $result['msg'];
             redirectPage(RELA_DIR . "zamin/index.php?component=contactus&action=edit", $msg);
         }
-        $export=$result['export']['list'];
-        foreach ($export as $v){
-            $list[$v['lang']] =$v;
+        $export = $result['export']['list'];
+        foreach ($export as $v) {
+            $list[$v['lang']] = $v;
         }
 
 
 
-        $this->fileName='admin.contactus.editForm.php';
-        $this->template($list,$msg);
+        $this->fileName = 'admin.contactus.editForm.php';
+        $this->template($list, $msg);
         die();
     }
 
@@ -190,7 +172,7 @@ class adminContactusController
     public function editContactus($fields)
     {
         // include_once ROOT_DIR.'component/contactus/admin/model/admin.contactus_content.model.php';
-        $contactus=new adminContactusModel();
+        $contactus = new adminContactusModel();
 
         $result    = $contactus::getBy_lang($fields['language'])->get()['export']['list'][0];
         $result->setFields($fields);
@@ -215,27 +197,23 @@ class adminContactusController
     {
         $contactus = new adminContactusModel();
 
-        if (!validators::required($fields['Contact_id']) and !validators::Numeric($fields['Contact_id']))
-        {
+        if (!validators::required($fields['Contact_id']) and !validators::Numeric($fields['Contact_id'])) {
             $msg = 'یافت نشد';
             redirectPage(RELA_DIR . "zamin/index.php?component=contactus", $msg);
         }
         $result = $contactus->getContactusById($fields['Contact_id']);
-        if ($result['result'] != '1')
-        {
+        if ($result['result'] != '1') {
             $msg = $result['msg'];
             redirectPage(RELA_DIR . "zamin/index.php?component=contact", $msg);
         }
         $result = $contactus->setFields($fields);
 
-        if ($result['result'] != 1)
-        {
+        if ($result['result'] != 1) {
             $this->showContactusEditForm($fields, $result['msg']);
         }
         $result = $contactus->delete();
 
-        if ($result['result'] != '1')
-        {
+        if ($result['result'] != '1') {
             $this->showContactusEditForm($fields, $result['msg']);
         }
         $msg = 'عملیات با موفقیت انجام شد';
@@ -243,5 +221,3 @@ class adminContactusController
         die();
     }
 }
-
-?>

@@ -1,7 +1,8 @@
 <?php
 namespace Component\contactus\model;
+use Component\contactus\admin\model\adminContactusContentModel;
 use Component\contactus\model\contactusModel;
-use Component\vontactus\admin\model\adminContactusModel;
+use Component\contactus\admin\model\adminContactusModel;
 
 class contactusController
 {
@@ -90,7 +91,7 @@ class contactusController
         global $breadcrumb, $lang;
 
         // include_once ROOT_DIR.'component/contactus/admin/model/admin.contactus_content.model.php';
-        $obj = adminContactusModel::getAll()->where('lang', '=', $lang)->getList()['export']['list'][0];
+        $obj = adminContactusContentModel::getAll()->where('lang', '=', $lang)->getList()['export']['list'][0];
 
         $breadcrumb->reset();
         $breadcrumb->add('تماس با ما');
