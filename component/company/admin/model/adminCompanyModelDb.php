@@ -1,11 +1,9 @@
 <?php
-/**
+namespace Component\company\admin\model;
+use Common\dbConn;
+use Component\product\admin\model\adminProductModelDb;
+use PDO;
 
- * Created by PhpStorm.
- * User: malekloo
- * Date: 2/27/2016
- * Time: 11:02 AM.
- */
 class adminCompanyModelDb
 {
     public static function insert($fields)
@@ -493,7 +491,7 @@ class adminCompanyModelDb
         $sql = substr($sql, 0, -1);
         $sql = $sql."WHERE Company_id = '".$fields['Company_id']."'";
 
-        include_once ROOT_DIR.'component/product/admin/model/admin.product.model.db.php';
+        // include_once ROOT_DIR.'component/product/admin/model/admin.product.model.db.php';
 
         $result = adminProductModelDb::updateCompanyProductsCity($fields['city_id'],$fields['Company_id']);
 
@@ -754,7 +752,7 @@ class adminCompanyModelDb
             $row['certification_id'] = $temp['export']['list'];
             $list[$row['Company_id']] = $row;
 
-            include_once ROOT_DIR.'component/city/admin/model/admin.city.model.db.php';
+            // include_once ROOT_DIR.'component/city/admin/model/admin.city.model.db.php';
             $row['city'] = adminCityModelDb::getCityById($row['city_id']);
 
             $id = $row['Company_id'];

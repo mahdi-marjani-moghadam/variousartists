@@ -1,11 +1,12 @@
 <?php
-/**
+namespace Component\artists\admin\model;
+use Common\dbConn;
+use Component\category\admin\model\adminCategoryModel;
+use Component\city\admin\model\adminCityModelDb;
+use Component\product\admin\model\adminProductModelDb;
+use Model\DataBase;
+use PDO;
 
- * Created by PhpStorm.
- * User: malekloo
- * Date: 2/27/2016
- * Time: 11:02 AM.
- */
 class adminArtistsModelDb
 {
     public static function insert($fields)
@@ -493,7 +494,7 @@ class adminArtistsModelDb
         $sql = substr($sql, 0, -1);
         $sql = $sql."WHERE Artists_id = '".$fields['Artists_id']."'";
 
-        include_once ROOT_DIR.'component/product/admin/model/admin.product.model.db.php';
+        // include_once ROOT_DIR.'component/product/admin/model/admin.product.model.db.php';
 
         $result = adminProductModelDb::updateArtistsProductsCity($fields['city_id'],$fields['Artists_id']);
 
@@ -645,7 +646,7 @@ class adminArtistsModelDb
         global $artists_info;
         $artists_name=$artists_info['comp_name'];
         $this->_checkPermission();
-        $conn = parent::getConnection();
+        $conn = dbConn::getConnection();
         $fields['useTrash']='false';
         $filter=$this->filterBuilder($fields);
         $length=$filter['length'];
@@ -714,7 +715,7 @@ class adminArtistsModelDb
 
         $conn = dbConn::getConnection();
 
-        include_once ROOT_DIR.'/model/db.inc.class.php';
+        // include_once ROOT_DIR.'/model/db.inc.class.php';
 
         $condition = DataBase::filterBuilder($fields);
 
@@ -754,7 +755,7 @@ class adminArtistsModelDb
             $row['certification_id'] = $temp['export']['list'];
             $list[$row['Artists_id']] = $row;
 
-            include_once ROOT_DIR.'component/city/admin/model/admin.city.model.db.php';
+            // include_once ROOT_DIR.'component/city/admin/model/admin.city.model.db.php';
             $row['city'] = adminCityModelDb::getCityById($row['city_id']);
 
             $id = $row['Artists_id'];

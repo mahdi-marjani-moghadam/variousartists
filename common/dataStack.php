@@ -5,7 +5,7 @@
  * Date: 12/31/2014
  * Time: 4:01 PM
  */
-
+namespace Common;
 class dataStack {
     private $_data;
 

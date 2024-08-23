@@ -1,5 +1,5 @@
 <?php
-
+namespace Component\genre\model;
 use Common\validators;
 use Component\genre\model\genreModelDb;
 

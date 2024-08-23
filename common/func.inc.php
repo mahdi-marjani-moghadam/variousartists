@@ -1452,3 +1452,17 @@ function get_caller($function = NULL, $use_stack = NULL) {
     // At this stage, no caller has been found, bummer.
     return "";
 }
+
+if (!function_exists('slug')) {
+    function slug($slug) : string {
+        $slug = str_replace(' ', '-', $slug);
+        $slug = str_replace('--', '-', $slug);
+        $slug = str_replace('--', '-', $slug);
+        $slug = str_replace('--', '-', $slug);
+        $slug = trim($slug, ' ');
+        $slug = trim($slug, '-');
+        $slug = preg_replace('/\s+/', '-', $slug);
+        
+        return $slug;
+    }
+}

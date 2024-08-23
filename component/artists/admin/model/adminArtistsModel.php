@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marjani
- * Date: 3/6/2015
- * Time: 10:35 AM
- */
 
-//include_once(ROOT_DIR . "/common/validators.php");
+namespace Component\artists\admin\model;
+use Common\looeic;
 
 class adminArtistsModel extends looeic
 {
@@ -202,10 +197,10 @@ class adminArtistsModel extends looeic
      */
     public function getArtists($fields)
     {
-        include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
+        // include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
 
 
-        $result = adminArtistsModelDb::getArtists($fields);
+        $result = (new adminArtistsModelDb)->getArtists($fields);
 
         if($result['result'] != 1)
         {

@@ -6,6 +6,11 @@
  * Date: 04/07/2016
  * Time: 12 AM
  */
+namespace Component\login\admin\model;
+
+use Common\dbConn;
+use PDO;
+
 class adminLoginModelDb
 {
 

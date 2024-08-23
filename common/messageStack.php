@@ -1,4 +1,5 @@
 <?php
+namespace Common;
 class messageStack
 {
 	var $messages;

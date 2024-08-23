@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marjani
- * Date: 3/6/2015
- * Time: 10:35 AM
- */
-
-include_once(ROOT_DIR . "/common/validators.php");
+namespace Component\company\admin\model;
+use Common\validators;
 
 class adminCompanyModel
 {
@@ -149,7 +143,7 @@ class adminCompanyModel
      */
     private function __setCompany_name($input)
     {
-        if(!Validator::required($input))
+        if(!validators::required($input))
         {
             $result['result'] = -1;
             $result['msg'] = 'لطفا نام کمپانی را وارد نمایید.';
@@ -176,7 +170,7 @@ class adminCompanyModel
 
         return $result;
 
-        if(!Validator::required($input))
+        if(!validators::required($input))
         {
             $result['result'] = -1;
             $result['msg'] = 'لطفا توضیحات را وارد نمایید.';
@@ -476,7 +470,7 @@ class adminCompanyModel
 
         return $result;
 
-        if(!Validator::required($input))
+        if(!validators::required($input))
         {
             $result['result'] = -1;
             $result['msg'] = 'لطفا نام نماینده را وارد نمایید.';
@@ -503,7 +497,7 @@ class adminCompanyModel
 
         return $result;
 
-        if(!Validator::required($input))
+        if(!validators::required($input))
         {
             $result['result'] = -1;
             $result['msg'] = 'لطفا نام خانوادگی نماینده را وارد نمایید.';
@@ -530,7 +524,7 @@ class adminCompanyModel
 
         return $result;
 
-        if(!Validator::required($input))
+        if(!validators::required($input))
         {
             $result['result'] = -1;
             $result['msg'] = 'لطفا تلفن نماینده را وارد نمایید.';
@@ -552,13 +546,13 @@ class adminCompanyModel
 
         foreach($input['subject'] as $i => $value)
         {
-            if(!Validator::required($value) || !Validator::required($input['number'][$i]))
+            if(!validators::required($value) || !validators::required($input['number'][$i]))
             {
-                if(!Validator::required($value))
+                if(!validators::required($value))
                 {
                     $result['result'] = -1;
                     $result['msg'] = 'لطفا عنوان شماره تلفن را وارد نمایید.';
-                } elseif(!Validator::required($input['number'][$i]) || !Validator::Numeric($input['number'][$i]))
+                } elseif(!validators::required($input['number'][$i]) || !validators::Numeric($input['number'][$i]))
                 {
                     $result['result'] = -1;
                     $result['msg'] = 'لطفا شماره تلفن را صحیح وارد نمایید.';
@@ -579,14 +573,14 @@ class adminCompanyModel
 
         foreach($input['subject'] as $i => $value)
         {
-            if(!Validator::required($value) || !Validator::required($input['email'][$i]))
+            if(!validators::required($value) || !validators::required($input['email'][$i]))
             {
 
-                if(!Validator::required($value))
+                if(!validators::required($value))
                 {
                     $result['result'] = -1;
                     $result['msg'] = 'لطفا موضوع ایمیل را وارد نمایید.';
-                } elseif(!Validator::required($input['email'][$i]) || !Validator::Email($input['email'][$i]))
+                } elseif(!validators::required($input['email'][$i]) || !validators::Email($input['email'][$i]))
                 {
                     $result['result'] = -1;
                     $result['msg'] = 'لطفا ایمیل را صحیح وارد نمایید.';
@@ -607,13 +601,13 @@ class adminCompanyModel
 
         foreach($input['subject'] as $i => $value)
         {
-            if(!Validator::required($value) || !Validator::required($input['address'][$i]))
+            if(!validators::required($value) || !validators::required($input['address'][$i]))
             {
-                if(!Validator::required($value))
+                if(!validators::required($value))
                 {
                     $result['result'] = -1;
                     $result['msg'] = 'لطفا موضوع آدرس را وارد نمایید.';
-                } elseif(!Validator::required($input['address'][$i]))
+                } elseif(!validators::required($input['address'][$i]))
                 {
                     $result['result'] = -1;
                     $result['msg'] = 'لطفا آدرس را وارد نمایید.';
@@ -648,13 +642,13 @@ class adminCompanyModel
 
         foreach($input['subject'] as $i => $value)
         {
-            if(!Validator::required($value) || !Validator::required($input['url'][$i]))
+            if(!validators::required($value) || !validators::required($input['url'][$i]))
             {
-                if(!Validator::required($value))
+                if(!validators::required($value))
                 {
                     $result['result'] = -1;
                     $result['msg'] = 'لطفا موضوع وب سایت را وارد نمایید.';
-                } elseif(!Validator::required($input['url'][$i]))
+                } elseif(!validators::required($input['url'][$i]))
                 {
                     $result['result'] = -1;
                     $result['msg'] = 'لطفا آدرس وب سایت را وارد نمایید.';
@@ -829,7 +823,7 @@ class adminCompanyModel
      */
     public function getCompany($fields)
     {
-        include_once(dirname(__FILE__) . "/admin.company.model.db.php");
+        // include_once(dirname(__FILE__) . "/admin.company.model.db.php");
 
 
         $result = adminCompanyModelDb::getCompany($fields);

@@ -1,5 +1,5 @@
 <?php
-
+namespace Common;
 class Breadcrumb
 {
     protected $_trail;

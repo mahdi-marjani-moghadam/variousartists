@@ -742,8 +742,8 @@ class memberLogIn
 
 
             // sms
-            include_once ROOT_DIR . 'component/magfa/magfa.model.php';
-            $sms = new WebServiceSample;
+            // include_once ROOT_DIR . 'component/magfa/magfa.model.php';
+            // $sms = new WebServiceSample;
 
             if ($lang == 'fa') {
                 $subject = 'ثبت نام';
@@ -765,7 +765,7 @@ class memberLogIn
 
 
             // $sms->simpleEnqueueSample($artists->artists_phone1, $message);
-            $res = $sms->send($artists->artists_phone1, $message);
+            // $res = $sms->send($artists->artists_phone1, $message);
 
 
             ///email
@@ -1102,12 +1102,12 @@ class memberLogIn
             }
         }
         if ($obj['export']['list'][0]->fields['artists_phone1'] != '') {
-            include_once ROOT_DIR . 'component/magfa/magfa.model.php';
-            $sms = new WebServiceSample;
+            // include_once ROOT_DIR . 'component/magfa/magfa.model.php';
+            // $sms = new WebServiceSample;
             $url =  RELA_DIR . 'login/changePass/?email=' . $obj['export']['list'][0]->fields['username'] . '&code=' . $code;
             $message = translate('Your change password link: ') . "\n" . $url . "\n\n" . translate('website: www.variousartists.ir');
 
-            $sms->simpleEnqueueSample($obj['export']['list'][0]->fields['artists_phone1'], $message);
+            // $sms->simpleEnqueueSample($obj['export']['list'][0]->fields['artists_phone1'], $message);
         }
 
         $obj1->forgot_code = $code;

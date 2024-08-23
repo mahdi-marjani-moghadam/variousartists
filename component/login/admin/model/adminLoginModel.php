@@ -7,6 +7,8 @@
  * Time: 4:24 PM
  * version:01.01.01
  */
+namespace Component\login\admin\model;
+use Common\validators;
 class adminLoginModel
 {
     /**
@@ -94,7 +96,7 @@ class adminLoginModel
     private function __setUsername($input)
     {
 
-        if (!Validator::required($input)) {
+        if (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter username';
         } else {
@@ -117,7 +119,7 @@ class adminLoginModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } else if (!Validator::required($input)) {
+        } else if (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter passowrd';
         } else {
@@ -209,7 +211,7 @@ class adminLoginModel
             //redirectPage($_SERVER['HTTP_REFERER'],"");
         }*/
 
-        include_once(dirname(__FILE__) . "/admin.login.model.db.php");
+        // include_once(dirname(__FILE__) . "/admin.login.model.db.php");
 
         //clear database from old data
         $result = adminLoginModelDb::deleteSessions();

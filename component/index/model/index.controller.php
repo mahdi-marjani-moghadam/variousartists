@@ -1,5 +1,6 @@
 <?php
 use Component\article\model\articleModel;
+use Component\category\model\categoryModel;
 use Component\event\model\eventModel;
 /**
  * Created by PhpStorm.
@@ -121,7 +122,7 @@ class indexController
     {
 
         //use category model func by getCategoryUlLi
-        include_once(ROOT_DIR."component/category/model/category.model.php");
+        // include_once(ROOT_DIR."component/category/model/category.model.php");
         $category = new categoryModel();
 
         $resultCategory = $category->getCategoryUlLi();

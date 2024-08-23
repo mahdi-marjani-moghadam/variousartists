@@ -7,6 +7,9 @@
  */
 
 //include_once(ROOT_DIR . "/common/validators.php");
+namespace Component\membership\admin\model;
+
+use Common\looeic;
 
 class adminArtistsModel extends looeic
 {

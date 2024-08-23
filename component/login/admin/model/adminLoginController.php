@@ -1,4 +1,6 @@
 <?php
+namespace Component\login\admin\model;
+use Component\login\admin\model\adminLoginModel;
 /**
  * Created by PhpStorm.
  * User: marjani,ahmadloo
@@ -6,7 +8,6 @@
  * Time: 9:21 AM
  */
 
-include_once(dirname(__FILE__) . "/admin.login.model.php");
 
 /**
  * Class loginController

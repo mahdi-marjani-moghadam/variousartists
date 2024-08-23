@@ -1,4 +1,6 @@
 <?php
+use Component\artists\admin\model\adminArtistsModel;
+use Component\product\admin\model\adminProductModel;
 /**
  * Created by PhpStorm.
  * User: marjani
@@ -81,7 +83,7 @@ class adminIndexController
     {
 
         /** artists */
-        include_once(ROOT_DIR."component/artists/admin/model/admin.artists.model.php");
+        // include_once(ROOT_DIR."component/artists/admin/model/admin.artists.model.php");
         $result = adminArtistsModel::query('select type,count(Artists_id) as count from artists group by `type` order by type desc')->getList();
 
         $export['artists_count'] = $result['export']['list'][0]['count'];
@@ -89,11 +91,11 @@ class adminIndexController
 
 
 
-        include_once(ROOT_DIR."component/product/admin/model/admin.product.model.php");
+        // include_once(ROOT_DIR."component/product/admin/model/admin.product.model.php");
         $result = adminProductModel::query('select count(Artists_products_id) as count from artists_products')->getList();
         $export['artists_products_count'] = $result['export']['list'][0]['count'];
 
-        include_once(ROOT_DIR."component/product/admin/model/admin.event.model.php");
+        // include_once(ROOT_DIR."component/product/admin/model/admin.event.model.php");
         $result = adminProductModel::query('select count(Event_id) as count from event')->getList();
         $export['event_count'] = $result['export']['list'][0]['count'];
 

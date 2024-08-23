@@ -1,17 +1,9 @@
 <?php
+namespace Component\city\admin\model;
 
-/**
- * Created by PhpStorm.
- * User: malek
- * Date: 2/20/2016
- * Time: 4:24 AM
- */
-class adminCityModel2 extends looeic
-{
-    protected $TABLE_NAME = 'city';
+use Common\looeic;
 
-}
-class adminCityModel
+class adminCityModel extends looeic
 {
     /**
      * @var

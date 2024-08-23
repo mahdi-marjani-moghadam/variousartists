@@ -1,5 +1,7 @@
 <?php
 
+namespace Component\category\model;
+
 use Common\validators;
 use Component\category\admin\model\adminCategoryModelDb;
 use Component\category\model\categoryModelDb;
@@ -12,39 +14,14 @@ use Component\category\model\categoryModelDb;
  */
 class categoryModel
 {
-    /**
-     * @var
-     */
+
     private $TableName;
-    /**
-     * @var
-     */
     private $fields;  // other record fields
-    /**
-     * @var
-     */
     private $list;  // other record fields
-    /**
-     * @var
-     */
     private $recordsCount;  // other record fields
-    /**
-     * @var
-     */
     public $listCat;
-    /**
-     * @var int
-     */
     public $level = 0;
-
-    /**
-     * @var
-     */
     private $result;
-
-    /**
-     *
-     */
     public function __construct()
     {
         /* $this->fields = array(
@@ -86,7 +63,7 @@ class categoryModel
     public function setFields($input)
     {
         foreach ($input as $field => $val) {
-            $funcName = '__set'.ucfirst($field);
+            $funcName = '__set' . ucfirst($field);
             if (method_exists($this, $funcName)) {
                 $result = $this->$funcName($val);
                 if ($result['result'] == 1) {
@@ -239,7 +216,7 @@ class categoryModel
      */
     public function getCategoryById($id)
     {
-        include_once dirname(__FILE__).'/category.model.db.php';
+        include_once dirname(__FILE__) . '/category.model.db.php';
 
         $result = categoryModelDb::getCategoryById($id);
 
@@ -257,26 +234,26 @@ class categoryModel
      *
      * @return mixed
      */
-    public function convert($_input=[], $temp='', $space = '-')
+    public function convert($_input = [], $temp = '', $space = '-')
     {
-//        static $mainMenu = '';
+        //        static $mainMenu = '';
 
         $mainMenu = array();
         //echo $this->level;
         foreach ($_input as $key => $val) {
 
-            $mainMenu[$val['Category_id']]['export'] = $temp.$val['title'];
+            $mainMenu[$val['Category_id']]['export'] = $temp . $val['title'];
             $mainMenu[$val['Category_id']]['title'] = $val['title'];
             $mainMenu[$val['Category_id']]['level'] = $this->level;
 
-            $temp = $temp.$space;
+            $temp = $temp . $space;
             ++$this->level;
             if (isset($this->listCat[$val['Category_id']])) {
                 $this->convert($this->listCat[$val['Category_id']], $temp, $space);
             }
             --$this->level;
             $len = strlen($space);
-            $temp = substr($temp, 0, -($len));
+            $temp = substr($temp, 0, - ($len));
         }
 
         return $mainMenu;
@@ -300,7 +277,7 @@ class categoryModel
     }
 
 
-    public function getCategoryUlLiSearch($CategoryTree,$parent_id = 0)
+    public function getCategoryUlLiSearch($CategoryTree, $parent_id = 0)
     {
 
 
@@ -310,9 +287,9 @@ class categoryModel
         $result['export']['list'] = $mainMenu;
 
         return $result;
-    }    
+    }
 
-    public function convertTreetoLiUl($array=array(), $root = 0, $all='')
+    public function convertTreetoLiUl($array = array(), $root = 0, $all = '')
     {
         static $mainMenu = '';
         static $mainList;
@@ -324,30 +301,29 @@ class categoryModel
         foreach ($array as $key => $val) {
             $cityStr = '';
             if (isset($_SESSION['city'])) {
-                $cityStr = $_SESSION['city'].'/';
+                $cityStr = $_SESSION['city'] . '/';
             }
 
             if (is_array($mainList[$val['Category_id']])) {
                 $mainMenu .= '
                     <li>
-                        <a href="'.RELA_DIR.$cityStr.'artists/'.(strlen($val['url']) ? $val['Category_id'].'/'.$val['url'] : '#').'">'.$val['title'].'</a>';
+                        <a href="' . RELA_DIR . $cityStr . 'artists/' . (strlen($val['url']) ? $val['Category_id'] . '/' . $val['url'] : '#') . '">' . $val['title'] . '</a>';
                 $this->convertTreetoLiUl($mainList[$val['Category_id']]);
                 $mainMenu .= '</li>';
             } else {
-                $mainMenu .= "\t".'
+                $mainMenu .= "\t" . '
                     <li>
-                        <a href="'.RELA_DIR.$cityStr.'artists/'.(strlen($val['url']) ? $val['Category_id'].'/'.$val['url'] : '#').'">'.$val['title'].'</a>
+                        <a href="' . RELA_DIR . $cityStr . 'artists/' . (strlen($val['url']) ? $val['Category_id'] . '/' . $val['url'] : '#') . '">' . $val['title'] . '</a>
                     </li>
-                '."\n";
+                ' . "\n";
             }
             //$mainMenu .= "</ul>\n";
             --$this->level;
         }
         $mainMenu .= "</ul>\n";
         return $mainMenu;
-
     }
-    public function convertTreetoLiUlSearch($array, $root = 0, $all=[])
+    public function convertTreetoLiUlSearch($array, $root = 0, $all = [])
     {
         static $mainMenu = '';
         static $mainList;
@@ -362,21 +338,20 @@ class categoryModel
             if (is_array($mainList[$val['Category_id']])) {
                 $mainMenu .= '
                     <li>
-                        <a class="company-name"><span>('.$val['count'].')</span>
-                            <label for="category-'.$val['Category_id'] .'" class="company-name">'.$val['title'].
-                                '<input type="checkbox" name="category[]" id="category-'.$val['Category_id'] .'" value="'.$val['Category_id'].'">
+                        <a class="company-name"><span>(' . $val['count'] . ')</span>
+                            <label for="category-' . $val['Category_id'] . '" class="company-name">' . $val['title'] .
+                    '<input type="checkbox" name="category[]" id="category-' . $val['Category_id'] . '" value="' . $val['Category_id'] . '">
                             </label>
                         </a>';
-                    $this->convertTreetoLiUlSearch($mainList[$val['Category_id']]);
+                $this->convertTreetoLiUlSearch($mainList[$val['Category_id']]);
                 $mainMenu .= '</li>';
-
             } else {
-                $mainMenu .= "\t".'
+                $mainMenu .= "\t" . '
                      <li>
-                        <a class="company-name"><span>('.$val['count'].')</span>
-                            <label for="category-'.$val['Category_id'] .'" class="company-name">'.$val['title'].
-                    '<input type="checkbox" name="category[]" id="category-'.$val['Category_id'] .'" value="'.$val['Category_id'].'">
-                            </label> </a></li>'."\n";
+                        <a class="company-name"><span>(' . $val['count'] . ')</span>
+                            <label for="category-' . $val['Category_id'] . '" class="company-name">' . $val['title'] .
+                    '<input type="checkbox" name="category[]" id="category-' . $val['Category_id'] . '" value="' . $val['Category_id'] . '">
+                            </label> </a></li>' . "\n";
             }
             //$mainMenu .= "</ul>\n";
             --$this->level;
@@ -440,7 +415,7 @@ class categoryModel
         }*/
     }
 
-    public function getCategoryTree($fields='')
+    public function getCategoryTree($fields = '')
     {
         // include_once dirname(__FILE__).'/category.model.db.php';
         $result = (new categoryModelDb)->tree_set();
@@ -453,13 +428,12 @@ class categoryModel
     public function allCategory()
     {
 
-        include_once dirname(__FILE__).'/category.model.db.php';
+        include_once dirname(__FILE__) . '/category.model.db.php';
         $result = categoryModelDb::getCategoryAll();
         $this->list = $result['export']['list'];
         $this->recordsCount = $result['export']['recordsCount'];
 
         return $result;
-
     }
     public function getCategoryOption($parent_id = 0, $space = '-')
     {
@@ -534,60 +508,60 @@ class categoryModel
                 $open_list = 'true';
 
                 if (isset($config[$val['level']]['node']['open'])) {
-                    $st = $st.$config[$val['level']]['node']['open'].PHP_EOL;
+                    $st = $st . $config[$val['level']]['node']['open'] . PHP_EOL;
                 } else {
-                    $st = $st.$config['all']['node']['open'].PHP_EOL;
+                    $st = $st . $config['all']['node']['open'] . PHP_EOL;
                 }
 
-                $st = $st.$val['title'].PHP_EOL;
-                $st = $st.$config['all']['list']['open'].PHP_EOL;
+                $st = $st . $val['title'] . PHP_EOL;
+                $st = $st . $config['all']['list']['open'] . PHP_EOL;
             } elseif ($next['level'] < $val['level'] and $next != -1) {
                 $open_list = 'false';
 
-                $st = $st.$config['all']['node-noChild']['open'].PHP_EOL;
-                $st = $st.$val['title'].PHP_EOL;
+                $st = $st . $config['all']['node-noChild']['open'] . PHP_EOL;
+                $st = $st . $val['title'] . PHP_EOL;
 
                 for ($i = 1; $i <=  ($val['level'] - $next['level']); ++$i) {
-                    $st = $st.$config['all']['node']['close'].PHP_EOL;
-                    $st = $st.$config['all']['list']['close'].PHP_EOL;
+                    $st = $st . $config['all']['node']['close'] . PHP_EOL;
+                    $st = $st . $config['all']['list']['close'] . PHP_EOL;
                 }
-                $st = $st.$config['all']['node']['close'].PHP_EOL;
+                $st = $st . $config['all']['node']['close'] . PHP_EOL;
             } elseif ($val['level'] == $next['level'] and $next != -1) {
                 $open_list = '';
 
                 if (isset($config[$val['level']]['node-noChild']['open'])) {
-                    $st = $st.$config[$val['level']]['node-noChild']['open'].PHP_EOL;
-                    $st = $st.$val['title'].PHP_EOL;
-                    $st = $st.$config['all']['node-noChild']['close'].PHP_EOL;
+                    $st = $st . $config[$val['level']]['node-noChild']['open'] . PHP_EOL;
+                    $st = $st . $val['title'] . PHP_EOL;
+                    $st = $st . $config['all']['node-noChild']['close'] . PHP_EOL;
                 } else {
-                    $st = $st.$config['all']['node-noChild']['open'].PHP_EOL;
-                    $st = $st.$val['title'].PHP_EOL;
-                    $st = $st.$config['all']['node-noChild']['close'].PHP_EOL;
+                    $st = $st . $config['all']['node-noChild']['open'] . PHP_EOL;
+                    $st = $st . $val['title'] . PHP_EOL;
+                    $st = $st . $config['all']['node-noChild']['close'] . PHP_EOL;
                 }
             } elseif ($next == -1) {
                 $open_list = '';
 
                 if (isset($config[$val['level']]['node']['open'])) {
-                    $st = $st.$config[$val['level']]['node-noChild']['open'].PHP_EOL;
-                    $st = $st.$val['title'].PHP_EOL;
+                    $st = $st . $config[$val['level']]['node-noChild']['open'] . PHP_EOL;
+                    $st = $st . $val['title'] . PHP_EOL;
                     //$st = $st . $config['all']['node']['close'] . PHP_EOL;
                     //$st = $st . $config['all']['list']['close'] . PHP_EOL;
                 } else {
-                    $st = $st.$config['all']['node-noChild']['open'].PHP_EOL;
-                    $st = $st.$val['title'].PHP_EOL;
+                    $st = $st . $config['all']['node-noChild']['open'] . PHP_EOL;
+                    $st = $st . $val['title'] . PHP_EOL;
                     //$st = $st . $config['all']['node']['close'] . PHP_EOL;
                     //$st = $st . $config['all']['list']['close'] . PHP_EOL;
                 }
                 for ($i = 1; $i <=  ($val['level'] - $next['level']); ++$i) {
-                    $st = $st.$config['all']['node']['close'].PHP_EOL;
-                    $st = $st.$config['all']['list']['close'].PHP_EOL;
+                    $st = $st . $config['all']['node']['close'] . PHP_EOL;
+                    $st = $st . $config['all']['list']['close'] . PHP_EOL;
                 }
-                $st = $st.$config['all']['node']['close'].PHP_EOL;
+                $st = $st . $config['all']['node']['close'] . PHP_EOL;
             }
         }
-        $st = $st.'</ul>';
+        $st = $st . '</ul>';
 
-        echo '<br/>start<br/>'.$st, '<br/>close<br/>';
+        echo '<br/>start<br/>' . $st, '<br/>close<br/>';
 
         //**************
 
@@ -606,7 +580,7 @@ class categoryModel
 
     public function getCategoryParents($parentId)
     {
-        include_once dirname(__FILE__).'/category.model.db.php';
+        include_once dirname(__FILE__) . '/category.model.db.php';
         $result = categoryModelDb::getCategoryParents($parentId);
         $this->list = array_reverse($result['export']['list']);
 
@@ -615,7 +589,7 @@ class categoryModel
 
     public function getCategoryChildes($categoryId)
     {
-        include_once dirname(__FILE__).'/category.model.db.php';
+        include_once dirname(__FILE__) . '/category.model.db.php';
         $result = categoryModelDb::getCategoryChildes($categoryId);
         $this->list = $result['export']['list'];
 

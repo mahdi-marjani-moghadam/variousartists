@@ -5,8 +5,11 @@
  * Date: 3/6/2015
  * Time: 10:35 AM
  */
+namespace Component\product\admin\model;
 
-include_once(ROOT_DIR."/common/validators.php");
+use Common\looeic;
+
+// include_once(ROOT_DIR."/common/validators.php");
 class adminProductModel extends looeic
 {
     protected $TABLE_NAME = 'artists_products';
@@ -22,9 +25,9 @@ class adminProductModel extends looeic
     public function __construct()
     {
 
-        $this->requiredFields = array(
-            'product_name'=>  ''
-        );
+        // $this->requiredFields = array(
+        //     'product_name'=>  ''
+        // );
     }
 
     /**
@@ -132,9 +135,9 @@ class adminProductModel extends looeic
      */
     public function getProduct($fields)
     {
-        include_once(dirname(__FILE__)."/admin.product.model.db.php");
+        // include_once(dirname(__FILE__)."/admin.product.model.db.php");
 
-        $result=adminProductModelDb::getProduct($fields);
+        $result=(new adminProductModelDb)->getProduct($fields);
 
         if($result['result']!=1)
         {

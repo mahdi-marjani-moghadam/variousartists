@@ -1,7 +1,11 @@
 <?php
 
+use Common\Breadcrumb;
+use Common\dataStack;
 use Common\dbConn;
+use Common\messageStack;
 use Component\login\model\memberLogIn;
+use Component\sales\model\salesModel;
 
 $db = dbConn::getConnection();
 
@@ -25,7 +29,6 @@ foreach ($obj as $v) {
 }
 
 
-include(ROOT_DIR . "common/breadcrumb.php");
 $breadcrumb = new Breadcrumb();
 $breadcrumbSearch = new Breadcrumb();
 
@@ -61,10 +64,7 @@ define('Count_Permission', '20');
 
 include(ROOT_DIR . "resource/language_$lang.inc.php");
 
-include(ROOT_DIR . "common/message_stack.php");
-include(ROOT_DIR . "common/data_stack.php");
 
-// include(ROOT_DIR . "component/login/model/login.model.php");
 
 $login = new memberLogIn();
 
@@ -75,13 +75,8 @@ $messageStack = new messageStack();
 $messageStack->loadFromSession();
 $dataStack = new dataStack();
 
-//include(ROOT_DIR . "model/admin.class.php");
 
 global $admin_info, $member_info;
-//$admin = new admin();
-
-//$admin_info = $admin->checkLogin();
-//$member_info = $admin->checkLogin();
 
 
 spl_autoload_register(function ($name) {
@@ -97,7 +92,6 @@ spl_autoload_register(function ($name) {
 
 
 /** delete ticket date more than 10 min */
-include_once ROOT_DIR . 'component/sales/model/sales.model.php';
 $checkreservesale = salesModel::getAll()
     ->where('status', '=', 0)
     ->andWhere('date', '<', date('Y-m-d H:i:s', strtotime('-10 minutes')))

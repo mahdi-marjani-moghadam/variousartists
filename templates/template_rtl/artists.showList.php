@@ -78,12 +78,12 @@
                         <div class="portfolio-overlay">
                             <div class="portfolio-desc">
 
-                                <h3><a href="<?php echo RELA_DIR . 'artists/Detail/' . $value['Artists_id'] . '/' . $value['artists_name']; ?>"><?php echo($value['artists_name'] != "" ? $value['artists_name'] : "-"); ?> </a></h3>
+                                <h3><a href="<?php echo RELA_DIR . 'artists/Detail/' . $value['Artists_id'] . '/' . slug($value['artists_name']); ?>"><?php echo($value['artists_name'] != "" ? $value['artists_name'] : "-"); ?> </a></h3>
                                 <!--<span><a href="#">Media</a>, <a href="#">Icons</a></span>-->
                             </div>
                             <a href="<?php echo (strlen($value['logo']) ? RELA_DIR.'statics/files/'.$value['Artists_id'].'/'.$value['logo'] : RELA_DIR.'templates/'.CURRENT_SKIN.'/assets/images/placeholder.png'); ?>" class="left-icon" data-lightbox="image"><i
                                     class="icon-line-zoom-in"></i></a>
-                            <a href="<?php echo RELA_DIR . 'artists/Detail/' . $value['Artists_id'] . '/' . $value['artists_name']; ?>" class="right-icon"><i title="جزییات" class="icon-line-ellipsis"></i></a>
+                            <a href="<?php echo RELA_DIR . 'artists/Detail/' . $value['Artists_id'] . '/' . slug($value['artists_name']); ?>" class="right-icon"><i title="جزییات" class="icon-line-ellipsis"></i></a>
                         </div>
                     </div>
                 </article>

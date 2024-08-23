@@ -6,6 +6,16 @@
  * Date: 3/6/2016
  * Time: 11:21 AM.
  */
+
+use Common\validators;
+use Component\artists\admin\model\adminArtistsModel;
+use Component\category\admin\model\adminCategoryModel;
+use Component\city\admin\model\adminCityModel;
+use Component\genre\admin\model\adminGenreModel;
+use Component\product\admin\model\adminProductModel;
+use Component\province\admin\model\adminProvinceModel;
+use Model\clsCountry;
+
 include_once dirname(__FILE__) . '/admin.artists.model.php';
 
 /**
@@ -182,7 +192,7 @@ class adminArtistsController
         $fields['genre_id'] = ',' . implode(',', $fields['genre_id']) . ',';
 
         $artists->setFields($fields);
-        //$result = $artists->validator();
+        //$result = $artists->validators();
 
         /*if ($result['result'] == -1) {
             $this->showArtistsAddForm($fields, $result['msg']);
@@ -234,7 +244,7 @@ class adminArtistsController
 
 
 
-        include_once ROOT_DIR . 'component/category/admin/model/admin.category.model.php';
+        // include_once ROOT_DIR . 'component/category/admin/model/admin.category.model.php';
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
@@ -244,7 +254,7 @@ class adminArtistsController
         }
 
         /** genre */
-        include_once ROOT_DIR . 'component/genre/admin/model/admin.genre.model.php';
+        // include_once ROOT_DIR . 'component/genre/admin/model/admin.genre.model.php';
         $genre = new adminGenreModel();
 
         $resultGenre = $genre->getGenreOption();
@@ -253,7 +263,7 @@ class adminArtistsController
         }
 
 
-        include_once ROOT_DIR . 'component/province/admin/model/admin.province.model.php';
+        // include_once ROOT_DIR . 'component/province/admin/model/admin.province.model.php';
         //$province = new adminProvinceModel();
         $province = adminProvinceModel::getAll()->getList();
 
@@ -267,7 +277,7 @@ class adminArtistsController
         //////////////////////////////////////////////////
         ////                get country               ////
         //////////////////////////////////////////////////
-        include_once(ROOT_DIR . "model/country.class.php");
+        // include_once(ROOT_DIR . "model/country.class.php");
         $COUNTRY = new clsCountry();
         $COUNTRY->countryFieldName = array("iso", "phone_code", "name", "max_length", "sample");
 
@@ -361,8 +371,8 @@ class adminArtistsController
 
         if ($artists->fields['status'] == 1 && $oldStatus != $artists->fields['status']) {
 
-            include_once ROOT_DIR . 'component/magfa/magfa.model.php';
-            $sms = new WebServiceSample;
+            // include_once ROOT_DIR . 'component/magfa/magfa.model.php';
+            // $sms = new WebServiceSample;
 
             global $lang;
             if ($lang == 'fa') {
@@ -380,7 +390,7 @@ class adminArtistsController
             }
 
 
-            $sms->simpleEnqueueSample($artists->fields['artists_phone1'], $message);
+            // $sms->simpleEnqueueSample($artists->fields['artists_phone1'], $message);
 
 
             ///email
@@ -511,7 +521,7 @@ class adminArtistsController
         $artists = new adminArtistsModel();
 
 
-        if (!validator::required($id) and !validator::Numeric($id)) {
+        if (!validators::required($id) and !validators::Numeric($id)) {
             $msg = 'یافت نشد';
             redirectPage(RELA_DIR . 'zamin/index.php?component=artists', $msg);
         }
@@ -523,7 +533,7 @@ class adminArtistsController
             redirectPage(RELA_DIR . 'zamin/index.php?component=artists', $msg);
         }
 
-        include_once ROOT_DIR . 'component/product/admin/model/admin.product.model.php';
+        // include_once ROOT_DIR . 'component/product/admin/model/admin.product.model.php';
         $product = adminProductModel::getBy_artists_id($id)->get();
 
 
@@ -551,7 +561,7 @@ class adminArtistsController
     public function getCityAjax($input)
     {
         $province_id = $input['province_id'];
-        include_once ROOT_DIR . '/component/city/admin/model/admin.city.model.php';
+        // include_once ROOT_DIR . '/component/city/admin/model/admin.city.model.php';
         $model = new adminCityModel();
         $result = $model->getCitiesByprovinceID($province_id);
 
@@ -566,7 +576,7 @@ class adminArtistsController
 
     public function activeBlog($id)
     {
-        if (!validator::required($id) and !validator::Numeric($id)) {
+        if (!validators::required($id) and !validators::Numeric($id)) {
             $msg = 'یافت نشد';
             redirectPage(RELA_DIR . 'zamin/index.php?component=artists', $msg);
         }

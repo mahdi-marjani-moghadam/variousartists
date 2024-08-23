@@ -1,4 +1,5 @@
 <?php
+use Component\login\admin\model\adminLoginController;
 /**
  * Created by PhpStorm.
  * User: marjani,ahmadloo
@@ -11,7 +12,6 @@ include_once(ROOT_DIR . "zamin/init.inc.php");
 include_once(ROOT_DIR . "common/func.inc.php");
 include_once(ROOT_DIR."/common/validators.php");
 
-include_once(dirname(__FILE__). "/model/admin.login.controller.php");
 
 global $admin_info;
 

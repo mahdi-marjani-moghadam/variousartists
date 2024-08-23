@@ -1,11 +1,9 @@
 <?php
-/**
+namespace Component\city\admin\model;
 
- * Created by PhpStorm.
- * User: malekloo
- * Date: 2/27/2016
- * Time: 11:02 AM.
- */
+use Common\dbConn;
+use PDO;
+
 class adminCityModelDb
 {
     public static function insert($fields)
@@ -106,7 +104,7 @@ class adminCityModelDb
         return $stmt->fetch();
     }
 
-    public static function getCityByNameArray($name = array())
+    public static function getCityByNameArray($name = '')
     {
         $conn = dbConn::getConnection();
 

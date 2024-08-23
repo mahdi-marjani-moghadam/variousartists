@@ -1,11 +1,12 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: malekloo
- * Date: 2/27/2016
- * Time: 11:02 AM
- */
+namespace Component\product\admin\model;
+
+use Common\dbConn;
+use Component\company\admin\model\adminCompanyModelDb;
+use Model\DataBase;
+use PDO;
+
 class adminProductModelDb
 {
     static function insert($fields)
@@ -18,7 +19,7 @@ class adminProductModelDb
             $category_st=','.$category_st.',';
         }
 
-        include_once ROOT_DIR.'component/company/admin/model/admin.company.model.db.php';
+        // include_once ROOT_DIR.'component/company/admin/model/admin.company.model.db.php';
 
         $company = adminCompanyModelDb::getCompanyById($fields['company_id']);
 
@@ -156,7 +157,7 @@ class adminProductModelDb
 
         $conn = dbConn::getConnection();
 
-        include_once(ROOT_DIR."/model/db.inc.class.php");
+        // include_once(ROOT_DIR."/model/db.inc.class.php");
 
         $condition= DataBase::filterBuilder($fields);
 

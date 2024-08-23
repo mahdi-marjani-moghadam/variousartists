@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: malek
@@ -7,6 +8,8 @@
  */
 
 use Component\artists\model\artistsModel;
+use Component\category\model\categoryModel;
+use Component\genre\model\genreModel;
 use Component\product\model\productModel;
 
 // include_once dirname(__FILE__).'/artists.model.php';
@@ -47,16 +50,16 @@ class artistsController
      *
      * @return string
      */
-    public function template($list = [], $msg='')
+    public function template($list = [], $msg = '')
     {
         // global $conn, $lang;
-        global $PARAM,$member_info;
+        global $PARAM, $member_info;
         switch ($this->exportType) {
             case 'html':
 
-                include ROOT_DIR.'templates/'.CURRENT_SKIN.'/title.inc.php';
-                include ROOT_DIR.'templates/'.CURRENT_SKIN."/$this->fileName";
-                include ROOT_DIR.'templates/'.CURRENT_SKIN.'/tail.inc.php';
+                include ROOT_DIR . 'templates/' . CURRENT_SKIN . '/title.inc.php';
+                include ROOT_DIR . 'templates/' . CURRENT_SKIN . "/$this->fileName";
+                include ROOT_DIR . 'templates/' . CURRENT_SKIN . '/tail.inc.php';
                 break;
 
             case 'json':
@@ -67,7 +70,7 @@ class artistsController
                 break;
 
             case 'serialize':
-                 echo serialize($list);
+                echo serialize($list);
                 break;
             default:
                 break;
@@ -94,11 +97,9 @@ class artistsController
 
         if ($result['result'] == '1') {
             $export['list'] = $artists->fields;
-            if ($export['list']['description_fa'] == '' && $export['list']['description_en'] != '')
-            {
+            if ($export['list']['description_fa'] == '' && $export['list']['description_en'] != '') {
                 $export['list']['description'] = $export['list']['description_en'];
-            }
-            else if($export['list']['description_fa'] != '' && $export['list']['description_en'] == ''){
+            } else if ($export['list']['description_fa'] != '' && $export['list']['description_en'] == '') {
                 $export['list']['description'] = $export['list']['description_fa'];
             }
             //print_r_debug($export['list']);
@@ -135,7 +136,7 @@ class artistsController
 
 
         //use category model func by getCategoryUlLi
-        include_once ROOT_DIR.'component/category/model/category.model.php';
+        include_once ROOT_DIR . 'component/category/model/category.model.php';
         $category = new categoryModel();
         $resultCategory = $category->getCategoryUlLi();
         if ($resultCategory['result'] == 1) {
@@ -145,7 +146,7 @@ class artistsController
 
 
         /** genre */
-        include_once ROOT_DIR.'component/genre/model/genre.model.php';
+        include_once ROOT_DIR . 'component/genre/model/genre.model.php';
         $genre = new genreModel();
         $resultGenreAll = $genre->allGenre();
         if ($resultGenreAll['result'] == 1) {
@@ -177,23 +178,22 @@ class artistsController
     public function showALL($fields)
     {
         global $PARAM;
-        include_once ROOT_DIR.'component/category/model/category.model.php';
+        // include_once ROOT_DIR.'component/category/model/category.model.php';
         $category = new categoryModel();
-        include_once ROOT_DIR.'component/genre/model/genre.model.php';
+        // include_once ROOT_DIR.'component/genre/model/genre.model.php';
         $genre = new genreModel();
 
 
         $category_id = $fields['chose']['category_id'];
-        if(!is_numeric($category_id)){
+        if (!is_numeric($category_id)) {
             /** if click in genre filter */
-            $genre_id = substr($category_id,2);
+            $genre_id = substr($category_id, 2);
             $resultGenre = $genre->getGenreChildes($genre_id);
             foreach ($resultGenre['export']['list'] as $key => $value) {
-                $genre_id .= ','.$key;
+                $genre_id .= ',' . $key;
             }
             $fields['condition']['genre_id'] = $genre_id;
-        }
-        else{
+        } else {
             $resultCategory = $category->getCategoryChildes($category_id);
 
             if ($resultCategory['result'] != 1 and $resultCategory['no'] != '100') {
@@ -201,7 +201,7 @@ class artistsController
                 redirectPage(RELA_DIR, $msg);
             }
             foreach ($resultCategory['export']['list'] as $key => $value) {
-                $category_id .= ','.$key;
+                $category_id .= ',' . $key;
             }
             $fields['condition']['category_id'] = $category_id;
         }
@@ -254,7 +254,7 @@ class artistsController
 
         if ($resultCategoryParents['result'] == 1) {
             foreach ($category->list as $key => $value) {
-                $breadcrumb->add($value['title'], 'artists/'.$value['Category_id'].'/1', true);
+                $breadcrumb->add($value['title'], 'artists/' . $value['Category_id'] . '/1', true);
             }
         }
         // print_r_debug($resultCategoryParents);

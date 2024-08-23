@@ -1,14 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marjani
- * Date: 3/6/2015
- * Time: 10:35 AM
- */
+namespace Component\membership\admin\model;
+use Common\looeic;
+use Component\artists\admin\model\adminArtistsModelDb;
 
-//include_once(ROOT_DIR . "/common/validators.php");
-
-class adminArtistsModel extends looeic
+class adminMembershipArtistsModel extends looeic
 {
     public $fields;  // other xrecord fields
     public $list;  // other record fields
@@ -202,10 +197,10 @@ class adminArtistsModel extends looeic
      */
     public function getArtists($fields)
     {
-        include_once(dirname(__FILE__) . "/admin.membership.model.db.php");
+        // include_once(dirname(__FILE__) . "/admin.membership.model.db.php");
 
 
-        $result = adminArtistsModelDb::getArtists($fields);
+        $result = (new adminArtistsModelDb)->getArtists($fields);
 
         if($result['result'] != 1)
         {

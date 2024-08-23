@@ -1,5 +1,4 @@
 <?php
-use Common\dbConn;
 /**
 
  * Created by PhpStorm.
@@ -7,7 +6,7 @@ use Common\dbConn;
  * Date: 2/27/2016
  * Time: 11:02 AM.
  */
-class adminArtistsModelDb
+class adminMembershipArtistsModelDb
 {
     public static function insert($fields)
     {
