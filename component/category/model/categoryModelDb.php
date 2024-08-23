@@ -179,6 +179,7 @@ class categoryModelDb
         $conn = dbConn::getConnection();
 
         global $lang;
+        $list =[];
         while (1) {
             $sql = "SELECT *,title_$lang as title FROM category WHERE Category_id = '$id'";
             $stmt = $conn->prepare($sql);
@@ -202,6 +203,7 @@ class categoryModelDb
 
         $result['result'] = 1;
         $result['export']['list'] = $list;
+        
 
         return $result;
     }

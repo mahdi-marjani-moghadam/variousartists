@@ -1,5 +1,8 @@
 <?php
 
+use Common\validators;
+use Component\genre\model\genreModelDb;
+
 /**
  * Created by PhpStorm.
  * User: malek
@@ -104,7 +107,7 @@ class genreModel
      */
     private function __setTitle($input)
     {
-        if (!Validator::required($input)) {
+        if (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter title';
         } else {
@@ -123,7 +126,7 @@ class genreModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } elseif (!Validator::required($input)) {
+        } elseif (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Brif description';
         } else {
@@ -142,7 +145,7 @@ class genreModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } elseif (!Validator::required($input)) {
+        } elseif (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Description';
         } else {
@@ -161,7 +164,7 @@ class genreModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } elseif (!Validator::required($input)) {
+        } elseif (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Meta_keyword';
         } else {
@@ -180,7 +183,7 @@ class genreModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } elseif (!Validator::required($input)) {
+        } elseif (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Meta_description';
         } else {
@@ -199,7 +202,7 @@ class genreModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } elseif (!Validator::required($input)) {
+        } elseif (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Date';
         } else {
@@ -218,7 +221,7 @@ class genreModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } elseif (!Validator::required($input)) {
+        } elseif (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Image';
         } else {
@@ -253,7 +256,7 @@ class genreModel
      *
      * @return mixed
      */
-    public function convert($_input, $temp, $space = '-')
+    public function convert($_input, $temp='', $space = '-')
     {
         static $mainMenu = array();
         //echo $this->level;
@@ -305,7 +308,7 @@ class genreModel
         return $result;
     }    
 
-    public function convertTreetoLiUl($array, $root = 0, $all)
+    public function convertTreetoLiUl($array, $root = 0, $all=[])
     {
         static $mainMenu = '';
         static $mainList;
@@ -342,7 +345,7 @@ class genreModel
         return $mainMenu;
 
     }
-    public function convertTreetoLiUlSearch($array, $root = 0, $all)
+    public function convertTreetoLiUlSearch($array, $root = 0, $all =[])
     {
         static $mainMenu = '';
         static $mainList;
@@ -437,8 +440,8 @@ class genreModel
 
     public function getGenreTree($fields='')
     {
-        include_once dirname(__FILE__).'/genre.model.db.php';
-        $result = genreModelDb::tree_set();
+        // include_once dirname(__FILE__).'/genre.model.db.php';
+        $result = (new genreModelDb)->tree_set();
         $this->list = $result['export']['list'];
         $this->recordsCount = $result['export']['recordsCount'];
 
@@ -458,9 +461,9 @@ class genreModel
     }
     public function getGenreOption($parent_id = 0, $space = '-')
     {
-        include_once dirname(__FILE__).'/genre.model.db.php';
+        // include_once dirname(__FILE__).'/genre.model.db.php';
 
-        $result = genreModelDb::tree_set();
+        $result = (new genreModelDb)->tree_set();
         if ($result['result'] != 1) {
             return $result;
         }
@@ -486,9 +489,9 @@ class genreModel
     //*******************************
     public function getGenreByfor($fields)
     {
-        include_once dirname(__FILE__).'/admin.genre.model.db.php';
+        // include_once dirname(__FILE__).'/admin.genre.model.db.php';
 
-        $result = adminGenreModelDb::tree_set();
+        $result = (new genreModelDb)->tree_set();
         $fields = $result['export']['list'];
         $this->listCat = $fields;
         $result = $this->convert($fields['1']);

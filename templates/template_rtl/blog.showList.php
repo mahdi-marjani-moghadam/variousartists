@@ -34,7 +34,7 @@
             <div class=" nobottommargin  clearfix">
                 <div id="posts" class="">
                     <?
-                    if(count($blog['export']['list']) == 0 && isset($blog['export']['list']))
+                    if(is_array($blog['export']['list']) && count($blog['export']['list']) == 0 && isset($blog['export']['list']) )
                     {
                         ?>
                         <div class="whiteBg boxBorder roundCorner clear fullWidth ">

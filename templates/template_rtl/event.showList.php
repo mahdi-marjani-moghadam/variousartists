@@ -60,7 +60,7 @@
 
         <div id="posts" class="events small-thumbs">
             <?
-            if(count($list['list']) == 0 && isset($msg))
+            if(is_array($list['list']) && count($list['list']) == 0 && isset($msg))
             {
                 ?>
                 <div class="whiteBg boxBorder roundCorner clear fullWidth ">

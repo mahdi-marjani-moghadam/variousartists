@@ -424,15 +424,6 @@ class WebServiceSample
 
 
 
-
-    /**
-     * method : call
-     * this method calls the 'call' method of the nusoap's client object
-     * @access private
-     * @param  String $method    service name
-     * @param  Array $params     webservice parameters in the form of an array
-     * @return mixed             result
-     */
     private function call($method, $params)
     {
         if ($this->client == null) return array('result' => -1, 'msg' => 'soap error');

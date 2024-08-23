@@ -257,7 +257,7 @@ class categoryModel
      *
      * @return mixed
      */
-    public function convert($_input='', $temp='', $space = '-')
+    public function convert($_input=[], $temp='', $space = '-')
     {
 //        static $mainMenu = '';
 
@@ -347,7 +347,7 @@ class categoryModel
         return $mainMenu;
 
     }
-    public function convertTreetoLiUlSearch($array, $root = 0, $all)
+    public function convertTreetoLiUlSearch($array, $root = 0, $all=[])
     {
         static $mainMenu = '';
         static $mainList;

@@ -911,7 +911,7 @@ class looeic extends DB
         return $result;
     }
 
-    public function getByFilter($fields = array(), $query = '')
+    public function getByFilter($fields = [], $query = '')
     {
 
         //$obj->TABLE_NAME=get_called_class();

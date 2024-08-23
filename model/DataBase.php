@@ -33,12 +33,12 @@ class DataBase
         return self::$conn;
     }
 
-    public static function filterBuilder($fields)
+    public static function filterBuilder($fields=[])
     {
         global  $lang;
 
         $limit = '';
-
+        
         if (isset($fields['limit']['start']) && $fields['limit']['length'] != -1) {
             $limit = ' LIMIT '.intval($fields['limit']['start']).', '.intval($fields['limit']['length']);
         }
@@ -73,17 +73,17 @@ class DataBase
             }
         }
 
-        if (count($columnSearch)) {
+        if (is_array($columnSearch) && count($columnSearch)) {
             $filter = $filter === '' ?
                 implode(' AND ', $columnSearch) :
                 $filter.' AND '.implode(' AND ', $columnSearch);
         }
 
-        if ($filter != '' or $fields['where']!= '' ) {
+        if ($filter != '' or (is_array($fields) && $fields['where']!= '') ) {
             $result['list']['useWhere'] = ' WHERE ';
 
         }
-
+        
         $result['result'] = 1;
         $result['list']['filter'] = $filter;
         $result['list']['order'] = $order;

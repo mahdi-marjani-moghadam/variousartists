@@ -7,6 +7,12 @@
  * Time: 9:23 AM
  */
 
+use Common\validators;
+use Component\artists\model\artists;
+use Component\artists\model\artistsModel;
+use Component\invoice\model\invoice;
+use Component\product\model\productModel;
+
 include_once dirname(__FILE__) . '/account.model.php';
 
 
@@ -79,7 +85,7 @@ class accountController
 
         global $member_info;
 
-        include_once ROOT_DIR . "component/invoice/model/invoice.model.php";
+        // include_once ROOT_DIR . "component/invoice/model/invoice.model.php";
 
 
         $invoice = invoice::getBy_member_id($member_info['Artists_id'])->getList();
@@ -91,7 +97,7 @@ class accountController
 
 
 
-        $object = model::find('artists', $member_info['Artists_id']);
+        $object = artists::find($member_info['Artists_id']);
         if (is_array($object)) {
             $this->fileName = 'account.showPanel.php';
             $this->template('', $object['msg']);
@@ -101,10 +107,10 @@ class accountController
 
         $export['list'] = $object->fields;
 
-        include_once ROOT_DIR . 'component/product/model/product.model.php';
+        // include_once ROOT_DIR . 'component/product/model/product.model.php';
         $products = new productModel();
 
-
+        
         $result = $products->getProductByArtistsId($member_info['Artists_id']);
         if ($result['result'] == -1) {
             $this->fileName = 'account.showPanel.php';
@@ -137,10 +143,10 @@ class accountController
     public function showEventList($fields, $msg = '')
     {
         global $member_info;
-        include_once ROOT_DIR . 'component/event/model/event.model.php';
+        // include_once ROOT_DIR . 'component/event/model/event.model.php';
         $event = new eventModel();
 
-        $object = model::find('artists', $member_info['Artists_id']);
+        $object = artists::find($member_info['Artists_id']);
 
         if (is_array($object)) {
             $this->fileName = 'account.showPanel.php';
@@ -566,7 +572,7 @@ class accountController
 
         /** update artists date  */
         include_once ROOT_DIR . 'component/artists/admin/model/admin.artists.model.php';
-        $artists = adminArtistsModel::find($account->fields['artists_id']);
+        $artists = artistsModel::find($account->fields['artists_id']);
         $artists->update_date = date('Y-m-d H:i:s');
         $result = $artists->save();
 
@@ -699,8 +705,8 @@ class accountController
         $export['artists_id'] = $member_info['Artists_id'];
 
         /** update artists date  */
-        include_once ROOT_DIR . 'component/artists/admin/model/admin.artists.model.php';
-        $artists = adminArtistsModel::find($obj->fields['artists_id']);
+        // include_once ROOT_DIR . 'component/artists/admin/model/admin.artists.model.php';
+        $artists = artistsModel::find($obj->fields['artists_id']);
         $artists->update_date = date('Y-m-d H:i:s');
         $result = $artists->save();
 
@@ -720,7 +726,7 @@ class accountController
     }
     public function deleteProduct($id)
     {
-        if (!validator::required($id) and !validator::Numeric($id)) {
+        if (!validators::required($id) and !validators::Numeric($id)) {
             $msg = 'یافت نشد';
             redirectPage(RELA_DIR . 'account/showProductList', $msg);
         }
@@ -786,7 +792,7 @@ class accountController
 
 
 
-        $result = $account->validator();
+        $result = $account->validators();
 
         $account->state_id = 0;
         $account->date = date('Y-m-d H:i:s');
@@ -820,7 +826,7 @@ class accountController
     {
         global $member_info;
 
-        include_once "component/artists/model/artists.model.php";
+        // include_once "component/artists/model/artists.model.php";
         $obj = artistsModel::find($member_info['Artists_id']);
         // print_r_debug($obj);
         if (!is_object($obj)) {
@@ -869,7 +875,7 @@ class accountController
     public function showPackageEditForm($fields, $msg)
     {
 
-        //        if (!validator::required($fields['Package_id']) and !validator::Numeric($fields['Package_id'])) {
+        //        if (!validators::required($fields['Package_id']) and !validators::Numeric($fields['Package_id'])) {
         //
         //            $msg = 'یافت نشد';
         //            redirectPage('');
@@ -912,7 +918,7 @@ class accountController
 
 
 
-        /*  if (!validator::required($fields['Package_id']) and !validator::Numeric($fields['Package_id'])) {
+        /*  if (!validators::required($fields['Package_id']) and !validators::Numeric($fields['Package_id'])) {
 
             $msg = 'یافت نشد';
             redirectPage(RELA_DIR.'zamin/index.php?component=package', $msg);
@@ -945,7 +951,7 @@ class accountController
     {
         $account = new accountModel();
 
-        if (!validator::required($fields['Package_id']) and !validator::Numeric($fields['Package_id'])) {
+        if (!validators::required($fields['Package_id']) and !validators::Numeric($fields['Package_id'])) {
             $msg = 'یافت نشد';
             redirectPage(RELA_DIR . 'zamin/index.php?component=package', $msg);
         }
@@ -1200,7 +1206,7 @@ class accountController
     
     public function deleteBlog($id)
     {
-        if (!validator::required($id) and !validator::Numeric($id)) {
+        if (!validators::required($id) and !validators::Numeric($id)) {
             $msg = 'یافت نشد';
             redirectPage(RELA_DIR . 'account/showBlogList', $msg);
         }

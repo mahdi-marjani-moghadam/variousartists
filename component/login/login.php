@@ -46,7 +46,7 @@ elseif($PARAM[1]  == 'changePass')
 }
 elseif($PARAM[1] == 'changePassSubmit')
 {
-    $result = $login->changePass($_POST,$result['msg']);
+    $result = $login->changePass($_POST);
 
     $login->showLoginForm($_POST,$result['msg']);
 

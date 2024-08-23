@@ -1,5 +1,7 @@
 <?
 
+use Common\looeic;
+
 class blog extends looeic{
 
     function getAllBlog($page=''){
@@ -20,7 +22,7 @@ class blog extends looeic{
 
         $obj = new blog();
         $query = 'select count(*) as `count` from blog where status = 1';
-        $arr['export']['rows'] = $obj->getByFilter('',$query)['export']['list'][0]['count'];
+        $arr['export']['rows'] = $obj->getByFilter([],$query)['export']['list'][0]['count'];
 
 
 

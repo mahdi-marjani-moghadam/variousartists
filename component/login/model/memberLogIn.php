@@ -3,6 +3,7 @@
 namespace Component\login\model;
 
 use Common\dbConn;
+use Common\validators;
 use Component\artists\model\artists;
 use Component\category\admin\model\adminCategoryModel;
 use Component\genre\admin\model\adminGenreModel;
@@ -713,7 +714,7 @@ class memberLogIn
 
         $artists->setFields($_input);
 
-        $result = $artists->validator();
+        $result = $artists->validators();
 
 
 
@@ -862,7 +863,7 @@ class memberLogIn
         $_input['password']  = md5($_input['password']);
 
         $artists->setFields($_input);
-        $result = $artists->validator();
+        $result = $artists->validators();
 
 
         /*if($result['result']==-1)
@@ -895,7 +896,7 @@ class memberLogIn
 
         $fieldsString  = $valuesString = '';
         foreach ($fields as $name => $value) {
-            if (in_array($name, $this->_requiredFields) && Validator::required($value) == 0) {
+            if (in_array($name, $this->_requiredFields) && validators::required($value) == 0) {
 
                 $result['result'] = -1;
                 $result['msg'] = INDEX_0127 . ' ' . constant($name) . ' ' . INDEX_0128;

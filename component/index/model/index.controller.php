@@ -1,4 +1,6 @@
 <?php
+use Component\article\model\articleModel;
+use Component\event\model\eventModel;
 /**
  * Created by PhpStorm.
  * User: malek
@@ -130,7 +132,7 @@ class indexController
             $export['category_list'] = $resultCategory['export']['list'];
         }
 
-        include_once(ROOT_DIR."component/event/model/event.model.php");
+        // include_once(ROOT_DIR."component/event/model/event.model.php");
         $event = new eventModel();
         $limit['limit']['start'] = 0;
         $limit['limit']['length'] = 18;

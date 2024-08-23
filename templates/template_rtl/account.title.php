@@ -4,7 +4,7 @@
 <section id="page-title" style="display: none">
 
     <div class="container clearfix">
-        <h1><?php echo $list['page_title'];?></h1>
+        <h1><?php echo $list['page_title'] ?? '';?></h1>
 
 
         <ol class="breadcrumb" style="display: none" >
@@ -13,7 +13,7 @@
 
         </ol>
 
-        <?php echo $list['breadcrumb']?>
+        <?php echo $list['breadcrumb'] ?? ''?>
 
 
     </div>
@@ -34,7 +34,7 @@
                             <a href="#" class="p-logo"><img src="<?/*=TEMPLATE_DIR*/?>img/logo-dark.png"></a>
                         </div>-->
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <i class="icon icon-user"></i><span class="hidden-xs">پنل مدیریتی‌:</span>‌ <?php echo $list['list']["artists_name_$lang"]?>
+                        <i class="icon icon-user"></i><span class="hidden-xs">پنل مدیریتی‌:</span>‌ <?php echo $list['list']["artists_name_$lang"] ?? ''?>
 
 
                     </div>

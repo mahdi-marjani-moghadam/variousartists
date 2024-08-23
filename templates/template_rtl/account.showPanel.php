@@ -7,7 +7,7 @@
                                     <div class="col_one_fifth ">
                                         <ul>
                                             <li><i class="icon-star3 font-size2x"></i> </li>
-                                            <li>جمع امتیازات <?=$list['list']['rate']?><br>از <?=$list['list']['rate_count']?> نظر</li>
+                                            <li>جمع امتیازات <?=$list['list']['rate'] ?? ''?><br>از <?=$list['list']['rate_count'] ?? ''?> نظر</li>
                                         </ul>
                                     </div>
 
@@ -15,7 +15,7 @@
                                         <ul>
                                             <li><i class="icon-line-box font-size2x"></i> </li>
                                             <li>تعداد اثرات<br>
-                                                <?=$list['artistsProduct']?></li>
+                                                <?=$list['artistsProduct'] ?? ''?></li>
                                         </ul>
                                     </div>
                                     <div class="col_one_fifth col_last">

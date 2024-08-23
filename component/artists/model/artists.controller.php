@@ -5,7 +5,10 @@
  * Date: 2/20/2016
  * Time: 4:24 PM.
  */
-include_once dirname(__FILE__).'/artists.model.php';
+
+use Component\artists\model\artistsModel;
+
+// include_once dirname(__FILE__).'/artists.model.php';
 
 
 /**
