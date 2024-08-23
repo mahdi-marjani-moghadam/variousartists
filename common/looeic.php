@@ -1184,7 +1184,7 @@ class looeic extends DB
     }
 
 
-    public function delete()
+    public function delete($id='')
     {
         if ($this->fields[$this->PRI_KEY] == '') {
             $result['result'] = -1;

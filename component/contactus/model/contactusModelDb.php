@@ -1,13 +1,10 @@
 <?php
 
-use Common\dbConn;
+namespace Component\contactus\model;
 
-/**
- * Created by PhpStorm.
- * User: marjani
- * Date: 2/27/2016
- * Time: 11:02 AM
- */
+use Common\dbConn;
+use PDO;
+
 class contactusModelDb
 {
 
@@ -38,21 +35,14 @@ class contactusModelDb
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['Number'] = 1;
             $result['msg'] = $conn->errorInfo();
             return $result;
         }
-        $result['export']['insert_id']=$conn->lastInsertId();
+        $result['export']['insert_id'] = $conn->lastInsertId();
         $result['result'] = 1;
         return $result;
     }
-
-
-
-
-
-
 }

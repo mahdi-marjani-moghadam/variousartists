@@ -1,11 +1,15 @@
 <?php
+
+use Component\contactus\model\contactusModel;
+use Component\vontactus\admin\model\adminContactusModel;
+
 /**
  * Created by PhpStorm.
  * User: marjani
  * Date: 2/27/2016
  * Time: 9:21 AM.
  */
-include_once dirname(__FILE__).'/contactus.model.php';
+include_once dirname(__FILE__) . '/contactus.model.php';
 
 /**
  * Class contactusController.
@@ -42,27 +46,25 @@ class contactusController
      *
      * @return string
      */
-    public function template($list = array(), $msg='')
+    public function template($list = array(), $msg = ''): void
     {
-        global $messageStack,$member_info;
+        global $messageStack, $member_info;
 
         switch ($this->exportType) {
             case 'html':
-                include ROOT_DIR.'templates/'.CURRENT_SKIN.'/title.inc.php';
-                include ROOT_DIR.'templates/'.CURRENT_SKIN."/$this->fileName";
-                include ROOT_DIR.'templates/'.CURRENT_SKIN.'/tail.inc.php';
+                include ROOT_DIR . 'templates/' . CURRENT_SKIN . '/title.inc.php';
+                include ROOT_DIR . 'templates/' . CURRENT_SKIN . "/$this->fileName";
+                include ROOT_DIR . 'templates/' . CURRENT_SKIN . '/tail.inc.php';
                 break;
 
             case 'json':
                 echo json_encode($list);
                 break;
 
-            case 'array':
-                return $list;
-                break;
+
 
             case 'serialize':
-                 echo serialize($list);
+                echo serialize($list);
                 break;
 
             default:
@@ -90,7 +92,7 @@ class contactusController
         $result = $contactus->setFields($_input);
         if ($result['result'] == -1) {
             //$messageStack->add_session('contactus',$result['msg'] , 'error');
-            $this->showContactusForm($_input,$result['msg']);
+            $this->showContactusForm($_input, $result['msg']);
         }
 
         $result = $contactus->addContactus();
@@ -99,8 +101,8 @@ class contactusController
             $this->showContactusForm($_input, $result['msg']);
         }
         $msg = 'عملیات با موفقیت انجام شد';
-        $messageStack->add_session('contactus',$msg, 'success');
-        redirectPage(RELA_DIR.'contactus', $msg);
+        $messageStack->add_session('contactus', $msg, 'success');
+        redirectPage(RELA_DIR . 'contactus', $msg);
         die();
     }
 
@@ -112,13 +114,13 @@ class contactusController
      *
      * @version 01.01.01
      */
-    public function showContactusForm($_input=array(), $msg='')
+    public function showContactusForm($_input = array(), $msg = '')
     {
         // breadcrumb
-        global $breadcrumb,$lang;
+        global $breadcrumb, $lang;
 
-        include_once ROOT_DIR.'component/contactus/admin/model/admin.contactus_content.model.php';
-        $obj = contactus_content::getAll()->where('lang','=',$lang)->getList()['export']['list'][0];
+        // include_once ROOT_DIR.'component/contactus/admin/model/admin.contactus_content.model.php';
+        $obj = adminContactusModel::getAll()->where('lang', '=', $lang)->getList()['export']['list'][0];
 
         $breadcrumb->reset();
         $breadcrumb->add('تماس با ما');
