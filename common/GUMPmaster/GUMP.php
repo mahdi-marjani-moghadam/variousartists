@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * GUMP - A fast, extensible PHP input validation class.
  *
@@ -10,7 +11,8 @@
  *
  * @version     1.4
  */
-class GUMP
+namespace Common\GUMPmaster;
+ class GUMP
 {
     //Singleton instance of GUMP
     protected static $instance = null;

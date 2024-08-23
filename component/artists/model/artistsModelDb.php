@@ -1,25 +1,27 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: malek
- * Date: 2/20/2016
- * Time: 4:33 AM.
- */
-class eventModelDb
+namespace Component\artists\model;
+
+use Common\dbConn;
+use Model\DataBase;
+use PDO;
+
+class artistsModelDb
 {
-    public static function getEventById($id)
+    public static function getArtistsById($id)
     {
         global $lang;
+
         $conn = dbConn::getConnection();
         $sql = "SELECT
-                    Event_id,category_id,salon_id,city_id,country_id,event_name_$lang as event_name,event_phone,sale_type,
-                event_time,event_time2,event_time3,address_$lang as address,meta_keyword,meta_description,
-                logo,brief_description_$lang as brief_description,description_$lang as description,`date`,`date2`,`date3`,priority,status,lat,`longe`,price,organizer
+                    child.*, child.artists_name_$lang as artists_name, child.description_$lang as description, 
+                    parent.artists_name_$lang as ref_name, parent.logo as ref_logo
                 FROM
-                    event
+                    artists child
+                LEFT OUTER JOIN 
+                    artists parent on child.ref = parent.Artists_id
                 WHERE
-                    Event_id= '$id' and status='1' ";
+                    child.Artists_id= '$id' and child.status='1' ";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -43,7 +45,7 @@ class eventModelDb
 
         $row = $stmt->fetch();
 
-        //$row = self::getEventContactInfo($id, $row);
+        $row = self::getArtistsContactInfo($id, $row);
 
         $result['result'] = 1;
         $result['list'] = $row;
@@ -51,55 +53,7 @@ class eventModelDb
         return $result;
     }
 
-    public static function getEventGalleryById($id)
-    {
-        $conn = dbConn::getConnection();
-        $sql = "SELECT SQL_CALC_FOUND_ROWS
-                *
-                FROM
-                    event_gallery
-                WHERE
-                    event_id in ($id)";
-
-        $stmt = $conn->prepare($sql);
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $stmt->execute();
-        if (!$stmt) {
-            $result['result'] = -1;
-            $result['Number'] = 1;
-            $result['msg'] = $conn->errorInfo();
-
-            return $result;
-        }
-
-        if (!$stmt->rowCount()) {
-            $result['result'] = -1;
-            $result['no'] = 1;
-            $result['msg'] = 'This Record was Not Found';
-
-            return $result;
-        }
-
-        $sql = ' SELECT FOUND_ROWS() as recCount ';
-
-        $stmTp = $conn->prepare($sql);
-        $stmTp->setFetchMode(PDO::FETCH_ASSOC);
-        $stmTp->execute();
-        $rowP = $stmTp->fetch();
-
-        $result['export']['recordsCount'] = $rowP['recCount'];
-
-        while ($row = $stmt->fetch()) {
-            // $row1 = self::getEventContactInfo($id,$row);
-            $list[$row['Event_gallery_id']] = $row;
-        }
-
-        $result['result'] = 1;
-        $result['export']['list'] = $list;
-
-        return $result;
-    }
-    public static function getEventByCategoryId($id)
+    public static function getArtistsByCategoryId($id)
     {
         $conn = dbConn::getConnection();
         $sql = "SELECT SQL_CALC_FOUND_ROWS
@@ -138,7 +92,7 @@ class eventModelDb
         $result['export']['recordsCount'] = $rowP['recCount'];
 
         while ($row = $stmt->fetch()) {
-            // $row1 = self::getEventContactInfo($id,$row);
+            // $row1 = self::getArtistsContactInfo($id,$row);
             $list[$row['Article_id']] = $row;
         }
 
@@ -148,21 +102,18 @@ class eventModelDb
         return $result;
     }
 
-    public function getEvent($fields = '')
+    public function getArtists($fields = '')
     {
         global $lang;
         $conn = dbConn::getConnection();
 
-        include_once ROOT_DIR.'/model/db.inc.class.php';
+        // include_once ROOT_DIR.'/model/db.inc.class.php';
+
         $condition = DataBase::filterBuilder($fields);
 
-        $sql = "SELECT SQL_CALC_FOUND_ROWS 
- 
-                Event_id,category_id,category_id,city_id,event_name_$lang as event_name,event_phone,
-                event_time,event_time2,event_time3,address_$lang as address,meta_keyword,meta_description,
-                logo,brief_description_$lang as brief_description,description_$lang as description,`date`,`date2`,`date3`,priority,status
-                
-                FROM event WHERE  status='1'";
+         $sql = "SELECT SQL_CALC_FOUND_ROWS 
+                      *,artists_name_$lang as artists_name 
+                      FROM artists WHERE type=1 and status='1'";
         /*if (isset($fields['condition']['city_id'])) {
             $sql .= ' AND city_id = '.$fields['condition']['city_id'];
         }*/
@@ -176,7 +127,18 @@ class eventModelDb
             $sql .= ') ';
         }
 
+        if (isset($fields['condition']['genre_id'])) {
+            $sql .= ' AND (';
+            $categories = explode(',', $fields['condition']['genre_id']);
+            foreach ($categories as $key => $value) {
+                $sql .= "genre_id like '%,".$value.",%' or ";
+            }
+            $sql = substr($sql, 0, -3);
+            $sql .= ') ';
+        }
+
         $sql .= $condition['list']['order'].$condition['list']['limit'];
+        //print_r($sql);die();
         $stmt = $conn->prepare($sql);
 
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -200,19 +162,19 @@ class eventModelDb
         $result['export']['recordsCount'] = $rowP['recCount'];
 
         while ($row = $stmt->fetch()) {
-            $list[$row['Event_id']] = $row;
+            $list[$row['Artists_id']] = $row;
         }
         $result['result'] = 1;
         $result['export']['list'] = $list;
 
         return $result;
     }
-    public function getLastEvent($fields = '')
+    public function getLastArtists($fields = '')
     {
-        global $lang;
         $conn = dbConn::getConnection();
 
         include_once ROOT_DIR.'/model/db.inc.class.php';
+
         $condition = DataBase::filterBuilder($fields);
         $appendSql = "WHERE  status='1' ";
 
@@ -221,9 +183,9 @@ class eventModelDb
             $condition['list']['filter'] = '('.$condition['list']['filter'].')';
         }
 
-         $sql = "SELECT SQL_CALC_FOUND_ROWS
-                 *,event_name_$lang as event_name
-    		     FROM 	event ".$appendSql;
+        $sql = 'SELECT SQL_CALC_FOUND_ROWS
+                 *
+    		     FROM 	artists '.$appendSql;
         if (isset($fields['chose']['city_id'])) {
             $sql .= ' AND city_id = '.$fields['chose']['city_id'];
         }
@@ -250,7 +212,7 @@ class eventModelDb
         $result['export']['recordsCount'] = $rowP['recCount'];
 
         while ($row = $stmt->fetch()) {
-            $list[$row['Event_id']] = $row;
+            $list[$row['Artists_id']] = $row;
         }
         $result['result'] = 1;
         $result['export']['list'] = $list;
@@ -262,12 +224,12 @@ class eventModelDb
      */
     public static function getRelatedCompanies($id)
     {
-        $event = self::getEventById($id);
-        $keywords = explode(',', $event['list']['meta_keyword']);
+        $artists = self::getArtistsById($id);
+        $keywords = explode(',', $artists['list']['meta_keyword']);
 
         $conn = dbConn::getConnection();
 
-        $sql = 'SELECT * FROM event WHERE';
+        $sql = 'SELECT * FROM artists WHERE';
         $keyCount = 0;
         foreach ($keywords as $key => $value) {
             if ($value != '') {
@@ -280,7 +242,7 @@ class eventModelDb
             }
         }
         if ($keyCount > 0) {
-            $sql .= ') AND Event_id != '.$id;
+            $sql .= ') AND Artists_id != '.$id;
         } else {
             $sql .= ' 0';
         }
@@ -303,7 +265,7 @@ class eventModelDb
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $stmt->execute();
             while ($row = $stmt->fetch()) {
-                $list[$row['Event_id']] = $row;
+                $list[$row['Artists_id']] = $row;
             }
             // ---
 
@@ -312,7 +274,7 @@ class eventModelDb
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $stmt->execute();
             while ($row = $stmt->fetch()) {
-                $listTmp[$row['Event_id']] = $row;
+                $listTmp[$row['Artists_id']] = $row;
             }
             if (count($listTmp) >= $limit) {
                 $randList = array_rand($listTmp, $limit);
@@ -332,7 +294,7 @@ class eventModelDb
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $stmt->execute();
             while ($row = $stmt->fetch()) {
-                $list[$row['Event_id']] = $row;
+                $list[$row['Artists_id']] = $row;
             }
         }
 
@@ -372,12 +334,12 @@ class eventModelDb
         return $result;
     }
 
-    private static function getEventContactInfo($id, $row)
+    private static function getArtistsContactInfo($id, $row)
     {
         $conn = dbConn::getConnection();
 
-      // get event phones
-      $sql1 = "select * from event_phones where `event_id`='$id'";
+      // get artists phones
+      $sql1 = "select * from artists_phones where `artists_id`='$id'";
 
         $stmt1 = $conn->prepare($sql1);
         $stmt1->execute();
@@ -392,7 +354,7 @@ class eventModelDb
         }
 
         $phones = [
-          'Event_phones_id' => [],
+          'Artists_phones_id' => [],
           'subject' => [],
           'number' => [],
           'state' => [],
@@ -400,17 +362,17 @@ class eventModelDb
       ];
 
         while ($row1 = $stmt1->fetch()) {
-            array_push($phones['Event_phones_id'], $row1['Event_phones_id']);
+            array_push($phones['Artists_phones_id'], $row1['Artists_phones_id']);
             array_push($phones['subject'], $row1['phone_subject']);
             array_push($phones['number'], $row1['phone_number']);
             array_push($phones['state'], $row1['phone_state']);
             array_push($phones['value'], $row1['phone_value']);
         }
 
-        $row['event_phone'] = $phones;
-        $list[$row['Event_id']] = $row;
-      // get event emails
-      $sql1 = "select * from event_emails where `event_id`='$id'";
+        $row['artists_phone'] = $phones;
+        $list[$row['Artists_id']] = $row;
+      // get artists emails
+      $sql1 = "select * from artists_emails where `artists_id`='$id'";
 
         $stmt1 = $conn->prepare($sql1);
         $stmt1->execute();
@@ -425,22 +387,22 @@ class eventModelDb
         }
 
         $emails = [
-          'Event_emails_id' => [],
+          'Artists_emails_id' => [],
           'subject' => [],
           'email' => [],
       ];
 
         while ($row1 = $stmt1->fetch()) {
-            array_push($emails['Event_emails_id'], $row1['Event_emails_id']);
+            array_push($emails['Artists_emails_id'], $row1['Artists_emails_id']);
             array_push($emails['subject'], $row1['email_subject']);
             array_push($emails['email'], $row1['email_email']);
         }
 
-        $row['event_email'] = $emails;
-        $list[$row['Event_id']] = $row;
+        $row['artists_email'] = $emails;
+        $list[$row['Artists_id']] = $row;
 
-      // get event addresses
-      $sql1 = "select * from event_addresses where `event_id`='$id'";
+      // get artists addresses
+      $sql1 = "select * from artists_addresses where `artists_id`='$id'";
 
         $stmt1 = $conn->prepare($sql1);
         $stmt1->execute();
@@ -455,21 +417,21 @@ class eventModelDb
         }
 
         $addresses = [
-          'Event_addresses_id' => [],
+          'Artists_addresses_id' => [],
           'subject' => [],
           'address' => [],
       ];
 
         while ($row1 = $stmt1->fetch()) {
-            array_push($addresses['Event_addresses_id'], $row1['Event_addresses_id']);
+            array_push($addresses['Artists_addresses_id'], $row1['Artists_addresses_id']);
             array_push($addresses['subject'], $row1['address_subject']);
             array_push($addresses['address'], $row1['address_address']);
         }
 
-        $row['event_address'] = $addresses;
-        $list[$row['Event_id']] = $row;
-      // get event websites
-      $sql1 = "select * from event_websites where `event_id`='$id'";
+        $row['artists_address'] = $addresses;
+        $list[$row['Artists_id']] = $row;
+      // get artists websites
+      $sql1 = "select * from artists_websites where `artists_id`='$id'";
 
         $stmt1 = $conn->prepare($sql1);
         $stmt1->execute();
@@ -484,70 +446,46 @@ class eventModelDb
         }
 
         $websites = [
-          'Event_websites_id' => [],
+          'Artists_websites_id' => [],
           'subject' => [],
           'url' => [],
       ];
 
         while ($row1 = $stmt1->fetch()) {
-            array_push($websites['Event_websites_id'], $row1['Event_websites_id']);
+            array_push($websites['Artists_websites_id'], $row1['Artists_websites_id']);
             array_push($websites['subject'], $row1['website_subject']);
             array_push($websites['url'], $row1['website_url']);
         }
 
-        $row['event_website'] = $websites;
+        $row['artists_website'] = $websites;
 
         return $row;
     }
-    public static function getEventByArtistsId($id,$fields)
+
+    public static function pushRateDB($rate,$rate_product,$product_id)
     {
-        global $lang;
+        //global $lang;
+
         $conn = dbConn::getConnection();
 
-        include_once(ROOT_DIR."/model/db.inc.class.php");
-        $condition = DataBase::filterBuilder($fields);
-
-        $sql = "SELECT  SQL_CALC_FOUND_ROWS
-                *,event_name_$lang as title
-                FROM
-                    event
-                WHERE
-                    member_id ='$id'   ".$fields['where'].$condition['list']['filter'].$condition['list']['order'].$condition['list']['limit'] ;
+        $sql = "update artists set rate='$rate',rate_count='$rate_product' where Artists_id = '$product_id'";
 
         $stmt = $conn->prepare($sql);
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
         if (!$stmt) {
             $result['result'] = -1;
-            $result['Number'] = 1;
+            $result['no'] = 1;
             $result['msg'] = $conn->errorInfo();
 
             return $result;
         }
 
-        if (!$stmt->rowCount()) {
-            $result['result'] = -1;
-            $result['no'] = 100;
-            $result['msg'] = 'This Record was Not Found';
-
-            return $result;
-        }
-
-        $sql = ' SELECT FOUND_ROWS() as recCount ';
-
-        $stmTp = $conn->prepare($sql);
-        $stmTp->setFetchMode(PDO::FETCH_ASSOC);
-        $stmTp->execute();
-        $rowP = $stmTp->fetch();
-
-        $result['export']['recordsCount'] = $rowP['recCount'];
-
-        while ($row = $stmt->fetch()) {
-            $list[$row['Event_id']] = $row;
-        }
-
+        $list = $stmt->fetchAll();
         $result['result'] = 1;
         $result['export']['list'] = $list;
+
         return $result;
     }
 }

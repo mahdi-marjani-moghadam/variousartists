@@ -1,17 +1,6 @@
 <?php
-/**
- * PHP Validator doc
- *
- * User: mahm0ud22
- * Date: 10/31/14
- * Time: 10:58 AM
- *
- * @Auther Mahmoud Masih Tehrani
- * @Email mahmud.tehrani@gmail.com
- * @URL http://masihtehrani.ir
- * @version 0.0.1
- */
-class Validator
+namespace Common;
+class validators
 {
     /**
      * check require string

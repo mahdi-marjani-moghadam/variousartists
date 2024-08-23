@@ -1,5 +1,9 @@
 <?php
 
+use Common\validators;
+use Component\category\admin\model\adminCategoryModelDb;
+use Component\category\model\categoryModelDb;
+
 /**
  * Created by PhpStorm.
  * User: malek
@@ -104,7 +108,7 @@ class categoryModel
      */
     private function __setTitle($input)
     {
-        if (!Validator::required($input)) {
+        if (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter title';
         } else {
@@ -123,7 +127,7 @@ class categoryModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } elseif (!Validator::required($input)) {
+        } elseif (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Brif description';
         } else {
@@ -142,7 +146,7 @@ class categoryModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } elseif (!Validator::required($input)) {
+        } elseif (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Description';
         } else {
@@ -161,7 +165,7 @@ class categoryModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } elseif (!Validator::required($input)) {
+        } elseif (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Meta_keyword';
         } else {
@@ -180,7 +184,7 @@ class categoryModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } elseif (!Validator::required($input)) {
+        } elseif (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Meta_description';
         } else {
@@ -199,7 +203,7 @@ class categoryModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } elseif (!Validator::required($input)) {
+        } elseif (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Date';
         } else {
@@ -218,7 +222,7 @@ class categoryModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } elseif (!Validator::required($input)) {
+        } elseif (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Image';
         } else {
@@ -438,8 +442,8 @@ class categoryModel
 
     public function getCategoryTree($fields='')
     {
-        include_once dirname(__FILE__).'/category.model.db.php';
-        $result = categoryModelDb::tree_set();
+        // include_once dirname(__FILE__).'/category.model.db.php';
+        $result = (new categoryModelDb)->tree_set();
         $this->list = $result['export']['list'];
         $this->recordsCount = $result['export']['recordsCount'];
 
@@ -459,9 +463,9 @@ class categoryModel
     }
     public function getCategoryOption($parent_id = 0, $space = '-')
     {
-        include_once dirname(__FILE__).'/category.model.db.php';
+        // include_once dirname(__FILE__).'/category.model.db.php';
 
-        $result = categoryModelDb::tree_set();
+        $result = (new categoryModelDb)->tree_set();
         if ($result['result'] != 1) {
             return $result;
         }
@@ -487,9 +491,9 @@ class categoryModel
     //*******************************
     public function getCategoryByfor($fields)
     {
-        include_once dirname(__FILE__).'/admin.category.model.db.php';
+        // include_once dirname(__FILE__).'/admin.category.model.db.php';
 
-        $result = adminCategoryModelDb::tree_set();
+        $result = (new adminCategoryModelDb)->tree_set();
         $fields = $result['export']['list'];
         $this->listCat = $fields;
         $result = $this->convert($fields['1']);

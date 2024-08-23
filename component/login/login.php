@@ -5,7 +5,10 @@
  * Date: 2/20/2016
  * Time: 4:21 AM
  */
-include_once(dirname(__FILE__). "/model/login.model.php");
+
+use Component\login\model\memberLogIn;
+
+// include_once(dirname(__FILE__). "/model/login.model.php");
 
 global $admin_info,$PARAM;
 

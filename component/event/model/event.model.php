@@ -5,7 +5,11 @@
  * Date: 2/20/2016
  * Time: 4:24 AM.
  */
-include_once ROOT_DIR.'/common/validators.php';
+
+use Common\looeic;
+use Common\validators;
+
+// include_once ROOT_DIR.'/common/validators.php';
 class eventModel extends looeic
 {
     protected $TABLE_NAME = 'event';
@@ -124,7 +128,7 @@ class eventModel extends looeic
      */
     public function getLastEvent($fields)
     {
-        include_once dirname(__FILE__).'/event.model.db.php';
+        // include_once dirname(__FILE__).'/event.model.db.php';
 
         $result = eventModelDb::getLastEvent($fields);
 

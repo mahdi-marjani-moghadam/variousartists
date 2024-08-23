@@ -3,7 +3,8 @@
     "autoload": {
         "psr-4": {
             "Component\\": "component/",
-            "Common\\": "common/"
+            "Common\\": "common/",
+            "Model\\": "model/"
         }
     },
     "authors": [
@@ -13,6 +14,6 @@
         }
     ],
     "require": {
-        "gregwar/captcha": "1.*"
+        "gregwar/captcha": "^1.2.1"
     }
 }

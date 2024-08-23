@@ -33,8 +33,9 @@
         return false;
     }
     $(document).ready(function() {
-        $('#check1').click(function() {
 
+
+        $('#check1').click(function() {
             if ($(this).is(':checked')) {
                 $('.art').show();
             } else {
@@ -47,6 +48,7 @@
             $telNumber = $('#phoneNumber'),
             windowWidth = $(window).width(),
             $password = $('#password');
+
         $body.on('click', function() {
             var $dropDown = $countryHolder.find('ul'),
                 $navBar = $('.navbar-toggle'),
@@ -62,6 +64,7 @@
                 $overlayBg.removeClass('active');
             }
         });
+
         $body.on('click', '.form-group .input-group-addon.countryFlagHolder', function(e) {
             e.stopPropagation();
 
@@ -158,11 +161,11 @@
                                         <div class="alert alert-danger rtl"><?php echo  $msg ?></div>
                                     </div>
                                 <?php endif; ?>
-                                <h3><?php echo  create_new_account ?> <span style="float: left; font-size:.7em"><?php echo (is_object( $list['refferer'])) ? 'معرف: ' . $list['refferer']->artists_name_fa : '' ?></span> </h3>
+                                <h3><?php echo  create_new_account ?> <span style="float: left; font-size:.7em"><?php echo (is_object($list['refferer'])) ? 'معرف: ' . $list['refferer']->artists_name_fa : '' ?></span> </h3>
                                 <form id="register-form" name="register-form" enctype="multipart/form-data" class="nobottommargin" action="<?php echo  RELA_DIR ?>register" method="post">
-                                    
+
                                     <input type="hidden" name="ref" value="<?php echo $list['refferer']->Artists_id ?? '' ?>">
-                                    
+
                                     <div class="col_full form-group">
                                         <label for="artists_phone1"><?php echo  mobile ?> <span class="red-text">*</span> </label>
 
@@ -207,6 +210,8 @@
                                         <input type="text" id="artists_name_fa" name="artists_name_fa" value="<?php echo  $_REQUEST['artists_name_fa'] ?>" class="form-control" />
                                     </div>
 
+
+
                                     <div class="col_full">
                                         <label for="check1"><input <?php if ($_REQUEST['check1'] == 'on') {
                                                                         echo 'checked';
@@ -240,7 +245,7 @@
                                             <?php
                                             foreach ($list['category'] as $category_id => $value) {
                                             ?>
-                                                <option <?php echo in_array($value['Category_id'], $_REQUEST['category_id']) ? 'selected' : '' ?> value="<?php echo  $value['Category_id'] ?>">
+                                                <option <?php echo in_array($value['Category_id'], $_REQUEST['category_id'] ?? []) ? 'selected' : '' ?> value="<?php echo  $value['Category_id'] ?>">
                                                     <?php echo  $value['export'] ?>
                                                 </option>
                                             <?php
@@ -332,10 +337,13 @@
 
                                     <div class="col_full nobottommargin">
                                         <!-- <button class="button button-3d button-black nomargin">< ?php echo  register ?></button> -->
+                                        <img src="<?php echo $list['captcha']->inline(); ?>" />
+
+                                        <input type="text" name="captcha">
+
 
                                         <button class="g-recaptcha button button-3d button-black nomargin"><?php echo  register ?></button>
-
-                                        <script src="https://www.google.com/recaptcha/api.js?render=6LcUQeEeAAAAAJwaRS6BsBVQt3og5hAX3I9z7XrW"></script>
+                                        <!-- <script src="https://www.google.com/recaptcha/api.js?render=6LcUQeEeAAAAAJwaRS6BsBVQt3og5hAX3I9z7XrW"></script>
                                         <script>
                                             $('#register-form').submit(function(event) {
                                                 // function onClick(e) {
@@ -352,7 +360,7 @@
                                                     });
                                                 });
                                             });
-                                        </script>
+                                        </script> -->
 
 
 

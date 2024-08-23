@@ -1,20 +1,19 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: malek
- * Date: 2/20/2016
- * Time: 4:24 AM.
- */
 
-include_once ROOT_DIR.'/common/validators.php';
-class artists extends looeic{
+namespace Component\artists\model;
 
+use Common\looeic;
+use Common\validators;
+
+// include_once ROOT_DIR.'/common/validators.php';
+class artists extends looeic
+{
+    protected $TABLE_NAME = 'artists';
     protected $rules = array(
         'username' => 'required',
         'password' => 'required'
         //'category_id' => 'required'
     );
-
 }
 
 class artistsModel extends looeic
@@ -71,23 +70,23 @@ class artistsModel extends looeic
      *
      * @return int
      */
-    public function setFields($input)
-    {
-        foreach ($input as $field => $val) {
-            $funcName = '__set'.ucfirst($field);
-            if (method_exists($this, $funcName)) {
-                $result = $this->$funcName($val);
-                if ($result['result']) {
-                    $this->fields[$field] = $val;
-                } else {
-                    return $result;
-                }
-            }
-        }
-        $result = 1;
+    // public function setFields($input)
+    // {
+    //     foreach ($input as $field => $val) {
+    //         $funcName = '__set'.ucfirst($field);
+    //         if (method_exists($this, $funcName)) {
+    //             $result = $this->$funcName($val);
+    //             if ($result['result']) {
+    //                 $this->fields[$field] = $val;
+    //             } else {
+    //                 return $result;
+    //             }
+    //         }
+    //     }
+    //     $result = 1;
 
-        return $result;
-    }
+    //     return $result;
+    // }
 
     /**
      * @param $input
@@ -96,7 +95,7 @@ class artistsModel extends looeic
      */
     private function __setTitle($input)
     {
-        if (!Validator::required($input)) {
+        if (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter title';
         } else {
@@ -115,7 +114,7 @@ class artistsModel extends looeic
      */
     public function getArtistsById($id)
     {
-        include_once dirname(__FILE__).'/artists.model.db.php';
+        // include_once dirname(__FILE__).'/artists.model.db.php';
 
         $result = artistsModelDb::getArtistsById($id);
 
@@ -146,7 +145,7 @@ class artistsModel extends looeic
      */
     public function getLastArtists($fields)
     {
-        include_once dirname(__FILE__).'/artists.model.db.php';
+        include_once dirname(__FILE__) . '/artists.model.db.php';
 
         $result = artistsModelDb::getLastArtists($fields);
 
@@ -169,10 +168,10 @@ class artistsModel extends looeic
      */
     public function getArtists($fields)
     {
-        include_once dirname(__FILE__).'/artists.model.db.php';
+        include_once dirname(__FILE__) . '/artists.model.db.php';
 
         $result = artistsModelDb::getArtists($fields);
-        
+
 
         if ($result['result'] != 1) {
             return $result;
@@ -194,7 +193,7 @@ class artistsModel extends looeic
      */
     public function getRelatedCompanies($id)
     {
-        include_once dirname(__FILE__).'/artists.model.db.php';
+        include_once dirname(__FILE__) . '/artists.model.db.php';
         $result = artistsModelDb::getRelatedCompanies($id);
         if ($result['result'] != 1) {
             return $result;
@@ -224,12 +223,12 @@ class artistsModel extends looeic
         $catString = '';
         foreach ($fields as $k => $catid) {
             if (is_numeric($catid)) {
-                $catString .= ",'".$catid."'";
+                $catString .= ",'" . $catid . "'";
             }
         }
         $catString = substr($catString, 1);
 
-        include_once dirname(__FILE__).'/article.model.db.php';
+        include_once dirname(__FILE__) . '/article.model.db.php';
         $result = articleModelDb::getArticleByCategoryId($catString);
 
         $this->list = $result['export']['list'];
@@ -266,8 +265,8 @@ class artistsModel extends looeic
             $PARAM = array_filter($PARAM, 'strlen');
         }
 
-        for ($i = 1;$i <= $pageCount;++$i) {
-            $pagination[] = $PARAM[0].'/page/'.$temp;
+        for ($i = 1; $i <= $pageCount; ++$i) {
+            $pagination[] = $PARAM[0] . '/page/' . $temp;
             $temp = $temp + 1;
         }
 

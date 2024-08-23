@@ -3,8 +3,15 @@
 namespace Component\login\model;
 
 use Common\dbConn;
+use Component\artists\model\artists;
 use Component\category\admin\model\adminCategoryModel;
 use Component\genre\admin\model\adminGenreModel;
+use Component\magfa\WebServiceSample;
+use Component\province\model\province;
+use Gregwar\Captcha\CaptchaBuilder;
+use Gregwar\Captcha\PhraseBuilder;
+use Model\clsCountry;
+use PDO;
 
 class memberLogIn
 {
@@ -355,7 +362,7 @@ class memberLogIn
     {
 
         global  $member_info;
-        
+
         $conn = dbConn::getConnection();
         //print_r($_COOKIE["sessionID"]);
         if (!isset($_SESSION["sessionID"])) {
@@ -486,9 +493,8 @@ class memberLogIn
 
 
         //////////// province
-        include_once ROOT_DIR . 'component/province/model/province.model.php';
+        // include_once ROOT_DIR . 'component/province/model/province.model.php';
         $province = province::getAll()->getList();
-
         //$resultProvince = $province->getStates();
         if ($province['result'] == 1) {
             $fields['provinces'] = $province['export']['list'];
@@ -502,7 +508,7 @@ class memberLogIn
         //////////////////////////////////////////////////
         ////                get country               ////
         //////////////////////////////////////////////////
-        include_once(ROOT_DIR . "model/country.class.php");
+        // include_once(ROOT_DIR . "model/country.class.php");
         $COUNTRY = new clsCountry();
         $COUNTRY->countryFieldName = array("iso", "phone_code", "name", "max_length", "sample");
 
@@ -531,18 +537,30 @@ class memberLogIn
 
 
 
-        if (isset($_GET['ref']) ) {
-            include_once ROOT_DIR . 'component/artists/model/artists.model.php';
+        if (isset($_GET['ref'])) {
+            // include_once ROOT_DIR . 'component/artists/model/artists.model.php';
             $ref = (new artists)->find($_GET['ref']);
             if (is_object($ref)) {
                 $fields['refferer'] = $ref;
             }
         }
 
-        
+        $phraseBuilder = new PhraseBuilder(5, '0123456789');
+        $builder = new CaptchaBuilder(null, $phraseBuilder);
+        $_SESSION['phrase'] = $builder->getPhrase();
+        $captcha = $builder->build();
+        $fields['captcha'] = $captcha;
 
-        
-        
+
+
+
+
+        // $captcha->output();
+        // $builder->save('out.jpg');
+        // die();
+        // dd($builder);
+
+
 
 
         $this->fileName = 'register.php';
@@ -559,10 +577,10 @@ class memberLogIn
         include_once(ROOT_DIR . "component/artists/model/artists.model.php");
 
 
-         ///////////////////////// ref 
-         if (isset($_input['ref']) && is_numeric($_input['ref'])) {
+        ///////////////////////// ref 
+        if (isset($_input['ref']) && is_numeric($_input['ref'])) {
             $ref = (new artists)->find($_input['ref']);
-            if(is_object($ref)){
+            if (is_object($ref)) {
                 $_input['refferer'] = $ref;
             }
         }
@@ -573,23 +591,34 @@ class memberLogIn
 
         ///////////////// captcha
 
-        $token = $_input['token'];
-        $action = $_input['action'];
+        // $token = $_input['token'];
+        // $action = $_input['action'];
         // call curl to POST request
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('secret' => RECAPTCHA_V3_SECRET_KEY, 'response' => $token)));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($ch);
-        curl_close($ch);
-        $arrResponse = json_decode($response, true);
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+        // curl_setopt($ch, CURLOPT_POST, 1);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('secret' => RECAPTCHA_V3_SECRET_KEY, 'response' => $token)));
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // $response = curl_exec($ch);
+        // curl_close($ch);
+        // $arrResponse = json_decode($response, true);
 
         // verify the response
-        if ($arrResponse["success"] != '1' && $arrResponse["action"] != $action && $arrResponse["score"] < 0.5) {
+        // if ($arrResponse["success"] != '1' && $arrResponse["action"] != $action && $arrResponse["score"] < 0.5) {
+        //     $messageStack->add_session('register', captcha_not_true);
+        //     $this->showRegisterForm($_input, captcha_not_true);
+        // }
+        $captcha = $_input['captcha'];
+        $builder = new CaptchaBuilder($_SESSION['phrase']);
+        if (!$builder->testPhrase($captcha)) {
             $messageStack->add_session('register', captcha_not_true);
             $this->showRegisterForm($_input, captcha_not_true);
         }
+        
+        /////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////
+
 
         $_input['username'] = $_input['artists_phone1'];
         if ($_input['email'] != '') {
@@ -604,9 +633,9 @@ class memberLogIn
         //////////////////////////////////////////////////////////////////////
 
 
-        
 
-       
+
+
 
 
         /** exist user */
@@ -680,7 +709,7 @@ class memberLogIn
         // $_input['genre_id'] = '';
         // $_input['birthday_city'] = '';
 
-        
+
 
         $artists->setFields($_input);
 
@@ -736,7 +765,7 @@ class memberLogIn
 
             // $sms->simpleEnqueueSample($artists->artists_phone1, $message);
             $res = $sms->send($artists->artists_phone1, $message);
-            
+
 
             ///email
             if (checkMail($artists->email) ==  1) {
@@ -754,8 +783,8 @@ class memberLogIn
                 $result = $artists->save();
             }
 
-            include_once ROOT_DIR . 'component/magfa/magfa.model.php';
-            $sms = new WebServiceSample;
+            // include_once ROOT_DIR . 'component/magfa/magfa.model.php';
+            // $sms = new WebServiceSample;
 
             if ($lang == 'fa') {
                 $subject = 'ثبت نام';
@@ -775,9 +804,9 @@ class memberLogIn
 
 
             // $sms->simpleEnqueueSample($artists->artists_phone1, $message);
-            $res = $sms->send($artists->artists_phone1, $message);
-            
-            
+            // $res = $sms->send($artists->artists_phone1, $message);
+
+
             ///email
             if (checkMail($artists->email) ==  1) {
                 sendmail($artists->email, $subject, $message);

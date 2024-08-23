@@ -1,6 +1,8 @@
 <?php
 
+namespace Component\category\model;
 use Common\dbConn;
+use PDO;
 
 /**
  * Created by PhpStorm.

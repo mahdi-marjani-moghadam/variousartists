@@ -1,10 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: FaridCS
- * Date: 10/28/2014
- * Time: 12:47 PM.
- */
+namespace Model;
+
+use PDO;
+use PDOException;
+
 class DataBase
 {
     protected static $conn;

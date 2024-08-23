@@ -1,12 +1,10 @@
 <?php
 
-/**
- * Class : WebServiceSample
- * each method of this class describes a sample usage of a WebService request
- * note : this class uses "nusoap" library inorder to send requests via webservice,
- *          you can download the latest version of this library from : "http://sourceforge.net/projects/nusoap/" 
- * before start, please set the prerequisites correctly (such as USERNAME,PASSWORD, & DOMAIN )
- */
+namespace Component\magfa;
+
+use Exception;
+use SoapClient;
+use soapval;
 
 class WebServiceSample
 {
@@ -61,9 +59,10 @@ class WebServiceSample
 
 
             $options = [
-                'login' => "$this->USERNAME/$this->DOMAIN",'password' => $this->PASSWORD, // -Credientials
-                'cache_wsdl' => WSDL_CACHE_NONE, // -No WSDL Cache
-                'compression' => (SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP | 5), // -Compression *
+                'login' => "$this->USERNAME/$this->DOMAIN",
+                'password' => $this->PASSWORD, // -Credientials
+                'cache_wsdl' => 'WSDL_CACHE_NONE', // -No WSDL Cache
+                'compression' => ('SOAP_COMPRESSION_ACCEPT' | 'SOAP_COMPRESSION_GZIP' | 5), // -Compression *
                 'trace' => false // -Optional (debug)
             ];
 
@@ -73,9 +72,8 @@ class WebServiceSample
             //     'trace' => false // -Optional (debug)
             // ];
 
-            
+
             $this->client = new SoapClient($this->BASE_WEBSERVICE_URL, $options);
-                
         } catch (Exception $e) {
             $this->client = null;
         }
@@ -83,7 +81,7 @@ class WebServiceSample
 
 
 
-    public function send($mobile ,$message)
+    public function send($mobile, string $message)
     {
         return $this->client->send(
             [$message], // messages
@@ -94,8 +92,6 @@ class WebServiceSample
             [], // UDHs, Please read Magfa UDH Documnet
             [] // Message priorities (unused).
         );
-
-
     }
 
 
@@ -109,7 +105,7 @@ class WebServiceSample
     {
 
         return $this->send($recipientNumber, $message);
-        
+
         // change algorithm
 
         $method = "enqueue"; // name of the service

@@ -6,11 +6,16 @@
  * Date: 2/20/2016
  * Time: 4:33 AM
  */
+
 namespace Common;
+
 use Common\dbConn;
+use Exception;
+use GUMP;
+use Model\DataBase;
 use PDO;
 
-include_once ROOT_DIR . 'common/GUMP-master/gump.class.php';
+// include_once ROOT_DIR . 'common/GUMP-master/gump.class.php';
 // include_once ROOT_DIR . 'common/looeicQueryBuilder.php';
 
 
@@ -448,14 +453,15 @@ class looeic extends DB
 
             return $result;
         }
-        $conn = dbConn::getConnection();
+        try {
+            $conn = dbConn::getConnection();
+            $stmt = $conn->prepare($this->sql);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->execute();
+        } catch (Exception $e) {
+            dd($e);
+        }
 
-        //        print_r($this->sql);
-
-
-        $stmt = $conn->prepare($this->sql);
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $stmt->execute();
         if (!$stmt) {
             $result['result'] = -1;
             $result['Number'] = 1;
@@ -681,9 +687,9 @@ class looeic extends DB
         //$this->appendFields();
 
 
-        if ($this->config['export_type'] == 'api') {
-            return $this->get_object_or_list_api(0, $key);
-        }
+        // if ($this->config['export_type'] == 'api') {
+        //     return $this->get_object_or_list_api(0, $key);
+        // }
         return $this->get_object_or_list(0, $key);
     }
 
@@ -816,11 +822,15 @@ class looeic extends DB
         $this->TABLE_NAME = $this->getTableName(get_called_class());
 
         if (!is_array($this->TABLE_FIELD)) {
-            $conn = dbConn::getConnection();
-            $sql = "SHOW COLUMNS FROM " . $this->TABLE_NAME . " ";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            try {
+                $conn = dbConn::getConnection();
+                $sql = "SHOW COLUMNS FROM " . $this->TABLE_NAME . " ";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            } catch (Exception $e) {
+                dd($e);
+            }
             if (!$stmt) {
                 $result['result'] = -1;
                 $result['Number'] = 1;
@@ -852,7 +862,7 @@ class looeic extends DB
         }
     }
 
-    function __set($name, $value)
+    function __set($name, string $value)
     {
         $value = trim($value);
         $this->getFieldsName();
@@ -867,7 +877,7 @@ class looeic extends DB
         $this->getFieldsName();
         if ($name == 'fields') {
             return $this->fields;
-        } elseif ( array_key_exists($name, $this->fields)) {
+        } elseif (is_array($this->fields) &&  array_key_exists($name, $this->fields)) {
             return $this->fields[$name];
         } elseif (is_callable([$this, $name])) {
             return $this->$name();
@@ -883,7 +893,7 @@ class looeic extends DB
                 continue;
             }
             if ($guarded == 1) {
-                if (in_array($field_name, $this->GUARDED)) {
+                if (is_array($this->GUARDED) && in_array($field_name, $this->GUARDED)) {
                     continue;
                 }
             } elseif (is_array($guarded)) {
@@ -907,7 +917,7 @@ class looeic extends DB
         //$obj->TABLE_NAME=get_called_class();
         $this->getTableName(get_called_class());
         $conn = dbConn::getConnection();
-        include_once(ROOT_DIR . "/model/db.inc.class.php");
+        // include_once(ROOT_DIR . "/model/db.inc.class.php");
         $condition = DataBase::filterBuilder($fields);
 
         if ($query != '') {
@@ -1026,7 +1036,7 @@ class looeic extends DB
             $stmt = $conn->prepare($sql);
             $stmt->execute();
         } catch (PDOException $e) {
-            dd($e->getMessage(),true);
+            dd($e->getMessage(), true);
 
             dd($sql, true);
             get_caller(__FUNCTION__);
@@ -1106,7 +1116,7 @@ class looeic extends DB
             $stmt = $conn->prepare($sql);
             $stmt->execute();
         } catch (PDOException $e) {
-            dd($e->getMessage(),true);
+            dd($e->getMessage(), true);
 
             dd($sql, true);
             get_caller(__FUNCTION__);

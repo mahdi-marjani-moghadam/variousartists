@@ -1,16 +1,11 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: malek
- * Date: 2/20/2016
- * Time: 4:24 AM
- */
 namespace Component\genre\admin\model;
 
 use Common\looeic;
+use Common\validators;
+use Component\genre\admin\model\adminGenreModelDb;
 
-include_once ROOT_DIR."common/validators.php";
 class adminGenreModel extends looeic
 {
     protected $TABLE_NAME = 'genre';
@@ -20,42 +15,19 @@ class adminGenreModel extends looeic
         'parent_id' => 'required'
     );
 
-    /**
-     * @var
-     */
     private $TableName;
-    /**
-     * @var
-     */
     public $fields;  // other record fields
-    /**
-     * @var
-     */
     private $list;  // other record fields
-    /**
-     * @var
-     */
     private $recordsCount;  // other record fields
-    /**
-     * @var
-     */
     public $level = 0;
-
-
-    /**
-     * @var
-     */
     private $result;
 
-    /**
-     *
-     */
     public function __construct()
     {
-        $this->requiredFields = array(
-            'title'=>  '',
-            'parent_id'=>  ''
-        );
+        // $this->requiredFields = array(
+        //     'title'=>  '',
+        //     'parent_id'=>  ''
+        // );
     }
 
     /**
@@ -88,7 +60,7 @@ class adminGenreModel extends looeic
     public function getGenreById($id)
     {
 
-        if(!validator::required($id) and !validator::Numeric($id))
+        if(!validators::required($id) and !validators::Numeric($id))
         {
             $result['result'] = -1;
             $result['no'] = 1;
@@ -96,7 +68,7 @@ class adminGenreModel extends looeic
             return $result;
         }
 
-        include_once(dirname(__FILE__) . "/admin.genre.model.db.php");
+        // include_once(dirname(__FILE__) . "/admin.genre.model.db.php");
 
         $result = adminGenreModelDb::getGenreById($id);
 
@@ -123,7 +95,7 @@ class adminGenreModel extends looeic
     public function getGenreByParentId($id)
     {
 
-        if(!validator::required($id) and !validator::Numeric($id))
+        if(!validators::required($id) and !validators::Numeric($id))
         {
             $result['result'] = -1;
             $result['no'] = 1;
@@ -131,7 +103,7 @@ class adminGenreModel extends looeic
             return $result;
         }
 
-        include_once(dirname(__FILE__) . "/admin.genre.model.db.php");
+        // include_once(dirname(__FILE__) . "/admin.genre.model.db.php");
 
         $result = adminGenreModelDb::getGenreByParentId($id);
 
@@ -146,11 +118,8 @@ class adminGenreModel extends looeic
     }
 
 
-    /**
-     * @param $_input
-     * @return mixed
-     */
-    public function convert($_input,$temp,$space='-')
+    
+    public function convert($_input,$temp='',$space='-')
     {
 
 
@@ -191,7 +160,7 @@ class adminGenreModel extends looeic
      */
 
 
-    function getulli($array,$root=0,$all)
+    function getulli($array,$root=0,$all=[])
     {
 
         static $mainMenu = '';
@@ -249,8 +218,8 @@ class adminGenreModel extends looeic
     public function getGenreTree($fields)
     {
 
-        include_once(dirname(__FILE__) . "/admin.genre.model.db.php");
-        $result = adminGenreModelDb::tree_set();
+        // include_once(dirname(__FILE__) . "/admin.genre.model.db.php");
+        $result = (new adminGenreModelDb)->tree_set();
         $this->list=$result['export']['list'];
         $this->recordsCount=$result['export']['recordsCount'];
 
@@ -261,9 +230,9 @@ class adminGenreModel extends looeic
     public function getGenreOption($space='|-- ',$parent_id=0,$selectRoot='0',$where='')
     {
 
-        include_once(dirname(__FILE__) . "/admin.genre.model.db.php");
+        // include_once(dirname(__FILE__) . "/admin.genre.model.db.php");
 
-        $result = adminGenreModelDb::tree_set($where);
+        $result = (new adminGenreModelDb)->tree_set($where);
 
         if ($result['result'] != 1)
         {
@@ -305,7 +274,7 @@ class adminGenreModel extends looeic
     {
         include_once(dirname(__FILE__) . "/admin.genre.model.db.php");
 
-        $result = adminGenreModelDb::tree_set();
+        $result = (new adminGenreModelDb)->tree_set()();
         $fields = $result['export']['list'];
         $this->listCat = $fields;
         $result = $this->convert($fields['1']);

@@ -1,13 +1,7 @@
 <?php
-/**
- * Class clsCountryPhoneCode
- *
- * Get all country phone code
- * @author mahdi marjani moghadam <marjani@dabacenter.ir>
- * @since 9/9/2015
- * @version 01.01.01
- *
- */
+namespace Model;
+
+use Component\country\model\country;
 
 class clsCountry
 {
@@ -225,11 +219,11 @@ class clsCountry
         $temp = func_get_args();
         if (method_exists($this, "_" . $temp[0])) {
             $_Result[0] = 1;
-            $_Result['Msg'] = Model_001;
+            $_Result['Msg'] = 'Model_001';
             return $_Result;
         } else {
             $_Result[0] = 0;
-            $_Result['errMsg'] = Model_002 . $temp[0] . Model_003;// For Test : The Method (".$temp[0].") that you call is wrong
+            $_Result['errMsg'] = 'Model_002' . $temp[0] . 'Model_003';// For Test : The Method (".$temp[0].") that you call is wrong
             return $_Result;
         }
 
@@ -253,7 +247,7 @@ class clsCountry
                     $this->_Arguments = $temp[0][0];
                 } else {
                     $_Result[0] = -1;
-                    $_Result['errMsg'] = Model_004;
+                    $_Result['errMsg'] = 'Model_004';
                     return $_Result;
                 }
 
@@ -264,7 +258,7 @@ class clsCountry
                     } else {
                         $this->_set_Arguments_toDefult($this->_Arguments);
                         $_Result[0] = -1;
-                        $_Result['errMsg'] = Model_004;
+                        $_Result['errMsg'] = 'Model_004';
                         return $_Result;
                     }
                 }
@@ -272,7 +266,7 @@ class clsCountry
             }
 
             $_Result[0] = 1;
-            $_Result['Msg'] = Model_005;
+            $_Result['Msg'] = 'Model_005';
             return $_Result;
 
         } else {
@@ -284,17 +278,10 @@ class clsCountry
 
 
 
-    /**
-     * Filling variable _adminInfo from admin table
-     * if _compID exist return one record
-     *
-     * @author mahdi marjani moghadam <marjani@dabacenter.ir>
-     * @since 9/9/2015
-     * @version 01.01.01
-     * @return mixed
-     */
     private function _getAllCountryCode()
     {
+        return false;
+        
         global $conn;
 
         //filling before call this method
@@ -322,7 +309,7 @@ class clsCountry
 
 
         // custom condition for select from database
-        if(count($where) > 0)
+        if(is_array($where) && count($where) > 0)
         {
             $whereString = '';
             foreach($where as $key => $value)
@@ -335,7 +322,7 @@ class clsCountry
 
 
         // get country with select any iso name
-        if(count($multiIso) > 0)
+        if(is_array($multiIso) && count($multiIso) > 0)
         {
             $multiIsoString = '';
             foreach($multiIso as $key => $value)
@@ -348,7 +335,7 @@ class clsCountry
         }
 
         
-        include_once ROOT_DIR.'component/country/model/country.model.php';
+        // include_once ROOT_DIR.'component/country/model/country.model.php';
         $obj = new country();
         $obj = $obj::query("SELECT ".$fieldNameString." from country where 1=1 ".$whereString. $multiIsoString )
             ->getList();

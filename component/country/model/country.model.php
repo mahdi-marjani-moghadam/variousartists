@@ -1,4 +1,0 @@
-<?
-class country extends looeic{
-
-}
