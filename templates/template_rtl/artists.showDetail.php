@@ -122,7 +122,7 @@
             ============================================= -->
             <!-- Related Portfolio Items
            ============================================= -->
-            <?php if (count($list['product_list'])) : ?>
+            <?php if (count($list['product_list'] ?? [])) : ?>
                 <div class="divider divider-center"><i class="icon-circle"></i></div>
                 <h4>نمونه کارها:</h4>
 

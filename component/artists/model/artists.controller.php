@@ -7,6 +7,7 @@
  */
 
 use Component\artists\model\artistsModel;
+use Component\product\model\productModel;
 
 // include_once dirname(__FILE__).'/artists.model.php';
 
@@ -121,7 +122,7 @@ class artistsController
         }*/
 
         // get artists products
-        include_once ROOT_DIR . 'component/product/model/product.model.php';
+        // include_once ROOT_DIR . 'component/product/model/product.model.php';
         $product = new productModel();
 
         $resultProduct = $product->getProductByArtistsId($id);
