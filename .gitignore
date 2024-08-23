@@ -1,14 +1,19 @@
 
-.idea
-.vscode
-!.vscode/sftp.json
-statics/banner/*
-statics/event/*
-statics/files/*
-statics/friends/*
-statics/friends_link/*
-statics/salon/*
+.idea/workspace.xml
 
-# *.xml
+.idea/copyright/profiles_settings.xml
+
+.idea/modules.xml
+
+.idea/va.iml
+
+.idea/vcs.xml
+
+statics
+
+*.xml
+
+.vscode
 
 server.inc.php
+/vendor/

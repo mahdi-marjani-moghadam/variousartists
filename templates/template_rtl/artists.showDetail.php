@@ -89,6 +89,7 @@
 
                                     تاریخ عضویت: <?php echo convertDate($list['list']['date']) ?>
                                     <br>
+                                    
                                     معرف: <img width="30" src="<?php echo RELA_DIR . 'statics/files/' . $list['list']['ref'] . '/' . $list['list']['ref_logo']; ?>" alt="">
                                     <a href="<?php echo RELA_DIR . 'artists/Detail/' . $list['list']['ref'] . '/' . $list['list']['ref_name']; ?>"><?php echo $list['list']['ref_name']; ?></a>
                                 </div>

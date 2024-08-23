@@ -273,10 +273,13 @@ class adminArtistsController
 
         $export['data'] = $dataStack->output('data');
 
+
+        
         if (isset($export['data']['areacode']) && count($export['data']) > 0 && $export['data']['areacode'] != '') {
             $COUNTRY->condition = array("phone_code" => $export['data']['areacode']); // or "iso"=>"ir"
         } else {
-            $COUNTRY->condition = array("phone_code" => "98"); // or "iso"=>"us"
+
+            $COUNTRY->condition = array("phone_code" => $export['areacode']); // or "iso"=>"us"
         }
 
         //set input country when come in page

@@ -155,8 +155,6 @@ class artistsController
         if ($resultLicence['result'] == 1) {
             $export['licence_list'] = $resultLicence['export']['list'];
         }*/
-
-        
         $this->fileName = 'artists.showDetail.php';
         $this->template($export);
         die();

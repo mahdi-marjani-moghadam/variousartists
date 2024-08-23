@@ -1,0 +1,17 @@
+{
+    "name": "mahdi/variousartists",
+    "autoload": {
+        "psr-4": {
+            "Component\\": "component/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mahdi moghadam",
+            "email": "marjani.mahdi@gmail.com"
+        }
+    ],
+    "require": {
+        "gregwar/captcha": "1.*"
+    }
+}

@@ -71,23 +71,23 @@ class artistsModel extends looeic
      *
      * @return int
      */
-    // public function setFields($input)
-    // {
-    //     foreach ($input as $field => $val) {
-    //         $funcName = '__set'.ucfirst($field);
-    //         if (method_exists($this, $funcName)) {
-    //             $result = $this->$funcName($val);
-    //             if ($result['result']) {
-    //                 $this->fields[$field] = $val;
-    //             } else {
-    //                 return $result;
-    //             }
-    //         }
-    //     }
-    //     $result = 1;
+    public function setFields($input)
+    {
+        foreach ($input as $field => $val) {
+            $funcName = '__set'.ucfirst($field);
+            if (method_exists($this, $funcName)) {
+                $result = $this->$funcName($val);
+                if ($result['result']) {
+                    $this->fields[$field] = $val;
+                } else {
+                    return $result;
+                }
+            }
+        }
+        $result = 1;
 
-    //     return $result;
-    // }
+        return $result;
+    }
 
     /**
      * @param $input
@@ -171,7 +171,7 @@ class artistsModel extends looeic
     {
         include_once dirname(__FILE__).'/artists.model.db.php';
 
-        $result = (new artistsModelDb)->getArtists($fields);
+        $result = artistsModelDb::getArtists($fields);
         
 
         if ($result['result'] != 1) {

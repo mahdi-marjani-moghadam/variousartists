@@ -439,7 +439,7 @@ class categoryModel
     public function getCategoryTree($fields='')
     {
         include_once dirname(__FILE__).'/category.model.db.php';
-        $result = (new categoryModelDb)->tree_set();
+        $result = categoryModelDb::tree_set();
         $this->list = $result['export']['list'];
         $this->recordsCount = $result['export']['recordsCount'];
 
@@ -604,7 +604,7 @@ class categoryModel
     {
         include_once dirname(__FILE__).'/category.model.db.php';
         $result = categoryModelDb::getCategoryParents($parentId);
-        $this->list = array_reverse($result['export']['list']??[]);
+        $this->list = array_reverse($result['export']['list']);
 
         return $result;
     }

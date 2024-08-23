@@ -2,7 +2,7 @@
 
 		<!-- Footer
 		============================================= -->
-        <footer id="footer" class="" style="background:#fff" <?php /*style="background: url('<?php echo TEMPLATE_DIR; ?>/img/footer-bg.jpg') repeat ; background-size: 100% 100%; "*/?>>
+        <footer id="footer" class="" style="background:#fff" <?/*style="background: url('<?php echo TEMPLATE_DIR; ?>/img/footer-bg.jpg') repeat ; background-size: 100% 100%; "*/?>>
 
             <div class="container">
 
@@ -57,7 +57,7 @@
 
                           
                             <a   href="http://beeptunes.com" class="social-icon si-small si-rounded topmargin-sm si-soundcloud hidden">
-                                <img src="<?php echo RELA_DIR?>templates/template_rtl/img/beep.png">
+                                <img src="<?=RELA_DIR?>templates/template_rtl/img/beep.png">
 
                             </a>
 
@@ -72,7 +72,7 @@
                             <p>Music The Great Communicator</p>
 
                             <div class="copyrights-menu copyright-links clearfix">
-                                <a href="<?php echo RELA_DIR?>">Home</a>/<a href="<?php echo RELA_DIR?>aboutus">About Us</a>/<a href="<?php echo RELA_DIR?>contactus">Contact Us</a>
+                                <a href="<?=RELA_DIR?>">Home</a>/<a href="<?=RELA_DIR?>aboutus">About Us</a>/<a href="<?=RELA_DIR?>contactus">Contact Us</a>
                             </div>
 
 
@@ -97,11 +97,11 @@
 
 
                                 <a  href="https://www.instagram.com/nymadteam/">
-                                    <img class="image_fade img-circle" src="<?php echo RELA_DIR.'statics/friends/nymadteam.jpg'?>" alt="nymadteam">
+                                    <img class="image_fade img-circle" src="<?=RELA_DIR.'statics/friends/nymadteam.jpg'?>" alt="nymadteam">
                                 </a>
 
                                 <a  href="https://www.instagram.com/hamedvfx/">
-                                    <img class="image_fade img-circle   " src="<?php echo RELA_DIR.'statics/friends/hamedvfx.jpg'?>" alt="hamedvfx">
+                                    <img class="image_fade img-circle   " src="<?=RELA_DIR.'statics/friends/hamedvfx.jpg'?>" alt="hamedvfx">
                                 </a>
 
                             </div>
@@ -134,7 +134,7 @@
 	
 	<script type="text/javascript" src="<?php echo TEMPLATE_DIR; ?>js/plugins.js"></script>
 
-        <script type="text/javascript" src="<?php echo TEMPLATE_DIR?>js/components/star-rating.js"></script>
+        <script type="text/javascript" src="<?=TEMPLATE_DIR?>js/components/star-rating.js"></script>
 
     <!-- Footer Scripts
 ============================================= -->

@@ -10,16 +10,16 @@
 						foreach ($list['banner'] as $k => $banner):
 						?>
 
-						<div class="swiper-slide dark" style="background-image: url('<?php echo RELA_DIR?>statics/banner/<?php echo $banner['image']?>');">
+						<div class="swiper-slide dark" style="background-image: url('<?=RELA_DIR?>statics/banner/<?=$banner['image']?>');">
 							<div class="container clearfix">
 								<div class="slider-caption slider-caption-center">
-									<h2 data-caption-animate="fadeInUp"><?php echo $banner["title_$lang"]?></h2>
-									<p data-caption-animate="fadeInUp" data-caption-delay="200"><?php echo $banner["brief_description_$lang"]?></p>
+									<h2 data-caption-animate="fadeInUp"><?=$banner["title_$lang"]?></h2>
+									<p data-caption-animate="fadeInUp" data-caption-delay="200"><?=$banner["brief_description_$lang"]?></p>
 								</div>
 							</div>
 						</div>
 
-						<?php endforeach; ?>
+						<? endforeach; ?>
 
 					</div>
 					<div id="slider-arrow-left"><i class="icon-angle-left"></i></div>
@@ -45,9 +45,9 @@
                 foreach ($list['soundcloud'] as $k => $soundcloud):
                 ?>
                 <div class="col-md-4">
-                    <?php echo $soundcloud['embed']?>
+                    <?=$soundcloud['embed']?>
                 </div>
-                <?php endforeach; ?>
+                <? endforeach; ?>
             </div>
 
 
@@ -60,7 +60,7 @@
 
 
 
-                <?php if($list['lastEvent'] && count($list['lastEvent']) > 0 ): ?>
+                <? if(count($list['lastEvent']) > 0 ): ?>
 				<div class=" topmargin nobottommargin nobottomborder">
 					<div class="container clearfix">
 						<div class="heading-block center nomargin">
@@ -70,7 +70,7 @@
 				</div>
 
 				<div id="portfolio" class="portfolio portfolio-6  grid-container portfolio-notitle grid-container clearfix">
-					<?php foreach ($list['lastEvent'] as $kEvent => $vEvent):
+					<? foreach ($list['lastEvent'] as $kEvent => $vEvent):
 						$file = ROOT_DIR.ltrim($vEvent['logo'], '/');
 						$file = (strlen($vEvent['logo']) ? RELA_DIR.'statics/event/'.$vEvent['logo'] : '/templates/'.CURRENT_SKIN.'/assets/images/placeholder.png');
 						$cat_id = str_replace(',',' ',$vEvent['category_id']);
@@ -84,23 +84,23 @@
 
 					<article class="portfolio-item pf-media pf-icons">
 						<div class="portfolio-image">
-							<a href="<?php echo RELA_DIR?>event/Detail/<?php echo $vEvent["Event_id"];?>/<?php echo $vEvent["event_name_$lang"];?>">
-								<img src="<?php echo $file;?>" alt="<?php echo $vEvent["event_name_$lang"];?>">
+							<a href="<?=RELA_DIR?>event/Detail/<?=$vEvent["Event_id"];?>/<?=$vEvent["event_name_$lang"];?>">
+								<img src="<?=$file;?>" alt="<?=$vEvent["event_name_$lang"];?>">
 							</a>
 							<div class="portfolio-overlay">
-								<a href="<?php echo $file;?>" class="left-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
-								<a href="<?php echo RELA_DIR?>event/Detail/<?php echo $vEvent["Event_id"];?>/<?php echo $vEvent["event_name_$lang"];?>" class="right-icon"><i class="icon-line-ellipsis"></i></a>
+								<a href="<?=$file;?>" class="left-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
+								<a href="<?=RELA_DIR?>event/Detail/<?=$vEvent["Event_id"];?>/<?=$vEvent["event_name_$lang"];?>" class="right-icon"><i class="icon-line-ellipsis"></i></a>
 							</div>
 						</div>
 						<div class="portfolio-desc">
-							<h3><a href="<?php echo RELA_DIR?>event/Detail/<?php echo $vEvent["Event_id"];?>/<?php echo $vEvent["event_name_$lang"];?>"><?php echo $vEvent["event_name_$lang"];?></a></h3>
-							<span><?php echo $cat_title?></span>
+							<h3><a href="<?=RELA_DIR?>event/Detail/<?=$vEvent["Event_id"];?>/<?=$vEvent["event_name_$lang"];?>"><?=$vEvent["event_name_$lang"];?></a></h3>
+							<span><?=$cat_title?></span>
 						</div>
 					</article>
-					<?php endforeach; ?>
+					<? endforeach; ?>
 
 				</div>
-                <?php endif;?>
+                <? endif;?>
 
 
 				<div class="clear"></div>

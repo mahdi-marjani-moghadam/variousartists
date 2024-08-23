@@ -1,8 +1,8 @@
 <?php
 
-error_reporting(E_ALL ^ E_STRICT ^ E_NOTICE ^ E_DEPRECATED ^ E_WARNING);
-ini_set('display_errors',"1");
-ini_set('error_prepend_string',"<pre style='white-space: pre-line; line-height:1.5em; font-size:16px'>");
+// use Component\Login\Model\memberLogIn;
+
+
 
 $db = dbConn::getConnection();
 
@@ -22,15 +22,11 @@ $stmt = $db->query($sql);
 /*** echo number of columns ***/
 $obj = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-foreach( $obj as $v )
-{
+foreach ($obj as $v) {
 
-    if ( strtoupper($v->config) == "TITLE" )
-    {
-        define(strtoupper($v->config), ucwords(strtolower($v->value)) );
-    }
-    else
-    {
+    if (strtoupper($v->config) == "TITLE") {
+        define(strtoupper($v->config), ucwords(strtolower($v->value)));
+    } else {
         define(strtoupper($v->config), $v->value);
     }
 }
@@ -39,32 +35,38 @@ include(ROOT_DIR . "common/breadcrumb.php");
 $breadcrumb = new Breadcrumb();
 $breadcrumbSearch = new Breadcrumb();
 
-if(isset($_REQUEST['lang']))
-{
+if (isset($_REQUEST['lang'])) {
     $_SESSION['lang'] = $_REQUEST['lang'];
     //$_REQUEST['currency']==$_SESSION['currency'];
 
 }
 
-if($_SESSION['lang'] == "" || !isset($_SESSION['lang']) || $_SESSION['lang']!='en')
-{
-    $_SESSION['lang'] ='fa'; // WEBSITE_LANGUAGE;
+if ($_SESSION['lang'] == "" || !isset($_SESSION['lang']) || $_SESSION['lang'] != 'en') {
+    $_SESSION['lang'] = 'fa'; // WEBSITE_LANGUAGE;
 }
 //$_SESSION['lang'] ='fa'; // WEBSITE_LANGUAGE;
 
 $lang = $_SESSION['lang'];
 
-if($_REQUEST['color'] == 'white') { unset($_SESSION['themeColor']); header("location: ".RELA_DIR);  }
-elseif($_REQUEST['color'] == 'black'){ $_SESSION['themeColor'] = '_black';  header("location: ".RELA_DIR);}
+if ($_REQUEST['color'] == 'white') {
+    unset($_SESSION['themeColor']);
+    header("location: " . RELA_DIR);
+} elseif ($_REQUEST['color'] == 'black') {
+    $_SESSION['themeColor'] = '_black';
+    header("location: " . RELA_DIR);
+}
 
 //echo ($lang);die();
 
-if($lang == 'en'){$cs = "template_ltr{$_SESSION['themeColor']}";}
-else{$cs = "template_rtl{$_SESSION['themeColor']}";}
-define('CURRENT_SKIN',$cs);
+if ($lang == 'en') {
+    $cs = "template_ltr{$_SESSION['themeColor']}";
+} else {
+    $cs = "template_rtl{$_SESSION['themeColor']}";
+}
+define('CURRENT_SKIN', $cs);
 
-define('TEMPLATE_DIR',RELA_DIR."templates/".CURRENT_SKIN."/");
-define('Count_Permission','20');
+define('TEMPLATE_DIR', RELA_DIR . "templates/" . CURRENT_SKIN . "/");
+define('Count_Permission', '20');
 
 include(ROOT_DIR . "resource/language_$lang.inc.php");
 
@@ -84,14 +86,14 @@ $dataStack = new dataStack();
 
 //include(ROOT_DIR . "model/admin.class.php");
 
-global $admin_info,$member_info;
+global $admin_info, $member_info;
 //$admin = new admin();
 
 //$admin_info = $admin->checkLogin();
 //$member_info = $admin->checkLogin();
 
 
- spl_autoload_register(function ($name){
+spl_autoload_register(function ($name) {
     $modelFileName = ROOT_DIR . 'model/' . $name . '.class.php';
     $adminModelFileName = ROOT_DIR . 'model/admin.' . $name . '.class.php';
 
@@ -104,16 +106,16 @@ global $admin_info,$member_info;
 
 
 /** delete ticket date more than 10 min */
- include_once ROOT_DIR.'component/sales/model/sales.model.php';
- $checkreservesale = salesModel::getAll()
-     ->where('status','=',0)
-     ->andWhere('date','<',date('Y-m-d H:i:s',strtotime('-10 minutes')))
-     ->get();
- if($checkreservesale['export']['recordsCount']>0){
-     foreach ($checkreservesale['export']['list'] as $deleteOldReserve){
-         $deleteOldReserve->delete();
+include_once ROOT_DIR . 'component/sales/model/sales.model.php';
+$checkreservesale = salesModel::getAll()
+    ->where('status', '=', 0)
+    ->andWhere('date', '<', date('Y-m-d H:i:s', strtotime('-10 minutes')))
+    ->get();
+if ($checkreservesale['export']['recordsCount'] > 0) {
+    foreach ($checkreservesale['export']['list'] as $deleteOldReserve) {
+        $deleteOldReserve->delete();
     }
- }
+}
 
 
 
@@ -121,7 +123,3 @@ global $admin_info,$member_info;
 
 //$member_info='';
 //$member_info['member_id']=1;
-
-
-
-?>

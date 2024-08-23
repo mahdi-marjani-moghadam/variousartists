@@ -6,7 +6,7 @@
  * Date: 2/20/2016
  * Time: 4:24 AM
  */
-include_once ROOT_DIR . "common/validators.php";
+include_once ROOT_DIR."common/validators.php";
 class adminCategoryModel extends looeic
 {
     protected $TABLE_NAME = 'category';
@@ -16,22 +16,48 @@ class adminCategoryModel extends looeic
         'parent_id' => 'required'
     );
 
+    /**
+     * @var
+     */
     private $TableName;
+    /**
+     * @var
+     */
     public $fields;  // other record fields
+    /**
+     * @var
+     */
     private $list;  // other record fields
+    /**
+     * @var
+     */
     private $recordsCount;  // other record fields
+    /**
+     * @var
+     */
     public $level = 0;
+
+
+    /**
+     * @var
+     */
     private $result;
 
-    // public function __construct()
-    // {
-    //     $this->requiredFields = array(
-    //         'title' =>  '',
-    //         'parent_id' =>  ''
-    //     );
-    // }
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->requiredFields = array(
+            'title'=>  '',
+            'parent_id'=>  ''
+        );
+    }
 
-    
+    /**
+     * @param $field
+     * @return mixed
+     */
     public function __get($field)
     {
         if ($field == 'result') {
@@ -45,6 +71,7 @@ class adminCategoryModel extends looeic
         } else {
             return $this->fields[$field];
         }
+
     }
 
     /**
@@ -57,7 +84,8 @@ class adminCategoryModel extends looeic
             $funcName = '__set' . ucfirst($field);
             if (method_exists($this, $funcName)) {
                 $result = $this->$funcName($val);
-                if ($result['result'] == 1) {
+                if ($result['result'] == 1)
+                {
                     $this->fields[$field] = $val;
                 } else {
                     return $result;
@@ -74,10 +102,12 @@ class adminCategoryModel extends looeic
     private function __setTitle_fa($input)
     {
 
-        if (!Validator::required($input)) {
+        if (!Validator::required($input))
+        {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter title';
-        } else {
+        } else
+        {
             $result['result'] = 1;
         }
 
@@ -86,10 +116,12 @@ class adminCategoryModel extends looeic
     private function __setTitle_en($input)
     {
 
-        if (!Validator::required($input)) {
+        if (!Validator::required($input))
+        {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter title';
-        } else {
+        } else
+        {
             $result['result'] = 1;
         }
 
@@ -102,13 +134,17 @@ class adminCategoryModel extends looeic
     private function __setParent_id($input)
     {
 
-        if (!Validator::required($input)) {
+        if (!Validator::required($input))
+        {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Parent';
-        } else if (!Validator::Numeric($input)) {
+        }else if (!Validator::Numeric($input))
+        {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Parent';
-        } else {
+        }
+        else
+        {
             $result['result'] = 1;
         }
 
@@ -117,10 +153,12 @@ class adminCategoryModel extends looeic
     private function __setAlt_fa($input)
     {
 
-        if (!Validator::required($input)) {
+        if (!Validator::required($input))
+        {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Alt';
-        } else {
+        }else
+        {
             $result['result'] = 1;
         }
 
@@ -129,10 +167,12 @@ class adminCategoryModel extends looeic
     private function __setAlt_en($input)
     {
 
-        if (!Validator::required($input)) {
+        if (!Validator::required($input))
+        {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Alt';
-        } else {
+        }else
+        {
             $result['result'] = 1;
         }
 
@@ -141,16 +181,21 @@ class adminCategoryModel extends looeic
     private function __setStatus($input)
     {
 
-        if (!Validator::required($input)) {
+        if (!Validator::required($input))
+        {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Status';
-        } else if (!Validator::Numeric($input)) {
+        }else if (!Validator::Numeric($input))
+        {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Status';
-        } else if ($input > 1 or $input < 1) {
+        }else if ($input>1 or $input<1)
+        {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter valid Status';
-        } else {
+        }
+        else
+        {
             $result['result'] = 1;
         }
 
@@ -159,10 +204,12 @@ class adminCategoryModel extends looeic
     private function __setUrl($input)
     {
 
-        if (!Validator::required($input)) {
+        if (!Validator::required($input))
+        {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Url';
-        } else {
+        }else
+        {
             $result['result'] = 1;
         }
 
@@ -210,13 +257,17 @@ class adminCategoryModel extends looeic
     private function __setSort($input)
     {
 
-        if (!Validator::required($input)) {
+        if (!Validator::required($input))
+        {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Sort';
-        } else if (!Validator::Numeric($input)) {
+        }else if (!Validator::Numeric($input))
+        {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Sort';
-        } else {
+        }
+        else
+        {
             $result['result'] = 1;
         }
 
@@ -247,7 +298,8 @@ class adminCategoryModel extends looeic
     public function getCategoryById($id)
     {
 
-        if (!validator::required($id) and !validator::Numeric($id)) {
+        if(!validator::required($id) and !validator::Numeric($id))
+        {
             $result['result'] = -1;
             $result['no'] = 1;
             $result['msg'] = 'This Record was Not Found';
@@ -258,7 +310,8 @@ class adminCategoryModel extends looeic
 
         $result = adminCategoryModelDb::getCategoryById($id);
 
-        if ($result['result'] != 1) {
+        if ($result['result'] != 1)
+        {
             return $result;
         }
 
@@ -280,7 +333,8 @@ class adminCategoryModel extends looeic
     public function getCategoryByParentId($id)
     {
 
-        if (!validator::required($id) and !validator::Numeric($id)) {
+        if(!validator::required($id) and !validator::Numeric($id))
+        {
             $result['result'] = -1;
             $result['no'] = 1;
             $result['msg'] = 'This Record was Not Found';
@@ -291,12 +345,14 @@ class adminCategoryModel extends looeic
 
         $result = adminCategoryModelDb::getCategoryByParentId($id);
 
-        if ($result['result'] != 1) {
+        if ($result['result'] != 1)
+        {
             return $result;
         }
         //$this->recordsCount = count($export);
 
         return $result;
+
     }
 
 
@@ -304,7 +360,7 @@ class adminCategoryModel extends looeic
      * @param $_input
      * @return mixed
      */
-    public function convert($_input, $temp, $space = '-')
+    public function convert($_input,$temp,$space='-')
     {
 
 
@@ -314,8 +370,8 @@ class adminCategoryModel extends looeic
 
         foreach ($_input as $key => $val) {
 
-            $mainMenu[$val['Category_id']] = $val;
-            $mainMenu[$val['Category_id']]['export'] = $temp . $space . $val["title_$lang"];
+            $mainMenu[$val['Category_id']]=$val;
+            $mainMenu[$val['Category_id']]['export'] = $temp .$space.$val["title_$lang"];
             $mainMenu[$val['Category_id']]['level'] = $this->level;
 
             $temp = $temp . '&nbsp;&nbsp;&nbsp;&nbsp;';
@@ -326,15 +382,17 @@ class adminCategoryModel extends looeic
 
             if (isset($this->list[$val['Category_id']])) {
 
-                $this->convert($this->list[$val['Category_id']], $temp, $space);
+                $this->convert($this->list[$val['Category_id']], $temp,$space);
             }
             $this->level--;
-            $len = strlen($space);
-            $temp = substr($temp, 0, -24);
+            $len=strlen($space);
+            $temp = substr($temp , 0 , -24);
+
         }
 
 
         return $mainMenu;
+
     }
 
     /**
@@ -343,12 +401,13 @@ class adminCategoryModel extends looeic
      */
 
 
-    function getulli($array, $root = 0, $all)
+    function getulli($array,$root=0,$all)
     {
 
         static $mainMenu = '';
         static $mainList;
-        if ($root == 1) {
+        if($root==1)
+        {
             $mainList = $all;
         }
 
@@ -356,15 +415,17 @@ class adminCategoryModel extends looeic
 
             $mainMenu .= "<ul>\n";
 
-            if (is_array($mainList[$val['Category_id']])) {
-                $mainMenu .= "\t<li>\n" . $val['title'];
+            if(is_array($mainList[$val['Category_id']]))
+            {
+                $mainMenu .= "\t<li>\n".$val['title'];
 
                 $this->getulli($mainList[$val['Category_id']]);
                 $mainMenu .= "</li>\n";
                 //$list_open = false;
 
-            } else {
-                $mainMenu .= "\t<li>\n" . $val['title'];
+            }else
+            {
+                $mainMenu .= "\t<li>\n".$val['title'];
                 $mainMenu .= "</li>\n";
             }
             $mainMenu .= "</ul>\n";
@@ -392,6 +453,7 @@ class adminCategoryModel extends looeic
                 echo "</ul>\n\n";
             }
         }*/
+
     }
 
     public function getCategoryTree($fields)
@@ -399,39 +461,43 @@ class adminCategoryModel extends looeic
 
         include_once(dirname(__FILE__) . "/admin.category.model.db.php");
         $result = adminCategoryModelDb::tree_set();
-        $this->list = $result['export']['list'];
-        $this->recordsCount = $result['export']['recordsCount'];
+        $this->list=$result['export']['list'];
+        $this->recordsCount=$result['export']['recordsCount'];
 
         return $result;
+
     }
 
-    public function getCategoryOption($space = '|-- ', $parent_id = 0, $selectRoot = '0', $where = '')
+    public function getCategoryOption($space='|-- ',$parent_id=0,$selectRoot='0',$where='')
     {
 
         include_once(dirname(__FILE__) . "/admin.category.model.db.php");
 
         $result = adminCategoryModelDb::tree_set($where);
 
-        if ($result['result'] != 1) {
+        if ($result['result'] != 1)
+        {
             return $result;
         }
         $fields = $result['export']['list'];
         $this->list = $fields;
 
-        $list = $this->convert($fields[$parent_id], '', $space);
+        $list = $this->convert($fields[$parent_id],'',$space);
 
 
-        if ($selectRoot == '1') {
-            $export['0']['Category_id'] = '0';
-            $export['0']['title'] = 'والد ندارد';
-            $export['0']['dataTableCount'] = 0;
-            $export['0']['export'] = 'والد ندارد';
+        if($selectRoot=='1')
+        {
+            $export['0']['Category_id']='0';
+            $export['0']['title']='والد ندارد';
+            $export['0']['dataTableCount']=0;
+            $export['0']['export']='والد ندارد';
         }
-        $count = 1;
-        foreach ($list as $key => $val) {
-            if ($key == 0) continue;
-            $export[$key] = $val;
-            $export[$key]['dataTableCount'] = $count;
+        $count=1;
+        foreach($list as $key =>$val)
+        {
+            if($key==0) continue;
+            $export[$key]=$val;
+            $export[$key]['dataTableCount']=$count;
             $count++;
         }
         $this->list = $export;
@@ -499,19 +565,24 @@ class adminCategoryModel extends looeic
                     $st = $st . $config['all']['node']['open'] . PHP_EOL;
                 }
 
-                $st = $st . $val['title'] . PHP_EOL;
+                $st = $st .$val['title'] . PHP_EOL;
                 $st = $st . $config['all']['list']['open'] . PHP_EOL;
+
             } else if ($next['level'] < $val['level'] and $next != -1) {
                 $open_list = 'false';
 
                 $st = $st . $config['all']['node-noChild']['open'] . PHP_EOL;
                 $st = $st . $val['title'] . PHP_EOL;
 
-                for ($i = 1; $i <=  ($val['level'] - $next['level']); $i++) {
+                for ($i = 1; $i <=  ($val['level']-$next['level']); $i++)
+                {
                     $st = $st . $config['all']['node']['close'] . PHP_EOL;
                     $st = $st . $config['all']['list']['close'] . PHP_EOL;
+
                 }
                 $st = $st . $config['all']['node']['close'] . PHP_EOL;
+
+
             } else if ($val['level'] == $next['level'] and $next != -1) {
                 $open_list = '';
 
@@ -541,12 +612,17 @@ class adminCategoryModel extends looeic
                     //$st = $st . $config['all']['node']['close'] . PHP_EOL;
                     //$st = $st . $config['all']['list']['close'] . PHP_EOL;
                 }
-                for ($i = 1; $i <=  ($val['level'] - $next['level']); $i++) {
+                for ($i = 1; $i <=  ($val['level']-$next['level']); $i++)
+                {
                     $st = $st . $config['all']['node']['close'] . PHP_EOL;
                     $st = $st . $config['all']['list']['close'] . PHP_EOL;
+
                 }
                 $st = $st . $config['all']['node']['close'] . PHP_EOL;
+
             }
+
+
         }
         $st = $st . '</ul>';
 
@@ -575,11 +651,13 @@ class adminCategoryModel extends looeic
     public function add()
     {
 
-        foreach ($this->requiredFields as $field => $val) {
-            $requiredList[$field] = $this->fields[$field];
+        foreach($this->requiredFields as $field =>$val)
+        {
+            $requiredList[$field]=$this->fields[$field];
         }
-        $result = $this->setFields($requiredList);
-        if ($result['result'] == -1) {
+        $result=$this->setFields($requiredList);
+        if($result['result']==-1)
+        {
             return $result;
         }
 
@@ -595,11 +673,13 @@ class adminCategoryModel extends looeic
     public function edit()
     {
 
-        foreach ($this->requiredFields as $field => $val) {
-            $requiredList[$field] = $this->fields[$field];
+        foreach($this->requiredFields as $field =>$val)
+        {
+            $requiredList[$field]=$this->fields[$field];
         }
-        $result = $this->setFields($requiredList);
-        if ($result['result'] == -1) {
+        $result=$this->setFields($requiredList);
+        if($result['result']==-1)
+        {
             return $result;
         }
 
@@ -611,19 +691,23 @@ class adminCategoryModel extends looeic
     public function deletes()
     {
         include_once(dirname(__FILE__) . "/admin.category.model.db.php");
-        $result = $this->getCategoryByParentId($this->fields['Category_id']);
+        $result=$this->getCategoryByParentId($this->fields['Category_id']);
 
-        if ($result['result'] != '1') {
+        if($result['result']!='1')
+        {
             return $result;
         }
-        if ($result['export']['recordsCount'] > 0) {
+        if($result['export']['recordsCount']>0)
+        {
             $result['result'] = -1;
-            $result['msg'] = 'ابتدا زیر دسته ها را پاک نمایید';
+            $result['msg']='ابتدا زیر دسته ها را پاک نمایید';
             return $result;
+
         }
-        $result = adminCategoryModelDb::delete($this->fields);
-        $result['msg'] = 'عملیات با موفقیت انجام شد';
+        $result=adminCategoryModelDb::delete($this->fields);
+        $result['msg'] ='عملیات با موفقیت انجام شد';
 
         return $result;
     }
+
 }

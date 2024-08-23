@@ -1,17 +1,35 @@
 <?php
 // phpinfo();
 // die();
+
+error_reporting(E_ALL ^ E_STRICT ^ E_NOTICE ^ E_DEPRECATED ^ E_WARNING);
+ini_set('display_errors', "1");
+ini_set('error_prepend_string', "<pre style='white-space: pre-line; line-height:1.5em; font-size:16px'>");
+
+// require __DIR__ . '/vendor/autoload.php';
+
+// use Component\Login\Model\memberLogIn;
+
+// $login = new memberLogIn();
+// echo $login->login();
+// die();
 include_once 'server.inc.php';
-include_once ROOT_DIR.'common/func.inc.php';
-include_once ROOT_DIR.'common/db.inc.php';
-include_once ROOT_DIR.'common/init.inc.php';
-include_once ROOT_DIR.'model/db.inc.class.php';
-include_once ROOT_DIR.'common/looeic.php';
+include_once ROOT_DIR . 'common/func.inc.php';
+include_once ROOT_DIR . 'common/db.inc.php';
+
+include_once ROOT_DIR . 'common/init.inc.php';
+include_once ROOT_DIR . 'model/db.inc.class.php';
+include_once ROOT_DIR . 'common/looeic.php';
 //include_once ROOT_DIR.'common/looeic2.php';
 
+// use Gregwar\Captcha\CaptchaBuilder;
+
+// $builder = new CaptchaBuilder;
+// $builder->build();
+// dd(1);
 
 
-global $admin_info,$PARAM,$PAGE;
+global $admin_info, $PARAM, $PAGE;
 $url_main = substr($_SERVER['REQUEST_URI'], strlen(SUB_FOLDER) + 1);
 
 $url_main = urldecode($url_main);
@@ -73,7 +91,7 @@ if (array_search('page', $PARAM)) {
     }
 } else {*/
 
-    $componenetAdress = ROOT_DIR."component/{$PARAM['0']}/{$PARAM['0']}.php";
+$componenetAdress = ROOT_DIR . "component/{$PARAM['0']}/{$PARAM['0']}.php";
 
 
 //print_r_debug($PARAM);
@@ -81,7 +99,7 @@ if (array_search('page', $PARAM)) {
 
 
 if (!file_exists($componenetAdress)) {
-    $componenetAdress = ROOT_DIR.'component/404/404.php';
+    $componenetAdress = ROOT_DIR . 'component/404/404.php';
 }
 
 include_once $componenetAdress;

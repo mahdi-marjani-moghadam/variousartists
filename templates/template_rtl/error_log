@@ -1,0 +1,15 @@
+[13-Nov-2021 21:27:19 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/variousa/public_html/templates/template_rtl/index.php on line 10
+[13-Nov-2021 21:27:19 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/variousa/public_html/templates/template_rtl/index.php on line 45
+[13-Nov-2021 21:27:19 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/variousa/public_html/templates/template_rtl/index.php on line 63
+[14-Nov-2021 10:37:13 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/variousa/public_html/templates/template_rtl/index.php on line 10
+[14-Nov-2021 10:37:13 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/variousa/public_html/templates/template_rtl/index.php on line 45
+[14-Nov-2021 10:37:13 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/variousa/public_html/templates/template_rtl/index.php on line 63
+[08-Aug-2023 04:45:13 UTC] PHP Notice:  Undefined variable: list in /home/variousa/public_html/templates/template_rtl/index.php on line 10
+[08-Aug-2023 04:45:13 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/variousa/public_html/templates/template_rtl/index.php on line 10
+[08-Aug-2023 04:45:13 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/variousa/public_html/templates/template_rtl/index.php on line 10
+[08-Aug-2023 04:45:13 UTC] PHP Notice:  Undefined variable: list in /home/variousa/public_html/templates/template_rtl/index.php on line 45
+[08-Aug-2023 04:45:13 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/variousa/public_html/templates/template_rtl/index.php on line 45
+[08-Aug-2023 04:45:13 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/variousa/public_html/templates/template_rtl/index.php on line 45
+[08-Aug-2023 04:45:13 UTC] PHP Notice:  Undefined variable: list in /home/variousa/public_html/templates/template_rtl/index.php on line 63
+[08-Aug-2023 04:45:13 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/variousa/public_html/templates/template_rtl/index.php on line 63
+[08-Aug-2023 04:45:13 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/variousa/public_html/templates/template_rtl/index.php on line 63

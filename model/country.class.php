@@ -347,6 +347,7 @@ class clsCountry
             unset($value);
         }
 
+        
         include_once ROOT_DIR.'component/country/model/country.model.php';
         $obj = new country();
         $obj = $obj::query("SELECT ".$fieldNameString." from country where 1=1 ".$whereString. $multiIsoString )

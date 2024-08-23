@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: malekloo
- * Date: 2/27/2016
- * Time: 9:21 AM
- */
 
 
 global $admin_info,$PARAM;
@@ -35,7 +29,6 @@ if($PARAM[0]  == 'register')
 elseif($PARAM[1]  == 'memberregister')
 {
     // don't use
-    dd(1);
 
     if($_POST){
         $result = $login->memberregister($_POST);
