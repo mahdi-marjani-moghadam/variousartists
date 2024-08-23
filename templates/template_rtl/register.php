@@ -333,16 +333,16 @@
                                     </div>
 
                                     <div class="col_full">
-                                    <img src="<?php echo $list['captcha']->inline(); ?>" />
-                                    <input type="text" style="height: 40px; " placeholder="کد را وارد نمایید" name="captcha">
+                                        <img src="<?php echo $list['captcha']->inline(); ?>" />
+                                        <input type="text" style="height: 40px; " placeholder="کد را وارد نمایید" name="captcha">
                                     </div>
 
 
 
                                     <div class="col_full nobottommargin">
                                         <!-- <button class="button button-3d button-black nomargin">< ?php echo  register ?></button> -->
-                                        
-                                        
+
+
 
 
                                         <button class="g-recaptcha button button-3d button-black nomargin"><?php echo  register ?></button>

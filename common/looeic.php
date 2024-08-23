@@ -218,6 +218,7 @@ class looeic extends DB
 
     static function query($sql)
     {
+        
         $className = get_called_class();
         $obj = new $className('', get_called_class());
         $obj->getFieldsName();

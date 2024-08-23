@@ -6,6 +6,12 @@
  * Date: 2/27/2016
  * Time: 4:21 PM
  */
+namespace Component\aboutus\model;
+
+use Common\dbConn;
+use Model\DataBase;
+use PDO;
+
 class aboutusModelDb
 {
 
@@ -24,7 +30,7 @@ class aboutusModelDb
         global $lang;
         $conn = dbConn::getConnection();
 
-        include_once(ROOT_DIR."/model/db.inc.class.php");
+        // include_once(ROOT_DIR."/model/db.inc.class.php");
 
         $condition= DataBase::filterBuilder($fields);
 

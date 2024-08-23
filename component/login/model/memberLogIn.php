@@ -537,7 +537,6 @@ class memberLogIn
 
 
 
-
         if (isset($_GET['ref'])) {
             // include_once ROOT_DIR . 'component/artists/model/artists.model.php';
             $ref = (new artists)->find($_GET['ref']);

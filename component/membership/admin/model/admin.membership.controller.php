@@ -6,6 +6,12 @@
  * Date: 3/6/2016
  * Time: 11:21 AM.
  */
+
+use Common\validators;
+use Component\artists\admin\model\adminArtistsModel;
+use Component\city\admin\model\adminCityModel;
+use Model\clsCountry;
+
 include_once dirname(__FILE__) . '/admin.membership.model.php';
 
 /**
@@ -246,7 +252,7 @@ class adminMembershipController
         ////                get country               ////
         //////////////////////////////////////////////////
         global $dataStack;
-        include_once(ROOT_DIR . "model/country.class.php");
+        // include_once(ROOT_DIR . "model/country.class.php");
         $COUNTRY = new clsCountry();
         $COUNTRY->countryFieldName = array("iso", "phone_code", "name", "max_length", "sample");
         $fields['data'] = $dataStack->output('data');
@@ -442,7 +448,7 @@ class adminMembershipController
         $artists = new adminArtistsModel();
 
 
-        if (!validator::required($id) and !validator::Numeric($id)) {
+        if (!validators::required($id) and !validators::Numeric($id)) {
             $msg = 'یافت نشد';
             redirectPage(RELA_DIR . 'zamin/index.php?component=membership', $msg);
         }
@@ -462,7 +468,7 @@ class adminMembershipController
 
 
         if ($result['result'] != '1') {
-            redirectPage(RELA_DIR . 'zamin/index.php?component=membership', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=membership');
         }
 
         $msg = 'عملیات با موفقیت انجام شد';
@@ -496,7 +502,7 @@ class adminMembershipController
     public function getCityAjax($input)
     {
         $province_id = $input['province_id'];
-        include_once ROOT_DIR . '/component/city/admin/model/admin.city.model.php';
+        // include_once ROOT_DIR . '/component/city/admin/model/admin.city.model.php';
         $model = new adminCityModel();
         $result = $model->getCitiesByprovinceID($province_id);
 

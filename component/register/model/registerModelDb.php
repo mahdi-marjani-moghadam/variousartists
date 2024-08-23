@@ -6,6 +6,11 @@
  * Date: 2/27/2016
  * Time: 11:02 AM
  */
+namespace Component\register\model;
+use Common\dbConn;
+use Component\company\admin\model\adminCompanyModelDb;
+use PDO;
+
 class registerModelDb
 {
 

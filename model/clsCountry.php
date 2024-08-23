@@ -1,4 +1,5 @@
 <?php
+
 namespace Model;
 
 use Component\country\model\country;
@@ -40,9 +41,9 @@ class clsCountry
      */
     public function __construct()
     {
-        $this->_countryFieldName = array();
-        $this->_multiIso = array();
-        $this->_conditionDB = array();
+        $this->_countryFieldName = [];
+        $this->_multiIso = [];
+        $this->_conditionDB = [];
     }
 
     /**
@@ -55,18 +56,16 @@ class clsCountry
     {
         switch ($field) {
 
-            case "countryFieldName" :
+            case "countryFieldName":
                 $this->_set_countryFieldName($value);
                 break;
 
-            case "condition" :
+            case "condition":
                 $this->_set_condition($value);
                 break;
-            case "multiIso" :
+            case "multiIso":
                 $this->_set_multiIso($value);
                 break;
-
-
         }
     }
 
@@ -84,31 +83,23 @@ class clsCountry
     private function _set_countryFieldName($array)
     {
 
-        if (count($array)>0) {
+        if (count($array) > 0) {
             //if call all field
-            $allField = array("id","iso","name","nice_name","iso3","num_code","phone_code","max_length","sample");
-            if(count($array) == 8)
-            {
+            $allField = array("id", "iso", "name", "nice_name", "iso3", "num_code", "phone_code", "max_length", "sample");
+            if (count($array) == 8) {
                 $this->_countryFieldName = $allField;
-            }
-            else
-            {
+            } else {
 
                 //
-                foreach($array as $key => $value)
-                {
-                    if (in_array($value,$allField) ==1)
-                    {
+                foreach ($array as $key => $value) {
+                    if (in_array($value, $allField) == 1) {
                         $this->_countryFieldName[] = handleData($value);
                     }
                 }
             }
-        }
-        else
-        {
+        } else {
             return false;
         }
-
     }
 
     /**
@@ -122,22 +113,17 @@ class clsCountry
      */
     private function _set_condition($array)
     {
-        $allField = array("id","iso","name","nice_name","iso3","num_code","phone_code","max_length","sample");
-        if (count($array)>0) {
+        $allField = array("id", "iso", "name", "nice_name", "iso3", "num_code", "phone_code", "max_length", "sample");
+        if (count($array) > 0) {
             //
-            foreach($array as $key => $value)
-            {
-                if (in_array($key,$allField) ==1)
-                {
+            foreach ($array as $key => $value) {
+                if (in_array($key, $allField) == 1) {
                     $this->_conditionDB[$key] = handleData($value);
                 }
             }
-        }
-        else
-        {
+        } else {
             return false;
         }
-
     }
 
     /**
@@ -152,26 +138,21 @@ class clsCountry
     private function _set_multiIso($array)
     {
 
-        if (count($array)>0) {
+        if (count($array) > 0) {
             //
-            foreach($array as $key => $value)
-            {
+            foreach ($array as $key => $value) {
                 $this->_multiIso[$key] = handleData($value);
             }
-        }
-        else
-        {
+        } else {
             return false;
         }
-
     }
 
 
     public function __get($field)
     {
-        if($field == "country")
-        {
-            return $this->_country ;
+        if ($field == "country") {
+            return $this->_country;
         }
     }
     /**
@@ -200,7 +181,6 @@ class clsCountry
 
                 redirectPage(RELA_DIR . 'index.php', $_Result['errMsg']);
             }
-
         } elseif ($_Result[0] == 0) {
 
             redirectPage(RELA_DIR . 'index.php', $_Result['errMsg']);
@@ -223,10 +203,9 @@ class clsCountry
             return $_Result;
         } else {
             $_Result[0] = 0;
-            $_Result['errMsg'] = 'Model_002' . $temp[0] . 'Model_003';// For Test : The Method (".$temp[0].") that you call is wrong
+            $_Result['errMsg'] = 'Model_002' . $temp[0] . 'Model_003'; // For Test : The Method (".$temp[0].") that you call is wrong
             return $_Result;
         }
-
     }
 
     /**
@@ -250,7 +229,6 @@ class clsCountry
                     $_Result['errMsg'] = 'Model_004';
                     return $_Result;
                 }
-
             } elseif (count($temp[0]) > 1) {
                 for ($i = 0; $i < count($temp[0]); $i++) {
                     if (!empty($temp[0][$i])) {
@@ -262,13 +240,11 @@ class clsCountry
                         return $_Result;
                     }
                 }
-
             }
 
             $_Result[0] = 1;
             $_Result['Msg'] = 'Model_005';
             return $_Result;
-
         } else {
             $_Result[0] = 0;
             $_Result['Msg'] = 6;
@@ -278,10 +254,8 @@ class clsCountry
 
 
 
-    private function _getAllCountryCode()
+    public function getAllCountryCode()
     {
-        return false;
-        
         global $conn;
 
         //filling before call this method
@@ -291,30 +265,24 @@ class clsCountry
 
 
         // custom field name for select from database
-        if(count($fields) > 0)
-        {
+        if (count($fields) > 0) {
             $fieldNameString = '';
-            foreach($fields as $key => $value)
-            {
-                $fieldNameString .= ',`'.$value.'`';
+            foreach ($fields as $key => $value) {
+                $fieldNameString .= ',`' . $value . '`';
             }
-            $fieldNameString = substr($fieldNameString,1);
+            $fieldNameString = substr($fieldNameString, 1);
             unset($key);
             unset($value);
-        }
-        else
-        {
+        } else {
             $fieldNameString = '*';
         }
 
 
         // custom condition for select from database
-        if(is_array($where) && count($where) > 0)
-        {
+        if (is_array($where) && count($where) > 0) {
             $whereString = '';
-            foreach($where as $key => $value)
-            {
-                $whereString .= 'and '.$key."='".$value."'";
+            foreach ($where as $key => $value) {
+                $whereString .= 'and ' . $key . "='" . $value . "'";
             }
             unset($key);
             unset($value);
@@ -322,31 +290,27 @@ class clsCountry
 
 
         // get country with select any iso name
-        if(is_array($multiIso) && count($multiIso) > 0)
-        {
+        if (is_array($multiIso) && count($multiIso) > 0) {
             $multiIsoString = '';
-            foreach($multiIso as $key => $value)
-            {
-                $multiIsoString .= ",'".$value."'";
+            foreach ($multiIso as $key => $value) {
+                $multiIsoString .= ",'" . $value . "'";
             }
-            $multiIsoString = ' and iso in ('.substr($multiIsoString,1).')';
+            $multiIsoString = ' and iso in (' . substr($multiIsoString, 1) . ')';
             unset($key);
             unset($value);
         }
 
-        
+
         // include_once ROOT_DIR.'component/country/model/country.model.php';
-        $obj = new country();
-        $obj = $obj::query("SELECT ".$fieldNameString." from country where 1=1 ".$whereString. $multiIsoString )
-            ->getList();
+        $obj = new country;
+
+        $obj = $obj::query("SELECT " . $fieldNameString . " from country where 1=1 " . $whereString . $multiIsoString)->getList();
 
 
 
 
-        foreach($obj['export']['list'] as $k => $v)
-        {
-            foreach($v as $key => $value)
-            {
+        foreach ($obj['export']['list'] as $k => $v) {
+            foreach ($v as $key => $value) {
                 $country[$k][$key] = $value;
             }
         }
@@ -370,8 +334,4 @@ class clsCountry
         unset($this->_conditionDB);
         return true;
     }
-
-
-
 }
-?>

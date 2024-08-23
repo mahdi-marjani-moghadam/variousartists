@@ -6,8 +6,9 @@
  * Date: 3/6/2015
  * Time: 10:35 AM
  */
-
-include_once(ROOT_DIR . "/common/validators.php");
+namespace Component\register\model;
+use Common\validators;
+// include_once(ROOT_DIR . "/common/validators.php");
 class registerModel
 {
     private $fields;  // other record fields
@@ -21,11 +22,11 @@ class registerModel
     public function __construct()
     {
 
-        $this->requiredFields = array(
-            'company_name' =>  '',
-            'company_phone1' =>  '',
-            'email' =>  ''
-        );
+        // $this->requiredFields = array(
+        //     'company_name' =>  '',
+        //     'company_phone1' =>  '',
+        //     'email' =>  ''
+        // );
     }
 
     /**
@@ -87,7 +88,7 @@ class registerModel
      */
     private function __setCompany_name($input)
     {
-        if (!Validator::required($input)) {
+        if (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'لطفا نام کمپانی را وارد نمایید.';
         } else {
@@ -108,7 +109,7 @@ class registerModel
      */
     private function __setEmail($input)
     {
-        if (Validator::Email($input) != '1') {
+        if (validators::Email($input) != '1') {
             $result['result'] = -1;
             $result['msg'] = 'ایمیل را به درستی وارد نمایید.';
         } else {
@@ -129,7 +130,7 @@ class registerModel
      */
     private function __setAddress($input)
     {
-        /*if(!Validator::required($input))
+        /*if(!validators::required($input))
         {
             $result['result']=-1;
             $result['msg']='لطفا آدرس را وارد نمایید.';
@@ -152,7 +153,7 @@ class registerModel
      */
     private function __setCompany_phone1($input)
     {
-        if (!Validator::required($input)) {
+        if (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'لطفا تلفن را وارد نمایید.';
         } else {
@@ -175,7 +176,7 @@ class registerModel
      */
     private function __setCoordinator_name($input)
     {
-        if (!Validator::required($input)) {
+        if (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'لطفا نام نماینده را وارد نمایید.';
         } else {
@@ -196,7 +197,7 @@ class registerModel
      */
     private function __setCoordinator_family($input)
     {
-        if (!Validator::required($input)) {
+        if (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'لطفا نام خانوادگی نماینده را وارد نمایید.';
         } else {
@@ -217,7 +218,7 @@ class registerModel
      */
     private function __setCoordinator_phone($input)
     {
-        if (!Validator::required($input)) {
+        if (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'لطفا تلفن نماینده را وارد نمایید.';
         } else {

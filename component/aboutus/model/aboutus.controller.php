@@ -1,4 +1,5 @@
 <?php
+use Component\aboutus\model\aboutusModel;
 /**
  * Created by PhpStorm.
  * User: marjani
@@ -42,7 +43,7 @@ class aboutusController
      * @param $msg
      * @return string
      */
-    function template($list=array(), $msg='')
+    function template($list=[], $msg='') : void
     {
          global $member_info, $lang;
 
@@ -52,9 +53,7 @@ class aboutusController
             case 'html':
 
                 include(ROOT_DIR . "templates/" . CURRENT_SKIN . "/title.inc.php");
-
                 include(ROOT_DIR . "templates/" . CURRENT_SKIN . "/$this->fileName");
-
                 include(ROOT_DIR . "templates/" . CURRENT_SKIN . "/tail.inc.php");
                 break;
 
@@ -63,12 +62,12 @@ class aboutusController
                 break;
             case 'array':
                 return $list;
-                break;
 
             case 'serialize':
                  echo serialize($list);
                 break;
             default:
+                echo 'nothing';
                 break;
         }
 

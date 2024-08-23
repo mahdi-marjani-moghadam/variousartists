@@ -1,11 +1,14 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: marjani
  * Date: 2/27/2016
  * Time: 4:24 PM
  */
-include_once(ROOT_DIR."/common/validators.php");
+
+namespace Component\aboutus\model;
+
 class aboutusModel
 {
     private $fields;  // other record fields
@@ -21,7 +24,7 @@ class aboutusModel
      */
     public function __construct()
     {
-       /* $this->fields = array(
+        /* $this->fields = array(
                                 'title'=>  '',
                                 'brif_description'=>  '',
                                 'description'=>  '',
@@ -38,29 +41,17 @@ class aboutusModel
      */
     public function __get($field)
     {
-        if ($field == 'result')
-        {
+        if ($field == 'result') {
             return $this->result;
-        }
-        else if ($field == 'fields')
-        {
+        } else if ($field == 'fields') {
             return $this->fields;
-        }
-        else if ($field == 'list')
-        {
+        } else if ($field == 'list') {
             return $this->list;
-        }
-        else if ($field == 'recordsCount')
-        {
+        } else if ($field == 'recordsCount') {
             return $this->recordsCount;
-        }
-
-
-        else
-        {
+        } else {
             return $this->fields[$field];
         }
-
     }
 
 
@@ -76,21 +67,17 @@ class aboutusModel
      */
     public function getAboutus($fields)
     {
-        include_once(dirname(__FILE__)."/aboutus.model.db.php");
+        // include_once(dirname(__FILE__)."/aboutus.model.db.php");
 
-        $result=aboutusModelDb::getAboutus($fields);
+        $result = (new aboutusModelDb)->getAboutus($fields);
 
-        if($result['result']!=1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
-        $this->list=$result['export']['list'];
-        $this->recordsCount=$result['export']['recordsCount'];
+        $this->list = $result['export']['list'];
+        $this->recordsCount = $result['export']['recordsCount'];
 
 
         return $result;
     }
-
-
-
 }
