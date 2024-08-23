@@ -1,5 +1,7 @@
 <?php
+
 use Component\aboutus\model\aboutusModel;
+
 /**
  * Created by PhpStorm.
  * User: marjani
@@ -7,7 +9,7 @@ use Component\aboutus\model\aboutusModel;
  * Time: 4:24 PM
  */
 
-include_once(dirname(__FILE__)."/aboutus.model.php");
+include_once(dirname(__FILE__) . "/aboutus.model.php");
 
 /**
  * Class aboutusController
@@ -32,8 +34,7 @@ class aboutusController
      */
     public function __construct()
     {
-        $this->exportType='html';
-
+        $this->exportType = 'html';
     }
 
     /**
@@ -43,12 +44,11 @@ class aboutusController
      * @param $msg
      * @return string
      */
-    function template($list=[], $msg='') : void
+    function template($list = [], $msg = ''): void
     {
-         global $member_info, $lang;
+        global $member_info, $lang;
 
-        switch($this->exportType)
-        {
+        switch ($this->exportType) {
 
             case 'html':
 
@@ -60,17 +60,16 @@ class aboutusController
             case 'json':
                 echo json_encode($list);
                 break;
-            case 'array':
-                return $list;
+            // case 'array':
+            //     return $list;
 
             case 'serialize':
-                 echo serialize($list);
+                echo serialize($list);
                 break;
             default:
                 echo 'nothing';
                 break;
         }
-
     }
 
 
@@ -84,18 +83,17 @@ class aboutusController
      */
     public function showALL($fields)
     {
-        $aboutus=new aboutusModel;
-        $result=$aboutus->getAboutus($fields);
+        $aboutus = new aboutusModel;
+        $result = $aboutus->getAboutus($fields);
 
-        if($result['result']!='1')
-        {
+        if ($result['result'] != '1') {
             $this->fileName = "aboutus.php";
-            $this->template('',$result['msg']);
+            $this->template('', $result['msg']);
             die();
         }
-        $export['list']=$aboutus->list;
-        $export['recordsCount']=$aboutus->recordsCount;
-        $export['pagination']=$aboutus->pagination;
+        $export['list'] = $aboutus->list;
+        $export['recordsCount'] = $aboutus->recordsCount;
+        $export['pagination'] = $aboutus->pagination;
 
         // breadcrumb
         global $breadcrumb;
@@ -108,6 +106,4 @@ class aboutusController
         $this->template($export);
         die();
     }
-
 }
-?>
