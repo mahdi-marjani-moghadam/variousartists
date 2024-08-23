@@ -1,51 +1,21 @@
 <?php
-
+namespace Component\contactus\model;
 use Component\contactus\model\contactusModel;
 use Component\vontactus\admin\model\adminContactusModel;
 
-/**
- * Created by PhpStorm.
- * User: marjani
- * Date: 2/27/2016
- * Time: 9:21 AM.
- */
-include_once dirname(__FILE__) . '/contactus.model.php';
-
-/**
- * Class contactusController.
- */
 class contactusController
 {
-    /**
-     * Contains file type.
-     *
-     * @var
-     */
+    
     public $exportType;
 
-    /**
-     * Contains file name.
-     *
-     * @var
-     */
     public $fileName;
 
-    /**
-     * contactusController constructor.
-     */
     public function __construct()
     {
         $this->exportType = 'html';
     }
 
-    /**
-     * call template.
-     *
-     * @param string $list
-     * @param $msg
-     *
-     * @return string
-     */
+
     public function template($list = array(), $msg = ''): void
     {
         global $messageStack, $member_info;

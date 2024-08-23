@@ -7,26 +7,9 @@ class adminCompanyModel
     private $fields;  // other record fields
     private $list;  // other record fields
     private $result;
+    private $recordsCount;
 
-    /**
-     * adminRegisterModel constructor.
-     */
-    public function __construct()
-    {
-
-        $this->requiredFields = array(
-            'company_name' => ''
-
-        );
-    }
-
-    /**
-     * @param $field
-     * @return mixed
-     * @author malekloo
-     * @date 3/6/2015
-     * @version 01.01.01
-     */
+   
     public function __get($field)
     {
         if($field == 'result')
@@ -826,7 +809,7 @@ class adminCompanyModel
         // include_once(dirname(__FILE__) . "/admin.company.model.db.php");
 
 
-        $result = adminCompanyModelDb::getCompany($fields);
+        $result = (new adminCompanyModelDb)->getCompany($fields);
         if($result['result'] != 1)
         {
             return $result;
@@ -870,25 +853,14 @@ class adminCompanyModel
         return $result;
     }
 
-    /**
-     * delete company by company_id
-     *
-     * @return mixed
-     * @author mahmoud malekloo <mahmoud.malekloo@gmail.com>
-     * @date 2/24/2015
-     * @version 01.01.01
-     */
+    
     public function delete()
     {
-        include_once(dirname(__FILE__) . "/admin.company.model.db.php");
-        $result = adminCompanyModelDb::delete($this->fields['Company_id']);
-
-        return $result;
+        return (new adminCompanyModelDb)->delete($this->fields['Company_id']);
     }
 
     
     public function getCompanyphoneAll($input){
-        include_once(dirname(__FILE__) . "/admin.company.model.db.php");
         $result = adminCompanyModelDb::getAllPhone($input);
 
         if($result['result']!=1)

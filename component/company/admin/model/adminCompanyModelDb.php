@@ -1,10 +1,13 @@
 <?php
 namespace Component\company\admin\model;
 use Common\dbConn;
+use Common\looeic;
+use Component\city\admin\model\adminCityModelDb;
 use Component\product\admin\model\adminProductModelDb;
+use Model\DataBase;
 use PDO;
 
-class adminCompanyModelDb
+class adminCompanyModelDb extends looeic
 {
     public static function insert($fields)
     {
@@ -471,7 +474,7 @@ class adminCompanyModelDb
      *
      * @version 01.01.01
      */
-    public static function update($fields)
+    public static function update($fields, $where="")
     {
         $conn = dbConn::getConnection();
 
@@ -697,7 +700,8 @@ class adminCompanyModelDb
             list($date, $time) = explode(" ",$callDate);
             list($year, $month, $day) = explode("-", $date);
             list($extension, $compName) = explode("-", $row['dcontext']);
-            $row['filename']=RELA_CHANEL.$company_name.'/'.$year.'/'.$month.'/'.$day.'/'.$row['uniqueid'].'.'.'wav';
+            // $row['filename']=RELA_CHANEL.$company_name.'/'.$year.'/'.$month.'/'.$day.'/'.$row['uniqueid'].'.'.'wav';
+            $row['filename']=''.$company_name.'/'.$year.'/'.$month.'/'.$day.'/'.$row['uniqueid'].'.'.'wav';
             $this->_set_reportListDb($row['cdr_id'], $row);
         }
 
@@ -892,7 +896,7 @@ class adminCompanyModelDb
 
         $conn = dbConn::getConnection();
 
-        include_once ROOT_DIR.'/model/db.inc.class.php';
+        // include_once ROOT_DIR.'/model/db.inc.class.php';
 
         $condition = DataBase::filterBuilder($fields);
 
@@ -1131,7 +1135,7 @@ class adminCompanyModelDb
         return $result;
     }
 
-    public static function delete($id)
+    public function delete($id='')
     {
         $conn = dbConn::getConnection();
 

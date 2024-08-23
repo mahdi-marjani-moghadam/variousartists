@@ -1,11 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marjani
- * Date: 2/27/2016
- * Time: 9:21 AM
- */
-include_once(dirname(__FILE__). "/model/contactus.controller.php");
+use Component\contactus\model\contactusController;
+
 
 global $admin_info,$PARAM;
 
