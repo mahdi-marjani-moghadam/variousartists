@@ -9,7 +9,13 @@
 
 .idea/vcs.xml
 
-statics
+
+statics/blog/*
+statics/event/*
+statics/files/*
+statics/friends/*
+statics/friends_link/*
+statics/userfiles/*
 
 *.xml
 

@@ -315,16 +315,14 @@ class adminArtistsController
     }
     public function editArtists($fields)
     {
-        //$artists = new adminArtistsModel();
-
-
-
 
         $artists = adminArtistsModel::find($fields['Artists_id']);
 
         $oldStatus = $artists->fields['status'];
 
-        $fields['refresh_date'] = convertJToGDate($fields['refresh_date']);
+        if(isValidDateTime($fields['refresh_date'])){
+            $fields['refresh_date'] = convertJToGDate($fields['refresh_date']);
+        }
         if ($fields['birthday'] != '') {
             $fields['birthday'] = convertJToGDate($fields['birthday']);
         }
