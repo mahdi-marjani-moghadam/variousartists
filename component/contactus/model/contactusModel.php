@@ -1,4 +1,5 @@
 <?php
+use Common\validators;
 /**
  * Created by PhpStorm.
  * User: marjani
@@ -61,7 +62,7 @@ class contactusModel
     }
 
     /**
-     * validator controller
+     * validators controller
      *
      * @param $input
      * @return int
@@ -106,7 +107,7 @@ class contactusModel
      */
     private function __setSubject ($input)
     {
-        if(!Validator::required($input))
+        if(!validators::required($input))
         {
             $result['result']=-1;
             $result['msg']=translate('Please enter subject');
@@ -129,7 +130,7 @@ class contactusModel
      */
     private function __setEmail ($input)
     {
-        if(Validator::Email($input) != '1')
+        if(validators::Email($input) != '1')
         {
             $result['result']=-1;
             $result['msg']=translate('Please enter email');
@@ -151,7 +152,7 @@ class contactusModel
      */
     private function __setComment ($input)
     {
-        if(!Validator::required($input))
+        if(!validators::required($input))
         {
             $result['result']=-1;
             $result['msg']=translate('Please enter comment');
@@ -173,7 +174,7 @@ class contactusModel
      */
     private function __setName ($input)
     {
-        if(!Validator::required($input))
+        if(!validators::required($input))
         {
             $result['result']=-1;
             $result['msg']=translate('Please enter name');

@@ -6,6 +6,11 @@
  * Time: 4:24 PM
  * version:01.01.01
  */
+namespace Component\vontactus\admin\model;
+
+use Common\looeic;
+use Component\contactus\admin\model\adminContactusModelDb;
+
 class adminContactusModel extends looeic
 {
     public $list;
@@ -28,7 +33,7 @@ class adminContactusModel extends looeic
      */
     public function getContactusById($id)
     {
-        include_once(dirname(__FILE__)."/admin.contactus.model.db.php");
+        // include_once(dirname(__FILE__)."/admin.contactus.model.db.php");
 
         $result=adminContactusModelDb::getContactusById($id);
 
@@ -54,9 +59,9 @@ class adminContactusModel extends looeic
      */
     public function getContactus($fields)
     {
-        include_once(dirname(__FILE__)."/admin.contactus.model.db.php");
+        // include_once(dirname(__FILE__)."/admin.contactus.model.db.php");
 
-        $result=adminContactusModelDb::getContactus($fields);
+        $result=(new adminContactusModelDb)->getContactus($fields);
 
         if($result['result']!=1)
         {
@@ -80,7 +85,7 @@ class adminContactusModel extends looeic
      */
     public function add()
     {
-        include_once(dirname(__FILE__)."/admin.contactus.model.db.php");
+        // include_once(dirname(__FILE__)."/admin.contactus.model.db.php");
         $result=adminContactusModelDb::insert($this->fields);
         $this->fields['Contactus_id']=$result['export']['insert_id'];
         return $result;
@@ -111,8 +116,8 @@ class adminContactusModel extends looeic
      */
     public function delete()
     {
-        include_once(dirname(__FILE__)."/admin.contactus.model.db.php");
-        $result=adminContactusModelDb::delete($this->fields);
+        // include_once(dirname(__FILE__)."/admin.contactus.model.db.php");
+        $result=(new adminContactusModelDb)->delete($this->fields);
         return $result;
     }
 

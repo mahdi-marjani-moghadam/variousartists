@@ -7,6 +7,11 @@
  * Time: 1:57 PM
  */
 namespace Component\aboutus\admin\model;
+
+use Common\dbConn;
+use Model\DataBase;
+use PDO;
+
 class adminAboutusModelDb
 {
 
@@ -101,7 +106,7 @@ class adminAboutusModelDb
         global $lang;
         $conn = dbConn::getConnection();
 
-        include_once(ROOT_DIR."/model/db.inc.class.php");
+        // include_once(ROOT_DIR."/model/db.inc.class.php");
 
         $condition= DataBase::filterBuilder($fields);
 

@@ -10,6 +10,11 @@
 use Common\validators;
 use Component\artists\model\artists;
 use Component\artists\model\artistsModel;
+use Component\category\admin\model\adminCategoryModel;
+use Component\category\model\categoryModel;
+use Component\country\model\country;
+use Component\event\model\eventModel;
+use Component\genre\model\genreModel;
 use Component\invoice\model\invoice;
 use Component\product\model\productModel;
 
@@ -353,7 +358,7 @@ class accountController
         global $member_info;
 
 
-        include_once "component/event/model/event.model.php";
+        // include_once "component/event/model/event.model.php";
         $obj = eventModel::find($fields['event_id']);
         if (!is_object($obj)) {
             redirectPage(RELA_DIR, $obj['msg']);
@@ -362,7 +367,7 @@ class accountController
         $export = $obj->fields;
 
         /** category */
-        include_once ROOT_DIR . 'component/category/admin/model/admin.category.model.php';
+        // include_once ROOT_DIR . 'component/category/admin/model/admin.category.model.php';
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
@@ -390,7 +395,7 @@ class accountController
         $export['page_title'] = translate('افزودن اثر');
 
         /** country */
-        include_once ROOT_DIR . 'component/country/model/country.model.php';
+        // include_once ROOT_DIR . 'component/country/model/country.model.php';
         $country = new country();
         $resultCountry = $country::getAll()->getList();
         if ($resultCountry['result'] == 1) {
@@ -412,7 +417,7 @@ class accountController
         $invoice = new invoice();
 
 
-        $object = model::find('artists', $member_info['Artists_id']);
+        $object = artists::find( $member_info['Artists_id']);
         if (is_array($object)) {
             $this->fileName = 'account.showPanel.php';
             $this->template('', $object['msg']);
@@ -467,10 +472,10 @@ class accountController
     {
         global $member_info;
 
-        include_once ROOT_DIR . 'component/product/model/product.model.php';
+        // include_once ROOT_DIR . 'component/product/model/product.model.php';
         $products = new productModel();
 
-        $object = model::find('artists', $member_info['Artists_id']);
+        $object = artists::find( $member_info['Artists_id']);
         if (is_array($object)) {
             $this->fileName = 'account.showPanel.php';
             $this->template('', $object['msg']);
@@ -567,11 +572,11 @@ class accountController
             $result = $account->save();
         }
         if ($result['result'] != '1') {
-            $this->showPackageAddForm($fields, $result['msg']);
+            $this->showProductAddForm($fields, $result['msg']);
         }
 
         /** update artists date  */
-        include_once ROOT_DIR . 'component/artists/admin/model/admin.artists.model.php';
+        // include_once ROOT_DIR . 'component/artists/admin/model/admin.artists.model.php';
         $artists = artistsModel::find($account->fields['artists_id']);
         $artists->update_date = date('Y-m-d H:i:s');
         $result = $artists->save();
@@ -585,7 +590,7 @@ class accountController
         global $member_info;
 
         /** category */
-        include_once(ROOT_DIR . "component/category/model/category.model.php");
+        // include_once(ROOT_DIR . "component/category/model/category.model.php");
         $category = new categoryModel();
         $resultCategory = $category->getCategoryOption();
         if ($resultCategory['result'] == 1) {
@@ -593,7 +598,7 @@ class accountController
         }
 
         /** genre */
-        include_once(ROOT_DIR . "component/genre/model/genre.model.php");
+        // include_once(ROOT_DIR . "component/genre/model/genre.model.php");
         $genre = new genreModel();
         $resultGenre = $genre->getGenreOption();
         if ($resultGenre['result'] == 1) {
@@ -618,7 +623,7 @@ class accountController
     public function editProduct($fields)
     {
         global $member_info, $lang;
-        include_once ROOT_DIR . 'component/product/model/product.model.php';
+        // include_once ROOT_DIR . 'component/product/model/product.model.php';
 
 
         $account = productModel::find($fields['artists_products_id']);

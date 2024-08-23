@@ -1,4 +1,7 @@
 <?php
+
+use Common\validators;
+use Component\vontactus\admin\model\adminContactusModel;
 /**
  * Created by PhpStorm.
  * User: malek
@@ -6,7 +9,7 @@
  * Time: 4:24 PM
  */
 
-include_once(dirname(__FILE__) . "/admin.contactus.model.php");
+// include_once(dirname(__FILE__) . "/admin.contactus.model.php");
 
 /**
  * Class contactusController
@@ -40,7 +43,7 @@ class adminContactusController
      * @param $msg
      * @return string
      */
-    function template($list = array(), $msg='')
+    function template($list = array(), $msg='') : void
     {
         // global $conn, $lang;
 
@@ -59,9 +62,6 @@ class adminContactusController
 
             case 'json':
                 echo json_encode($list);
-                break;
-            case 'array':
-                return $list;
                 break;
 
             case 'serialize':
@@ -189,8 +189,8 @@ class adminContactusController
      */
     public function editContactus($fields)
     {
-        include_once ROOT_DIR.'component/contactus/admin/model/admin.contactus_content.model.php';
-        $contactus=new contactus_content();
+        // include_once ROOT_DIR.'component/contactus/admin/model/admin.contactus_content.model.php';
+        $contactus=new adminContactusModel();
 
         $result    = $contactus::getBy_lang($fields['language'])->get()['export']['list'][0];
         $result->setFields($fields);
@@ -215,7 +215,7 @@ class adminContactusController
     {
         $contactus = new adminContactusModel();
 
-        if (!validator::required($fields['Contact_id']) and !validator::Numeric($fields['Contact_id']))
+        if (!validators::required($fields['Contact_id']) and !validators::Numeric($fields['Contact_id']))
         {
             $msg = 'یافت نشد';
             redirectPage(RELA_DIR . "zamin/index.php?component=contactus", $msg);

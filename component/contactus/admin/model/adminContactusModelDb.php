@@ -1,17 +1,17 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: malek
- * Date: 2/20/2016
- * Time: 4:33 AM
- */
-class adminContactusModelDb
+
+namespace Component\contactus\admin\model;
+
+use Common\dbConn;
+use Common\looeic;
+use Model\DataBase;
+use PDO;
+
+class adminContactusModelDb extends looeic
 {
 
-    
-
-    static function update($fields)
+    static function update($fields, $where = '')
     {
 
         $conn = dbConn::getConnection();
@@ -32,8 +32,7 @@ class adminContactusModelDb
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['Number'] = 1;
             $result['msg'] = $conn->errorInfo();
@@ -47,12 +46,12 @@ class adminContactusModelDb
      * @param $fields
      * @return mixed
      */
-    static function delete($fields)
+    public function delete($fields = '')
     {
 
         $conn = dbConn::getConnection();
 
-       $sql = "
+        $sql = "
                 DELETE FROM contactus
                     WHERE Contact_id = '" . $fields['Contact_id'] . "'
                     ";
@@ -60,8 +59,7 @@ class adminContactusModelDb
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['Number'] = 1;
             $result['msg'] = $conn->errorInfo();
@@ -86,16 +84,14 @@ class adminContactusModelDb
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['Number'] = 1;
             $result['msg'] = $conn->errorInfo();
             return $result;
         }
 
-        if (!$stmt->rowCount())
-        {
+        if (!$stmt->rowCount()) {
             $result['result'] = -1;
             $result['no'] = 1;
             $result['msg'] = 'This Record was Not Found';
@@ -108,50 +104,46 @@ class adminContactusModelDb
         $result['list'] = $row;
 
         return $result;
-
     }
 
-    public function getContactus($fields='')
+    public function getContactus($fields = '')
     {
 
         $conn = dbConn::getConnection();
 
-        include_once(ROOT_DIR."/model/db.inc.class.php");
+        // include_once(ROOT_DIR."/model/db.inc.class.php");
 
-        $condition= DataBase::filterBuilder($fields);
+        $condition = DataBase::filterBuilder($fields);
         $sql = "SELECT SQL_CALC_FOUND_ROWS
                  *
-    		     FROM 	contactus ".$condition['list']['WHERE'].$condition['list']['filter'].$condition['list']['order'].$condition['list']['limit'];
+    		     FROM 	contactus " . $condition['list']['WHERE'] . $condition['list']['filter'] . $condition['list']['order'] . $condition['list']['limit'];
 
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['no'] = 1;
             $result['msg'] = $conn->errorInfo();
             return $result;
         }
 
-        $sql=" SELECT FOUND_ROWS() as recCount ";
+        $sql = " SELECT FOUND_ROWS() as recCount ";
 
         $stmTp = $conn->prepare($sql);
         $stmTp->setFetchMode(PDO::FETCH_ASSOC);
         $stmTp->execute();
         $rowP = $stmTp->fetch();
 
-        $result['export']['recordsCount']= $rowP['recCount'];
+        $result['export']['recordsCount'] = $rowP['recCount'];
 
-        while ($row = $stmt->fetch())
-        {
-            $list[$row['Contact_id']]= $row;
+        while ($row = $stmt->fetch()) {
+            $list[$row['Contact_id']] = $row;
         }
         $result['result'] = 1;
         $result['export']['list'] = $list;
         return $result;
-
     }
 
     static public function getContactusEasy()
@@ -169,8 +161,7 @@ class adminContactusModelDb
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['no'] = 1;
             $result['msg'] = $conn->errorInfo();
@@ -182,9 +173,5 @@ class adminContactusModelDb
         $result['export']['list'] = $list;
 
         return $result;
-
     }
-
-
-
 }

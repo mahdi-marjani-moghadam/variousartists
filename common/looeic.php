@@ -14,6 +14,7 @@ use Exception;
 use GUMP;
 use Model\DataBase;
 use PDO;
+use PDOException;
 
 // include_once ROOT_DIR . 'common/GUMP-master/gump.class.php';
 // include_once ROOT_DIR . 'common/looeicQueryBuilder.php';
@@ -1077,7 +1078,7 @@ class looeic extends DB
      * @param $where
      * @return mixed
      */
-    public static function update($fields, $where)
+    public static function update($fields, $where="")
     {
 
         $input = func_get_args();

@@ -1,5 +1,7 @@
 <?php
 
+use Common\dbConn;
+
 /**
  * Created by PhpStorm.
  * User: marjani

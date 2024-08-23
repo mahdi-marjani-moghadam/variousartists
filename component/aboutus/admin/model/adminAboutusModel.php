@@ -345,7 +345,7 @@ class adminAboutusModel
     {
         // include_once(dirname(__FILE__)."/admin.aboutus.model.db.php");
 
-        $result=adminAboutusModelDb::getAboutus($fields);
+        $result=(new adminAboutusModelDb)->getAboutus($fields);
 
         if($result['result']!=1)
         {

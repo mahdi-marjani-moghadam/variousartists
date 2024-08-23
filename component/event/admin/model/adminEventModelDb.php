@@ -6,7 +6,17 @@
  * Date: 2/27/2016
  * Time: 11:02 AM.
  */
-class adminEventModelDb
+namespace Component\event\admin\model;
+
+use Common\dbConn;
+use Common\looeic;
+use Component\category\admin\model\adminCategoryModel;
+use Component\city\admin\model\adminCityModelDb;
+use Component\product\admin\model\adminProductModelDb;
+use Model\DataBase;
+use PDO;
+
+class adminEventModelDb extends looeic
 {
     public static function insert($fields)
     {
@@ -477,7 +487,7 @@ class adminEventModelDb
      *
      * @version 01.01.01
      */
-    public static function update($fields)
+    public static function update($fields, $where="")
     {
         $conn = dbConn::getConnection();
 
@@ -497,14 +507,14 @@ class adminEventModelDb
         $sql = substr($sql, 0, -1);
         $sql = $sql."WHERE Event_id = '".$fields['Event_id']."'";
 
-        include_once ROOT_DIR.'component/product/admin/model/admin.product.model.db.php';
+        // include_once ROOT_DIR.'component/product/admin/model/admin.product.model.db.php';
+        // todo: chech after
+        // $result = adminProductModelDb::updateEventProductsCity($fields['city_id'],$fields['Event_id']);
 
-        $result = adminProductModelDb::updateEventProductsCity($fields['city_id'],$fields['Event_id']);
-
-        if($result['result'] != 1)
-        {
-            return $result;
-        }
+        // if($result['result'] != 1)
+        // {
+        //     return $result;
+        // }
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -703,7 +713,8 @@ class adminEventModelDb
             list($date, $time) = explode(" ",$callDate);
             list($year, $month, $day) = explode("-", $date);
             list($extension, $compName) = explode("-", $row['dcontext']);
-            $row['filename']=RELA_CHANEL.$event_name.'/'.$year.'/'.$month.'/'.$day.'/'.$row['uniqueid'].'.'.'wav';
+            // $row['filename']=RELA_CHANEL.$event_name.'/'.$year.'/'.$month.'/'.$day.'/'.$row['uniqueid'].'.'.'wav';
+            $row['filename']=''.$event_name.'/'.$year.'/'.$month.'/'.$day.'/'.$row['uniqueid'].'.'.'wav';
             $this->_set_reportListDb($row['cdr_id'], $row);
         }
 
@@ -718,7 +729,7 @@ class adminEventModelDb
 
         $conn = dbConn::getConnection();
 
-        include_once ROOT_DIR.'/model/db.inc.class.php';
+        // include_once ROOT_DIR.'/model/db.inc.class.php';
 
         $condition = DataBase::filterBuilder($fields);
 
@@ -758,7 +769,7 @@ class adminEventModelDb
             $row['certification_id'] = $temp['export']['list'];
             $list[$row['Event_id']] = $row;
 
-            include_once ROOT_DIR.'component/city/admin/model/admin.city.model.db.php';
+            // include_once ROOT_DIR.'component/city/admin/model/admin.city.model.db.php';
             $row['city'] = adminCityModelDb::getCityById($row['city_id']);
 
             $id = $row['Event_id'];
@@ -1123,7 +1134,7 @@ class adminEventModelDb
         return $result;
     }
 
-    public static function delete($id)
+    public function delete($id='')
     {
         $conn = dbConn::getConnection();
 

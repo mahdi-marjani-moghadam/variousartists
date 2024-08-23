@@ -6,7 +6,10 @@
  * Time: 10:35 AM
  */
 
-include_once(ROOT_DIR . "/common/validators.php");
+// include_once(ROOT_DIR . "/common/validators.php");
+namespace Component\event\admin\model;
+
+use Common\looeic;
 
 class adminEventModel extends looeic
 {
@@ -25,10 +28,10 @@ class adminEventModel extends looeic
      */
     public function getEvent($fields)
     {
-        include_once(dirname(__FILE__) . "/admin.event.model.db.php");
+        // include_once(dirname(__FILE__) . "/admin.event.model.db.php");
 
         ///$fields['order']['Event_id'] =
-        $result = adminEventModelDb::getEvent($fields);
+        $result = (new adminEventModelDb)->getEvent($fields);
 
         if($result['result'] != 1)
         {
@@ -44,7 +47,7 @@ class adminEventModel extends looeic
         include_once(dirname(__FILE__) . "/admin.event.model.db.php");
 
         ///$fields['order']['Event_id'] =
-        $result = adminEventModelDb::getEventDraft($fields);
+        $result = (new adminEventModelDb)->getEventDraft($fields);
 
         if($result['result'] != 1)
         {
