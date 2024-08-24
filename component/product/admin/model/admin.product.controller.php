@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: malekloo
@@ -6,7 +7,13 @@
  * Time: 11:21 AM
  */
 
-include_once(dirname(__FILE__)."/admin.product.model.php");
+use Common\validators;
+use Component\artists\admin\model\adminArtistsModel;
+use Component\category\admin\model\adminCategoryModel;
+use Component\genre\admin\model\adminGenreModel;
+use Component\product\admin\model\adminProductModel;
+
+include_once(dirname(__FILE__) . "/admin.product.model.php");
 
 /**
  * Class registerController
@@ -31,8 +38,7 @@ class adminProductController
      */
     public function __construct()
     {
-        $this->exportType='html';
-
+        $this->exportType = 'html';
     }
 
     /**
@@ -42,12 +48,11 @@ class adminProductController
      * @param $msg
      * @return string
      */
-    function template($list=array(), $msg='')
+    function template($list = array(), $msg = ''): void
     {
         global $messageStack;
 
-        switch($this->exportType)
-        {
+        switch ($this->exportType) {
             case 'html':
                 include(ROOT_DIR . "templates/" . CURRENT_SKIN . "/template_start.php");
                 include(ROOT_DIR . "templates/" . CURRENT_SKIN . "/template_header.php");
@@ -61,18 +66,15 @@ class adminProductController
                 echo json_encode($list);
                 break;
 
-            case 'array':
-                return $list;
-                break;
+
 
             case 'serialize':
-                 echo serialize($list);
+                echo serialize($list);
                 break;
 
             default:
                 break;
         }
-
     }
 
     /**
@@ -86,35 +88,33 @@ class adminProductController
      */
     public function addProduct($_input)
     {
-        global $messageStack,$lang;
+        global $messageStack, $lang;
 
 
-        $product=new adminProductModel;
+        $product = new adminProductModel;
 
-        $_input['category_id'] = ",".(implode(",",$_input['category_id'])).",";
-        $_input['genre_id'] = ",".(implode(",",$_input['genre_id'])).",";
+        $_input['category_id'] = "," . (implode(",", $_input['category_id'])) . ",";
+        $_input['genre_id'] = "," . (implode(",", $_input['genre_id'])) . ",";
         $fields['artists_id'] = $_input['artists_id'] = $_REQUEST['artists_id'];
-        if($lang == 'fa')
-        {
-            $_input['creation_date'] = convertJToGDate($_input['creation_date']) ;
+        if ($lang == 'fa') {
+            $_input['creation_date'] = convertJToGDate($_input['creation_date']);
         }
-        $result=$product->setFields($_input);
+        $result = $product->setFields($_input);
 
 
-        if($result['result']==-1)
-        {
-            $this->showProductAddForm($_input,$result['msg']);
+        if ($result['result'] == -1) {
+            $this->showProductAddForm($_input, $result['msg']);
         }
-        $result=$product->save();
+        $result = $product->save();
 
-        if(file_exists($_FILES['file']['tmp_name'])){
+        if (file_exists($_FILES['file']['tmp_name'])) {
 
-            $type  = explode('/',$_FILES['file']['type']);
+            $type  = explode('/', $_FILES['file']['type']);
             $input['max_size'] = $_FILES['file']['size'];
-            $input['upload_dir'] = ROOT_DIR.'statics/files/'.$fields['artists_id'].'/';
-            $result = fileUploader($input,$_FILES['file']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/files/' . $fields['artists_id'] . '/';
+            $result = fileUploader($input, $_FILES['file']);
 
-            fileRemover($input['upload_dir'],$product->fields['file']);
+            fileRemover($input['upload_dir'], $product->fields['file']);
 
             $product->file_type = $type[0];
             $product->extension = $type[1];
@@ -122,37 +122,34 @@ class adminProductController
             $result = $product->save();
         }
 
-        if(file_exists($_FILES['image']['tmp_name'])){
+        if (file_exists($_FILES['image']['tmp_name'])) {
 
-            $type  = explode('/',$_FILES['image']['type']);
+            $type  = explode('/', $_FILES['image']['type']);
 
-            $input['upload_dir'] = ROOT_DIR.'statics/files/'.$fields['artists_id'].'/';
-            $result = fileUploader($input,$_FILES['image']);
-            fileRemover($input['upload_dir'],$product->fields['image']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/files/' . $fields['artists_id'] . '/';
+            $result = fileUploader($input, $_FILES['image']);
+            fileRemover($input['upload_dir'], $product->fields['image']);
             $product->image = $result['image_name'];
             $result = $product->save();
         }
 
         /** update artists date  */
-        include_once ROOT_DIR.'component/artists/admin/model/admin.artists.model.php';
+        // include_once ROOT_DIR.'component/artists/admin/model/admin.artists.model.php';
         $artists = adminArtistsModel::find($product->fields['artists_id']);
         $artists->update_date = date('Y-m-d H:i:s');
         $result = $artists->save();
 
         //$result=$product->addProduct();
 
-        if($result['result']!='1')
-        {
-            $messageStack->add_session('register',$result['msg']);
-            $this->showProductAddForm($_input,$result['msg']);
+        if ($result['result'] != '1') {
+            $messageStack->add_session('register', $result['msg']);
+            $this->showProductAddForm($_input, $result['msg']);
         }
-        $msg='عملیات با موفقیت انجام شد';
-        $messageStack->add_session('register',$msg);
+        $msg = 'عملیات با موفقیت انجام شد';
+        $messageStack->add_session('register', $msg);
 
         redirectPage(RELA_DIR . "zamin/?component=product&id={$_input['artists_id']}", $msg);
         die();
-
-
     }
 
 
@@ -167,33 +164,31 @@ class adminProductController
      * @version 01.01.01
      */
 
-    public function showProductAddForm($fields,$msg)
+    public function showProductAddForm($fields, $msg)
     {
 
-        include_once(ROOT_DIR."component/category/admin/model/admin.category.model.php");
+        // include_once(ROOT_DIR."component/category/admin/model/admin.category.model.php");
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
 
-        if($resultCategory['result'] == 1)
-        {
+        if ($resultCategory['result'] == 1) {
             $fields['category'] = $category->list;
         }
 
         /** genre */
-        include_once(ROOT_DIR."component/genre/admin/model/admin.genre.model.php");
+        // include_once(ROOT_DIR."component/genre/admin/model/admin.genre.model.php");
         $genre = new adminGenreModel();
 
         $resultGenre = $genre->getGenreOption();
 
-        if($resultGenre['result'] == 1)
-        {
+        if ($resultGenre['result'] == 1) {
             $fields['genre'] = $genre->list;
         }
 
 
-        $this->fileName='admin.product.addForm.php';
-        $this->template($fields,$msg);
+        $this->fileName = 'admin.product.addForm.php';
+        $this->template($fields, $msg);
         die();
     }
 
@@ -211,41 +206,38 @@ class adminProductController
 
         $product = adminProductModel::find($fields['Artists_products_id']);
 
-        if(!is_object($product))
-        {
+        if (!is_object($product)) {
             redirectPage(RELA_DIR . "zamin/index.php?component=product", $product['msg']);
         }
 
-        if($lang == 'fa')
-        {
-            $fields['creation_date'] = convertJToGDate($fields['creation_date']) ;
+        if ($lang == 'fa') {
+            $fields['creation_date'] = convertJToGDate($fields['creation_date']);
         }
 
         $product->setFields($fields);
 
 
-        $product->category_id = ",".(implode(",",$product->category_id)).",";
-        $product->genre_id = ",".(implode(",",$product->genre_id)).",";
+        $product->category_id = "," . (implode(",", $product->category_id)) . ",";
+        $product->genre_id = "," . (implode(",", $product->genre_id)) . ",";
 
 
 
 
-        $result=$product->save();
-        $fields=$product->fields;
-        if($result['result']!='1')
-        {
-            $this->showProductEditForm($fields,$result['msg']);
+        $result = $product->save();
+        $fields = $product->fields;
+        if ($result['result'] != '1') {
+            $this->showProductEditForm($fields, $result['msg']);
         }
 
 
-        if(file_exists($_FILES['file']['tmp_name'])){
+        if (file_exists($_FILES['file']['tmp_name'])) {
 
-            $type  = explode('/',$_FILES['file']['type']);
+            $type  = explode('/', $_FILES['file']['type']);
             $input['max_size'] = $_FILES['file']['size'];
-            $input['upload_dir'] = ROOT_DIR.'statics/files/'.$fields['artists_id'].'/';
-            $result = fileUploader($input,$_FILES['file']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/files/' . $fields['artists_id'] . '/';
+            $result = fileUploader($input, $_FILES['file']);
 
-            fileRemover($input['upload_dir'],$product->fields['file']);
+            fileRemover($input['upload_dir'], $product->fields['file']);
 
             $product->file_type = $type[0];
             $product->extension = $type[1];
@@ -253,25 +245,25 @@ class adminProductController
             $result = $product->save();
         }
 
-        if(file_exists($_FILES['image']['tmp_name'])){
+        if (file_exists($_FILES['image']['tmp_name'])) {
 
-            $type  = explode('/',$_FILES['image']['type']);
+            $type  = explode('/', $_FILES['image']['type']);
 
-            $input['upload_dir'] = ROOT_DIR.'statics/files/'.$fields['artists_id'].'/';
-            $result = fileUploader($input,$_FILES['image']);
-            fileRemover($input['upload_dir'],$product->fields['image']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/files/' . $fields['artists_id'] . '/';
+            $result = fileUploader($input, $_FILES['image']);
+            fileRemover($input['upload_dir'], $product->fields['image']);
             $product->image = $result['image_name'];
 
             $result = $product->save();
         }
 
         /** update artists date  */
-        include_once ROOT_DIR.'component/artists/admin/model/admin.artists.model.php';
+        include_once ROOT_DIR . 'component/artists/admin/model/admin.artists.model.php';
         $artists = adminArtistsModel::find($product->fields['artists_id']);
         $artists->update_date = date('Y-m-d H:i:s');
         $result = $artists->save();
 
-        $msg='عملیات با موفقیت انجام شد';
+        $msg = 'عملیات با موفقیت انجام شد';
         redirectPage(RELA_DIR . "zamin/index.php?component=product&id={$fields['artists_id']}", $msg);
         die();
     }
@@ -284,44 +276,41 @@ class adminProductController
      * @date 3/6/2015
      * @version 01.01.01
      */
-    public function showProductEditForm($fields,$msg)
+    public function showProductEditForm($fields, $msg)
     {
 
-        $product=new adminProductModel();
-        $result=$product->getProductById($fields['Artists_products_id']);
+        $product = new adminProductModel();
+        $result = $product->getProductById($fields['Artists_products_id']);
 
-        if($result['result']!='1')
-        {
-            $msg=$result['msg'];
+        if ($result['result'] != '1') {
+            $msg = $result['msg'];
             redirectPage(RELA_DIR . "zamin/index.php?component=product", $msg);
         }
 
-        $export=$product->fields;
+        $export = $product->fields;
 
-        include_once(ROOT_DIR."component/category/admin/model/admin.category.model.php");
+        include_once(ROOT_DIR . "component/category/admin/model/admin.category.model.php");
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
 
-        if($resultCategory['result'] == 1)
-        {
+        if ($resultCategory['result'] == 1) {
             $export['category'] = $category->list;
         }
 
         /** genre */
-        include_once(ROOT_DIR."component/genre/admin/model/admin.genre.model.php");
+        include_once(ROOT_DIR . "component/genre/admin/model/admin.genre.model.php");
         $genre = new adminGenreModel();
         $resultGenre = $genre->getGenreOption();
-        if($resultGenre['result'] == 1)
-        {
+        if ($resultGenre['result'] == 1) {
             $export['genre'] = $genre->list;
         }
         /*echo '<pre/>';
         print_r($export);
         die();*/
 
-        $this->fileName='admin.product.editForm.php';
-        $this->template($export,$msg);
+        $this->fileName = 'admin.product.editForm.php';
+        $this->template($export, $msg);
         die();
     }
 
@@ -336,21 +325,20 @@ class adminProductController
      */
     public function showList($fields)
     {
-        $product=new adminProductModel();
-        $result=$product->getProduct($fields);
-        if($result['result']!='1')
-        {
-            $this->fileName='admin.product.showList.php';
-            $this->template('',$result['msg']);
+        $product = new adminProductModel();
+        $result = $product->getProduct($fields);
+        if ($result['result'] != '1') {
+            $this->fileName = 'admin.product.showList.php';
+            $this->template('', $result['msg']);
             die();
         }
-        $export['list']=$product->list;
-        $export['artists_id']=$fields['choose']['artists_id'];
+        $export['list'] = $product->list;
+        $export['artists_id'] = $fields['choose']['artists_id'];
 
 
-        $export['recordsCount']=$product->recordsCount;
+        $export['recordsCount'] = $product->recordsCount;
 
-        $this->fileName='admin.product.showList.php';
+        $this->fileName = 'admin.product.showList.php';
         $this->template($export);
         die();
     }
@@ -367,38 +355,33 @@ class adminProductController
 
         $product = adminProductModel::find($id);
 
-        if(!validator::required($id) and !validator::Numeric($id))
-        {
-            $msg= 'یافت نشد';
+        if (!validators::required($id) and !validators::Numeric($id)) {
+            $msg = 'یافت نشد';
             redirectPage(RELA_DIR . "admin/index.php", $msg);
         }
 
 
-        if(!is_object($product))
-        {
-            $msg=$product['msg'];
+        if (!is_object($product)) {
+            $msg = $product['msg'];
             redirectPage(RELA_DIR . "admin/index.php", $msg);
         }
 
 
-        $company_id=$product->fields['artists_id'];
+        $company_id = $product->fields['artists_id'];
 
 
-        $result=$product->delete();
+        $result = $product->delete();
 
 
-        $dir = ROOT_DIR.'statics/files/'.$company_id.'/';
-        fileRemover($dir,$product->fields['image']);
+        $dir = ROOT_DIR . 'statics/files/' . $company_id . '/';
+        fileRemover($dir, $product->fields['image']);
 
-        if($result['result']!='1')
-        {
-            redirectPage(RELA_DIR . "zamin/index.php?component=product&id=$company_id", $msg);
+        if ($result['result'] != '1') {
+            redirectPage(RELA_DIR . "zamin/index.php?component=product&id=$company_id");
         }
 
-        $msg='عملیات با موفقیت انجام شد';
+        $msg = 'عملیات با موفقیت انجام شد';
         redirectPage(RELA_DIR . "zamin/index.php?component=product&id=$company_id", $msg);
         die();
     }
-
 }
-?>

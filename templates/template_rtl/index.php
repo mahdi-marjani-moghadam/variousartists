@@ -60,7 +60,7 @@
 
 
 
-                <? if(count($list['lastEvent']) > 0 ): ?>
+                <? if(is_array($list['lastEvent']) && count($list['lastEvent']) > 0 ): ?>
 				<div class=" topmargin nobottommargin nobottomborder">
 					<div class="container clearfix">
 						<div class="heading-block center nomargin">
