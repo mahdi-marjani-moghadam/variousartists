@@ -10,6 +10,7 @@
 namespace Component\membership\admin\model;
 
 use Common\looeic;
+use Component\artists\admin\model\adminArtistsModelDb;
 
 class adminArtistsModel extends looeic
 {
@@ -138,7 +139,7 @@ class adminArtistsModel extends looeic
             return $result;
         }
 
-        include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
+        // include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
         // companies
         $result = adminArtistsModelDb::update($this->fields);
         if($result['result'] != 1)
@@ -205,10 +206,10 @@ class adminArtistsModel extends looeic
      */
     public function getArtists($fields)
     {
-        include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
+        // include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
 
 
-        $result = adminArtistsModelDb::getArtists($fields);
+        $result = (new adminArtistsModelDb)->getArtists($fields);
 
         if($result['result'] != 1)
         {
@@ -261,7 +262,7 @@ class adminArtistsModel extends looeic
      * @date 2/24/2015
      * @version 01.01.01
      */
-    public function delete()
+    public function delete($id='')
     {
         include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
         $result = adminArtistsModelDb::delete($this->fields['Artists_id']);

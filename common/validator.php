@@ -11,10 +11,10 @@ class validator {
     function Validator($requestArray) {
         //get a unique 3 number id
         $id = uniqid("");
-        $id = ereg_replace("[[:alpha:]]", "", $id);
+        // $id = ereg_replace("[[:alpha:]]", "", $id);
         $id = strrev($id);
         $id = substr($id, 0, 3);
-        if($id{0} == 0){
+        if($id[0] == 0){
             $id = strrev($id);
         }
         $this->validatorId = $id;
@@ -87,7 +87,7 @@ class validator {
                     $this->setError($field, 101);
                     return false;
                 }
-                break;
+                // break;
             case ">":
                 if(strlen(trim($this->request[$field])) > $length) {
                     return true;
@@ -95,7 +95,7 @@ class validator {
                     $this->setError($field, 101);
                     return false;
                 }
-                break;
+                // break;
             case "=":
                 if(strlen(trim($this->request[$field])) == $length) {
                     return true;
@@ -103,7 +103,7 @@ class validator {
                     $this->setError($field, 101);
                     return false;
                 }
-                break;
+                // break;
             case "<=":
                 if(strlen(trim($this->request[$field])) <= $length) {
                     return true;
@@ -111,7 +111,7 @@ class validator {
                     $this->setError($field, 101);
                     return false;
                 }
-                break;
+                // break;
             case ">=":
                 if(strlen(trim($this->request[$field])) >= $length) {
                     return true;
@@ -119,7 +119,7 @@ class validator {
                     $this->setError($field, 101);
                     return false;
                 }
-                break;
+                // break;
             default:
                 if(strlen(trim($this->request[$field])) < $length) {
                     return true;
@@ -132,15 +132,15 @@ class validator {
 
     //check to see if valid email address
     //ERROR: 102
-    function email($field) {
-        $address = trim($this->request[$field]);
-        if (ereg('^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$', $address)){
-            return true;
-        }	else {
-            $this->setError($field, 102);
-            return false;
-        }
-    }
+    // function email($field) {
+    //     $address = trim($this->request[$field]);
+    //     if (ereg('^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$', $address)){
+    //         return true;
+    //     }	else {
+    //         $this->setError($field, 102);
+    //         return false;
+    //     }
+    // }
 
     //check to see if two fields are equal
     //ERROR: 103
@@ -184,242 +184,242 @@ class validator {
 
     //check to see if there is punctuation
     //ERROR: 105
-    function punctuation($field = null) {
-        if(is_array($field)) {
-            foreach ($field as $key => $value){
-                if(ereg("[[:punct:]]", $this->request[$value])) {
-                    $this->setError($value, 105);
-                }
-            }
-            foreach ($this->errors as $key => $value){
-                if($value == 105) {
-                    $this->valid = false;
-                }
-            }
-            if($this->valid) {
-                $this->resetValid();
-                return true;
-            } else {
-                $this->resetValid();
-                return false;
-            }
-        } elseif ($field == null){
-            foreach ($this->request as $key => $value) {
-                if(ereg("[[:punct:]]", $value)) {
-                    $this->setError($key, 105);
-                }
-            }
-            foreach ($this->errors as $key => $value){
-                if($value == 105) {
-                    $this->valid = false;
-                }
-            }
-            if($this->valid) {
-                $this->resetValid();
-                return true;
-            } else {
-                $this->resetValid();
-                return false;
-            }
-        } else {
-            if(ereg("[[:punct:]]", $this->request[$field])) {
-                $this->setError($field, 105);
-                return false;
-            } else {
-                return true;
-            }
-        }
-    }
+    // function punctuation($field = null) {
+    //     if(is_array($field)) {
+    //         foreach ($field as $key => $value){
+    //             if(ereg("[[:punct:]]", $this->request[$value])) {
+    //                 $this->setError($value, 105);
+    //             }
+    //         }
+    //         foreach ($this->errors as $key => $value){
+    //             if($value == 105) {
+    //                 $this->valid = false;
+    //             }
+    //         }
+    //         if($this->valid) {
+    //             $this->resetValid();
+    //             return true;
+    //         } else {
+    //             $this->resetValid();
+    //             return false;
+    //         }
+    //     } elseif ($field == null){
+    //         foreach ($this->request as $key => $value) {
+    //             if(ereg("[[:punct:]]", $value)) {
+    //                 $this->setError($key, 105);
+    //             }
+    //         }
+    //         foreach ($this->errors as $key => $value){
+    //             if($value == 105) {
+    //                 $this->valid = false;
+    //             }
+    //         }
+    //         if($this->valid) {
+    //             $this->resetValid();
+    //             return true;
+    //         } else {
+    //             $this->resetValid();
+    //             return false;
+    //         }
+    //     } else {
+    //         if(ereg("[[:punct:]]", $this->request[$field])) {
+    //             $this->setError($field, 105);
+    //             return false;
+    //         } else {
+    //             return true;
+    //         }
+    //     }
+    // }
 
     //number value functions takes <, >, =, <=, and >= as operators
     //ERROR: 106
-    function value($field, $operator, $length) {
-        switch($operator) {
-            case "<":
-                if($this->request[$field] < $length) {
-                    return true;
-                } else {
-                    $this->setError($field, 106);
-                    return false;
-                }
-                break;
-            case ">":
-                if($this->request[$field] > $length) {
-                    return true;
-                } else {
-                    $this->setError($field, 106);
-                    return false;
-                }
-                break;
-            case "=":
-                if($this->request[$field] == $length) {
-                    return true;
-                } else {
-                    $this->setError($field, 106);
-                    return false;
-                }
-                break;
-            case "<=":
-                if($this->request[$field] <= $length) {
-                    return true;
-                } else {
-                    $this->setError($field, 106);
-                    return false;
-                }
-                break;
-            case ">=":
-                if($this->request[$field] >= $length) {
-                    return true;
-                } else {
-                    $this->setError($field, 106);
-                    return false;
-                }
-                break;
-            default:
-                if($this->request[$field] < $length) {
-                    return true;
-                } else {
-                    $this->setError($field, 106);
-                    return false;
-                }
-        }
-    }
+    // function value($field, $operator, $length) {
+    //     switch($operator) {
+    //         case "<":
+    //             if($this->request[$field] < $length) {
+    //                 return true;
+    //             } else {
+    //                 $this->setError($field, 106);
+    //                 return false;
+    //             }
+    //             break;
+    //         case ">":
+    //             if($this->request[$field] > $length) {
+    //                 return true;
+    //             } else {
+    //                 $this->setError($field, 106);
+    //                 return false;
+    //             }
+    //             break;
+    //         case "=":
+    //             if($this->request[$field] == $length) {
+    //                 return true;
+    //             } else {
+    //                 $this->setError($field, 106);
+    //                 return false;
+    //             }
+    //             break;
+    //         case "<=":
+    //             if($this->request[$field] <= $length) {
+    //                 return true;
+    //             } else {
+    //                 $this->setError($field, 106);
+    //                 return false;
+    //             }
+    //             break;
+    //         case ">=":
+    //             if($this->request[$field] >= $length) {
+    //                 return true;
+    //             } else {
+    //                 $this->setError($field, 106);
+    //                 return false;
+    //             }
+    //             break;
+    //         default:
+    //             if($this->request[$field] < $length) {
+    //                 return true;
+    //             } else {
+    //                 $this->setError($field, 106);
+    //                 return false;
+    //             }
+    //     }
+    // }
 
     //check if a number value is between $max and $min
     //ERROR: 107
-    function valueBetween($field, $max, $min, $inclusive = false){
-        if(!$inclusive){
-            if($this->request[$field] < $max && $this->request[$field] > $min) {
-                return true;
-            } else {
-                $this->setError($field, 107);
-                return false;
-            }
-        } else {
-            if($this->request[$field] <= $max && $this->request[$field] >= $min) {
-                return true;
-            } else {
-                $this->setError($field, 107);
-                return false;
-            }
-        }
-    }
+    // function valueBetween($field, $max, $min, $inclusive = false){
+    //     if(!$inclusive){
+    //         if($this->request[$field] < $max && $this->request[$field] > $min) {
+    //             return true;
+    //         } else {
+    //             $this->setError($field, 107);
+    //             return false;
+    //         }
+    //     } else {
+    //         if($this->request[$field] <= $max && $this->request[$field] >= $min) {
+    //             return true;
+    //         } else {
+    //             $this->setError($field, 107);
+    //             return false;
+    //         }
+    //     }
+    // }
 
     //check if a field contains only alphabetic characters
     //ERROR: 108
-    function alpha($field = null) {
-        if(is_array($field)) {
-            foreach ($field as $key => $value){
-                $strlen = strlen($this->request[$value]);
-                if($strlen > 0) {
-                    if(!ereg("[[:alpha:]]\{$strlen}", $this->request[$value])) {
-                        $this->setError($value, 108);
-                    }
-                }
-            }
-            foreach ($this->errors as $key => $value){
-                if($value == 108) {
-                    $this->valid = false;
-                }
-            }
-            if($this->valid) {
-                $this->resetValid();
-                return true;
-            } else {
-                $this->resetValid();
-                return false;
-            }
-        } elseif ($field == null) {
-            foreach ($this->request as $key => $value) {
-                $strlen = strlen($value);
-                if($strlen > 0) {
-                    if(!ereg("[[:alpha:]]\{$strlen}", $value)) {
-                        $this->setError($key, 108);
-                    }
-                }
-            }
-            foreach ($this->errors as $key => $value){
-                if($value == 108) {
-                    $this->valid = false;
-                }
-            }
-            if($this->valid) {
-                $this->resetValid();
-                return true;
-            } else {
-                $this->resetValid();
-                return false;
-            }
-        } else {
-            $strlen = strlen($this->request[$field]);
-            if($strlen > 0) {
-                if(ereg("[[:alpha:]]\{$strlen}", $this->request[$field])) {
-                    return true;
-                } else {
-                    $this->setError($field, 108);
-                    return false;
-                }
-            }
-        }
-    }
+    // function alpha($field = null) {
+    //     if(is_array($field)) {
+    //         foreach ($field as $key => $value){
+    //             $strlen = strlen($this->request[$value]);
+    //             if($strlen > 0) {
+    //                 if(!ereg("[[:alpha:]]\{$strlen}", $this->request[$value])) {
+    //                     $this->setError($value, 108);
+    //                 }
+    //             }
+    //         }
+    //         foreach ($this->errors as $key => $value){
+    //             if($value == 108) {
+    //                 $this->valid = false;
+    //             }
+    //         }
+    //         if($this->valid) {
+    //             $this->resetValid();
+    //             return true;
+    //         } else {
+    //             $this->resetValid();
+    //             return false;
+    //         }
+    //     } elseif ($field == null) {
+    //         foreach ($this->request as $key => $value) {
+    //             $strlen = strlen($value);
+    //             if($strlen > 0) {
+    //                 if(!ereg("[[:alpha:]]\{$strlen}", $value)) {
+    //                     $this->setError($key, 108);
+    //                 }
+    //             }
+    //         }
+    //         foreach ($this->errors as $key => $value){
+    //             if($value == 108) {
+    //                 $this->valid = false;
+    //             }
+    //         }
+    //         if($this->valid) {
+    //             $this->resetValid();
+    //             return true;
+    //         } else {
+    //             $this->resetValid();
+    //             return false;
+    //         }
+    //     } else {
+    //         $strlen = strlen($this->request[$field]);
+    //         if($strlen > 0) {
+    //             if(ereg("[[:alpha:]]\{$strlen}", $this->request[$field])) {
+    //                 return true;
+    //             } else {
+    //                 $this->setError($field, 108);
+    //                 return false;
+    //             }
+    //         }
+    //     }
+    // }
 
     //check if a field contains only alphanumeric characters
     //ERROR: 109
-    function alphaNumeric($field = null) {
-        if(is_array($field)) {
-            foreach ($field as $key => $value){
-                $strlen = strlen($this->request[$value]);
-                if($strlen > 0) {
-                    if(!ereg("[[:alnum:]]\{$strlen}", $this->request[$value])) {
-                        $this->setError($value, 109);
-                    }
-                }
-            }
-            foreach ($this->errors as $key => $value){
-                if($value == 109) {
-                    $this->valid = false;
-                }
-            }
-            if($this->valid) {
-                $this->resetValid();
-                return true;
-            } else {
-                $this->resetValid();
-                return false;
-            }
-        } elseif ($field == null) {
-            foreach ($this->request as $key => $value) {
-                $strlen = strlen($value);
-                if($strlen > 0) {
-                    if(!ereg("[[:alnum:]]\{$strlen}", $value)) {
-                        $this->setError($key, 109);
-                    }
-                }
-            }
-            foreach ($this->errors as $key => $value){
-                if($value == 109) {
-                    $this->valid = false;
-                }
-            }
-            if($this->valid) {
-                $this->resetValid();
-                return true;
-            } else {
-                $this->resetValid();
-                return false;
-            }
-        } else {
-            $strlen = strlen($this->request[$field]);
-            if($strlen > 0) {
-                if(ereg("[[:alnum:]]\{$strlen}", $this->request[$field])) {
-                    return true;
-                } else {
-                    $this->setError($field, 109);
-                    return false;
-                }
-            }
-        }
-    }
+    // function alphaNumeric($field = null) {
+    //     if(is_array($field)) {
+    //         foreach ($field as $key => $value){
+    //             $strlen = strlen($this->request[$value]);
+    //             if($strlen > 0) {
+    //                 if(!ereg("[[:alnum:]]\{$strlen}", $this->request[$value])) {
+    //                     $this->setError($value, 109);
+    //                 }
+    //             }
+    //         }
+    //         foreach ($this->errors as $key => $value){
+    //             if($value == 109) {
+    //                 $this->valid = false;
+    //             }
+    //         }
+    //         if($this->valid) {
+    //             $this->resetValid();
+    //             return true;
+    //         } else {
+    //             $this->resetValid();
+    //             return false;
+    //         }
+    //     } elseif ($field == null) {
+    //         foreach ($this->request as $key => $value) {
+    //             $strlen = strlen($value);
+    //             if($strlen > 0) {
+    //                 if(!ereg("[[:alnum:]]\{$strlen}", $value)) {
+    //                     $this->setError($key, 109);
+    //                 }
+    //             }
+    //         }
+    //         foreach ($this->errors as $key => $value){
+    //             if($value == 109) {
+    //                 $this->valid = false;
+    //             }
+    //         }
+    //         if($this->valid) {
+    //             $this->resetValid();
+    //             return true;
+    //         } else {
+    //             $this->resetValid();
+    //             return false;
+    //         }
+    //     } else {
+    //         $strlen = strlen($this->request[$field]);
+    //         if($strlen > 0) {
+    //             if(ereg("[[:alnum:]]\{$strlen}", $this->request[$field])) {
+    //                 return true;
+    //             } else {
+    //                 $this->setError($field, 109);
+    //                 return false;
+    //             }
+    //         }
+    //     }
+    // }
 
     //check if field is a date by specified format
     //acceptable separators are "/" "." "-"
@@ -508,21 +508,21 @@ class validator {
             //explode date field into $dateArray
             //check if the monthNum, dayNum, and yearNum match appropriately to the $dateArray
             $dateArray = explode($separator, $this->request[$field]);
-            if($month) {
-                if(!ereg("^[0-9]\{$monthNum}$", $dateArray[$monthPos]) || $dateArray[$monthPos] > 12) {
-                    $this->valid = false;
-                }
-            }
-            if($day) {
-                if(!ereg("^[0-9]\{$dayNum}$", $dateArray[$dayPos]) || $dateArray[$dayPos] > 31) {
-                    $this->valid = false;
-                }
-            }
-            if($year) {
-                if (!ereg("^[0-9]\{$yearNum}$", $dateArray[$yearPos])) {
-                    $this->valid = false;
-                }
-            }
+            // if($month) {
+            //     if(!ereg("^[0-9]\{$monthNum}$", $dateArray[$monthPos]) || $dateArray[$monthPos] > 12) {
+            //         $this->valid = false;
+            //     }
+            // }
+            // if($day) {
+            //     if(!ereg("^[0-9]\{$dayNum}$", $dateArray[$dayPos]) || $dateArray[$dayPos] > 31) {
+            //         $this->valid = false;
+            //     }
+            // }
+            // if($year) {
+            //     if (!ereg("^[0-9]\{$yearNum}$", $dateArray[$yearPos])) {
+            //         $this->valid = false;
+            //     }
+            // }
         }
 
         if ($this->valid) {

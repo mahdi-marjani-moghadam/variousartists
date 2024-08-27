@@ -462,18 +462,7 @@ class adminArtistsModelDb
 
         return $result;
     }
-    /**
-     * edit artists by Artists_id.
-     *
-     * @param $fields
-     *
-     * @return mixed
-     *
-     * @author malekloo
-     * @date 3/16/2015
-     *
-     * @version 01.01.01
-     */
+   
     public static function update($fields)
     {
         $conn = dbConn::getConnection();

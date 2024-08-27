@@ -244,7 +244,7 @@
                                             <?php
                                             foreach ($list['category'] as $category_id => $value) {
                                             ?>
-                                                <option <?php echo in_array($value['Category_id'], $_REQUEST['category_id']) ? 'selected' : '' ?> value="<?php echo $value['Category_id'] ?>">
+                                                <option <?php echo (isset($_REQUEST['category_id']) && in_array($value['Category_id'], $_REQUEST['category_id'])) ? 'selected' : '' ?> value="<?php echo $value['Category_id'] ?>">
                                                     <?php echo $value['export'] ?>
                                                 </option>
                                             <?php
@@ -328,13 +328,16 @@
                                         <br>
                                         <?php echo picture_is_square_and_jpeg ?>
                                     </div>
-
+                                    <div class="col_full">
+                                        <img src="<?php echo $list['captcha']->inline(); ?>" />
+                                        <input type="text" style="height: 40px; " placeholder="Enter Code" name="captcha">
+                                    </div>
 
                                     <div class="col_full nobottommargin">
                                         
                                         <button class="g-recaptcha button button-3d button-black nomargin"><?php echo  register ?></button>
 
-                                        <script src="https://www.google.com/recaptcha/api.js?render=6LcUQeEeAAAAAJwaRS6BsBVQt3og5hAX3I9z7XrW"></script>
+                                        <!-- <script src="https://www.google.com/recaptcha/api.js?render=6LcUQeEeAAAAAJwaRS6BsBVQt3og5hAX3I9z7XrW"></script>
                                         <script>
                                             $('#register-form').submit(function(event) {
                                                 // function onClick(e) {
@@ -351,7 +354,7 @@
                                                     });
                                                 });
                                             });
-                                        </script>
+                                        </script> -->
 
                                         <a class="pull-right" href="<?php echo RELA_DIR ?>login"><?php echo login_by_account ?></a>
                                     </div>

@@ -1,4 +1,7 @@
 <?php
+use Component\category\model\categoryModel;
+use Component\country\model\country;
+use Component\event\model\eventModel;
 /**
  * Created by PhpStorm.
  * User: malek
@@ -42,7 +45,7 @@ class eventController
      *
      * @return string
      */
-    public function template($list = array(), $msg='')
+    public function template($list = array(), $msg='') : void
     {
 
         // global $conn, $lang;
@@ -58,9 +61,7 @@ class eventController
             case 'json':
                 echo json_encode($list);
                 break;
-            case 'array':
-                return $list;
-                break;
+            
 
             case 'serialize':
                  echo serialize($list);
@@ -125,7 +126,7 @@ class eventController
         }
 
         ///////////////////////////
-        include_once ROOT_DIR.'component/country/model/country.model.php';
+        // include_once ROOT_DIR.'component/country/model/country.model.php';
         $obj = country::find($export['list']['country_id']);
         $export['list']['country'] = $obj->fields["nice_name"];
 
@@ -152,7 +153,7 @@ class eventController
         global $PARAM,$lang;
 
 
-        include_once ROOT_DIR.'component/category/model/category.model.php';
+        // include_once ROOT_DIR.'component/category/model/category.model.php';
         $category = new categoryModel();
          $category_id = $fields['chose']['category_id'];
 
