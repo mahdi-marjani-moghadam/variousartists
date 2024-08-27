@@ -629,75 +629,75 @@ class adminArtistsModelDb
     }
 
 
-    private function _getReport($fields='')
-    {
+    // private function _getReport($fields='')
+    // {
 
-        global $artists_info;
-        $artists_name=$artists_info['comp_name'];
-        $this->_checkPermission();
-        $conn = dbConn::getConnection();
-        $fields['useTrash']='false';
-        $filter=$this->filterBuilder($fields);
-        $length=$filter['length'];
-        $filter=$filter['list'];
-        if($filter['order'] =='')
-        {
-            $filter['order']= 'ORDER BY `calldate` DESC';
-        }
-        $sql = "
-                  SELECT  `t1`.* FROM (SELECT `cdr`.* FROM `cdr` WHERE `cdr`.`dcontext` like '%-$artists_name') as t1
+    //     global $artists_info;
+    //     $artists_name=$artists_info['comp_name'];
+    //     $this->_checkPermission();
+    //     $conn = dbConn::getConnection();
+    //     $fields['useTrash']='false';
+    //     $filter=$this->filterBuilder($fields);
+    //     $length=$filter['length'];
+    //     $filter=$filter['list'];
+    //     if($filter['order'] =='')
+    //     {
+    //         $filter['order']= 'ORDER BY `calldate` DESC';
+    //     }
+    //     $sql = "
+    //               SELECT  `t1`.* FROM (SELECT `cdr`.* FROM `cdr` WHERE `cdr`.`dcontext` like '%-$artists_name') as t1
 
-        ".$filter['WHERE'] .$filter['filter'].$filter['order'].$filter['limit'];
+    //     ".$filter['WHERE'] .$filter['filter'].$filter['order'].$filter['limit'];
 
-        //or WHERE    news_id='$id' ");
-        $stmt = $conn->prepare($sql);
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $stmt->execute();
+    //     //or WHERE    news_id='$id' ");
+    //     $stmt = $conn->prepare($sql);
+    //     $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    //     $stmt->execute();
 
-        if (!$stmt)
-        {
-            $result['result'] = -1;
-            $result['no'] = 1;
-            $result['msg'] = $conn->errorInfo();
-            return $result;
-        }
+    //     if (!$stmt)
+    //     {
+    //         $result['result'] = -1;
+    //         $result['no'] = 1;
+    //         $result['msg'] = $conn->errorInfo();
+    //         return $result;
+    //     }
 
-        $sql="
+    //     $sql="
 
-                SELECT
-                  Count(`t1`.`cdr_id`) AS `recCount`
-                FROM
-                  (SELECT *
-                  FROM `cdr`
-                  WHERE `cdr`.`dcontext` LIKE '%-$artists_name') AS `t1`
+    //             SELECT
+    //               Count(`t1`.`cdr_id`) AS `recCount`
+    //             FROM
+    //               (SELECT *
+    //               FROM `cdr`
+    //               WHERE `cdr`.`dcontext` LIKE '%-$artists_name') AS `t1`
 
-             ".$filter['WHERE'] .$filter['filter'];
-        //echo $stmt->rowCount();
+    //          ".$filter['WHERE'] .$filter['filter'];
+    //     //echo $stmt->rowCount();
 
-        $stmTp = $conn->prepare($sql);
-        $stmTp->setFetchMode(PDO::FETCH_ASSOC);
-        $stmTp->execute();
+    //     $stmTp = $conn->prepare($sql);
+    //     $stmTp->setFetchMode(PDO::FETCH_ASSOC);
+    //     $stmTp->execute();
 
-        $rowP = $stmTp->fetch();
-        $rowFound=$rowP['recCount'];
-        $this->_paging['recordsFiltered']=$rowP['recCount'];
-        $this->_paging['recordsTotal']= $rowFound['found'];
+    //     $rowP = $stmTp->fetch();
+    //     $rowFound=$rowP['recCount'];
+    //     $this->_paging['recordsFiltered']=$rowP['recCount'];
+    //     $this->_paging['recordsTotal']= $rowFound['found'];
 
-        while($row = $stmt->fetch())
-        {
-            $callDate=$row['calldate'];
-            list($date, $time) = explode(" ",$callDate);
-            list($year, $month, $day) = explode("-", $date);
-            list($extension, $compName) = explode("-", $row['dcontext']);
-            $row['filename']=RELA_CHANEL.$artists_name.'/'.$year.'/'.$month.'/'.$day.'/'.$row['uniqueid'].'.'.'wav';
-            $this->_set_reportListDb($row['cdr_id'], $row);
-        }
+    //     while($row = $stmt->fetch())
+    //     {
+    //         $callDate=$row['calldate'];
+    //         list($date, $time) = explode(" ",$callDate);
+    //         list($year, $month, $day) = explode("-", $date);
+    //         list($extension, $compName) = explode("-", $row['dcontext']);
+    //         $row['filename']=RELA_CHANEL.$artists_name.'/'.$year.'/'.$month.'/'.$day.'/'.$row['uniqueid'].'.'.'wav';
+    //         $this->_set_reportListDb($row['cdr_id'], $row);
+    //     }
 
 
-        $result['result'] = 1;
-        $result['no'] = 2;
-        return $result;
-    }
+    //     $result['result'] = 1;
+    //     $result['no'] = 2;
+    //     return $result;
+    // }
 
     public function getArtistsold($fields = '')
     {

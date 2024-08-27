@@ -1,19 +1,18 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: malek
- * Date: 2/20/2016
- * Time: 4:33 AM.
- */
-class salonImportModel
+namespace Component\genre\admin\model;
+
+use Common\dbConn;
+use PDO;
+
+class genreImportModel
 {
     static function update($fields)
     {
 
         $conn = dbConn::getConnection();
         $sql = "
-                UPDATE salon
+                UPDATE genre
                   SET
                     `parent_id`             =   '" . $fields['parent_id'] . "',
                     `title`  =   '" . $fields['title'] . "',
@@ -25,15 +24,14 @@ class salonImportModel
                     `status`  =   '" . $fields['status'] . "',
                     `sort`  =   '" . $fields['sort'] . "',
                     `new_id`  =   '" . $fields['new_id'] . "'
-                    WHERE Salon_id = '" . $fields['Salon_id'] . "'
+                    WHERE Genre_id = '" . $fields['Genre_id'] . "'
                     ";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['Number'] = 1;
             $result['msg'] = $conn->errorInfo();
@@ -43,16 +41,16 @@ class salonImportModel
         return $result;
     }
 
-    public static function getSalonById($id)
+    public static function getGenreById($id)
     {
         //global $lang;
         $conn = dbConn::getConnection();
         $sql = "SELECT
                     *
                 FROM
-                    salon
+                    genre
                 WHERE
-                    Salon_id= '$id'";
+                    Genre_id= '$id'";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -87,9 +85,9 @@ class salonImportModel
         $conn = dbConn::getConnection();
         $sql = '
 				SELECT
-					`salon`.*
-				FROM salon
-					ORDER BY salon.Salon_id  ASC';
+					`genre`.*
+				FROM genre
+					ORDER BY genre.Genre_id  ASC';
 
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -102,7 +100,7 @@ class salonImportModel
 
             return $result;
         }
-        $salon = array();
+        $genre = array();
 
         while ($row = $stmt->fetch()) {
             $list[$row['parent_id']][] = $row;
@@ -113,7 +111,7 @@ class salonImportModel
         return $result;
     }
 
-    public static function getSalonByIdArray($id = array())
+    public static function getGenreByIdArray($id = array())
     {
         $conn = dbConn::getConnection();
 
@@ -122,7 +120,7 @@ class salonImportModel
             $categories .= "'$i',";
         }
         $categories = substr($categories, 0, -1);
-        $sql = 'SELECT * FROM salon WHERE Salon_id IN ('.$categories.')';
+        $sql = 'SELECT * FROM genre WHERE Genre_id IN (' . $categories . ')';
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
@@ -145,7 +143,7 @@ class salonImportModel
         return $result;
     }
 
-    public static function getSalonByIdString($id = '')
+    public static function getGenreByIdString($id = '')
     {
         $conn = dbConn::getConnection();
         if (substr($id, -1) == ',') {
@@ -154,7 +152,7 @@ class salonImportModel
         if (substr($id, 0, 1) == ',') {
             $id = substr($id, 1);
         }
-        $sql = 'SELECT * FROM salon WHERE Salon_id IN ('.$id.')';
+        $sql = 'SELECT * FROM genre WHERE Genre_id IN (' . $id . ')';
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
@@ -177,12 +175,12 @@ class salonImportModel
         return $result;
     }
 
-    public static function getSalonParents($id)
+    public static function getGenreParents($id)
     {
         $conn = dbConn::getConnection();
 
         while (1) {
-            $sql = "SELECT * FROM salon WHERE Salon_id = '$id'";
+            $sql = "SELECT * FROM genre WHERE Genre_id = '$id'";
             $stmt = $conn->prepare($sql);
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $stmt->execute();
@@ -195,7 +193,7 @@ class salonImportModel
             }
             if ($stmt->rowCount()) {
                 $row = $stmt->fetch();
-                $list[$row['Salon_id']] = $row;
+                $list[$row['Genre_id']] = $row;
                 $id = $row['parent_id'];
             } else {
                 break;
@@ -208,13 +206,13 @@ class salonImportModel
         return $result;
     }
 
-    public static function getSalonChildes($id)
+    public static function getGenreChildes($id)
     {
         static $list;
-        
+
         $conn = dbConn::getConnection();
 
-        $sql = "SELECT * FROM salon WHERE parent_id = '$id'";
+        $sql = "SELECT * FROM genre WHERE parent_id = '$id'";
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
@@ -229,8 +227,8 @@ class salonImportModel
         //     return;
         // }
         while ($row = $stmt->fetch()) {
-            self::getSalonChildes($row['Salon_id']);
-            $list[$row['Salon_id']] = $row;
+            self::getGenreChildes($row['Genre_id']);
+            $list[$row['Genre_id']] = $row;
         }
 
         $result['result'] = 1;
@@ -241,12 +239,12 @@ class salonImportModel
 
 
 
-    public static function getSalonList()
+    public static function getGenreList()
     {
         $conn = dbConn::getConnection();
 
 
-        $sql = 'SELECT * FROM salon order by `group`';
+        $sql = 'SELECT * FROM genre order by `group`';
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
@@ -267,6 +265,4 @@ class salonImportModel
 
         return $result;
     }
-
-
 }

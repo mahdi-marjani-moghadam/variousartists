@@ -8,7 +8,7 @@ use Common\looeic;
 use Model\DataBase;
 use PDO;
 
-class adminContactusModelDb extends looeic
+class adminContactusModelDb 
 {
 
     static function update($fields, $where = '')

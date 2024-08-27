@@ -151,7 +151,7 @@
                       foreach($list['category'] as $category_id => $value)
                       {
                         ?>
-                        <option  <?php echo in_array($value['Category_id'],$list['category_id'] ) ? 'selected' : '' ?> value="<?=$value['Category_id']?>">
+                        <option  <?php echo is_array($list['category_id'] ) && in_array($value['Category_id'],$list['category_id'] ) ? 'selected' : '' ?> value="<?=$value['Category_id']?>">
                           <?=$value['export']?>
                         </option>
                         <?
@@ -170,7 +170,7 @@
                                 foreach($list['genre'] as $genre_id => $value)
                                 {
                                     ?>
-                                    <option  <?php echo in_array($value['Genre_id'],$list['genre_id'] ) ? 'selected' : '' ?> value="<?=$value['Genre_id']?>">
+                                    <option  <?php echo is_array($list['genre_id']) && in_array($value['Genre_id'],$list['genre_id'] ) ? 'selected' : '' ?> value="<?=$value['Genre_id']?>">
                                         <?=$value['export']?>
                                     </option>
                                     <?

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: malek
@@ -6,7 +7,9 @@
  * Time: 4:24 PM
  */
 
-include_once(dirname(__FILE__)."/admin.salon.model.php");
+use Component\salon\admin\model\adminSalonModel;
+
+include_once(dirname(__FILE__) . "/admin.salon.model.php");
 
 /**
  * Class newsController
@@ -31,8 +34,7 @@ class adminSalonController
      */
     public function __construct()
     {
-        $this->exportType='html';
-
+        $this->exportType = 'html';
     }
 
     /**
@@ -40,13 +42,12 @@ class adminSalonController
      * @param $msg
      * @return string
      */
-    function template($list=array(),$msg='')
+    function template($list = array(), $msg = ''): void
     {
         // global $conn, $lang;
 
 
-        switch($this->exportType)
-        {
+        switch ($this->exportType) {
             case 'html':
 
                 include(ROOT_DIR . "templates/" . CURRENT_SKIN . "/template_start.php");
@@ -60,17 +61,14 @@ class adminSalonController
             case 'json':
                 echo json_encode($list);
                 break;
-            case 'array':
-                return $list;
-                break;
+      
 
             case 'serialize':
-                 echo serialize($list);
+                echo serialize($list);
                 break;
             default:
                 break;
         }
-
     }
 
     /**
@@ -79,16 +77,14 @@ class adminSalonController
      */
     public function showMore($_input)
     {
-        if(!is_numeric($_input))
-        {
-            $msg= 'یافت نشد';
+        if (!is_numeric($_input)) {
+            $msg = 'یافت نشد';
             $this->template($msg);
         }
-        $news=new adminNewsModel();
-        $result=$news->getNewsById($_input);
+        $news = new adminNewsModel();
+        $result = $news->getNewsById($_input);
 
-        if($result['result']!=1)
-        {
+        if ($result['result'] != 1) {
             die();
         }
 
@@ -97,134 +93,131 @@ class adminSalonController
     }
 
 
-    public function getSalon_option($parent_id='0')
+    public function getSalon_option($parent_id = '0')
     {
         $model = new adminSalonModel();
-        $result=$model->getSalonOption();
-
+        $result = $model->getSalonOption();
     }
 
-        /**
+    /**
      * @param $fields
      */
-    public function showList($parent_id='0')
+    public function showList($parent_id = '0')
     {
-        $model=new adminSalonModel();
+        $model = new adminSalonModel();
 
 
 
-        $result=$model->getSalonOption();
+        $result = $model->getSalonOption();
 
 
-        if($result['result']!='1')
-        {
-            $this->fileName='admin.salon.showList.php';
-            $this->template('',$result['msg']);
+        if ($result['result'] != '1') {
+            $this->fileName = 'admin.salon.showList.php';
+            $this->template('', $result['msg']);
             die();
         }
 
-        $export['list']=$model->list;
-        $export['recordsCount']=$model->recordsCount;
-        $this->fileName='admin.salon.showList.php';
+        $export['list'] = $model->list;
+        $export['recordsCount'] = $model->recordsCount;
+        $this->fileName = 'admin.salon.showList.php';
 
         $this->template($export);
 
         die();
 
-        foreach ($result as $key => $val)
-        {
-            print_r($val['export'].'<br/>');
-        }
-        //echo "<br/>start<br/>" . $st, "<br/>close<br/>";
-        print_r($result);
+        //     foreach ($result as $key => $val)
+        //     {
+        //         print_r($val['export'].'<br/>');
+        //     }
+        //     //echo "<br/>start<br/>" . $st, "<br/>close<br/>";
+        //     print_r($result);
 
 
-        $result=$model->getSalonTree();
-        /*
-         * //ul li sample
-        $mainMenu=$model->getulli($model->list[$parent_id],1,$model->list);
-        $mainMenu = "<ul>\n".$mainMenu ."</ul>";
-        echo '<pre/>';
-        print_r($mainMenu);*/
+        //     $result=$model->getSalonTree();
+        //     /*
+        //      * //ul li sample
+        //     $mainMenu=$model->getulli($model->list[$parent_id],1,$model->list);
+        //     $mainMenu = "<ul>\n".$mainMenu ."</ul>";
+        //     echo '<pre/>';
+        //     print_r($mainMenu);*/
 
-        $this->fileName='admin.news.showList.php';
-        $this->template('',$result['msg']);
-        die();
+        //     $this->fileName='admin.news.showList.php';
+        //     $this->template('',$result['msg']);
+        //     die();
 
-        $export['list']=$model->list;
-        $export['recordsCount']=$news->recordsCount;
-        $this->fileName='admin.news.showList.php';
-
-
-        $fields = $result['export']['list'];
-        $this->listCat = $fields;
-        $mainMenu=$this->getulli($fields[0]);
-        $mainMenu = "<ul>\n".$mainMenu ."</ul>";
-
-        return $mainMenu;
-
-        //////////////////////////
-        if($result['result']!='1')
-        {
-            $this->fileName='admin.news.showList.php';
-            $this->template('',$result['msg']);
-            die();
-        }
-        $export['list']=$news->list;
-        $export['recordsCount']=$news->recordsCount;
-        $this->fileName='admin.news.showList.php';
-        /////////////////////////
+        //     $export['list']=$model->list;
+        //     $export['recordsCount']=$news->recordsCount;
+        //     $this->fileName='admin.news.showList.php';
 
 
+        //     $fields = $result['export']['list'];
+        //     $this->listCat = $fields;
+        //     $mainMenu=$this->getulli($fields[0]);
+        //     $mainMenu = "<ul>\n".$mainMenu ."</ul>";
 
-        //////
-        if($result['result']!='1')
-        {
-            $this->fileName='admin.news.showList.php';
-            $this->template('',$result['msg']);
-            die();
-        }
-        $export['list']=$news->list;
-        $export['recordsCount']=$news->recordsCount;
-        $this->fileName='admin.news.showList.php';
+        //     return $mainMenu;
 
-        $this->template($export);
-        die();
-      //////
+        //     //////////////////////////
+        //     if($result['result']!='1')
+        //     {
+        //         $this->fileName='admin.news.showList.php';
+        //         $this->template('',$result['msg']);
+        //         die();
+        //     }
+        //     $export['list']=$news->list;
+        //     $export['recordsCount']=$news->recordsCount;
+        //     $this->fileName='admin.news.showList.php';
+        //     /////////////////////////
 
 
 
-        if($result['result']!='1')
-        {
-            die();
-        }
-        $export['list']=$news->list;
-        $export['recordsCount']=$news->recordsCount;
-        $this->fileName='admin.news.showList.php';
+        //     //////
+        //     if($result['result']!='1')
+        //     {
+        //         $this->fileName='admin.news.showList.php';
+        //         $this->template('',$result['msg']);
+        //         die();
+        //     }
+        //     $export['list']=$news->list;
+        //     $export['recordsCount']=$news->recordsCount;
+        //     $this->fileName='admin.news.showList.php';
 
-        $this->template($export);
-        die();
+        //     $this->template($export);
+        //     die();
+        //   //////
+
+
+
+        //     if($result['result']!='1')
+        //     {
+        //         die();
+        //     }
+        //     $export['list']=$news->list;
+        //     $export['recordsCount']=$news->recordsCount;
+        //     $this->fileName='admin.news.showList.php';
+
+        //     $this->template($export);
+        //     die();
     }
 
     /**
      * @param $fields
      * @param $msg
      */
-    public function showSalonAddForm($fields,$msg)
+    public function showSalonAddForm($fields, $msg)
     {
 
 
         $salon = new adminSalonModel();
 
-        $resultSalon = $salon->getSalonOption('|-- ',0,'1');
-        if($resultSalon['result'] == 1)
-        {
+        $resultSalon = $salon->getSalonOption('|-- ', 0, '1');
+        if ($resultSalon['result'] == 1) {
             $fields['salon'] = $salon->list;
         }
 
 
-        $this->fileName='admin.salon.addForm.php';
-        $this->template($fields,$msg);
+        $this->fileName = 'admin.salon.addForm.php';
+        $this->template($fields, $msg);
         die();
     }
 
@@ -234,7 +227,7 @@ class adminSalonController
      */
     public function addSalon($fields)
     {
-        $salon=new adminSalonModel();
+        $salon = new adminSalonModel();
 
         $fields['status'] = 1;
         $result = $salon->setFields($fields);
@@ -243,20 +236,19 @@ class adminSalonController
 
         $salon->save();
 
-        if(file_exists($_FILES['image']['tmp_name'])){
+        if (file_exists($_FILES['image']['tmp_name'])) {
 
-            $type  = explode('/',$_FILES['image']['type']);
+            $type  = explode('/', $_FILES['image']['type']);
 
-            $input['upload_dir'] = ROOT_DIR.'statics/banner/';
-            $result = fileUploader($input,$_FILES['image']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/banner/';
+            $result = fileUploader($input, $_FILES['image']);
             $salon->image = $result['image_name'];
             $result = $salon->save();
         }
-        if($result['result']!='1')
-        {
-            $this->showSalonAddForm($fields,$result['msg']);
+        if ($result['result'] != '1') {
+            $this->showSalonAddForm($fields, $result['msg']);
         }
-        $msg='عملیات با موفقیت انجام شد';
+        $msg = 'عملیات با موفقیت انجام شد';
         redirectPage(RELA_DIR . "zamin/index.php?component=salon", $msg);
         die();
     }
@@ -265,29 +257,27 @@ class adminSalonController
      * @param $fields
      * @param $msg
      */
-    public function showSalonEditForm($fields,$msg)
+    public function showSalonEditForm($fields, $msg)
     {
-        $salon=new adminSalonModel();
+        $salon = new adminSalonModel();
 
         $result    = $salon->getSalonById($fields['Salon_id']);
 
-        if($result['result']!='1')
-        {
-            $msg=$result['msg'];
+        if ($result['result'] != '1') {
+            $msg = $result['msg'];
             redirectPage(RELA_DIR . "zamin/index.php?component=salon", $msg);
         }
 
-        $export=$salon->fields;
+        $export = $salon->fields;
 
-        $where="Salon_id<>'{$fields['Salon_id']}'";
-        $resultSalon = $salon->getSalonOption('|-- ',0,'1',$where);
-        if($resultSalon['result'] == 1)
-        {
+        $where = "Salon_id<>'{$fields['Salon_id']}'";
+        $resultSalon = $salon->getSalonOption('|-- ', 0, '1', $where);
+        if ($resultSalon['result'] == 1) {
             $export['salon_list'] = $salon->list;
         }
         /*print_r_debug($export);*/
-        $this->fileName='admin.salon.editForm.php';
-        $this->template($export,$msg);
+        $this->fileName = 'admin.salon.editForm.php';
+        $this->template($export, $msg);
         die();
     }
 
@@ -297,34 +287,32 @@ class adminSalonController
     public function editSalon($fields)
 
     {
-/*        print_r_debug($fields);*/
+        /*        print_r_debug($fields);*/
         $object = adminSalonModel::find($fields['Salon_id']);
-        if(!is_object($object))
-        {
-            $msg=$object['msg'];
+        if (!is_object($object)) {
+            $msg = $object['msg'];
             redirectPage(RELA_DIR . "zamin/index.php?component=salon", $msg);
         }
-        $result=$object->setFields($fields);
-        $result=$object->validator();
+        $result = $object->setFields($fields);
+        $result = $object->validator();
 
         $result = $object->save();
-        if(file_exists($_FILES['image']['tmp_name'])){
+        if (file_exists($_FILES['image']['tmp_name'])) {
 
-            $type  = explode('/',$_FILES['image']['type']);
+            $type  = explode('/', $_FILES['image']['type']);
 
-            $input['upload_dir'] = ROOT_DIR.'statics/salon/';
-            $result = fileUploader($input,$_FILES['image']);
-            fileRemover($input['upload_dir'],$object->fields['image']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/salon/';
+            $result = fileUploader($input, $_FILES['image']);
+            fileRemover($input['upload_dir'], $object->fields['image']);
             $object->image = $result['image_name'];
 
             $result = $object->save();
         }
 
-        if($result['result']!='1')
-        {
-            $this->showSalonEditForm($fields,$result['msg']);
+        if ($result['result'] != '1') {
+            $this->showSalonEditForm($fields, $result['msg']);
         }
-        $msg='عملیات با موفقیت انجام شد';
+        $msg = 'عملیات با موفقیت انجام شد';
         redirectPage(RELA_DIR . "zamin/index.php?component=salon", $msg);
         die();
     }
@@ -333,29 +321,25 @@ class adminSalonController
 
         $object = adminSalonModel::find($id);
 
-        if(!is_object($object))
-        {
-            $msg=$object['msg'];
+        if (!is_object($object)) {
+            $msg = $object['msg'];
             redirectPage(RELA_DIR . "zamin/index.php?component=salon", $msg);
         }
 
 
-        $result=adminSalonModel::getBy_parent_id($id)->get();
+        $result = adminSalonModel::getBy_parent_id($id)->get();
 
-        if($result['export']['recordsCount']!='0')
-        {
+        if ($result['export']['recordsCount'] != '0') {
             $result['result'] = -1;
-            $result['msg']='ابتدا زیر دسته ها را پاک نمایید';
-            redirectPage(RELA_DIR . "zamin/index.php?component=salon", $msg);
+            $result['msg'] = 'ابتدا زیر دسته ها را پاک نمایید';
+            redirectPage(RELA_DIR . "zamin/index.php?component=salon");
         }
 
         $result = $object->delete();
 
 
-        $msg='حذف دسته بندی';
+        $msg = 'حذف دسته بندی';
         redirectPage(RELA_DIR . "zamin/index.php?component=salon", $msg);
         die();
     }
-
 }
-?>

@@ -831,6 +831,7 @@ class looeic extends DB
                 $stmt->execute();
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
             } catch (Exception $e) {
+                echo "SHOW COLUMNS FROM " . $this->TABLE_NAME . " ";
                 dd($e);
             }
             if (!$stmt) {
@@ -864,7 +865,7 @@ class looeic extends DB
         }
     }
 
-    function __set($name, string $value)
+    function __set(string $name, string $value)
     {
         $value = trim($value);
         $this->getFieldsName();

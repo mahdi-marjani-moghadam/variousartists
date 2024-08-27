@@ -327,7 +327,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-6" style="">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="country_id"><?=country?></label>
+                                           for="country_id">کشور</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
                                         <select name="country_id" id="country_id" data-input="select2">
 

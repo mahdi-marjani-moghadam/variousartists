@@ -1,6 +1,7 @@
 <?php
 
 use Common\dbConn;
+use Common\validators;
 use Component\category\admin\model\adminCategoryModel;
 use Component\city\admin\model\adminCityModel;
 use Component\city\admin\model\adminCityModelDb;
@@ -11,6 +12,7 @@ use Component\event\admin\model\adminEventModelDb;
 use Component\event_gallery\admin\model\adminEvent_galleryModel;
 use Component\genre\admin\model\adminGenreModel;
 use Component\province\admin\model\adminProvinceModel;
+use Component\salon\admin\model\adminSalonModel;
 
 /**
  * Created by PhpStorm.
@@ -1592,7 +1594,7 @@ class adminEventController
     public function deleteEvent($id)
     {
 
-        if (!validator::required($id) and !validator::Numeric($id)) {
+        if (!validators::required($id) and !validators::Numeric($id)) {
             $msg = 'یافت نشد';
             redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
         }
@@ -1629,7 +1631,7 @@ class adminEventController
     public function deleteEventDraft($id)
     {
 
-        if (!validator::required($id) and !validator::Numeric($id)) {
+        if (!validators::required($id) and !validators::Numeric($id)) {
             $msg = 'یافت نشد';
             redirectPage(RELA_DIR . 'zamin/index.php?component=event&action=draft', $msg);
         }
@@ -1644,7 +1646,7 @@ class adminEventController
         $result = $event->delete();
 
         if ($result['result'] != '1') {
-            redirectPage(RELA_DIR . 'zamin/index.php?component=event&action=draft', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=event&action=draft');
         }
 
         $msg = 'عملیات با موفقیت انجام شد';
@@ -1655,7 +1657,7 @@ class adminEventController
     public function deleteGallery($id)
     {
 
-        if (!validator::required($id) and !validator::Numeric($id)) {
+        if (!validators::required($id) and !validators::Numeric($id)) {
             $msg = 'یافت نشد';
             redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
         }

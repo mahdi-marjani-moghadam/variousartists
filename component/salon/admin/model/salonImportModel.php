@@ -1,19 +1,19 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: malek
- * Date: 2/20/2016
- * Time: 4:33 AM.
- */
-class genreImportModel
+namespace Component\salon\admin\model;
+
+use Common\dbConn;
+use PDO;
+use PDOException;
+
+class salonImportModel
 {
     static function update($fields)
     {
 
         $conn = dbConn::getConnection();
         $sql = "
-                UPDATE genre
+                UPDATE salon
                   SET
                     `parent_id`             =   '" . $fields['parent_id'] . "',
                     `title`  =   '" . $fields['title'] . "',
@@ -25,15 +25,14 @@ class genreImportModel
                     `status`  =   '" . $fields['status'] . "',
                     `sort`  =   '" . $fields['sort'] . "',
                     `new_id`  =   '" . $fields['new_id'] . "'
-                    WHERE Genre_id = '" . $fields['Genre_id'] . "'
+                    WHERE Salon_id = '" . $fields['Salon_id'] . "'
                     ";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['Number'] = 1;
             $result['msg'] = $conn->errorInfo();
@@ -43,16 +42,16 @@ class genreImportModel
         return $result;
     }
 
-    public static function getGenreById($id)
+    public static function getSalonById($id)
     {
         //global $lang;
         $conn = dbConn::getConnection();
         $sql = "SELECT
                     *
                 FROM
-                    genre
+                    salon
                 WHERE
-                    Genre_id= '$id'";
+                    Salon_id= '$id'";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -87,9 +86,9 @@ class genreImportModel
         $conn = dbConn::getConnection();
         $sql = '
 				SELECT
-					`genre`.*
-				FROM genre
-					ORDER BY genre.Genre_id  ASC';
+					`salon`.*
+				FROM salon
+					ORDER BY salon.Salon_id  ASC';
 
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -102,7 +101,7 @@ class genreImportModel
 
             return $result;
         }
-        $genre = array();
+        $salon = array();
 
         while ($row = $stmt->fetch()) {
             $list[$row['parent_id']][] = $row;
@@ -113,7 +112,7 @@ class genreImportModel
         return $result;
     }
 
-    public static function getGenreByIdArray($id = array())
+    public static function getSalonByIdArray($id = array())
     {
         $conn = dbConn::getConnection();
 
@@ -122,7 +121,7 @@ class genreImportModel
             $categories .= "'$i',";
         }
         $categories = substr($categories, 0, -1);
-        $sql = 'SELECT * FROM genre WHERE Genre_id IN ('.$categories.')';
+        $sql = 'SELECT * FROM salon WHERE Salon_id IN (' . $categories . ')';
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
@@ -145,7 +144,7 @@ class genreImportModel
         return $result;
     }
 
-    public static function getGenreByIdString($id = '')
+    public static function getSalonByIdString($id = '')
     {
         $conn = dbConn::getConnection();
         if (substr($id, -1) == ',') {
@@ -154,7 +153,7 @@ class genreImportModel
         if (substr($id, 0, 1) == ',') {
             $id = substr($id, 1);
         }
-        $sql = 'SELECT * FROM genre WHERE Genre_id IN ('.$id.')';
+        $sql = 'SELECT * FROM salon WHERE Salon_id IN (' . $id . ')';
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
@@ -177,12 +176,12 @@ class genreImportModel
         return $result;
     }
 
-    public static function getGenreParents($id)
+    public static function getSalonParents($id)
     {
         $conn = dbConn::getConnection();
 
         while (1) {
-            $sql = "SELECT * FROM genre WHERE Genre_id = '$id'";
+            $sql = "SELECT * FROM salon WHERE Salon_id = '$id'";
             $stmt = $conn->prepare($sql);
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $stmt->execute();
@@ -195,7 +194,7 @@ class genreImportModel
             }
             if ($stmt->rowCount()) {
                 $row = $stmt->fetch();
-                $list[$row['Genre_id']] = $row;
+                $list[$row['Salon_id']] = $row;
                 $id = $row['parent_id'];
             } else {
                 break;
@@ -208,13 +207,13 @@ class genreImportModel
         return $result;
     }
 
-    public static function getGenreChildes($id)
+    public static function getSalonChildes($id)
     {
         static $list;
-        
+
         $conn = dbConn::getConnection();
 
-        $sql = "SELECT * FROM genre WHERE parent_id = '$id'";
+        $sql = "SELECT * FROM salon WHERE parent_id = '$id'";
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
@@ -229,8 +228,8 @@ class genreImportModel
         //     return;
         // }
         while ($row = $stmt->fetch()) {
-            self::getGenreChildes($row['Genre_id']);
-            $list[$row['Genre_id']] = $row;
+            self::getSalonChildes($row['Salon_id']);
+            $list[$row['Salon_id']] = $row;
         }
 
         $result['result'] = 1;
@@ -241,15 +240,20 @@ class genreImportModel
 
 
 
-    public static function getGenreList()
+    public static function getSalonList()
     {
         $conn = dbConn::getConnection();
 
 
-        $sql = 'SELECT * FROM genre order by `group`';
-        $stmt = $conn->prepare($sql);
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $stmt->execute();
+        try{
+
+            $sql = 'SELECT * FROM salon ';
+            $stmt = $conn->prepare($sql);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->execute();
+        }catch(PDOException $e){
+            dd($e);
+        }
 
         if (!$stmt) {
             $result['result'] = -1;
@@ -267,6 +271,4 @@ class genreImportModel
 
         return $result;
     }
-
-
 }

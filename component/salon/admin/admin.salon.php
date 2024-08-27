@@ -5,6 +5,9 @@
  * Date: 2/20/2016
  * Time: 4:21 AM
  */
+
+use Component\salon\admin\model\salonImportModel;
+
 include_once(dirname(__FILE__). "/model/admin.salon.controller.php");
 include_once(dirname(__FILE__). "/model/salon.import.model.php");
 

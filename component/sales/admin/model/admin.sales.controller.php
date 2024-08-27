@@ -1,4 +1,5 @@
 <?php
+use Component\sales\admin\model\adminSalesModel;
 /**
  * Created by PhpStorm.
  * User: marjani

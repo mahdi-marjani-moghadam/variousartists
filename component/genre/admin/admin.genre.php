@@ -5,6 +5,9 @@
  * Date: 2/20/2016
  * Time: 4:21 AM
  */
+
+use Component\genre\admin\model\genreImportModel;
+
 include_once(dirname(__FILE__). "/model/admin.genre.controller.php");
 include_once(dirname(__FILE__). "/model/genre.import.model.php");
 
@@ -32,7 +35,7 @@ switch ($_GET['action'])
         else
         {
 
-            $genreController->showGenreAddForm('','');
+            $genreController->showGenreAddForm();
         }
         break;
     case 'edit':

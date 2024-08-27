@@ -1,4 +1,5 @@
 <?php
+
 /**
 
  * Created by PhpStorm.
@@ -6,6 +7,7 @@
  * Date: 2/27/2016
  * Time: 11:02 AM.
  */
+
 namespace Component\event\admin\model;
 
 use Common\dbConn;
@@ -16,7 +18,7 @@ use Component\product\admin\model\adminProductModelDb;
 use Model\DataBase;
 use PDO;
 
-class adminEventModelDb extends looeic
+class adminEventModelDb
 {
     public static function insert($fields)
     {
@@ -24,7 +26,7 @@ class adminEventModelDb extends looeic
         $category_st = '';
         if (count($fields['category_id']) > 0) {
             $category_st = implode(',', $fields['category_id']);
-            $category_st = ','.$category_st.',';
+            $category_st = ',' . $category_st . ',';
         }
 
         $category_rs = self::arrayToTag($fields['category_id']);
@@ -35,7 +37,7 @@ class adminEventModelDb extends looeic
         $certification_st = '';
         if (count($fields['certification_id']) > 0) {
             $certification_st = implode(',', $fields['certification_id']);
-            $certification_st = ','.$certification_st.',';
+            $certification_st = ',' . $certification_st . ',';
         }
 
         $certification_st = self::arrayToTag($fields['certification_id']);
@@ -69,28 +71,28 @@ class adminEventModelDb extends looeic
                     `status`
                     )
                     VALUES(
-                    '".$fields['category_list']."',
-                    '".$fields['certification_list']."',
-                    '".$fields['state_id']."',
-                    '".$fields['city_id']."',
-                    '".$fields['event_name']."',
-                    '".$fields['meta_keyword']."',
-                    '".$fields['meta_description']."',
-                    '".$fields['registration_number']."',
-                    '".$fields['national_id']."',
-                    '".$fields['logo']."',
-                    '".$fields['instagram']."',
-                    '".$fields['twitter']."',
-                    '".$fields['telegram']."',
-                    '".$fields['description']."',
-                    '".$fields['coordinator_name']."',
-                    '".$fields['coordinator_phone']."',
-                    '".$fields['coordinator_family']."',
+                    '" . $fields['category_list'] . "',
+                    '" . $fields['certification_list'] . "',
+                    '" . $fields['state_id'] . "',
+                    '" . $fields['city_id'] . "',
+                    '" . $fields['event_name'] . "',
+                    '" . $fields['meta_keyword'] . "',
+                    '" . $fields['meta_description'] . "',
+                    '" . $fields['registration_number'] . "',
+                    '" . $fields['national_id'] . "',
+                    '" . $fields['logo'] . "',
+                    '" . $fields['instagram'] . "',
+                    '" . $fields['twitter'] . "',
+                    '" . $fields['telegram'] . "',
+                    '" . $fields['description'] . "',
+                    '" . $fields['coordinator_name'] . "',
+                    '" . $fields['coordinator_phone'] . "',
+                    '" . $fields['coordinator_family'] . "',
                      NOW(),
                      NOW(),
-                    '".$fields['refresh_date']."',
-                    '".$fields['priority']."',
-                    '".$fields['status']."'
+                    '" . $fields['refresh_date'] . "',
+                    '" . $fields['priority'] . "',
+                    '" . $fields['status'] . "'
                     )";
 
         $stmt = $conn->prepare($sql);
@@ -112,8 +114,8 @@ class adminEventModelDb extends looeic
 
     public static function insert2($fields)
     {
-        $fields['event_name']=str_replace('*','',$fields['event_name']);
-        $fields['event_name']=str_replace('~','',$fields['event_name']);
+        $fields['event_name'] = str_replace('*', '', $fields['event_name']);
+        $fields['event_name'] = str_replace('~', '', $fields['event_name']);
 
         $conn = dbConn::getConnection();
         $sql = "
@@ -132,13 +134,13 @@ class adminEventModelDb extends looeic
                     `status`
                     )
                     VALUES(
-                    '".$fields['Event_id']."',
-                    '".$fields['category_list']."',
-                    '".$fields['state_id']."',
-                    '".$fields['city_id']."',
-                    '".$fields['event_name']."',
-                    '".$fields['meta_description']."',
-                    '".$fields['description']."',
+                    '" . $fields['Event_id'] . "',
+                    '" . $fields['category_list'] . "',
+                    '" . $fields['state_id'] . "',
+                    '" . $fields['city_id'] . "',
+                    '" . $fields['event_name'] . "',
+                    '" . $fields['meta_description'] . "',
+                    '" . $fields['description'] . "',
                      NOW(),
                      NOW(),
                      NOW(),
@@ -184,7 +186,7 @@ class adminEventModelDb extends looeic
                 )
                 VALUES ';
         for ($i = 0; $i < count($phones['subject']); ++$i) {
-            $sql .= "('".$event_id."','".$phones['subject'][$i]."','".$phones['number'][$i]."','".$phones['state'][$i]."','".$phones['value'][$i]."'),";
+            $sql .= "('" . $event_id . "','" . $phones['subject'][$i] . "','" . $phones['number'][$i] . "','" . $phones['state'][$i] . "','" . $phones['value'][$i] . "'),";
         }
         $sql = substr($sql, 0, -1);
 
@@ -227,7 +229,7 @@ class adminEventModelDb extends looeic
                 VALUES ';
 
         for ($i = 0; $i < count($emails['subject']); ++$i) {
-            $sql .= "('".$event_id."','".$emails['subject'][$i]."','".$emails['email'][$i]."'),";
+            $sql .= "('" . $event_id . "','" . $emails['subject'][$i] . "','" . $emails['email'][$i] . "'),";
         }
         $sql = substr($sql, 0, -1);
 
@@ -269,7 +271,7 @@ class adminEventModelDb extends looeic
                 VALUES ';
 
         for ($i = 0; $i < count($addresses['subject']); ++$i) {
-            $sql .= "('".$event_id."','".$addresses['subject'][$i]."','".$addresses['address'][$i]."'),";
+            $sql .= "('" . $event_id . "','" . $addresses['subject'][$i] . "','" . $addresses['address'][$i] . "'),";
         }
         $sql = substr($sql, 0, -1);
 
@@ -311,7 +313,7 @@ class adminEventModelDb extends looeic
                 VALUES ';
 
         for ($i = 0; $i < count($websites['subject']); ++$i) {
-            $sql .= "('".$event_id."','".$websites['subject'][$i]."','".$websites['url'][$i]."'),";
+            $sql .= "('" . $event_id . "','" . $websites['subject'][$i] . "','" . $websites['url'][$i] . "'),";
         }
         $sql = substr($sql, 0, -1);
 
@@ -352,7 +354,7 @@ class adminEventModelDb extends looeic
                 `phone_value`
                 )
                 VALUES ";
-        $sql .= "('".$fields['event_id']."','".$fields['subject']."','".$fields['number']."','".$fields['state']."','".$fields['value']."')";
+        $sql .= "('" . $fields['event_id'] . "','" . $fields['subject'] . "','" . $fields['number'] . "','" . $fields['state'] . "','" . $fields['value'] . "')";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -387,7 +389,7 @@ class adminEventModelDb extends looeic
                 `email_email`
                 )
                 VALUES ";
-        $sql .= "('".$fields['event_id']."','".$fields['subject']."','".$fields['email']."')";
+        $sql .= "('" . $fields['event_id'] . "','" . $fields['subject'] . "','" . $fields['email'] . "')";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -422,7 +424,7 @@ class adminEventModelDb extends looeic
                 `address_address`
                 )
                 VALUES ";
-        $sql .= "('".$fields['event_id']."','".$fields['subject']."','".$fields['address']."')";
+        $sql .= "('" . $fields['event_id'] . "','" . $fields['subject'] . "','" . $fields['address'] . "')";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -457,7 +459,7 @@ class adminEventModelDb extends looeic
                 `website_url`
                 )
                 VALUES ";
-        $sql .= "('".$fields['event_id']."','".$fields['subject']."','".$fields['website']."')";
+        $sql .= "('" . $fields['event_id'] . "','" . $fields['subject'] . "','" . $fields['website'] . "')";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -487,25 +489,25 @@ class adminEventModelDb extends looeic
      *
      * @version 01.01.01
      */
-    public static function update($fields, $where="")
+    public static function update($fields, $where = "")
     {
         $conn = dbConn::getConnection();
 
         $temp = self::arrayToTag($fields['category_id']);
-        $fields['category_id'] = $temp ['export']['list'];
+        $fields['category_id'] = $temp['export']['list'];
 
         $temp = self::arrayToTag($fields['certification_id']);
-        $fields['certification_id'] = $temp ['export']['list'];
+        $fields['certification_id'] = $temp['export']['list'];
 
         $sql = 'UPDATE event SET ';
 
         foreach ($fields as $fieldName => $val) {
             //echo $fieldName.'='.$val;
-            if($fieldName != 'event_phone' && $fieldName != 'event_email' && $fieldName != 'event_address' && $fieldName != 'event_website')
-                $sql = $sql.'`'.$fieldName."` = '".$val."',";
+            if ($fieldName != 'event_phone' && $fieldName != 'event_email' && $fieldName != 'event_address' && $fieldName != 'event_website')
+                $sql = $sql . '`' . $fieldName . "` = '" . $val . "',";
         }
         $sql = substr($sql, 0, -1);
-        $sql = $sql."WHERE Event_id = '".$fields['Event_id']."'";
+        $sql = $sql . "WHERE Event_id = '" . $fields['Event_id'] . "'";
 
         // include_once ROOT_DIR.'component/product/admin/model/admin.product.model.db.php';
         // todo: chech after
@@ -543,7 +545,7 @@ class adminEventModelDb extends looeic
     {
         $conn = dbConn::getConnection();
 
-        $sql = "DELETE FROM event_phones WHERE `event_id` = '".$eventId."'";
+        $sql = "DELETE FROM event_phones WHERE `event_id` = '" . $eventId . "'";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -573,7 +575,7 @@ class adminEventModelDb extends looeic
     {
         $conn = dbConn::getConnection();
 
-        $sql = "DELETE FROM event_emails WHERE `event_id` = '".$eventId."'";
+        $sql = "DELETE FROM event_emails WHERE `event_id` = '" . $eventId . "'";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -603,7 +605,7 @@ class adminEventModelDb extends looeic
     {
         $conn = dbConn::getConnection();
 
-        $sql = "DELETE FROM event_addresses WHERE `event_id` = '".$eventId."'";
+        $sql = "DELETE FROM event_addresses WHERE `event_id` = '" . $eventId . "'";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -633,7 +635,7 @@ class adminEventModelDb extends looeic
     {
         $conn = dbConn::getConnection();
 
-        $sql = "DELETE FROM `event_websites` WHERE `event_id` = '".$eventId."'";
+        $sql = "DELETE FROM `event_websites` WHERE `event_id` = '" . $eventId . "'";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -653,76 +655,76 @@ class adminEventModelDb extends looeic
     }
 
 
-    private function _getReport($fields='')
-    {
+    // private function _getReport($fields='')
+    // {
 
-        global $event_info;
-        $event_name=$event_info['comp_name'];
-        $this->_checkPermission();
-        $conn = parent::getConnection();
-        $fields['useTrash']='false';
-        $filter=$this->filterBuilder($fields);
-        $length=$filter['length'];
-        $filter=$filter['list'];
-        if($filter['order'] =='')
-        {
-            $filter['order']= 'ORDER BY `calldate` DESC';
-        }
-        $sql = "
-                  SELECT  `t1`.* FROM (SELECT `cdr`.* FROM `cdr` WHERE `cdr`.`dcontext` like '%-$event_name') as t1
+    //     global $event_info;
+    //     $event_name=$event_info['comp_name'];
+    //     $this->_checkPermission();
+    //     $conn = parent::getConnection();
+    //     $fields['useTrash']='false';
+    //     $filter=$this->filterBuilder($fields);
+    //     $length=$filter['length'];
+    //     $filter=$filter['list'];
+    //     if($filter['order'] =='')
+    //     {
+    //         $filter['order']= 'ORDER BY `calldate` DESC';
+    //     }
+    //     $sql = "
+    //               SELECT  `t1`.* FROM (SELECT `cdr`.* FROM `cdr` WHERE `cdr`.`dcontext` like '%-$event_name') as t1
 
-        ".$filter['WHERE'] .$filter['filter'].$filter['order'].$filter['limit'];
+    //     ".$filter['WHERE'] .$filter['filter'].$filter['order'].$filter['limit'];
 
-        //or WHERE    news_id='$id' ");
-        $stmt = $conn->prepare($sql);
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $stmt->execute();
+    //     //or WHERE    news_id='$id' ");
+    //     $stmt = $conn->prepare($sql);
+    //     $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    //     $stmt->execute();
 
-        if (!$stmt)
-        {
-            $result['result'] = -1;
-            $result['no'] = 1;
-            $result['msg'] = $conn->errorInfo();
-            return $result;
-        }
+    //     if (!$stmt)
+    //     {
+    //         $result['result'] = -1;
+    //         $result['no'] = 1;
+    //         $result['msg'] = $conn->errorInfo();
+    //         return $result;
+    //     }
 
-        $sql="
+    //     $sql="
 
-                SELECT
-                  Count(`t1`.`cdr_id`) AS `recCount`
-                FROM
-                  (SELECT *
-                  FROM `cdr`
-                  WHERE `cdr`.`dcontext` LIKE '%-$event_name') AS `t1`
+    //             SELECT
+    //               Count(`t1`.`cdr_id`) AS `recCount`
+    //             FROM
+    //               (SELECT *
+    //               FROM `cdr`
+    //               WHERE `cdr`.`dcontext` LIKE '%-$event_name') AS `t1`
 
-             ".$filter['WHERE'] .$filter['filter'];
-        //echo $stmt->rowCount();
+    //          ".$filter['WHERE'] .$filter['filter'];
+    //     //echo $stmt->rowCount();
 
-        $stmTp = $conn->prepare($sql);
-        $stmTp->setFetchMode(PDO::FETCH_ASSOC);
-        $stmTp->execute();
+    //     $stmTp = $conn->prepare($sql);
+    //     $stmTp->setFetchMode(PDO::FETCH_ASSOC);
+    //     $stmTp->execute();
 
-        $rowP = $stmTp->fetch();
-        $rowFound=$rowP['recCount'];
-        $this->_paging['recordsFiltered']=$rowP['recCount'];
-        $this->_paging['recordsTotal']= $rowFound['found'];
+    //     $rowP = $stmTp->fetch();
+    //     $rowFound=$rowP['recCount'];
+    //     $this->_paging['recordsFiltered']=$rowP['recCount'];
+    //     $this->_paging['recordsTotal']= $rowFound['found'];
 
-        while($row = $stmt->fetch())
-        {
-            $callDate=$row['calldate'];
-            list($date, $time) = explode(" ",$callDate);
-            list($year, $month, $day) = explode("-", $date);
-            list($extension, $compName) = explode("-", $row['dcontext']);
-            // $row['filename']=RELA_CHANEL.$event_name.'/'.$year.'/'.$month.'/'.$day.'/'.$row['uniqueid'].'.'.'wav';
-            $row['filename']=''.$event_name.'/'.$year.'/'.$month.'/'.$day.'/'.$row['uniqueid'].'.'.'wav';
-            $this->_set_reportListDb($row['cdr_id'], $row);
-        }
+    //     while($row = $stmt->fetch())
+    //     {
+    //         $callDate=$row['calldate'];
+    //         list($date, $time) = explode(" ",$callDate);
+    //         list($year, $month, $day) = explode("-", $date);
+    //         list($extension, $compName) = explode("-", $row['dcontext']);
+    //         // $row['filename']=RELA_CHANEL.$event_name.'/'.$year.'/'.$month.'/'.$day.'/'.$row['uniqueid'].'.'.'wav';
+    //         $row['filename']=''.$event_name.'/'.$year.'/'.$month.'/'.$day.'/'.$row['uniqueid'].'.'.'wav';
+    //         $this->_set_reportListDb($row['cdr_id'], $row);
+    //     }
 
 
-        $result['result'] = 1;
-        $result['no'] = 2;
-        return $result;
-    }
+    //     $result['result'] = 1;
+    //     $result['no'] = 2;
+    //     return $result;
+    // }
 
     public function getEventold($fields = '')
     {
@@ -737,7 +739,7 @@ class adminEventModelDb extends looeic
 
         $sql = 'SELECT SQL_CALC_FOUND_ROWS
                  *
-    		     FROM 	event '.$condition['list']['WHERE'].$condition['list']['filter'].$condition['list']['order'].$condition['list']['limit'];
+    		     FROM 	event ' . $condition['list']['WHERE'] . $condition['list']['filter'] . $condition['list']['order'] . $condition['list']['limit'];
 
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -896,7 +898,6 @@ class adminEventModelDb extends looeic
 
             $row['event_website'] = $websites;
             $list[$row['Event_id']] = $row;
-
         }
 
         $result['result'] = 1;
@@ -904,22 +905,21 @@ class adminEventModelDb extends looeic
         return $result;
     }
 
-    public function getEvent($fields = '')
+    public function getAdminEvent($fields = [])
     {
-
+        
         $conn = dbConn::getConnection();
 
-        include_once ROOT_DIR.'/model/db.inc.class.php';
-
+        // include_once ROOT_DIR.'/model/db.inc.class.php';
+        
         $condition = DataBase::filterBuilder($fields);
 
-        $length=$condition['length'];
-        if($condition['list']['order'] =='')
-        {
-            $condition['list']['order']= ' ORDER BY `update_date` DESC ';
+        $length = $condition['length'];
+        if ($condition['list']['order'] == '') {
+            $condition['list']['order'] = ' ORDER BY `update_date` DESC ';
         }
 
-        $sql="
+        $sql = "
                 select
                 SQL_CALC_FOUND_ROWS
                 `t1`.* FROM
@@ -927,11 +927,11 @@ class adminEventModelDb extends looeic
                     SELECT `event`.*
                     
                       FROM `event`
-                        ".
-                       $fields['where']
-                     ."GROUP BY `event`.`Event_id`
+                        " .
+            $fields['where']
+            . "GROUP BY `event`.`Event_id`
                   ) as t1 "
-                  .$condition['list']['useWhere'].$condition['list']['filter'].$condition['list']['order'].$condition['list']['limit'];
+            . $condition['list']['useWhere'] . $condition['list']['filter'] . $condition['list']['order'] . $condition['list']['limit'];
 
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -955,7 +955,7 @@ class adminEventModelDb extends looeic
         $result['export']['recordsCount'] = $row_count['recCount'];
 
 
-        include_once ROOT_DIR."component/category/admin/model/admin.category.model.php";
+        include_once ROOT_DIR . "component/category/admin/model/admin.category.model.php";
 
         //$cat = new adminCategoryModel();
         //$obj = adminCategoryModel::getBy_not_Category_id(0)->getList();
@@ -965,16 +965,17 @@ class adminEventModelDb extends looeic
 
             $cat_title = '';
 
-            foreach (explode(',',$row['category_id']) as $k => $v ){
+            foreach (explode(',', $row['category_id']) as $k => $v) {
 
-                if($v == ''){ continue;}
+                if ($v == '') {
+                    continue;
+                }
                 $obj = adminCategoryModel::find($v);
 
-                $cat_title .= $obj->fields["title_$lang"] .' / ';
-
+                $cat_title .= $obj->fields["title_$lang"] . ' / ';
             }
 
-            $row['category_id'] = substr($cat_title,0,-2);
+            $row['category_id'] = substr($cat_title, 0, -2);
 
             //$temp = self::tagToArray($row['category_id']);
             //$row['category_id'] = $temp['export']['list'];
@@ -984,7 +985,6 @@ class adminEventModelDb extends looeic
             //$row['certification_id'] = $temp['export']['list'];
 
             $list[$row['Event_id']] = $row;
-
         }
 
 
@@ -997,17 +997,16 @@ class adminEventModelDb extends looeic
 
         $conn = dbConn::getConnection();
 
-        include_once ROOT_DIR.'/model/db.inc.class.php';
+        include_once ROOT_DIR . '/model/db.inc.class.php';
 
         $condition = DataBase::filterBuilder($fields);
 
-        $length=$condition['length'];
-        if($condition['list']['order'] =='')
-        {
-            $condition['list']['order']= ' ORDER BY `update_date` DESC ';
+        $length = $condition['length'];
+        if ($condition['list']['order'] == '') {
+            $condition['list']['order'] = ' ORDER BY `update_date` DESC ';
         }
 
-        $sql="
+        $sql = "
                 select
                 SQL_CALC_FOUND_ROWS
                 `t1`.* FROM
@@ -1015,11 +1014,11 @@ class adminEventModelDb extends looeic
                     SELECT `event_draft`.*
                     
                       FROM `event_draft`
-                        ".
+                        " .
             $fields['where']
-            ."GROUP BY `event_draft`.`Event_id`
+            . "GROUP BY `event_draft`.`Event_id`
                   ) as t1 "
-            .$condition['list']['useWhere'].$condition['list']['filter'].$condition['list']['order'].$condition['list']['limit'];
+            . $condition['list']['useWhere'] . $condition['list']['filter'] . $condition['list']['order'] . $condition['list']['limit'];
 
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -1043,7 +1042,7 @@ class adminEventModelDb extends looeic
         $result['export']['recordsCount'] = $row_count['recCount'];
 
 
-        include_once ROOT_DIR."component/category/admin/model/admin.category.model.php";
+        include_once ROOT_DIR . "component/category/admin/model/admin.category.model.php";
 
         //$cat = new adminCategoryModel();
         //$obj = adminCategoryModel::getBy_not_Category_id(0)->getList();
@@ -1053,16 +1052,17 @@ class adminEventModelDb extends looeic
 
             $cat_title = '';
 
-            foreach (explode(',',$row['category_id']) as $k => $v ){
+            foreach (explode(',', $row['category_id']) as $k => $v) {
 
-                if($v == ''){ continue;}
+                if ($v == '') {
+                    continue;
+                }
                 $obj = adminCategoryModel::find($v);
 
-                $cat_title .= $obj->fields["title_$lang"] .' / ';
-
+                $cat_title .= $obj->fields["title_$lang"] . ' / ';
             }
 
-            $row['category_id'] = substr($cat_title,0,-2);
+            $row['category_id'] = substr($cat_title, 0, -2);
 
             //$temp = self::tagToArray($row['category_id']);
             //$row['category_id'] = $temp['export']['list'];
@@ -1072,7 +1072,6 @@ class adminEventModelDb extends looeic
             //$row['certification_id'] = $temp['export']['list'];
 
             $list[$row['Event_id']] = $row;
-
         }
 
 
@@ -1134,13 +1133,13 @@ class adminEventModelDb extends looeic
         return $result;
     }
 
-    public function delete($id='')
+    public function delete($id = '')
     {
         $conn = dbConn::getConnection();
 
         $sql = "
                 DELETE FROM event
-                    WHERE Event_id = '".$id."'
+                    WHERE Event_id = '" . $id . "'
                     ";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -1163,9 +1162,9 @@ class adminEventModelDb extends looeic
         $export = '';
         if (count($input) > 0) {
             $export = implode(',', $input);
-            $export = ','.$export.',';
+            $export = ',' . $export . ',';
         }
-        $result ['export']['list'] = $export;
+        $result['export']['list'] = $export;
         $result['result'] = '1';
 
         return $result;
@@ -1175,19 +1174,20 @@ class adminEventModelDb extends looeic
     {
         $export = explode(',', $input);
         $export = array_filter($export, 'strlen');
-        $result ['export']['list'] = $export;
+        $result['export']['list'] = $export;
         $result['result'] = '1';
 
         return $result;
     }
 
-    public static function getAllPhone($input){
+    public static function getAllPhone($input)
+    {
 
         $conn = dbConn::getConnection();
-        
+
         $sql = "
                 select phone_number FROM event_phones 
-                    where Event_id = '".$input['']."'
+                    where Event_id = '" . $input[''] . "'
                     ";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -1203,7 +1203,7 @@ class adminEventModelDb extends looeic
 
         while ($row = $stmt->fetch()) {
 
-            $result['export']['list'][]=$row['phone_number'];
+            $result['export']['list'][] = $row['phone_number'];
         }
 
         $result['result'] = 1;

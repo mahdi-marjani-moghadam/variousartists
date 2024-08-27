@@ -107,7 +107,7 @@ class shopController
 
         $this->fileName = "shop.php";
 
-        $this->template('');
+        $this->template([]);
         die();
     }
 

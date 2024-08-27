@@ -8,6 +8,7 @@
  */
 
 use Common\validators;
+use Component\account\model\accountModel;
 use Component\artists\model\artists;
 use Component\artists\model\artistsModel;
 use Component\category\admin\model\adminCategoryModel;

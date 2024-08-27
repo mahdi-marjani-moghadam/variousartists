@@ -232,7 +232,7 @@
                                             foreach($list['salon'] as $category_id => $value)
                                             {
                                                 ?>
-                                                <option <?php echo in_array($value['Salon_id'], $list['salon_id']) ? 'selected' : '' ?>
+                                                <option <?php echo is_array($list['salon_id']) &&  in_array($value['Salon_id'], $list['salon_id']) ? 'selected' : '' ?>
                                                     value="<?= $value['Salon_id'] ?>">
                                                     <?= $value['title_'.$lang] ?>
                                                 </option>
@@ -268,7 +268,7 @@
                                             foreach($list['category'] as $category_id => $value)
                                             {
                                                 ?>
-                                                <option <?php echo in_array($value['Category_id'], $list['category_id']) ? 'selected' : '' ?>
+                                                <option <?php echo is_array($list['category_id']) &&  in_array($value['Category_id'], $list['category_id']) ? 'selected' : '' ?>
                                                         value="<?= $value['Category_id'] ?>">
                                                     <?= $value['export'] ?>
                                                 </option>
@@ -289,7 +289,7 @@
                                             foreach($list['genre'] as $genre_id => $value)
                                             {
                                                 ?>
-                                                <option <?php echo in_array($value['Genre_id'], $list['genre_id']) ? 'selected' : '' ?>
+                                                <option <?php echo is_array($list['genre_id']) && in_array($value['Genre_id'], $list['genre_id']) ? 'selected' : '' ?>
                                                         value="<?= $value['Genre_id'] ?>">
                                                     <?= $value['export'] ?>
                                                 </option>
@@ -318,7 +318,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-6" style="">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="country_id"><?=country?></label>
+                                           for="country_id">کشور</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
                                         <select name="country_id" id="country_id" data-input="select2">
 

@@ -45,10 +45,10 @@ class adminSalonModel extends looeic
      */
     public function __construct()
     {
-        $this->requiredFields = array(
-            'title'=>  '',
-            'parent_id'=>  ''
-        );
+        // $this->requiredFields = array(
+        //     'title'=>  '',
+        //     'parent_id'=>  ''
+        // );
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Component\Contactus\Admin\Model;
+namespace Component\contactus\admin\model;
 
 use Common\validators;
 

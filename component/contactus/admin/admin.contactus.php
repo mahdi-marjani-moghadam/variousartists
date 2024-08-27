@@ -1,6 +1,6 @@
 <?php
 
-use Component\Contactus\Admin\Model\adminContactusController;
+use Component\contactus\admin\model\adminContactusController;
 
 global $admin_info, $PARAM;
 
