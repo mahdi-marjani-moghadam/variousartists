@@ -2,6 +2,7 @@
 
 namespace Component\category\model;
 
+use Common\looeic;
 use Common\validators;
 use Component\category\admin\model\adminCategoryModelDb;
 use Component\category\model\categoryModelDb;
@@ -12,11 +13,11 @@ use Component\category\model\categoryModelDb;
  * Date: 2/20/2016
  * Time: 4:24 AM.
  */
-class categoryModel
+class categoryModel extends looeic
 {
 
     private $TableName;
-    private $fields;  // other record fields
+    // private $fields;  // other record fields
     private $list;  // other record fields
     private $recordsCount;  // other record fields
     public $listCat;
@@ -60,154 +61,154 @@ class categoryModel
      *
      * @return mixed
      */
-    public function setFields($input)
-    {
-        foreach ($input as $field => $val) {
-            $funcName = '__set' . ucfirst($field);
-            if (method_exists($this, $funcName)) {
-                $result = $this->$funcName($val);
-                if ($result['result'] == 1) {
-                    $this->fields[$field] = $val;
-                } else {
-                    return $result;
-                }
-            }
-        }
-        $result['result'] = 1;
+    // public function setFields($input)
+    // {
+    //     foreach ($input as $field => $val) {
+    //         $funcName = '__set' . ucfirst($field);
+    //         if (method_exists($this, $funcName)) {
+    //             $result = $this->$funcName($val);
+    //             if ($result['result'] == 1) {
+    //                 $this->fields[$field] = $val;
+    //             } else {
+    //                 return $result;
+    //             }
+    //         }
+    //     }
+    //     $result['result'] = 1;
 
-        return $result;
-    }
-
-    /**
-     * @param $input
-     *
-     * @return mixed
-     */
-    private function __setTitle($input)
-    {
-        if (!validators::required($input)) {
-            $result['result'] = -1;
-            $result['msg'] = 'pleas enter title';
-        } else {
-            $result['result'] = 1;
-        }
-
-        return $result;
-    }
+    //     return $result;
+    // }
 
     /**
      * @param $input
      *
      * @return mixed
      */
-    private function __setBrif_description($input)
-    {
-        if ($input == '') {
-            $result['result'] = 1;
-        } elseif (!validators::required($input)) {
-            $result['result'] = -1;
-            $result['msg'] = 'pleas enter Brif description';
-        } else {
-            $result['result'] = 1;
-        }
+    // private function __setTitle($input)
+    // {
+    //     if (!validators::required($input)) {
+    //         $result['result'] = -1;
+    //         $result['msg'] = 'pleas enter title';
+    //     } else {
+    //         $result['result'] = 1;
+    //     }
 
-        return $result;
-    }
+    //     return $result;
+    // }
 
-    /**
-     * @param $input
-     *
-     * @return mixed
-     */
-    private function __setDescription($input)
-    {
-        if ($input == '') {
-            $result['result'] = 1;
-        } elseif (!validators::required($input)) {
-            $result['result'] = -1;
-            $result['msg'] = 'pleas enter Description';
-        } else {
-            $result['result'] = 1;
-        }
+    // /**
+    //  * @param $input
+    //  *
+    //  * @return mixed
+    //  */
+    // private function __setBrif_description($input)
+    // {
+    //     if ($input == '') {
+    //         $result['result'] = 1;
+    //     } elseif (!validators::required($input)) {
+    //         $result['result'] = -1;
+    //         $result['msg'] = 'pleas enter Brif description';
+    //     } else {
+    //         $result['result'] = 1;
+    //     }
 
-        return $result;
-    }
+    //     return $result;
+    // }
 
-    /**
-     * @param $input
-     *
-     * @return mixed
-     */
-    private function __setMeta_keyword($input)
-    {
-        if ($input == '') {
-            $result['result'] = 1;
-        } elseif (!validators::required($input)) {
-            $result['result'] = -1;
-            $result['msg'] = 'pleas enter Meta_keyword';
-        } else {
-            $result['result'] = 1;
-        }
+    // /**
+    //  * @param $input
+    //  *
+    //  * @return mixed
+    //  */
+    // private function __setDescription($input)
+    // {
+    //     if ($input == '') {
+    //         $result['result'] = 1;
+    //     } elseif (!validators::required($input)) {
+    //         $result['result'] = -1;
+    //         $result['msg'] = 'pleas enter Description';
+    //     } else {
+    //         $result['result'] = 1;
+    //     }
 
-        return $result;
-    }
+    //     return $result;
+    // }
 
-    /**
-     * @param $input
-     *
-     * @return mixed
-     */
-    private function __setMeta_description($input)
-    {
-        if ($input == '') {
-            $result['result'] = 1;
-        } elseif (!validators::required($input)) {
-            $result['result'] = -1;
-            $result['msg'] = 'pleas enter Meta_description';
-        } else {
-            $result['result'] = 1;
-        }
+    // /**
+    //  * @param $input
+    //  *
+    //  * @return mixed
+    //  */
+    // private function __setMeta_keyword($input)
+    // {
+    //     if ($input == '') {
+    //         $result['result'] = 1;
+    //     } elseif (!validators::required($input)) {
+    //         $result['result'] = -1;
+    //         $result['msg'] = 'pleas enter Meta_keyword';
+    //     } else {
+    //         $result['result'] = 1;
+    //     }
 
-        return $result;
-    }
+    //     return $result;
+    // }
 
-    /**
-     * @param $input
-     *
-     * @return mixed
-     */
-    private function __setDate($input)
-    {
-        if ($input == '') {
-            $result['result'] = 1;
-        } elseif (!validators::required($input)) {
-            $result['result'] = -1;
-            $result['msg'] = 'pleas enter Date';
-        } else {
-            $result['result'] = 1;
-        }
+    // /**
+    //  * @param $input
+    //  *
+    //  * @return mixed
+    //  */
+    // private function __setMeta_description($input)
+    // {
+    //     if ($input == '') {
+    //         $result['result'] = 1;
+    //     } elseif (!validators::required($input)) {
+    //         $result['result'] = -1;
+    //         $result['msg'] = 'pleas enter Meta_description';
+    //     } else {
+    //         $result['result'] = 1;
+    //     }
 
-        return $result;
-    }
+    //     return $result;
+    // }
 
-    /**
-     * @param $input
-     *
-     * @return mixed
-     */
-    private function __setImage($input)
-    {
-        if ($input == '') {
-            $result['result'] = 1;
-        } elseif (!validators::required($input)) {
-            $result['result'] = -1;
-            $result['msg'] = 'pleas enter Image';
-        } else {
-            $result['result'] = 1;
-        }
+    // /**
+    //  * @param $input
+    //  *
+    //  * @return mixed
+    //  */
+    // private function __setDate($input)
+    // {
+    //     if ($input == '') {
+    //         $result['result'] = 1;
+    //     } elseif (!validators::required($input)) {
+    //         $result['result'] = -1;
+    //         $result['msg'] = 'pleas enter Date';
+    //     } else {
+    //         $result['result'] = 1;
+    //     }
 
-        return $result;
-    }
+    //     return $result;
+    // }
+
+    // /**
+    //  * @param $input
+    //  *
+    //  * @return mixed
+    //  */
+    // private function __setImage($input)
+    // {
+    //     if ($input == '') {
+    //         $result['result'] = 1;
+    //     } elseif (!validators::required($input)) {
+    //         $result['result'] = -1;
+    //         $result['msg'] = 'pleas enter Image';
+    //     } else {
+    //         $result['result'] = 1;
+    //     }
+
+    //     return $result;
+    // }
 
     /**
      * @param $id
@@ -580,7 +581,7 @@ class categoryModel
 
     public function getCategoryParents($parentId)
     {
-        include_once dirname(__FILE__) . '/category.model.db.php';
+        // include_once dirname(__FILE__) . '/category.model.db.php';
         $result = categoryModelDb::getCategoryParents($parentId);
         $this->list = array_reverse($result['export']['list']);
 
@@ -589,7 +590,7 @@ class categoryModel
 
     public function getCategoryChildes($categoryId)
     {
-        include_once dirname(__FILE__) . '/category.model.db.php';
+        // include_once dirname(__FILE__) . '/category.model.db.php';
         $result = categoryModelDb::getCategoryChildes($categoryId);
         $this->list = $result['export']['list'];
 

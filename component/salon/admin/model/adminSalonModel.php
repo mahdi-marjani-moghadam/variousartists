@@ -1,12 +1,9 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: malek
- * Date: 2/20/2016
- * Time: 4:24 AM
- */
-include_once ROOT_DIR."common/validators.php";
+namespace Component\salon\admin\model;
+use Common\looeic;
+use Common\validators;
+
 class adminSalonModel extends looeic
 {
     protected $TABLE_NAME = 'salon';
@@ -102,7 +99,7 @@ class adminSalonModel extends looeic
     private function __setTitle_fa($input)
     {
 
-        if (!Validator::required($input))
+        if (!validators::required($input))
         {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter title';
@@ -116,7 +113,7 @@ class adminSalonModel extends looeic
     private function __setTitle_en($input)
     {
 
-        if (!Validator::required($input))
+        if (!validators::required($input))
         {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter title';
@@ -134,11 +131,11 @@ class adminSalonModel extends looeic
     private function __setParent_id($input)
     {
 
-        if (!Validator::required($input))
+        if (!validators::required($input))
         {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Parent';
-        }else if (!Validator::Numeric($input))
+        }else if (!validators::Numeric($input))
         {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Parent';
@@ -153,7 +150,7 @@ class adminSalonModel extends looeic
     private function __setAlt_fa($input)
     {
 
-        if (!Validator::required($input))
+        if (!validators::required($input))
         {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Alt';
@@ -167,7 +164,7 @@ class adminSalonModel extends looeic
     private function __setAlt_en($input)
     {
 
-        if (!Validator::required($input))
+        if (!validators::required($input))
         {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Alt';
@@ -181,11 +178,11 @@ class adminSalonModel extends looeic
     private function __setStatus($input)
     {
 
-        if (!Validator::required($input))
+        if (!validators::required($input))
         {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Status';
-        }else if (!Validator::Numeric($input))
+        }else if (!validators::Numeric($input))
         {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Status';
@@ -204,7 +201,7 @@ class adminSalonModel extends looeic
     private function __setUrl($input)
     {
 
-        if (!Validator::required($input))
+        if (!validators::required($input))
         {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Url';
@@ -224,7 +221,7 @@ class adminSalonModel extends looeic
     {
         if ($input == '') {
             $result['result'] = 1;
-        } else if (!Validator::required($input)) {
+        } else if (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Meta keyword';
         } else {
@@ -241,7 +238,7 @@ class adminSalonModel extends looeic
     {
         if ($input == '') {
             $result['result'] = 1;
-        } else if (!Validator::required($input)) {
+        } else if (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Meta description';
         } else {
@@ -257,11 +254,11 @@ class adminSalonModel extends looeic
     private function __setSort($input)
     {
 
-        if (!Validator::required($input))
+        if (!validators::required($input))
         {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Sort';
-        }else if (!Validator::Numeric($input))
+        }else if (!validators::Numeric($input))
         {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Sort';
@@ -282,7 +279,7 @@ class adminSalonModel extends looeic
     {
         if ($input == '') {
             $result['result'] = 1;
-        } else if (!Validator::required($input)) {
+        } else if (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Image';
         } else {
@@ -298,7 +295,7 @@ class adminSalonModel extends looeic
     public function getSalonById($id)
     {
 
-        if(!validator::required($id) and !validator::Numeric($id))
+        if(!validators::required($id) and !validators::Numeric($id))
         {
             $result['result'] = -1;
             $result['no'] = 1;
@@ -333,7 +330,7 @@ class adminSalonModel extends looeic
     public function getSalonByParentId($id)
     {
 
-        if(!validator::required($id) and !validator::Numeric($id))
+        if(!validators::required($id) and !validators::Numeric($id))
         {
             $result['result'] = -1;
             $result['no'] = 1;
@@ -360,7 +357,7 @@ class adminSalonModel extends looeic
      * @param $_input
      * @return mixed
      */
-    public function convert($_input,$temp,$space='-')
+    public function convert($_input,$temp='',$space='-')
     {
         global $lang;
         static $mainMenu = array();
@@ -400,7 +397,7 @@ class adminSalonModel extends looeic
      */
 
 
-    function getulli($array,$root=0,$all)
+    function getulli($array,$root=0,$all = [])
     {
 
         static $mainMenu = '';
@@ -458,8 +455,8 @@ class adminSalonModel extends looeic
     public function getSalonTree($fields)
     {
 
-        include_once(dirname(__FILE__) . "/admin.salon.model.db.php");
-        $result = adminSalonModelDb::tree_set();
+        // include_once(dirname(__FILE__) . "/admin.salon.model.db.php");
+        $result = (new adminSalonModelDb)->tree_set();
         $this->list=$result['export']['list'];
         $this->recordsCount=$result['export']['recordsCount'];
 
@@ -470,9 +467,9 @@ class adminSalonModel extends looeic
     public function getSalonOption($space='|-- ',$parent_id=0,$selectRoot='0',$where='')
     {
 
-        include_once(dirname(__FILE__) . "/admin.salon.model.db.php");
+        // include_once(dirname(__FILE__) . "/admin.salon.model.db.php");
 
-        $result = adminSalonModelDb::tree_set($where);
+        $result = (new adminSalonModelDb)->tree_set($where);
 
         if ($result['result'] != 1)
         {
@@ -512,9 +509,9 @@ class adminSalonModel extends looeic
 
     public function getSalonByfor($fields)
     {
-        include_once(dirname(__FILE__) . "/admin.salon.model.db.php");
+        // include_once(dirname(__FILE__) . "/admin.salon.model.db.php");
 
-        $result = adminSalonModelDb::tree_set();
+        $result = (new adminSalonModelDb)->tree_set();
         $fields = $result['export']['list'];
         $this->listCat = $fields;
         $result = $this->convert($fields['1']);

@@ -1,11 +1,24 @@
 <?php
+
+use Common\dbConn;
+use Component\category\admin\model\adminCategoryModel;
+use Component\city\admin\model\adminCityModel;
+use Component\city\admin\model\adminCityModelDb;
+use Component\country\model\country;
+use Component\event\admin\model\adminEventDraftModel;
+use Component\event\admin\model\adminEventModel;
+use Component\event\admin\model\adminEventModelDb;
+use Component\event_gallery\admin\model\adminEvent_galleryModel;
+use Component\genre\admin\model\adminGenreModel;
+use Component\province\admin\model\adminProvinceModel;
+
 /**
  * Created by PhpStorm.
  * User: malekloo
  * Date: 3/6/2016
  * Time: 11:21 AM.
  */
-include_once dirname(__FILE__).'/admin.event.model.php';
+include_once dirname(__FILE__) . '/admin.event.model.php';
 
 /**
  * Class registerController.
@@ -42,21 +55,21 @@ class adminEventController
      *
      * @return string
      */
-    public function template($list = array(), $msg='')
+    public function template($list = array(), $msg = '')
     {
-        global $messageStack,$admin_info,$lang;
+        global $messageStack, $admin_info, $lang;
 
         switch ($this->exportType) {
             case 'html':
 
 
 
-                include ROOT_DIR.'templates/'.CURRENT_SKIN.'/template_start.php';
-                include ROOT_DIR.'templates/'.CURRENT_SKIN.'/template_header.php';
-                include ROOT_DIR.'templates/'.CURRENT_SKIN.'/template_rightMenu_admin.php';
-                include ROOT_DIR.'templates/'.CURRENT_SKIN."/$this->fileName";
-                include ROOT_DIR.'templates/'.CURRENT_SKIN.'/template_footer.php';
-                include ROOT_DIR.'templates/'.CURRENT_SKIN.'/template_end.php';
+                include ROOT_DIR . 'templates/' . CURRENT_SKIN . '/template_start.php';
+                include ROOT_DIR . 'templates/' . CURRENT_SKIN . '/template_header.php';
+                include ROOT_DIR . 'templates/' . CURRENT_SKIN . '/template_rightMenu_admin.php';
+                include ROOT_DIR . 'templates/' . CURRENT_SKIN . "/$this->fileName";
+                include ROOT_DIR . 'templates/' . CURRENT_SKIN . '/template_footer.php';
+                include ROOT_DIR . 'templates/' . CURRENT_SKIN . '/template_end.php';
                 break;
 
             case 'json':
@@ -78,10 +91,10 @@ class adminEventController
 
 
 
-    public function showEventAddForm($fields=array(), $msg='')
+    public function showEventAddForm($fields = array(), $msg = '')
     {
         /** category */
-        include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
+        include_once ROOT_DIR . 'component/category/admin/model/admin.category.model.php';
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
@@ -89,11 +102,10 @@ class adminEventController
 
             //$fields['category'] = $category->list;
             $export['category'] = $category->list;
-
         }
 
         /** genre */
-        include_once ROOT_DIR.'component/genre/admin/model/admin.genre.model.php';
+        include_once ROOT_DIR . 'component/genre/admin/model/admin.genre.model.php';
         $genre = new adminGenreModel();
 
         $resultGenre = $genre->getGenreOption();
@@ -103,10 +115,10 @@ class adminEventController
 
         /** salon */
 
-        include_once ROOT_DIR.'component/salon/admin/model/admin.salon.model.php';
+        include_once ROOT_DIR . 'component/salon/admin/model/admin.salon.model.php';
         $salon = new adminSAlonModel();
         $obj = $salon->getAll()
-            ->where('parent_id','=',0)
+            ->where('parent_id', '=', 0)
             ->getList();
 
         if ($obj['result'] == 1) {
@@ -129,7 +141,7 @@ class adminEventController
         }*/
 
         /** country */
-        include_once ROOT_DIR.'component/country/model/country.model.php';
+        include_once ROOT_DIR . 'component/country/model/country.model.php';
         $country = new country();
         $resultCountry = $country::getAll()->getList();
         if ($resultCountry['result'] == 1) {
@@ -144,7 +156,7 @@ class adminEventController
             $fields['certifications'] = $certification->list;
         }*/
 
-            $this->fileName = 'admin.event.addForm.php';
+        $this->fileName = 'admin.event.addForm.php';
         $this->template($export, $msg);
         die();
     }
@@ -154,12 +166,12 @@ class adminEventController
 
 
         $event = new adminEventModel();
-        $_input['date'] = ($_input['date']!=''?convertJToGDate($_input['date']):'0000-00-00');
-        $_input['date2'] = ($_input['date2']!=''?convertJToGDate($_input['date2']):'0000-00-00');
-        $_input['date3'] = ($_input['date3']!=''?convertJToGDate($_input['date3']):'0000-00-00');
-        $_input['category_id'] = ','.implode(',',$_input['category_id'] ).',';
-        $_input['genre_id'] = ','.implode(',',$_input['genre_id'] ).',';
-        $_input['salon_id'] = (",".(implode(",",$_input['salon_id']))."," == ',,')?'':",".(implode(",",$_input['salon_id'])).",";
+        $_input['date'] = ($_input['date'] != '' ? convertJToGDate($_input['date']) : '0000-00-00');
+        $_input['date2'] = ($_input['date2'] != '' ? convertJToGDate($_input['date2']) : '0000-00-00');
+        $_input['date3'] = ($_input['date3'] != '' ? convertJToGDate($_input['date3']) : '0000-00-00');
+        $_input['category_id'] = ',' . implode(',', $_input['category_id']) . ',';
+        $_input['genre_id'] = ',' . implode(',', $_input['genre_id']) . ',';
+        $_input['salon_id'] = ("," . (implode(",", $_input['salon_id'])) . "," == ',,') ? '' : "," . (implode(",", $_input['salon_id'])) . ",";
 
 
         $result = $event->setFields($_input);
@@ -171,10 +183,10 @@ class adminEventController
         $event->save();
 
 
-        if(file_exists($_FILES['logo']['tmp_name'])){
+        if (file_exists($_FILES['logo']['tmp_name'])) {
 
-            $input['upload_dir'] = ROOT_DIR.'statics/event/';
-            $result = fileUploader($input,$_FILES['logo']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/event/';
+            $result = fileUploader($input, $_FILES['logo']);
             //fileRemover($input['upload_dir'],$product->fields['image']);
             $event->logo = $result['image_name'];
             $result = $event->save();
@@ -190,7 +202,7 @@ class adminEventController
         $msg = ' با موفقیت انجام شد.';
         $messageStack->add_session('register', $msg);
 
-        redirectPage(RELA_DIR.'zamin/?component=event', $msg);
+        redirectPage(RELA_DIR . 'zamin/?component=event', $msg);
         die();
     }
 
@@ -201,11 +213,11 @@ class adminEventController
 
         $event = new adminEventDraftModel();
 
-        $_input['date'] = ($_input['date']!=''?convertJToGDate($_input['date']):'0000-00-00');
-        $_input['date2'] = ($_input['date2']!=''?convertJToGDate($_input['date2']):'0000-00-00');
-        $_input['date3'] = ($_input['date3']!=''?convertJToGDate($_input['date3']):'0000-00-00');
-        $_input['category_id'] = ','.implode(',',$_input['category_id'] ).',';
-        $_input['salon_id'] = ','.implode(',',$_input['salon_id'] ).',';
+        $_input['date'] = ($_input['date'] != '' ? convertJToGDate($_input['date']) : '0000-00-00');
+        $_input['date2'] = ($_input['date2'] != '' ? convertJToGDate($_input['date2']) : '0000-00-00');
+        $_input['date3'] = ($_input['date3'] != '' ? convertJToGDate($_input['date3']) : '0000-00-00');
+        $_input['category_id'] = ',' . implode(',', $_input['category_id']) . ',';
+        $_input['salon_id'] = ',' . implode(',', $_input['salon_id']) . ',';
 
 
         $result = $event->setFields($_input);
@@ -216,10 +228,10 @@ class adminEventController
         $event->save();
 
 
-        if(file_exists($_FILES['logo']['tmp_name'])){
+        if (file_exists($_FILES['logo']['tmp_name'])) {
 
-            $input['upload_dir'] = ROOT_DIR.'statics/event/';
-            $result = fileUploader($input,$_FILES['logo']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/event/';
+            $result = fileUploader($input, $_FILES['logo']);
             //fileRemover($input['upload_dir'],$product->fields['image']);
             $event->logo = $result['image_name'];
             $result = $event->save();
@@ -235,7 +247,7 @@ class adminEventController
         $msg = ' با موفقیت انجام شد.';
         $messageStack->add_session('register', $msg);
 
-        redirectPage(RELA_DIR.'zamin/?component=event', $msg);
+        redirectPage(RELA_DIR . 'zamin/?component=event', $msg);
         die();
     }
 
@@ -245,7 +257,7 @@ class adminEventController
         global $messageStack;
 
 
-        include_once ROOT_DIR.'component/event_gallery/admin/model/admin.event_gallery.model.php';
+        include_once ROOT_DIR . 'component/event_gallery/admin/model/admin.event_gallery.model.php';
         $event = new adminEvent_galleryModel();
 
         $result = $event->setFields($_input);
@@ -256,10 +268,10 @@ class adminEventController
         $event->save();
 
 
-        if(file_exists($_FILES['image']['tmp_name'])){
+        if (file_exists($_FILES['image']['tmp_name'])) {
 
-            $input['upload_dir'] = ROOT_DIR.'statics/event/';
-            $result = fileUploader($input,$_FILES['image']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/event/';
+            $result = fileUploader($input, $_FILES['image']);
 
             //fileRemover($input['upload_dir'],$product->fields['image']);
             $event->image = $result['image_name'];
@@ -276,7 +288,7 @@ class adminEventController
         $msg = 'ثبت نام با موفقیت انجام شد.';
         $messageStack->add_session('register', $msg);
 
-        redirectPage(RELA_DIR.'zamin/?component=event&action=gallery&id='.$_input['event_id'], $msg);
+        redirectPage(RELA_DIR . 'zamin/?component=event&action=gallery&id=' . $_input['event_id'], $msg);
         die();
     }
 
@@ -290,13 +302,13 @@ class adminEventController
 
     public function showEventEditForm($fields, $msg)
     {
-        $showStatus=$fields['showStatus'];
+        $showStatus = $fields['showStatus'];
         if (strtoupper($_SERVER['REQUEST_METHOD']) != 'POST') {
             $event = new adminEventModel();
             $result = $event->getEventById($fields['Event_id']);
             if ($result['result'] != '1') {
                 $msg = $result['msg'];
-                redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
+                redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
             }
             $export = $event->fields;
         } else {
@@ -304,7 +316,7 @@ class adminEventController
         }
 
         /** category */
-        include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
+        // include_once ROOT_DIR . 'component/category/admin/model/admin.category.model.php';
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
@@ -313,7 +325,7 @@ class adminEventController
             $export['category'] = $category->list;
         }
         /** genre */
-        include_once ROOT_DIR.'component/genre/admin/model/admin.genre.model.php';
+        // include_once ROOT_DIR . 'component/genre/admin/model/admin.genre.model.php';
         $genre = new adminGenreModel();
 
         $resultGenre = $genre->getGenreOption();
@@ -322,17 +334,17 @@ class adminEventController
             $export['genre'] = $genre->list;
         }
 
-        include_once ROOT_DIR.'component/salon/admin/model/admin.salon.model.php';
-        $salon = new adminSAlonModel();
+        // include_once ROOT_DIR . 'component/salon/admin/model/admin.salon.model.php';
+        $salon = new adminSalonModel();
         $obj = $salon->getAll()
-            ->where('parent_id','=',0)
+            ->where('parent_id', '=', 0)
             ->getList();
 
         if ($obj['result'] == 1) {
             $export['salon'] = $obj['export']['list'];
         }
 
-        include_once ROOT_DIR.'component/province/admin/model/admin.province.model.php';
+        include_once ROOT_DIR . 'component/province/admin/model/admin.province.model.php';
         //$city = new adminCityModel();
         $province = adminProvinceModel::getAll()->getList();
 
@@ -349,14 +361,14 @@ class adminEventController
         }*/
 
         /** country */
-        include_once ROOT_DIR.'component/country/model/country.model.php';
+        include_once ROOT_DIR . 'component/country/model/country.model.php';
         $country = new country();
         $resultCountry = $country::getAll()->getList();
         if ($resultCountry['result'] == 1) {
             $export['country'] = $resultCountry['export']['list'];
         }
 
-        $export['showStatus']=$showStatus;
+        $export['showStatus'] = $showStatus;
         $this->fileName = 'admin.event.editForm.php';
         $this->template($export, $msg);
         die();
@@ -381,47 +393,45 @@ class adminEventController
         $event = adminEventModel::find($fields['Event_id']);
         //$result = $event->getEventById($fields['Event_id']);
 
-        $fields['date'] = ($fields['date']!=''?convertJToGDate($fields['date']):'0000-00-00');
-        $fields['date2'] = ($fields['date2']!=''?convertJToGDate($fields['date2']):'0000-00-00');
-        $fields['date3'] = ($fields['date3']!=''?convertJToGDate($fields['date3']):'0000-00-00');
-        $fields['category_id'] = ",".(implode(",",$fields['category_id'])).",";
-        $fields['genre_id'] = ",".(implode(",",$fields['genre_id'])).",";
+        $fields['date'] = ($fields['date'] != '' ? convertJToGDate($fields['date']) : '0000-00-00');
+        $fields['date2'] = ($fields['date2'] != '' ? convertJToGDate($fields['date2']) : '0000-00-00');
+        $fields['date3'] = ($fields['date3'] != '' ? convertJToGDate($fields['date3']) : '0000-00-00');
+        $fields['category_id'] = "," . (implode(",", $fields['category_id'])) . ",";
+        $fields['genre_id'] = "," . (implode(",", $fields['genre_id'])) . ",";
 
-        $fields['salon_id'] = (",".(implode(",",$fields['salon_id']))."," == ',,')?'':",".(implode(",",$fields['salon_id'])).",";
+        $fields['salon_id'] = ("," . (implode(",", $fields['salon_id'])) . "," == ',,') ? '' : "," . (implode(",", $fields['salon_id'])) . ",";
 
 
         $event->setFields($fields);
         $event->update_date = date('Y-m-d H:i:s');
 
 
-        $result=$event->save();
+        $result = $event->save();
 
-//        print_r_debug($event);
+        //        print_r_debug($event);
 
-        $fields=$event->fields;
-        if($result['result']!='1')
-        {
+        $fields = $event->fields;
+        if ($result['result'] != '1') {
             $this->showEventEditForm($fields, $result['msg']);
         }
 
 
 
-        if(file_exists($_FILES['logo']['tmp_name'])){
+        if (file_exists($_FILES['logo']['tmp_name'])) {
 
-            $input['upload_dir'] = ROOT_DIR.'statics/event/';
-            $result = fileUploader($input,$_FILES['logo']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/event/';
+            $result = fileUploader($input, $_FILES['logo']);
 
-            fileRemover($input['upload_dir'],$event->fields['logo']);
+            fileRemover($input['upload_dir'], $event->fields['logo']);
             $event->logo = $result['image_name'];
 
             $result = $event->save();
-
         }
 
 
 
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
         die();
     }
 
@@ -439,7 +449,7 @@ class adminEventController
 
     public function showEventEditFormDraft($fields, $msg)
     {
-        $showStatus=$fields['showStatus'];
+        $showStatus = $fields['showStatus'];
         if (strtoupper($_SERVER['REQUEST_METHOD']) != 'POST') {
             $event = new adminEventDraftModel();
             $result = $event::find($fields['Event_id']);
@@ -449,7 +459,7 @@ class adminEventController
         }
 
         /** category */
-        include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
+        include_once ROOT_DIR . 'component/category/admin/model/admin.category.model.php';
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
@@ -458,7 +468,7 @@ class adminEventController
             $export['category'] = $category->list;
         }
         /** genre */
-        include_once ROOT_DIR.'component/genre/admin/model/admin.genre.model.php';
+        include_once ROOT_DIR . 'component/genre/admin/model/admin.genre.model.php';
         $genre = new adminGenreModel();
 
         $resultGenre = $genre->getGenreOption();
@@ -468,10 +478,10 @@ class adminEventController
         }
 
         /** salon */
-        include_once ROOT_DIR.'component/salon/admin/model/admin.salon.model.php';
+        include_once ROOT_DIR . 'component/salon/admin/model/admin.salon.model.php';
         $salon = new adminSAlonModel();
         $obj = $salon->getAll()
-            ->where('parent_id','=',0)
+            ->where('parent_id', '=', 0)
             ->getList();
 
         if ($obj['result'] == 1) {
@@ -479,7 +489,7 @@ class adminEventController
         }
 
 
-        include_once ROOT_DIR.'component/province/admin/model/admin.province.model.php';
+        include_once ROOT_DIR . 'component/province/admin/model/admin.province.model.php';
         //$city = new adminCityModel();
         $province = adminProvinceModel::getAll()->getList();
 
@@ -496,7 +506,7 @@ class adminEventController
         }*/
 
 
-        $export['showStatus']=$showStatus;
+        $export['showStatus'] = $showStatus;
         $this->fileName = 'admin.event.editForm.draft.php';
         $this->template($export, $msg);
         die();
@@ -508,45 +518,43 @@ class adminEventController
         //$event = new adminEventModel();
         $event = adminEventDraftModel::find($fields['Event_id']);
         //$result = $event->getEventById($fields['Event_id']);
-        $fields['date'] = ($fields['date']!=''?convertJToGDate($fields['date']):'0000-00-00');
-        $fields['date2'] = ($fields['date2']!=''?convertJToGDate($fields['date2']):'0000-00-00');
-        $fields['date3'] = ($fields['date3']!=''?convertJToGDate($fields['date3']):'0000-00-00');
-        $fields['category_id'] = ",".(implode(",",$fields['category_id'])).",";
-        $fields['genre_id'] = ",".(implode(",",$fields['genre_id'])).",";
-        $fields['salon_id'] = ",".(implode(",",$fields['salon_id'])).",";
+        $fields['date'] = ($fields['date'] != '' ? convertJToGDate($fields['date']) : '0000-00-00');
+        $fields['date2'] = ($fields['date2'] != '' ? convertJToGDate($fields['date2']) : '0000-00-00');
+        $fields['date3'] = ($fields['date3'] != '' ? convertJToGDate($fields['date3']) : '0000-00-00');
+        $fields['category_id'] = "," . (implode(",", $fields['category_id'])) . ",";
+        $fields['genre_id'] = "," . (implode(",", $fields['genre_id'])) . ",";
+        $fields['salon_id'] = "," . (implode(",", $fields['salon_id'])) . ",";
 
 
         $result = $event->setFields($fields);
 
         $event->update_date = date('Y-m-d H:i:s');
 
-        $result=$event->save();
-//        print_r_debug($event);
+        $result = $event->save();
+        //        print_r_debug($event);
 
-        $fields=$event->fields;
-        if($result['result']!='1')
-        {
+        $fields = $event->fields;
+        if ($result['result'] != '1') {
             $this->showEventEditFormDraft($fields, $result['msg']);
         }
 
 
 
-        if(file_exists($_FILES['logo']['tmp_name'])){
+        if (file_exists($_FILES['logo']['tmp_name'])) {
 
-            $input['upload_dir'] = ROOT_DIR.'statics/event/';
-            $result = fileUploader($input,$_FILES['logo']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/event/';
+            $result = fileUploader($input, $_FILES['logo']);
 
-            fileRemover($input['upload_dir'],$event->fields['logo']);
+            fileRemover($input['upload_dir'], $event->fields['logo']);
             $event->logo = $result['image_name'];
 
             $result = $event->save();
-
         }
 
 
 
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=event&action=draft', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=event&action=draft', $msg);
         die();
     }
 
@@ -554,7 +562,7 @@ class adminEventController
     public function showList($msg)
     {
 
-        $export['status']='showAll';
+        $export['status'] = 'showAll';
         $this->fileName = 'admin.event.showList.php';
         $this->template($export);
         die();
@@ -562,7 +570,7 @@ class adminEventController
     public function showListDraft($msg)
     {
 
-        $export['status']='showAll';
+        $export['status'] = 'showAll';
         $this->fileName = 'admin.event.showList.draft.php';
         $this->template($export);
         die();
@@ -571,7 +579,7 @@ class adminEventController
 
     public function showListGallery($msg)
     {
-        $export['status']='showAll';
+        $export['status'] = 'showAll';
         $this->fileName = 'admin.event.gallery.showList.php';
         $this->template($export);
         die();
@@ -588,32 +596,32 @@ class adminEventController
         $event = new adminEventModel();
 
         include_once(ROOT_DIR . "model/datatable.converter.php");
-        $i=0;
+        $i = 0;
         $columns = array(
-            array( 'db' => 'Event_id', 'dt' =>$i++),
-            array( 'db' => 'category_id', 'dt' =>$i++),
-            array( 'db' => 'event_name_fa',   'dt' => $i++),
-            array( 'db' => 'event_name_en', 'dt' => $i++ ),
-            array( 'db' => 'event_phone', 'dt' => $i++ ),
-            array( 'db' => 'city_id', 'dt' => $i++ ),
-            array( 'db' => 'event_time', 'dt' => $i++ ),
+            array('db' => 'Event_id', 'dt' => $i++),
+            array('db' => 'category_id', 'dt' => $i++),
+            array('db' => 'event_name_fa',   'dt' => $i++),
+            array('db' => 'event_name_en', 'dt' => $i++),
+            array('db' => 'event_phone', 'dt' => $i++),
+            array('db' => 'city_id', 'dt' => $i++),
+            array('db' => 'event_time', 'dt' => $i++),
             //array( 'db' => 'event_date', 'dt' => $i++ ),
-            array( 'db' => 'event_time2', 'dt' => $i++ ),
+            array('db' => 'event_time2', 'dt' => $i++),
             //array( 'db' => 'event_date2', 'dt' => $i++ ),
-            array( 'db' => 'event_time3', 'dt' => $i++ ),
+            array('db' => 'event_time3', 'dt' => $i++),
             //array( 'db' => 'event_date3', 'dt' => $i++ ),
-            array( 'db' => 'status', 'dt' => $i++ ),
-            array( 'db' => 'address_fa', 'dt' => $i++ ),
-            array( 'db' => 'address_en', 'dt' => $i++ ),
-            array( 'db' => 'logo', 'dt' => $i++ ),
-            array( 'db' => 'Event_id', 'dt' => $i++ )
+            array('db' => 'status', 'dt' => $i++),
+            array('db' => 'address_fa', 'dt' => $i++),
+            array('db' => 'address_en', 'dt' => $i++),
+            array('db' => 'logo', 'dt' => $i++),
+            array('db' => 'Event_id', 'dt' => $i++)
         );
-        $convert=new convertDatatableIO();
-        $convert->input=$fields;
-        $convert->columns=$columns;
+        $convert = new convertDatatableIO();
+        $convert->input = $fields;
+        $convert->columns = $columns;
 
 
-        $searchFields= $convert->convertInput();
+        $searchFields = $convert->convertInput();
 
         //$date = date('Y-m-d', strtotime(COMPANY_EXPIRE_PERIOD));
         // print_r_debug($date);
@@ -628,8 +636,8 @@ class adminEventController
             die();
         }
 
-        $list['list']=$event->list;
-        $list['paging']=$event->recordsCount;
+        $list['list'] = $event->list;
+        $list['paging'] = $event->recordsCount;
         /*$other['2']=array(
             'formatter' =>function($list)
             {
@@ -637,70 +645,63 @@ class adminEventController
                 return $st;
             }
         );*/
-        $other['6']=array(
-            'formatter' =>function($list)
-            {
-                $st =  $list['event_time'] .'<br>'.($list['date']!='0000-00-00'?convertDate($list['date']):'');
+        $other['6'] = array(
+            'formatter' => function ($list) {
+                $st =  $list['event_time'] . '<br>' . ($list['date'] != '0000-00-00' ? convertDate($list['date']) : '');
                 return $st;
             }
         );
-        $other['7']=array(
-            'formatter' =>function($list)
-            {
-                $st =  $list['event_time2'] .'<br>'. ($list['date2']!='0000-00-00'?convertDate($list['date2']):'');
+        $other['7'] = array(
+            'formatter' => function ($list) {
+                $st =  $list['event_time2'] . '<br>' . ($list['date2'] != '0000-00-00' ? convertDate($list['date2']) : '');
                 return $st;
             }
         );
-        $other['8']=array(
-            'formatter' =>function($list)
-            {
-                $st =  $list['event_time3'] .'<br>'.($list['date3']!='0000-00-00'?convertDate($list['date3']):'');
+        $other['8'] = array(
+            'formatter' => function ($list) {
+                $st =  $list['event_time3'] . '<br>' . ($list['date3'] != '0000-00-00' ? convertDate($list['date3']) : '');
                 return $st;
             }
         );
-        $other['9']=array(
-            'formatter' =>function($list)
-            {
-                if($list['status']==1) {
-                    $st ='فعال';
-                }else {
-                    $st ='غیر فعال';
+        $other['9'] = array(
+            'formatter' => function ($list) {
+                if ($list['status'] == 1) {
+                    $st = 'فعال';
+                } else {
+                    $st = 'غیر فعال';
                 }
                 return $st;
             }
         );
-        $other['5']=array(
-            'formatter' =>function($list)
-            {
-                include_once ROOT_DIR."component/country/model/country.model.php";
+        $other['5'] = array(
+            'formatter' => function ($list) {
+                // include_once ROOT_DIR."component/country/model/country.model.php";
                 $city = country::find($list['country_id']);
 
 
                 return $city->fields["nice_name"];
             }
         );
-        $other['12']=array(
-            'formatter' =>function($list)
-            {
-                $st = "<img height='50' src='".RELA_DIR.'statics/event/'.$list['logo']."'>";
+        $other['12'] = array(
+            'formatter' => function ($list) {
+                $st = "<img height='50' src='" . RELA_DIR . 'statics/event/' . $list['logo'] . "'>";
 
                 return $st;
             }
         );
-        $internalVariable['showstatus']=$fields['status'];
-        $other[$i-1]=array(
-            formatter =>function($list,$internal)
-            {
+        $internalVariable['showstatus'] = $fields['status'];
+        $other[$i - 1] = array(
+            'formatter' => function ($list, $internal) {
 
-                $st='<a href="'. RELA_DIR.'zamin/?component=event&action=edit&id='.$list['Event_id'].'&showStatus='.$internal['showstatus']
-                    .'">ویرایش</a> <br/>
-                        <a href="'.RELA_DIR.'zamin/?component=event&action=gallery&id='.$list['Event_id'].'">تصاویر</a><br/>
-                        <a href="'.RELA_DIR.'zamin/?component=event&action=delete&id='.$list['Event_id'].$list['event_name'].'">حذف</a>';
+                $st = '<a href="' . RELA_DIR . 'zamin/?component=event&action=edit&id=' . $list['Event_id'] . '&showStatus=' . $internal['showstatus']
+                    . '">ویرایش</a> <br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=event&action=gallery&id=' . $list['Event_id'] . '">تصاویر</a><br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=event&action=delete&id=' . $list['Event_id'] . $list['event_name'] . '">حذف</a>';
                 return $st;
             }
         );
 
-        $export= $convert->convertOutput($list,$columns,$other,$internalVariable);
+        $export = $convert->convertOutput($list, $columns, $other, $internalVariable);
         echo json_encode($export);
         die();
     }
@@ -714,32 +715,32 @@ class adminEventController
         $event = new adminEventModel();
 
         include_once(ROOT_DIR . "model/datatable.converter.php");
-        $i=0;
+        $i = 0;
         $columns = array(
-            array( 'db' => 'Event_id', 'dt' =>$i++),
-            array( 'db' => 'category_id', 'dt' =>$i++),
-            array( 'db' => 'event_name_fa',   'dt' => $i++),
-            array( 'db' => 'event_name_en', 'dt' => $i++ ),
-            array( 'db' => 'event_phone', 'dt' => $i++ ),
-            array( 'db' => 'city_id', 'dt' => $i++ ),
-            array( 'db' => 'event_time', 'dt' => $i++ ),
+            array('db' => 'Event_id', 'dt' => $i++),
+            array('db' => 'category_id', 'dt' => $i++),
+            array('db' => 'event_name_fa',   'dt' => $i++),
+            array('db' => 'event_name_en', 'dt' => $i++),
+            array('db' => 'event_phone', 'dt' => $i++),
+            array('db' => 'city_id', 'dt' => $i++),
+            array('db' => 'event_time', 'dt' => $i++),
             //array( 'db' => 'event_date', 'dt' => $i++ ),
-            array( 'db' => 'event_time2', 'dt' => $i++ ),
+            array('db' => 'event_time2', 'dt' => $i++),
             //array( 'db' => 'event_date2', 'dt' => $i++ ),
-            array( 'db' => 'event_time3', 'dt' => $i++ ),
+            array('db' => 'event_time3', 'dt' => $i++),
             //array( 'db' => 'event_date3', 'dt' => $i++ ),
-            array( 'db' => 'status', 'dt' => $i++ ),
-            array( 'db' => 'address_fa', 'dt' => $i++ ),
-            array( 'db' => 'address_en', 'dt' => $i++ ),
-            array( 'db' => 'logo', 'dt' => $i++ ),
-            array( 'db' => 'Event_id', 'dt' => $i++ )
+            array('db' => 'status', 'dt' => $i++),
+            array('db' => 'address_fa', 'dt' => $i++),
+            array('db' => 'address_en', 'dt' => $i++),
+            array('db' => 'logo', 'dt' => $i++),
+            array('db' => 'Event_id', 'dt' => $i++)
         );
-        $convert=new convertDatatableIO();
-        $convert->input=$fields;
-        $convert->columns=$columns;
+        $convert = new convertDatatableIO();
+        $convert->input = $fields;
+        $convert->columns = $columns;
 
 
-        $searchFields= $convert->convertInput();
+        $searchFields = $convert->convertInput();
 
         //$date = date('Y-m-d', strtotime(COMPANY_EXPIRE_PERIOD));
         // print_r_debug($date);
@@ -754,8 +755,8 @@ class adminEventController
             die();
         }
 
-        $list['list']=$event->list;
-        $list['paging']=$event->recordsCount;
+        $list['list'] = $event->list;
+        $list['paging'] = $event->recordsCount;
         /*$other['2']=array(
             'formatter' =>function($list)
             {
@@ -763,69 +764,62 @@ class adminEventController
                 return $st;
             }
         );*/
-        $other['6']=array(
-            'formatter' =>function($list)
-            {
-                $st =  $list['event_time'] .'<br>'.($list['date']!='0000-00-00'?convertDate($list['date']):'');
+        $other['6'] = array(
+            'formatter' => function ($list) {
+                $st =  $list['event_time'] . '<br>' . ($list['date'] != '0000-00-00' ? convertDate($list['date']) : '');
                 return $st;
             }
         );
-        $other['7']=array(
-            'formatter' =>function($list)
-            {
-                $st =  $list['event_time2'] .'<br>'. ($list['date2']!='0000-00-00'?convertDate($list['date2']):'');
+        $other['7'] = array(
+            'formatter' => function ($list) {
+                $st =  $list['event_time2'] . '<br>' . ($list['date2'] != '0000-00-00' ? convertDate($list['date2']) : '');
                 return $st;
             }
         );
-        $other['8']=array(
-            'formatter' =>function($list)
-            {
-                $st =  $list['event_time3'] .'<br>'.($list['date3']!='0000-00-00'?convertDate($list['date3']):'');
+        $other['8'] = array(
+            'formatter' => function ($list) {
+                $st =  $list['event_time3'] . '<br>' . ($list['date3'] != '0000-00-00' ? convertDate($list['date3']) : '');
                 return $st;
             }
         );
-        $other['9']=array(
-            'formatter' =>function($list)
-            {
-                if($list['status']==1) {
-                    $st ='فعال';
-                }else {
-                    $st ='غیر فعال';
+        $other['9'] = array(
+            'formatter' => function ($list) {
+                if ($list['status'] == 1) {
+                    $st = 'فعال';
+                } else {
+                    $st = 'غیر فعال';
                 }
                 return $st;
             }
         );
-        $other['5']=array(
-            'formatter' =>function($list)
-            {
-                include_once ROOT_DIR."component/province/admin/model/admin.province.model.php";
+        $other['5'] = array(
+            'formatter' => function ($list) {
+                // include_once ROOT_DIR . "component/province/admin/model/admin.province.model.php";
                 $city = adminProvinceModel::find($list['city_id']);
 
                 global $lang;
                 return $city->fields["name_$lang"];
             }
         );
-        $other['12']=array(
-            'formatter' =>function($list)
-            {
-                $st = "<img height='50' src='".RELA_DIR.'statics/event/'.$list['logo']."'>";
+        $other['12'] = array(
+            'formatter' => function ($list) {
+                $st = "<img height='50' src='" . RELA_DIR . 'statics/event/' . $list['logo'] . "'>";
 
                 return $st;
             }
         );
-        $internalVariable['showstatus']=$fields['status'];
-        $other[$i-1]=array(
-            formatter =>function($list,$internal)
-            {
+        $internalVariable['showstatus'] = $fields['status'];
+        $other[$i - 1] = array(
+            'formatter' => function ($list, $internal) {
 
-                $st='<a href="'. RELA_DIR.'zamin/?component=event&action=editDraft&id='.$list['Event_id'].'&showStatus='.$internal['showstatus']
-                    .'">ویرایش</a> <br/>
-                        <a href="'.RELA_DIR.'zamin/?component=event&action=deleteDraft&id='.$list['Event_id'].$list['event_name'].'">حذف</a>';
+                $st = '<a href="' . RELA_DIR . 'zamin/?component=event&action=editDraft&id=' . $list['Event_id'] . '&showStatus=' . $internal['showstatus']
+                    . '">ویرایش</a> <br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=event&action=deleteDraft&id=' . $list['Event_id'] . $list['event_name'] . '">حذف</a>';
                 return $st;
             }
         );
 
-        $export= $convert->convertOutput($list,$columns,$other,$internalVariable);
+        $export = $convert->convertOutput($list, $columns, $other, $internalVariable);
         echo json_encode($export);
         die();
     }
@@ -833,26 +827,26 @@ class adminEventController
     public function searchGallery($fields)
     {
 
-        include_once (ROOT_DIR.'component/event_gallery/admin/model/admin.event_gallery.model.php');
+        // include_once(ROOT_DIR . 'component/event_gallery/admin/model/admin.event_gallery.model.php');
         //print_r_debug($fields);
         $event = new adminEvent_galleryModel();
 
         include_once(ROOT_DIR . "model/datatable.converter.php");
-        $i=0;
+        $i = 0;
         $columns = array(
-            array( 'db' => 'Event_gallery_id', 'dt' =>$i++),
-            array( 'db' => 'event_id', 'dt' =>$i++),
-            array( 'db' => 'image', 'dt' => $i++ ),
-            array( 'db' => 'Event_gallery_id', 'dt' => $i++ )
+            array('db' => 'Event_gallery_id', 'dt' => $i++),
+            array('db' => 'event_id', 'dt' => $i++),
+            array('db' => 'image', 'dt' => $i++),
+            array('db' => 'Event_gallery_id', 'dt' => $i++)
         );
-        $convert=new convertDatatableIO();
-        $convert->input=$fields;
-        $convert->columns=$columns;
-        $searchFields= $convert->convertInput();
+        $convert = new convertDatatableIO();
+        $convert->input = $fields;
+        $convert->columns = $columns;
+        $searchFields = $convert->convertInput();
 
 
-        $searchFields['where']=' event_id= '. $fields['event_id'] .' ' ;
-        $result=$event->getByFilter($searchFields);
+        $searchFields['where'] = ' event_id= ' . $fields['event_id'] . ' ';
+        $result = $event->getByFilter($searchFields);
 
         //$result = $event->getEvent($searchFields);
 
@@ -862,8 +856,8 @@ class adminEventController
             die();
         }
 
-        $list['list']=$result['export']['list'];
-        $list['paging']=$result['export']['recordsCount'];
+        $list['list'] = $result['export']['list'];
+        $list['paging'] = $result['export']['recordsCount'];
         /*$other['2']=array(
             'formatter' =>function($list)
             {
@@ -871,9 +865,8 @@ class adminEventController
                 return $st;
             }
         );*/
-        $other['1']=array(
-            'formatter' =>function($list)
-            {
+        $other['1'] = array(
+            'formatter' => function ($list) {
                 global $lang;
                 $obj = adminEventModel::find($list['event_id']);
                 $st = $obj->fields["event_name_$lang"];
@@ -881,38 +874,35 @@ class adminEventController
                 return $st;
             }
         );
-        $other['2']=array(
-            'formatter' =>function($list)
-            {
-                $st = "<img height='50' src='".RELA_DIR.'statics/event/'.$list['image']."'>";
+        $other['2'] = array(
+            'formatter' => function ($list) {
+                $st = "<img height='50' src='" . RELA_DIR . 'statics/event/' . $list['image'] . "'>";
 
                 return $st;
             }
         );
-        $other['4']=array(
-            'formatter' =>function($list)
-            {
-                if($list['status']==1) {
-                    $st ='فعال';
-                }else {
-                    $st ='غیر فعال';
+        $other['4'] = array(
+            'formatter' => function ($list) {
+                if ($list['status'] == 1) {
+                    $st = 'فعال';
+                } else {
+                    $st = 'غیر فعال';
                 }
                 return $st;
             }
         );
 
 
-        $internalVariable['showstatus']=$fields['status'];
-        $other[$i-1]=array(
-            'formatter' =>function($list,$internal)
-            {
+        $internalVariable['showstatus'] = $fields['status'];
+        $other[$i - 1] = array(
+            'formatter' => function ($list, $internal) {
 
-                $st='<a href="'.RELA_DIR.'zamin/?component=event&action=deleteGallery&id='.$list['Event_gallery_id'].$list['event_name'].'">حذف</a>';
+                $st = '<a href="' . RELA_DIR . 'zamin/?component=event&action=deleteGallery&id=' . $list['Event_gallery_id'] . $list['event_name'] . '">حذف</a>';
                 return $st;
             }
         );
 
-        $export= $convert->convertOutput($list,$columns,$other,$internalVariable);
+        $export = $convert->convertOutput($list, $columns, $other, $internalVariable);
         echo json_encode($export);
         die();
     }
@@ -936,26 +926,26 @@ class adminEventController
         $event = new adminEventModel();
 
         include_once(ROOT_DIR . "model/datatable.converter.php");
-        $i=0;
+        $i = 0;
         $columns = array(
-            array( 'db' => 'Event_id', 'dt' =>$i++),
-            array( 'db' => 'event_name', 'dt' =>$i++),
-            array( 'db' => 'phone_number', 'dt' =>$i++),
-            array( 'db' => 'refresh_date',   'dt' => $i++),
-            array( 'db' => 'address_address', 'dt' => $i++ ),
-            array( 'db' => 'email_email', 'dt' => $i++ ),
-            array( 'db' => 'website_url', 'dt' => $i++ ),
-            array( 'db' => 'status', 'dt' => $i++ ),
-            array( 'db' => 'Event_id', 'dt' => $i++ )
+            array('db' => 'Event_id', 'dt' => $i++),
+            array('db' => 'event_name', 'dt' => $i++),
+            array('db' => 'phone_number', 'dt' => $i++),
+            array('db' => 'refresh_date',   'dt' => $i++),
+            array('db' => 'address_address', 'dt' => $i++),
+            array('db' => 'email_email', 'dt' => $i++),
+            array('db' => 'website_url', 'dt' => $i++),
+            array('db' => 'status', 'dt' => $i++),
+            array('db' => 'Event_id', 'dt' => $i++)
         );
-        $convert=new convertDatatableIO();
-        $convert->input=$fields;
-        $convert->columns=$columns;
-        $searchFields= $convert->convertInput();
+        $convert = new convertDatatableIO();
+        $convert->input = $fields;
+        $convert->columns = $columns;
+        $searchFields = $convert->convertInput();
 
         $date = date('Y-m-d', strtotime(COMPANY_EXPIRE_PERIOD));
         // print_r_debug($date);
-        $searchFields['where'] = 'where refresh_date < '."'$date'";
+        $searchFields['where'] = 'where refresh_date < ' . "'$date'";
         //print_r_debug($searchFields);
 
         $result = $event->getEvent($searchFields);
@@ -964,60 +954,55 @@ class adminEventController
             $this->template('', $result['msg']);
             die();
         }
-        $list['list']=$event->list;
-        $list['paging']=$event->recordsCount;
+        $list['list'] = $event->list;
+        $list['paging'] = $event->recordsCount;
 
-        $other['2']=array(
-            'formatter' =>function($list)
-            {
-                $st='<div data-event_id="'.$list['Event_id'].'" class="event_phone">'.$list['phone_number'].'</div>';
+        $other['2'] = array(
+            'formatter' => function ($list) {
+                $st = '<div data-event_id="' . $list['Event_id'] . '" class="event_phone">' . $list['phone_number'] . '</div>';
 
                 return $st;
             }
 
         );
 
-        $other['3']=array(
-            'formatter' =>function($list)
-            {
-                $st= convertDate($list['refresh_date']);
+        $other['3'] = array(
+            'formatter' => function ($list) {
+                $st = convertDate($list['refresh_date']);
                 return $st;
             }
         );
-        $other['4']=array(
-            'formatter' =>function($list)
-            {
-                $st=convertDate(date('Y-m-d',strtotime(COMPANY_EXPIRE_PERIOD,strtotime($list['refresh_date'])))) ;
+        $other['4'] = array(
+            'formatter' => function ($list) {
+                $st = convertDate(date('Y-m-d', strtotime(COMPANY_EXPIRE_PERIOD, strtotime($list['refresh_date']))));
                 return $st;
             }
         );
-        $other['7']=array(
-            'formatter' =>function($list)
-            {
-                if($list['status']==1) {
-                    $st ='فعال';
-                }else {
-                    $st ='غیر فعال';
+        $other['7'] = array(
+            'formatter' => function ($list) {
+                if ($list['status'] == 1) {
+                    $st = 'فعال';
+                } else {
+                    $st = 'غیر فعال';
                 }
                 return $st;
             }
         );
 
-        $internalVariable['showstatus']=$fields['status'];
-        $other[$i-1]=array(
-            formatter =>function($list,$internal)
-            {
-                $st= 'a'.$list['showstatus'];
-                $st='<a href="'. RELA_DIR.'zamin/?component=event&action=edit&id='.$list['Event_id'].'&showStatus='.$internal['showstatus']
-                    .'">ویرایش</a> <br/>
-                        <a href="'.RELA_DIR.'zamin/?component=product&id='.$list['Event_id'].'">لیست محصولات</a><br/>
-                        <a href="'.RELA_DIR.'zamin/?component=honour&id='.$list['Event_id'].'">لیست افتخارات</a><br/>
-                        <a href="'.RELA_DIR.'zamin/?component=licence&id='.$list['Event_id'].'">لیست مجوز ها</a><br/>
-                        <a href="'.RELA_DIR.'zamin/?component=event&action=delete&id='.$list['Event_id'].$list['event_name'].'">حذف</a>';
+        $internalVariable['showstatus'] = $fields['status'];
+        $other[$i - 1] = array(
+            'formatter' => function ($list, $internal) {
+                $st = 'a' . $list['showstatus'];
+                $st = '<a href="' . RELA_DIR . 'zamin/?component=event&action=edit&id=' . $list['Event_id'] . '&showStatus=' . $internal['showstatus']
+                    . '">ویرایش</a> <br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=product&id=' . $list['Event_id'] . '">لیست محصولات</a><br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=honour&id=' . $list['Event_id'] . '">لیست افتخارات</a><br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=licence&id=' . $list['Event_id'] . '">لیست مجوز ها</a><br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=event&action=delete&id=' . $list['Event_id'] . $list['event_name'] . '">حذف</a>';
                 return $st;
             }
         );
-        $export= $convert->convertOutput($list,$columns,$other,$internalVariable);
+        $export = $convert->convertOutput($list, $columns, $other, $internalVariable);
         echo json_encode($export);
         die();
     }
@@ -1041,23 +1026,23 @@ class adminEventController
         $event = new adminEventModel();
 
         include_once(ROOT_DIR . "model/datatable.converter.php");
-        $i=0;
+        $i = 0;
         $columns = array(
-            array( 'db' => 'Event_id', 'dt' =>$i++),
-            array( 'db' => 'event_name', 'dt' =>$i++),
-            array( 'db' => 'phone_number', 'dt' =>$i++),
-            array( 'db' => 'city_name',   'dt' => $i++),
-            array( 'db' => 'address_address', 'dt' => $i++ ),
-            array( 'db' => 'email_email', 'dt' => $i++ ),
-            array( 'db' => 'website_url', 'dt' => $i++ ),
-            array( 'db' => 'status', 'dt' => $i++ ),
-            array( 'db' => 'logo', 'dt' => $i++ ),
-            array( 'db' => 'Event_id', 'dt' => $i++ )
+            array('db' => 'Event_id', 'dt' => $i++),
+            array('db' => 'event_name', 'dt' => $i++),
+            array('db' => 'phone_number', 'dt' => $i++),
+            array('db' => 'city_name',   'dt' => $i++),
+            array('db' => 'address_address', 'dt' => $i++),
+            array('db' => 'email_email', 'dt' => $i++),
+            array('db' => 'website_url', 'dt' => $i++),
+            array('db' => 'status', 'dt' => $i++),
+            array('db' => 'logo', 'dt' => $i++),
+            array('db' => 'Event_id', 'dt' => $i++)
         );
-        $convert=new convertDatatableIO();
-        $convert->input=$fields;
-        $convert->columns=$columns;
-        $searchFields= $convert->convertInput();
+        $convert = new convertDatatableIO();
+        $convert->input = $fields;
+        $convert->columns = $columns;
+        $searchFields = $convert->convertInput();
 
         //$date = date('Y-m-d', strtotime(COMPANY_EXPIRE_PERIOD));
         // print_r_debug($date);
@@ -1070,43 +1055,40 @@ class adminEventController
             $this->template('', $result['msg']);
             die();
         }
-        $list['list']=$event->list;
-        $list['paging']=$event->recordsCount;
+        $list['list'] = $event->list;
+        $list['paging'] = $event->recordsCount;
 
-        $other['2']=array(
-            'formatter' =>function($list)
-            {
-                $st='<div data-event_id="'.$list['Event_id'].'" class="event_phone">'.$list['phone_number'].'</div>';
+        $other['2'] = array(
+            'formatter' => function ($list) {
+                $st = '<div data-event_id="' . $list['Event_id'] . '" class="event_phone">' . $list['phone_number'] . '</div>';
                 return $st;
             }
         );
 
-        $other['7']=array(
-            'formatter' =>function($list)
-            {
-                if($list['status']==1) {
-                    $st ='فعال';
-                }else {
-                    $st ='غیر فعال';
+        $other['7'] = array(
+            'formatter' => function ($list) {
+                if ($list['status'] == 1) {
+                    $st = 'فعال';
+                } else {
+                    $st = 'غیر فعال';
                 }
                 return $st;
             }
         );
-        $internalVariable['showstatus']=$fields['status'];
-        $other[$i-1]=array(
-            formatter =>function($list,$internal)
-            {
-                $st= 'a'.$list['showstatus'];
-                $st='<a href="'. RELA_DIR.'zamin/?component=event&action=edit&id='.$list['Event_id'].'&showStatus='.$internal['showstatus']
-                    .'">ویرایش</a> <br/>
-                        <a href="'.RELA_DIR.'zamin/?component=product&id='.$list['Event_id'].'">لیست محصولات</a><br/>
-                        <a href="'.RELA_DIR.'zamin/?component=honour&id='.$list['Event_id'].'">لیست افتخارات</a><br/>
-                        <a href="'.RELA_DIR.'zamin/?component=licence&id='.$list['Event_id'].'">لیست مجوز ها</a><br/>
-                        <a href="'.RELA_DIR.'zamin/?component=event&action=delete&id='.$list['Event_id'].$list['event_name'].'">حذف</a>';
+        $internalVariable['showstatus'] = $fields['status'];
+        $other[$i - 1] = array(
+            'formatter' => function ($list, $internal) {
+                $st = 'a' . $list['showstatus'];
+                $st = '<a href="' . RELA_DIR . 'zamin/?component=event&action=edit&id=' . $list['Event_id'] . '&showStatus=' . $internal['showstatus']
+                    . '">ویرایش</a> <br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=product&id=' . $list['Event_id'] . '">لیست محصولات</a><br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=honour&id=' . $list['Event_id'] . '">لیست افتخارات</a><br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=licence&id=' . $list['Event_id'] . '">لیست مجوز ها</a><br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=event&action=delete&id=' . $list['Event_id'] . $list['event_name'] . '">حذف</a>';
                 return $st;
             }
         );
-        $export= $convert->convertOutput($list,$columns,$other,$internalVariable);
+        $export = $convert->convertOutput($list, $columns, $other, $internalVariable);
         //print_r_debug($export);
         echo json_encode($export);
         die();
@@ -1156,14 +1138,13 @@ class adminEventController
      */
     public function updateCity()
     {
-        include_once ROOT_DIR.'component/city/admin/model/admin.city.model.db.php';
+        // include_once ROOT_DIR . 'component/city/admin/model/admin.city.model.db.php';
 
         $cityList = adminCityModelDb::getAll()['export']['list'];
 
-        foreach ($cityList as $key=>$fields)
-        {
+        foreach ($cityList as $key => $fields) {
 
-            $province_id= $fields['province_id'];
+            $province_id = $fields['province_id'];
 
             echo $province_id;
 
@@ -1180,8 +1161,7 @@ class adminEventController
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-            if (!$stmt)
-            {
+            if (!$stmt) {
                 $result['result'] = -1;
                 $result['Number'] = 1;
                 $result['msg'] = $conn->errorInfo();
@@ -1193,8 +1173,8 @@ class adminEventController
 
 
             //print_r_debug($fields);
-            $city_id= $fields['City_id'];
-            $province_id= $fields['province_id'];
+            $city_id = $fields['City_id'];
+            $province_id = $fields['province_id'];
             echo $province_id;
             //echo '<br/>';
             //echo '<br/>$city_id<br/>';
@@ -1215,9 +1195,9 @@ class adminEventController
      */
     public function importCompanies()
     {
-        include_once dirname(__FILE__).'/admin.event.model.db.php';
-        include_once ROOT_DIR.'component/city/admin/model/admin.city.model.db.php';
-        $xml = (STATIC_ROOT_DIR.'/xml/companies.xml');
+        include_once dirname(__FILE__) . '/admin.event.model.db.php';
+        include_once ROOT_DIR . 'component/city/admin/model/admin.city.model.db.php';
+        $xml = (STATIC_ROOT_DIR . '/xml/companies.xml');
         $xmlDoc = new DOMDocument();
         $xmlDoc->load($xml);
         $wb = $xmlDoc->getElementsByTagName('Workbook')->item(0);
@@ -1245,31 +1225,31 @@ class adminEventController
             if ($g1 != '{-}') {
                 $fieldsArray = explode(',', $fields['category_list']);
                 if (!array_search(($g1 * 100), $fieldsArray)) {
-                    $fields['category_list'] .= ','.($g1 * 100);
+                    $fields['category_list'] .= ',' . ($g1 * 100);
                 }
                 if (!array_search((($g1 * 100) + $g1s), $fieldsArray)) {
-                    $fields['category_list'] .= ','.(($g1 * 100) + $g1s);
+                    $fields['category_list'] .= ',' . (($g1 * 100) + $g1s);
                 }
             }
             if ($g2 != '{-}') {
                 $fieldsArray = explode(',', $fields['category_list']);
                 if (!array_search(($g2 * 100), $fieldsArray)) {
-                    $fields['category_list'] .= ','.($g2 * 100);
+                    $fields['category_list'] .= ',' . ($g2 * 100);
                 }
                 if (!array_search((($g2 * 100) + $g2s), $fieldsArray)) {
-                    $fields['category_list'] .= ','.(($g2 * 100) + $g2s);
+                    $fields['category_list'] .= ',' . (($g2 * 100) + $g2s);
                 }
             }
             if ($g3 != '{-}') {
                 $fieldsArray = explode(',', $fields['category_list']);
                 if (!array_search(($g3 * 100), $fieldsArray)) {
-                    $fields['category_list'] .= ','.($g3 * 100);
+                    $fields['category_list'] .= ',' . ($g3 * 100);
                 }
                 if (!array_search((($g3 * 100) + $g3s), $fieldsArray)) {
-                    $fields['category_list'] .= ','.(($g3 * 100) + $g3s);
+                    $fields['category_list'] .= ',' . (($g3 * 100) + $g3s);
                 }
             }
-            $fields['category_list']=$fields['category_list'].',';
+            $fields['category_list'] = $fields['category_list'] . ',';
             //print_r_debug($fields['category_list']);
 
             $city_name = $cell[13]->getElementsByTagName('Data')[0]->nodeValue;
@@ -1440,7 +1420,7 @@ class adminEventController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
     }
 
     /**
@@ -1450,8 +1430,8 @@ class adminEventController
      */
     public function importEventPhones()
     {
-        include_once dirname(__FILE__).'/admin.event.model.db.php';
-        $xml = (STATIC_ROOT_DIR.'/xml/event-phones.xml');
+        include_once dirname(__FILE__) . '/admin.event.model.db.php';
+        $xml = (STATIC_ROOT_DIR . '/xml/event-phones.xml');
         $xmlDoc = new DOMDocument();
         $xmlDoc->load($xml);
         $wb = $xmlDoc->getElementsByTagName('Workbook')->item(0);
@@ -1481,7 +1461,7 @@ class adminEventController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
     }
     /**
      * importEventEmails.
@@ -1490,8 +1470,8 @@ class adminEventController
      */
     public function importEventEmails()
     {
-        include_once dirname(__FILE__).'/admin.event.model.db.php';
-        $xml = (STATIC_ROOT_DIR.'/xml/event-emails.xml');
+        include_once dirname(__FILE__) . '/admin.event.model.db.php';
+        $xml = (STATIC_ROOT_DIR . '/xml/event-emails.xml');
         $xmlDoc = new DOMDocument();
         $xmlDoc->load($xml);
         $wb = $xmlDoc->getElementsByTagName('Workbook')->item(0);
@@ -1520,7 +1500,7 @@ class adminEventController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
     }
     /**
      * importEventAddresses.
@@ -1529,8 +1509,8 @@ class adminEventController
      */
     public function importEventAddresses()
     {
-        include_once dirname(__FILE__).'/admin.event.model.db.php';
-        $xml = (STATIC_ROOT_DIR.'/xml/event-addresses.xml');
+        include_once dirname(__FILE__) . '/admin.event.model.db.php';
+        $xml = (STATIC_ROOT_DIR . '/xml/event-addresses.xml');
         $xmlDoc = new DOMDocument();
         $xmlDoc->load($xml);
         $wb = $xmlDoc->getElementsByTagName('Workbook')->item(0);
@@ -1558,7 +1538,7 @@ class adminEventController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
     }
     /**
      * importEventWebsites.
@@ -1567,8 +1547,8 @@ class adminEventController
      */
     public function importEventWebsites()
     {
-        include_once dirname(__FILE__).'/admin.event.model.db.php';
-        $xml = (STATIC_ROOT_DIR.'/xml/event-websites.xml');
+        include_once dirname(__FILE__) . '/admin.event.model.db.php';
+        $xml = (STATIC_ROOT_DIR . '/xml/event-websites.xml');
         $xmlDoc = new DOMDocument();
         $xmlDoc->load($xml);
         $wb = $xmlDoc->getElementsByTagName('Workbook')->item(0);
@@ -1596,7 +1576,7 @@ class adminEventController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
     }
     /**
      * delete deleteEvent by event_id.
@@ -1614,36 +1594,36 @@ class adminEventController
 
         if (!validator::required($id) and !validator::Numeric($id)) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
         }
 
         $event = adminEventModel::find($id);
         if (!is_object($event)) {
             $msg = $event['msg'];
-            redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
         }
 
 
-        include_once ROOT_DIR.'/component/event_gallery/admin/model/admin.event_gallery.model.php';
+        include_once ROOT_DIR . '/component/event_gallery/admin/model/admin.event_gallery.model.php';
         $result = adminEvent_galleryModel::getBy_event_id($id)->get();
 
 
         if ($result['export']['recordsCount'] > 0) {
             $msg = 'توجه : ابتدا گالری این رویداد را حذف نمایید.';
-            redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
         }
 
-        $dir = ROOT_DIR.'statics/event/';
-        fileRemover($dir,$event->fields['logo']);
+        $dir = ROOT_DIR . 'statics/event/';
+        fileRemover($dir, $event->fields['logo']);
 
         $result = $event->delete();
 
         if ($result['result'] != '1') {
-            redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
         }
 
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
         die();
     }
     public function deleteEventDraft($id)
@@ -1651,24 +1631,24 @@ class adminEventController
 
         if (!validator::required($id) and !validator::Numeric($id)) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'zamin/index.php?component=event&action=draft', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=event&action=draft', $msg);
         }
 
         $event = adminEventDraftModel::find($id);
         if (!is_object($event)) {
             $msg = $event['msg'];
-            redirectPage(RELA_DIR.'zamin/index.php?component=event&action=draft', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=event&action=draft', $msg);
         }
 
 
         $result = $event->delete();
 
         if ($result['result'] != '1') {
-            redirectPage(RELA_DIR.'zamin/index.php?component=event&action=draft', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=event&action=draft', $msg);
         }
 
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=event&action=draft', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=event&action=draft', $msg);
         die();
     }
 
@@ -1677,33 +1657,33 @@ class adminEventController
 
         if (!validator::required($id) and !validator::Numeric($id)) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'zamin/index.php?component=event', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
         }
 
-        include_once ROOT_DIR.'component/event_gallery/admin/model/admin.event_gallery.model.php';
+        include_once ROOT_DIR . 'component/event_gallery/admin/model/admin.event_gallery.model.php';
         $event = adminEvent_galleryModel::find($id);
 
         if (!is_object($event)) {
             $msg = $event['msg'];
-            redirectPage(RELA_DIR.'zamin/index.php?component=event&action=gallery&id='.$event->fields['event_id'], $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=event&action=gallery&id=' . $event->fields['event_id'], $msg);
         }
 
-        $dir = ROOT_DIR.'statics/event/';
-        fileRemover($dir,$event->fields['image']);
+        $dir = ROOT_DIR . 'statics/event/';
+        fileRemover($dir, $event->fields['image']);
 
         $result = $event->delete();
 
         if ($result['result'] != '1') {
-            redirectPage(RELA_DIR.'zamin/index.php?component=event&action=gallery&id='.$event->fields['event_id'], $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=event&action=gallery&id=' . $event->fields['event_id'], $msg);
         }
 
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=event&action=gallery&id='.$event->fields['event_id'], $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=event&action=gallery&id=' . $event->fields['event_id'], $msg);
         die();
     }
     public function call($fields)
     {
-        include_once dirname(__FILE__).'/php-ami-class.php';
+        include_once dirname(__FILE__) . '/php-ami-class.php';
         $conn = new AstMan();
         $ret = $conn->clickToCall($fields['number']);
         die();
@@ -1712,36 +1692,32 @@ class adminEventController
     public function getEventphone($input)
     {
         $event_id =   $input['event_id'];
-        include_once dirname(__FILE__).'/admin.event.model.php';
+        include_once dirname(__FILE__) . '/admin.event.model.php';
         $model = new adminEventModel();
         $result = $model->getEventphoneAll($event_id);
-        $phone='';
-        foreach ($result['export']['list'] as $key => $value ){
-            $phone .='<h4><a class="btn btn-default event_allphone label label-default" href="#" role="button" data-myphonenumber="'.$value.'" data-myeventid="'.$event_id.'"><span class="glyphicon glyphicon-phone-alt"></span></a><span>'.$value.'</span></h4>';
-
+        $phone = '';
+        foreach ($result['export']['list'] as $key => $value) {
+            $phone .= '<h4><a class="btn btn-default event_allphone label label-default" href="#" role="button" data-myphonenumber="' . $value . '" data-myeventid="' . $event_id . '"><span class="glyphicon glyphicon-phone-alt"></span></a><span>' . $value . '</span></h4>';
         }
         echo $phone;
         //print_r_debug($result );
         //json_encode($result);
-         die();
-
+        die();
     }
 
     public function getCityAjax($input)
     {
-        $province_id =$input['province_id'];
-        include_once ROOT_DIR.'/component/city/admin/model/admin.city.model.php';
+        $province_id = $input['province_id'];
+        // include_once ROOT_DIR . '/component/city/admin/model/admin.city.model.php';
         $model = new adminCityModel();
         $result = $model->getCitiesByprovinceID($province_id);
 
-        $option='';
-        foreach ($result['export']['list'] as $key => $value){
-            $option.="<option>".$value['name']."</option>";
+        $option = '';
+        foreach ($result['export']['list'] as $key => $value) {
+            $option .= "<option>" . $value['name'] . "</option>";
         }
         echo $option;
 
         die();
-
     }
-
 }
