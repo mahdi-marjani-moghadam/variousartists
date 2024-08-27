@@ -243,7 +243,7 @@ class adminLoginModel
         $_SESSION["sessionIDAdmin"] = $this->encrypt($result['export']['insert_id'], $this->GetHash());
         /*$_SESSION["adminUsername"] = $obj->name . " " . $obj->family;*/
         //remember me
-        setcookie("sessionIDAdmin", $_SESSION["sessionIDAdmin"], time() + 3600000000000, "/", $_SERVER['HTTP_HOST']);
+        setcookie("sessionIDAdmin", $_SESSION["sessionIDAdmin"], time() + 9999, "/", $_SERVER['HTTP_HOST']);
 
         $admin_info = $this->checkLogin();
 

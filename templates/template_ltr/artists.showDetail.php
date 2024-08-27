@@ -114,7 +114,7 @@
             ============================================= -->
             <!-- Related Portfolio Items
            ============================================= -->
-            <?php if(count($list['product_list'])) : ?>
+            <?php if(isset($list['product_list']) && count($list['product_list'])) : ?>
                 <div class="divider divider-center"><i class="icon-circle"></i></div>
                 <h4>Products:</h4>
 

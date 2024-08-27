@@ -253,7 +253,7 @@ class adminArtistsModel extends looeic
      * @date 2/24/2015
      * @version 01.01.01
      */
-    public function delete()
+    public function delete($id='')
     {
         include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
         $result = adminArtistsModelDb::delete($this->fields['Artists_id']);

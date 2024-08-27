@@ -50,7 +50,7 @@
             <div class=" nobottommargin  clearfix" style="display: ;">
                 <div id="posts" class="">
                     <?
-                    if(count($blog['export']['list']) == 0 && isset($blog['export']['list']))
+                    if(isset($blog['export']['list']) && count($blog['export']['list']) == 0)
                     {
                         ?>
                         <div class="whiteBg boxBorder roundCorner clear fullWidth ">
