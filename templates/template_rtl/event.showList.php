@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="<?=TEMPLATE_DIR?>css/calendar.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo TEMPLATE_DIR?>css/calendar.css" type="text/css" />
 <div class="parallax bottommargin-lg dark" style="padding: 60px 0; height: auto;" data-stellar-background-ratio="0.3">
 
     <div class="container clearfix">
-        <script type="text/javascript" src="<?=TEMPLATE_DIR?>js/jquery.js"></script>
+        <script type="text/javascript" src="<?php echo TEMPLATE_DIR?>js/jquery.js"></script>
         <script>
 
             $(document).ready(function() {
@@ -33,7 +33,7 @@
                     navLinks: true, // can click day/week names to navigate views
                     editable: false,
                     eventLimit: true, // allow "more" link when too many events
-                    events:<?=$list['calendar']?>//,
+                    events:<?php echo $list['calendar']?>//,
                 });
 
             });
@@ -59,7 +59,7 @@
             </div>
 
         <div id="posts" class="events small-thumbs">
-            <?
+            <?php 
             if(is_array($list['list']) && count($list['list']) == 0 && isset($msg))
             {
                 ?>
@@ -68,12 +68,12 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                             <div class="alert alert-warning">
-                                <strong>توجه! </strong><? echo $msg;?>
+                                <strong>توجه! </strong><?php echo $msg;?>
                             </div>
                         </div>
                     </div>
                 </div>
-                <?
+                <?php 
             }
 
             foreach($list['list'] as $k => $value)
@@ -103,7 +103,7 @@
                         <li><a href="#"><i class="icon-map-marker2"></i> <?php echo($value['address'] != "" ? $value['address'] : "-"); ?></a></li>
                     </ul>
                     <div class="entry-content">
-                        <a href="<?=$link?>" class="button button-reveal button-mini button-white button-light btn"><i class="icon-line-arrow-right"></i><span> جزییات</span></a>
+                        <a href="<?php echo $link?>" class="button button-reveal button-mini button-white button-light btn"><i class="icon-line-arrow-right"></i><span> جزییات</span></a>
                         <a href="#" class="button button-border button-mini button-black btn " disabled="disabled">خرید بلیط</a>
 
                     </div>
@@ -117,13 +117,13 @@
                 ?>
                 <ul class="pagination">
                     <li><a href="#">&laquo;</a></li>
-                    <?
+                    <?php 
                     foreach($list['pagination'] as $key => $link)
                     {
                         if($key === 'current'){ continue;}
                         ?>
-                        <li class="<?=(($key+1 == $list['pagination']['current']) || (empty($list['pagination']['current']) && $key == 0 ))?'active':'';?>" ><a href="<?=RELA_DIR.$link;?>"><?=$key+1?></a></li>
-                        <?
+                        <li class="<?php echo (($key+1 == $list['pagination']['current']) || (empty($list['pagination']['current']) && $key == 0 ))?'active':'';?>" ><a href="<?php echo RELA_DIR.$link;?>"><?php echo $key+1?></a></li>
+                        <?php 
                     }
                     ?>
 

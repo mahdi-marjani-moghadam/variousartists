@@ -59,7 +59,7 @@
     {
     ?>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-    <?= $msg ?>
+    <?php echo  $msg ?>
       </div>
     <?php
     }
@@ -73,7 +73,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="title_fa">عنوان(فارسی):</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="title_fa" id="title_fa" autocomplete="off" required="required"  value="<?=$list['title_fa']?>">
+                    <input type="text" class="form-control" name="title_fa" id="title_fa" autocomplete="off" required="required"  value="<?php echo $list['title_fa']?>">
                   </div>
                 </div>
               </div>
@@ -81,7 +81,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="title_en">عنوان(انگلیسی):</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="title_en" id="title_en" autocomplete="off" required="required"  value="<?=$list['title_en']?>">
+                    <input type="text" class="form-control" name="title_en" id="title_en" autocomplete="off" required="required"  value="<?php echo $list['title_en']?>">
                   </div>
                 </div>
               </div>
@@ -91,14 +91,14 @@
                   <div class="col-xs-12 col-sm-8 pull-right">
                    <select class="valid" name="parent_id" id="parent_id">
 
-                    <?
+                    <?php 
                     foreach($list['salon'] as $salon_id => $value)
                     {
                     ?>
-                      <option <?php echo $value['Salon_id'] == $list['parent_id'] ? 'selected' : '' ?> value="<?=$value['Salon_id']?>">
-                    <?=$value['export']?>
+                      <option <?php echo $value['Salon_id'] == $list['parent_id'] ? 'selected' : '' ?> value="<?php echo $value['Salon_id']?>">
+                    <?php echo $value['export']?>
                       </option>
-                    <?
+                    <?php 
                     }
                     ?>
                     </select>
@@ -109,7 +109,7 @@
                     <div class="form-group">
                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="address_fa">آدرس:fa </label>
                         <div class="col-xs-12 col-sm-8 pull-right">
-                            <textarea class="form-control" name="address_fa" id="address_fa" autocomplete="off" ><?=$list['address_fa']?></textarea>
+                            <textarea class="form-control" name="address_fa" id="address_fa" autocomplete="off" ><?php echo $list['address_fa']?></textarea>
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                     <div class="form-group">
                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="address_en"> آدرس:en </label>
                         <div class="col-xs-12 col-sm-8 pull-right">
-                            <textarea class="form-control" name="address_en" id="address_en" autocomplete="off" ><?=$list['address_en']?></textarea>
+                            <textarea class="form-control" name="address_en" id="address_en" autocomplete="off" ><?php echo $list['address_en']?></textarea>
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
                     <div class="form-group">
                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="min_sandali">ابتدای شماره صندلی</label>
                         <div class="col-xs-12 col-sm-8 pull-right">
-                            <input type="number" name="min_sandali" class="form-control " id="min_sandali" value="<?=$list['min_sandali']?>">
+                            <input type="number" name="min_sandali" class="form-control " id="min_sandali" value="<?php echo $list['min_sandali']?>">
                         </div>
                     </div>
                 </div>
@@ -133,7 +133,7 @@
                     <div class="form-group">
                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="max_sandali">انتهای شماره صندلی</label>
                         <div class="col-xs-12 col-sm-8 pull-right">
-                            <input type="number" name="max_sandali" class="form-control " id="max_sandali" value="<?=$list['max_sandali']?>">
+                            <input type="number" name="max_sandali" class="form-control " id="max_sandali" value="<?php echo $list['max_sandali']?>">
 
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                     <div class="form-group">
                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="price">قیمت(ریال)</label>
                         <div class="col-xs-12 col-sm-8 pull-right">
-                            <input  name="price" class="form-control " id="price"><?=$list['price']?>
+                            <input  name="price" class="form-control " id="price"><?php echo $list['price']?>
                             </input>
                         </div>
                     </div>

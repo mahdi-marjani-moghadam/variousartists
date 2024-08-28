@@ -60,7 +60,7 @@
     <?php if($msg!=null)
     { ?>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-        <?= $msg ?>
+        <?php echo  $msg ?>
       </div>
       <?php
     }
@@ -75,7 +75,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="title">عنوان :</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="title" id="title" required value="<?=$list['title']?>">
+                    <input type="text" class="form-control" name="title" id="title" required value="<?php echo $list['title']?>">
                   </div>
                 </div>
               </div>
@@ -83,7 +83,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="brif_description">مختصر توضیحات :</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="brif_description" id="brif_description"  required value="<?=$list['brif_description']?>">
+                    <input type="text" class="form-control" name="brif_description" id="brif_description"  required value="<?php echo $list['brif_description']?>">
                   </div>
                 </div>
               </div>
@@ -94,7 +94,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="description">متن خبر :</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <textarea class="form-control fullFix" name="description" id="description"  required><?=$list['description']?></textarea>
+                    <textarea class="form-control fullFix" name="description" id="description"  required><?php echo $list['description']?></textarea>
                     
                   </div>
                 </div>
@@ -103,7 +103,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="meta_keyword">کلمه کلیدی :</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="meta_keyword" id="meta_keyword" required value="<?=$list['meta_keyword']?>">
+                    <input type="text" class="form-control" name="meta_keyword" id="meta_keyword" required value="<?php echo $list['meta_keyword']?>">
                   </div>
                 </div>
               </div>
@@ -114,7 +114,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="meta_description">توضیح کلیدی :</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="meta_description" id="meta_description"  required value="<?=$list['meta_description']?>">
+                    <input type="text" class="form-control" name="meta_description" id="meta_description"  required value="<?php echo $list['meta_description']?>">
                   </div>
                 </div>
               </div>
@@ -125,7 +125,7 @@
 
                     <div class="input-group" dir="ltr">
 
-                      <input name="image" type="text" class="form-control" id="xImagePath" value="<?=$list['image'];?>" />
+                      <input name="image" type="text" class="form-control" id="xImagePath" value="<?php echo $list['image'];?>" />
               `       <span class="input-group-btn">
                         <input class="btn  btn-info" type="button" value="انتخاب فایل" onclick="BrowseServer( 'Images:/', 'xImagePath' );" />
                       </span>

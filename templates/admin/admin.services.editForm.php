@@ -23,7 +23,7 @@
     {
     ?>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-      <?= $msg ?>
+      <?php echo  $msg ?>
       </div>
     <?php
     }
@@ -37,7 +37,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="head1">عنوان1:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="head1" id="head1" autocomplete="off" placeholder="head1" required value="<?=$list['fa']['head1']; ?>">
+                    <input type="text" class="form-control" name="head1" id="head1" autocomplete="off" placeholder="head1" required value="<?php echo $list['fa']['head1']; ?>">
                   </div>
                 </div>
               </div>
@@ -45,7 +45,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="text1">متن1:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="text1" id="text1" autocomplete="off" placeholder="text1" required value="<?=$list['fa']['text1']?>">
+                    <input type="text" class="form-control" name="text1" id="text1" autocomplete="off" placeholder="text1" required value="<?php echo $list['fa']['text1']?>">
                   </div>
                 </div>
               </div>
@@ -57,7 +57,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="head2">عنوان2:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="head2" id="head2" autocomplete="off" placeholder="head2" required value="<?=$list['fa']['head2']?>">
+                    <input type="text" class="form-control" name="head2" id="head2" autocomplete="off" placeholder="head2" required value="<?php echo $list['fa']['head2']?>">
                   </div>
                 </div>
               </div>
@@ -65,7 +65,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="text2">متن2:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="text2" id="text2" autocomplete="off" placeholder="text2" required value="<?=$list['fa']['text2']?>">
+                    <input type="text" class="form-control" name="text2" id="text2" autocomplete="off" placeholder="text2" required value="<?php echo $list['fa']['text2']?>">
                   </div>
                 </div>
               </div>
@@ -76,7 +76,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="head3">عنوان3:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="head3" id="head3" autocomplete="off" placeholder="head3" required value="<?=$list['fa']['head3']?>">
+                    <input type="text" class="form-control" name="head3" id="head3" autocomplete="off" placeholder="head3" required value="<?php echo $list['fa']['head3']?>">
                   </div>
                 </div>
               </div>
@@ -84,7 +84,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="text3">متن3:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="text3" id="text3" autocomplete="off" placeholder="text3" required value="<?=$list['fa']['text3']?>">
+                    <input type="text" class="form-control" name="text3" id="text3" autocomplete="off" placeholder="text3" required value="<?php echo $list['fa']['text3']?>">
                   </div>
                 </div>
               </div>
@@ -95,7 +95,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="head4">عنوان4:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="head4" id="head4" autocomplete="off" placeholder="head4" required value="<?=$list['fa']['head4']?>">
+                    <input type="text" class="form-control" name="head4" id="head4" autocomplete="off" placeholder="head4" required value="<?php echo $list['fa']['head4']?>">
                   </div>
                 </div>
               </div>
@@ -103,7 +103,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="text4">متن4:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="text4" id="text4" autocomplete="off" placeholder="text4" required value="<?=$list['fa']['text4']?>">
+                    <input type="text" class="form-control" name="text4" id="text4" autocomplete="off" placeholder="text4" required value="<?php echo $list['fa']['text4']?>">
                   </div>
                 </div>
               </div>
@@ -148,7 +148,7 @@
     {
     ?>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-      <?= $msg ?>
+      <?php echo  $msg ?>
       </div>
     <?php
     }
@@ -162,7 +162,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="head1">عنوان1:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="head1" id="head1" autocomplete="off" placeholder="head1" required value="<?=$list['en']['head1']; ?>">
+                    <input type="text" class="form-control" name="head1" id="head1" autocomplete="off" placeholder="head1" required value="<?php echo $list['en']['head1']; ?>">
                   </div>
                 </div>
               </div>
@@ -170,7 +170,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="text1">متن1:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="text1" id="text1" autocomplete="off" placeholder="text1" required value="<?=$list['en']['text1']?>">
+                    <input type="text" class="form-control" name="text1" id="text1" autocomplete="off" placeholder="text1" required value="<?php echo $list['en']['text1']?>">
                   </div>
                 </div>
               </div>
@@ -182,7 +182,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="head2">عنوان2:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="head2" id="head2" autocomplete="off" placeholder="head2" required value="<?=$list['en']['head2']?>">
+                    <input type="text" class="form-control" name="head2" id="head2" autocomplete="off" placeholder="head2" required value="<?php echo $list['en']['head2']?>">
                   </div>
                 </div>
               </div>
@@ -190,7 +190,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="text2">متن2:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="text2" id="text2" autocomplete="off" placeholder="text2" required value="<?=$list['en']['text2']?>">
+                    <input type="text" class="form-control" name="text2" id="text2" autocomplete="off" placeholder="text2" required value="<?php echo $list['en']['text2']?>">
                   </div>
                 </div>
               </div>
@@ -201,7 +201,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="head3">عنوان3:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="head3" id="head3" autocomplete="off" placeholder="head3" required value="<?=$list['en']['head3']?>">
+                    <input type="text" class="form-control" name="head3" id="head3" autocomplete="off" placeholder="head3" required value="<?php echo $list['en']['head3']?>">
                   </div>
                 </div>
               </div>
@@ -209,7 +209,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="text3">متن3:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="text3" id="text3" autocomplete="off" placeholder="text3" required value="<?=$list['en']['text3']?>">
+                    <input type="text" class="form-control" name="text3" id="text3" autocomplete="off" placeholder="text3" required value="<?php echo $list['en']['text3']?>">
                   </div>
                 </div>
               </div>
@@ -220,7 +220,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="head4">عنوان4:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="head4" id="head4" autocomplete="off" placeholder="head4" required value="<?=$list['en']['head4']?>">
+                    <input type="text" class="form-control" name="head4" id="head4" autocomplete="off" placeholder="head4" required value="<?php echo $list['en']['head4']?>">
                   </div>
                 </div>
               </div>
@@ -228,7 +228,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="text4">متن4:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="text4" id="text4" autocomplete="off" placeholder="text4" required value="<?=$list['en']['text4']?>">
+                    <input type="text" class="form-control" name="text4" id="text4" autocomplete="off" placeholder="text4" required value="<?php echo $list['en']['text4']?>">
                   </div>
                 </div>
               </div>

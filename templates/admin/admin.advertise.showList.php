@@ -49,7 +49,7 @@
     </div>
     <div class="panel-body">
         <div class="pull-right">
-            <a href="<?=RELA_DIR?>zamin/?component=advertise&action=addAdvertise" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i>افزودن تبلیغ جدید </a>
+            <a href="<?php echo RELA_DIR?>zamin/?component=advertise&action=addAdvertise" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i>افزودن تبلیغ جدید </a>
         </div>
         <!-- separator -->
       <div class="row smallSpace"></div>
@@ -67,7 +67,7 @@
           </tr>
           </thead>
           <tbody>
-          <?
+          <?php 
           $cn = 1;
           if(isset($list['list'])) {
             foreach ($list['list'] as $id =>$fields)
@@ -79,11 +79,11 @@
               <td><?php echo $fields['title']; ?></td>
               <td><?php echo $fields['brif_description']; ?></td>
               <td><?php echo $fields['url']; ?></td>
-              <td dir="ltr" align="center"> <img height="60px" src="<?=$fields['image']?>"/> </td>
-              <td><a href="<?=RELA_DIR?>zamin/?component=advertise&action=editAdvertise&id=<?php echo $fields['Advertise_id']; ?>">ویرایش</a>
-                <a href="<?=RELA_DIR?>zamin/?component=advertise&action=deleteAdvertise&id=<?php echo $fields['Advertise_id']; ?>">حذف</a> </td>
+              <td dir="ltr" align="center"> <img height="60px" src="<?php echo $fields['image']?>"/> </td>
+              <td><a href="<?php echo RELA_DIR?>zamin/?component=advertise&action=editAdvertise&id=<?php echo $fields['Advertise_id']; ?>">ویرایش</a>
+                <a href="<?php echo RELA_DIR?>zamin/?component=advertise&action=deleteAdvertise&id=<?php echo $fields['Advertise_id']; ?>">حذف</a> </td>
             </tr>
-          <?
+          <?php 
             }
           }
           ?>

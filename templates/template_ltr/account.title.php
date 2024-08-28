@@ -4,16 +4,16 @@
 <section id="page-title" style="display: none">
 
     <div class="container clearfix">
-        <h1><?=$list['page_title'];?></h1>
+        <h1><?php echo $list['page_title'];?></h1>
 
 
         <ol class="breadcrumb" style="display: none" >
-            <li><a href="<?=RELA_DIR?>">خانه</a></li>
+            <li><a href="<?php echo RELA_DIR?>">خانه</a></li>
             <li class="active">پنل کاربری</li>
 
         </ol>
 
-        <?=$list['breadcrumb']?>
+        <?php echo $list['breadcrumb']?>
 
 
     </div>
@@ -34,29 +34,29 @@
                             <a href="#" class="p-logo"><img src="<?/*=TEMPLATE_DIR*/?>img/logo-dark.png"></a>
                         </div>-->
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <i class="icon icon-user"></i><span class="hidden-xs">Account</span>‌ <?=$list['list']["artists_name_$lang"]?>
+                        <i class="icon icon-user"></i><span class="hidden-xs">Account</span>‌ <?php echo $list['list']["artists_name_$lang"]?>
 
 
                     </div>
                     <div class="col-md-1 col-sm-2 cool-xs-12  pull-left" >
-                        <a href="<?=RELA_DIR?>login/logout" class="p-logout">
-                            <img src="<?=TEMPLATE_DIR?>img/p-logout.png"><span> LogOut </span></a>
+                        <a href="<?php echo RELA_DIR?>login/logout" class="p-logout">
+                            <img src="<?php echo TEMPLATE_DIR?>img/p-logout.png"><span> LogOut </span></a>
                     </div>
                 </div>
                 <div class="p-shortcuts row  nomargin" style="display: none ">
                     <div class="p-nav-handle"> <i class=""></i>مینانبر کلی</div>
                     <ul>
                         <li>
-                            <div class="p-sh-img"><img src="<?=TEMPLATE_DIR?>img/p-sh1.png"></div>
+                            <div class="p-sh-img"><img src="<?php echo TEMPLATE_DIR?>img/p-sh1.png"></div>
                             <div class="p-sh-ttx hidden-sm  ">
-                                <a href="<?=RELA_DIR?>account" >Dashboard</a>
+                                <a href="<?php echo RELA_DIR?>account" >Dashboard</a>
                                 <div class="p-sh-brief" >My Account</div>
                             </div>
                         </li>
                         <li>
-                            <div class="p-sh-img"><img src="<?=TEMPLATE_DIR?>img/p-sh2.png"></div>
+                            <div class="p-sh-img"><img src="<?php echo TEMPLATE_DIR?>img/p-sh2.png"></div>
                             <div class="p-sh-ttx hidden-sm ">
-                                <a href="<?=RELA_DIR?>account/editProfile" >Profile</a>
+                                <a href="<?php echo RELA_DIR?>account/editProfile" >Profile</a>
                                 <div class="p-sh-brief" >Profile information</div>
                             </div>
                         </li>
@@ -82,7 +82,7 @@
                                 </div>
                             </li>-->
                         <li>
-                            <div class="p-sh-img"><img src="<?=TEMPLATE_DIR?>img/p-sh6.png"></div>
+                            <div class="p-sh-img"><img src="<?php echo TEMPLATE_DIR?>img/p-sh6.png"></div>
                             <div class="p-sh-ttx hidden-sm ">
                                 <a href="" > Donate</a>
                             </div>
@@ -99,53 +99,53 @@
 
                             <div class="p-nav-handle"> <i class=""></i>Menu</div>
                             <ul>
-                                <? if($member_info['type']==1):?>
-                                    <? if($member_info['blog']==1):?>
-                                        <li><a href="<?= RELA_DIR ?>account/addBlog"
+                                <?php if($member_info['type']==1):?>
+                                    <?php if($member_info['blog']==1):?>
+                                        <li><a href="<?php echo  RELA_DIR ?>account/addBlog"
                                                class="button  button-reveal  button-border tleft"><i
                                                         class="icon-caret-right"></i>
                                                 <span><div class="icon-blogger"></div> Add Blog</span>
                                             </a></li>
-                                        <li><a href="<?= RELA_DIR ?>account/showBlogList"
+                                        <li><a href="<?php echo  RELA_DIR ?>account/showBlogList"
                                                class="button  button-reveal  button-border tleft"><i
                                                         class="icon-caret-right"></i>
                                                 <span><div class="icon-blogger"></div> blog</span>
                                             </a></li>
-                                    <? endif; ?>
-                                    <li><a href="<?= RELA_DIR ?>account/addEvent"
+                                    <?php endif; ?>
+                                    <li><a href="<?php echo  RELA_DIR ?>account/addEvent"
                                            class="button  button-reveal  button-border tleft"><i
                                                     class="icon-caret-right"></i>
                                             <span><div class="icon-line2-bell"></div> Add event</span>
                                         </a></li>
-                                    <li><a href="<?= RELA_DIR ?>account/event"
+                                    <li><a href="<?php echo  RELA_DIR ?>account/event"
                                            class="button  button-reveal  button-border tleft"><i
                                                     class="icon-caret-right"></i>
                                             <span><div class="icon-line2-bell"></div> Events</span>
                                         </a></li>
-                                    <li><a href="<?= RELA_DIR ?>account/addProduct"
+                                    <li><a href="<?php echo  RELA_DIR ?>account/addProduct"
                                        class="button  button-reveal  button-border tleft"><i
                                                 class="icon-caret-right"></i>
                                         <span><div class="icon icon-line-box"></div> Add product</span>
                                     </a></li>
-                                <li><a href="<?=RELA_DIR?>account/showProductList" class="button  button-reveal  button-border tleft"><i class="icon-caret-right"></i>
+                                <li><a href="<?php echo RELA_DIR?>account/showProductList" class="button  button-reveal  button-border tleft"><i class="icon-caret-right"></i>
                                         <span><div class="icon icon-line-box"></div> Products</span>
                                     </a> </li>
 
-                                <li><a href="<?=RELA_DIR?>account/showInvoiceList" class="button  button-reveal  button-border tleft"><i class="icon-caret-right"></i>
+                                <li><a href="<?php echo RELA_DIR?>account/showInvoiceList" class="button  button-reveal  button-border tleft"><i class="icon-caret-right"></i>
                                         <span><div class="icon-line-clipboard"></div> Invoice</span>
                                     </a> </li>
 
 
 
-                                <? else:?>
-                                    <li><a href="<?= RELA_DIR ?>sales/invoice"
+                                <?php else:?>
+                                    <li><a href="<?php echo  RELA_DIR ?>sales/invoice"
                                            class="button  button-reveal  button-border tright"><i
                                                     class="icon-caret-right"></i>
                                             <span><div class="icon-line-clipboard"></div>Basket</span>
                                         </a></li>
-                                <? endif;?>
+                                <?php endif;?>
 
-                                <li><a href="<?= RELA_DIR ?>account/editProfile"
+                                <li><a href="<?php echo  RELA_DIR ?>account/editProfile"
                                        class="button  button-reveal  button-border tleft"><i
                                                 class="icon-caret-right"></i>
                                         <span><div class="icon icon-user"></div> Profile</span>

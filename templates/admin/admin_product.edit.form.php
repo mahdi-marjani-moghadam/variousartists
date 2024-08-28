@@ -19,7 +19,7 @@
             <?php if($msg!=null)
             { ?>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-                    <?= $msg ?>
+                    <?php echo  $msg ?>
                 </div>
             <?php
             }
@@ -29,13 +29,13 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-8  center-block">
                         <form name="announce" id="announce" role="form" data-validate="form" class="form-horizontal form-bordered" autocomplete="off" novalidate="novalidate" method="post">
-                            <input name="product_id" id=id type="hidden" value="<?=$list['product_id']?>"/>
+                            <input name="product_id" id=id type="hidden" value="<?php echo $list['product_id']?>"/>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="name">نام محصول</label>
                                         <div class="col-xs-12 col-sm-8 pull-right">
-                                            <input type="text" class="form-control" name="name" id="name" value="<?=$list['name']?>" autocomplete="off" placeholder="Announce Name" required>
+                                            <input type="text" class="form-control" name="name" id="name" value="<?php echo $list['name']?>" autocomplete="off" placeholder="Announce Name" required>
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                                     <div class="form-group">
                                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="ManagerName">قیمت :</label>
                                         <div class="col-xs-12 col-sm-8 pull-right">
-                                          <input type="text" class="form-control" name="price" id="price" autocomplete="off" placeholder="قیمت" value="<?=$list['price'] ?>" required>
+                                          <input type="text" class="form-control" name="price" id="price" autocomplete="off" placeholder="قیمت" value="<?php echo $list['price'] ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@
                                     <div class="form-group">
                                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="address">واحد شمارش:</label>
                                         <div class="col-xs-12 col-sm-8 pull-right">
-                                            <input type="text" class="form-control" name="unit" id="unit" autocomplete="off" placeholder="واحد شمارش" value="<?=$list['unit'];?>" required>
+                                            <input type="text" class="form-control" name="unit" id="unit" autocomplete="off" placeholder="واحد شمارش" value="<?php echo $list['unit'];?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -62,7 +62,7 @@
                                     <div class="form-group">
                                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="Email">متراژ موجود در هر واحد:</label>
                                         <div class="col-xs-12 col-sm-8 pull-right">
-                                            <input type="text" class="form-control" name="unit_count" id="unit_count" autocomplete="off" placeholder="متر" value="<?=$list['unit_count'] ?>" required>
+                                            <input type="text" class="form-control" name="unit_count" id="unit_count" autocomplete="off" placeholder="متر" value="<?php echo $list['unit_count'] ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -76,10 +76,10 @@
                                         <div class="col-xs-12 col-sm-8 pull-right">
                                             <select name="priority" id="priority">
                                                 <option
-                                                    value="1" <?= ($list['priority'] == '1') ? 'selected="selected"' : ''; ?>>1
+                                                    value="1" <?php echo  ($list['priority'] == '1') ? 'selected="selected"' : ''; ?>>1
                                                 </option>
                                                 <option
-                                                    value="0" <?= ($list['priority'] == '0') ? 'selected="selected"' : ''; ?>>0
+                                                    value="0" <?php echo  ($list['priority'] == '0') ? 'selected="selected"' : ''; ?>>0
                                                 </option>
                                             </select>
                                         </div>

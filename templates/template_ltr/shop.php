@@ -15,7 +15,7 @@
 </section>-->
 
 
-<section id="slider" class="full-screen dark" style="background: url(<?=TEMPLATE_DIR?>assets/images/the-music-store-banner.jpg) center;">
+<section id="slider" class="full-screen dark" style="background: url(<?php echo TEMPLATE_DIR?>assets/images/the-music-store-banner.jpg) center;">
 
     <div class="container clearfix vertical-middle">
 

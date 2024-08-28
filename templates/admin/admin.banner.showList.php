@@ -43,7 +43,7 @@
         </div>
         <div class="panel-body">
             <div class="pull-right">
-                <a href="<?= RELA_DIR ?>zamin/?component=banner&action=addBanner"
+                <a href="<?php echo  RELA_DIR ?>zamin/?component=banner&action=addBanner"
                    class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i>افزودن بنر جدید </a>
             </div>
             <!-- separator -->
@@ -64,7 +64,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?
+                    <?php 
                     $cn = 1;
                     if (isset($list['list'])) {
                     foreach ($list['list'] as $id => $fields)
@@ -77,13 +77,13 @@
                             <td><?php echo $fields['brief_description_fa']; ?></td>
                             <td><?php echo $fields['brief_description_en']; ?></td>
                             <td><?php echo $fields['priority']; ?></td>
-                            <td dir="ltr" align="center"><img height="60px" src="<?=RELA_DIR.'statics/banner/'. $fields['image'] ?>"/></td>
+                            <td dir="ltr" align="center"><img height="60px" src="<?php echo RELA_DIR.'statics/banner/'. $fields['image'] ?>"/></td>
                             <td>
-                                <a href="<?= RELA_DIR ?>zamin/?component=banner&action=editBanner&id=<?php echo $fields['Banner_id']; ?>">ویرایش</a>
-                                <a href="<?= RELA_DIR ?>zamin/?component=banner&action=deleteBanner&id=<?php echo $fields['Banner_id']; ?>">حذف</a>
+                                <a href="<?php echo  RELA_DIR ?>zamin/?component=banner&action=editBanner&id=<?php echo $fields['Banner_id']; ?>">ویرایش</a>
+                                <a href="<?php echo  RELA_DIR ?>zamin/?component=banner&action=deleteBanner&id=<?php echo $fields['Banner_id']; ?>">حذف</a>
                             </td>
                         </tr>
-                    <?
+                    <?php 
                     }
                     }
                     ?>

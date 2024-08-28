@@ -9,7 +9,7 @@
         var oTable = dataTable.DataTable( {
             "processing": true,
             "serverSide": true,
-            "ajax": "<?=RELA_DIR?>queue.php?action=search&ajax=1"
+            "ajax": "<?php echo RELA_DIR?>queue.php?action=search&ajax=1"
         } );
 
         // Apply the search
@@ -78,7 +78,7 @@
                 }
                 ?>
                 <!--form-->
-                <form method="post" action="<?=RELA_DIR.'queue.php?action=changeStatus';?>" name="action" id="action">
+                <form method="post" action="<?php echo RELA_DIR.'queue.php?action=changeStatus';?>" name="action" id="action">
                     <div class="content-body">
                         <div class="pull-right margin-bottom">
                             <!--addsip-->

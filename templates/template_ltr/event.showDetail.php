@@ -3,11 +3,11 @@
 <section id="page-title">
 
     <div class="container clearfix">
-        <h1><?= $list['list']['event_name']; ?></h1>
+        <h1><?php echo  $list['list']['event_name']; ?></h1>
         <ol class="breadcrumb">
-            <li><a href="<?= RELA_DIR ?>">Home</a></li>
-            <li><a href="<?= RELA_DIR ?>event">Events</a></li>
-            <li class="active"><?= $list['list']['event_name']; ?></li>
+            <li><a href="<?php echo  RELA_DIR ?>">Home</a></li>
+            <li><a href="<?php echo  RELA_DIR ?>event">Events</a></li>
+            <li class="active"><?php echo  $list['list']['event_name']; ?></li>
         </ol>
     </div>
 
@@ -26,7 +26,7 @@
                 <div class="col_half">
                     <div class="entry-image nobottommargin">
                         <img src="<?php echo(strlen($list['list']['logo']) ? RELA_DIR . 'statics/event/' . $list['list']['logo'] : RELA_DIR . 'templates/' . CURRENT_SKIN . '/assets/images/placeholder.png'); ?>"
-                             alt="<?= $list['list']['event_name']; ?>" title="<?= $list['list']['event_name']; ?>">
+                             alt="<?php echo  $list['list']['event_name']; ?>" title="<?php echo  $list['list']['event_name']; ?>">
                         <!--<div class="entry-overlay">
                             <span class="hidden-xs">Starts in: </span><div id="event-countdown" class="countdown"></div>
                         </div>-->
@@ -35,11 +35,11 @@
                 <div class="col_half col_last">
                     <div class="panel panel-default events-meta" id="changeNumber">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Info:<?= $list['list']['event_name'] ?></h3>
+                            <h3 class="panel-title">Info:<?php echo  $list['list']['event_name'] ?></h3>
                         </div>
                         <div class="panel-body">
                             <div class="col_full">
-                                <? global $messageStack;
+                                <?php global $messageStack;
                                 $msg = $messageStack->output('message');
                                 if($msg){ echo $msg; }?>
                                 <ul class="iconlist nobottommargin">
@@ -54,80 +54,80 @@
                                     $sale_type = ($list['list']['sale_type'] == 'class')?class_register:buy_ticket;
                                     ?>
 
-                                    <? if ($newTime || $newDate): ?>
+                                    <?php if ($newTime || $newDate): ?>
                                         <li style="border-bottom: 1px dashed #dedede; padding-bottom: 10px"><i
-                                                class="icon-calendar3"></i> <?= $newDate ?> - <?= $newTime ?>
-                                        <? if ($list['list']['salon_id'] != ""): ?>
-                                            <?
+                                                class="icon-calendar3"></i> <?php echo  $newDate ?> - <?php echo  $newTime ?>
+                                        <?php if ($list['list']['salon_id'] != ""): ?>
+                                            <?php 
                                             $enc = base64_encode('event_id='.$list['list']['Event_id'].'&date='.$list['list']['date'].'&time='.$list['list']['event_time']);
                                             ?>
-                                            <a href="<?= RELA_DIR ?>sales/<?=$enc?>"
-                                               class="btn btn-primary btn-sm text-white text-16 "><?=$sale_type?></a>
-                                        <? endif; ?>
+                                            <a href="<?php echo  RELA_DIR ?>sales/<?php echo $enc?>"
+                                               class="btn btn-primary btn-sm text-white text-16 "><?php echo $sale_type?></a>
+                                        <?php endif; ?>
 
-                                        </li><? endif; ?>
-                                    <? if ($newTime2 || $newDate2): ?>
+                                        </li><?php endif; ?>
+                                    <?php if ($newTime2 || $newDate2): ?>
                                         <li style="border-bottom: 1px dashed #dedede; padding-bottom: 10px"><i
-                                                class="icon-calendar3"></i> <?= $newDate2 ?> - <?= $newTime2 ?>
-                                        <? if ($list['list']['salon_id'] != ""): ?>
-                                            <?
+                                                class="icon-calendar3"></i> <?php echo  $newDate2 ?> - <?php echo  $newTime2 ?>
+                                        <?php if ($list['list']['salon_id'] != ""): ?>
+                                            <?php 
                                             $enc = base64_encode('event_id='.$list['list']['Event_id'].'&date='.$list['list']['date2'].'&time='.$list['list']['event_time2']);
                                             ?>
-                                            <a href="<?= RELA_DIR ?>sales/<?=$enc?>"
-                                               class="btn btn-primary btn-sm text-white text-16 "><?=$sale_type?></a>
-                                        <? endif; ?>
-                                        </li><? endif; ?>
-                                    <? if ($newTime3 || $newDate3): ?>
+                                            <a href="<?php echo  RELA_DIR ?>sales/<?php echo $enc?>"
+                                               class="btn btn-primary btn-sm text-white text-16 "><?php echo $sale_type?></a>
+                                        <?php endif; ?>
+                                        </li><?php endif; ?>
+                                    <?php if ($newTime3 || $newDate3): ?>
                                         <li style="border-bottom: 1px dashed #dedede; padding-bottom: 10px"><i
-                                                class="icon-calendar3"></i> <?= $newDate3 ?> - <?= $newTime3 ?>
-                                        <? if ($list['list']['salon_id'] != ""): ?>
-                                            <?
+                                                class="icon-calendar3"></i> <?php echo  $newDate3 ?> - <?php echo  $newTime3 ?>
+                                        <?php if ($list['list']['salon_id'] != ""): ?>
+                                            <?php 
                                             $enc = base64_encode('event_id='.$list['list']['Event_id'].'&date='.$list['list']['date3'].'&time='.$list['list']['event_time3']);
                                             ?>
-                                            <a href="<?= RELA_DIR ?>sales/<?=$enc?>"
-                                               class="btn btn-primary btn-sm text-white text-16 "><?=$sale_type?></a>
-                                        <? endif; ?>
-                                        </li><? endif; ?>
+                                            <a href="<?php echo  RELA_DIR ?>sales/<?php echo $enc?>"
+                                               class="btn btn-primary btn-sm text-white text-16 "><?php echo $sale_type?></a>
+                                        <?php endif; ?>
+                                        </li><?php endif; ?>
                                     <li>
-                                        <i class="icon-phone-sign"></i> <?= ($list['list']['event_phone'] != "" ? $list['list']['event_phone'] : "-") ?>
+                                        <i class="icon-phone-sign"></i> <?php echo  ($list['list']['event_phone'] != "" ? $list['list']['event_phone'] : "-") ?>
                                     </li>
 
 
 
 
-                                    <? if ($list['list']['organizer'] != ""): ?>
+                                    <?php if ($list['list']['organizer'] != ""): ?>
                                         <li><i class="icon-user"></i>
-                                        <strong><?= $list['list']['organizer']; ?></strong></li><? endif; ?>
-                                    <? if ($list['list']["country"] != ""): ?>
+                                        <strong><?php echo  $list['list']['organizer']; ?></strong></li><?php endif; ?>
+                                    <?php if ($list['list']["country"] != ""): ?>
                                         <li><i class="icon-pinboard"></i>
-                                        <strong><?= $list['list']["country"]; ?></strong></li><? endif; ?>
-                                    <? if ($list['list']["address"] != ""): ?>
+                                        <strong><?php echo  $list['list']["country"]; ?></strong></li><?php endif; ?>
+                                    <?php if ($list['list']["address"] != ""): ?>
                                         <li><i class="icon-pinboard"></i>
-                                        <strong><?= $list['list']["address"]; ?></strong></li><? endif; ?>
+                                        <strong><?php echo  $list['list']["address"]; ?></strong></li><?php endif; ?>
                                 </ul>
                             </div>
-                            <? if ($list['list']['salon_id'] != ""): ?>
+                            <?php if ($list['list']['salon_id'] != ""): ?>
                                 <div class="col_last">
-                                    <form action="<?= RELA_DIR ?>sales" method="POST" data-validate="form" role="form"
+                                    <form action="<?php echo  RELA_DIR ?>sales" method="POST" data-validate="form" role="form"
                                           style="display: none">
                                         <input type="hidden" name="action" value="login"/>
 
                                         <input type="hidden" name="place"
-                                               value="<?= $list['salon_list']['Salon_id'] ?>"/>
+                                               value="<?php echo  $list['salon_list']['Salon_id'] ?>"/>
                                         <input type="hidden" name="event_name"
-                                               value="<?= $list['list']['event_name']; ?>"/>
-                                        <input type="hidden" name="event_id" value="<?= $list['list']['Event_id']; ?>"/>
+                                               value="<?php echo  $list['list']['event_name']; ?>"/>
+                                        <input type="hidden" name="event_id" value="<?php echo  $list['list']['Event_id']; ?>"/>
 
                                         <select name="time">
-                                            <? if ($newTime || $newDate): ?>
-                                                <option value="<?= $list['list']['date']; ?> "><?= $newDate ?>
-                                                - <?= $newTime ?></option><? endif; ?>
-                                            <? if ($newTime2 || $newDate2): ?>
-                                                <option value="<?= $list['list']['date2']; ?> "><?= $newDate2 ?>
-                                                - <?= $newTime2 ?></option><? endif; ?>
-                                            <? if ($newTime3 || $newDate3): ?>
-                                                <option value="<?= $list['list']['date3']; ?> "><?= $newDate3 ?>
-                                                - <?= $newTime3 ?></option><? endif; ?>
+                                            <?php if ($newTime || $newDate): ?>
+                                                <option value="<?php echo  $list['list']['date']; ?> "><?php echo  $newDate ?>
+                                                - <?php echo  $newTime ?></option><?php endif; ?>
+                                            <?php if ($newTime2 || $newDate2): ?>
+                                                <option value="<?php echo  $list['list']['date2']; ?> "><?php echo  $newDate2 ?>
+                                                - <?php echo  $newTime2 ?></option><?php endif; ?>
+                                            <?php if ($newTime3 || $newDate3): ?>
+                                                <option value="<?php echo  $list['list']['date3']; ?> "><?php echo  $newDate3 ?>
+                                                - <?php echo  $newTime3 ?></option><?php endif; ?>
                                         </select>
                                         <div class="form-group form-actions">
                                             <input type="submit"
@@ -138,30 +138,30 @@
 
 
                                 </div>
-                            <? endif; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <!--<a href="#" class="btn btn-success btn-block btn-lg">Buy Tickets</a>-->
 
 
                     <div class="col_full nobottommargin">
-                        <? if (count($list['event_gallery'])): ?>
+                        <?php if (count($list['event_gallery'])): ?>
                             <h4>تصاویر</h4>
 
                             <!-- Events Single Gallery Thumbs
                             ============================================= -->
                             <div class="masonry-thumbs col-4" data-lightbox="gallery">
-                                <? foreach ($list['event_gallery'] as $image_id => $imageDetail): ?>
+                                <?php foreach ($list['event_gallery'] as $image_id => $imageDetail): ?>
 
-                                    <a href="<?= RELA_DIR . 'statics/event/' . $imageDetail['image'] ?>"
+                                    <a href="<?php echo  RELA_DIR . 'statics/event/' . $imageDetail['image'] ?>"
                                        data-lightbox="gallery-item">
                                         <img class="image_fade"
-                                             src="<?= RELA_DIR . 'statics/event/' . $imageDetail['image'] ?>"
-                                             alt="<?= $list['list']['event_name']; ?>"></a>
-                                <? endforeach; ?>
+                                             src="<?php echo  RELA_DIR . 'statics/event/' . $imageDetail['image'] ?>"
+                                             alt="<?php echo  $list['list']['event_name']; ?>"></a>
+                                <?php endforeach; ?>
 
                             </div><!-- Event Single Gallery Thumbs End -->
-                        <? endif; ?>
+                        <?php endif; ?>
 
                     </div>
 
@@ -173,9 +173,9 @@
 
                     <h3>Detail:</h3>
 
-                    <p class="font-size1 color-silver2"><?= $list['list']['brief_description'] ?></p>
+                    <p class="font-size1 color-silver2"><?php echo  $list['list']['brief_description'] ?></p>
 
-                    <p><?= $list['list']['description'] ?></p>
+                    <p><?php echo  $list['list']['description'] ?></p>
 
 
                 </div>

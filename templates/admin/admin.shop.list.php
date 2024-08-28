@@ -14,7 +14,7 @@
             dom :"Bfrltip",
             "processing": true,
             "serverSide": false,
-            "ajax": "<?=RELA_DIR?>zamin/?component=shop&action=shopListAjax&status=<?=$list['status']?>",
+            "ajax": "<?php echo RELA_DIR?>zamin/?component=shop&action=shopListAjax&status=<?php echo $list['status']?>",
             "ordering": false,
             "searching":true,
             buttons: [

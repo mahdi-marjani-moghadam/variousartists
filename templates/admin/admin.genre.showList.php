@@ -47,7 +47,7 @@
         </div>
         <div class="panel-body">
             <div class="pull-right">
-                <a href="<?= RELA_DIR ?>zamin/?component=genre&action=add" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن سبک جدید</a>
+                <a href="<?php echo  RELA_DIR ?>zamin/?component=genre&action=add" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن سبک جدید</a>
             </div>
             <!-- separator -->
             <div class="row smallSpace"></div>
@@ -86,10 +86,10 @@
                             <td><?php echo $fields['priority']; ?></td>
                             <td><?php echo $fields['meta_keyword']; ?></td>
                             <td><?php echo $fields['meta_description']; ?></td>
-                            <td style="display: none" dir="ltr" align="center"><img height="60px" src="<?= $fields['img_name'] ?>"/></td>
+                            <td style="display: none" dir="ltr" align="center"><img height="60px" src="<?php echo  $fields['img_name'] ?>"/></td>
                             <td>
-                                <a href="<?= RELA_DIR ?>zamin/?component=genre&action=edit&id=<?php echo $fields['Genre_id']; ?>">ویرایش</a>
-                                <a href="<?= RELA_DIR ?>zamin/?component=genre&action=delete&id=<?php echo $fields['Genre_id']; ?>">حذف</a>
+                                <a href="<?php echo  RELA_DIR ?>zamin/?component=genre&action=edit&id=<?php echo $fields['Genre_id']; ?>">ویرایش</a>
+                                <a href="<?php echo  RELA_DIR ?>zamin/?component=genre&action=delete&id=<?php echo $fields['Genre_id']; ?>">حذف</a>
                             </td>
                         </tr>
                     <?php

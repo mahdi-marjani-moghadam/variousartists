@@ -22,13 +22,13 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-8  center-block">
                         <form name="announce" id="announce" role="form" data-validate="form" class="form-horizontal form-bordered" autocomplete="off" novalidate="novalidate" method="post">
-                            <input name="id" type="hidden" value="<?=$list['news_id']?>"/>
+                            <input name="id" type="hidden" value="<?php echo $list['news_id']?>"/>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="name">???</label>
                                         <div class="col-xs-12 col-sm-8 pull-right">
-                                            <input type="text" class="form-control" name="news_title" id="news_title" value="<?=$list['title']?>" autocomplete="off" placeholder="Announce Name" required>
+                                            <input type="text" class="form-control" name="news_title" id="news_title" value="<?php echo $list['title']?>" autocomplete="off" placeholder="Announce Name" required>
                                         </div>
                                     </div>
                                 </div>
@@ -36,7 +36,7 @@
                                     <div class="form-group">
                                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="desc">????</label>
                                         <div class="col-xs-12 col-sm-8 pull-right">
-                                            <input type="text" class="form-control" name="desc" value="<?=$list['desc']?>" id="desc" autocomplete="off" placeholder="Announce Name" required>
+                                            <input type="text" class="form-control" name="desc" value="<?php echo $list['desc']?>" id="desc" autocomplete="off" placeholder="Announce Name" required>
                                         </div>
                                     </div>
                                 </div>

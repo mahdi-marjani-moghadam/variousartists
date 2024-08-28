@@ -60,7 +60,7 @@
     <?php if($msg!=null)
     { ?>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-        <?= $msg ?>
+        <?php echo  $msg ?>
       </div>
       <?php
     }
@@ -75,7 +75,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="title">title:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="title" id="title"  placeholder=" title " required value="<?=$list['title']?>">
+                    <input type="text" class="form-control" name="title" id="title"  placeholder=" title " required value="<?php echo $list['title']?>">
                   </div>
                 </div>
               </div>
@@ -84,7 +84,7 @@
                       <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="title">description:</label>
                       <div class="col-xs-12 col-sm-8 pull-right">
                           <textarea name="description" class="form-control"
-                          id="description" placeholder="description" required="required"><?=$list['description']?></textarea>
+                          id="description" placeholder="description" required="required"><?php echo $list['description']?></textarea>
                       </div>
                   </div>
               </div>
@@ -100,7 +100,7 @@
                   <div class="col-xs-12 col-sm-8 pull-right">
                     <div class="input-group" dir="ltr">
 
-                      <input name="image" type="text" class="form-control" id="xImagePath" value="<?=$list['image'];?>" />
+                      <input name="image" type="text" class="form-control" id="xImagePath" value="<?php echo $list['image'];?>" />
  <span class="input-group-btn">
                         <input class="btn  btn-info" type="button" value="انتخاب فایل" onclick="BrowseServer( 'Images:/', 'xImagePath' );" />
                       </span>
@@ -118,7 +118,7 @@
               <div class="col-md-12">
                 <p class="pull-right">
                                     <input name="action" type="hidden" id="action" value="edit" />
-                    <input name="Company_honours_id" type="hidden" id="company_id" value="<?=$list['Company_honours_id']?>" />
+                    <input name="Company_honours_id" type="hidden" id="company_id" value="<?php echo $list['Company_honours_id']?>" />
                   <button type="submit" name="submit" id="submit" class="btn btn-icon btn-success rtl">
                   <i class="fa fa-plus"></i>
                     ثبت

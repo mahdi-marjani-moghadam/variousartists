@@ -47,7 +47,7 @@
         </div>
         <div class="panel-body">
             <div class="pull-right">
-                <a href="<?= RELA_DIR ?>zamin/?component=salon&action=add" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن دسته بندی جدید</a>
+                <a href="<?php echo  RELA_DIR ?>zamin/?component=salon&action=add" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن دسته بندی جدید</a>
             </div>
             <!-- separator -->
             <div class="row smallSpace"></div>
@@ -79,19 +79,19 @@
                             <td><?php echo $fields['dataTableCount']; ?></td>
                             <td><?php echo $fields['export']; ?></td>
                             <td><?php echo $fields['address']; ?></td>
-                            <td> :از<?php echo $fields['min_sandali']; ?> تا: <? echo $fields['max_sandali'];?></td>
+                            <td> :از<?php echo $fields['min_sandali']; ?> تا: <?php echo $fields['max_sandali'];?></td>
 
                             <td style="" dir="ltr" align="">
                                 <div class="col-md-6">
-                                    <img height="" class="img-responsive" src="<?=RELA_DIR?>statics/salon/<?= $fields['image'] ?>"/>
+                                    <img height="" class="img-responsive" src="<?php echo RELA_DIR?>statics/salon/<?php echo  $fields['image'] ?>"/>
                                 </div>
                                 <div class="col-md-6">
-                                    <? include(ROOT_DIR.'statics/salon/'.$fields['file']) ?>
+                                    <?php include(ROOT_DIR.'statics/salon/'.$fields['file']) ?>
                                 </div>
                             </td>
                             <td>
-                                <a href="<?= RELA_DIR ?>zamin/?component=salon&action=edit&id=<?php echo $fields['Salon_id']; ?>">ویرایش</a>
-                                <a href="<?= RELA_DIR ?>zamin/?component=salon&action=delete&id=<?php echo $fields['Salon_id']; ?>">حذف</a>
+                                <a href="<?php echo  RELA_DIR ?>zamin/?component=salon&action=edit&id=<?php echo $fields['Salon_id']; ?>">ویرایش</a>
+                                <a href="<?php echo  RELA_DIR ?>zamin/?component=salon&action=delete&id=<?php echo $fields['Salon_id']; ?>">حذف</a>
                             </td>
                         </tr>
                     <?php

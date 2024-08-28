@@ -6,7 +6,7 @@
 
 
 </style>
-<? include('tech-cafe.svg') ?>
+<?php include('tech-cafe.svg') ?>
 <script>
     $(document).ready(function () {
         $('rect').each(function (num,element) {
@@ -46,8 +46,8 @@
 
 
 <?php  foreach ($list['sandali'] as $k => $x):?>
-    <label  for="sandali<?=$x?>" class="btn-default btn margin topmargin-sm" style="display: none" ><?=$x?>
-        <input id="sandali<?=$x?>" class="sandali"  data-input-chair="<?=$k+1?>" type="checkbox" name="sandali[<?=$x?>]"  value="<?=$x?>">
+    <label  for="sandali<?php echo $x?>" class="btn-default btn margin topmargin-sm" style="display: none" ><?php echo $x?>
+        <input id="sandali<?php echo $x?>" class="sandali"  data-input-chair="<?php echo $k+1?>" type="checkbox" name="sandali[<?php echo $x?>]"  value="<?php echo $x?>">
     </label>
 <?endforeach; ?>
 

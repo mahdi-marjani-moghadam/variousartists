@@ -41,7 +41,7 @@
 <?php if($msg!=null)
 { ?>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-        <?= $msg ?>
+        <?php echo  $msg ?>
     </div>
 <?php
 }
@@ -57,7 +57,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="Queue_Name">نام:</label>
                             <div class="col-xs-12 col-sm-8 pull-right">
-                                <input type="text" class="form-control" name="Queue_Name" id="Queue_Name" autocomplete="off" placeholder="Queue نام " required value="<?=$list['Queue_Name']?>">
+                                <input type="text" class="form-control" name="Queue_Name" id="Queue_Name" autocomplete="off" placeholder="Queue نام " required value="<?php echo $list['Queue_Name']?>">
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="Queue_Ext_Number">Queue Ext No:</label>
                             <div class="col-xs-12 col-sm-8 pull-right">
-                                <input type="text" class="form-control" name="Queue_Ext_Number" id="Queue_Ext_Number" autocomplete="off" placeholder="Queue Ext Number" required value="<?=$list['Queue_Ext_Number']?>">
+                                <input type="text" class="form-control" name="Queue_Ext_Number" id="Queue_Ext_Number" autocomplete="off" placeholder="Queue Ext Number" required value="<?php echo $list['Queue_Ext_Number']?>">
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="Queue_Pass">Queue Password:</label>
                             <div class="col-xs-12 col-sm-8 pull-right">
-                                <input type="text" class="form-control" name="Queue_Pass" id="Queue_Pass" autocomplete="off" placeholder="Queue Password" required value="<?=$list['Queue_Pass']?>">
+                                <input type="text" class="form-control" name="Queue_Pass" id="Queue_Pass" autocomplete="off" placeholder="Queue Password" required value="<?php echo $list['Queue_Pass']?>">
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="Max_Wait_Time">Maximum Wait Time:</label>
                             <div class="col-xs-12 col-sm-8 pull-right">
-                                <input type="text" class="form-control" name="Max_Wait_Time" id="Max_Wait_Time" autocomplete="off" placeholder="Maximum Wait Time" required value="<?=$list['Max_Wait_Time']?>">
+                                <input type="text" class="form-control" name="Max_Wait_Time" id="Max_Wait_Time" autocomplete="off" placeholder="Maximum Wait Time" required value="<?php echo $list['Max_Wait_Time']?>">
                             </div>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="Frequency">Frequency:</label>
                             <div class="col-xs-12 col-sm-8 pull-right">
-                                <select class="valid" name="Frequency" id="Frequency" required  value="<?=$list['Frequency']?>">
+                                <select class="valid" name="Frequency" id="Frequency" required  value="<?php echo $list['Frequency']?>">
                                     <option>15</option>
                                     <option>30</option>
                                     <option>60</option>
@@ -167,7 +167,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="Ring_Strategy">Ring Strategy:</label>
                             <div class="col-xs-12 col-sm-8 pull-right">
-                                <select class="valid" name="Ring_Strategy" id="Ring_Strategy"  value="<?=$list['Ring_Strategy']?>" required>
+                                <select class="valid" name="Ring_Strategy" id="Ring_Strategy"  value="<?php echo $list['Ring_Strategy']?>" required>
                                     <option>Strategy 1</option>
                                     <option>Strategy 2</option>
                                     <option>Strategy 3</option>
@@ -185,8 +185,8 @@
                                 <select class="valid" name="DSTOption" id="DSTOption" required>
                                     <?php foreach($list['DSTList'] as $key=>$value) {
                                         ?>
-                                        <option <?php echo $value['DstOptionID'] == $list['DSTOption'] ? 'selected' : '' ?> value="<?=$value['DstOptionID']?>"><?=$value['OptionValue']?></option>
-                                    <?
+                                        <option <?php echo $value['DstOptionID'] == $list['DSTOption'] ? 'selected' : '' ?> value="<?php echo $value['DstOptionID']?>"><?php echo $value['OptionValue']?></option>
+                                    <?php 
                                     }
                                     ?>
                                 </select>

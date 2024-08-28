@@ -12,15 +12,15 @@
                     {
                         ?>
                         <div class="sp-slide roundCorner">
-                            <img class="sp-image roundCorner" src="<?php echo '/templates/' . CURRENT_SKIN; ?>/bower_components/slider-pro/src/css/images/blank.gif" data-src="<?php //echo RELA_DIR ?> <? echo (strlen($fields['image'])) ? $fields['image']:  'templates/'.CURRENT_SKIN.'/assets/images/sliderImages/image2.jpg' ; ?> "/>
+                            <img class="sp-image roundCorner" src="<?php echo '/templates/' . CURRENT_SKIN; ?>/bower_components/slider-pro/src/css/images/blank.gif" data-src="<?php //echo RELA_DIR ?> <?php echo (strlen($fields['image'])) ? $fields['image']:  'templates/'.CURRENT_SKIN.'/assets/images/sliderImages/image2.jpg' ; ?> "/>
                             <h3 class="sp-layer sp-black sp-padding" data-horizontal="50" data-vertical="40%" data-show-transition="right" data-hide-transition="right" data-layer-init="true" style="visibility: visible;right: 50px;top: 40%;transform-origin: left top 0px;transform: scale(1) translate3d(0px, 0px, 0px);opacity: 1;">
-                                <?=$fields['title'];?>
+                                <?php echo $fields['title'];?>
                             </h3>
                             <p class="sp-layer sp-black sp-padding hide-small-screen" data-horizontal="50" data-vertical="58%" data-width="650" data-show-transition="right" data-show-delay="400" data-hide-transition="right" data-hide-delay="500" data-layer-init="true" style="visibility: visible;width: 650px;right: 50px;top: 58%;transform-origin: left top 0px;transform: scale(1) translate3d(0px, 0px, 0px);opacity: 1;">
-                                <?=$fields['brief_description'];?>
+                                <?php echo $fields['brief_description'];?>
                             </p>
                         </div>
-                        <?
+                        <?php 
                     }
                 }
                 ?>
@@ -33,10 +33,10 @@
                     {
                         ?>
                         <div class="sp-thumbnail">
-                            <div class="sp-thumbnail-title rtl text-right"><?=$fields['title']?></div>
-                            <div class="sp-thumbnail-description rtl text-right text-ultralight <?=((strlen($fields['brief_description'])>100)? "block-with-text" : "")?>"><?=$fields['brief_description']?></div>
+                            <div class="sp-thumbnail-title rtl text-right"><?php echo $fields['title']?></div>
+                            <div class="sp-thumbnail-description rtl text-right text-ultralight <?php echo ((strlen($fields['brief_description'])>100)? "block-with-text" : "")?>"><?php echo $fields['brief_description']?></div>
                         </div>
-                        <?
+                        <?php 
                     }
                 }
                 ?>
@@ -160,13 +160,13 @@
                                 {
                                     ?>
                                     <div class="sp-slide">
-                                        <a class="single" href="<?= $field['link'] ?>">
+                                        <a class="single" href="<?php echo  $field['link'] ?>">
                                         <div class="innerContent pull-left">
                                                 <h2 class="text-right rtl text-light">
                                                     <?php echo (strlen($field['title']) ? $field['title'] : "") ?>
                                                 </h2>
                                                 <div class="logoContainer pull-right">
-                                                    <img class="roundCorner fullWidth" src="<?= $field['image'] ?>">
+                                                    <img class="roundCorner fullWidth" src="<?php echo  $field['image'] ?>">
                                                 </div>
                                                 <article class="text-right text-light rtl"><?php echo (strlen($field['description']) ? $field['description'] : "") ?></article>
                                         </div>

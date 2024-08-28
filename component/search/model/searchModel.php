@@ -1,15 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marjani
- * Date: 2/20/2016
- * Time: 4:24 AM.
- */
-include_once ROOT_DIR.'/common/validators.php';
-class searchModel
+
+namespace Component\search\model;
+
+use Common\looeic;
+use Component\artists\model\artistsModel;
+use Component\category\model\categoryModel;
+use Component\event\model\eventModel;
+
+class searchModel extends looeic
 {
     private $TableName;
-    private $fields;  // other record fields
+    
     private $list;  // other record fields
     private $recordsCount;  // other record fields
     private $pagination;  // other record fields
@@ -58,28 +59,7 @@ class searchModel
         }
     }
 
-    /**
-     * @param $input
-     *
-     * @return int
-     */
-    public function setFields($input)
-    {
-        foreach ($input as $field => $val) {
-            $funcName = '__set'.ucfirst($field);
-            if (method_exists($this, $funcName)) {
-                $result = $this->$funcName($val);
-                if ($result['result'] == 1) {
-                    $this->fields[$field] = $val;
-                } else {
-                    return $result;
-                }
-            }
-        }
-        $result['result'] = 1;
-
-        return $result;
-    }
+    
 
     //hamid
     private function __setProvince($input)
@@ -187,9 +167,9 @@ class searchModel
     {
         global $lang;
         //print_r_debug($fields['type']);
-        if($fields['type'] == 'رویدادها' || $fields['type'] == 'events') {
+        if ($fields['type'] == 'رویدادها' || $fields['type'] == 'events') {
 
-            include_once ROOT_DIR . "component/event/model/event.model.php";
+            // include_once ROOT_DIR . "component/event/model/event.model.php";
             $tt = 'event_name_' . $lang;
 
             $result = eventModel::query("select * from event where $tt like '%" . handleData($fields['q']) . "%'")->getList();
@@ -214,38 +194,36 @@ class searchModel
 
             }*/
             //print_r_debug($this->pagination);
-        }
-        else if($fields['type'] == 'هنرمندان' || $fields['type'] == 'artists') {
+        } else if ($fields['type'] == 'هنرمندان' || $fields['type'] == 'artists') {
 
-                include_once ROOT_DIR . "component/artists/model/artists.model.php";
-                $tt = 'artists_name_' . $lang;
+            // include_once ROOT_DIR . "component/artists/model/artists.model.php";
+            $tt = 'artists_name_' . $lang;
 
-                $result = artistsModel::query("select * from artists where $tt like '%" . handleData($fields['q']) . "%'")->getList();
+            $result = artistsModel::query("select * from artists where $tt like '%" . handleData($fields['q']) . "%'")->getList();
 
-                if ($result['result'] != 1) {
-                    return $result;
-                }
-
-
-                $temp = $result['export']['list'];
-                unset($result['export']);
-                $result['export']['artists'] = $temp;
+            if ($result['result'] != 1) {
+                return $result;
+            }
 
 
-                //$resultPage['company'] = paginationButtom($this->recordsCount['company'],10);
+            $temp = $result['export']['list'];
+            unset($result['export']);
+            $result['export']['artists'] = $temp;
 
-                /*if ($resultPage['company']['result'] == 1 && ($fields['type'] == 'تولیدی' || !isset($fields['type']))) {
+
+            //$resultPage['company'] = paginationButtom($this->recordsCount['company'],10);
+
+            /*if ($resultPage['company']['result'] == 1 && ($fields['type'] == 'تولیدی' || !isset($fields['type']))) {
                     $this->pagination['company']['pageCount'] = $resultPage['company']['export']['pageCount'];
                     $this->pagination['company']['rowCount'] = $resultPage['company']['export']['rowCount'];
                     $this->pagination['company']['list'] = $resultPage['company']['export']['list'];
 
                 }*/
-                //print_r_debug($this->pagination);
+            //print_r_debug($this->pagination);
 
-            }
-        else if($fields['type'] == 'سبک' || $fields['type'] == 'genre') {
+        } else if ($fields['type'] == 'سبک' || $fields['type'] == 'genre') {
 
-            include_once ROOT_DIR . "component/artists/model/artists.model.php";
+            // include_once ROOT_DIR . "component/artists/model/artists.model.php";
             /** genre */
             $tt = 'title_' . $lang;
             $result = artistsModel::query("select * from genre where $tt like '%" . handleData($fields['q']) . "%'")->getList();
@@ -268,32 +246,27 @@ class searchModel
             $temp = $result2['export']['list'];
             unset($result2['export']);
             $result['export']['events'] = $temp;
-
-
-        }
-
-            else{
-                if (isset($fields['order'])) {
-                    $order = $fields['order'];
-                    unset($fields['order']);
-                    $fields['order']['Company_id'] = $order;
-                    $fields['order']['rnk'] = $order;
-
-                }
-                $fields['type'] = 'تولیدی';
-                $result = $this->getCompany($fields);
-                if ($result['result'] != 1) {
-                    return $result;
-                }
-                $temp = $result['export'];
-                unset($result['export']);
-                $result['export']['company'] = $temp;
-
-                $resultPage['company'] = $this->pagination('company');
-                if ($resultPage['company']['result'] == 1 && ($fields['type'] == 'تولیدی' || !isset($fields['type']))) {
-                    $this->pagination['company'] = $resultPage['company']['export']['list'];
-                }
+        } else {
+            if (isset($fields['order'])) {
+                $order = $fields['order'];
+                unset($fields['order']);
+                $fields['order']['Company_id'] = $order;
+                $fields['order']['rnk'] = $order;
             }
+            $fields['type'] = 'تولیدی';
+            $result = $this->getCompany($fields);
+            if ($result['result'] != 1) {
+                return $result;
+            }
+            $temp = $result['export'];
+            unset($result['export']);
+            $result['export']['company'] = $temp;
+
+            $resultPage['company'] = $this->pagination('company');
+            if ($resultPage['company']['result'] == 1 && ($fields['type'] == 'تولیدی' || !isset($fields['type']))) {
+                $this->pagination['company'] = $resultPage['company']['export']['list'];
+            }
+        }
 
 
 
@@ -319,7 +292,7 @@ class searchModel
         if ($result['result'] != 1) {
             return $result;
         }
-       // print_r_debug($result);
+        // print_r_debug($result);
 
         return $result;
     }
@@ -372,8 +345,8 @@ class searchModel
      */
     private function search($table, $dbFields, $fields)
     {
-        include_once dirname(__FILE__).'/search.model.db.php';
-        $result = searchModelDb::searchInDB($table, $dbFields, $fields);
+        // include_once dirname(__FILE__) . '/search.model.db.php';
+        $result = (new searchModelDb)->searchInDB($table, $dbFields, $fields);
 
         if ($result['result'] != 1) {
             return $result;
@@ -383,7 +356,7 @@ class searchModel
         $this->list['category'] = $result['export']['category'];
         $this->list['searchCategory'] = $result['export']['searchCategory'];
         $this->list['searchProvince'] = $result['export']['searchProvince'];
-        
+
         $this->list['category'] = $result['export']['category'];
         $this->list['province'] = $result['export']['province'];
         $this->list['city'] = $this->sortCities($result['export']['city']);
@@ -391,14 +364,13 @@ class searchModel
         $this->list['searchItem'] = $result['export']['searchItem'];
         $this->recordsCount[$table] = $result['export']['recordsCount'];
 
-        include_once(ROOT_DIR."component/category/model/category.model.php");
+        // include_once(ROOT_DIR . "component/category/model/category.model.php");
         $category = new categoryModel();
         $resultCategory = $category->getCategoryUlLiSearch($this->list['searchCategory']);
 
-        if($resultCategory['result'] == 1)
-        {
+        if ($resultCategory['result'] == 1) {
             $export['category_list'] = $resultCategory['export']['list'];
-            $this->list['searchCategoryUlLi'] =$export['category_list'];
+            $this->list['searchCategoryUlLi'] = $export['category_list'];
         }
         //print_r_debug($this->list['searchCategoryUlLi']);
 
@@ -462,11 +434,11 @@ class searchModel
             $PARAM = array_filter($PARAM, 'strlen');
         }
 
-        for ($i = 1;$i <= $pageCount;++$i) {
+        for ($i = 1; $i <= $pageCount; ++$i) {
             foreach ($PARAM as $key => $value) {
-                $url = '/'.$value;
+                $url = '/' . $value;
             }
-            $pagination[] = $url.'/page/'.$temp;
+            $pagination[] = $url . '/page/' . $temp;
             $temp = $temp + 1;
             $url = '';
         }

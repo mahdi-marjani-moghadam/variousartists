@@ -60,7 +60,7 @@
     <?php if($msg!=null)
     { ?>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-        <?= $msg ?>
+        <?php echo  $msg ?>
       </div>
       <?php
     }
@@ -75,7 +75,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="title_fa">عنوان(فارسی):</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="title_fa" id="title_fa"  placeholder=" عنوان" required value="<?=$list['title_fa']?>">
+                    <input type="text" class="form-control" name="title_fa" id="title_fa"  placeholder=" عنوان" required value="<?php echo $list['title_fa']?>">
                   </div>
                 </div>
               </div>
@@ -85,7 +85,7 @@
                       <div class="form-group">
                           <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="title_fa">عنوان(انگلیسی):</label>
                           <div class="col-xs-12 col-sm-8 pull-right">
-                              <input type="text" class="form-control" name="title_en" id="title_en"  placeholder=" عنوان" required value="<?=$list['title_en']?>">
+                              <input type="text" class="form-control" name="title_en" id="title_en"  placeholder=" عنوان" required value="<?php echo $list['title_en']?>">
                           </div>
                       </div>
                   </div>
@@ -155,7 +155,7 @@
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="xImagePath">تصویر:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
                         <input type="file" name="image">
-                        <img class="img-thumbnail" src="<?=RELA_DIR?>statics/files/<?=$list['artists_id']?>/<?=$list['image']?>">
+                        <img class="img-thumbnail" src="<?php echo RELA_DIR?>statics/files/<?php echo $list['artists_id']?>/<?php echo $list['image']?>">
 
                   </div>
                 </div>
@@ -165,21 +165,21 @@
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="xImagePath">فایل:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
                       <input type="file" name="file">
-                      <? if($list['file_type']  == 'image' ):?>
-                          <img class="img-thumbnail" src="<?=RELA_DIR?>statics/files/<?=$list['artists_id']?>/<?=$list['file']?>"/>
-                      <? endif;?>
-                      <? if ($list['file_type']  == 'video'):?>
+                      <?php if($list['file_type']  == 'image' ):?>
+                          <img class="img-thumbnail" src="<?php echo RELA_DIR?>statics/files/<?php echo $list['artists_id']?>/<?php echo $list['file']?>"/>
+                      <?php endif;?>
+                      <?php if ($list['file_type']  == 'video'):?>
                           <video controls width="100%"  >
-                              <source src="<?=RELA_DIR?>statics/files/<?=$list['artists_id']?>/<?=$list['file']?>" type="video/<?=$list['extension']?>"" />
+                              <source src="<?php echo RELA_DIR?>statics/files/<?php echo $list['artists_id']?>/<?php echo $list['file']?>" type="video/<?php echo $list['extension']?>"" />
 
                           </video>
-                      <? endif;?>
-                      <? if ($list['file_type']  == 'audio'):?>
+                      <?php endif;?>
+                      <?php if ($list['file_type']  == 'audio'):?>
                           <audio controls>
-                              <source src="<?=RELA_DIR?>statics/files/<?=$list['artists_id']?>/<?=$list['file']?>" type="audio/<?=$list['extension']?>">
+                              <source src="<?php echo RELA_DIR?>statics/files/<?php echo $list['artists_id']?>/<?php echo $list['file']?>" type="audio/<?php echo $list['extension']?>">
                               Your browser does not support the audio element.
                           </audio>
-                      <? endif;?>
+                      <?php endif;?>
 
                   </div>
                 </div>
@@ -192,14 +192,14 @@
                           <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="category_id">category_id:</label>
                           <div class="col-xs-12 col-sm-8 pull-right">
                               <select name="category_id[]" data-input="select2" placeholder="Multiple select" multiple>
-                                  <?
+                                  <?php 
                                   foreach($list['category'] as $category_id => $value)
                                   {
                                       ?>
-                                      <option  <?php echo in_array($value['Category_id'],$list['category_id'] ) ? 'selected' : '' ?> value="<?=$value['Category_id']?>">
-                                          <?=$value['export']?>
+                                      <option  <?php echo in_array($value['Category_id'],$list['category_id'] ) ? 'selected' : '' ?> value="<?php echo $value['Category_id']?>">
+                                          <?php echo $value['export']?>
                                       </option>
-                                      <?
+                                      <?php 
                                   }
                                   ?>
                               </select>
@@ -210,16 +210,16 @@
                       <div class="form-group">
                           <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="category_id">genre:</label>
                           <div class="col-xs-12 col-sm-8 pull-right">
-                              <? $list['genre_id']?>
+                              <?php $list['genre_id']?>
                               <select name="genre_id[]" data-input="select2"  multiple>
-                                  <?
+                                  <?php 
                                   foreach($list['genre'] as $genre_id => $value)
                                   {
                                       ?>
-                                      <option  <?php echo in_array($value['Genre_id'],$list['genre_id'] ) ? 'selected' : '' ?> value="<?=$value['Genre_id']?>">
-                                          <?=$value['export']?>
+                                      <option  <?php echo in_array($value['Genre_id'],$list['genre_id'] ) ? 'selected' : '' ?> value="<?php echo $value['Genre_id']?>">
+                                          <?php echo $value['export']?>
                                       </option>
-                                      <?
+                                      <?php 
                                   }
                                   ?>
                               </select>
@@ -245,14 +245,14 @@
                     <div class="form-group">
                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="creation_date">تاریخ تولید:</label>
                         <div class="col-xs-12 col-sm-8 pull-right">
-                            <input type="text" class="form-control datepicker" name="creation_date" id="creation_date"  placeholder="" required value="<?=convertDate($list['creation_date'])?>">
+                            <input type="text" class="form-control datepicker" name="creation_date" id="creation_date"  placeholder="" required value="<?php echo convertDate($list['creation_date'])?>">
                         </div>
                     </div>
                 </div>
               <div class="col-md-12">
                 <p class="pull-right">
                                     <input name="action" type="hidden" id="action" value="edit" />
-                    <input name="Artists_products_id" type="hidden" id="artists_id" value="<?=$list['Artists_products_id']?>" />
+                    <input name="Artists_products_id" type="hidden" id="artists_id" value="<?php echo $list['Artists_products_id']?>" />
                   <button type="submit" name="submit" id="submit" class="btn btn-icon btn-success rtl">
                   <i class="fa fa-plus"></i>
                     ویرایش

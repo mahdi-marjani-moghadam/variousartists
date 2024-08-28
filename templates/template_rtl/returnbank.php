@@ -25,29 +25,29 @@
                         <div class="panel panel-default events-meta" id="changeNumber">
                             <div class="panel-heading" style="padding: 10px">
                             <h3 class="panel-title" >
-                                <span  style=" "><?=pay_result?></span>
+                                <span  style=" "><?php echo pay_result?></span>
 
                             </h3>
 
                         </div>
 
-                            <? if($list['State'] == 'Canceled By User'): ?>
+                            <?php if($list['State'] == 'Canceled By User'): ?>
                                 <div class="panel-body " style="background: rgba(255,157,126,0.51)">
                                     <input name="action" value="addSales" type="hidden">
-                                    <div class="col-md-12"><?=pay_not_success?><?=$list['msg']?></div>
+                                    <div class="col-md-12"><?php echo pay_not_success?><?php echo $list['msg']?></div>
                                     <div class="col-md-12">
-                                        <a href="<?=RELA_DIR?>account/sales/invoice"><?=return_back_to_account?></a>
+                                        <a href="<?php echo RELA_DIR?>account/sales/invoice"><?php echo return_back_to_account?></a>
                                     </div>
                                 </div>
-                            <? else: ?>
+                            <?php else: ?>
                                 <div class="panel-body " style="background: rgba(170,255,150,0.51)">
                                     <input name="action" value="addSales" type="hidden">
-                                    <div class="col-md-12"><?=pay_success?></div>
+                                    <div class="col-md-12"><?php echo pay_success?></div>
                                     <div class="col-md-12">
-                                        <a href="<?=RELA_DIR?>account/sales/invoice"><?=return_back_to_account?></a>
+                                        <a href="<?php echo RELA_DIR?>account/sales/invoice"><?php echo return_back_to_account?></a>
                                     </div>
                                 </div>
-                            <? endif; ?>
+                            <?php endif; ?>
 
                         </div>
                     </div>

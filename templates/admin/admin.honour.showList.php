@@ -52,7 +52,7 @@
     <div class="panel-body">
       <div class="table-responsive table-responsive-datatables">
           <div class="pull-right">
-              <a href="<?=RELA_DIR?>zamin/?component=honour&company_id=<?php echo $list['company_id']; ?>&action=add" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i>افزودن افتخار جدید</a>
+              <a href="<?php echo RELA_DIR?>zamin/?component=honour&company_id=<?php echo $list['company_id']; ?>&action=add" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i>افزودن افتخار جدید</a>
           </div>
           <div class="row smallSpace"></div>
 
@@ -67,7 +67,7 @@
           </tr>
           </thead>
           <tbody>
-          <?
+          <?php 
           $cn = 1;
           if(isset($list['list'])) {
             foreach ($list['list'] as $id =>$fields) {
@@ -76,14 +76,14 @@
                 <td><?php echo $fields['Company_honours_id']; ?></td>
                 <td><?php echo $fields['title']; ?></td>
                 <td><?php echo $fields['description']; ?></td>
-                <td dir="ltr" align="center"> <img height="60px" src="<?=$fields['image']?>"/> </td>
+                <td dir="ltr" align="center"> <img height="60px" src="<?php echo $fields['image']?>"/> </td>
                 <td>
-                <a href="<?=RELA_DIR?>zamin/?component=honour&action=edit&id=<?php echo $fields['Company_honours_id']; ?>">ویرایش</a> <br/>
+                <a href="<?php echo RELA_DIR?>zamin/?component=honour&action=edit&id=<?php echo $fields['Company_honours_id']; ?>">ویرایش</a> <br/>
 
-                  <a href="<?=RELA_DIR?>zamin/?component=honour&action=deleteHonour&id=<?php echo $fields['Company_honours_id']; ?>">حذف</a> </td>
+                  <a href="<?php echo RELA_DIR?>zamin/?component=honour&action=deleteHonour&id=<?php echo $fields['Company_honours_id']; ?>">حذف</a> </td>
 
               </tr>
-              <?
+              <?php 
             }
           }
           ?>

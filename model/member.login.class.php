@@ -1,4 +1,4 @@
-<?
+<?php 
 class memberLogIns
 {
 	private static function GetHash()

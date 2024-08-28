@@ -1,4 +1,5 @@
 <?php
+use Component\city\model\cityModelDb;
 function checkUppercase($string)
 {
     if (preg_match('/[A-Z]/', $string) === 0) {
@@ -209,17 +210,17 @@ function redirectPage($page, $message = '')
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <script language="javascript">
-            setTimeout("window.location='<?= $page ?>'", 1500);
+            setTimeout("window.location='<?php echo  $page ?>'", 1500);
         </script>
         <style>
             body {
                 font-family: sans-serif;
-                background: url(<?= TEMPLATE_DIR ?>images/background.png);
+                background: url(<?php echo  TEMPLATE_DIR ?>images/background.png);
                 line-height: 30px;
             }
 
             .a {
-                background: url(<?= TEMPLATE_DIR ?>images/back_light.png) bottom repeat-x #ffffff;
+                background: url(<?php echo  TEMPLATE_DIR ?>images/back_light.png) bottom repeat-x #ffffff;
                 border: 3px solid #ccc;
                 width: 500px;
                 margin-top: 10%;
@@ -249,7 +250,7 @@ function redirectPage($page, $message = '')
                 ?>
                 <img src="<?php echo RELA_DIR . 'templates/' . CURRENT_SKIN . '/images/logo@2x.png' ?> " align="left" style="position:absolute; left:40px;padding-top:15px; " height="60">
                 <div style="clear:both"></div>
-                <a href="<?= $page ?>">در صورت عدم ارسال اتوماتیک کلیک نمایید </a>
+                <a href="<?php echo  $page ?>">در صورت عدم ارسال اتوماتیک کلیک نمایید </a>
 
                 <small>Loding ...</small>
                 <div style="clear:both"></div>
@@ -626,27 +627,27 @@ function showPageButton($currentPage, $pageCount, $totalRecord, $webaddress, $n 
         if ($currentPage > 1) {
             if ($currentPage < $pageCount) {
         ?>
-                <a href="<?= $webaddress ?>&currentPage<?= $n ?>=1" title="">&laquo; First</a>
-                <a href="<?= $webaddress ?>&currentPage<?= $n ?>=<?= $currentPage - 1 ?>" title="">&laquo; pre</a>
+                <a href="<?php echo  $webaddress ?>&currentPage<?php echo  $n ?>=1" title="">&laquo; First</a>
+                <a href="<?php echo  $webaddress ?>&currentPage<?php echo  $n ?>=<?php echo  $currentPage - 1 ?>" title="">&laquo; pre</a>
                 <?php
                 for ($i = $currentPage - 2; $i < $currentPage + 3; ++$i) {
                     if ($i < 1 || $i > $pageCount) {
                         continue;
                     }
                 ?>
-                    <a href="<?= ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?= ($i != $currentPage ? '' : 'current') ?>"><?= $i ?></a>
+                    <a href="<?php echo  ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?php echo  ($i != $currentPage ? '' : 'current') ?>"><?php echo  $i ?></a>
                 <?php
 
                 }
                 ?>
-                <a href="<?= $webaddress ?>&currentPage<?= $n ?>=<?= $currentPage + 1 ?>" title="">Next Page &raquo;</a>
-                <a href="<?= $webaddress ?>&currentPage<?= $n ?>=<?= $pageCount ?>" title="">Last &raquo;</a>
+                <a href="<?php echo  $webaddress ?>&currentPage<?php echo  $n ?>=<?php echo  $currentPage + 1 ?>" title="">Next Page &raquo;</a>
+                <a href="<?php echo  $webaddress ?>&currentPage<?php echo  $n ?>=<?php echo  $pageCount ?>" title="">Last &raquo;</a>
             <?php
 
             } else {
             ?>
-                <a href="<?= $webaddress ?>&currentPage<?= $n ?>=1" title="">&laquo; First</a>
-                <a href="<?= $webaddress ?>&currentPage<?= $n ?>=<?= $currentPage - 1 ?>" title="">&laquo; Previous
+                <a href="<?php echo  $webaddress ?>&currentPage<?php echo  $n ?>=1" title="">&laquo; First</a>
+                <a href="<?php echo  $webaddress ?>&currentPage<?php echo  $n ?>=<?php echo  $currentPage - 1 ?>" title="">&laquo; Previous
                     Page</a>
 
                 <?php
@@ -655,7 +656,7 @@ function showPageButton($currentPage, $pageCount, $totalRecord, $webaddress, $n 
                         continue;
                     }
                 ?>
-                    <a href="<?= ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?= ($i != $currentPage ? '' : 'current') ?>" title=""><?= $i ?></a>
+                    <a href="<?php echo  ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?php echo  ($i != $currentPage ? '' : 'current') ?>" title=""><?php echo  $i ?></a>
                 <?php
 
                 }
@@ -677,14 +678,14 @@ function showPageButton($currentPage, $pageCount, $totalRecord, $webaddress, $n 
                         continue;
                     }
                 ?>
-                    <a href="<?= ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?= ($i != $currentPage ? '' : 'current') ?>"><?= $i ?></a>
+                    <a href="<?php echo  ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?php echo  ($i != $currentPage ? '' : 'current') ?>"><?php echo  $i ?></a>
                 <?php
 
                 }
                 ?>
-                <a href="<?= $webaddress ?>&currentPage<?= $n ?>=<?= $currentPage + 1 ?>" title="">Next Page &raquo;</a>
+                <a href="<?php echo  $webaddress ?>&currentPage<?php echo  $n ?>=<?php echo  $currentPage + 1 ?>" title="">Next Page &raquo;</a>
 
-                <a href="<?= $webaddress ?>&currentPage<?= $n ?>=<?= $pageCount ?>" title="">Last &raquo;</a>
+                <a href="<?php echo  $webaddress ?>&currentPage<?php echo  $n ?>=<?php echo  $pageCount ?>" title="">Last &raquo;</a>
             <?php
 
             } else {
@@ -697,7 +698,7 @@ function showPageButton($currentPage, $pageCount, $totalRecord, $webaddress, $n 
                         continue;
                     }
                 ?>
-                    <a href="<?= ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?= ($i != $currentPage ? '' : 'current') ?>"><?= $i ?></a>
+                    <a href="<?php echo  ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?php echo  ($i != $currentPage ? '' : 'current') ?>"><?php echo  $i ?></a>
                 <?php
 
                 }
@@ -733,9 +734,9 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
             if ($currentPage < $pageCount) {
         ?>
 
-                <a href="<?= $webaddress ?>PG-1" title="ابتدا">&laquo; ابتدا</a>
+                <a href="<?php echo  $webaddress ?>PG-1" title="ابتدا">&laquo; ابتدا</a>
 
-                <a href="<?= $webaddress ?>PG-<?= $currentPage - 1 ?>" title="صفحه قبلی">&laquo; صفحه قبلی</a>
+                <a href="<?php echo  $webaddress ?>PG-<?php echo  $currentPage - 1 ?>" title="صفحه قبلی">&laquo; صفحه قبلی</a>
 
                 <?php
 
@@ -746,7 +747,7 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
 
                 ?>
 
-                    <a href="<?= ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?= ($i != $currentPage ? '' : 'current') ?>" title="<?= $i ?>"><?= $i ?></a>
+                    <a href="<?php echo  ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?php echo  ($i != $currentPage ? '' : 'current') ?>" title="<?php echo  $i ?>"><?php echo  $i ?></a>
 
                 <?php
 
@@ -754,18 +755,18 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
 
                 ?>
 
-                <a href="<?= $webaddress ?>PG-<?= $currentPage + 1 ?>" title="صفحه بعدی">صفحه بعدی &raquo;</a>
+                <a href="<?php echo  $webaddress ?>PG-<?php echo  $currentPage + 1 ?>" title="صفحه بعدی">صفحه بعدی &raquo;</a>
 
-                <a href="<?= $webaddress ?>PG-<?= $pageCount ?>" title="انتها">انتها &raquo;</a>
+                <a href="<?php echo  $webaddress ?>PG-<?php echo  $pageCount ?>" title="انتها">انتها &raquo;</a>
 
             <?php
 
             } else {
             ?>
 
-                <a href="<?= $webaddress ?>PG-1" title="ابتدا">&laquo; ابتدا</a>
+                <a href="<?php echo  $webaddress ?>PG-1" title="ابتدا">&laquo; ابتدا</a>
 
-                <a href="<?= $webaddress ?>PG-<?= $currentPage - 1 ?>" title="صفحه قبلی">&laquo; صفحه قبلی</a>
+                <a href="<?php echo  $webaddress ?>PG-<?php echo  $currentPage - 1 ?>" title="صفحه قبلی">&laquo; صفحه قبلی</a>
 
                 <?php
 
@@ -776,7 +777,7 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
 
                 ?>
 
-                    <a href="<?= ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?= ($i != $currentPage ? '' : 'current') ?>" title="<?= $i ?>"><?= $i ?></a>
+                    <a href="<?php echo  ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?php echo  ($i != $currentPage ? '' : 'current') ?>" title="<?php echo  $i ?>"><?php echo  $i ?></a>
 
                 <?php
 
@@ -808,7 +809,7 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
 
                 ?>
 
-                    <a href="<?= ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?= ($i != $currentPage ? '' : 'current') ?>" title="<?= $i ?>"><?= $i ?></a>
+                    <a href="<?php echo  ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?php echo  ($i != $currentPage ? '' : 'current') ?>" title="<?php echo  $i ?>"><?php echo  $i ?></a>
 
                 <?php
 
@@ -816,9 +817,9 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
 
                 ?>
 
-                <a href="<?= $webaddress ?>PG-<?= $currentPage + 1 ?>" title="صفحه بعدی">صفحه بعدی &raquo;</a>
+                <a href="<?php echo  $webaddress ?>PG-<?php echo  $currentPage + 1 ?>" title="صفحه بعدی">صفحه بعدی &raquo;</a>
 
-                <a href="<?= $webaddress ?>PG-<?= $pageCount ?>" title="انتها">انتها &raquo;</a>
+                <a href="<?php echo  $webaddress ?>PG-<?php echo  $pageCount ?>" title="انتها">انتها &raquo;</a>
 
             <?php
 
@@ -838,7 +839,7 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
 
                 ?>
 
-                    <a href="<?= ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?= ($i != $currentPage ? '' : 'current') ?>" title="<?= $i ?>"><?= $i ?></a>
+                    <a href="<?php echo  ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?php echo  ($i != $currentPage ? '' : 'current') ?>" title="<?php echo  $i ?>"><?php echo  $i ?></a>
 
                 <?php
 
@@ -897,7 +898,7 @@ function showAlertMsg($msg)
     ?>
         <div class="alert border">
             <a href="#" class="close" style="display:block"><img src="<?php echo RELA_DIR ?>templates/<?php echo CURRENT_SKIN ?>/images/alert.png" align="left" title="Close this notification" alt="close" /></a>
-            <span><?= $msg ?></span>
+            <span><?php echo  $msg ?></span>
         </div>
 
 
@@ -911,9 +912,9 @@ function showWarningMsg($msg)
     if ($msg) {
     ?>
         <div class="notification error png_bg">
-            <a class="close" href="#"><img alt="close" title="Close this notification" src="<?= TEMPLATE_DIR ?>admin/images/cross_grey_small.png"></a>
+            <a class="close" href="#"><img alt="close" title="Close this notification" src="<?php echo  TEMPLATE_DIR ?>admin/images/cross_grey_small.png"></a>
             <div>
-                <?= $msg ?>
+                <?php echo  $msg ?>
             </div>
         </div>
 
@@ -930,7 +931,7 @@ function showMsg($redirect)
             <div class="success">
                 <a href="#" class="close"><img src="<?php echo RELA_DIR ?>templates/<?php echo CURRENT_SKIN ?>/admin/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
                 <div>
-                    <?= $redirect ?>
+                    <?php echo  $redirect ?>
                 </div>
             </div>
         </div>
@@ -1123,7 +1124,6 @@ function print_r_debug($data)
 
 function get_cities()
 {
-    include_once ROOT_DIR . 'component/city/model/city.model.db.php';
     $cities = cityModelDb::getCities()['export']['list'];
 
     return $cities;

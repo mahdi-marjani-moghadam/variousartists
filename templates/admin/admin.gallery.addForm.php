@@ -25,7 +25,7 @@
         <?php if($msg != null)
         {?>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-                <?= $msg ?>
+                <?php echo  $msg ?>
             </div>
             <?php
         }
@@ -35,7 +35,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-8 center-block">
                     <form name="queue" id="queue" role="form" data-validate="form" enctype="multipart/form-data"  class="form-horizontal form-bordered"
                           novalidate="novalidate" method="post">
-                        <input type="hidden" name="event_id" value="<?=$list['event_id']?>">
+                        <input type="hidden" name="event_id" value="<?php echo $list['event_id']?>">
 
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6">

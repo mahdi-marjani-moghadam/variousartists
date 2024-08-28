@@ -44,8 +44,8 @@
                             {
                                 ?>
                             <div class="col xs-12 col-sm-12 col-md-12 ">
-                                <div class="alert alert-danger fade in rtl"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><?=$msg?></strong></div></div>
-                                <?
+                                <div class="alert alert-danger fade in rtl"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><?php echo $msg?></strong></div></div>
+                                <?php 
                             }
                             $msg = (strlen($messageStack->output('contactus')) ? $messageStack->output('contactus') : "");
                             if(isset($msg) && !empty($msg))
@@ -115,7 +115,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 text-left noPadding  pull-left">
 
 
-                            <? /*<div id="map" style="width:100%;height:250px"></div>
+                            <?php /*<div id="map" style="width:100%;height:250px"></div>
 
                             <script>
                                 function myMap() {

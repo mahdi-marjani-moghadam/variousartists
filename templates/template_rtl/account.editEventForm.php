@@ -47,7 +47,7 @@
         <?php if($msg != null)
         { ?>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-                <?= $msg ?>
+                <?php echo  $msg ?>
             </div>
             <?php
         }
@@ -57,14 +57,14 @@
                 <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 center-block">
                     <form name="queue" id="queue" role="form" data-validate="form" enctype="multipart/form-data"  class="form-horizontal form-bordered"
                           novalidate="novalidate" method="post">
-                        <input name="Event_id" type="hidden"  value="<?=$list['Event_id'];?>"/>
+                        <input name="Event_id" type="hidden"  value="<?php echo $list['Event_id'];?>"/>
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_name_fa">نام رویداد(فارسی):</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="event_name_fa" id="event_name_fa" required value="<?= $list['event_name_fa'] ?>">
+                                        <input type="text" class="form-control" name="event_name_fa" id="event_name_fa" required value="<?php echo  $list['event_name_fa'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_name_en">نام رویداد(انگلیسی):</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="event_name_en" id="event_name_en" required value="<?= $list['event_name_en'] ?>">
+                                        <input type="text" class="form-control" name="event_name_en" id="event_name_en" required value="<?php echo  $list['event_name_en'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +156,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_time">زمان رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="event_time" id="event_time" required value="<?= $list['event_time'] ?>">
+                                        <input type="text" class="form-control" name="event_time" id="event_time" required value="<?php echo  $list['event_time'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -165,7 +165,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control  datepicker" name="date" id="date" required value="<?= ($list['date']!="0000-00-00"? convertDate($list['date']):"") ?>">
+                                        <input type="text" class="form-control  datepicker" name="date" id="date" required value="<?php echo  ($list['date']!="0000-00-00"? convertDate($list['date']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -177,7 +177,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_time2">زمان رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="event_time2" id="event_time2"  value="<?= $list['event_time2'] ?>">
+                                        <input type="text" class="form-control" name="event_time2" id="event_time2"  value="<?php echo  $list['event_time2'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -186,7 +186,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control datepicker" name="date2" id="date2"  value="<?= ($list['date2']!="0000-00-00"? convertDate($list['date2']):"") ?>">
+                                        <input type="text" class="form-control datepicker" name="date2" id="date2"  value="<?php echo  ($list['date2']!="0000-00-00"? convertDate($list['date2']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -198,7 +198,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_time3">زمان رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="event_time3" id="event_time3"  value="<?= $list['event_time3'] ?>">
+                                        <input type="text" class="form-control" name="event_time3" id="event_time3"  value="<?php echo  $list['event_time3'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -207,7 +207,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date3">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control  datepicker" name="date3" id="date3"  value="<?= ($list['date3']!="0000-00-00"? convertDate($list['date3']):$list['date3'])?>">
+                                        <input type="text" class="form-control  datepicker" name="date3" id="date3"  value="<?php echo  ($list['date3']!="0000-00-00"? convertDate($list['date3']):$list['date3'])?>">
                                     </div>
                                 </div>
                             </div>
@@ -227,14 +227,14 @@
                                     <div class="col-xs-12 col-sm-8 pull-right">
 
                                         <select class="form-control" name="category_id[]" data-input="select2" placeholder="Multiple select" multiple>
-                                            <?
+                                            <?php 
                                             foreach($list['category'] as $category_id => $value)
                                             {
                                                 ?>
-                                                <option  <?php echo in_array($category_id,explode(",",$list['category_id']) ) ? 'selected' : '' ?> value="<?=$category_id?>">
-                                                    <?=$value['export']?>
+                                                <option  <?php echo in_array($category_id,explode(",",$list['category_id']) ) ? 'selected' : '' ?> value="<?php echo $category_id?>">
+                                                    <?php echo $value['export']?>
                                                 </option>
-                                                <?
+                                                <?php 
                                             }
                                             ?>
                                         </select>
@@ -247,14 +247,14 @@
                                     <div class="col-xs-12 col-sm-8 pull-right">
 
                                         <select class="form-control" name="genre_id[]" data-input="select2"  multiple>
-                                            <?
+                                            <?php 
                                             foreach($list['genre'] as $genre_id => $value)
                                             {
                                                 ?>
-                                                <option  <?php echo in_array($genre_id,explode(",",$list['genre_id']) ) ? 'selected' : '' ?> value="<?=$genre_id?>">
-                                                    <?=$value['export']?>
+                                                <option  <?php echo in_array($genre_id,explode(",",$list['genre_id']) ) ? 'selected' : '' ?> value="<?php echo $genre_id?>">
+                                                    <?php echo $value['export']?>
                                                 </option>
-                                                <?
+                                                <?php 
                                             }
                                             ?>
                                         </select>
@@ -267,7 +267,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_phone">تلفن</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control " name="event_phone" id="event_phone"  value="<?= ($list['event_phone']!=""? ($list['event_phone']):"")?>">
+                                        <input type="text" class="form-control " name="event_phone" id="event_phone"  value="<?php echo  ($list['event_phone']!=""? ($list['event_phone']):"")?>">
                                     </div>
                                 </div>
                             </div>
@@ -278,18 +278,18 @@
                             <div class="col-xs-12 col-sm-12 col-md-6" style="">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="country_id"><?=country?></label>
+                                           for="country_id"><?php echo country?></label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
                                         <select name="country_id" id="country_id" data-input="select2">
 
-                                            <?
+                                            <?php 
                                             foreach($list['country'] as $province_id => $value)
                                             {?>
                                             <option
-                                                <?= $value['id'] == $list['country_id'] ? 'selected' : '' ?>
-                                                    value="<?= $value['id'] ?>">
-                                                <?= $value["nice_name"] ?>
-                                                </option><?
+                                                <?php echo  $value['id'] == $list['country_id'] ? 'selected' : '' ?>
+                                                    value="<?php echo  $value['id'] ?>">
+                                                <?php echo  $value["nice_name"] ?>
+                                                </option><?php 
                                             }
                                             ?>
                                         </select>
@@ -307,7 +307,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="address_fa">آدرس (فارسی):</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="address_fa" id="address_fa" value="<?= $list['address_fa'] ?>">
+                                        <input type="text" class="form-control" name="address_fa" id="address_fa" value="<?php echo  $list['address_fa'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -316,7 +316,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="address_en">آدرس (انگلیسی):</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="address_en" id="address_en" value="<?= $list['address_en'] ?>">
+                                        <input type="text" class="form-control" name="address_en" id="address_en" value="<?php echo  $list['address_en'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -332,7 +332,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="organizer"> Organizer:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="organizer" id="organizer" value="<?= $list['organizer'] ?>">
+                                        <input type="text" class="form-control" name="organizer" id="organizer" value="<?php echo  $list['organizer'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -346,7 +346,7 @@
                                     <div class="col-xs-12 col-sm-8 pull-right">
                                         <div class="input-group" dir="ltr">
                                             <input type="file" class="form-control" name="logo" >
-                                            <img class="img-thumbnail" src="<?=RELA_DIR?>statics/event/<?= $list['logo'] ?>">
+                                            <img class="img-thumbnail" src="<?php echo RELA_DIR?>statics/event/<?php echo  $list['logo'] ?>">
 
                                         </div>
 

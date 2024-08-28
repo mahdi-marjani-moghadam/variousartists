@@ -7,7 +7,7 @@
         var oTable = dataTable.DataTable( {
             "processing": true,
             "serverSide": true,
-            "ajax": "<?=RELA_DIR?>admin/product.php?action=search&ajax=1"
+            "ajax": "<?php echo RELA_DIR?>admin/product.php?action=search&ajax=1"
         } );
 
         // Apply the search
@@ -61,7 +61,7 @@
                 <?php
                 }
                 ?>
-                <form method="post" action="<?=RELA_DIR.'admin/product.php?action=changeStatus';?>" name="action" id="action">
+                <form method="post" action="<?php echo RELA_DIR.'admin/product.php?action=changeStatus';?>" name="action" id="action">
                     <div class="pull-right margin-bottom">
                         <a href="<?php echo RELA_DIR.'admin/product.php?action=add'?>" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i>افزودن</a>
                     </div>

@@ -1,9 +1,11 @@
 <?php
+namespace Component\province\model;
+
+use Common\dbConn;
+use PDO;
+
 class provinceModelDb
-{
-
-
-    public static function getProvinceByNameArray($name = array())
+{    public static function getProvinceByNameArray(string $name = '')
     {
         $conn = dbConn::getConnection();
         $names = explode(',', $name);
@@ -13,7 +15,7 @@ class provinceModelDb
         }
 
         $provinces = substr($provinces, 0, -1);
-        $sql = 'SELECT * FROM province WHERE name IN ('.$provinces.')';
+        $sql = 'SELECT * FROM province WHERE name IN (' . $provinces . ')';
 
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -57,9 +59,8 @@ class provinceModelDb
             return $result;
         }
 
-        while ($row = $stmt->fetch())
-        {
-            $list[$row['province_id']]= $row;
+        while ($row = $stmt->fetch()) {
+            $list[$row['province_id']] = $row;
         }
 
         $result['result'] = 1;

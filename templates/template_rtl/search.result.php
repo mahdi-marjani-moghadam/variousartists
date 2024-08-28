@@ -3,7 +3,7 @@
 <section id="page-title" >
 
     <div class="container clearfix">
-        <h1> جستجوی : `<?=$_REQUEST['q']?>` در `<?=$_REQUEST['type']?>` </h1>
+        <h1> جستجوی : `<?php echo $_REQUEST['q']?>` در `<?php echo $_REQUEST['type']?>` </h1>
 
     </div>
 
@@ -20,7 +20,7 @@
             <!-- Portfolio Items
             ============================================= -->
             <div id="portfolio" class="portfolio  portfolio-6  portfolio-nomargin   grid-container clearfix">
-                <?
+                <?php 
                 if(count($list['list']) == 0 && isset($msg))
                 {
                     ?>
@@ -29,18 +29,18 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                                 <div class="alert alert-warning">
-                                    <strong>توجه! </strong><? echo $msg;?>
+                                    <strong>توجه! </strong><?php echo $msg;?>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <?
+                    <?php 
                 }
 
                 foreach($list['list']['events'] as $k => $value)
                 {
                     ?>
-                    <article class="portfolio-item pf-media pf-icons <? /* if($k % 4 ==0){echo 'wide';} */?> ">
+                    <article class="portfolio-item pf-media pf-icons <?php /* if($k % 4 ==0){echo 'wide';} */?> ">
                         <div class="portfolio-image">
                             <a href="portfolio-single.html">
                                 <img src="<?php echo (strlen($value['logo']) ? RELA_DIR.'statics/event/'.$value['logo'] : TEMPLATE_DIR.'/assets/images/placeholder.png'); ?>" alt="Open Imagination">
@@ -63,7 +63,7 @@
                 foreach($list['list']['artists'] as $k => $value)
                 {
                     ?>
-                    <article class="portfolio-item pf-media pf-icons <? /* if($k % 4 ==0){echo 'wide';} */?> ">
+                    <article class="portfolio-item pf-media pf-icons <?php /* if($k % 4 ==0){echo 'wide';} */?> ">
                         <div class="portfolio-image">
                             <a href="portfolio-single.html">
                                 <img src="<?php echo (strlen($value['logo']) ? RELA_DIR.'statics/files/'.$value['Artists_id'].'/'.$value['logo'] : TEMPLATE_DIR.'/assets/images/placeholder.png'); ?>" alt="Open Imagination">
@@ -71,12 +71,12 @@
                             <div class="portfolio-overlay">
                                 <div class="portfolio-desc">
 
-                                    <h3><a href="<?php echo RELA_DIR . 'files/Detail/' . $value['Artists_id'] . '/' . $value['artists_name_'.$lang]; ?>"><?php echo($value['artists_name_'.$lang] != "" ? $value['artists_name_'.$lang] : "-"); ?> </a></h3>
+                                    <h3><a href="<?php echo RELA_DIR . 'files/Detail/' . $value['Artists_id'] . '/' . slug($value['artists_name_'.$lang]); ?>"><?php echo($value['artists_name_'.$lang] != "" ? $value['artists_name_'.$lang] : "-"); ?> </a></h3>
                                     <!--<span><a href="#">Media</a>, <a href="#">Icons</a></span>-->
                                 </div>
                                 <a href="<?php echo (strlen($value['logo']) ? RELA_DIR.'statics/files/'.$value['Artists_id'].'/'.$value['logo'] : RELA_DIR.'templates/'.CURRENT_SKIN.'/assets/images/placeholder.png'); ?>" class="left-icon" data-lightbox="image"><i
                                             class="icon-line-zoom-in"></i></a>
-                                <a href="<?php echo RELA_DIR . 'artists/Detail/' . $value['Artists_id'] . '/' . $value["artists_name_$lang"]; ?>" class="right-icon"><i title="جزییات" class="icon-line-ellipsis"></i></a>
+                                <a href="<?php echo RELA_DIR . 'artists/Detail/' . $value['Artists_id'] . '/' . slug($value["artists_name_$lang"]); ?>" class="right-icon"><i title="جزییات" class="icon-line-ellipsis"></i></a>
                             </div>
                         </div>
                     </article>
@@ -89,19 +89,19 @@
 
             </div><!-- #portfolio end -->
             <div class="clearfix"></div>
-            <?
+            <?php 
             /*if(count($list['pagination']))
             {
                 ?>
                 <ul class="pagination">
                     <li><a href="#">&laquo;</a></li>
-                    <?
+                    <?php 
                     foreach($list['pagination'] as $key => $link)
                     {
                         if($key === 'current'){ continue;}
                         ?>
-                        <li class="<?=(($key+1 == $list['pagination']['current']) || (empty($list['pagination']['current']) && $key == 0 ))?'active':'';?>" ><a href="<?=RELA_DIR.$link;?>"><?=$key+1?></a></li>
-                        <?
+                        <li class="<?php echo (($key+1 == $list['pagination']['current']) || (empty($list['pagination']['current']) && $key == 0 ))?'active':'';?>" ><a href="<?php echo RELA_DIR.$link;?>"><?php echo $key+1?></a></li>
+                        <?php 
                     }
                     ?>
 

@@ -63,7 +63,7 @@
         {
         ?>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-            <?= $msg ?>
+            <?php echo  $msg ?>
         </div>
         <?php
         }
@@ -79,7 +79,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="title">عنوان گواهی:</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="title" id="title" required value="<?= $list['title'] ?>">
+                                        <input type="text" class="form-control" name="title" id="title" required value="<?php echo  $list['title'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                            for="description">توضیحات:</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
                                         <input type="text" class="form-control" name="description" id="description"
-                                               required value="<?= $list['description'] ?>">
+                                               required value="<?php echo  $list['description'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                                     <div class="col-xs-12 col-sm-8 pull-right">
                                         <div class="input-group" dir="ltr">
                                             <input name="image" type="text" class="form-control" id="xImagePath"
-                                                   value="<?= $list['image']; ?>"/>
+                                                   value="<?php echo  $list['image']; ?>"/>
                                         <span class="input-group-btn">
                                           <input class="btn  btn-info" type="button" value="انتخاب فایل" onclick="BrowseServer( 'Images:/', 'xImagePath' );"/>
                                         </span>

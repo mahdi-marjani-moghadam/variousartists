@@ -61,7 +61,7 @@
     {
     ?>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-    <?= $msg ?>
+    <?php echo  $msg ?>
       </div>
     <?php
     }
@@ -77,7 +77,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="title_fa">عنوان(فارسی):</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="title_fa" id="title_fa" autocomplete="off" required value="<?=$list['title_fa']?>">
+                    <input type="text" class="form-control" name="title_fa" id="title_fa" autocomplete="off" required value="<?php echo $list['title_fa']?>">
                   </div>
                 </div>
               </div>
@@ -85,7 +85,7 @@
                     <div class="form-group">
                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="title_en">عنوان(انگلیسی):</label>
                         <div class="col-xs-12 col-sm-8 pull-right">
-                            <input type="text" class="form-control" name="title_en" id="title_en" autocomplete="off" required value="<?=$list['title_en']?>">
+                            <input type="text" class="form-control" name="title_en" id="title_en" autocomplete="off" required value="<?php echo $list['title_en']?>">
                         </div>
                     </div>
                 </div>
@@ -94,14 +94,14 @@
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="parent_id">دسته بندی والد:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
                    <select class="valid" name="parent_id" id="parent_id">
-                    <?
+                    <?php 
                     foreach($list['category_list'] as $category_id => $value)
                     {
                     ?>
-                      <option <?php echo $value['Category_id'] == $list['parent_id'] ? 'selected' : '' ?> value="<?=$value['Category_id']?>">
-                    <?=$value['export']?>
+                      <option <?php echo $value['Category_id'] == $list['parent_id'] ? 'selected' : '' ?> value="<?php echo $value['Category_id']?>">
+                    <?php echo $value['export']?>
                       </option>
-                    <?
+                    <?php 
                     }
                     ?>
                     </select>
@@ -112,7 +112,7 @@
                     <div class="form-group">
                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="url"> url:</label>
                         <div class="col-xs-12 col-sm-8 pull-right">
-                            <input value="<?=$list['url'];?>" name="url" class="form-control" id="url" autocomplete="off" >
+                            <input value="<?php echo $list['url'];?>" name="url" class="form-control" id="url" autocomplete="off" >
                         </div>
                     </div>
                 </div>
@@ -121,7 +121,7 @@
                     <div class="form-group">
                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="priority"> priority:</label>
                         <div class="col-xs-12 col-sm-8 pull-right">
-                            <input value="<?=$list['priority'];?>" name="priority" class="form-control" id="priority" autocomplete="off" >
+                            <input value="<?php echo $list['priority'];?>" name="priority" class="form-control" id="priority" autocomplete="off" >
                         </div>
                     </div>
                 </div>
@@ -133,7 +133,7 @@
                       <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="xImagePath">تصویر:</label>
                         <div class="col-xs-12 col-sm-8 pull-right">
                             <div class="input-group" dir="ltr">
-                              <input name="img_name" type="text" class="form-control" id="xImagePath" value="<?=$list['img_name'];?>" />
+                              <input name="img_name" type="text" class="form-control" id="xImagePath" value="<?php echo $list['img_name'];?>" />
                               <span class="input-group-btn">
                                 <input class="btn  btn-info" type="button" value="انتخاب فایل" onclick="BrowseServer( 'Images:/', 'xImagePath' );" />
                               </span>
@@ -149,7 +149,7 @@
           <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="sort">ترتیب:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="sort" id="sort" autocomplete="off"  required value="<?=$list['sort']?>">
+                    <input type="text" class="form-control" name="sort" id="sort" autocomplete="off"  required value="<?php echo $list['sort']?>">
                   </div>
                 </div>
               </div>
@@ -160,7 +160,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="meta_keyword">کلمات کلیدی:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <textarea name="meta_keyword" class="form-control fullFix" id="meta_keyword" autocomplete="off" ><?=$list['meta_keyword'];?></textarea>
+                    <textarea name="meta_keyword" class="form-control fullFix" id="meta_keyword" autocomplete="off" ><?php echo $list['meta_keyword'];?></textarea>
                   </div>
                 </div>
               </div>
@@ -171,7 +171,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="meta_description">توضیحات کلیدی:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <textarea name="meta_description" class="form-control fullFix" id="meta_description" autocomplete="off" placeholder="meta_description" ><?=$list['meta_description']?></textarea>
+                    <textarea name="meta_description" class="form-control fullFix" id="meta_description" autocomplete="off" placeholder="meta_description" ><?php echo $list['meta_description']?></textarea>
                   </div>
                 </div>
               </div>
@@ -183,7 +183,7 @@
               <div class="col-md-12">
                 <p class="pull-right margin-right">
                  <input name="action" type="hidden" id="action" value="edit" />
-                 <input name="Category_id" type="hidden" id="Category_id" value="<?=$list['Category_id']?>" />
+                 <input name="Category_id" type="hidden" id="Category_id" value="<?php echo $list['Category_id']?>" />
 
                   <button type="submit" name="update" id="submit" class="btn btn-icon btn-success rtl">
                     <i class="fa fa-plus"></i>

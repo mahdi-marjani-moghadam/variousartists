@@ -1,7 +1,7 @@
 <br>
 <br>
 <div class="col-md-12 text-center">
-    <?=wait_to_send?>
+    <?php echo wait_to_send?>
 </div>
 
 
@@ -12,4 +12,4 @@
 <script>
     $('form').submit();
 </script>
-<? die();?>
+<?php die();?>

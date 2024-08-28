@@ -29,7 +29,7 @@
 
         <?php if ($msg != null) { ?>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-                <?= $msg ?>
+                <?php echo  $msg ?>
             </div>
         <?php
         }
@@ -38,7 +38,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-8 center-block">
                     <form name="queue" id="queue" role="form" data-validate="form" enctype="multipart/form-data" class="form-horizontal form-bordered" novalidate="novalidate" method="post">
-                        <input name="Artists_id" value="<?= $list['Artists_id'] ?>" type="hidden">
+                        <input name="Artists_id" value="<?php echo  $list['Artists_id'] ?>" type="hidden">
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
@@ -124,27 +124,27 @@
                                         </script>
                                         <div class="input-group jail center">
                                             <div class="input-group-addon countryFlagHolder">
-                                                <i id="flagHolder" class="fa bfh-flag-<?= $list['default'][0]['iso'] ?>"></i>
+                                                <i id="flagHolder" class="fa bfh-flag-<?php echo  $list['default'][0]['iso'] ?>"></i>
                                                 <i class="fa fa-caret-down"></i>
                                                 <ul>
-                                                    <?
+                                                    <?php 
 
                                                     foreach ($list['country'] as $k => $value) {
 
 
                                                     ?>
-                                                        <li><a data-country="<?= $value['iso'] ?>" data-max="<?= $value['max_length'] ?>" data-areacode="+<?= $value['phone_code'] ?>" data-pattern="<?= $value['sample'] ?>"><span class="fa bfh-flag-<?= $value['iso'] ?>"></span><?= $value['name'] ?></a>
+                                                        <li><a data-country="<?php echo  $value['iso'] ?>" data-max="<?php echo  $value['max_length'] ?>" data-areacode="+<?php echo  $value['phone_code'] ?>" data-pattern="<?php echo  $value['sample'] ?>"><span class="fa bfh-flag-<?php echo  $value['iso'] ?>"></span><?php echo  $value['name'] ?></a>
                                                         </li>
 
-                                                    <?
+                                                    <?php 
                                                     }
                                                     ?>
 
                                                 </ul>
                                             </div>
-                                            <div id="areaCodeHolder" class="input-group-addon">+<?= $list['default'][0]['phone_code'] ?></div>
-                                            <input type="tel" <? if ($list['default'][0]['iso'] == 'IR') { ?>maxlength="<?= $list['default'][0]['max_length'] ?>" <? } ?> class="phone form-control ltr" id="artists_phone1" name="artists_phone1" placeholder="<?= $list['default'][0]['sample'] ?>" required value="<?= $list['artists_phone1'] ?>">
-                                            <input name="areacode" id="areacode" type="hidden" value="<?= $list['default'][0]['areacode'] ?>">
+                                            <div id="areaCodeHolder" class="input-group-addon">+<?php echo  $list['default'][0]['phone_code'] ?></div>
+                                            <input type="tel" <?php if ($list['default'][0]['iso'] == 'IR') { ?>maxlength="<?php echo  $list['default'][0]['max_length'] ?>" <?php } ?> class="phone form-control ltr" id="artists_phone1" name="artists_phone1" placeholder="<?php echo  $list['default'][0]['sample'] ?>" required value="<?php echo  $list['artists_phone1'] ?>">
+                                            <input name="areacode" id="areacode" type="hidden" value="<?php echo  $list['default'][0]['areacode'] ?>">
                                             <span class="input-group-btn"></span>
                                         </div><!-- /input-group -->
 
@@ -575,7 +575,7 @@
                                             .bfh-flag-ZW {
                                                 width: 16px;
                                                 height: 14px;
-                                                background: url(<?= RELA_DIR ?>templates/template_rtl/img/countries.flags.png) no-repeat
+                                                background: url(<?php echo  RELA_DIR ?>templates/template_rtl/img/countries.flags.png) no-repeat
                                             }
 
                                             .bfh-flag-AD:empty,
@@ -2014,7 +2014,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl" for="artists_name_fa">نام کاربر(فارسی):</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="artists_name_fa" id="artists_name_fa" required value="<?= $list['artists_name_fa'] ?>">
+                                        <input type="text" class="form-control" name="artists_name_fa" id="artists_name_fa" required value="<?php echo  $list['artists_name_fa'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -2023,7 +2023,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="refresh_date">تاریخ بروزرسانی</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control date" autocomplete="off" name="refresh_date" id="refresh_date" value="<?= $list['refresh_date'] ?>">
+                                        <input type="text" class="form-control date" autocomplete="off" name="refresh_date" id="refresh_date" value="<?php echo  $list['refresh_date'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -2032,9 +2032,9 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="status">وضعیت:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
                                         <select name="status" id="status">
-                                            <option value="1" <?= ($list['status'] == 1) ? 'selected="selected"' : ''; ?>>تایید
+                                            <option value="1" <?php echo  ($list['status'] == 1) ? 'selected="selected"' : ''; ?>>تایید
                                             </option>
-                                            <option value="0" <?= ($list['status'] == 0) ? 'selected="selected"' : ''; ?>>تایید نشده
+                                            <option value="0" <?php echo  ($list['status'] == 0) ? 'selected="selected"' : ''; ?>>تایید نشده
                                             </option>
                                         </select>
                                     </div>

@@ -43,7 +43,7 @@
         </div>
         <div class="panel-body">
             <div class="pull-right">
-                <a href="<?= RELA_DIR ?>zamin/?component=soundcloud&action=add" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن   </a>
+                <a href="<?php echo  RELA_DIR ?>zamin/?component=soundcloud&action=add" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن   </a>
             </div>
             <!-- separator -->
             <div class="row smallSpace"></div>
@@ -65,7 +65,7 @@
                         <tr>
                             <td ><?php echo $fields['embed']; ?></td>
                             <td>
-                                <a href="<?= RELA_DIR ?>zamin/?component=soundcloud&action=delete&id=<?php echo $fields['id']; ?>">حذف</a>
+                                <a href="<?php echo  RELA_DIR ?>zamin/?component=soundcloud&action=delete&id=<?php echo $fields['id']; ?>">حذف</a>
                             </td>
                         </tr>
                     <?php

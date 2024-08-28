@@ -7,7 +7,7 @@
                                     <div class="col_one_fifth ">
                                         <ul>
                                             <li><i class="icon-star3 font-size2x"></i> </li>
-                                            <li>Rate: <?=$list['list']['rate']?><br> View:<?=$list['list']['rate_count']?></li>
+                                            <li>Rate: <?php echo $list['list']['rate']?><br> View:<?php echo $list['list']['rate_count']?></li>
                                         </ul>
                                     </div>
 
@@ -15,11 +15,11 @@
                                         <ul>
                                             <li><i class="icon-line-box font-size2x"></i> </li>
                                             <li>Product <br>
-                                                <?=$list['artistsProduct']?></li>
+                                                <?php echo $list['artistsProduct']?></li>
                                         </ul>
                                     </div>
                                     <div class="col_one_fifth col_last">
-                                        <a href="<?=RELA_DIR.'account/addProduct'?>">
+                                        <a href="<?php echo RELA_DIR.'account/addProduct'?>">
                                         <ul>
                                             <li><i class="icon-line-marquee-plus font-size2x"></i> </li>
                                             <li class="font-size1x">Add product
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                            <? if(isset($list['invoice'])): ?>
+                            <?php if(isset($list['invoice'])): ?>
                             <div class="p-invoice row ">
 
                                 <h4 class="text-center">آخرین صورتحصاب ها</h4>
@@ -45,29 +45,29 @@
                                             <th>وضعیت فاکتور</th>
                                             <!--<th>پرداخت فاکتور</th>-->
                                             </thead>
-                                            <?
+                                            <?php 
                                             $i= 0;
                                             foreach($list['invoice'] as $kInvoice => $vInvoice):?>
-                                                <? $i++;?>
+                                                <?php $i++;?>
                                             <tr>
-                                                <td><?=$vInvoice["id"];?></td>
-                                                <td><?=$vInvoice["title_$lang"];?></td>
-                                                <td><?=$vInvoice['date'];?></td>
-                                                <td><?=$vInvoice['total_price'];?></td>
+                                                <td><?php echo $vInvoice["id"];?></td>
+                                                <td><?php echo $vInvoice["title_$lang"];?></td>
+                                                <td><?php echo $vInvoice['date'];?></td>
+                                                <td><?php echo $vInvoice['total_price'];?></td>
 
                                                 <td>
-                                                    <div class="style-msg   <?=($vInvoice['status'] == 1)?'':'style-msg-light';?>" style="background-color: <?=($vInvoice['status'] == 1)?'#EEE':'#444';?>">
-                                                        <div class="sb-msg"><i class="<?=($vInvoice['status'] == 1)?'icon-thumbs-up':'icon-remove';?>"></i>تایید <?=($vInvoice['status'] == 1)?'شده':' نشده';?></div>
+                                                    <div class="style-msg   <?php echo ($vInvoice['status'] == 1)?'':'style-msg-light';?>" style="background-color: <?php echo ($vInvoice['status'] == 1)?'#EEE':'#444';?>">
+                                                        <div class="sb-msg"><i class="<?php echo ($vInvoice['status'] == 1)?'icon-thumbs-up':'icon-remove';?>"></i>تایید <?php echo ($vInvoice['status'] == 1)?'شده':' نشده';?></div>
                                                     </div>
 
                                                 </td>
 
                                                 <!--<td><a href=" "  class="button button-3d button-mini button-rounded button-aqua ">پرداخت فاکتور</a> </td>-->
                                             </tr>
-                                                <? if($i >3){break;};?>
-                                            <? endforeach;?>
+                                                <?php if($i >3){break;};?>
+                                            <?php endforeach;?>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                            <? endif;?>
+                            <?php endif;?>

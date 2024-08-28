@@ -57,7 +57,7 @@
 
         <?php if($msg != null)
         { ?>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning"><?= $msg ?>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning"><?php echo  $msg ?>
         </div>
         <?php
         }
@@ -73,7 +73,7 @@
                                       <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                              for="title">عنوان گواهی:</label>
                                       <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                          <input type="text" class="form-control" name="title" id="title" required value="<?= $list['title'] ?>">
+                                          <input type="text" class="form-control" name="title" id="title" required value="<?php echo  $list['title'] ?>">
                                       </div>
                                   </div>
                               </div>
@@ -82,7 +82,7 @@
                                       <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                              for="description">توضیحات:</label>
                                       <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                          <input type="text" class="form-control" name="description" id="description" required value="<?= $list['description'] ?>">
+                                          <input type="text" class="form-control" name="description" id="description" required value="<?php echo  $list['description'] ?>">
                                       </div>
                                   </div>
                               </div>
@@ -95,7 +95,7 @@
                                              for="xImagePath">تصویر:</label>
                                       <div class="col-xs-12 col-sm-8 pull-right">
                                           <div class="input-group" dir="ltr">
-                                              <input name="image" type="text" class="form-control" id="xImagePath" value="<?= $list['image']; ?>"/>
+                                              <input name="image" type="text" class="form-control" id="xImagePath" value="<?php echo  $list['image']; ?>"/>
                                           <span class="input-group-btn">
                                             <input class="btn  btn-info" type="button" value="انتخاب فایل"
                                                    onclick="BrowseServer( 'Images:/', 'xImagePath' );"/>
@@ -114,7 +114,7 @@
                                   <p class="pull-right">
                                       <input name="action" type="hidden" id="action" value="edit"/>
                                       <input name="Certification_id" type="hidden" id="Certification_id"
-                                             value="<?= $list['Certification_id'] ?>"/>
+                                             value="<?php echo  $list['Certification_id'] ?>"/>
                                       <button type="submit" name="update" id="submit"
                                               class="btn btn-icon btn-success rtl">
                                           <i class="fa fa-plus"></i>

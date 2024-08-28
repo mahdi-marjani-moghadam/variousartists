@@ -27,9 +27,9 @@
       <?php if($list['msg']!=null) 
       { ?>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-         <?= $list['msg'] ?>
+         <?php echo  $list['msg'] ?>
          <span style="color:#408ca3; font-weight:bold;" >
-         <?='&nbsp;&nbsp;شماره فاکتور :&nbsp;'.$list['invoice_id'];?>
+         <?php echo '&nbsp;&nbsp;شماره فاکتور :&nbsp;'.$list['invoice_id'];?>
          </span>
       </div>
       <?php

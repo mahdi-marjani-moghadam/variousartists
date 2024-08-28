@@ -27,7 +27,7 @@
         var oTable = dataTable.DataTable({
             "processing": true,
             "serverSide": true,
-            "ajax": "<?=RELA_DIR?>zamin/?component=event&action=searchGallery&status=<?=$list['status']?>&event_id=<?=$_GET['id']?>",
+            "ajax": "<?php echo RELA_DIR?>zamin/?component=event&action=searchGallery&status=<?php echo $list['status']?>&event_id=<?php echo $_GET['id']?>",
             "ordering": false
         });
 
@@ -59,7 +59,7 @@
             var company_id=$(this).data('company_id');
             $("#loading").show();
             $.ajax({
-                url: '<?=RELA_DIR?>zamin/?component=company&action=getCompanyPhone',
+                url: '<?php echo RELA_DIR?>zamin/?component=company&action=getCompanyPhone',
                 type: "POST",
                 data: "company_id="+company_id,
                 cache: false,
@@ -114,7 +114,7 @@
             </div>
         </div>
         <div class="panel-body">
-            <div class="pull-right"><a href="<?= RELA_DIR ?>zamin/?component=event&action=addGallery&event_id=<?=$_GET['id']?>"
+            <div class="pull-right"><a href="<?php echo  RELA_DIR ?>zamin/?component=event&action=addGallery&event_id=<?php echo $_GET['id']?>"
                                        class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن  تصویر</a></div>
 
 

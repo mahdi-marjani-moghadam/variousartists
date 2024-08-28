@@ -1,35 +1,30 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: marjani
- * Date: 3/12/2016
- * Time: 11:33 AM.
- */
+namespace Component\search\model;
+
+use Common\dbConn;
+use Component\category\model\categoryModelDb;
+use Component\city\admin\model\adminCityModelDb;
+use Component\city\model\cityModelDb;
+use Component\company\model\companyModelDb;
+use Component\province\model\provinceModelDb;
+use Model\DataBase;
+use PDO;
+
 class searchModelDb
 {
     public function searchInDB($table, $dbField, $fields = '')
     {
-
-
-        //print_r_debug($fields);
+        
         $conn = dbConn::getConnection();
-
-        include_once ROOT_DIR . '/model/db.inc.class.php';
-        //print_r($fields);
-        //die();
-
         $condition = DataBase::filterBuilder($fields);
         $sqlPre = 'SELECT SQL_CALC_FOUND_ROWS * from ( ';
         $sqlEnd = ' ) t1 ';
 
         // append city
-        include_once ROOT_DIR . '/component/city/admin/model/admin.city.model.db.php';
         $city = adminCityModelDb::getCityByNameArray($fields['city']);
 
-        //hamid
         // append province
-        include_once ROOT_DIR . '/component/province/model/province.model.db.php';
         $province = provinceModelDb::getProvinceByNameArray($fields['province']);
         if (count($province['export']['list'])) {
             $append_SQL_province = ' and (';
@@ -43,7 +38,6 @@ class searchModelDb
 
             $append_SQL_province = '';
         }
-        //end hamid
 
 
         if (count($city['export']['list'])) {
@@ -76,14 +70,11 @@ class searchModelDb
         // end append city
 
         // append category
-        include_once ROOT_DIR . '/component/category/model/category.model.db.php';
         $category = categoryModelDb::getCategoryByIdString($fields['category']);
-//hamid
         $searchItem['category']=$category['export'];
         $searchItem['city']=$city['export'];
         $searchItem['province']=$province['export'];
 
-//end hamid
         if (count($category['export']['list'])) {
             $append_SQL_category = ' AND (';
             foreach ($category['export']['list'] as $key => $value) {
@@ -118,14 +109,10 @@ class searchModelDb
         }
 
         //-------------------------------------------hamid
-        include_once ROOT_DIR . '/component/province/model/province.model.db.php';
         $provinces = provinceModelDb::getProvinces();
         $result['export']['province'] = $provinces['export']['list'];
 
         //--------------------------------------------end hamid
-        //print_r_debug($province);
-        include_once ROOT_DIR . '/component/city/model/city.model.db.php';
-        //$cities = cityModelDb::getCities($province['export']['list']);
         $cities = cityModelDb::getCities();
         $result['export']['city'] = $cities['export']['list'];
 
@@ -154,11 +141,10 @@ class searchModelDb
         //******************************************************************************************
 
 
-        $sql = $sqlPre . self::generateSearchSql($table, $fields, $dbField,'', $append_SQL_province, $append_SQL_city);
+        $sql = $sqlPre . self::generateSearchSql($table, $fields, $dbField,'', $append_SQL_province);
 
         $sql .= $sqlEnd;
 
-        //print_r_debug($sql);
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
@@ -169,13 +155,11 @@ class searchModelDb
             return $result;
         }
         $rowP['recCount'] = $stmt->rowCount();
-        //unset($listTmp);
 
         // categories
 
         $catIds = [];
 
-        include_once ROOT_DIR . '/component/category/model/category.model.db.php';
         $categories = categoryModelDb::getCategoryAll();
         $result['export']['category'] = $categories['export']['list'];
 
@@ -233,7 +217,6 @@ class searchModelDb
 
         if ($table == 'company') {
             while ($row = $stmt->fetch()) {
-                include_once ROOT_DIR . '/component/company/model/company.model.db.php';
                 $id = ucfirst($table) . '_id';
                 $list[$row[$id]] = companyModelDb::getCompanyById($row[$id])['list'];
                 $list[$row[$id]]['cityName']=$result['export']['city'][$list[$row[$id]]['city_id']]['name'];

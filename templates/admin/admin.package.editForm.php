@@ -56,7 +56,7 @@
         <?php if($msg!=null)
         { ?>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-                <?= $msg ?>
+                <?php echo  $msg ?>
             </div>
             <?php
         }
@@ -72,7 +72,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="product">عنوان محصول:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="product" id="product" autocomplete="off" placeholder="عنوان محصول" required value="<?=$list['product']?>">
+                                        <input type="text" class="form-control" name="product" id="product" autocomplete="off" placeholder="عنوان محصول" required value="<?php echo $list['product']?>">
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="category">دسته بندی:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="category" id="category" autocomplete="off" placeholder="دسته بندی" required value="<?=$list['category']?>">
+                                        <input type="text" class="form-control" name="category" id="category" autocomplete="off" placeholder="دسته بندی" required value="<?php echo $list['category']?>">
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="keyword">کلمه کلیدی :</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off" placeholder="کلمه کلیدی" required value="<?=$list['keyword']?>">
+                                        <input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off" placeholder="کلمه کلیدی" required value="<?php echo $list['keyword']?>">
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="lang">زبان :</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="lang" id="lang" autocomplete="off" placeholder="زبان" required value="<?=$list['lang']?>">
+                                        <input type="text" class="form-control" name="lang" id="lang" autocomplete="off" placeholder="زبان" required value="<?php echo $list['lang']?>">
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="packagetype">نوع محصول:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="packagetype" id="packagetype" autocomplete="off" placeholder=" نوع محصول " required value="<?=$list['packagetype']?>">
+                                        <input type="text" class="form-control" name="packagetype" id="packagetype" autocomplete="off" placeholder=" نوع محصول " required value="<?php echo $list['packagetype']?>">
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +119,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="date">date:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="date" id="date" autocomplete="off" placeholder="date نام " readonly value="<?=$list['date']?>">
+                                        <input type="text" class="form-control" name="date" id="date" autocomplete="off" placeholder="date نام " readonly value="<?php echo $list['date']?>">
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +129,7 @@
                                 <p class="pull-right">
                                     <button type="submit" name="update" id="submit" class="btn btn-icon btn-success rtl">
                                         <input name="action" type="hidden" id="action" value="edit" />
-                                        <input name="Package_id" type="hidden" id="Package_id" value="<?=$list['Package_id']?>" />
+                                        <input name="Package_id" type="hidden" id="Package_id" value="<?php echo $list['Package_id']?>" />
                                         <i class="fa fa-plus"></i>
                                         ویرایش
                                     </button>

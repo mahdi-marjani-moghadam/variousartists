@@ -25,7 +25,7 @@
    $("#loading").show();
   $.ajax({
   type:'POST',
-  url:'<?=RELA_DIR?>zamin/?component=company&action=call',
+  url:'<?php echo RELA_DIR?>zamin/?component=company&action=call',
   type: "POST",
   data: dataString,
   cache: false,
@@ -34,7 +34,7 @@
     $("#loading").hide();
     if(data=='yes')
   	{
-  		window.location='<?=RELA_DIR?>zamin/?component=company&action=edit&id='+id;
+  		window.location='<?php echo RELA_DIR?>zamin/?component=company&action=edit&id='+id;
 
   	}else
   	{
@@ -97,9 +97,9 @@
                         <?php if(count($fields['company_phone']['subject'])) { ?>
                         <br>
 
-                        <?=$fields['company_phone']['subject'][0]?>
-                        <div class="call" onclick="return call(<?=$fields['company_phone']['number'][0]?>,<?=$admin_info['extention']?>,<?=$fields['Company_id']?>);" ><?=$fields['company_phone']['number'][0]?></div>
-  						<?
+                        <?php echo $fields['company_phone']['subject'][0]?>
+                        <div class="call" onclick="return call(<?php echo $fields['company_phone']['number'][0]?>,<?php echo $admin_info['extention']?>,<?php echo $fields['Company_id']?>);" ><?php echo $fields['company_phone']['number'][0]?></div>
+  						<?php 
                           if($fields['company_phone']['state'][0] == 'سایر')
                             echo "";
                           else
@@ -125,18 +125,18 @@
                         <?php } ?>
                         <?php } ?>
                       </td>
-                      <td><?= convertDate($fields['refresh_date']) ?></td>
-                      <td><?= convertDate(date('Y-m-d',strtotime(COMPANY_EXPIRE_PERIOD,strtotime($fields['refresh_date'])))) ?></td>
+                      <td><?php echo  convertDate($fields['refresh_date']) ?></td>
+                      <td><?php echo  convertDate(date('Y-m-d',strtotime(COMPANY_EXPIRE_PERIOD,strtotime($fields['refresh_date'])))) ?></td>
                       <td dir="ltr" align="center">
                       <?php echo $fields['status']; ?>
                       </td>
                     <td><img height="60" src="<?php echo $fields['logo'];?>"></td>
                     <td>
-                        <a href="<?=RELA_DIR?>zamin/?component=company&action=edit&id=<?php echo $fields['Company_id'];?>">ویرایش</a> <br/>
-                        <a href="<?=RELA_DIR?>zamin/?component=product&id=<?php echo $fields['Company_id'];?>">لیست محصولات</a><br/>
-                        <a href="<?=RELA_DIR?>zamin/?component=honour&id=<?php echo $fields['Company_id'];?>">لیست افتخارات</a><br/>
-                        <a href="<?=RELA_DIR?>zamin/?component=licence&id=<?php echo $fields['Company_id'];?>">لیست مجوز ها</a><br/>
-                        <a href="<?=RELA_DIR?>zamin/?component=company&action=delete&id=<?php echo $fields['Company_id'];?>">حذف</a>
+                        <a href="<?php echo RELA_DIR?>zamin/?component=company&action=edit&id=<?php echo $fields['Company_id'];?>">ویرایش</a> <br/>
+                        <a href="<?php echo RELA_DIR?>zamin/?component=product&id=<?php echo $fields['Company_id'];?>">لیست محصولات</a><br/>
+                        <a href="<?php echo RELA_DIR?>zamin/?component=honour&id=<?php echo $fields['Company_id'];?>">لیست افتخارات</a><br/>
+                        <a href="<?php echo RELA_DIR?>zamin/?component=licence&id=<?php echo $fields['Company_id'];?>">لیست مجوز ها</a><br/>
+                        <a href="<?php echo RELA_DIR?>zamin/?component=company&action=delete&id=<?php echo $fields['Company_id'];?>">حذف</a>
                     </td>
                   </tr>
               <?php

@@ -59,7 +59,7 @@
     {
     ?>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-    <?= $msg ?>
+    <?php echo  $msg ?>
       </div>
     <?php
     }
@@ -73,7 +73,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="embed">Embed</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                      <textarea type="text" class="form-control" name="embed" id="embed" autocomplete="off" required="required"  ><?=$list['embed']?></textarea>
+                      <textarea type="text" class="form-control" name="embed" id="embed" autocomplete="off" required="required"  ><?php echo $list['embed']?></textarea>
                   </div>
                 </div>
               </div>

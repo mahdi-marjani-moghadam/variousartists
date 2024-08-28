@@ -60,7 +60,7 @@
         <?php if($msg != null)
         { ?>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-                <?= $msg ?>
+                <?php echo  $msg ?>
             </div>
             <?php
         }
@@ -70,14 +70,14 @@
                 <div class="col-xs-12 col-sm-12 col-md-8  center-block">
                     <form name="queue" id="queue" role="form" data-validate="form" enctype="multipart/form-data"  class="form-horizontal form-bordered"
                           novalidate="novalidate" method="post">
-                        <input name="Event_id" type="hidden"  value="<?=$list['Event_id'];?>"/>
+                        <input name="Event_id" type="hidden"  value="<?php echo $list['Event_id'];?>"/>
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_name_fa">نام رویداد(فارسی):</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="event_name_fa" id="event_name_fa" required value="<?= $list['event_name_fa'] ?>">
+                                        <input type="text" class="form-control" name="event_name_fa" id="event_name_fa" required value="<?php echo  $list['event_name_fa'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_name_en">نام رویداد(انگلیسی):</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="event_name_en" id="event_name_en" required value="<?= $list['event_name_en'] ?>">
+                                        <input type="text" class="form-control" name="event_name_en" id="event_name_en" required value="<?php echo  $list['event_name_en'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -173,7 +173,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_time">زمان رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="event_time" id="event_time" required value="<?= $list['event_time'] ?>">
+                                        <input type="text" class="form-control" name="event_time" id="event_time" required value="<?php echo  $list['event_time'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -182,7 +182,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control  date" name="date" id="date" required value="<?= ($list['date']!="0000-00-00"? convertDate($list['date']):"") ?>">
+                                        <input type="text" class="form-control  date" name="date" id="date" required value="<?php echo  ($list['date']!="0000-00-00"? convertDate($list['date']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -194,7 +194,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_time2">زمان رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="event_time2" id="event_time2"  value="<?= $list['event_time2'] ?>">
+                                        <input type="text" class="form-control" name="event_time2" id="event_time2"  value="<?php echo  $list['event_time2'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -203,7 +203,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control date" name="date2" id="date2"  value="<?= ($list['date2']!="0000-00-00"? convertDate($list['date2']):"") ?>">
+                                        <input type="text" class="form-control date" name="date2" id="date2"  value="<?php echo  ($list['date2']!="0000-00-00"? convertDate($list['date2']):"") ?>">
                                     </div>
                                 </div>
                             </div>
@@ -215,7 +215,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_time3">زمان رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="event_time3" id="event_time3"  value="<?= $list['event_time3'] ?>">
+                                        <input type="text" class="form-control" name="event_time3" id="event_time3"  value="<?php echo  $list['event_time3'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -224,7 +224,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="date3">تاریخ رویداد</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control  date" name="date3" id="date3"  value="<?= ($list['date3']!="0000-00-00"? convertDate($list['date3']):"")?>">
+                                        <input type="text" class="form-control  date" name="date3" id="date3"  value="<?php echo  ($list['date3']!="0000-00-00"? convertDate($list['date3']):"")?>">
                                     </div>
                                 </div>
                             </div>
@@ -243,15 +243,15 @@
                                            for="salon_id">انتخاب سالن:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
                                         <select name="salon_id[]" id="salon_id" data-input="select2" multiple>
-                                            <?
+                                            <?php 
                                             foreach($list['salon'] as $category_id => $value)
                                             {
                                                 ?>
                                                 <option <?php echo in_array($value['Salon_id'], $list['salon_id']) ? 'selected' : '' ?>
-                                                        value="<?= $value['Salon_id'] ?>">
-                                                    <?= $value['title_'.$lang] ?>
+                                                        value="<?php echo  $value['Salon_id'] ?>">
+                                                    <?php echo  $value['title_'.$lang] ?>
                                                 </option>
-                                                <?
+                                                <?php 
                                             }
                                             ?>
                                         </select>
@@ -266,15 +266,15 @@
                                            for="category_id">انتخاب دسته بندی:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
                                         <select name="category_id[]" id="category_id" data-input="select2" multiple>
-                                            <?
+                                            <?php 
                                             foreach($list['category'] as $category_id => $value)
                                             {
                                                 ?>
                                                 <option <?php echo in_array($value['Category_id'], $list['category_id']) ? 'selected' : '' ?>
-                                                    value="<?= $value['Category_id'] ?>">
-                                                    <?= $value['export'] ?>
+                                                    value="<?php echo  $value['Category_id'] ?>">
+                                                    <?php echo  $value['export'] ?>
                                                 </option>
-                                                <?
+                                                <?php 
                                             }
                                             ?>
                                         </select>
@@ -287,15 +287,15 @@
                                            for="genre_id">سبک:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
                                         <select name="genre_id[]" id="genre_id" data-input="select2"  multiple>
-                                            <?
+                                            <?php 
                                             foreach($list['genre'] as $genre_id => $value)
                                             {
                                                 ?>
                                                 <option <?php echo in_array($value['Genre_id'], $list['genre_id']) ? 'selected' : '' ?>
-                                                        value="<?= $value['Genre_id'] ?>">
-                                                    <?= $value['export'] ?>
+                                                        value="<?php echo  $value['Genre_id'] ?>">
+                                                    <?php echo  $value['export'] ?>
                                                 </option>
-                                                <?
+                                                <?php 
                                             }
                                             ?>
                                         </select>
@@ -307,7 +307,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="event_phone">تلفن</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control " name="event_phone" id="event_phone"  value="<?= ($list['event_phone']!=""? ($list['event_phone']):"")?>">
+                                        <input type="text" class="form-control " name="event_phone" id="event_phone"  value="<?php echo  ($list['event_phone']!=""? ($list['event_phone']):"")?>">
                                     </div>
                                 </div>
                             </div>
@@ -320,17 +320,17 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="city_id">انتخاب شهر:</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <? ?>
+                                        <?php ?>
                                         <select name="city_id" id="city_id" data-input="select2">
 
-                                            <?
+                                            <?php 
                                             foreach($list['provinces'] as $province_id => $value)
                                             {?>
                                             <option
-                                                <?= $value['province_id'] == $list['city_id'] ? 'selected' : '' ?>
-                                                value="<?= $value['province_id'] ?>">
-                                                <?= $value["name_$lang"] ?>
-                                                </option><?
+                                                <?php echo  $value['province_id'] == $list['city_id'] ? 'selected' : '' ?>
+                                                value="<?php echo  $value['province_id'] ?>">
+                                                <?php echo  $value["name_$lang"] ?>
+                                                </option><?php 
                                             }
                                             ?>
                                         </select>
@@ -342,7 +342,7 @@
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
                                            for="price">قیمت</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="price" id="price"  value="<?= $list['price'] ?>">
+                                        <input type="text" class="form-control" name="price" id="price"  value="<?php echo  $list['price'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -357,7 +357,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="address_fa">آدرس (فارسی):</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="address_fa" id="address_fa" value="<?= $list['address_fa'] ?>">
+                                        <input type="text" class="form-control" name="address_fa" id="address_fa" value="<?php echo  $list['address_fa'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -366,7 +366,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="address_en">آدرس (انگلیسی):</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="address_en" id="address_en" value="<?= $list['address_en'] ?>">
+                                        <input type="text" class="form-control" name="address_en" id="address_en" value="<?php echo  $list['address_en'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -379,7 +379,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="meta_keyword">کلمات کلیدی:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="meta_keyword" id="meta_keyword" value="<?= $list['meta_keyword'] ?>">
+                                        <input type="text" class="form-control" name="meta_keyword" id="meta_keyword" value="<?php echo  $list['meta_keyword'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -388,7 +388,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="meta_description">توضیحات متا:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="meta_description" id="meta_description" value="<?= $list['meta_description'] ?>">
+                                        <input type="text" class="form-control" name="meta_description" id="meta_description" value="<?php echo  $list['meta_description'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -401,7 +401,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="lat"> lat:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="lat" id="lat" value="<?= $list['lat'] ?>">
+                                        <input type="text" class="form-control" name="lat" id="lat" value="<?php echo  $list['lat'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -410,7 +410,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="longe"> long:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="longe" id="longe" value="<?= $list['longe'] ?>">
+                                        <input type="text" class="form-control" name="longe" id="longe" value="<?php echo  $list['longe'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -425,7 +425,7 @@
                                     <div class="col-xs-12 col-sm-8 pull-right">
                                         <div class="input-group" dir="ltr">
                                             <input type="file" class="form-control" name="logo" >
-                                            <img class="img-thumbnail" src="<?=RELA_DIR?>statics/event/<?= $list['logo'] ?>">
+                                            <img class="img-thumbnail" src="<?php echo RELA_DIR?>statics/event/<?php echo  $list['logo'] ?>">
 
                                         </div>
 
@@ -441,13 +441,13 @@
                                     <div class="col-xs-12 col-sm-8 pull-right">
                                         <select name="status" id="status">
                                             <option
-                                                value="1" <?= ($list['status'] == 1) ? 'selected="selected"' : ''; ?>>تایید
+                                                value="1" <?php echo  ($list['status'] == 1) ? 'selected="selected"' : ''; ?>>تایید
                                             </option>
                                             <option
-                                                value="0" <?= ($list['status'] == 0) ? 'selected="selected"' : ''; ?>>در انتظار تایید
+                                                value="0" <?php echo  ($list['status'] == 0) ? 'selected="selected"' : ''; ?>>در انتظار تایید
                                             </option>
                                             <option
-                                                value="-1" <?= ($list['status'] == -1) ? 'selected="selected"' : ''; ?>>تایید نشده
+                                                value="-1" <?php echo  ($list['status'] == -1) ? 'selected="selected"' : ''; ?>>تایید نشده
                                             </option>
                                         </select>
                                     </div>
@@ -458,7 +458,7 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
                                            for="organizer"> Organizer:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="organizer" id="organizer" value="<?= $list['organizer'] ?>">
+                                        <input type="text" class="form-control" name="organizer" id="organizer" value="<?php echo  $list['organizer'] ?>">
                                     </div>
                                 </div>
                             </div>

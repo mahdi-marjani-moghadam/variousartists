@@ -22,7 +22,7 @@
 
         <?php if ($msg != null) { ?>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-                <?= $msg ?>
+                <?php echo  $msg ?>
             </div>
         <?php
         }
@@ -36,7 +36,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="nickname">nickname:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="nickname" id="nickname" value="<?= $list['nickname'] ?>">
+                                        <input type="text" class="form-control" name="nickname" id="nickname" value="<?php echo  $list['nickname'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl" for="username">ایمیل:</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="username" id="username" required value="<?= $list['username'] ?>">
+                                        <input type="text" class="form-control" name="username" id="username" required value="<?php echo  $list['username'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl" for="password">رمز:</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="password" id="password" required value="<?= $list['password'] ?>">
+                                        <input type="text" class="form-control" name="password" id="password" required value="<?php echo  $list['password'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl" for="artists_name_fa">نام هنرمند(فارسی):</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="artists_name_fa" id="artists_name_fa" required value="<?= $list['artists_name_fa'] ?>">
+                                        <input type="text" class="form-control" name="artists_name_fa" id="artists_name_fa" required value="<?php echo  $list['artists_name_fa'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +102,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl" for="artists_name_en">نام هنرمند(انگلیسی):</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
-                                        <input type="text" class="form-control" name="artists_name_en" id="artists_name_en" required value="<?= $list['artists_name_en'] ?>">
+                                        <input type="text" class="form-control" name="artists_name_en" id="artists_name_en" required value="<?php echo  $list['artists_name_en'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -203,27 +203,27 @@
                                             </script>
                                             <div class="input-group jail center">
                                                 <div class="input-group-addon countryFlagHolder">
-                                                    <i id="flagHolder" class="fa bfh-flag-<?= $list['default'][0]['iso'] ?>"></i>
+                                                    <i id="flagHolder" class="fa bfh-flag-<?php echo  $list['default'][0]['iso'] ?>"></i>
                                                     <i class="fa fa-caret-down"></i>
                                                     <ul>
-                                                        <?
+                                                        <?php 
 
                                                         foreach ($list['country'] as $k => $value) {
 
 
                                                         ?>
-                                                            <li><a data-country="<?= $value['iso'] ?>" data-max="<?= $value['max_length'] ?>" data-areacode="+<?= $value['phone_code'] ?>" data-pattern="<?= $value['sample'] ?>"><?= $value['name'] ?><span class="fa bfh-flag-<?= $value['iso'] ?>"></span></a>
+                                                            <li><a data-country="<?php echo  $value['iso'] ?>" data-max="<?php echo  $value['max_length'] ?>" data-areacode="+<?php echo  $value['phone_code'] ?>" data-pattern="<?php echo  $value['sample'] ?>"><?php echo  $value['name'] ?><span class="fa bfh-flag-<?php echo  $value['iso'] ?>"></span></a>
                                                             </li>
 
-                                                        <?
+                                                        <?php 
                                                         }
                                                         ?>
 
                                                     </ul>
                                                 </div>
-                                                <div id="areaCodeHolder" class="input-group-addon">+<?= $list['default'][0]['phone_code'] ?></div>
-                                                <input style="direction: ltr; box-shadow: none" type="tel" <? if ($list['default'][0]['iso'] == 'IR') { ?>maxlength="<?= $list['default'][0]['max_length'] ?>" <? } ?> class="phone form-control " id="artists_phone1" name="artists_phone1" placeholder="<?= $list['default'][0]['sample'] ?>" required value="<?= $list['artists_phone1']; ?>">
-                                                <input name="areacode" id="areacode" type="hidden" value="<?= $list['default'][0]['phone_code'] ?>">
+                                                <div id="areaCodeHolder" class="input-group-addon">+<?php echo  $list['default'][0]['phone_code'] ?></div>
+                                                <input style="direction: ltr; box-shadow: none" type="tel" <?php if ($list['default'][0]['iso'] == 'IR') { ?>maxlength="<?php echo  $list['default'][0]['max_length'] ?>" <?php } ?> class="phone form-control " id="artists_phone1" name="artists_phone1" placeholder="<?php echo  $list['default'][0]['sample'] ?>" required value="<?php echo  $list['artists_phone1']; ?>">
+                                                <input name="areacode" id="areacode" type="hidden" value="<?php echo  $list['default'][0]['phone_code'] ?>">
                                                 <span class="input-group-btn"></span>
                                             </div><!-- /input-group -->
 
@@ -243,7 +243,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="email">ایمیل:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="email" id="email" value="<?= $list['email'] ?>">
+                                        <input type="text" class="form-control" name="email" id="email" value="<?php echo  $list['email'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -254,7 +254,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="birthday">تاریخ تولد:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control datepicker" autocomplete="off" name="birthday" id="birthday" value="<?= ($list['birthday']) ?>">
+                                        <input type="text" class="form-control datepicker" autocomplete="off" name="birthday" id="birthday" value="<?php echo  ($list['birthday']) ?>">
                                     </div>
                                 </div>
                             </div>
@@ -264,13 +264,13 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="category_id">انتخاب دسته بندی:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
                                         <select name="category_id[]" id="category_id" data-input="select2" multiple>
-                                            <?
+                                            <?php 
                                             foreach ($list['category'] as $category_id => $value) {
                                             ?>
-                                                <option <?php echo is_array($list['category_id']) && in_array($value['Category_id'], $list['category_id']) ? 'selected' : '' ?> value="<?= $value['Category_id'] ?>">
-                                                    <?= $value['export'] ?>
+                                                <option <?php echo is_array($list['category_id']) && in_array($value['Category_id'], $list['category_id']) ? 'selected' : '' ?> value="<?php echo  $value['Category_id'] ?>">
+                                                    <?php echo  $value['export'] ?>
                                                 </option>
-                                            <?
+                                            <?php 
                                             }
                                             ?>
                                         </select>
@@ -287,11 +287,11 @@
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
                                         <select name="city_id" id="city_id" data-input="select2">
 
-                                            <?
+                                            <?php 
                                             foreach ($list['provinces'] as $province_id => $value) { ?>
-                                                <option <?= $value['province_id'] == $list['province_id'] ? 'selected' : '' ?> value="<?= $value['province_id'] ?>">
-                                                    <?= $value["name_$lang"] ?>
-                                                </option><?
+                                                <option <?php echo  $value['province_id'] == $list['province_id'] ? 'selected' : '' ?> value="<?php echo  $value['province_id'] ?>">
+                                                    <?php echo  $value["name_$lang"] ?>
+                                                </option><?php 
                                                         }
                                                             ?>
                                         </select>
@@ -303,13 +303,13 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="genre">سبک :</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
                                         <select name="genre_id[]" id="genre_id" data-input="select2" multiple>
-                                            <?
+                                            <?php 
                                             foreach ($list['genre'] as $genre_id => $value) {
                                             ?>
-                                                <option <?php echo is_array($list['genre_id']) && in_array($value['Genre_id'], $list['genre_id']) ? 'selected' : '' ?> value="<?= $value['Genre_id'] ?>">
-                                                    <?= $value['export'] ?>
+                                                <option <?php echo is_array($list['genre_id']) && in_array($value['Genre_id'], $list['genre_id']) ? 'selected' : '' ?> value="<?php echo  $value['Genre_id'] ?>">
+                                                    <?php echo  $value['export'] ?>
                                                 </option>
-                                            <?
+                                            <?php 
                                             }
                                             ?>
                                         </select>
@@ -326,7 +326,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="meta_keyword">کلمات کلیدی:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="meta_keyword" id="meta_keyword" value="<?= $list['meta_keyword'] ?>">
+                                        <input type="text" class="form-control" name="meta_keyword" id="meta_keyword" value="<?php echo  $list['meta_keyword'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -334,7 +334,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="meta_description">توضیحات متا:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="meta_description" id="meta_description" value="<?= $list['meta_description'] ?>">
+                                        <input type="text" class="form-control" name="meta_description" id="meta_description" value="<?php echo  $list['meta_description'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -345,7 +345,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="instagram">آدرس instagram:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="instagram" id="instagram" value="<?= $list['instagram'] ?>">
+                                        <input type="text" class="form-control" name="instagram" id="instagram" value="<?php echo  $list['instagram'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -353,7 +353,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="beeptunes">آدرس beeptunes:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="beeptunes" id="beeptunes" value="<?= $list['beeptunes'] ?>">
+                                        <input type="text" class="form-control" name="beeptunes" id="beeptunes" value="<?php echo  $list['beeptunes'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -364,7 +364,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="telegram">آدرس telegram:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="telegram" id="telegram" value="<?= $list['telegram'] ?>">
+                                        <input type="text" class="form-control" name="telegram" id="telegram" value="<?php echo  $list['telegram'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -372,7 +372,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="soundcloud">آدرس soundcloud:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="soundcloud" id="soundcloud" value="<?= $list['soundcloud'] ?>">
+                                        <input type="text" class="form-control" name="soundcloud" id="soundcloud" value="<?php echo  $list['soundcloud'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -384,7 +384,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="facebook">آدرس facebook:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="facebook" id="facebook" value="<?= $list['facebook'] ?>">
+                                        <input type="text" class="form-control" name="facebook" id="facebook" value="<?php echo  $list['facebook'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -392,7 +392,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="site">آدرس سایت:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
-                                        <input type="text" class="form-control" name="site" id="site" value="<?= $list['site'] ?>">
+                                        <input type="text" class="form-control" name="site" id="site" value="<?php echo  $list['site'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -406,11 +406,11 @@
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="status">وضعیت:</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
                                         <select name="status" id="status">
-                                            <option value="1" <?= ($list['status'] == 1) ? 'selected="selected"' : ''; ?>>تایید
+                                            <option value="1" <?php echo  ($list['status'] == 1) ? 'selected="selected"' : ''; ?>>تایید
                                             </option>
-                                            <option value="0" <?= ($list['status'] == 0) ? 'selected="selected"' : ''; ?>>در انتظار تایید
+                                            <option value="0" <?php echo  ($list['status'] == 0) ? 'selected="selected"' : ''; ?>>در انتظار تایید
                                             </option>
-                                            <option value="-1" <?= ($list['status'] == -1) ? 'selected="selected"' : ''; ?>>تایید نشده
+                                            <option value="-1" <?php echo  ($list['status'] == -1) ? 'selected="selected"' : ''; ?>>تایید نشده
                                             </option>
                                         </select>
                                     </div>
@@ -895,7 +895,7 @@
     .bfh-flag-ZW {
         width: 16px;
         height: 14px;
-        background: url(<?= RELA_DIR ?>templates/template_rtl/img/countries.flags.png) no-repeat
+        background: url(<?php echo  RELA_DIR ?>templates/template_rtl/img/countries.flags.png) no-repeat
     }
 
     .bfh-flag-AD:empty,

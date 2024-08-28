@@ -18,11 +18,6 @@ include_once ROOT_DIR . 'common/init.inc.php';
 include_once ROOT_DIR . 'common/looeic.php';
 //include_once ROOT_DIR.'common/looeic2.php';
 
-// use Gregwar\Captcha\CaptchaBuilder;
-
-// $builder = new CaptchaBuilder;
-// $builder->build();
-// dd(1);
 
 
 global $admin_info, $PARAM, $PAGE;

@@ -58,7 +58,7 @@
     {
     ?>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-    <?= $msg ?>
+    <?php echo  $msg ?>
       </div>
     <?php
     }
@@ -74,7 +74,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="title">عنوان :</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="title" id="title" autocomplete="off"  required value="<?=$list['title']?>">
+                    <input type="text" class="form-control" name="title" id="title" autocomplete="off"  required value="<?php echo $list['title']?>">
                   </div>
                 </div>
               </div>
@@ -82,7 +82,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="brif_description">توضیحات مختصر :</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="brif_description" id="brif_description" autocomplete="off"  required value="<?=$list['brif_description']?>">
+                    <input type="text" class="form-control" name="brif_description" id="brif_description" autocomplete="off"  required value="<?php echo $list['brif_description']?>">
                   </div>
                 </div>
               </div>
@@ -93,7 +93,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="description">عنوان:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="description" id="description" autocomplete="off"  required value="<?=$list['description']?>">
+                    <input type="text" class="form-control" name="description" id="description" autocomplete="off"  required value="<?php echo $list['description']?>">
                   </div>
                 </div>
               </div>
@@ -101,7 +101,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="meta_keyword">کلمات کلیدی:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="meta_keyword" id="meta_keyword" autocomplete="off"  required value="<?=$list['meta_keyword']?>">
+                    <input type="text" class="form-control" name="meta_keyword" id="meta_keyword" autocomplete="off"  required value="<?php echo $list['meta_keyword']?>">
                   </div>
                 </div>
               </div>
@@ -112,7 +112,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="meta_description">توضیحات کلیدی:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="meta_description" id="meta_description" autocomplete="off"  required value="<?=$list['meta_description']?>">
+                    <input type="text" class="form-control" name="meta_description" id="meta_description" autocomplete="off"  required value="<?php echo $list['meta_description']?>">
                   </div>
                 </div>
               </div>
@@ -122,7 +122,7 @@
                   <div class="col-xs-12 col-sm-8 pull-right">
                     <div class="input-group" dir="ltr">
 
-                      <input name="image" type="text" class="form-control" id="xImagePath" value="<?=$list['image'];?>" />
+                      <input name="image" type="text" class="form-control" id="xImagePath" value="<?php echo $list['image'];?>" />
                       <span class="input-group-btn">
                         <input class="btn  btn-info" type="button" value="انتخاب فایل" onclick="BrowseServer( 'Images:/', 'xImagePath' );" />
                       </span>
@@ -141,7 +141,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="date">تاریخ :</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="date" id="date" autocomplete="off"  disabled  value="<?=$list['date']?>">
+                    <input type="text" class="form-control" name="date" id="date" autocomplete="off"  disabled  value="<?php echo $list['date']?>">
                   </div>
                 </div>
               </div>
@@ -150,15 +150,15 @@
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="category_id">شماره دسته بندی:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
                     <select class="valid" name="category_id" id="category_id" >
-                      <?
+                      <?php 
                       foreach($list['category'] as $category_id => $value)
                       {
 
                       ?>
-                        <option <?php echo $value['Category_id'] == $list['category_id'] ? 'selected' : '' ?> value="<?=$value['Category_id']?>">
-                      <?=$value['export']?>
+                        <option <?php echo $value['Category_id'] == $list['category_id'] ? 'selected' : '' ?> value="<?php echo $value['Category_id']?>">
+                      <?php echo $value['export']?>
                         </option>
-                      <?
+                      <?php 
                       }
                       ?>
                     </select>
@@ -172,7 +172,7 @@
                 <p class="pull-right">
                   <button type="submit" name="update" id="submit" class="btn btn-icon btn-success rtl">
                     <input name="action" type="hidden" id="action" value="edit" />
-                    <input name="Article_id" type="hidden" id="" value="<?=$list['Article_id']?>" />
+                    <input name="Article_id" type="hidden" id="" value="<?php echo $list['Article_id']?>" />
                     <i class="fa fa-plus"></i>
 ویرایش
                   </button>

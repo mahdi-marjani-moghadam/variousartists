@@ -6,7 +6,7 @@
 
     .fill{'fill':'#1790b1','opacity':'.8'}
 </style>
-<? include('mohit-floor.svg') ?>
+<?php include('mohit-floor.svg') ?>
 <script>
     $('.st1').click(function (e) {
         //$(this).css({'fill':'#1790b1','opacity':'.8'});
@@ -27,8 +27,8 @@
 
 
 <?php  foreach ($list['sandali'] as $k => $x):?>
-    <label  for="sandali<?=$x?>" class="btn-default btn margin topmargin-sm" style="display: none" ><?=$x?>
-        <input id="sandali<?=$x?>" class="sandali"  data-item="tbl<?=$k+1?>" type="checkbox" name="sandali[<?=$x?>]"  value="<?=$x?>">
+    <label  for="sandali<?php echo $x?>" class="btn-default btn margin topmargin-sm" style="display: none" ><?php echo $x?>
+        <input id="sandali<?php echo $x?>" class="sandali"  data-item="tbl<?php echo $k+1?>" type="checkbox" name="sandali[<?php echo $x?>]"  value="<?php echo $x?>">
     </label>
 <?endforeach; ?>
 

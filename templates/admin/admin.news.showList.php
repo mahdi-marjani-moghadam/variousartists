@@ -53,7 +53,7 @@
     </div>
     <div class="panel-body">
         <div class="pull-right">
-            <a href="<?=RELA_DIR?>zamin/?component=news&action=addNews" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن خبر جدید</a>
+            <a href="<?php echo RELA_DIR?>zamin/?component=news&action=addNews" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن خبر جدید</a>
         </div>
 
         <!-- separator -->
@@ -76,7 +76,7 @@
           </tr>
           </thead>
           <tbody>
-          <?
+          <?php 
           $cn = 1;
           if(isset($list['list'])) {
             foreach ($list['list'] as $id =>$fields) {
@@ -88,13 +88,13 @@
                 <td><?php echo $fields['description']; ?></td>
                 <td><?php echo $fields['meta_keyword']; ?></td>
                 <td><?php echo $fields['meta_description']; ?></td>
-                <td dir="ltr" align="center"> <img height="60px" src="<?=$fields['image']?>"/> </td>
+                <td dir="ltr" align="center"> <img height="60px" src="<?php echo $fields['image']?>"/> </td>
                 <td><?php echo convertDate($fields['date']); ?></td>
-                <td><a href="<?=RELA_DIR?>zamin/?component=news&action=editNews&id=<?php echo $fields['News_id']; ?>">ویرایش</a>
-                  <a href="<?=RELA_DIR?>zamin/?component=news&action=deleteNews&id=<?php echo $fields['News_id']; ?>">حذف</a> </td>
+                <td><a href="<?php echo RELA_DIR?>zamin/?component=news&action=editNews&id=<?php echo $fields['News_id']; ?>">ویرایش</a>
+                  <a href="<?php echo RELA_DIR?>zamin/?component=news&action=deleteNews&id=<?php echo $fields['News_id']; ?>">حذف</a> </td>
 
               </tr>
-              <?
+              <?php 
             }
           }
           ?>

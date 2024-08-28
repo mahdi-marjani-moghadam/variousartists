@@ -52,7 +52,7 @@
     <div class="panel-body">
       <div class="table-responsive table-responsive-datatables">
           <div class="pull-right">
-              <a href="<?=RELA_DIR?>zamin/?component=product&artists_id=<?php echo $list['artists_id']; ?>&action=add" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن محصول جدید</a>
+              <a href="<?php echo RELA_DIR?>zamin/?component=product&artists_id=<?php echo $list['artists_id']; ?>&action=add" class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن محصول جدید</a>
           </div>
           <div class="row smallSpace"></div>
 
@@ -71,7 +71,7 @@
           </tr>
           </thead>
           <tbody>
-          <?
+          <?php 
           $cn = 1;
           if(isset($list['list'])) {
             foreach ($list['list'] as $id =>$fields) {
@@ -82,29 +82,29 @@
                 <td><?php echo $fields['title_en']; ?></td>
                 <td><?php echo $fields['description_fa']; ?></td>
                 <td><?php echo $fields['description_en']; ?></td>
-                <td dir="ltr" align="center"> <img height="100px" src="<?=RELA_DIR.'statics/files/'.$fields['artists_id'].'/'.$fields['image']?>"/> </td>
+                <td dir="ltr" align="center"> <img height="100px" src="<?php echo RELA_DIR.'statics/files/'.$fields['artists_id'].'/'.$fields['image']?>"/> </td>
                 <td dir="ltr" align="center">
-                    <? if($fields['file_type']  == 'image' ):?>
-                        <img height="100px" src="<?=RELA_DIR?>statics/files/<?=$fields['artists_id']?>/<?=$fields['file']?>"/>
-                    <? endif;?>
-                    <? if ($fields['file_type']  == 'video'):?>
+                    <?php if($fields['file_type']  == 'image' ):?>
+                        <img height="100px" src="<?php echo RELA_DIR?>statics/files/<?php echo $fields['artists_id']?>/<?php echo $fields['file']?>"/>
+                    <?php endif;?>
+                    <?php if ($fields['file_type']  == 'video'):?>
                         <video controls width="100%"  >
-                            <source src="<?=RELA_DIR?>statics/files/<?=$fields['artists_id']?>/<?=$fields['file']?>" type="video/<?=$fields['extension']?>"" /> <!-- MPEG4 for Safari -->
+                            <source src="<?php echo RELA_DIR?>statics/files/<?php echo $fields['artists_id']?>/<?php echo $fields['file']?>" type="video/<?php echo $fields['extension']?>"" /> <!-- MPEG4 for Safari -->
                             <!--<source src="video.ogg" type="video/ogg" /> <!-- Ogg Theora for Firefox 3.1b2 -->
                         </video>
-                    <? endif;?>
-                    <? if ($fields['file_type']  == 'audio'):?>
+                    <?php endif;?>
+                    <?php if ($fields['file_type']  == 'audio'):?>
                         <audio controls>
-                            <source src="<?=RELA_DIR?>statics/files/<?=$fields['artists_id']?>/<?=$fields['file']?>" type="audio/<?=$fields['extension']?>">
+                            <source src="<?php echo RELA_DIR?>statics/files/<?php echo $fields['artists_id']?>/<?php echo $fields['file']?>" type="audio/<?php echo $fields['extension']?>">
                             Your browser does not support the audio element.
                         </audio>
-                    <? endif;?>
+                    <?php endif;?>
                 </td>
                 <td>
-                    <a href="<?=RELA_DIR?>zamin/?component=product&action=edit&id=<?php echo $fields['Artists_products_id']; ?>">ویرایش</a> <br/>
-                    <a href="<?=RELA_DIR?>zamin/?component=product&action=deleteProduct&id=<?php echo $fields['Artists_products_id']; ?>">حذف</a> </td>
+                    <a href="<?php echo RELA_DIR?>zamin/?component=product&action=edit&id=<?php echo $fields['Artists_products_id']; ?>">ویرایش</a> <br/>
+                    <a href="<?php echo RELA_DIR?>zamin/?component=product&action=deleteProduct&id=<?php echo $fields['Artists_products_id']; ?>">حذف</a> </td>
               </tr>
-              <?
+              <?php 
             }
           }
           ?>

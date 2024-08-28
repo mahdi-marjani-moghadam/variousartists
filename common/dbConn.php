@@ -1,16 +1,5 @@
 <?php
-/*include(ROOT_DIR . "common/lib/adodb.inc.php");
 
-
-function connectDB()
-{
-    global $conn;
-    $conn = &ADONewConnection(DB_TYPE);
-    //$this->db->SetFetchMode(ADODB_FETCH_NUM);
-    $conn->Connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
-    boxLogin::boxController();
-    return $conn;
-}*/
 namespace Common;
 
 use PDO;

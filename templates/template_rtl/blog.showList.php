@@ -15,11 +15,11 @@
 <section id="page-title" >
 
     <div class="container clearfix">
-        <h1> <?=blog?></h1>
+        <h1> <?php echo blog?></h1>
 
         <ol class="breadcrumb">
-            <li><a href="<?=RELA_DIR?>"><?=home?></a></li>
-            <li class="active"><?=blog?></li>
+            <li><a href="<?php echo RELA_DIR?>"><?php echo home?></a></li>
+            <li class="active"><?php echo blog?></li>
         </ol>
     </div>
 
@@ -33,7 +33,7 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
             <div class=" nobottommargin  clearfix">
                 <div id="posts" class="">
-                    <?
+                    <?php 
                     if(is_array($blog['export']['list']) && count($blog['export']['list']) == 0 && isset($blog['export']['list']) )
                     {
                         ?>
@@ -42,12 +42,12 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                                     <div class="alert alert-warning">
-                                        <strong>توجه! </strong><? echo $msg;?>
+                                        <strong>توجه! </strong><?php echo $msg;?>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <?
+                        <?php 
                     }
                     foreach($blog['export']['list'] as $k => $value)
                     {
@@ -63,11 +63,11 @@
                                 <h2><a href="<?php echo RELA_DIR . 'blog/detail/' . $value['id'] . '/'; ?>"><?php echo($value['title_'.$lang] != "" ? $value['title_'.$lang] : "-"); ?></a></h2>
                             </div>
                             <ul class="entry-meta clearfix">
-                                <li><i class="icon-calendar3"></i> <?=convertDate($value['date'])?></li>
-                                <li><a href="#"><i class="icon-user"></i> <?=$value['artists_name']?></a></li>
+                                <li><i class="icon-calendar3"></i> <?php echo convertDate($value['date'])?></li>
+                                <li><a href="#"><i class="icon-user"></i> <?php echo $value['artists_name']?></a></li>
                             </ul>
                             <div class="entry-content">
-                                <p><?=$value['description_'.$lang]?></p>
+                                <p><?php echo $value['description_'.$lang]?></p>
                             </div>
                         </div>
                     </div>
@@ -79,21 +79,21 @@
 
 
             <div class="clearfix"></div>
-            <?
+            <?php 
             if(($blog['export']['rows']) != 0)
             {
                 ?>
                 <ul class="pagination">
                     <li><a href="#">&laquo;</a></li>
-                    <?
+                    <?php 
                     $pageCount = ceil($blog['export']['rows']/PAGE_SIZE);
                     for($i=1;$i <= $pageCount;$i++)
                     {
                         ?>
-                        <li class="<?=($PAGE == $i)?'active':'';?>" >
-                            <a href="<?=RELA_DIR;?>blog/page/<?=$i?>"><?=$i?></a>
+                        <li class="<?php echo ($PAGE == $i)?'active':'';?>" >
+                            <a href="<?php echo RELA_DIR;?>blog/page/<?php echo $i?>"><?php echo $i?></a>
                         </li>
-                        <?
+                        <?php 
 
                     }
                     ?>
@@ -108,9 +108,9 @@
                 {
                 ?>
                     <div class="col-md-12">
-                        <div class="alert alert-danger"><?=not_exists?></div>
+                        <div class="alert alert-danger"><?php echo not_exists?></div>
                     </div>
-            <?
+            <?php 
             }
             ?>
 

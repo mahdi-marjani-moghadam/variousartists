@@ -18,7 +18,7 @@
       <?php if($msg!=null)
             { ?>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-        <?= $msg ?>
+        <?php echo  $msg ?>
       </div>
       <?php
             }
@@ -32,7 +32,7 @@
                   <div class="form-group">
                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="product_name">کد نمایندگی</label>
                     <div class="col-xs-12 col-sm-8 pull-right">
-                      <input type="text" class="form-control" name="username" id="username" autocomplete="off" placeholder="کد نمایندگی " value="<?=$list['username'] ?>" required>
+                      <input type="text" class="form-control" name="username" id="username" autocomplete="off" placeholder="کد نمایندگی " value="<?php echo $list['username'] ?>" required>
                     </div>
                   </div>
                 </div>
@@ -40,7 +40,7 @@
                   <div class="form-group">
                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="ManagerName">نام:</label>
                     <div class="col-xs-12 col-sm-8 pull-right">
-                      <input type="text" class="form-control" name="name" id="name" autocomplete="off" placeholder="نام" value="<?=$list['name'] ?>" required>
+                      <input type="text" class="form-control" name="name" id="name" autocomplete="off" placeholder="نام" value="<?php echo $list['name'] ?>" required>
                     </div>
                   </div>
                 </div>
@@ -51,7 +51,7 @@
                   <div class="form-group">
                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="product_name">نام خانوادگی</label>
                     <div class="col-xs-12 col-sm-8 pull-right">
-                      <input type="text" class="form-control" name="family" id="family" autocomplete="off" placeholder="نام خانوادگی" value="<?=$list['family'] ?>" required>
+                      <input type="text" class="form-control" name="family" id="family" autocomplete="off" placeholder="نام خانوادگی" value="<?php echo $list['family'] ?>" required>
                     </div>
                   </div>
                 </div>
@@ -59,7 +59,7 @@
                   <div class="form-group">
                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="product_name3">تلفن</label>
                     <div class="col-xs-12 col-sm-8 pull-right">
-                      <input type="text" class="form-control" name="phone" id="phone" autocomplete="off" placeholder="تلفن" value="<?=$list['phone'] ?>" required="required" />
+                      <input type="text" class="form-control" name="phone" id="phone" autocomplete="off" placeholder="تلفن" value="<?php echo $list['phone'] ?>" required="required" />
                     </div>
                   </div>
                 </div>
@@ -69,7 +69,7 @@
     <div class="form-group">
       <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="ManagerName2">موبایل:</label>
       <div class="col-xs-12 col-sm-8 pull-right">
-        <input type="text" class="form-control" name="mobile" id="mobile" autocomplete="off" placeholder="موبایل" value="<?=$list['mobile'] ?>" required="required" />
+        <input type="text" class="form-control" name="mobile" id="mobile" autocomplete="off" placeholder="موبایل" value="<?php echo $list['mobile'] ?>" required="required" />
       </div>
     </div>
   </div>
@@ -77,7 +77,7 @@
       <div class="form-group">
         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="product_name2">رمز عبور</label>
         <div class="col-xs-12 col-sm-8 pull-right">
-          <input type="text" class="form-control" name="password" id="password" autocomplete="off" placeholder="رمز عبور" value="<?=$list['password'] ?>" required="required" />
+          <input type="text" class="form-control" name="password" id="password" autocomplete="off" placeholder="رمز عبور" value="<?php echo $list['password'] ?>" required="required" />
         </div>
       </div>
   </div>

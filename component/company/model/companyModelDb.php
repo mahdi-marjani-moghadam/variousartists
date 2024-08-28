@@ -1,16 +1,15 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: malek
- * Date: 2/20/2016
- * Time: 4:33 AM.
- */
+namespace Component\company\model;
+
+use Common\dbConn;
+use Model\DataBase;
+use PDO;
+
 class companyModelDb
 {
     public static function getCompanyById($id)
     {
-        //global $lang;
         $conn = dbConn::getConnection();
         $sql = "SELECT
                     *
@@ -102,7 +101,6 @@ class companyModelDb
     {
         $conn = dbConn::getConnection();
 
-        include_once ROOT_DIR.'/model/db.inc.class.php';
 
         $condition = DataBase::filterBuilder($fields);
 
@@ -154,7 +152,6 @@ class companyModelDb
     {
         $conn = dbConn::getConnection();
 
-        include_once ROOT_DIR.'/model/db.inc.class.php';
 
         $condition = DataBase::filterBuilder($fields);
         $appendSql = "WHERE  status='1' ";

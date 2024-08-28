@@ -14,38 +14,38 @@
 
                                             </thead>
 
-                                            <?
+                                            <?php 
 
                                             foreach($list['artistsBlogList'] as $k => $value):
 
                                                 ?>
                                             <tr>
 
-                                                <td><a href="<?=RELA_DIR?>blog/detail/<?=$value['id']?>"><?=$value["title_$lang"]?></a></td>
+                                                <td><a href="<?php echo RELA_DIR?>blog/detail/<?php echo $value['id']?>"><?php echo $value["title_$lang"]?></a></td>
                                                 <td>
 
                                                         <div class="iportfolio" style="width: 100px">
                                                             <div class="portfolio-image">
-                                                                <a href="<?=RELA_DIR?>blog">
-                                                                    <img src="/statics/blog/<?=$value['image']?>" alt="Open Imagination">
+                                                                <a href="<?php echo RELA_DIR?>blog">
+                                                                    <img src="/statics/blog/<?php echo $value['image']?>" alt="Open Imagination">
                                                                 </a>
                                                                 <div class="portfolio-overlay">
-                                                                    <a href="/statics/blog/<?=$value['image']?>" class="center-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
+                                                                    <a href="/statics/blog/<?php echo $value['image']?>" class="center-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
                                                                 </div>
                                                             </div>
 
                                                         </div>
 
                                                 </td>
-                                                <td><?=($value['date'])?></td>
+                                                <td><?php echo ($value['date'])?></td>
 
                                                 <td>
-                                                    <div class="style-msg   <?=($value['status'] == 1)?'':'style-msg-light';?>" style="background-color: <?=($value['status'] == 1)?'#AEE239':'#444';?>">
-                                                        <div class="sb-msg"><i class="<?=($value['status'] == 1)?'icon-thumbs-up':'icon-remove';?>"></i> <?=($value['status'] == 1)?'Confirmed':'Not Confirm ';?></div>
+                                                    <div class="style-msg   <?php echo ($value['status'] == 1)?'':'style-msg-light';?>" style="background-color: <?php echo ($value['status'] == 1)?'#AEE239':'#444';?>">
+                                                        <div class="sb-msg"><i class="<?php echo ($value['status'] == 1)?'icon-thumbs-up':'icon-remove';?>"></i> <?php echo ($value['status'] == 1)?'Confirmed':'Not Confirm ';?></div>
                                                     </div>
 
-                                                    <a href="<?=RELA_DIR?>account/editBlog/<?=$value['id']?>" class="button button-3d button-dirtygreen" >Edit</a>
-                                                    <a href="<?=RELA_DIR?>account/deleteBlog/<?=$value['id']?>" class="button button-3d button-red" >Delete</a>
+                                                    <a href="<?php echo RELA_DIR?>account/editBlog/<?php echo $value['id']?>" class="button button-3d button-dirtygreen" >Edit</a>
+                                                    <a href="<?php echo RELA_DIR?>account/deleteBlog/<?php echo $value['id']?>" class="button button-3d button-red" >Delete</a>
 
                                                 </td>
                                                 <!--<td><a href=" "  class="button button-3d button-mini button-rounded button-aqua ">پرداخت فاکتور</a> </td>-->
@@ -53,19 +53,19 @@
                                             <?endforeach;?>
                                         </table>
 
-                                        <?
+                                        <?php 
                                         if(count($list['pagination']['list']))
                                         {
                                             ?>
                                             <ul class="pagination">
                                                 <li><a href="#">&laquo;</a></li>
-                                                <?
+                                                <?php 
                                                 foreach($list['pagination']['list'] as $key => $link)
                                                 {
                                                     if($key === 'current'){ continue;}
                                                     ?>
-                                                    <li class="<?=(($key+1 == $list['pagination']['current']) || (empty($list['pagination']['current']) && $key == 0 ))?'active':'';?>" ><a href="<?=RELA_DIR.$link;?>"><?=$key+1?></a></li>
-                                                    <?
+                                                    <li class="<?php echo (($key+1 == $list['pagination']['current']) || (empty($list['pagination']['current']) && $key == 0 ))?'active':'';?>" ><a href="<?php echo RELA_DIR.$link;?>"><?php echo $key+1?></a></li>
+                                                    <?php 
                                                 }
                                                 ?>
 

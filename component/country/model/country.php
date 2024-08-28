@@ -1,4 +1,4 @@
-<?
+<?php 
 namespace Component\country\model;
 use Common\looeic;
 

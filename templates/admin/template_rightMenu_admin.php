@@ -16,12 +16,12 @@
                     </a>
                     <ul class="sidebar-child animated fadeInRight">
                         <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=event">
+                            <a href="<?php echo RELA_DIR; ?>zamin/?component=event">
                                 <span class="sidebar-text text-16">لیست رویدادها</span>
                             </a>
                         </li>
                         <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=event&action=draft">
+                            <a href="<?php echo RELA_DIR; ?>zamin/?component=event&action=draft">
                                 <span class="sidebar-text text-16">لیست رویدادهای پیش نویس</span>
                             </a>
                         </li>
@@ -29,7 +29,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="<?=RELA_DIR; ?>zamin/?component=shop">
+                    <a href="<?php echo RELA_DIR; ?>zamin/?component=shop">
                         <i class="sidebar-icon fa fa-money"></i>
                         <span class="sidebar-text">فروش</span>
                     </a>
@@ -42,12 +42,12 @@
                     </a>
                     <ul class="sidebar-child animated fadeInRight">
                         <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=artists">
+                            <a href="<?php echo RELA_DIR; ?>zamin/?component=artists">
                                 <span class="sidebar-text text-16">لیست هنرمندان</span>
                             </a>
                         </li>
                         <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=membership">
+                            <a href="<?php echo RELA_DIR; ?>zamin/?component=membership">
                                 <span class="sidebar-text text-16">لیست اعضا</span>
                             </a>
                         </li>
@@ -62,22 +62,22 @@
                     </a>
                     <ul class="sidebar-child animated fadeInRight">
                         <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=category">
+                            <a href="<?php echo RELA_DIR; ?>zamin/?component=category">
                                 <span class="sidebar-text text-16">لیست دسته بندی</span>
                             </a>
                         </li>
                         <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=category&action=add">
+                            <a href="<?php echo RELA_DIR; ?>zamin/?component=category&action=add">
                                 <span class="sidebar-text text-16">افزودن دسته بندی جدید</span>
                             </a>
                         </li><!--/child-item-->
                         <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=genre">
+                            <a href="<?php echo RELA_DIR; ?>zamin/?component=genre">
                                 <span class="sidebar-text text-16">لیست سبک</span>
                             </a>
                         </li>
                         <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=genre&action=add">
+                            <a href="<?php echo RELA_DIR; ?>zamin/?component=genre&action=add">
                                 <span class="sidebar-text text-16">افزودن سبک جدید</span>
                             </a>
                         </li><!--/child-item-->
@@ -92,12 +92,12 @@
                     </a>
                     <ul class="sidebar-child animated fadeInRight">
                         <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=salon">
+                            <a href="<?php echo RELA_DIR; ?>zamin/?component=salon">
                                 <span class="sidebar-text text-16">لیست سالن ها</span>
                             </a>
                         </li>
                         <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=salon&action=add">
+                            <a href="<?php echo RELA_DIR; ?>zamin/?component=salon&action=add">
                                 <span class="sidebar-text text-16">افزودن سالن جدید</span>
                             </a>
                         </li><!--/child-item-->
@@ -118,32 +118,32 @@
                     </a>
                     <ul class="sidebar-child animated fadeInRight">
                         <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=contactus">
+                            <a href="<?php echo RELA_DIR; ?>zamin/?component=contactus">
                                 <span class="sidebar-text text-16">Inbox</span>
                             </a>
                         </li><!--/child-item-->
                         <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=banner">
+                            <a href="<?php echo RELA_DIR; ?>zamin/?component=banner">
                                 <span class="sidebar-text text-16"> بنر</span>
                             </a>
                         </li>
                         <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=contactus&action=edit">
+                            <a href="<?php echo RELA_DIR; ?>zamin/?component=contactus&action=edit">
                                 <span class="sidebar-text text-16">تماس با ما</span>
                             </a>
                         </li><!--/child-item-->
                         <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=aboutus&action=addAboutus">
+                            <a href="<?php echo RELA_DIR; ?>zamin/?component=aboutus&action=addAboutus">
                                 <span class="sidebar-text text-16"> درباره ما</span>
                             </a>
                         </li><!--/child-item-->
                         <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=services">
+                            <a href="<?php echo RELA_DIR; ?>zamin/?component=services">
                                 <span class="sidebar-text text-16">ویرایش خدمات</span>
                             </a>
                         </li>
                         <li>
-                            <a href="<?=RELA_DIR; ?>zamin/?component=soundcloud">
+                            <a href="<?php echo RELA_DIR; ?>zamin/?component=soundcloud">
                                 <span class="sidebar-text text-16">Sound cloud</span>
                             </a>
                         </li>

@@ -19,7 +19,7 @@
             <?php if($msg!=null)
             { ?>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-                    <?= $msg ?>
+                    <?php echo  $msg ?>
                 </div>
             <?php
             }
@@ -37,7 +37,7 @@
                                     <div class="form-group">
                                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="product_name">نام محصول:</label>
                                         <div class="col-xs-12 col-sm-8 pull-right">
-                                            <input type="text" class="form-control" name="name" id="name" autocomplete="off" placeholder="نام محصول" value="<?=$list['name'] ?>" required>
+                                            <input type="text" class="form-control" name="name" id="name" autocomplete="off" placeholder="نام محصول" value="<?php echo $list['name'] ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -45,7 +45,7 @@
                                     <div class="form-group">
                                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="ManagerName">قیمت:</label>
                                         <div class="col-xs-12 col-sm-8 pull-right">
-                                            <input type="text" class="form-control" name="price" id="price" autocomplete="off" placeholder="قیمت" value="<?=$list['price'] ?>" required>
+                                            <input type="text" class="form-control" name="price" id="price" autocomplete="off" placeholder="قیمت" value="<?php echo $list['price'] ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@
                                     <div class="form-group">
                                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="unit">واحد شمارش:</label>
                                         <div class="col-xs-12 col-sm-8 pull-right">
-                                            <input type="text" class="form-control" name="unit" id="unit" autocomplete="off" placeholder="واحد شمارش" value="<?=$list['unit'];?>" required>
+                                            <input type="text" class="form-control" name="unit" id="unit" autocomplete="off" placeholder="واحد شمارش" value="<?php echo $list['unit'];?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@
                                     <div class="form-group">
                                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="unit_count">متراژ موجود در هر واحد:</label>
                                         <div class="col-xs-12 col-sm-8 pull-right">
-                                            <input type="text" class="form-control" name="unit_count" id="unit_count" autocomplete="off" placeholder="متر" value="<?=$list['unit_count'] ?>" required>
+                                            <input type="text" class="form-control" name="unit_count" id="unit_count" autocomplete="off" placeholder="متر" value="<?php echo $list['unit_count'] ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -78,10 +78,10 @@
                                         <div class="col-xs-12 col-sm-8 pull-right">
                                             <select name="priority" id="priority">
                                                 <option
-                                                    value="1" <?= ($list['priority'] == '1') ? 'selected="selected"' : ''; ?>>1
+                                                    value="1" <?php echo  ($list['priority'] == '1') ? 'selected="selected"' : ''; ?>>1
                                                 </option>
                                                 <option
-                                                    value="0" <?= ($list['priority'] == '0') ? 'selected="selected"' : ''; ?>>0
+                                                    value="0" <?php echo  ($list['priority'] == '0') ? 'selected="selected"' : ''; ?>>0
                                                 </option>
                                             </select>
                                         </div>

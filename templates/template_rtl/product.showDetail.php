@@ -1,20 +1,20 @@
 <!-- Star Rating CSS -->
-<link rel="stylesheet" href="<?=TEMPLATE_DIR?>css/components/bs-rating.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo TEMPLATE_DIR?>css/components/bs-rating.css" type="text/css" />
 <!-- Page Title
 ============================================= -->
 <section id="page-title">
 
     <div class="container clearfix">
-        <h1><?=$list['list']['title'];?></h1>
+        <h1><?php echo $list['list']['title'];?></h1>
 
 
         <ol class="breadcrumb" style="display: none">
-            <li><a href="<?=RELA_DIR?>">خانه</a></li>
-            <li><a href="<?=RELA_DIR?>artists">خانه هنرمندان</a></li>
+            <li><a href="<?php echo RELA_DIR?>">خانه</a></li>
+            <li><a href="<?php echo RELA_DIR?>artists">خانه هنرمندان</a></li>
             <li class="active"></li>
         </ol>
 
-        <?=$list['breadcrumb'];?>
+        <?php echo $list['breadcrumb'];?>
     </div>
 
 </section><!-- #page-title end -->
@@ -30,7 +30,7 @@
             <!-- Portfolio Single Image
             ============================================= -->
             <div class="  col_one_third portfolio-single-image nobottommargin">
-                <img src="<?=RELA_DIR.'statics/files/'.$list['list']['artists_id'].'/'.$list['list']['image'];?>" alt="">
+                <img src="<?php echo RELA_DIR.'statics/files/'.$list['list']['artists_id'].'/'.$list['list']['image'];?>" alt="">
             </div><!-- .portfolio-single-image end -->
 
             <!-- Portfolio Single Content
@@ -42,7 +42,7 @@
                 <div class="fancy-title title-bottom-border">
                     <h2>درباره اثر:</h2>
                 </div>
-                <p><?=$list['list']['description']?></p>
+                <p><?php echo $list['list']['description']?></p>
 
                 <!-- Portfolio Single - Description End -->
 
@@ -51,12 +51,12 @@
                 <!-- Portfolio Single - Meta
                 ============================================= -->
                 <ul class="portfolio-meta bottommargin">
-                    <li><span><i class="icon-user"></i>تاریخ تولید:</span><?=convertDate($list['list']['creation_date'])?></li>
+                    <li><span><i class="icon-user"></i>تاریخ تولید:</span><?php echo convertDate($list['list']['creation_date'])?></li>
 
-                    <li><i class="icon-trophy"></i>جمع امتیازات  <?=$list['list']['rate']?>  ( از <?=$list['list']['rate_count']?> نظر ):
+                    <li><i class="icon-trophy"></i>جمع امتیازات  <?php echo $list['list']['rate']?>  ( از <?php echo $list['list']['rate_count']?> نظر ):
                         <div  dir="ltr">
 
-                            <input id="input-1" type="number"  class="rating push-rate" data-artists="<?=$list['list']['artists_id']?>" data-product="<?=$list['list']['Artists_products_id']?>"  value="<?=$list['list']['rate']?>"  max="10"  data-step="0.1" data-size="sm" data-glyphicon="false" data-rating-class="fontawesome-icon">
+                            <input id="input-1" type="number"  class="rating push-rate" data-artists="<?php echo $list['list']['artists_id']?>" data-product="<?php echo $list['list']['Artists_products_id']?>"  value="<?php echo $list['list']['rate']?>"  max="10"  data-step="0.1" data-size="sm" data-glyphicon="false" data-rating-class="fontawesome-icon">
 
 
                         </div>
@@ -64,35 +64,35 @@
                 </ul>
                 <!-- Portfolio Single - Meta End -->
 
-                <? if($list['list']['file_type'] == 'audio'):?>
+                <?php if($list['list']['file_type'] == 'audio'):?>
                     <audio controls>
-                        <source src="/statics/files/<?=$list['list']['artists_id']?>/<?=$list['list']['file']?>" type="audio/<?=$list['list']['extension']?>">
+                        <source src="/statics/files/<?php echo $list['list']['artists_id']?>/<?php echo $list['list']['file']?>" type="audio/<?php echo $list['list']['extension']?>">
                         Your browser does not support the audio element.
                     </audio>
-                <? endif;?>
+                <?php endif;?>
 
-                <? if($list['list']['file_type'] == 'video'):?>
+                <?php if($list['list']['file_type'] == 'video'):?>
                     <video controls width="100%"  >
-                        <source src="/statics/files/<?=$list['list']['artists_id']?>/<?=$list['list']['file']?>" type="video/<?=$list['list']['extension']?>"" /> <!-- MPEG4 for Safari -->
+                        <source src="/statics/files/<?php echo $list['list']['artists_id']?>/<?php echo $list['list']['file']?>" type="video/<?php echo $list['list']['extension']?>"" /> <!-- MPEG4 for Safari -->
                         <!--<source src="video.ogg" type="video/ogg" /> <!-- Ogg Theora for Firefox 3.1b2 -->
                     </video>
-                <? endif;?>
-                <? if($list['list']['file_type'] == 'image'):?>
+                <?php endif;?>
+                <?php if($list['list']['file_type'] == 'image'):?>
                     <div class="iportfolio">
                         <div class="portfolio-image">
-                            <a href="<?=RELA_DIR?>product">
-                                <img src="/statics/files/<?=$list['list']['artists_id']?>/<?=$list['list']['file']?>" alt="Open Imagination">
+                            <a href="<?php echo RELA_DIR?>product">
+                                <img src="/statics/files/<?php echo $list['list']['artists_id']?>/<?php echo $list['list']['file']?>" alt="Open Imagination">
                             </a>
                             <div class="portfolio-overlay">
-                                <a href="/statics/files/<?=$list['list']['artists_id']?>/<?=$list['list']['file']?>" class="left-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
+                                <a href="/statics/files/<?php echo $list['list']['artists_id']?>/<?php echo $list['list']['file']?>" class="left-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
                             </div>
                         </div>
                         <div class="portfolio-desc">
-                            <h3><a href=""><?=$value['title']?></a></h3>
+                            <h3><a href=""><?php echo $value['title']?></a></h3>
                             <!--<span><a href="#">Media</a>, <a href="#">Icons</a></span>-->
                         </div>
                     </div>
-                <? endif;?>
+                <?php endif;?>
 
             </div><!-- .portfolio-single-content end -->
 
@@ -103,7 +103,7 @@
             <!-- Related Portfolio Items
             ============================================= -->
             <?php if(count($list['other_product_list'])) : ?>
-            <h4>نمونه کارهای <?=$list['list']['artists_name'];?>:</h4>
+            <h4>نمونه کارهای <?php echo $list['list']['artists_name'];?>:</h4>
 
             <div class="section nobottommargin" style="padding-right:10px; padding-left: 10px; ">
 
@@ -113,9 +113,9 @@
                     <ul id="portfolio-filter" class="portfolio-filter clearfix" data-container="#portfolio">
 
                         <li class="activeFilter"><a href="#" data-filter="*">همه</a></li>
-                        <? foreach ($list['genre_list_all'] as $cat_id => $catValue):?>
-                            <li><a href="#" data-filter=".<?=$cat_id?>"><?=$catValue['title'];?></a></li>
-                        <? endforeach; ?>
+                        <?php foreach ($list['genre_list_all'] as $cat_id => $catValue):?>
+                            <li><a href="#" data-filter=".<?php echo $cat_id?>"><?php echo $catValue['title'];?></a></li>
+                        <?php endforeach; ?>
 
                     </ul><!-- #portfolio-filter end -->
 
@@ -143,23 +143,23 @@
 
 
                     ?>
-                        <article class="portfolio-item <?=$cat_id?>">
+                        <article class="portfolio-item <?php echo $cat_id?>">
                             <div class="portfolio-image">
-                                <a href="<?=RELA_DIR?>product/<?=$list['list']['artists_name']?>/<?=$fields['Artists_products_id']?>/<?=$fields['title']?>">
-                                    <img src="<?=(strlen($fields['image']) ? RELA_DIR.'statics/files/'.$fields['artists_id'].'/'.$fields['image'] : '/templates/'.CURRENT_SKIN.'/assets/images/placeholder.png');?>" alt="Open Imagination">
+                                <a href="<?php echo RELA_DIR?>product/<?php echo $list['list']['artists_name']?>/<?php echo $fields['Artists_products_id']?>/<?php echo $fields['title']?>">
+                                    <img src="<?php echo (strlen($fields['image']) ? RELA_DIR.'statics/files/'.$fields['artists_id'].'/'.$fields['image'] : '/templates/'.CURRENT_SKIN.'/assets/images/placeholder.png');?>" alt="Open Imagination">
                                 </a>
                                 <div class="portfolio-overlay">
-                                    <a href="<?=(strlen($fields['image']) ? RELA_DIR.'statics/files/'.$fields['artists_id'].'/'.$fields['image'] : '/templates/'.CURRENT_SKIN.'/assets/images/placeholder.png');?>" class="left-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
-                                    <a href="<?=RELA_DIR?>product/<?=$list['list']['artists_name']?>/<?=$fields['Artists_products_id']?>/<?=$fields['title']?>" class="right-icon"><i class="icon-line-ellipsis"></i></a>
+                                    <a href="<?php echo (strlen($fields['image']) ? RELA_DIR.'statics/files/'.$fields['artists_id'].'/'.$fields['image'] : '/templates/'.CURRENT_SKIN.'/assets/images/placeholder.png');?>" class="left-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
+                                    <a href="<?php echo RELA_DIR?>product/<?php echo $list['list']['artists_name']?>/<?php echo $fields['Artists_products_id']?>/<?php echo $fields['title']?>" class="right-icon"><i class="icon-line-ellipsis"></i></a>
                                 </div>
                             </div>
                             <div class="portfolio-desc">
-                                <h3><a href="<?=RELA_DIR?>product/<?=$list['list']['artists_name']?>/<?=$fields['Artists_products_id']?>/<?=$fields['title']?>"><?=$fields['title']?></a></h3>
-                                <span><?=$cat_title?></span>
+                                <h3><a href="<?php echo RELA_DIR?>product/<?php echo $list['list']['artists_name']?>/<?php echo $fields['Artists_products_id']?>/<?php echo $fields['title']?>"><?php echo $fields['title']?></a></h3>
+                                <span><?php echo $cat_title?></span>
                             </div>
                         </article>
 
-                    <? endforeach;?>
+                    <?php endforeach;?>
 
 
                     </div><!-- #portfolio end -->
@@ -168,7 +168,7 @@
 
             </div>
 
-            <? endif; ?>
+            <?php endif; ?>
         </div>
 
     </div>

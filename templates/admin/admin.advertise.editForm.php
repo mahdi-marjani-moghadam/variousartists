@@ -58,7 +58,7 @@
     <?php if($msg!=null)
     { ?>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-    <?= $msg ?>
+    <?php echo  $msg ?>
       </div>
     <?php
     }
@@ -72,7 +72,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="title">عنوان:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="title" id="title"  required value="<?=$list['title']?>">
+                    <input type="text" class="form-control" name="title" id="title"  required value="<?php echo $list['title']?>">
                   </div>
                 </div>
               </div>
@@ -80,7 +80,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="brif_description">توضیحات مختصر:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="brif_description" id="brif_description"  required value="<?=$list['brif_description']?>">
+                    <input type="text" class="form-control" name="brif_description" id="brif_description"  required value="<?php echo $list['brif_description']?>">
                   </div>
                 </div>
               </div>
@@ -93,7 +93,7 @@
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="xImagePath">تصویر:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
                     <div class="input-group" dir="ltr">
-                      <input name="image" type="text" class="form-control" id="xImagePath" value="<?=$list['image'];?>" />
+                      <input name="image" type="text" class="form-control" id="xImagePath" value="<?php echo $list['image'];?>" />
                         <span class="input-group-btn">
                             <input class="btn  btn-info" type="button" value="انتخاب فایل" onclick="BrowseServer( 'Images:/', 'xImagePath' );" />
                         </span>
@@ -110,13 +110,13 @@
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="category_id"> شماره دسته بندی:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
                     <select name="category_id[]" id="category_id" data-input="select2"  multiple>
-                      <?
+                      <?php 
                       foreach($list['category'] as $category_id => $value)
                       {
                       ?>
-                        <option  <?php echo (in_array($value['Category_id'],$list['category_id'])) ? 'selected' : '' ?> value="<?=$value['Category_id']?>"><?=$value['export']?>
+                        <option  <?php echo (in_array($value['Category_id'],$list['category_id'])) ? 'selected' : '' ?> value="<?php echo $value['Category_id']?>"><?php echo $value['export']?>
                         </option>
-                      <?
+                      <?php 
                       }
                       ?>
                     </select>
@@ -130,7 +130,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="url">آدرس اینترنتی:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="url" id="url"     value="<?=$list['url']?>">
+                    <input type="text" class="form-control" name="url" id="url"     value="<?php echo $list['url']?>">
                   </div>
                 </div>
               </div>
@@ -141,7 +141,7 @@
                 <p class="pull-right">
                   <button type="submit" name="update" id="submit" class="btn btn-icon btn-success rtl">
                     <input name="action" type="hidden" id="action" value="edit" />
-                    <input name="Advertise_id" type="hidden" id="" value="<?=$list['Advertise_id']?>" />
+                    <input name="Advertise_id" type="hidden" id="" value="<?php echo $list['Advertise_id']?>" />
                     <i class="fa fa-plus"></i>
 ثب
                   </button>

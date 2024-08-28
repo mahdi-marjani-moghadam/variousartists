@@ -59,7 +59,7 @@
     <?php if($msg!=null)
     { ?>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-      <?= $msg ?>
+      <?php echo  $msg ?>
       </div>
       <?php
     }
@@ -73,7 +73,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="title_fa">عنوان(فارسی):</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="title_fa" id="title_fa"   value="<?=$list['title_fa']?>">
+                    <input type="text" class="form-control" name="title_fa" id="title_fa"   value="<?php echo $list['title_fa']?>">
                   </div>
                 </div>
               </div>
@@ -81,7 +81,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="brief_description_fa">توضیحات مختصر(فارسی):</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="brief_description_fa" id="brief_description_fa"   value="<?=$list['brief_description_fa']?>">
+                    <input type="text" class="form-control" name="brief_description_fa" id="brief_description_fa"   value="<?php echo $list['brief_description_fa']?>">
                   </div>
                 </div>
               </div>
@@ -92,7 +92,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="title_en">عنوان(انگلیسی):</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="title_en" id="title_en"   value="<?=$list['title_en']?>">
+                    <input type="text" class="form-control" name="title_en" id="title_en"   value="<?php echo $list['title_en']?>">
                   </div>
                 </div>
               </div>
@@ -100,7 +100,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="brief_description_en">توضیحات مختصر(انگلیسی):</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="brief_description_en" id="brief_description_en"   value="<?=$list['brief_description_en']?>">
+                    <input type="text" class="form-control" name="brief_description_en" id="brief_description_en"   value="<?php echo $list['brief_description_en']?>">
                   </div>
                 </div>
               </div>
@@ -112,7 +112,7 @@
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="xImagePath">تصویر:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
                    <input type="file" name="image">
-                    <img class="img-thumbnail" src="<?=RELA_DIR?>statics/banner/<?=$list['image']?>">
+                    <img class="img-thumbnail" src="<?php echo RELA_DIR?>statics/banner/<?php echo $list['image']?>">
                   </div>
                 </div>
               </div>
@@ -120,7 +120,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="priority">اولویت</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="priority" id="priority"    value="<?=$list['priority']?>">
+                    <input type="text" class="form-control" name="priority" id="priority"    value="<?php echo $list['priority']?>">
                   </div>
                 </div>
               </div>
@@ -131,7 +131,7 @@
                 <p class="pull-right">
                   <button type="submit" name="update" id="submit" class="btn btn-icon btn-success rtl">
                     <input name="action" type="hidden" id="action" value="edit" />
-                    <input name="Banner_id" type="hidden" id="" value="<?=$list['Banner_id']?>" />
+                    <input name="Banner_id" type="hidden" id="" value="<?php echo $list['Banner_id']?>" />
                     <i class="fa fa-plus"></i>
 ثبت
                   </button>

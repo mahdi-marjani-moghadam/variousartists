@@ -60,7 +60,7 @@
     {
       ?>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-        <?= $msg ?>
+        <?php echo  $msg ?>
       </div>
       <?php
     }
@@ -74,7 +74,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="product">عنوان:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="product" id="product" autocomplete="off" required value="<?=$list['product']?>">
+                    <input type="text" class="form-control" name="product" id="product" autocomplete="off" required value="<?php echo $list['product']?>">
                   </div>
                 </div>
               </div>
@@ -82,7 +82,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="category">دسته بندی :</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="category" id="category" autocomplete="off" required value="<?=$list['category']?>">
+                    <input type="text" class="form-control" name="category" id="category" autocomplete="off" required value="<?php echo $list['category']?>">
                   </div>
                 </div>
               </div>
@@ -91,7 +91,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="keyword">کلمات کلیدی:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off"  required value="<?=$list['keyword']?>">
+                    <input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off"  required value="<?php echo $list['keyword']?>">
                   </div>
                 </div>
               </div>
@@ -99,7 +99,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="lang">زبان:</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="lang" id="lang" autocomplete="off" required value="<?=$list['lang']?>">
+                    <input type="text" class="form-control" name="lang" id="lang" autocomplete="off" required value="<?php echo $list['lang']?>">
                   </div>
                 </div>
               </div>
@@ -109,7 +109,7 @@
                 <div class="form-group">
                   <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="packagetype">نوع محصول :</label>
                   <div class="col-xs-12 col-sm-8 pull-right">
-                    <input type="text" class="form-control" name="packagetype" id="packagetype" autocomplete="off"  required value="<?=$list['packagetype']?>">
+                    <input type="text" class="form-control" name="packagetype" id="packagetype" autocomplete="off"  required value="<?php echo $list['packagetype']?>">
                   </div>
                 </div>
               </div>

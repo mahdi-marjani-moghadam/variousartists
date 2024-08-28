@@ -6,7 +6,7 @@
 
     <?php if ($msg != null) { ?>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-            <?= $msg ?>
+            <?php echo  $msg ?>
         </div>
     <?php
     }
@@ -22,7 +22,7 @@
                             <div class="form-group">
                                 <label class="  control-label rtl" for="mobile">Mobile</label>
                                 <div class=" ">
-                                    <input placeholder="09121234567" type="text" class="form-control" name="mobile" id="mobile" required value="<?= $list['mobile'] ?>">
+                                    <input placeholder="09121234567" type="text" class="form-control" name="mobile" id="mobile" required value="<?php echo  $list['mobile'] ?>">
                                 </div>
                             </div>
                         </div>

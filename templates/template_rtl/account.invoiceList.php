@@ -14,43 +14,43 @@
                                             <!--<th>پرداخت فاکتور</th>-->
                                             </thead>
 
-                                            <?
+                                            <?php 
                                             $i=$this->recordsCount;
                                             $start = $i - (($list['pagination']['current'] - 1)*PAGE_SIZE);
                                             foreach($list['artistsInvoiceList'] as $k => $value):
 
                                                 ?>
                                             <tr>
-                                                <td><?=$start ;?></td>
-                                                <td><a href="<?=RELA_DIR?>invoice/<?=$list['list']["artists_name_$lang"]?>/<?=$value['Artists_invoices_id']?>/<?=$value['title']?>"><?=$value['title']?></a></td>
+                                                <td><?php echo $start ;?></td>
+                                                <td><a href="<?php echo RELA_DIR?>invoice/<?php echo $list['list']["artists_name_$lang"]?>/<?php echo $value['Artists_invoices_id']?>/<?php echo $value['title']?>"><?php echo $value['title']?></a></td>
 
-                                                <td><?=$value['date']?></td>
+                                                <td><?php echo $value['date']?></td>
                                                 <td>
-                                                    <div class="style-msg   <?=($value['status'] == 1)?'':'style-msg-light';?>" style="background-color: <?=($value['status'] == 1)?'#EEE':'#444';?>">
-                                                        <div class="sb-msg"><i class="<?=($value['status'] == 1)?'icon-thumbs-up':'icon-remove';?>"></i>تایید <?=($value['status'] == 1)?'شده':' نشده';?></div>
+                                                    <div class="style-msg   <?php echo ($value['status'] == 1)?'':'style-msg-light';?>" style="background-color: <?php echo ($value['status'] == 1)?'#EEE':'#444';?>">
+                                                        <div class="sb-msg"><i class="<?php echo ($value['status'] == 1)?'icon-thumbs-up':'icon-remove';?>"></i>تایید <?php echo ($value['status'] == 1)?'شده':' نشده';?></div>
                                                     </div>
 
                                                 </td>
                                                 <!--<td><a href=" "  class="button button-3d button-mini button-rounded button-aqua ">پرداخت فاکتور</a> </td>-->
                                             </tr>
-                                            <?
+                                            <?php 
                                                 $start--;
                                             endforeach;?>
                                         </table>
 
-                                        <?
+                                        <?php 
                                         if(count($list['pagination']['list']))
                                         {
                                             ?>
                                             <ul class="pagination">
                                                 <li><a href="#">&laquo;</a></li>
-                                                <?
+                                                <?php 
                                                 foreach($list['pagination']['list'] as $key => $link)
                                                 {
                                                     if($key === 'current'){ continue;}
                                                     ?>
-                                                    <li class="<?=(($key+1 == $list['pagination']['current']) || (empty($list['pagination']['current']) && $key == 0 ))?'active':'';?>" ><a href="<?=RELA_DIR.$link;?>"><?=$key+1?></a></li>
-                                                    <?
+                                                    <li class="<?php echo (($key+1 == $list['pagination']['current']) || (empty($list['pagination']['current']) && $key == 0 ))?'active':'';?>" ><a href="<?php echo RELA_DIR.$link;?>"><?php echo $key+1?></a></li>
+                                                    <?php 
                                                 }
                                                 ?>
 

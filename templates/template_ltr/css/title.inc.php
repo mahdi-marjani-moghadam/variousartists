@@ -77,8 +77,8 @@
 					<!-- Logo
 					============================================= -->
 					<div id="logo">
-						<a href="<?=RELA_DIR?>" class="standard-logo" data-dark-logo="<?php echo TEMPLATE_DIR; ?>/img/logo.png"><img src="<?php echo TEMPLATE_DIR; ?>img/logo.png" alt="Canvas Logo"></a>
-						<a href="<?=RELA_DIR?>" class="retina-logo" data-dark-logo="<?php echo TEMPLATE_DIR; ?>/img/logo@2x.png"><img src="<?php echo TEMPLATE_DIR; ?>img/logo@2x.png" alt="Canvas Logo"></a>
+						<a href="<?php echo RELA_DIR?>" class="standard-logo" data-dark-logo="<?php echo TEMPLATE_DIR; ?>/img/logo.png"><img src="<?php echo TEMPLATE_DIR; ?>img/logo.png" alt="Canvas Logo"></a>
+						<a href="<?php echo RELA_DIR?>" class="retina-logo" data-dark-logo="<?php echo TEMPLATE_DIR; ?>/img/logo@2x.png"><img src="<?php echo TEMPLATE_DIR; ?>img/logo@2x.png" alt="Canvas Logo"></a>
 					</div><!-- #logo end -->
 
 					<!-- Primary Navigation
@@ -86,22 +86,22 @@
 					<nav id="primary-menu" class="dark style-6 style-2">
 
 						<ul>
-							<li class="<?=($PARAM[0] == 'event')?'current':'';?>" ><a href="<?=RELA_DIR?>event"><div>Event</div></a></li>
-							<li class="<?=($PARAM[0] == 'artists')?'current':'';?>"><a href="<?=RELA_DIR?>artists"><div>Artists</div></a></li>
-							<? /*<li class="<?=($PARAM[0] == 'services')?'current':'';?>"><a href="<?=RELA_DIR?>services"><div>خدمات</div></a></li>
-							<li class="<?=($PARAM[0] == 'shop')?'current':'';?>"><a href="<?=RELA_DIR?>shop"><div>فروشگاه</div></a></li>*/?>
-							<? if($member_info == -1){?>
-								<li class="<?=($PARAM[0] == 'login')?'current':'';?>"><a href="<?=RELA_DIR?>login"><div>Login / Register</div></a></li>
-							<?   } else{?>
-								<li class="<?=($PARAM[0] == 'account')?'current':'';?>"><a href="<?=RELA_DIR?>account"><div>Account</div></a></li>
-								<li class="<?=($PARAM[0] == 'logout')?'current':'';?>"><a href="<?=RELA_DIR?>login/logout"><div>LogOut</div></a></li>
-							<? }  ?>
-                            <li ><a href="<?=RELA_DIR?>index/?lang=fa"><div><img src="<?=RELA_DIR?>templates/<?=CURRENT_SKIN?>/img/flag_fa.png"></div></a></li>
+							<li class="<?php echo ($PARAM[0] == 'event')?'current':'';?>" ><a href="<?php echo RELA_DIR?>event"><div>Event</div></a></li>
+							<li class="<?php echo ($PARAM[0] == 'artists')?'current':'';?>"><a href="<?php echo RELA_DIR?>artists"><div>Artists</div></a></li>
+							<?php /*<li class="<?php echo ($PARAM[0] == 'services')?'current':'';?>"><a href="<?php echo RELA_DIR?>services"><div>خدمات</div></a></li>
+							<li class="<?php echo ($PARAM[0] == 'shop')?'current':'';?>"><a href="<?php echo RELA_DIR?>shop"><div>فروشگاه</div></a></li>*/?>
+							<?php if($member_info == -1){?>
+								<li class="<?php echo ($PARAM[0] == 'login')?'current':'';?>"><a href="<?php echo RELA_DIR?>login"><div>Login / Register</div></a></li>
+							<?php   } else{?>
+								<li class="<?php echo ($PARAM[0] == 'account')?'current':'';?>"><a href="<?php echo RELA_DIR?>account"><div>Account</div></a></li>
+								<li class="<?php echo ($PARAM[0] == 'logout')?'current':'';?>"><a href="<?php echo RELA_DIR?>login/logout"><div>LogOut</div></a></li>
+							<?php }  ?>
+                            <li ><a href="<?php echo RELA_DIR?>index/?lang=fa"><div><img src="<?php echo RELA_DIR?>templates/<?php echo CURRENT_SKIN?>/img/flag_fa.png"></div></a></li>
 						</ul>
 
 						<!-- Top Cart
 						============================================= -->
-                        <? /*<div id="top-cart">
+                        <?php /*<div id="top-cart">
 							<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span>5</span></a>
 							<div class="top-cart-content">
 								<div class="top-cart-title">
@@ -140,7 +140,7 @@
 						============================================= -->
 						<div id="top-search">
 							<a href="#" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>
-                            <form action="<?=RELA_DIR?>search/" method="get">
+                            <form action="<?php echo RELA_DIR?>search/" method="get">
 
                                 <input type="text" name="q"  class="form-control" value="" placeholder="Search">
                                 <select name="type" class="form-control" style="width: 100%; margin-top: -10px">

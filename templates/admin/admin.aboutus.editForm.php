@@ -23,7 +23,7 @@
     {
     ?>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-      <?= $msg ?>
+      <?php echo  $msg ?>
       </div>
     <?php
     }
@@ -99,7 +99,7 @@
     {
     ?>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-      <?= $msg ?>
+      <?php echo  $msg ?>
       </div>
     <?php
     }

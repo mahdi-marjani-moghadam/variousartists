@@ -11,12 +11,12 @@
                                     <div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12" style="overflow: scroll">
                                         <h2>لطفا پسورد جدید خود را وارد نمایید</h2>
 
-                                        <? if($msg != ''){?>
+                                        <?php if($msg != ''){?>
                                         <div class="alert alert-danger">
-                                        <?=$msg ?>
+                                        <?php echo $msg ?>
                                         </div>
-                                        <? }?>
-                                        <form name="queue" id="queue"  action="<?=RELA_DIR?>login/changePassSubmit"  role="form" data-validate="form" class="form-horizontal form-bordered"  novalidate="novalidate" method="post">
+                                        <?php }?>
+                                        <form name="queue" id="queue"  action="<?php echo RELA_DIR?>login/changePassSubmit"  role="form" data-validate="form" class="form-horizontal form-bordered"  novalidate="novalidate" method="post">
 
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-12 col-md-12">
@@ -43,8 +43,8 @@
                                                 <div class="row">
                                                 <div class="col-md-12">
                                                     <p class="center">
-                                                        <input name="email" type="hidden" value="<?=$list['email']?>" />
-                                                        <input name="code" type="hidden"  value="<?=$list['code']?>" />
+                                                        <input name="email" type="hidden" value="<?php echo $list['email']?>" />
+                                                        <input name="code" type="hidden"  value="<?php echo $list['code']?>" />
                                                         <button type="submit" name="submit" id="submit" class="btn btn-icon btn-block btn-success rtl">
                                                             <i class="fa fa-plus"></i>
                                                             تایید

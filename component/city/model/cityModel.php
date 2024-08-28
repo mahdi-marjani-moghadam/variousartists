@@ -1,10 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: malek
- * Date: 2/20/2016
- * Time: 4:24 AM.
- */
+
+namespace Component\city\model;
+
+use Common\looeic;
+use Component\city\model\cityModelDb;
+
 class cityModel extends looeic
 {
     protected $TABLE_NAME = 'city';
@@ -15,16 +15,10 @@ class cityModel extends looeic
 
     private $result;
 
-    /**
-     * @param $fields
-     *
-     * @return mixed
-     */
+
     public function getCities()
     {
-        include_once dirname(__FILE__).'/city.model.db.php';
-
-        $result = cityModelDb::getCities($fields);
+        $result = cityModelDb::getCities();
         if ($result['result'] != 1) {
             return $result;
         }
