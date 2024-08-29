@@ -31,7 +31,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="p-title row nopadding nomargin">
                     <!-- <div class="col-md-1 col-sm-2 cool-xs-12 nopadding" >
-                            <a href="#" class="p-logo"><img src="<?/*=TEMPLATE_DIR*/?>img/logo-dark.png"></a>
+                            <a href="#" class="p-logo"><img src="<?php /*=TEMPLATE_DIR*/?>img/logo-dark.png"></a>
                         </div>-->
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <i class="icon icon-user"></i><span class="hidden-xs">Account</span>‌ <?php echo $list['list']["artists_name_$lang"]?>
@@ -61,21 +61,21 @@
                             </div>
                         </li>
                         <!--<li>
-                                <div class="p-sh-img"><img src="<?/*=TEMPLATE_DIR*/?>img/p-sh3.png"></div>
+                                <div class="p-sh-img"><img src="<?php /*=TEMPLATE_DIR*/?>img/p-sh3.png"></div>
                                 <div class="p-sh-ttx hidden-sm ">
                                     <a href="" >سرویس ها</a>
                                     <div class="p-sh-brief" >سرویس های من</div>
                                 </div>
                             </li>
                             <li>
-                                <div class="p-sh-img"><img src="<?/*=TEMPLATE_DIR*/?>img/p-sh4.png"></div>
+                                <div class="p-sh-img"><img src="<?php /*=TEMPLATE_DIR*/?>img/p-sh4.png"></div>
                                 <div class="p-sh-ttx hidden-sm ">
                                     <a href="" >دامین ها</a>
                                     <div class="p-sh-brief" >دامنه های من</div>
                                 </div>
                             </li>
                             <li>
-                                <div class="p-sh-img"><img src="<?/*=TEMPLATE_DIR*/?>img/p-sh5.png"></div>
+                                <div class="p-sh-img"><img src="<?php /*=TEMPLATE_DIR*/?>img/p-sh5.png"></div>
                                 <div class="p-sh-ttx hidden-sm ">
                                     <a href="" >صورتحساب ها</a>
                                     <div class="p-sh-brief" >فاکتور سرویس ها</div>

@@ -5,7 +5,7 @@
         <span class="text-center">درباره ما</span>
     </div>
 </div>--><!-- /end of separator -->
-<!--<section id="page-title" class="page-title-parallax page-title-dark page-title-right" style="padding: 250px 0px; background-image: url(<?/*=RELA_DIR*/?>templates/<?/*=CURRENT_SKIN*/?>/images/about/banner.jpg); background-size: cover; background-position: 50% -129.6px;" data-stellar-background-ratio="0.2">
+<!--<section id="page-title" class="page-title-parallax page-title-dark page-title-right" style="padding: 250px 0px; background-image: url(<?php /*=RELA_DIR*/?>templates/<?php /*=CURRENT_SKIN*/?>/images/about/banner.jpg); background-size: cover; background-position: 50% -129.6px;" data-stellar-background-ratio="0.2">
 
     <div class="container clearfix">
         <h1>درباره ما</h1>

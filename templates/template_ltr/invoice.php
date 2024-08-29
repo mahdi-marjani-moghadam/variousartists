@@ -6,9 +6,9 @@
     <div class="container clearfix">
         <h1><?php echo invoices?></h1>
         <!--<ol class="breadcrumb">
-            <li><a href="<?/*=RELA_DIR*/?>">خانه</a></li>
-            <li><a href="<?/*=RELA_DIR*/?>event">رویدادها</a></li>
-            <li class="active"><?/*=$list['list']['event_name'];*/?></li>
+            <li><a href="<?php /*=RELA_DIR*/?>">خانه</a></li>
+            <li><a href="<?php /*=RELA_DIR*/?>event">رویدادها</a></li>
+            <li class="active"><?php /*=$list['list']['event_name'];*/?></li>
         </ol>-->
     </div>
 

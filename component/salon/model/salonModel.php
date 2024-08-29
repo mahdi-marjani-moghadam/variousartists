@@ -1,12 +1,12 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: malek
- * Date: 2/20/2016
- * Time: 4:24 AM.
- */
-class salonModel
+namespace Component\salon\model;
+
+use Common\looeic;
+use Common\validators;
+use Component\salon\admin\model\adminSalonModelDb;
+
+class salonModel extends looeic
 {
     /**
      * @var
@@ -74,28 +74,6 @@ class salonModel
         }
     }
 
-    /**
-     * @param $input
-     *
-     * @return mixed
-     */
-    public function setFields($input)
-    {
-        foreach ($input as $field => $val) {
-            $funcName = '__set'.ucfirst($field);
-            if (method_exists($this, $funcName)) {
-                $result = $this->$funcName($val);
-                if ($result['result'] == 1) {
-                    $this->fields[$field] = $val;
-                } else {
-                    return $result;
-                }
-            }
-        }
-        $result['result'] = 1;
-
-        return $result;
-    }
 
     /**
      * @param $input
@@ -104,7 +82,7 @@ class salonModel
      */
     private function __setTitle($input)
     {
-        if (!Validator::required($input)) {
+        if (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter title';
         } else {
@@ -123,7 +101,7 @@ class salonModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } elseif (!Validator::required($input)) {
+        } elseif (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Brif description';
         } else {
@@ -142,7 +120,7 @@ class salonModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } elseif (!Validator::required($input)) {
+        } elseif (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Description';
         } else {
@@ -161,7 +139,7 @@ class salonModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } elseif (!Validator::required($input)) {
+        } elseif (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Meta_keyword';
         } else {
@@ -180,7 +158,7 @@ class salonModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } elseif (!Validator::required($input)) {
+        } elseif (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Meta_description';
         } else {
@@ -199,7 +177,7 @@ class salonModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } elseif (!Validator::required($input)) {
+        } elseif (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Date';
         } else {
@@ -218,7 +196,7 @@ class salonModel
     {
         if ($input == '') {
             $result['result'] = 1;
-        } elseif (!Validator::required($input)) {
+        } elseif (!validators::required($input)) {
             $result['result'] = -1;
             $result['msg'] = 'pleas enter Image';
         } else {
@@ -235,7 +213,7 @@ class salonModel
      */
     public function getSalonById($id)
     {
-        include_once dirname(__FILE__).'/salon.model.db.php';
+        include_once dirname(__FILE__) . '/salon.model.db.php';
 
         $result = salonModelDb::getSalonById($id);
 
@@ -249,7 +227,7 @@ class salonModel
 
     public function getSalonByparent($id)
     {
-        include_once dirname(__FILE__).'/salon.model.db.php';
+        include_once dirname(__FILE__) . '/salon.model.db.php';
 
         $result = salonModelDb::getSalonByparent($id);
 
@@ -267,23 +245,23 @@ class salonModel
      *
      * @return mixed
      */
-    public function convert($_input, $temp, $space = '-')
+    public function convert($_input, $temp = '', $space = '-')
     {
         static $mainMenu = '';
         //echo $this->level;
         foreach ($_input as $key => $val) {
-            $mainMenu[$val['Salon_id']]['export'] = $temp.$val['title'];
+            $mainMenu[$val['Salon_id']]['export'] = $temp . $val['title'];
             $mainMenu[$val['Salon_id']]['title'] = $val['title'];
             $mainMenu[$val['Salon_id']]['level'] = $this->level;
 
-            $temp = $temp.$space;
+            $temp = $temp . $space;
             ++$this->level;
             if (isset($this->listCat[$val['Salon_id']])) {
                 $this->convert($this->listCat[$val['Salon_id']], $temp, $space);
             }
             --$this->level;
             $len = strlen($space);
-            $temp = substr($temp, 0, -($len));
+            $temp = substr($temp, 0, - ($len));
         }
 
         return $mainMenu;
@@ -307,7 +285,7 @@ class salonModel
     }
 
 
-    public function getSalonUlLiSearch($SalonTree,$parent_id = 0)
+    public function getSalonUlLiSearch($SalonTree, $parent_id = 0)
     {
 
 
@@ -317,9 +295,9 @@ class salonModel
         $result['export']['list'] = $mainMenu;
 
         return $result;
-    }    
+    }
 
-    public function convertTreetoLiUl($array, $root = 0, $all)
+    public function convertTreetoLiUl($array, $root = 0, $all=[])
     {
         static $mainMenu = '';
         static $mainList;
@@ -331,30 +309,29 @@ class salonModel
         foreach ($array as $key => $val) {
             $cityStr = '';
             if (isset($_SESSION['city'])) {
-                $cityStr = $_SESSION['city'].'/';
+                $cityStr = $_SESSION['city'] . '/';
             }
 
             if (is_array($mainList[$val['Salon_id']])) {
                 $mainMenu .= '
                     <li>
-                        <a href="'.RELA_DIR.$cityStr.'artists/'.(strlen($val['url']) ? $val['Salon_id'].'/'.$val['url'] : '#').'">'.$val['title'].'</a>';
+                        <a href="' . RELA_DIR . $cityStr . 'artists/' . (strlen($val['url']) ? $val['Salon_id'] . '/' . $val['url'] : '#') . '">' . $val['title'] . '</a>';
                 $this->convertTreetoLiUl($mainList[$val['Salon_id']]);
                 $mainMenu .= '</li>';
             } else {
-                $mainMenu .= "\t".'
+                $mainMenu .= "\t" . '
                     <li>
-                        <a href="'.RELA_DIR.$cityStr.'artists/'.(strlen($val['url']) ? $val['Salon_id'].'/'.$val['url'] : '#').'">'.$val['title'].'</a>
+                        <a href="' . RELA_DIR . $cityStr . 'artists/' . (strlen($val['url']) ? $val['Salon_id'] . '/' . $val['url'] : '#') . '">' . $val['title'] . '</a>
                     </li>
-                '."\n";
+                ' . "\n";
             }
             //$mainMenu .= "</ul>\n";
             --$this->level;
         }
         $mainMenu .= "</ul>\n";
         return $mainMenu;
-
     }
-    public function convertTreetoLiUlSearch($array, $root = 0, $all)
+    public function convertTreetoLiUlSearch($array, $root = 0, $all=[])
     {
         static $mainMenu = '';
         static $mainList;
@@ -369,21 +346,20 @@ class salonModel
             if (is_array($mainList[$val['Salon_id']])) {
                 $mainMenu .= '
                     <li>
-                        <a class="company-name"><span>('.$val['count'].')</span>
-                            <label for="salon-'.$val['Salon_id'] .'" class="company-name">'.$val['title'].
-                                '<input type="checkbox" name="salon[]" id="salon-'.$val['Salon_id'] .'" value="'.$val['Salon_id'].'">
+                        <a class="company-name"><span>(' . $val['count'] . ')</span>
+                            <label for="salon-' . $val['Salon_id'] . '" class="company-name">' . $val['title'] .
+                    '<input type="checkbox" name="salon[]" id="salon-' . $val['Salon_id'] . '" value="' . $val['Salon_id'] . '">
                             </label>
                         </a>';
-                    $this->convertTreetoLiUlSearch($mainList[$val['Salon_id']]);
+                $this->convertTreetoLiUlSearch($mainList[$val['Salon_id']]);
                 $mainMenu .= '</li>';
-
             } else {
-                $mainMenu .= "\t".'
+                $mainMenu .= "\t" . '
                      <li>
-                        <a class="company-name"><span>('.$val['count'].')</span>
-                            <label for="salon-'.$val['Salon_id'] .'" class="company-name">'.$val['title'].
-                    '<input type="checkbox" name="salon[]" id="salon-'.$val['Salon_id'] .'" value="'.$val['Salon_id'].'">
-                            </label> </a></li>'."\n";
+                        <a class="company-name"><span>(' . $val['count'] . ')</span>
+                            <label for="salon-' . $val['Salon_id'] . '" class="company-name">' . $val['title'] .
+                    '<input type="checkbox" name="salon[]" id="salon-' . $val['Salon_id'] . '" value="' . $val['Salon_id'] . '">
+                            </label> </a></li>' . "\n";
             }
             //$mainMenu .= "</ul>\n";
             --$this->level;
@@ -447,10 +423,9 @@ class salonModel
         }*/
     }
 
-    public function getSalonTree($fields='')
+    public function getSalonTree($fields = '')
     {
-        include_once dirname(__FILE__).'/salon.model.db.php';
-        $result = salonModelDb::tree_set();
+        $result = (new salonModelDb)->tree_set();
         $this->list = $result['export']['list'];
         $this->recordsCount = $result['export']['recordsCount'];
 
@@ -460,19 +435,17 @@ class salonModel
     public function allSalon()
     {
 
-        include_once dirname(__FILE__).'/salon.model.db.php';
         $result = salonModelDb::getSalonAll();
         $this->list = $result['export']['list'];
         $this->recordsCount = $result['export']['recordsCount'];
 
         return $result;
-
     }
     public function getSalonOption($parent_id = 0, $space = '-')
     {
-        include_once dirname(__FILE__).'/salon.model.db.php';
+        include_once dirname(__FILE__) . '/salon.model.db.php';
 
-        $result = salonModelDb::tree_set();
+        $result = (new salonModelDb)->tree_set();
         if ($result['result'] != 1) {
             return $result;
         }
@@ -498,9 +471,9 @@ class salonModel
     //*******************************
     public function getSalonByfor($fields)
     {
-        include_once dirname(__FILE__).'/admin.salon.model.db.php';
+        // include_once dirname(__FILE__).'/admin.salon.model.db.php';
 
-        $result = adminSalonModelDb::tree_set();
+        $result = (new adminSalonModelDb)->tree_set();
         $fields = $result['export']['list'];
         $this->listCat = $fields;
         $result = $this->convert($fields['1']);
@@ -541,60 +514,60 @@ class salonModel
                 $open_list = 'true';
 
                 if (isset($config[$val['level']]['node']['open'])) {
-                    $st = $st.$config[$val['level']]['node']['open'].PHP_EOL;
+                    $st = $st . $config[$val['level']]['node']['open'] . PHP_EOL;
                 } else {
-                    $st = $st.$config['all']['node']['open'].PHP_EOL;
+                    $st = $st . $config['all']['node']['open'] . PHP_EOL;
                 }
 
-                $st = $st.$val['title'].PHP_EOL;
-                $st = $st.$config['all']['list']['open'].PHP_EOL;
+                $st = $st . $val['title'] . PHP_EOL;
+                $st = $st . $config['all']['list']['open'] . PHP_EOL;
             } elseif ($next['level'] < $val['level'] and $next != -1) {
                 $open_list = 'false';
 
-                $st = $st.$config['all']['node-noChild']['open'].PHP_EOL;
-                $st = $st.$val['title'].PHP_EOL;
+                $st = $st . $config['all']['node-noChild']['open'] . PHP_EOL;
+                $st = $st . $val['title'] . PHP_EOL;
 
                 for ($i = 1; $i <=  ($val['level'] - $next['level']); ++$i) {
-                    $st = $st.$config['all']['node']['close'].PHP_EOL;
-                    $st = $st.$config['all']['list']['close'].PHP_EOL;
+                    $st = $st . $config['all']['node']['close'] . PHP_EOL;
+                    $st = $st . $config['all']['list']['close'] . PHP_EOL;
                 }
-                $st = $st.$config['all']['node']['close'].PHP_EOL;
+                $st = $st . $config['all']['node']['close'] . PHP_EOL;
             } elseif ($val['level'] == $next['level'] and $next != -1) {
                 $open_list = '';
 
                 if (isset($config[$val['level']]['node-noChild']['open'])) {
-                    $st = $st.$config[$val['level']]['node-noChild']['open'].PHP_EOL;
-                    $st = $st.$val['title'].PHP_EOL;
-                    $st = $st.$config['all']['node-noChild']['close'].PHP_EOL;
+                    $st = $st . $config[$val['level']]['node-noChild']['open'] . PHP_EOL;
+                    $st = $st . $val['title'] . PHP_EOL;
+                    $st = $st . $config['all']['node-noChild']['close'] . PHP_EOL;
                 } else {
-                    $st = $st.$config['all']['node-noChild']['open'].PHP_EOL;
-                    $st = $st.$val['title'].PHP_EOL;
-                    $st = $st.$config['all']['node-noChild']['close'].PHP_EOL;
+                    $st = $st . $config['all']['node-noChild']['open'] . PHP_EOL;
+                    $st = $st . $val['title'] . PHP_EOL;
+                    $st = $st . $config['all']['node-noChild']['close'] . PHP_EOL;
                 }
             } elseif ($next == -1) {
                 $open_list = '';
 
                 if (isset($config[$val['level']]['node']['open'])) {
-                    $st = $st.$config[$val['level']]['node-noChild']['open'].PHP_EOL;
-                    $st = $st.$val['title'].PHP_EOL;
+                    $st = $st . $config[$val['level']]['node-noChild']['open'] . PHP_EOL;
+                    $st = $st . $val['title'] . PHP_EOL;
                     //$st = $st . $config['all']['node']['close'] . PHP_EOL;
                     //$st = $st . $config['all']['list']['close'] . PHP_EOL;
                 } else {
-                    $st = $st.$config['all']['node-noChild']['open'].PHP_EOL;
-                    $st = $st.$val['title'].PHP_EOL;
+                    $st = $st . $config['all']['node-noChild']['open'] . PHP_EOL;
+                    $st = $st . $val['title'] . PHP_EOL;
                     //$st = $st . $config['all']['node']['close'] . PHP_EOL;
                     //$st = $st . $config['all']['list']['close'] . PHP_EOL;
                 }
                 for ($i = 1; $i <=  ($val['level'] - $next['level']); ++$i) {
-                    $st = $st.$config['all']['node']['close'].PHP_EOL;
-                    $st = $st.$config['all']['list']['close'].PHP_EOL;
+                    $st = $st . $config['all']['node']['close'] . PHP_EOL;
+                    $st = $st . $config['all']['list']['close'] . PHP_EOL;
                 }
-                $st = $st.$config['all']['node']['close'].PHP_EOL;
+                $st = $st . $config['all']['node']['close'] . PHP_EOL;
             }
         }
-        $st = $st.'</ul>';
+        $st = $st . '</ul>';
 
-        echo '<br/>start<br/>'.$st, '<br/>close<br/>';
+        echo '<br/>start<br/>' . $st, '<br/>close<br/>';
 
         //**************
 
@@ -613,7 +586,7 @@ class salonModel
 
     public function getSalonParents($parentId)
     {
-        include_once dirname(__FILE__).'/salon.model.db.php';
+        include_once dirname(__FILE__) . '/salon.model.db.php';
         $result = salonModelDb::getSalonParents($parentId);
         $this->list = array_reverse($result['export']['list']);
 
@@ -622,7 +595,7 @@ class salonModel
 
     public function getSalonChildes($salonId)
     {
-        include_once dirname(__FILE__).'/salon.model.db.php';
+        include_once dirname(__FILE__) . '/salon.model.db.php';
         $result = salonModelDb::getSalonChildes($salonId);
         $this->list = $result['export']['list'];
 

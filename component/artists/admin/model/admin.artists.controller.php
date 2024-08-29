@@ -15,8 +15,8 @@ use Component\genre\admin\model\adminGenreModel;
 use Component\product\admin\model\adminProductModel;
 use Component\province\admin\model\adminProvinceModel;
 use Model\clsCountry;
+use Model\convertDatatableIO;
 
-include_once dirname(__FILE__) . '/admin.artists.model.php';
 
 /**
  * Class registerController.
@@ -416,7 +416,6 @@ class adminArtistsController
 
         $artists = new adminArtistsModel();
 
-        include_once(ROOT_DIR . "model/datatable.converter.php");
         $i = 0;
         $columns = array(
             array('db' => 'Artists_id', 'dt' => $i++),

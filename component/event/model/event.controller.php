@@ -8,7 +8,7 @@ use Component\event\model\eventModel;
  * Date: 2/20/2016
  * Time: 4:24 PM.
  */
-include_once dirname(__FILE__).'/event.model.php';
+// include_once dirname(__FILE__).'/event.model.php';
 
 /**
  * Class articleController.

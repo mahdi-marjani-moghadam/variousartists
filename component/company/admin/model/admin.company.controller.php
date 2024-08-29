@@ -1,11 +1,22 @@
 <?php
+
+use Common\dbConn;
+use Common\validators;
+use Component\category\admin\model\adminCategoryModel;
+use Component\city\admin\model\adminCityModel;
+use Component\city\admin\model\adminCityModelDb;
+use Component\company\admin\model\adminCompanyModel;
+use Component\company\admin\model\adminCompanyModelDb;
+use Component\product\admin\model\adminProductModel;
+use Model\convertDatatableIO;
+
 /**
  * Created by PhpStorm.
  * User: malekloo
  * Date: 3/6/2016
  * Time: 11:21 AM.
  */
-include_once dirname(__FILE__).'/admin.company.model.php';
+include_once dirname(__FILE__) . '/admin.company.model.php';
 
 /**
  * Class registerController.
@@ -42,18 +53,18 @@ class adminCompanyController
      *
      * @return string
      */
-    public function template($list = [], $msg='')
+    public function template($list = [], $msg = '')
     {
-        global $messageStack,$admin_info;
+        global $messageStack, $admin_info;
 
         switch ($this->exportType) {
             case 'html':
-                include ROOT_DIR.'templates/'.CURRENT_SKIN.'/template_start.php';
-                include ROOT_DIR.'templates/'.CURRENT_SKIN.'/template_header.php';
-                include ROOT_DIR.'templates/'.CURRENT_SKIN.'/template_rightMenu_admin.php';
-                include ROOT_DIR.'templates/'.CURRENT_SKIN."/$this->fileName";
-                include ROOT_DIR.'templates/'.CURRENT_SKIN.'/template_footer.php';
-                include ROOT_DIR.'templates/'.CURRENT_SKIN.'/template_end.php';
+                include ROOT_DIR . 'templates/' . CURRENT_SKIN . '/template_start.php';
+                include ROOT_DIR . 'templates/' . CURRENT_SKIN . '/template_header.php';
+                include ROOT_DIR . 'templates/' . CURRENT_SKIN . '/template_rightMenu_admin.php';
+                include ROOT_DIR . 'templates/' . CURRENT_SKIN . "/$this->fileName";
+                include ROOT_DIR . 'templates/' . CURRENT_SKIN . '/template_footer.php';
+                include ROOT_DIR . 'templates/' . CURRENT_SKIN . '/template_end.php';
                 break;
 
             case 'json':
@@ -106,7 +117,7 @@ class adminCompanyController
         $msg = 'ثبت نام با موفقیت انجام شد.';
         $messageStack->add_session('register', $msg);
 
-        redirectPage(RELA_DIR.'zamin/?component=company', $msg);
+        redirectPage(RELA_DIR . 'zamin/?component=company', $msg);
         die();
     }
 
@@ -125,7 +136,6 @@ class adminCompanyController
      */
     public function showCompanyAddForm($fields, $msg)
     {
-        include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
@@ -133,21 +143,18 @@ class adminCompanyController
             $fields['category'] = $category->list;
         }
 
-        include_once ROOT_DIR.'component/city/admin/model/admin.city.model.php';
         $city = new adminCityModel();
         $resultCity = $city->getCities();
         if ($resultCity['result'] == 1) {
             $fields['cities'] = $city->list;
         }
 
-        include_once ROOT_DIR.'component/state/admin/model/admin.state.model.php';
         $province = new adminStateModel();
         $resultProvince = $province->getStates();
         if ($resultProvince['result'] == 1) {
             $fields['provinces'] = $province->list;
         }
 
-        include_once ROOT_DIR.'component/certification/admin/model/admin.certification.model.php';
         $certification = new adminCertificationModel();
 
         $resultCertification = $certification->getCertification();
@@ -189,12 +196,11 @@ class adminCompanyController
             $this->showCompanyEditForm($fields, $result['msg']);
         }
 
-        if(isset($fields['showStatus']))
-        {
-            $action='&action='.$fields['showStatus'];
+        if (isset($fields['showStatus'])) {
+            $action = '&action=' . $fields['showStatus'];
         }
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=company'.$action, $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=company' . $action, $msg);
         die();
     }
 
@@ -210,13 +216,13 @@ class adminCompanyController
      */
     public function showCompanyEditForm($fields, $msg)
     {
-        $showStatus=$fields['showStatus'];
+        $showStatus = $fields['showStatus'];
         if (strtoupper($_SERVER['REQUEST_METHOD']) != 'POST') {
             $company = new adminCompanyModel();
             $result = $company->getCompanyById($fields['Company_id']);
             if ($result['result'] != '1') {
                 $msg = $result['msg'];
-                redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
+                redirectPage(RELA_DIR . 'zamin/index.php?component=company', $msg);
             }
             $export = $company->fields;
         } else {
@@ -239,7 +245,6 @@ class adminCompanyController
             $export['company_website'] = $fields['company_website'];
         }
 
-        include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
@@ -248,21 +253,18 @@ class adminCompanyController
             $export['category'] = $category->list;
         }
 
-        include_once ROOT_DIR.'component/city/admin/model/admin.city.model.php';
         $city = new adminCityModel();
         $resultCity = $city->getCities();
         if ($resultCity['result'] == 1) {
             $export['cities'] = $city->list;
         }
 
-        include_once ROOT_DIR.'component/state/admin/model/admin.state.model.php';
         $state = new adminStateModel();
         $resultState = $state->getStates();
         if ($resultState['result'] == 1) {
             $export['states'] = $state->list;
         }
 
-        include_once ROOT_DIR.'component/certification/admin/model/admin.certification.model.php';
         $certification = new adminCertificationModel();
 
         $resultCertification = $certification->getCertification();
@@ -270,7 +272,7 @@ class adminCompanyController
             $export['certifications'] = $certification->list;
         }
 
-        $export['showStatus']=$showStatus;
+        $export['showStatus'] = $showStatus;
         $this->fileName = 'admin.company.editForm.php';
         $this->template($export, $msg);
         die();
@@ -280,7 +282,7 @@ class adminCompanyController
 
     public function showList($msg)
     {
-        $export['status']='showAll';
+        $export['status'] = 'showAll';
         $this->fileName = 'admin.company.showList.php';
         $this->template($export);
         die();
@@ -305,24 +307,23 @@ class adminCompanyController
 
         $company = new adminCompanyModel();
 
-        include_once(ROOT_DIR . "model/datatable.converter.php");
-        $i=0;
+        $i = 0;
         $columns = array(
-            array( 'db' => 'Company_id', 'dt' =>$i++),
-            array( 'db' => 'company_name', 'dt' =>$i++),
-            array( 'db' => 'phone_number', 'dt' =>$i++),
-            array( 'db' => 'city_name',   'dt' => $i++),
-            array( 'db' => 'address_address', 'dt' => $i++ ),
-            array( 'db' => 'email_email', 'dt' => $i++ ),
-            array( 'db' => 'website_url', 'dt' => $i++ ),
-            array( 'db' => 'status', 'dt' => $i++ ),
-            array( 'db' => 'logo', 'dt' => $i++ ),
-            array( 'db' => 'Company_id', 'dt' => $i++ )
+            array('db' => 'Company_id', 'dt' => $i++),
+            array('db' => 'company_name', 'dt' => $i++),
+            array('db' => 'phone_number', 'dt' => $i++),
+            array('db' => 'city_name',   'dt' => $i++),
+            array('db' => 'address_address', 'dt' => $i++),
+            array('db' => 'email_email', 'dt' => $i++),
+            array('db' => 'website_url', 'dt' => $i++),
+            array('db' => 'status', 'dt' => $i++),
+            array('db' => 'logo', 'dt' => $i++),
+            array('db' => 'Company_id', 'dt' => $i++)
         );
-        $convert=new convertDatatableIO();
-        $convert->input=$fields;
-        $convert->columns=$columns;
-        $searchFields= $convert->convertInput();
+        $convert = new convertDatatableIO();
+        $convert->input = $fields;
+        $convert->columns = $columns;
+        $searchFields = $convert->convertInput();
 
         //$date = date('Y-m-d', strtotime(COMPANY_EXPIRE_PERIOD));
         // print_r_debug($date);
@@ -335,41 +336,38 @@ class adminCompanyController
             $this->template('', $result['msg']);
             die();
         }
-        $list['list']=$company->list;
-        $list['paging']=$company->recordsCount;
-        $other['2']=array(
-            'formatter' =>function($list)
-            {
-                $st='<div data-company_id="'.$list['Company_id'].'" class="company_phone">'.$list['phone_number'].'</div>';
+        $list['list'] = $company->list;
+        $list['paging'] = $company->recordsCount;
+        $other['2'] = array(
+            'formatter' => function ($list) {
+                $st = '<div data-company_id="' . $list['Company_id'] . '" class="company_phone">' . $list['phone_number'] . '</div>';
                 return $st;
             }
         );
-        $other['7']=array(
-            'formatter' =>function($list)
-            {
-                if($list['status']==1) {
-                    $st ='فعال';
-                }else {
-                    $st ='غیر فعال';
+        $other['7'] = array(
+            'formatter' => function ($list) {
+                if ($list['status'] == 1) {
+                    $st = 'فعال';
+                } else {
+                    $st = 'غیر فعال';
                 }
                 return $st;
             }
         );
-        $internalVariable['showstatus']=$fields['status'];
-        $other[$i-1]=array(
-            formatter =>function($list,$internal)
-            {
-                $st='a'.$list['showstatus'];
-                $st='<a href="'. RELA_DIR.'zamin/?component=company&action=edit&id='.$list['Company_id'].'&showStatus='.$internal['showstatus']
-                    .'">ویرایش</a> <br/>
-                        <a href="'.RELA_DIR.'zamin/?component=product&id='.$list['Company_id'].'">لیست محصولات</a><br/>
-                        <a href="'.RELA_DIR.'zamin/?component=honour&id='.$list['Company_id'].'">لیست افتخارات</a><br/>
-                        <a href="'.RELA_DIR.'zamin/?component=licence&id='.$list['Company_id'].'">لیست مجوز ها</a><br/>
-                        <a href="'.RELA_DIR.'zamin/?component=company&action=delete&id='.$list['Company_id'].$list['company_name'].'">حذف</a>';
+        $internalVariable['showstatus'] = $fields['status'];
+        $other[$i - 1] = array(
+            formatter => function ($list, $internal) {
+                $st = 'a' . $list['showstatus'];
+                $st = '<a href="' . RELA_DIR . 'zamin/?component=company&action=edit&id=' . $list['Company_id'] . '&showStatus=' . $internal['showstatus']
+                    . '">ویرایش</a> <br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=product&id=' . $list['Company_id'] . '">لیست محصولات</a><br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=honour&id=' . $list['Company_id'] . '">لیست افتخارات</a><br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=licence&id=' . $list['Company_id'] . '">لیست مجوز ها</a><br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=company&action=delete&id=' . $list['Company_id'] . $list['company_name'] . '">حذف</a>';
                 return $st;
             }
         );
-        $export= $convert->convertOutput($list,$columns,$other,$internalVariable);
+        $export = $convert->convertOutput($list, $columns, $other, $internalVariable);
         //print_r_debug($export);
         echo json_encode($export);
         die();
@@ -393,27 +391,26 @@ class adminCompanyController
 
         $company = new adminCompanyModel();
 
-        include_once(ROOT_DIR . "model/datatable.converter.php");
-        $i=0;
+        $i = 0;
         $columns = array(
-            array( 'db' => 'Company_id', 'dt' =>$i++),
-            array( 'db' => 'company_name', 'dt' =>$i++),
-            array( 'db' => 'phone_number', 'dt' =>$i++),
-            array( 'db' => 'refresh_date',   'dt' => $i++),
-            array( 'db' => 'address_address', 'dt' => $i++ ),
-            array( 'db' => 'email_email', 'dt' => $i++ ),
-            array( 'db' => 'website_url', 'dt' => $i++ ),
-            array( 'db' => 'status', 'dt' => $i++ ),
-            array( 'db' => 'Company_id', 'dt' => $i++ )
+            array('db' => 'Company_id', 'dt' => $i++),
+            array('db' => 'company_name', 'dt' => $i++),
+            array('db' => 'phone_number', 'dt' => $i++),
+            array('db' => 'refresh_date',   'dt' => $i++),
+            array('db' => 'address_address', 'dt' => $i++),
+            array('db' => 'email_email', 'dt' => $i++),
+            array('db' => 'website_url', 'dt' => $i++),
+            array('db' => 'status', 'dt' => $i++),
+            array('db' => 'Company_id', 'dt' => $i++)
         );
-        $convert=new convertDatatableIO();
-        $convert->input=$fields;
-        $convert->columns=$columns;
-        $searchFields= $convert->convertInput();
+        $convert = new convertDatatableIO();
+        $convert->input = $fields;
+        $convert->columns = $columns;
+        $searchFields = $convert->convertInput();
 
         $date = date('Y-m-d', strtotime(COMPANY_EXPIRE_PERIOD));
         // print_r_debug($date);
-        $searchFields['where'] = 'where refresh_date < '."'$date'";
+        $searchFields['where'] = 'where refresh_date < ' . "'$date'";
         //print_r_debug($searchFields);
 
         $result = $company->getCompany($searchFields);
@@ -422,60 +419,55 @@ class adminCompanyController
             $this->template('', $result['msg']);
             die();
         }
-        $list['list']=$company->list;
-        $list['paging']=$company->recordsCount;
+        $list['list'] = $company->list;
+        $list['paging'] = $company->recordsCount;
 
-        $other['2']=array(
-            'formatter' =>function($list)
-            {
-                $st='<div data-company_id="'.$list['Company_id'].'" class="company_phone">'.$list['phone_number'].'</div>';
+        $other['2'] = array(
+            'formatter' => function ($list) {
+                $st = '<div data-company_id="' . $list['Company_id'] . '" class="company_phone">' . $list['phone_number'] . '</div>';
 
                 return $st;
             }
 
         );
 
-        $other['3']=array(
-            'formatter' =>function($list)
-            {
-                $st= convertDate($list['refresh_date']);
+        $other['3'] = array(
+            'formatter' => function ($list) {
+                $st = convertDate($list['refresh_date']);
                 return $st;
             }
         );
-        $other['4']=array(
-            'formatter' =>function($list)
-            {
-                $st=convertDate(date('Y-m-d',strtotime(COMPANY_EXPIRE_PERIOD,strtotime($list['refresh_date'])))) ;
+        $other['4'] = array(
+            'formatter' => function ($list) {
+                $st = convertDate(date('Y-m-d', strtotime(COMPANY_EXPIRE_PERIOD, strtotime($list['refresh_date']))));
                 return $st;
             }
         );
-        $other['7']=array(
-            'formatter' =>function($list)
-            {
-                if($list['status']==1) {
-                    $st ='فعال';
-                }else {
-                    $st ='غیر فعال';
+        $other['7'] = array(
+            'formatter' => function ($list) {
+                if ($list['status'] == 1) {
+                    $st = 'فعال';
+                } else {
+                    $st = 'غیر فعال';
                 }
                 return $st;
             }
         );
 
-        $internalVariable['showstatus']=$fields['status'];
-        $other[$i-1]=array(
-            formatter =>function($list,$internal)
-            {
-                $st= 'a'.$list['showstatus'];
-                $st='<a href="'. RELA_DIR.'zamin/?component=company&action=edit&id='.$list['Company_id'].'&showStatus='.$internal['showstatus']
-                    .'">ویرایش</a> <br/>
-                        <a href="'.RELA_DIR.'zamin/?component=product&id='.$list['Company_id'].'">لیست محصولات</a><br/>
-                        <a href="'.RELA_DIR.'zamin/?component=honour&id='.$list['Company_id'].'">لیست افتخارات</a><br/>
-                        <a href="'.RELA_DIR.'zamin/?component=licence&id='.$list['Company_id'].'">لیست مجوز ها</a><br/>
-                        <a href="'.RELA_DIR.'zamin/?component=company&action=delete&id='.$list['Company_id'].$list['company_name'].'">حذف</a>';
+        $internalVariable['showstatus'] = $fields['status'];
+        $other[$i - 1] = array(
+            'formatter' => function ($list, $internal) {
+                $st = 'a' . $list['showstatus'];
+                $st = '<a href="' . RELA_DIR . 'zamin/?component=company&action=edit&id=' . $list['Company_id'] . '&showStatus=' . $internal['showstatus']
+                    . '">ویرایش</a> <br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=product&id=' . $list['Company_id'] . '">لیست محصولات</a><br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=honour&id=' . $list['Company_id'] . '">لیست افتخارات</a><br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=licence&id=' . $list['Company_id'] . '">لیست مجوز ها</a><br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=company&action=delete&id=' . $list['Company_id'] . $list['company_name'] . '">حذف</a>';
                 return $st;
             }
         );
-        $export= $convert->convertOutput($list,$columns,$other,$internalVariable);
+        $export = $convert->convertOutput($list, $columns, $other, $internalVariable);
         echo json_encode($export);
         die();
     }
@@ -499,23 +491,23 @@ class adminCompanyController
         $company = new adminCompanyModel();
 
         include_once(ROOT_DIR . "model/datatable.converter.php");
-        $i=0;
+        $i = 0;
         $columns = array(
-            array( 'db' => 'Company_id', 'dt' =>$i++),
-            array( 'db' => 'company_name', 'dt' =>$i++),
-            array( 'db' => 'phone_number', 'dt' =>$i++),
-            array( 'db' => 'city_name',   'dt' => $i++),
-            array( 'db' => 'address_address', 'dt' => $i++ ),
-            array( 'db' => 'email_email', 'dt' => $i++ ),
-            array( 'db' => 'website_url', 'dt' => $i++ ),
-            array( 'db' => 'status', 'dt' => $i++ ),
-            array( 'db' => 'logo', 'dt' => $i++ ),
-            array( 'db' => 'Company_id', 'dt' => $i++ )
+            array('db' => 'Company_id', 'dt' => $i++),
+            array('db' => 'company_name', 'dt' => $i++),
+            array('db' => 'phone_number', 'dt' => $i++),
+            array('db' => 'city_name',   'dt' => $i++),
+            array('db' => 'address_address', 'dt' => $i++),
+            array('db' => 'email_email', 'dt' => $i++),
+            array('db' => 'website_url', 'dt' => $i++),
+            array('db' => 'status', 'dt' => $i++),
+            array('db' => 'logo', 'dt' => $i++),
+            array('db' => 'Company_id', 'dt' => $i++)
         );
-        $convert=new convertDatatableIO();
-        $convert->input=$fields;
-        $convert->columns=$columns;
-        $searchFields= $convert->convertInput();
+        $convert = new convertDatatableIO();
+        $convert->input = $fields;
+        $convert->columns = $columns;
+        $searchFields = $convert->convertInput();
 
         //$date = date('Y-m-d', strtotime(COMPANY_EXPIRE_PERIOD));
         // print_r_debug($date);
@@ -528,43 +520,40 @@ class adminCompanyController
             $this->template('', $result['msg']);
             die();
         }
-        $list['list']=$company->list;
-        $list['paging']=$company->recordsCount;
+        $list['list'] = $company->list;
+        $list['paging'] = $company->recordsCount;
 
-        $other['2']=array(
-            'formatter' =>function($list)
-            {
-                $st='<div data-company_id="'.$list['Company_id'].'" class="company_phone">'.$list['phone_number'].'</div>';
+        $other['2'] = array(
+            'formatter' => function ($list) {
+                $st = '<div data-company_id="' . $list['Company_id'] . '" class="company_phone">' . $list['phone_number'] . '</div>';
                 return $st;
             }
         );
 
-        $other['7']=array(
-            'formatter' =>function($list)
-            {
-                if($list['status']==1) {
-                    $st ='فعال';
-                }else {
-                    $st ='غیر فعال';
+        $other['7'] = array(
+            'formatter' => function ($list) {
+                if ($list['status'] == 1) {
+                    $st = 'فعال';
+                } else {
+                    $st = 'غیر فعال';
                 }
                 return $st;
             }
         );
-        $internalVariable['showstatus']=$fields['status'];
-        $other[$i-1]=array(
-            formatter =>function($list,$internal)
-            {
-                $st= 'a'.$list['showstatus'];
-                $st='<a href="'. RELA_DIR.'zamin/?component=company&action=edit&id='.$list['Company_id'].'&showStatus='.$internal['showstatus']
-                    .'">ویرایش</a> <br/>
-                        <a href="'.RELA_DIR.'zamin/?component=product&id='.$list['Company_id'].'">لیست محصولات</a><br/>
-                        <a href="'.RELA_DIR.'zamin/?component=honour&id='.$list['Company_id'].'">لیست افتخارات</a><br/>
-                        <a href="'.RELA_DIR.'zamin/?component=licence&id='.$list['Company_id'].'">لیست مجوز ها</a><br/>
-                        <a href="'.RELA_DIR.'zamin/?component=company&action=delete&id='.$list['Company_id'].$list['company_name'].'">حذف</a>';
+        $internalVariable['showstatus'] = $fields['status'];
+        $other[$i - 1] = array(
+            'formatter' => function ($list, $internal) {
+                $st = 'a' . $list['showstatus'];
+                $st = '<a href="' . RELA_DIR . 'zamin/?component=company&action=edit&id=' . $list['Company_id'] . '&showStatus=' . $internal['showstatus']
+                    . '">ویرایش</a> <br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=product&id=' . $list['Company_id'] . '">لیست محصولات</a><br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=honour&id=' . $list['Company_id'] . '">لیست افتخارات</a><br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=licence&id=' . $list['Company_id'] . '">لیست مجوز ها</a><br/>
+                        <a href="' . RELA_DIR . 'zamin/?component=company&action=delete&id=' . $list['Company_id'] . $list['company_name'] . '">حذف</a>';
                 return $st;
             }
         );
-        $export= $convert->convertOutput($list,$columns,$other,$internalVariable);
+        $export = $convert->convertOutput($list, $columns, $other, $internalVariable);
         //print_r_debug($export);
         echo json_encode($export);
         die();
@@ -614,14 +603,12 @@ class adminCompanyController
      */
     public function updateCity()
     {
-        include_once ROOT_DIR.'component/city/admin/model/admin.city.model.db.php';
 
         $cityList = adminCityModelDb::getAll()['export']['list'];
 
-        foreach ($cityList as $key=>$fields)
-        {
+        foreach ($cityList as $key => $fields) {
 
-            $province_id= $fields['province_id'];
+            $province_id = $fields['province_id'];
 
             echo $province_id;
 
@@ -638,8 +625,7 @@ class adminCompanyController
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-            if (!$stmt)
-            {
+            if (!$stmt) {
                 $result['result'] = -1;
                 $result['Number'] = 1;
                 $result['msg'] = $conn->errorInfo();
@@ -651,8 +637,8 @@ class adminCompanyController
 
 
             //print_r_debug($fields);
-            $city_id= $fields['City_id'];
-            $province_id= $fields['province_id'];
+            $city_id = $fields['City_id'];
+            $province_id = $fields['province_id'];
             echo $province_id;
             //echo '<br/>';
             //echo '<br/>$city_id<br/>';
@@ -673,9 +659,8 @@ class adminCompanyController
      */
     public function importCompanies()
     {
-        include_once dirname(__FILE__).'/admin.company.model.db.php';
-        include_once ROOT_DIR.'component/city/admin/model/admin.city.model.db.php';
-        $xml = (STATIC_ROOT_DIR.'/xml/companies.xml');
+        include_once dirname(__FILE__) . '/admin.company.model.db.php';
+        $xml = (STATIC_ROOT_DIR . '/xml/companies.xml');
         $xmlDoc = new DOMDocument();
         $xmlDoc->load($xml);
         $wb = $xmlDoc->getElementsByTagName('Workbook')->item(0);
@@ -703,31 +688,31 @@ class adminCompanyController
             if ($g1 != '{-}') {
                 $fieldsArray = explode(',', $fields['category_list']);
                 if (!array_search(($g1 * 100), $fieldsArray)) {
-                    $fields['category_list'] .= ','.($g1 * 100);
+                    $fields['category_list'] .= ',' . ($g1 * 100);
                 }
                 if (!array_search((($g1 * 100) + $g1s), $fieldsArray)) {
-                    $fields['category_list'] .= ','.(($g1 * 100) + $g1s);
+                    $fields['category_list'] .= ',' . (($g1 * 100) + $g1s);
                 }
             }
             if ($g2 != '{-}') {
                 $fieldsArray = explode(',', $fields['category_list']);
                 if (!array_search(($g2 * 100), $fieldsArray)) {
-                    $fields['category_list'] .= ','.($g2 * 100);
+                    $fields['category_list'] .= ',' . ($g2 * 100);
                 }
                 if (!array_search((($g2 * 100) + $g2s), $fieldsArray)) {
-                    $fields['category_list'] .= ','.(($g2 * 100) + $g2s);
+                    $fields['category_list'] .= ',' . (($g2 * 100) + $g2s);
                 }
             }
             if ($g3 != '{-}') {
                 $fieldsArray = explode(',', $fields['category_list']);
                 if (!array_search(($g3 * 100), $fieldsArray)) {
-                    $fields['category_list'] .= ','.($g3 * 100);
+                    $fields['category_list'] .= ',' . ($g3 * 100);
                 }
                 if (!array_search((($g3 * 100) + $g3s), $fieldsArray)) {
-                    $fields['category_list'] .= ','.(($g3 * 100) + $g3s);
+                    $fields['category_list'] .= ',' . (($g3 * 100) + $g3s);
                 }
             }
-            $fields['category_list']=$fields['category_list'].',';
+            $fields['category_list'] = $fields['category_list'] . ',';
             //print_r_debug($fields['category_list']);
 
             $city_name = $cell[13]->getElementsByTagName('Data')[0]->nodeValue;
@@ -898,7 +883,7 @@ class adminCompanyController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=company', $msg);
     }
 
     /**
@@ -908,8 +893,7 @@ class adminCompanyController
      */
     public function importCompanyPhones()
     {
-        include_once dirname(__FILE__).'/admin.company.model.db.php';
-        $xml = (STATIC_ROOT_DIR.'/xml/company-phones.xml');
+        $xml = (STATIC_ROOT_DIR . '/xml/company-phones.xml');
         $xmlDoc = new DOMDocument();
         $xmlDoc->load($xml);
         $wb = $xmlDoc->getElementsByTagName('Workbook')->item(0);
@@ -939,7 +923,7 @@ class adminCompanyController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=company', $msg);
     }
     /**
      * importCompanyEmails.
@@ -948,8 +932,7 @@ class adminCompanyController
      */
     public function importCompanyEmails()
     {
-        include_once dirname(__FILE__).'/admin.company.model.db.php';
-        $xml = (STATIC_ROOT_DIR.'/xml/company-emails.xml');
+        $xml = (STATIC_ROOT_DIR . '/xml/company-emails.xml');
         $xmlDoc = new DOMDocument();
         $xmlDoc->load($xml);
         $wb = $xmlDoc->getElementsByTagName('Workbook')->item(0);
@@ -978,7 +961,7 @@ class adminCompanyController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=company', $msg);
     }
     /**
      * importCompanyAddresses.
@@ -987,8 +970,7 @@ class adminCompanyController
      */
     public function importCompanyAddresses()
     {
-        include_once dirname(__FILE__).'/admin.company.model.db.php';
-        $xml = (STATIC_ROOT_DIR.'/xml/company-addresses.xml');
+        $xml = (STATIC_ROOT_DIR . '/xml/company-addresses.xml');
         $xmlDoc = new DOMDocument();
         $xmlDoc->load($xml);
         $wb = $xmlDoc->getElementsByTagName('Workbook')->item(0);
@@ -1016,17 +998,12 @@ class adminCompanyController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=company', $msg);
     }
-    /**
-     * importCompanyWebsites.
-     *
-     * @return redirectPage
-     */
+
     public function importCompanyWebsites()
     {
-        include_once dirname(__FILE__).'/admin.company.model.db.php';
-        $xml = (STATIC_ROOT_DIR.'/xml/company-websites.xml');
+        $xml = (STATIC_ROOT_DIR . '/xml/company-websites.xml');
         $xmlDoc = new DOMDocument();
         $xmlDoc->load($xml);
         $wb = $xmlDoc->getElementsByTagName('Workbook')->item(0);
@@ -1054,7 +1031,7 @@ class adminCompanyController
         }
 
         $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=company', $msg);
     }
     /**
      * delete deleteCompany by company_id.
@@ -1071,39 +1048,38 @@ class adminCompanyController
     {
         $company = new adminCompanyModel();
 
-        if (!validator::required($id) and !validator::Numeric($id)) {
+        if (!validators::required($id) and !validators::Numeric($id)) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=company', $msg);
         }
         $result = $company->getCompanyById($id);
         if ($result['result'] != '1') {
             $msg = $result['msg'];
-            redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=company', $msg);
         }
 
-        include_once ROOT_DIR.'/component/product/admin/model/admin.product.model.php';
         $product = new adminProductModel();
 
         $result = $product->getProductByCompanyId($id);
 
         if ($result['export']['recordsCount'] > 0) {
             $msg = 'توجه : ابتدا محصولات این کمپانی را حذف تنایید.';
-            redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=company', $msg);
         }
 
         $result = $company->delete();
 
         if ($result['result'] != '1') {
-            redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=company');
         }
 
         $msg = 'عملیات با موفقیت انجام شد';
-        redirectPage(RELA_DIR.'zamin/index.php?component=company', $msg);
+        redirectPage(RELA_DIR . 'zamin/index.php?component=company', $msg);
         die();
     }
     public function call($fields)
     {
-        include_once dirname(__FILE__).'/php-ami-class.php';
+        include_once dirname(__FILE__) . '/php-ami-class.php';
         $conn = new AstMan();
         $ret = $conn->clickToCall($fields['number']);
         die();
@@ -1112,36 +1088,31 @@ class adminCompanyController
     public function getCompanyphone($input)
     {
         $company_id =   $input['company_id'];
-        include_once dirname(__FILE__).'/admin.company.model.php';
+        include_once dirname(__FILE__) . '/admin.company.model.php';
         $model = new adminCompanyModel();
         $result = $model->getCompanyphoneAll($company_id);
-        $phone='';
-        foreach ($result['export']['list'] as $key => $value ){
-            $phone .='<h4><a class="btn btn-default company_allphone label label-default" href="#" role="button" data-myphonenumber="'.$value.'" data-mycompanyid="'.$company_id.'"><span class="glyphicon glyphicon-phone-alt"></span></a><span>'.$value.'</span></h4>';
-
+        $phone = '';
+        foreach ($result['export']['list'] as $key => $value) {
+            $phone .= '<h4><a class="btn btn-default company_allphone label label-default" href="#" role="button" data-myphonenumber="' . $value . '" data-mycompanyid="' . $company_id . '"><span class="glyphicon glyphicon-phone-alt"></span></a><span>' . $value . '</span></h4>';
         }
         echo $phone;
         //print_r_debug($result );
         //json_encode($result);
-         die();
-
+        die();
     }
 
     public function getCityAjax($input)
     {
-        $province_id =$input['province_id'];
-        include_once ROOT_DIR.'/component/city/admin/model/admin.city.model.php';
+        $province_id = $input['province_id'];
         $model = new adminCityModel();
         $result = $model->getCitiesByprovinceID($province_id);
 
-        $option='';
-        foreach ($result['export']['list'] as $key => $value){
-            $option.="<option>".$value['name']."</option>";
+        $option = '';
+        foreach ($result['export']['list'] as $key => $value) {
+            $option .= "<option>" . $value['name'] . "</option>";
         }
         echo $option;
 
         die();
-
     }
-
 }

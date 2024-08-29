@@ -2,7 +2,7 @@
 
 		<!-- Footer
 		============================================= -->
-        <footer id="footer" class="" style="background:#fff" <?/*style="background: url('<?php echo TEMPLATE_DIR; ?>/img/footer-bg.jpg') repeat ; background-size: 100% 100%; "*/?>>
+        <footer id="footer" class="" style="background:#fff" <?php /*style="background: url('<?php echo TEMPLATE_DIR; ?>/img/footer-bg.jpg') repeat ; background-size: 100% 100%; "*/?>>
 
             <div class="container">
 

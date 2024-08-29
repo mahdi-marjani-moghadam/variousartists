@@ -7,7 +7,7 @@ use Common\validators;
 use Component\artists\model\artists;
 use Component\category\admin\model\adminCategoryModel;
 use Component\genre\admin\model\adminGenreModel;
-use Component\magfa\WebServiceSample;
+// use Component\magfa\WebServiceSample;
 use Component\province\model\province;
 use Gregwar\Captcha\CaptchaBuilder;
 use Gregwar\Captcha\PhraseBuilder;
@@ -482,7 +482,7 @@ class memberLogIn
 
 
         /// /////// genre
-        include_once(ROOT_DIR . "component/genre/admin/model/admin.genre.model.php");
+        // include_once(ROOT_DIR . "component/genre/admin/model/admin.genre.model.php");
         $genre = new adminGenreModel();
 
         $resultGenre = $genre->getGenreOption();

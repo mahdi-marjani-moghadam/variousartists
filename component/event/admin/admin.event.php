@@ -15,12 +15,7 @@ if (isset($exportType)) {
 }
 
 switch ($_GET['action']) {
-    /*case 'expired':
-        $eventController->showExpiredList();
-        break;
-    case 'unverified':
-        $eventController->showUnverifiedList();
-        break;*/
+   
     case 'add':
 
         if ( isset($_POST['add']) ) {
@@ -60,27 +55,8 @@ switch ($_GET['action']) {
         checkPermissions('deleteEvent');
         $eventController->deleteEventDraft($_GET['id']);
         break;
-    /*case 'call':
-        $eventController->call($_POST);
-        break;
-    case 'importCompanies':
-        $eventController->importCompanies();
-        break;
-    case 'updateCity':
-        $eventController->updateCity();
-        break;    
-    case 'importEventPhones':
-        $eventController->importEventPhones();
-        break;
-    case 'importEventEmails':
-        $eventController->importEventEmails();
-        break;
-    case 'importEventAddresses':
-        $eventController->importEventAddresses();
-        break;
-    case 'importEventWebsites':
-        $eventController->importEventWebsites();*/
-        break;
+    
+
     case 'search':
         $eventController->search($_GET);
         break;
@@ -90,16 +66,7 @@ switch ($_GET['action']) {
     case 'searchGallery':
         $eventController->searchGallery($_GET);
         break;
-    /*case 'searchExpire':
-        $eventController->searchExpire($_GET);
-        break;
-    case 'getEventPhone':
-
-        $eventController->getEventphone($_POST);
-        break;
-    case 'searchUnverified':
-        $eventController->searchUnverified($_GET);
-        break;*/
+   
     case 'getCityAjax':
         $eventController->getCityAjax($_POST);
         break;

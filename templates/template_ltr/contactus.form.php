@@ -136,11 +136,11 @@
 
                             <script src="https://maps.googleapis.com/maps/api/js?callback=myMap&key=AIzaSyCIh9IvVEgJFsmTg0UcXLn8LDoPnz2CnRc"></script>
                             */ ?>
-                            <?/*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIh9IvVEgJFsmTg0UcXLn8LDoPnz2CnRc&callback=initMap"
+                            <?php /*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIh9IvVEgJFsmTg0UcXLn8LDoPnz2CnRc&callback=initMap"
                                     async defer></script>*/ ?>
 
 
-                            <?/*<div class="map  " >
+                            <?php /*<div class="map  " >
 
                                 <!--<iframe
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3235.4731620588063!2d51.41640450000003!3d35.812864999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e08a716c96309%3A0x997a8b0e7ef5c224!2sTehran%2C+Kooh+Peykar!5e0!3m2!1sen!2sir!4v1442735189471"
@@ -170,5 +170,5 @@
 
 
 
-<?/*<script src="<?php echo RELA_DIR.'templates/'.CURRENT_SKIN; ?>/assets/js/validator.min.js"></script>*/ ?>
+<?php /*<script src="<?php echo RELA_DIR.'templates/'.CURRENT_SKIN; ?>/assets/js/validator.min.js"></script>*/ ?>
 <!-- owl carousel js -->

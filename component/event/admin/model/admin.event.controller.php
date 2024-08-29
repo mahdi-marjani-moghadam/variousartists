@@ -13,59 +13,31 @@ use Component\event_gallery\admin\model\adminEvent_galleryModel;
 use Component\genre\admin\model\adminGenreModel;
 use Component\province\admin\model\adminProvinceModel;
 use Component\salon\admin\model\adminSalonModel;
+use Model\convertDatatableIO;
 
-/**
- * Created by PhpStorm.
- * User: malekloo
- * Date: 3/6/2016
- * Time: 11:21 AM.
- */
-include_once dirname(__FILE__) . '/admin.event.model.php';
 
-/**
- * Class registerController.
- */
+
 class adminEventController
 {
-    /**
-     * Contains file type.
-     *
-     * @var
-     */
+
     public $exportType;
 
-    /**
-     * Contains file name.
-     *
-     * @var
-     */
+
     public $fileName;
 
-    /**
-     * registerController constructor.
-     */
+
     public function __construct()
     {
         $this->exportType = 'html';
     }
 
-    /**
-     * call template.
-     *
-     * @param string $list
-     * @param $msg
-     *
-     * @return string
-     */
+
     public function template($list = array(), $msg = '')
     {
         global $messageStack, $admin_info, $lang;
 
         switch ($this->exportType) {
             case 'html':
-
-
-
                 include ROOT_DIR . 'templates/' . CURRENT_SKIN . '/template_start.php';
                 include ROOT_DIR . 'templates/' . CURRENT_SKIN . '/template_header.php';
                 include ROOT_DIR . 'templates/' . CURRENT_SKIN . '/template_rightMenu_admin.php';
@@ -77,11 +49,6 @@ class adminEventController
             case 'json':
                 echo json_encode($list);
                 break;
-
-            case 'array':
-                return $list;
-                break;
-
             case 'serialize':
                 echo serialize($list);
                 break;
@@ -96,7 +63,6 @@ class adminEventController
     public function showEventAddForm($fields = array(), $msg = '')
     {
         /** category */
-        include_once ROOT_DIR . 'component/category/admin/model/admin.category.model.php';
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
@@ -107,7 +73,6 @@ class adminEventController
         }
 
         /** genre */
-        include_once ROOT_DIR . 'component/genre/admin/model/admin.genre.model.php';
         $genre = new adminGenreModel();
 
         $resultGenre = $genre->getGenreOption();
@@ -117,7 +82,6 @@ class adminEventController
 
         /** salon */
 
-        include_once ROOT_DIR . 'component/salon/admin/model/admin.salon.model.php';
         $salon = new adminSAlonModel();
         $obj = $salon->getAll()
             ->where('parent_id', '=', 0)
@@ -143,7 +107,6 @@ class adminEventController
         }*/
 
         /** country */
-        include_once ROOT_DIR . 'component/country/model/country.model.php';
         $country = new country();
         $resultCountry = $country::getAll()->getList();
         if ($resultCountry['result'] == 1) {
@@ -259,7 +222,6 @@ class adminEventController
         global $messageStack;
 
 
-        include_once ROOT_DIR . 'component/event_gallery/admin/model/admin.event_gallery.model.php';
         $event = new adminEvent_galleryModel();
 
         $result = $event->setFields($_input);
@@ -318,7 +280,6 @@ class adminEventController
         }
 
         /** category */
-        // include_once ROOT_DIR . 'component/category/admin/model/admin.category.model.php';
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
@@ -327,7 +288,6 @@ class adminEventController
             $export['category'] = $category->list;
         }
         /** genre */
-        // include_once ROOT_DIR . 'component/genre/admin/model/admin.genre.model.php';
         $genre = new adminGenreModel();
 
         $resultGenre = $genre->getGenreOption();
@@ -336,7 +296,6 @@ class adminEventController
             $export['genre'] = $genre->list;
         }
 
-        // include_once ROOT_DIR . 'component/salon/admin/model/admin.salon.model.php';
         $salon = new adminSalonModel();
         $obj = $salon->getAll()
             ->where('parent_id', '=', 0)
@@ -346,7 +305,6 @@ class adminEventController
             $export['salon'] = $obj['export']['list'];
         }
 
-        include_once ROOT_DIR . 'component/province/admin/model/admin.province.model.php';
         //$city = new adminCityModel();
         $province = adminProvinceModel::getAll()->getList();
 
@@ -355,15 +313,9 @@ class adminEventController
             $export['provinces'] = $province['export']['list'];
         }
 
-        /*include_once ROOT_DIR.'component/state/admin/model/admin.state.model.php';
-        $state = new adminStateModel();
-        $resultState = $state->getStates();
-        if ($resultState['result'] == 1) {
-            $export['states'] = $state->list;
-        }*/
+
 
         /** country */
-        include_once ROOT_DIR . 'component/country/model/country.model.php';
         $country = new country();
         $resultCountry = $country::getAll()->getList();
         if ($resultCountry['result'] == 1) {
@@ -389,9 +341,6 @@ class adminEventController
      */
     public function editEvent($fields)
     {
-
-
-        //$event = new adminEventModel();
         $event = adminEventModel::find($fields['Event_id']);
         //$result = $event->getEventById($fields['Event_id']);
 
@@ -403,14 +352,9 @@ class adminEventController
 
         $fields['salon_id'] = ("," . (implode(",", $fields['salon_id'])) . "," == ',,') ? '' : "," . (implode(",", $fields['salon_id'])) . ",";
 
-
         $event->setFields($fields);
         $event->update_date = date('Y-m-d H:i:s');
-
-
         $result = $event->save();
-
-        //        print_r_debug($event);
 
         $fields = $event->fields;
         if ($result['result'] != '1') {
@@ -461,7 +405,6 @@ class adminEventController
         }
 
         /** category */
-        include_once ROOT_DIR . 'component/category/admin/model/admin.category.model.php';
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
@@ -470,7 +413,6 @@ class adminEventController
             $export['category'] = $category->list;
         }
         /** genre */
-        include_once ROOT_DIR . 'component/genre/admin/model/admin.genre.model.php';
         $genre = new adminGenreModel();
 
         $resultGenre = $genre->getGenreOption();
@@ -480,7 +422,6 @@ class adminEventController
         }
 
         /** salon */
-        include_once ROOT_DIR . 'component/salon/admin/model/admin.salon.model.php';
         $salon = new adminSAlonModel();
         $obj = $salon->getAll()
             ->where('parent_id', '=', 0)
@@ -491,7 +432,6 @@ class adminEventController
         }
 
 
-        include_once ROOT_DIR . 'component/province/admin/model/admin.province.model.php';
         //$city = new adminCityModel();
         $province = adminProvinceModel::getAll()->getList();
 
@@ -500,12 +440,7 @@ class adminEventController
             $export['provinces'] = $province['export']['list'];
         }
 
-        /*include_once ROOT_DIR.'component/state/admin/model/admin.state.model.php';
-        $state = new adminStateModel();
-        $resultState = $state->getStates();
-        if ($resultState['result'] == 1) {
-            $export['states'] = $state->list;
-        }*/
+
 
 
         $export['showStatus'] = $showStatus;
@@ -597,7 +532,6 @@ class adminEventController
 
         $event = new adminEventModel();
 
-        include_once(ROOT_DIR . "model/datatable.converter.php");
         $i = 0;
         $columns = array(
             array('db' => 'Event_id', 'dt' => $i++),
@@ -677,10 +611,7 @@ class adminEventController
         );
         $other['5'] = array(
             'formatter' => function ($list) {
-                // include_once ROOT_DIR."component/country/model/country.model.php";
                 $city = country::find($list['country_id']);
-
-
                 return $city->fields["nice_name"];
             }
         );
@@ -710,13 +641,10 @@ class adminEventController
     public function searchDraft($fields)
     {
 
-        /*echo '<pre/>';
-        print_r($fields);
-        die();*/
+
 
         $event = new adminEventModel();
 
-        include_once(ROOT_DIR . "model/datatable.converter.php");
         $i = 0;
         $columns = array(
             array('db' => 'Event_id', 'dt' => $i++),
@@ -1190,406 +1118,9 @@ class adminEventController
 
 
     }
-    /**
-     * importCompanies.
-     *
-     * @return redirectPage
-     */
-    public function importCompanies()
-    {
-        include_once dirname(__FILE__) . '/admin.event.model.db.php';
-        include_once ROOT_DIR . 'component/city/admin/model/admin.city.model.db.php';
-        $xml = (STATIC_ROOT_DIR . '/xml/companies.xml');
-        $xmlDoc = new DOMDocument();
-        $xmlDoc->load($xml);
-        $wb = $xmlDoc->getElementsByTagName('Workbook')->item(0);
+   
 
-        $ws = $wb->getElementsByTagName('Worksheet')->item(0);
-        $table = $ws->getElementsByTagName('Table')->item(0);
-        $row = $table->getElementsByTagName('Row');
-        $i = 1;
-
-        foreach ($row as $rowkey => $rowValue) {
-            $fields = array();
-            $cell = $rowValue->getElementsByTagName('Cell');
-            $fields['Event_id'] = $i;
-            $fields['event_name'] = $cell[19]->getElementsByTagName('Data')[0]->nodeValue;
-            $fields['meta_description'] = $cell[16]->getElementsByTagName('Data')[0]->nodeValue;
-            $fields['description'] = $cell[16]->getElementsByTagName('Data')[0]->nodeValue;
-
-            $g1 = $cell[6]->getElementsByTagName('Data')[0]->nodeValue;
-            $g1s = $cell[5]->getElementsByTagName('Data')[0]->nodeValue;
-            $g2 = $cell[4]->getElementsByTagName('Data')[0]->nodeValue;
-            $g2s = $cell[3]->getElementsByTagName('Data')[0]->nodeValue;
-            $g3 = $cell[2]->getElementsByTagName('Data')[0]->nodeValue;
-            $g3s = $cell[1]->getElementsByTagName('Data')[0]->nodeValue;
-            $fields['category_list'] = '';
-            if ($g1 != '{-}') {
-                $fieldsArray = explode(',', $fields['category_list']);
-                if (!array_search(($g1 * 100), $fieldsArray)) {
-                    $fields['category_list'] .= ',' . ($g1 * 100);
-                }
-                if (!array_search((($g1 * 100) + $g1s), $fieldsArray)) {
-                    $fields['category_list'] .= ',' . (($g1 * 100) + $g1s);
-                }
-            }
-            if ($g2 != '{-}') {
-                $fieldsArray = explode(',', $fields['category_list']);
-                if (!array_search(($g2 * 100), $fieldsArray)) {
-                    $fields['category_list'] .= ',' . ($g2 * 100);
-                }
-                if (!array_search((($g2 * 100) + $g2s), $fieldsArray)) {
-                    $fields['category_list'] .= ',' . (($g2 * 100) + $g2s);
-                }
-            }
-            if ($g3 != '{-}') {
-                $fieldsArray = explode(',', $fields['category_list']);
-                if (!array_search(($g3 * 100), $fieldsArray)) {
-                    $fields['category_list'] .= ',' . ($g3 * 100);
-                }
-                if (!array_search((($g3 * 100) + $g3s), $fieldsArray)) {
-                    $fields['category_list'] .= ',' . (($g3 * 100) + $g3s);
-                }
-            }
-            $fields['category_list'] = $fields['category_list'] . ',';
-            //print_r_debug($fields['category_list']);
-
-            $city_name = $cell[13]->getElementsByTagName('Data')[0]->nodeValue;
-            $city_id = adminCityModelDb::getCityByName($city_name)['City_id'];
-            if ($city_id == '') {
-                $fieldsCity = array('city_name' => $city_name);
-                //$resultInsetCity = adminCityModelDb::insert($fieldsCity);
-                //$city_id = $resultInsetCity['export']['insert_id'];
-            }
-            $fields['city_id'] = $city_id;
-
-
-            ///$result = adminEventModelDb::insert2($fields);
-
-            // phone 1
-            $code = $cell[21]->getElementsByTagName('Data')[0]->nodeValue;
-            $number = $cell[22]->getElementsByTagName('Data')[0]->nodeValue;
-            $until = $cell[23]->getElementsByTagName('Data')[0]->nodeValue;
-            if ($code != '{-}') {
-                $fieldsPhone['event_id'] = $i;
-                $fieldsPhone['subject'] = 'تلفن 1';
-                $fieldsPhone['number'] = $number;
-                if ($until != '{-}') {
-                    $fieldsPhone['state'] = 'الی';
-                    $fieldsPhone['value'] = $until;
-                } else {
-                    $fieldsPhone['state'] = 'سایر';
-                    $fieldsPhone['value'] = '';
-                }
-                $result = adminEventModelDb::insertToPhones2($fieldsPhone);
-            }
-            // end phone 1
-
-            // phone 2
-            $code = $cell[24]->getElementsByTagName('Data')[0]->nodeValue;
-            $number = $cell[25]->getElementsByTagName('Data')[0]->nodeValue;
-            $until = $cell[26]->getElementsByTagName('Data')[0]->nodeValue;
-            if ($code != '{-}') {
-                $fieldsPhone['event_id'] = $i;
-                $fieldsPhone['subject'] = 'تلفن 2';
-                $fieldsPhone['number'] = $number;
-                if ($until != '{-}') {
-                    $fieldsPhone['state'] = 'الی';
-                    $fieldsPhone['value'] = $until;
-                } else {
-                    $fieldsPhone['state'] = 'سایر';
-                    $fieldsPhone['value'] = '';
-                }
-                $result = adminEventModelDb::insertToPhones2($fieldsPhone);
-            }
-            // end phone 2
-
-            // phone 3
-            $code = $cell[27]->getElementsByTagName('Data')[0]->nodeValue;
-            $number = $cell[28]->getElementsByTagName('Data')[0]->nodeValue;
-            $until = $cell[29]->getElementsByTagName('Data')[0]->nodeValue;
-            if ($code != '{-}') {
-                $fieldsPhone['event_id'] = $i;
-                $fieldsPhone['subject'] = 'تلفن 3';
-                $fieldsPhone['number'] = $number;
-                if ($until != '{-}') {
-                    $fieldsPhone['state'] = 'الی';
-                    $fieldsPhone['value'] = $until;
-                } else {
-                    $fieldsPhone['state'] = 'سایر';
-                    $fieldsPhone['value'] = '';
-                }
-                $result = adminEventModelDb::insertToPhones2($fieldsPhone);
-            }
-            // end phone 3
-
-            // phone 4
-            $code = $cell[30]->getElementsByTagName('Data')[0]->nodeValue;
-            $number = $cell[31]->getElementsByTagName('Data')[0]->nodeValue;
-            $until = $cell[32]->getElementsByTagName('Data')[0]->nodeValue;
-            if ($code != '{-}') {
-                $fieldsPhone['event_id'] = $i;
-                $fieldsPhone['subject'] = 'تلفن 4';
-                $fieldsPhone['number'] = $number;
-                if ($until != '{-}') {
-                    $fieldsPhone['state'] = 'الی';
-                    $fieldsPhone['value'] = $until;
-                } else {
-                    $fieldsPhone['state'] = 'سایر';
-                    $fieldsPhone['value'] = '';
-                }
-                $result = adminEventModelDb::insertToPhones2($fieldsPhone);
-            }
-            // end phone 4
-
-            // fax 1
-            $code = $cell[34]->getElementsByTagName('Data')[0]->nodeValue;
-            $number = $cell[35]->getElementsByTagName('Data')[0]->nodeValue;
-            $until = $cell[36]->getElementsByTagName('Data')[0]->nodeValue;
-            if ($code != '{-}') {
-                $fieldsFax['event_id'] = $i;
-                $fieldsFax['subject'] = 'فکس 1';
-                $fieldsFax['number'] = $number;
-                if ($until != '{-}') {
-                    $fieldsFax['state'] = 'الی';
-                    $fieldsFax['value'] = $until;
-                } else {
-                    $fieldsFax['state'] = 'سایر';
-                    $fieldsFax['value'] = '';
-                }
-                $result = adminEventModelDb::insertToPhones2($fieldsFax);
-            }
-            // end fax 1
-
-            // fax 2
-            $code = $cell[37]->getElementsByTagName('Data')[0]->nodeValue;
-            $number = $cell[38]->getElementsByTagName('Data')[0]->nodeValue;
-            $until = $cell[39]->getElementsByTagName('Data')[0]->nodeValue;
-            if ($code != '{-}') {
-                $fieldsFax['event_id'] = $i;
-                $fieldsFax['subject'] = 'فکس 2';
-                $fieldsFax['number'] = $number;
-                if ($until != '{-}') {
-                    $fieldsFax['state'] = 'الی';
-                    $fieldsFax['value'] = $until;
-                } else {
-                    $fieldsFax['state'] = 'سایر';
-                    $fieldsFax['value'] = '';
-                }
-                $result = adminEventModelDb::insertToPhones2($fieldsFax);
-            }
-            // end fax 2
-
-            // email
-            $email = $cell[12]->getElementsByTagName('Data')[0]->nodeValue;
-            if ($email != '{-}') {
-                $fieldsEmail['event_id'] = $i;
-                $fieldsEmail['subject'] = 'ایمیل';
-                $fieldsEmail['email'] = $email;
-                $result = adminEventModelDb::insertToEmails2($fieldsEmail);
-            }
-            // end email
-
-            // address
-            $address = $cell[14]->getElementsByTagName('Data')[0]->nodeValue;
-            if ($address != '{-}') {
-                $fieldsAddresses['event_id'] = $i;
-                $fieldsAddresses['subject'] = 'آدرس';
-                $fieldsAddresses['address'] = $address;
-                $result = adminEventModelDb::insertToAddresses2($fieldsAddresses);
-            }
-            // end address
-
-            // website
-            $website = $cell[11]->getElementsByTagName('Data')[0]->nodeValue;
-            if ($website != '{-}') {
-                $fieldsWebsite['event_id'] = $i;
-                $fieldsWebsite['subject'] = 'وب سایت';
-                $fieldsWebsite['website'] = $website;
-                $result = adminEventModelDb::insertToWebsites2($fieldsWebsite);
-            }
-            // end website
-
-            /*if ($i % 10 == 0) {
-                echo $i;
-                echo '<br>';
-                die();
-            }*/
-            ++$i;
-            //flush();
-            //ob_flush();
-            //ob_end_clean();
-        }
-
-        $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
-    }
-
-    /**
-     * importEventPhones.
-     *
-     * @return redirectPage
-     */
-    public function importEventPhones()
-    {
-        include_once dirname(__FILE__) . '/admin.event.model.db.php';
-        $xml = (STATIC_ROOT_DIR . '/xml/event-phones.xml');
-        $xmlDoc = new DOMDocument();
-        $xmlDoc->load($xml);
-        $wb = $xmlDoc->getElementsByTagName('Workbook')->item(0);
-        $ws = $wb->getElementsByTagName('Worksheet')->item(0);
-        $table = $ws->getElementsByTagName('Table')->item(0);
-        $row = $table->getElementsByTagName('Row');
-        $i = 1;
-        foreach ($row as $rowkey => $rowValue) {
-            $fields = array();
-            $cell = $rowValue->getElementsByTagName('Cell');
-            $eventId = $cell[0]->getElementsByTagName('Data')[0]->nodeValue;
-            $fields['event_id'] = $cell[0]->getElementsByTagName('Data')[0]->nodeValue;
-            $fields['number'] = $cell[1]->getElementsByTagName('Data')[0]->nodeValue;
-            $fields['state'] = $cell[2]->getElementsByTagName('Data')[0]->nodeValue;
-            $fields['value'] = $cell[3]->getElementsByTagName('Data')[0]->nodeValue;
-            $fields['subject'] = 'تلفن';
-            $result = adminEventModelDb::insertToPhones2($fields);
-
-            if ($i % 100 == 0) {
-                echo $i;
-                echo '<br>';
-            }
-            ++$i;
-            flush();
-            ob_flush();
-            ob_end_clean();
-        }
-
-        $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
-    }
-    /**
-     * importEventEmails.
-     *
-     * @return redirectPage
-     */
-    public function importEventEmails()
-    {
-        include_once dirname(__FILE__) . '/admin.event.model.db.php';
-        $xml = (STATIC_ROOT_DIR . '/xml/event-emails.xml');
-        $xmlDoc = new DOMDocument();
-        $xmlDoc->load($xml);
-        $wb = $xmlDoc->getElementsByTagName('Workbook')->item(0);
-        $ws = $wb->getElementsByTagName('Worksheet')->item(0);
-        $table = $ws->getElementsByTagName('Table')->item(0);
-        $row = $table->getElementsByTagName('Row');
-        $i = 1;
-        foreach ($row as $rowkey => $rowValue) {
-            ob_start();
-            $fields = array();
-            $cell = $rowValue->getElementsByTagName('Cell');
-            $eventId = $cell[0]->getElementsByTagName('Data')[0]->nodeValue;
-            $fields['event_id'] = $cell[0]->getElementsByTagName('Data')[0]->nodeValue;
-            $fields['subject'] = 'ایمیل';
-            $fields['email'] = $cell[1]->getElementsByTagName('Data')[0]->nodeValue;
-            $result = adminEventModelDb::insertToEmails2($fields);
-
-            echo $i;
-            // if($i % 100 == 0){
-            //     echo "<br>";
-            // }
-            ++$i;
-            flush();
-            ob_flush();
-            ob_end_clean();
-        }
-
-        $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
-    }
-    /**
-     * importEventAddresses.
-     *
-     * @return redirectPage
-     */
-    public function importEventAddresses()
-    {
-        include_once dirname(__FILE__) . '/admin.event.model.db.php';
-        $xml = (STATIC_ROOT_DIR . '/xml/event-addresses.xml');
-        $xmlDoc = new DOMDocument();
-        $xmlDoc->load($xml);
-        $wb = $xmlDoc->getElementsByTagName('Workbook')->item(0);
-        $ws = $wb->getElementsByTagName('Worksheet')->item(0);
-        $table = $ws->getElementsByTagName('Table')->item(0);
-        $row = $table->getElementsByTagName('Row');
-        $i = 1;
-        foreach ($row as $rowkey => $rowValue) {
-            $fields = array();
-            $cell = $rowValue->getElementsByTagName('Cell');
-            $eventId = $cell[0]->getElementsByTagName('Data')[0]->nodeValue;
-            $fields['event_id'] = $cell[0]->getElementsByTagName('Data')[0]->nodeValue;
-            $fields['subject'] = 'آدرس';
-            $fields['address'] = $cell[1]->getElementsByTagName('Data')[0]->nodeValue;
-            $result = adminEventModelDb::insertToAddresses2($fields);
-
-            if ($i % 100 == 0) {
-                echo $i;
-                echo '<br>';
-            }
-            ++$i;
-            flush();
-            ob_flush();
-            ob_end_clean();
-        }
-
-        $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
-    }
-    /**
-     * importEventWebsites.
-     *
-     * @return redirectPage
-     */
-    public function importEventWebsites()
-    {
-        include_once dirname(__FILE__) . '/admin.event.model.db.php';
-        $xml = (STATIC_ROOT_DIR . '/xml/event-websites.xml');
-        $xmlDoc = new DOMDocument();
-        $xmlDoc->load($xml);
-        $wb = $xmlDoc->getElementsByTagName('Workbook')->item(0);
-        $ws = $wb->getElementsByTagName('Worksheet')->item(0);
-        $table = $ws->getElementsByTagName('Table')->item(0);
-        $row = $table->getElementsByTagName('Row');
-        $i = 1;
-        foreach ($row as $rowkey => $rowValue) {
-            $fields = array();
-            $cell = $rowValue->getElementsByTagName('Cell');
-            $eventId = $cell[0]->getElementsByTagName('Data')[0]->nodeValue;
-            $fields['event_id'] = $cell[0]->getElementsByTagName('Data')[0]->nodeValue;
-            $fields['subject'] = 'وب سایت';
-            $fields['url'] = $cell[1]->getElementsByTagName('Data')[0]->nodeValue;
-            $result = adminEventModelDb::insertToWebsites2($fields);
-
-            if ($i % 100 == 0) {
-                echo $i;
-                echo '<br>';
-            }
-            ++$i;
-            flush();
-            ob_flush();
-            ob_end_clean();
-        }
-
-        $msg = 'ایمپورت انجام شد';
-        redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
-    }
-    /**
-     * delete deleteEvent by event_id.
-     *
-     * @param $id
-     *
-     * @author malekloo
-     * @date 2/24/2015
-     *
-     * @version 01.01.01
-     */
+   
 
     public function deleteEvent($id)
     {
@@ -1662,7 +1193,6 @@ class adminEventController
             redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
         }
 
-        include_once ROOT_DIR . 'component/event_gallery/admin/model/admin.event_gallery.model.php';
         $event = adminEvent_galleryModel::find($id);
 
         if (!is_object($event)) {
@@ -1676,7 +1206,7 @@ class adminEventController
         $result = $event->delete();
 
         if ($result['result'] != '1') {
-            redirectPage(RELA_DIR . 'zamin/index.php?component=event&action=gallery&id=' . $event->fields['event_id'], $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=event&action=gallery&id=' . $event->fields['event_id']);
         }
 
         $msg = 'عملیات با موفقیت انجام شد';
@@ -1694,7 +1224,6 @@ class adminEventController
     public function getEventphone($input)
     {
         $event_id =   $input['event_id'];
-        include_once dirname(__FILE__) . '/admin.event.model.php';
         $model = new adminEventModel();
         $result = $model->getEventphoneAll($event_id);
         $phone = '';

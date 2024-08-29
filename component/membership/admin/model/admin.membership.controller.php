@@ -11,6 +11,7 @@ use Common\validators;
 use Component\artists\admin\model\adminArtistsModel;
 use Component\city\admin\model\adminCityModel;
 use Model\clsCountry;
+use Model\convertDatatableIO;
 
 include_once dirname(__FILE__) . '/admin.membership.model.php';
 
@@ -382,7 +383,6 @@ class adminMembershipController
 
         $artists = new adminArtistsModel();
 
-        include_once(ROOT_DIR . "model/datatable.converter.php");
         $i = 0;
         $columns = array(
             array('db' => 'Artists_id', 'dt' => $i++),

@@ -9,17 +9,18 @@
 
 use Common\validators;
 use Component\account\model\accountModel;
+use Component\artists\admin\model\adminArtistsModel;
 use Component\artists\model\artists;
 use Component\artists\model\artistsModel;
 use Component\category\admin\model\adminCategoryModel;
 use Component\category\model\categoryModel;
 use Component\country\model\country;
+use Component\event\admin\model\adminEventModel;
 use Component\event\model\eventModel;
 use Component\genre\model\genreModel;
 use Component\invoice\model\invoice;
 use Component\product\model\productModel;
 
-include_once dirname(__FILE__) . '/account.model.php';
 
 
 /**
@@ -116,7 +117,7 @@ class accountController
         // include_once ROOT_DIR . 'component/product/model/product.model.php';
         $products = new productModel();
 
-        
+
         $result = $products->getProductByArtistsId($member_info['Artists_id']);
         if ($result['result'] == -1) {
             $this->fileName = 'account.showPanel.php';
@@ -300,7 +301,6 @@ class accountController
     {
         global $member_info, $lang, $messageStack;
 
-        include_once ROOT_DIR . 'component/event/admin/model/admin.event.model.php';
         //$event = new adminEventModel();
 
 
@@ -418,7 +418,7 @@ class accountController
         $invoice = new invoice();
 
 
-        $object = artists::find( $member_info['Artists_id']);
+        $object = artists::find($member_info['Artists_id']);
         if (is_array($object)) {
             $this->fileName = 'account.showPanel.php';
             $this->template('', $object['msg']);
@@ -476,7 +476,7 @@ class accountController
         // include_once ROOT_DIR . 'component/product/model/product.model.php';
         $products = new productModel();
 
-        $object = artists::find( $member_info['Artists_id']);
+        $object = artists::find($member_info['Artists_id']);
         if (is_array($object)) {
             $this->fileName = 'account.showPanel.php';
             $this->template('', $object['msg']);
@@ -988,10 +988,9 @@ class accountController
     {
         global $member_info;
 
-        include_once ROOT_DIR . 'component/blog/model/blog.model.php';
         $blogs = new blog();
 
-        $object = model::find('artists', $member_info['Artists_id']);
+        $object = artists::find($member_info['Artists_id']);
         if (is_array($object)) {
             $this->fileName = 'account.showPanel.php';
             $this->template('', $object['msg']);
@@ -1111,7 +1110,6 @@ class accountController
         }
 
         /** update artists date  */
-        include_once ROOT_DIR . 'component/artists/admin/model/admin.artists.model.php';
         $artists = adminArtistsModel::find($account->fields['artists_id']);
         $artists->update_date = date('Y-m-d H:i:s');
         $result = $artists->save();
@@ -1124,7 +1122,7 @@ class accountController
     {
         global $member_info, $lang;
         include_once ROOT_DIR . 'component/blog/model/blog.model.php';
-        
+
 
         $account = blog::find($fields['id']);
         if (!is_object($account)) {
@@ -1209,7 +1207,7 @@ class accountController
         $this->template($export, $msg);
         die();
     }
-    
+
     public function deleteBlog($id)
     {
         if (!validators::required($id) and !validators::Numeric($id)) {
@@ -1275,36 +1273,36 @@ class accountController
 
     public function sendInvitation($post = null)
     {
-        global $member_info;
+        global $member_info, $lang;
 
-        if(!is_numeric($post['mobile'])){
+        if (!is_numeric($post['mobile'])) {
             $this->fileName = 'account.refForm.php';
             $this->template('', translate('شماره مشکل دارد'));
             die();
         }
 
         // sms
-        include_once ROOT_DIR . 'component/magfa/magfa.model.php';
-        $sms = new WebServiceSample;
+        // include_once ROOT_DIR . 'component/magfa/magfa.model.php';
+        // $sms = new WebServiceSample;
 
         if ($lang == 'fa') {
             $message =
-                'دوست عزیز شما توسط '.$member_info['artists_name_fa'].' به سایت variousartist.ir دعوت شده اید.' . " \n " .
+                'دوست عزیز شما توسط ' . $member_info['artists_name_fa'] . ' به سایت variousartist.ir دعوت شده اید.' . " \n " .
                 'لطفا لینک زیر را بزنید و وارد سایت شوید.' . " \n " .
-                RELA_DIR."register/?ref=".$member_info['Artists_id'];
+                RELA_DIR . "register/?ref=" . $member_info['Artists_id'];
         } else {
             $message =
-            'دوست عزیز شما توسط '.$member_info['artists_name_fa'].' به سایت variousartist.ir دعوت شده اید.' . " \n " .
-            'لطفا لینک زیر را بزنید و وارد سایت شوید.' . " \n " .
-            RELA_DIR."register/?ref=".$member_info['Artists_id'];
+                'دوست عزیز شما توسط ' . $member_info['artists_name_fa'] . ' به سایت variousartist.ir دعوت شده اید.' . " \n " .
+                'لطفا لینک زیر را بزنید و وارد سایت شوید.' . " \n " .
+                RELA_DIR . "register/?ref=" . $member_info['Artists_id'];
         }
 
         // dd($message);
         // $sms->simpleEnqueueSample($post['mobile'], $message);
-        $res = $sms->send($post['mobile'], $message);
-        if(is_array($res)){
-            dd($res);
-        }
+        // $res = $sms->send($post['mobile'], $message);
+        // if (is_array($res)) {
+        //     dd($res);
+        // }
 
         $msg = translate('عملیات با موفقیت انجام شد');
         redirectPage(RELA_DIR . 'account/ref', $msg);

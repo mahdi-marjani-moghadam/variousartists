@@ -40,46 +40,45 @@
 
                             <br>
                             <?php
-                            if($msg != '')
-                            {
-                                ?>
-                            <div class="col xs-12 col-sm-12 col-md-12 ">
-                                <div class="alert alert-danger fade in rtl"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><?php echo $msg?></strong></div></div>
-                                <?php 
+                            if ($msg != '') {
+                            ?>
+                                <div class="col xs-12 col-sm-12 col-md-12 ">
+                                    <div class="alert alert-danger fade in rtl"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong><?php echo $msg ?></strong></div>
+                                </div>
+                            <?php
                             }
                             $msg = (strlen($messageStack->output('contactus')) ? $messageStack->output('contactus') : "");
-                            if(isset($msg) && !empty($msg))
-                            {
-                                ?>
+                            if (isset($msg) && !empty($msg)) {
+                            ?>
                                 <div class="col xs-12 col-sm-12 col-md-12 ">
 
                                     <?php echo $msg; ?>
 
                                 </div>
-                                <?php
+                            <?php
                             }
                             ?>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <input type="text" name="name" id="name" class="form-control rtl transition ltr" required data-error="لطفا نام خود را وارد نمایید"   placeholder="نام و نام خانوادگی"  value="<?php echo (isset($list) && strlen($list['list']['name']) ? $list['list']['name'] : "");?>" tabindex="1">
+                                    <input type="text" name="name" id="name" class="form-control rtl transition ltr" required data-error="لطفا نام خود را وارد نمایید" placeholder="نام و نام خانوادگی" value="<?php echo (isset($list) && strlen($list['list']['name']) ? $list['list']['name'] : ""); ?>" tabindex="1">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <input type="email" name="email" id="email" class="form-control rtl transition ltr" required data-error="لطفا آدرس پست الکترونیکی را وارد نمایید"   placeholder="پست الکترونیکی"  value="<?php echo (isset($list) && strlen($list['list']['email']) ? $list['list']['email'] : "");?>" tabindex="1">
+                                    <input type="email" name="email" id="email" class="form-control rtl transition ltr" required data-error="لطفا آدرس پست الکترونیکی را وارد نمایید" placeholder="پست الکترونیکی" value="<?php echo (isset($list) && strlen($list['list']['email']) ? $list['list']['email'] : ""); ?>" tabindex="1">
                                 </div>
                             </div>
                             <div class="row xxxsmallSpace"></div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group company-list-keyboard-container">
-                                    <input name="subject" id="subject" class="form-control rtl transition keyboard" type="text" data-error="لطفا موضوع را وارد نمایید"  placeholder="موضوع"required value="<?php echo (isset($list) && strlen($list['list']['subject']) ? $list['list']['subject'] : "");?>" tabindex="2">
+                                    <input name="subject" id="subject" class="form-control rtl transition keyboard" type="text" data-error="لطفا موضوع را وارد نمایید" placeholder="موضوع" required value="<?php echo (isset($list) && strlen($list['list']['subject']) ? $list['list']['subject'] : ""); ?>" tabindex="2">
 
                                 </div>
                             </div>
                             <div class="row xxxsmallSpace"></div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group company-list-keyboard-container company-list-keyboard-container-textarea ">
-                                    <textarea name="comment" class="form-control rtl transition fullWidth keyboard" id="comment" cols="4" placeholder="پیام" tabindex="3"><?php echo (isset($list) && strlen($list['list']['comment']) ? $list['list']['comment'] : "");?></textarea>
+                                    <textarea name="comment" class="form-control rtl transition fullWidth keyboard" id="comment" cols="4" placeholder="پیام" tabindex="3"><?php echo (isset($list) && strlen($list['list']['comment']) ? $list['list']['comment'] : ""); ?></textarea>
 
                                 </div>
                             </div>
@@ -146,12 +145,12 @@
                             </script>
 
                             <script src="https://maps.googleapis.com/maps/api/js?callback=myMap&key=AIzaSyCIh9IvVEgJFsmTg0UcXLn8LDoPnz2CnRc"></script>
-                            */?>
-                            <?/*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIh9IvVEgJFsmTg0UcXLn8LDoPnz2CnRc&callback=initMap"
-                                    async defer></script>*/?>
+                            */ ?>
+                            <?php /*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIh9IvVEgJFsmTg0UcXLn8LDoPnz2CnRc&callback=initMap"
+                                    async defer></script>*/ ?>
 
 
-                            <?/*<div class="map  " >
+                            <?php /*<div class="map  " >
 
                                 <!--<iframe
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3235.4731620588063!2d51.41640450000003!3d35.812864999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e08a716c96309%3A0x997a8b0e7ef5c224!2sTehran%2C+Kooh+Peykar!5e0!3m2!1sen!2sir!4v1442735189471"
@@ -159,7 +158,7 @@
                                     class="item-center roundCorner">
                                 </iframe>-->
 
-                            </div>*/?>
+                            </div>*/ ?>
                         </div>
 
                     </div>
@@ -177,9 +176,3 @@
     </div>
 
 </section><!-- #content end -->
-
-
-
-
-<?/*<script src="<?php echo RELA_DIR.'templates/'.CURRENT_SKIN; ?>/assets/js/validator.min.js"></script>*/?>
-<!-- owl carousel js -->

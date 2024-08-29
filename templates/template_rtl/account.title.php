@@ -31,7 +31,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="p-title row nopadding nomargin">
                     <!-- <div class="col-md-1 col-sm-2 cool-xs-12 nopadding" >
-                            <a href="#" class="p-logo"><img src="<?/*=TEMPLATE_DIR*/?>img/logo-dark.png"></a>
+                            <a href="#" class="p-logo"><img src="<?php /*=TEMPLATE_DIR*/?>img/logo-dark.png"></a>
                         </div>-->
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <i class="icon icon-user"></i><span class="hidden-xs">پنل مدیریتی‌:</span>‌ <?php echo $list['list']["artists_name_$lang"] ?? ''?>

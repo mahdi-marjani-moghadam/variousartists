@@ -1,12 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marjani
- * Date: 3/6/2015
- * Time: 10:35 AM
- */
 
-// include_once(ROOT_DIR . "/common/validators.php");
 namespace Component\event\admin\model;
 
 use Common\looeic;
@@ -34,8 +27,7 @@ class adminEventModel extends looeic
         // dd($fields);
         $result = (new adminEventModelDb)->getAdminEvent();
 
-        if($result['result'] != 1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
         $this->list = $result['export']['list'];
@@ -50,8 +42,7 @@ class adminEventModel extends looeic
         ///$fields['order']['Event_id'] =
         $result = (new adminEventModelDb)->getEventDraft($fields);
 
-        if($result['result'] != 1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
         $this->list = $result['export']['list'];
@@ -72,8 +63,7 @@ class adminEventModel extends looeic
 
         $result = adminEventModelDb::getEventById($id);
 
-        if($result['result'] != 1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
 
@@ -94,23 +84,18 @@ class adminEventModel extends looeic
     }
 
 
-    
-    public function getEventphoneAll($input){
+
+    public function getEventphoneAll($input)
+    {
         include_once(dirname(__FILE__) . "/admin.event.model.db.php");
         $result = adminEventModelDb::getAllPhone($input);
 
-        if($result['result']!=1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
 
-        $this->list=$result['export']['list'];
+        $this->list = $result['export']['list'];
 
         return $result;
     }
-
-}
-
-class adminEventDraftModel extends looeic{
-    protected $TABLE_NAME = 'event_draft';
 }
