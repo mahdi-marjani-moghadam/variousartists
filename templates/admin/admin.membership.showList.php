@@ -98,6 +98,7 @@
 <div class="content-body">
     <!-- separator -->
     <div class="row xsmallSpace"></div>
+    
     <div id="panel-1" class="panel panel-default border-blue">
         <div class="panel-heading bg-blue">
             <h3 class="panel-title rtl ">لیست اعضا</h3>
@@ -108,6 +109,11 @@
             </div>
         </div>
         <div class="panel-body">
+        <?php if ($msg != null) { ?>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
+                <?php echo  $msg ?>
+            </div>
+        <?php  }   ?>
             <div class="pull-right"><a href="<?php echo  RELA_DIR ?>zamin/?component=membership&action=add"
                     class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن
                     کاربر جدید</a></div>
@@ -126,7 +132,7 @@
                             <th>نام انگلیسی</th>
                             <th>نام فارسی</th>
                             <th>وضعیت</th>
-                            <th>تاریخ ثبت نام</th>
+                            <th>تاریخ </th>
                             <th>ابزار</th>
                         </tr>
                     </thead>

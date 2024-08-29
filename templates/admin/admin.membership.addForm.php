@@ -1,12 +1,4 @@
-<?php
-
-//echo "<pre>";
-//print_r($list);
-//die();
-?>
-
 <div class="content-control">
-    <!--control-nav-->
     <ul class="control-nav pull-right">
         <li><a class="rtl text-24"><i class="sidebar-icon fa fa-adn"></i> افزودن کاربر جدید</a></li>
     </ul><!--/control-nav-->
@@ -21,91 +13,83 @@
                     <i class="fa fa-expand"></i>
                 </button>
                 <button data-collapse="#panel-tablesorter" title="" class="btn-panel rtl"
-                        data-original-title="باز و بسته شدن">
+                    data-original-title="باز و بسته شدن">
                     <i class="fa fa-caret-down"></i>
                 </button>
             </div><!-- /panel-actions -->
         </div><!-- /panel-heading -->
 
-        <?php if($msg != null)
-        {?>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
-            <?php echo  $msg ?>
-        </div>
-        <?php
-        }
-        ?>
+        <?php if ($msg != null) { ?>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-warning">
+                <?php echo  $msg ?>
+            </div>
+        <?php  }   ?>
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-8 center-block">
-                    <form name="queue" id="queue" role="form" data-validate="form" enctype="multipart/form-data"  class="form-horizontal form-bordered"
-                          novalidate="novalidate" method="post">
+                    <form name="queue" id="queue" role="form" data-validate="form" enctype="multipart/form-data" class="form-horizontal form-bordered"
+                        novalidate="novalidate" method="post">
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="username">موبایل:</label>
+                                        for="username">موبایل:</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right form-group">
 
 
                                         <script>
                                             var $body = $('body'),
-                                                $countryHolder  = $('.form-group .input-group-addon.countryFlagHolder'),
-                                                $telNumber      = $('#phoneNumber'),
-                                                windowWidth     = $(window).width(),
-                                                $password       = $('#password');
-                                            $body.on('click',function(){
+                                                $countryHolder = $('.form-group .input-group-addon.countryFlagHolder'),
+                                                $telNumber = $('#phoneNumber'),
+                                                windowWidth = $(window).width(),
+                                                $password = $('#password');
+                                            $body.on('click', function() {
                                                 var $dropDown = $countryHolder.find('ul'),
-                                                    $navBar         = $('.navbar-toggle'),
+                                                    $navBar = $('.navbar-toggle'),
                                                     $navbarCollapse = $('.navbar-collapse');
 
-                                                if($dropDown.hasClass('active'))
-                                                {
+                                                if ($dropDown.hasClass('active')) {
                                                     $dropDown.removeClass('active');
                                                 }
 
-                                                if($navbarCollapse.hasClass('in'))
-                                                {
+                                                if ($navbarCollapse.hasClass('in')) {
                                                     $navBar.removeClass('active');
                                                     $navbarCollapse.removeClass('in');
                                                     $overlayBg.removeClass('active');
                                                 }
                                             });
-                                            $body.on('click', '.form-group .input-group-addon.countryFlagHolder',function(e){
+                                            $body.on('click', '.form-group .input-group-addon.countryFlagHolder', function(e) {
                                                 e.stopPropagation();
 
-                                                var $self     = $(this),
+                                                var $self = $(this),
                                                     $dropDown = $self.find('ul');
 
-                                                if($dropDown.hasClass('active'))
-                                                {
+                                                if ($dropDown.hasClass('active')) {
                                                     $dropDown.removeClass('active');
-                                                }
-                                                else
-                                                {
+                                                } else {
                                                     $dropDown.addClass('active');
                                                 }
                                             });
 
-                                            $body.on('click', '.form-group .input-group-addon.countryFlagHolder ul' ,function(e) {
+                                            $body.on('click', '.form-group .input-group-addon.countryFlagHolder ul', function(e) {
                                                 e.stopPropagation();
                                             });
 
-                                            $body.on('click', '.form-group .input-group-addon.countryFlagHolder a' ,function(e)  {
+                                            $body.on('click', '.form-group .input-group-addon.countryFlagHolder a', function(e) {
                                                 e.preventDefault();
 
-                                                var $self           = $(this),
-                                                    selfCountry     = $self.data('country'),
-                                                    $dropDown       = $self.parents('ul'),
-                                                    $phoneNumber    = $('#phoneNumber'),
+                                                var $self = $(this),
+                                                    selfCountry = $self.data('country'),
+                                                    $dropDown = $self.parents('ul'),
+                                                    $phoneNumber = $('#phoneNumber'),
                                                     $areaCodeHolder = $('#areaCodeHolder'),
-                                                    $areaCodeValue  = $('#areacode'),
-                                                    areaCode        = $self.data('areacode'),
-                                                    maxLength       = $self.data('max'),
-                                                    $flag           = $('#flagHolder'),
-                                                    result          = $flag.attr('class').split(' '),
-                                                    pattern         = $self.data('pattern'),
-                                                    myclass         = result.pop();
+                                                    $areaCodeValue = $('#areacode'),
+                                                    areaCode = $self.data('areacode'),
+                                                    maxLength = $self.data('max'),
+                                                    $flag = $('#flagHolder'),
+                                                    result = $flag.attr('class').split(' '),
+                                                    pattern = $self.data('pattern'),
+                                                    myclass = result.pop();
 
                                                 $flag.removeClass(myclass).addClass('bfh-flag-' + selfCountry);
 
@@ -117,54 +101,52 @@
 
 
                                                 // start ///////////////// for adding another number (matbah)
-                                                if(selfCountry == 'IR')
-                                                {
-                                                    $phoneNumber.attr("maxlength",maxLength);
-                                                }
-                                                else
-                                                {
+                                                if (selfCountry == 'IR') {
+                                                    $phoneNumber.attr("maxlength", maxLength);
+                                                } else {
                                                     $phoneNumber.removeAttrs("maxlength");
                                                     //$phoneNumber.attr("maxlength",'');
                                                 }
                                                 // end //////////////////////////////////////////////
 
 
-                                                $phoneNumber.attr('placeholder',pattern);
+                                                $phoneNumber.attr('placeholder', pattern);
                                             });
                                         </script>
                                         <div class="input-group jail center">
                                             <div class="input-group-addon countryFlagHolder">
-                                                <i id="flagHolder" class="fa bfh-flag-<?php echo $list['default'][0]['iso']?>"></i>
+                                                <i id="flagHolder" class="fa bfh-flag-<?php echo $list['default'][0]['iso'] ?>"></i>
                                                 <i class="fa fa-caret-down"></i>
                                                 <ul>
-                                                    <?php 
+                                                    <?php
 
-                                                    foreach($list['country'] as $k => $value) {
+                                                    foreach ($list['country'] as $k => $value) {
 
 
-                                                        ?>
-                                                        <li><a data-country="<?php echo $value['iso']?>" data-max="<?php echo $value['max_length']?>" data-areacode="+<?php echo $value['phone_code']?>"
-                                                               data-pattern="<?php echo $value['sample']?>"><span class="fa bfh-flag-<?php echo $value['iso']?>"></span><?php echo $value['name']?></a>
+                                                    ?>
+                                                        <li><a data-country="<?php echo $value['iso'] ?>" data-max="<?php echo $value['max_length'] ?>" data-areacode="+<?php echo $value['phone_code'] ?>"
+                                                                data-pattern="<?php echo $value['sample'] ?>"><span class="fa bfh-flag-<?php echo $value['iso'] ?>"></span><?php echo $value['name'] ?></a>
                                                         </li>
 
-                                                        <?php 
+                                                    <?php
                                                     }
                                                     ?>
 
                                                 </ul>
                                             </div>
-                                            <div id="areaCodeHolder" class="input-group-addon">+<?php echo $list['default'][0]['phone_code']?></div>
-                                            <input type="tel" <?php if($list['default'][0]['iso'] == 'IR'){?>maxlength="<?php echo $list['default'][0]['max_length']?>" <?php }?> class="phone form-control ltr" id="artists_phone1" name="artists_phone1" placeholder="<?php echo $list['default'][0]['sample']?>" required value="<?php echo $_REQUEST['artists_phone1']?>">
-                                            <input name="areacode" id="areacode" type="hidden" value="<?php echo $list['default'][0]['phone_code']?>">
+                                            <div id="areaCodeHolder" class="input-group-addon">+<?php echo $list['default'][0]['phone_code'] ?></div>
+                                            <input type="tel" <?php if ($list['default'][0]['iso'] == 'IR') { ?>maxlength="<?php echo $list['default'][0]['max_length'] ?>" <?php } ?> class="phone form-control ltr" id="artists_phone1" name="artists_phone1" placeholder="<?php echo $list['default'][0]['sample'] ?>" required value="<?php echo $_REQUEST['artists_phone1'] ?>">
+                                            <input name="areacode" id="areacode" type="hidden" value="<?php echo $list['default'][0]['phone_code'] ?>">
                                             <span class="input-group-btn"></span>
                                         </div><!-- /input-group -->
 
                                         <style>
-                                            .input-group{
+                                            .input-group {
                                                 width: 100%;
                                                 max-width: 450px;
                                             }
-                                            .form-group input[type="tel"]{
+
+                                            .form-group input[type="tel"] {
 
                                                 border-left: none;
                                                 -webkit-border-radius: 0 4px 4px 0 !important;
@@ -178,11 +160,13 @@
                                                 margin-bottom: .8em;
                                                 padding: .2em .5em !important;
                                             }
-                                            @media only screen and (max-width:425px)  {
-                                                .form-group input[type="tel"]{
+
+                                            @media only screen and (max-width:425px) {
+                                                .form-group input[type="tel"] {
                                                     width: 75%;
                                                 }
                                             }
+
                                             .form-group .input-group-addon {
 
 
@@ -212,6 +196,7 @@
 
 
                                             }
+
                                             .form-group .input-group-addon.countryFlagHolder {
                                                 position: relative;
                                                 padding: 0 1.5em;
@@ -235,17 +220,21 @@
                                                 display: block;
                                                 height: 42px;
                                             }
+
                                             .form-group .input-group-addon.countryFlagHolder img {
                                                 max-width: 25px;
                                             }
+
                                             .form-group .input-group-addon.countryFlagHolder i {
                                                 position: absolute;
                                                 top: 0px;
                                                 right: 5px;
                                             }
+
                                             .form-group .input-group-addon.countryFlagHolder i.fa-caret-down {
                                                 right: 10px;
                                             }
+
                                             .form-group .input-group-addon.countryFlagHolder ul {
                                                 display: none;
                                                 visibility: hidden;
@@ -266,10 +255,12 @@
                                                 overflow-y: auto;
                                                 z-index: 10;
                                             }
+
                                             .form-group .input-group-addon.countryFlagHolder ul.active {
                                                 display: block;
                                                 visibility: visible;
                                             }
+
                                             .form-group .input-group-addon.countryFlagHolder ul li {
                                                 display: block;
                                                 visibility: visible;
@@ -282,9 +273,11 @@
                                                 -o-transition: .4s;
                                                 transition: .4s;
                                             }
+
                                             .form-group .input-group-addon.countryFlagHolder ul li:not(:last-child) {
                                                 border-bottom: solid 1px #ddd;
                                             }
+
                                             .form-group .input-group-addon.countryFlagHolder ul li a {
                                                 display: block;
                                                 width: 100%;
@@ -292,18 +285,21 @@
                                                 text-align: left;
                                                 line-height: 30px;
                                             }
+
                                             .form-group .input-group-addon.countryFlagHolder ul li:hover,
-                                            .form-group .input-group-addon.countryFlagHolder ul li:active
-                                            {
+                                            .form-group .input-group-addon.countryFlagHolder ul li:active {
                                                 background: #eee;
                                             }
+
                                             .form-group .input-group-addon.prefixHolder {
                                                 padding: 0 .15em;
                                             }
+
                                             .form-group.focused .input-group-addon {
                                                 border-top: solid 1px #3bafda;
                                                 border-bottom: solid 1px #3bafda;
                                             }
+
                                             .form-group.focused .input-group-addon.countryFlagHolder {
                                                 border-left: solid 1px #3bafda;
                                             }
@@ -311,6 +307,7 @@
                                             .form-group.has-error .input-group-addon {
                                                 border-color: #da4453;
                                             }
+
                                             .form-group.has-error .input-group-addon.countryFlagHolder {
                                                 border-left-color: #da4453;
                                             }
@@ -318,6 +315,7 @@
                                             .form-group.has-success .input-group-addon {
                                                 border-color: #8cc152;
                                             }
+
                                             .form-group.has-success .input-group-addon.countryFlagHolder {
                                                 border-left-color: #8cc152;
                                             }
@@ -325,20 +323,732 @@
                                             .form-group.has-warning .input-group-addon {
                                                 border-color: #f6bb42;
                                             }
+
                                             .form-group.has-warning .input-group-addon.countryFlagHolder {
                                                 border-left-color: #f6bb42;
                                             }
-                                            .bfh-flag-AD, .bfh-flag-AE, .bfh-flag-AF, .bfh-flag-AG, .bfh-flag-AI, .bfh-flag-AL, .bfh-flag-AM, .bfh-flag-AN, .bfh-flag-AO, .bfh-flag-AQ, .bfh-flag-AR, .bfh-flag-AS, .bfh-flag-AT, .bfh-flag-AU, .bfh-flag-AW, .bfh-flag-AX, .bfh-flag-AZ, .bfh-flag-BA, .bfh-flag-BB, .bfh-flag-BD, .bfh-flag-BE, .bfh-flag-BG, .bfh-flag-BH, .bfh-flag-BI, .bfh-flag-BJ, .bfh-flag-BL, .bfh-flag-BM, .bfh-flag-BN, .bfh-flag-BO, .bfh-flag-BR, .bfh-flag-BS, .bfh-flag-BT, .bfh-flag-BW, .bfh-flag-BY, .bfh-flag-BZ, .bfh-flag-CA, .bfh-flag-CD, .bfh-flag-CF, .bfh-flag-CG, .bfh-flag-CH, .bfh-flag-CI, .bfh-flag-CL, .bfh-flag-CM, .bfh-flag-CN, .bfh-flag-CO, .bfh-flag-CR, .bfh-flag-CV, .bfh-flag-CY, .bfh-flag-CZ, .bfh-flag-DJ, .bfh-flag-DK, .bfh-flag-DM, .bfh-flag-DO, .bfh-flag-DZ, .bfh-flag-EC, .bfh-flag-EE, .bfh-flag-EG, .bfh-flag-EH, .bfh-flag-ER, .bfh-flag-ES, .bfh-flag-ET, .bfh-flag-EU, .bfh-flag-FI, .bfh-flag-FJ, .bfh-flag-FK, .bfh-flag-FM, .bfh-flag-FO, .bfh-flag-FR, .bfh-flag-FX, .bfh-flag-GF, .bfh-flag-GP, .bfh-flag-MQ, .bfh-flag-NC, .bfh-flag-PF, .bfh-flag-PM, .bfh-flag-RE, .bfh-flag-TF, .bfh-flag-WF, .bfh-flag-GA, .bfh-flag-GB, .bfh-flag-GD, .bfh-flag-GE, .bfh-flag-GG, .bfh-flag-GH, .bfh-flag-GL, .bfh-flag-GM, .bfh-flag-GN, .bfh-flag-GQ, .bfh-flag-GR, .bfh-flag-GS, .bfh-flag-GT, .bfh-flag-GU, .bfh-flag-GW, .bfh-flag-GY, .bfh-flag-HK, .bfh-flag-HN, .bfh-flag-HR, .bfh-flag-HT, .bfh-flag-HU, .bfh-flag-ID, .bfh-flag-IE, .bfh-flag-IL, .bfh-flag-IM, .bfh-flag-IN, .bfh-flag-IQ, .bfh-flag-IS, .bfh-flag-IT, .bfh-flag-JE, .bfh-flag-JM, .bfh-flag-JO, .bfh-flag-JP, .bfh-flag-KE, .bfh-flag-KG, .bfh-flag-KH, .bfh-flag-KI, .bfh-flag-KM, .bfh-flag-KN, .bfh-flag-KP, .bfh-flag-KR, .bfh-flag-KV, .bfh-flag-KW, .bfh-flag-KY, .bfh-flag-LA, .bfh-flag-LC, .bfh-flag-LK, .bfh-flag-LR, .bfh-flag-LS, .bfh-flag-LT, .bfh-flag-LU, .bfh-flag-LV, .bfh-flag-LY, .bfh-flag-MA, .bfh-flag-ME, .bfh-flag-MG, .bfh-flag-MH, .bfh-flag-ML, .bfh-flag-MM, .bfh-flag-MP, .bfh-flag-MR, .bfh-flag-MS, .bfh-flag-MT, .bfh-flag-MU, .bfh-flag-MV, .bfh-flag-MW, .bfh-flag-MZ, .bfh-flag-NA, .bfh-flag-NE, .bfh-flag-NF, .bfh-flag-NG, .bfh-flag-NI, .bfh-flag-NL, .bfh-flag-NO, .bfh-flag-NP, .bfh-flag-NR, .bfh-flag-NZ, .bfh-flag-OM, .bfh-flag-PA, .bfh-flag-PE, .bfh-flag-PG, .bfh-flag-PH, .bfh-flag-PK, .bfh-flag-PL, .bfh-flag-PN, .bfh-flag-PS, .bfh-flag-PT, .bfh-flag-PW, .bfh-flag-PY, .bfh-flag-QA, .bfh-flag-RS, .bfh-flag-RU, .bfh-flag-RW, .bfh-flag-SA, .bfh-flag-SB, .bfh-flag-SC, .bfh-flag-SD, .bfh-flag-SE, .bfh-flag-SG, .bfh-flag-SH, .bfh-flag-SI, .bfh-flag-SK, .bfh-flag-SM, .bfh-flag-SN, .bfh-flag-SO, .bfh-flag-SR, .bfh-flag-SS, .bfh-flag-ST, .bfh-flag-SV, .bfh-flag-SY, .bfh-flag-SZ, .bfh-flag-TC, .bfh-flag-TD, .bfh-flag-TG, .bfh-flag-TH, .bfh-flag-TJ, .bfh-flag-TM, .bfh-flag-TN, .bfh-flag-TP, .bfh-flag-TR, .bfh-flag-TT, .bfh-flag-TV, .bfh-flag-TW, .bfh-flag-TZ, .bfh-flag-UA, .bfh-flag-UG, .bfh-flag-US, .bfh-flag-UY, .bfh-flag-UZ, .bfh-flag-VC, .bfh-flag-VE, .bfh-flag-VG, .bfh-flag-VI, .bfh-flag-VN, .bfh-flag-VU, .bfh-flag-WS, .bfh-flag-YE, .bfh-flag-ZA, .bfh-flag-ZM, .bfh-flag-BF, .bfh-flag-CU, .bfh-flag-DE, .bfh-flag-IR, .bfh-flag-KZ, .bfh-flag-LB, .bfh-flag-LI, .bfh-flag-MC, .bfh-flag-MD, .bfh-flag-MK, .bfh-flag-MN, .bfh-flag-MO, .bfh-flag-MX, .bfh-flag-MY, .bfh-flag-PR, .bfh-flag-RO, .bfh-flag-SL, .bfh-flag-TO, .bfh-flag-VA, .bfh-flag-ZW {
+
+                                            .bfh-flag-AD,
+                                            .bfh-flag-AE,
+                                            .bfh-flag-AF,
+                                            .bfh-flag-AG,
+                                            .bfh-flag-AI,
+                                            .bfh-flag-AL,
+                                            .bfh-flag-AM,
+                                            .bfh-flag-AN,
+                                            .bfh-flag-AO,
+                                            .bfh-flag-AQ,
+                                            .bfh-flag-AR,
+                                            .bfh-flag-AS,
+                                            .bfh-flag-AT,
+                                            .bfh-flag-AU,
+                                            .bfh-flag-AW,
+                                            .bfh-flag-AX,
+                                            .bfh-flag-AZ,
+                                            .bfh-flag-BA,
+                                            .bfh-flag-BB,
+                                            .bfh-flag-BD,
+                                            .bfh-flag-BE,
+                                            .bfh-flag-BG,
+                                            .bfh-flag-BH,
+                                            .bfh-flag-BI,
+                                            .bfh-flag-BJ,
+                                            .bfh-flag-BL,
+                                            .bfh-flag-BM,
+                                            .bfh-flag-BN,
+                                            .bfh-flag-BO,
+                                            .bfh-flag-BR,
+                                            .bfh-flag-BS,
+                                            .bfh-flag-BT,
+                                            .bfh-flag-BW,
+                                            .bfh-flag-BY,
+                                            .bfh-flag-BZ,
+                                            .bfh-flag-CA,
+                                            .bfh-flag-CD,
+                                            .bfh-flag-CF,
+                                            .bfh-flag-CG,
+                                            .bfh-flag-CH,
+                                            .bfh-flag-CI,
+                                            .bfh-flag-CL,
+                                            .bfh-flag-CM,
+                                            .bfh-flag-CN,
+                                            .bfh-flag-CO,
+                                            .bfh-flag-CR,
+                                            .bfh-flag-CV,
+                                            .bfh-flag-CY,
+                                            .bfh-flag-CZ,
+                                            .bfh-flag-DJ,
+                                            .bfh-flag-DK,
+                                            .bfh-flag-DM,
+                                            .bfh-flag-DO,
+                                            .bfh-flag-DZ,
+                                            .bfh-flag-EC,
+                                            .bfh-flag-EE,
+                                            .bfh-flag-EG,
+                                            .bfh-flag-EH,
+                                            .bfh-flag-ER,
+                                            .bfh-flag-ES,
+                                            .bfh-flag-ET,
+                                            .bfh-flag-EU,
+                                            .bfh-flag-FI,
+                                            .bfh-flag-FJ,
+                                            .bfh-flag-FK,
+                                            .bfh-flag-FM,
+                                            .bfh-flag-FO,
+                                            .bfh-flag-FR,
+                                            .bfh-flag-FX,
+                                            .bfh-flag-GF,
+                                            .bfh-flag-GP,
+                                            .bfh-flag-MQ,
+                                            .bfh-flag-NC,
+                                            .bfh-flag-PF,
+                                            .bfh-flag-PM,
+                                            .bfh-flag-RE,
+                                            .bfh-flag-TF,
+                                            .bfh-flag-WF,
+                                            .bfh-flag-GA,
+                                            .bfh-flag-GB,
+                                            .bfh-flag-GD,
+                                            .bfh-flag-GE,
+                                            .bfh-flag-GG,
+                                            .bfh-flag-GH,
+                                            .bfh-flag-GL,
+                                            .bfh-flag-GM,
+                                            .bfh-flag-GN,
+                                            .bfh-flag-GQ,
+                                            .bfh-flag-GR,
+                                            .bfh-flag-GS,
+                                            .bfh-flag-GT,
+                                            .bfh-flag-GU,
+                                            .bfh-flag-GW,
+                                            .bfh-flag-GY,
+                                            .bfh-flag-HK,
+                                            .bfh-flag-HN,
+                                            .bfh-flag-HR,
+                                            .bfh-flag-HT,
+                                            .bfh-flag-HU,
+                                            .bfh-flag-ID,
+                                            .bfh-flag-IE,
+                                            .bfh-flag-IL,
+                                            .bfh-flag-IM,
+                                            .bfh-flag-IN,
+                                            .bfh-flag-IQ,
+                                            .bfh-flag-IS,
+                                            .bfh-flag-IT,
+                                            .bfh-flag-JE,
+                                            .bfh-flag-JM,
+                                            .bfh-flag-JO,
+                                            .bfh-flag-JP,
+                                            .bfh-flag-KE,
+                                            .bfh-flag-KG,
+                                            .bfh-flag-KH,
+                                            .bfh-flag-KI,
+                                            .bfh-flag-KM,
+                                            .bfh-flag-KN,
+                                            .bfh-flag-KP,
+                                            .bfh-flag-KR,
+                                            .bfh-flag-KV,
+                                            .bfh-flag-KW,
+                                            .bfh-flag-KY,
+                                            .bfh-flag-LA,
+                                            .bfh-flag-LC,
+                                            .bfh-flag-LK,
+                                            .bfh-flag-LR,
+                                            .bfh-flag-LS,
+                                            .bfh-flag-LT,
+                                            .bfh-flag-LU,
+                                            .bfh-flag-LV,
+                                            .bfh-flag-LY,
+                                            .bfh-flag-MA,
+                                            .bfh-flag-ME,
+                                            .bfh-flag-MG,
+                                            .bfh-flag-MH,
+                                            .bfh-flag-ML,
+                                            .bfh-flag-MM,
+                                            .bfh-flag-MP,
+                                            .bfh-flag-MR,
+                                            .bfh-flag-MS,
+                                            .bfh-flag-MT,
+                                            .bfh-flag-MU,
+                                            .bfh-flag-MV,
+                                            .bfh-flag-MW,
+                                            .bfh-flag-MZ,
+                                            .bfh-flag-NA,
+                                            .bfh-flag-NE,
+                                            .bfh-flag-NF,
+                                            .bfh-flag-NG,
+                                            .bfh-flag-NI,
+                                            .bfh-flag-NL,
+                                            .bfh-flag-NO,
+                                            .bfh-flag-NP,
+                                            .bfh-flag-NR,
+                                            .bfh-flag-NZ,
+                                            .bfh-flag-OM,
+                                            .bfh-flag-PA,
+                                            .bfh-flag-PE,
+                                            .bfh-flag-PG,
+                                            .bfh-flag-PH,
+                                            .bfh-flag-PK,
+                                            .bfh-flag-PL,
+                                            .bfh-flag-PN,
+                                            .bfh-flag-PS,
+                                            .bfh-flag-PT,
+                                            .bfh-flag-PW,
+                                            .bfh-flag-PY,
+                                            .bfh-flag-QA,
+                                            .bfh-flag-RS,
+                                            .bfh-flag-RU,
+                                            .bfh-flag-RW,
+                                            .bfh-flag-SA,
+                                            .bfh-flag-SB,
+                                            .bfh-flag-SC,
+                                            .bfh-flag-SD,
+                                            .bfh-flag-SE,
+                                            .bfh-flag-SG,
+                                            .bfh-flag-SH,
+                                            .bfh-flag-SI,
+                                            .bfh-flag-SK,
+                                            .bfh-flag-SM,
+                                            .bfh-flag-SN,
+                                            .bfh-flag-SO,
+                                            .bfh-flag-SR,
+                                            .bfh-flag-SS,
+                                            .bfh-flag-ST,
+                                            .bfh-flag-SV,
+                                            .bfh-flag-SY,
+                                            .bfh-flag-SZ,
+                                            .bfh-flag-TC,
+                                            .bfh-flag-TD,
+                                            .bfh-flag-TG,
+                                            .bfh-flag-TH,
+                                            .bfh-flag-TJ,
+                                            .bfh-flag-TM,
+                                            .bfh-flag-TN,
+                                            .bfh-flag-TP,
+                                            .bfh-flag-TR,
+                                            .bfh-flag-TT,
+                                            .bfh-flag-TV,
+                                            .bfh-flag-TW,
+                                            .bfh-flag-TZ,
+                                            .bfh-flag-UA,
+                                            .bfh-flag-UG,
+                                            .bfh-flag-US,
+                                            .bfh-flag-UY,
+                                            .bfh-flag-UZ,
+                                            .bfh-flag-VC,
+                                            .bfh-flag-VE,
+                                            .bfh-flag-VG,
+                                            .bfh-flag-VI,
+                                            .bfh-flag-VN,
+                                            .bfh-flag-VU,
+                                            .bfh-flag-WS,
+                                            .bfh-flag-YE,
+                                            .bfh-flag-ZA,
+                                            .bfh-flag-ZM,
+                                            .bfh-flag-BF,
+                                            .bfh-flag-CU,
+                                            .bfh-flag-DE,
+                                            .bfh-flag-IR,
+                                            .bfh-flag-KZ,
+                                            .bfh-flag-LB,
+                                            .bfh-flag-LI,
+                                            .bfh-flag-MC,
+                                            .bfh-flag-MD,
+                                            .bfh-flag-MK,
+                                            .bfh-flag-MN,
+                                            .bfh-flag-MO,
+                                            .bfh-flag-MX,
+                                            .bfh-flag-MY,
+                                            .bfh-flag-PR,
+                                            .bfh-flag-RO,
+                                            .bfh-flag-SL,
+                                            .bfh-flag-TO,
+                                            .bfh-flag-VA,
+                                            .bfh-flag-ZW {
                                                 width: 16px;
                                                 height: 14px;
-                                                background: url(<?php echo RELA_DIR?>templates/template_rtl/img/countries.flags.png) no-repeat
+                                                background: url(<?php echo RELA_DIR ?>templates/template_rtl/img/countries.flags.png) no-repeat
                                             }
 
-                                            .bfh-flag-AD:empty, .bfh-flag-AE:empty, .bfh-flag-AF:empty, .bfh-flag-AG:empty, .bfh-flag-AI:empty, .bfh-flag-AL:empty, .bfh-flag-AM:empty, .bfh-flag-AN:empty, .bfh-flag-AO:empty, .bfh-flag-AQ:empty, .bfh-flag-AR:empty, .bfh-flag-AS:empty, .bfh-flag-AT:empty, .bfh-flag-AU:empty, .bfh-flag-AW:empty, .bfh-flag-AX:empty, .bfh-flag-AZ:empty, .bfh-flag-BA:empty, .bfh-flag-BB:empty, .bfh-flag-BD:empty, .bfh-flag-BE:empty, .bfh-flag-BG:empty, .bfh-flag-BH:empty, .bfh-flag-BI:empty, .bfh-flag-BJ:empty, .bfh-flag-BL:empty, .bfh-flag-BM:empty, .bfh-flag-BN:empty, .bfh-flag-BO:empty, .bfh-flag-BR:empty, .bfh-flag-BS:empty, .bfh-flag-BT:empty, .bfh-flag-BW:empty, .bfh-flag-BY:empty, .bfh-flag-BZ:empty, .bfh-flag-CA:empty, .bfh-flag-CD:empty, .bfh-flag-CF:empty, .bfh-flag-CG:empty, .bfh-flag-CH:empty, .bfh-flag-CI:empty, .bfh-flag-CL:empty, .bfh-flag-CM:empty, .bfh-flag-CN:empty, .bfh-flag-CO:empty, .bfh-flag-CR:empty, .bfh-flag-CV:empty, .bfh-flag-CY:empty, .bfh-flag-CZ:empty, .bfh-flag-DJ:empty, .bfh-flag-DK:empty, .bfh-flag-DM:empty, .bfh-flag-DO:empty, .bfh-flag-DZ:empty, .bfh-flag-EC:empty, .bfh-flag-EE:empty, .bfh-flag-EG:empty, .bfh-flag-EH:empty, .bfh-flag-ER:empty, .bfh-flag-ES:empty, .bfh-flag-ET:empty, .bfh-flag-EU:empty, .bfh-flag-FI:empty, .bfh-flag-FJ:empty, .bfh-flag-FK:empty, .bfh-flag-FM:empty, .bfh-flag-FO:empty, .bfh-flag-FR:empty, .bfh-flag-FX:empty, .bfh-flag-GF:empty, .bfh-flag-GP:empty, .bfh-flag-MQ:empty, .bfh-flag-NC:empty, .bfh-flag-PF:empty, .bfh-flag-PM:empty, .bfh-flag-RE:empty, .bfh-flag-TF:empty, .bfh-flag-WF:empty, .bfh-flag-GA:empty, .bfh-flag-GB:empty, .bfh-flag-GD:empty, .bfh-flag-GE:empty, .bfh-flag-GG:empty, .bfh-flag-GH:empty, .bfh-flag-GL:empty, .bfh-flag-GM:empty, .bfh-flag-GN:empty, .bfh-flag-GQ:empty, .bfh-flag-GR:empty, .bfh-flag-GS:empty, .bfh-flag-GT:empty, .bfh-flag-GU:empty, .bfh-flag-GW:empty, .bfh-flag-GY:empty, .bfh-flag-HK:empty, .bfh-flag-HN:empty, .bfh-flag-HR:empty, .bfh-flag-HT:empty, .bfh-flag-HU:empty, .bfh-flag-ID:empty, .bfh-flag-IE:empty, .bfh-flag-IL:empty, .bfh-flag-IM:empty, .bfh-flag-IN:empty, .bfh-flag-IQ:empty, .bfh-flag-IS:empty, .bfh-flag-IT:empty, .bfh-flag-JE:empty, .bfh-flag-JM:empty, .bfh-flag-JO:empty, .bfh-flag-JP:empty, .bfh-flag-KE:empty, .bfh-flag-KG:empty, .bfh-flag-KH:empty, .bfh-flag-KI:empty, .bfh-flag-KM:empty, .bfh-flag-KN:empty, .bfh-flag-KP:empty, .bfh-flag-KR:empty, .bfh-flag-KV:empty, .bfh-flag-KW:empty, .bfh-flag-KY:empty, .bfh-flag-LA:empty, .bfh-flag-LC:empty, .bfh-flag-LK:empty, .bfh-flag-LR:empty, .bfh-flag-LS:empty, .bfh-flag-LT:empty, .bfh-flag-LU:empty, .bfh-flag-LV:empty, .bfh-flag-LY:empty, .bfh-flag-MA:empty, .bfh-flag-ME:empty, .bfh-flag-MG:empty, .bfh-flag-MH:empty, .bfh-flag-ML:empty, .bfh-flag-MM:empty, .bfh-flag-MP:empty, .bfh-flag-MR:empty, .bfh-flag-MS:empty, .bfh-flag-MT:empty, .bfh-flag-MU:empty, .bfh-flag-MV:empty, .bfh-flag-MW:empty, .bfh-flag-MZ:empty, .bfh-flag-NA:empty, .bfh-flag-NE:empty, .bfh-flag-NF:empty, .bfh-flag-NG:empty, .bfh-flag-NI:empty, .bfh-flag-NL:empty, .bfh-flag-NO:empty, .bfh-flag-NP:empty, .bfh-flag-NR:empty, .bfh-flag-NZ:empty, .bfh-flag-OM:empty, .bfh-flag-PA:empty, .bfh-flag-PE:empty, .bfh-flag-PG:empty, .bfh-flag-PH:empty, .bfh-flag-PK:empty, .bfh-flag-PL:empty, .bfh-flag-PN:empty, .bfh-flag-PS:empty, .bfh-flag-PT:empty, .bfh-flag-PW:empty, .bfh-flag-PY:empty, .bfh-flag-QA:empty, .bfh-flag-RS:empty, .bfh-flag-RU:empty, .bfh-flag-RW:empty, .bfh-flag-SA:empty, .bfh-flag-SB:empty, .bfh-flag-SC:empty, .bfh-flag-SD:empty, .bfh-flag-SE:empty, .bfh-flag-SG:empty, .bfh-flag-SH:empty, .bfh-flag-SI:empty, .bfh-flag-SK:empty, .bfh-flag-SM:empty, .bfh-flag-SN:empty, .bfh-flag-SO:empty, .bfh-flag-SR:empty, .bfh-flag-SS:empty, .bfh-flag-ST:empty, .bfh-flag-SV:empty, .bfh-flag-SY:empty, .bfh-flag-SZ:empty, .bfh-flag-TC:empty, .bfh-flag-TD:empty, .bfh-flag-TG:empty, .bfh-flag-TH:empty, .bfh-flag-TJ:empty, .bfh-flag-TM:empty, .bfh-flag-TN:empty, .bfh-flag-TP:empty, .bfh-flag-TR:empty, .bfh-flag-TT:empty, .bfh-flag-TV:empty, .bfh-flag-TW:empty, .bfh-flag-TZ:empty, .bfh-flag-UA:empty, .bfh-flag-UG:empty, .bfh-flag-US:empty, .bfh-flag-UY:empty, .bfh-flag-UZ:empty, .bfh-flag-VC:empty, .bfh-flag-VE:empty, .bfh-flag-VG:empty, .bfh-flag-VI:empty, .bfh-flag-VN:empty, .bfh-flag-VU:empty, .bfh-flag-WS:empty, .bfh-flag-YE:empty, .bfh-flag-ZA:empty, .bfh-flag-ZM:empty, .bfh-flag-BF:empty, .bfh-flag-CU:empty, .bfh-flag-DE:empty, .bfh-flag-IR:empty, .bfh-flag-KZ:empty, .bfh-flag-LB:empty, .bfh-flag-LI:empty, .bfh-flag-MC:empty, .bfh-flag-MD:empty, .bfh-flag-MK:empty, .bfh-flag-MN:empty, .bfh-flag-MO:empty, .bfh-flag-MX:empty, .bfh-flag-MY:empty, .bfh-flag-PR:empty, .bfh-flag-RO:empty, .bfh-flag-SL:empty, .bfh-flag-TO:empty, .bfh-flag-VA:empty, .bfh-flag-ZW:empty {
+                                            .bfh-flag-AD:empty,
+                                            .bfh-flag-AE:empty,
+                                            .bfh-flag-AF:empty,
+                                            .bfh-flag-AG:empty,
+                                            .bfh-flag-AI:empty,
+                                            .bfh-flag-AL:empty,
+                                            .bfh-flag-AM:empty,
+                                            .bfh-flag-AN:empty,
+                                            .bfh-flag-AO:empty,
+                                            .bfh-flag-AQ:empty,
+                                            .bfh-flag-AR:empty,
+                                            .bfh-flag-AS:empty,
+                                            .bfh-flag-AT:empty,
+                                            .bfh-flag-AU:empty,
+                                            .bfh-flag-AW:empty,
+                                            .bfh-flag-AX:empty,
+                                            .bfh-flag-AZ:empty,
+                                            .bfh-flag-BA:empty,
+                                            .bfh-flag-BB:empty,
+                                            .bfh-flag-BD:empty,
+                                            .bfh-flag-BE:empty,
+                                            .bfh-flag-BG:empty,
+                                            .bfh-flag-BH:empty,
+                                            .bfh-flag-BI:empty,
+                                            .bfh-flag-BJ:empty,
+                                            .bfh-flag-BL:empty,
+                                            .bfh-flag-BM:empty,
+                                            .bfh-flag-BN:empty,
+                                            .bfh-flag-BO:empty,
+                                            .bfh-flag-BR:empty,
+                                            .bfh-flag-BS:empty,
+                                            .bfh-flag-BT:empty,
+                                            .bfh-flag-BW:empty,
+                                            .bfh-flag-BY:empty,
+                                            .bfh-flag-BZ:empty,
+                                            .bfh-flag-CA:empty,
+                                            .bfh-flag-CD:empty,
+                                            .bfh-flag-CF:empty,
+                                            .bfh-flag-CG:empty,
+                                            .bfh-flag-CH:empty,
+                                            .bfh-flag-CI:empty,
+                                            .bfh-flag-CL:empty,
+                                            .bfh-flag-CM:empty,
+                                            .bfh-flag-CN:empty,
+                                            .bfh-flag-CO:empty,
+                                            .bfh-flag-CR:empty,
+                                            .bfh-flag-CV:empty,
+                                            .bfh-flag-CY:empty,
+                                            .bfh-flag-CZ:empty,
+                                            .bfh-flag-DJ:empty,
+                                            .bfh-flag-DK:empty,
+                                            .bfh-flag-DM:empty,
+                                            .bfh-flag-DO:empty,
+                                            .bfh-flag-DZ:empty,
+                                            .bfh-flag-EC:empty,
+                                            .bfh-flag-EE:empty,
+                                            .bfh-flag-EG:empty,
+                                            .bfh-flag-EH:empty,
+                                            .bfh-flag-ER:empty,
+                                            .bfh-flag-ES:empty,
+                                            .bfh-flag-ET:empty,
+                                            .bfh-flag-EU:empty,
+                                            .bfh-flag-FI:empty,
+                                            .bfh-flag-FJ:empty,
+                                            .bfh-flag-FK:empty,
+                                            .bfh-flag-FM:empty,
+                                            .bfh-flag-FO:empty,
+                                            .bfh-flag-FR:empty,
+                                            .bfh-flag-FX:empty,
+                                            .bfh-flag-GF:empty,
+                                            .bfh-flag-GP:empty,
+                                            .bfh-flag-MQ:empty,
+                                            .bfh-flag-NC:empty,
+                                            .bfh-flag-PF:empty,
+                                            .bfh-flag-PM:empty,
+                                            .bfh-flag-RE:empty,
+                                            .bfh-flag-TF:empty,
+                                            .bfh-flag-WF:empty,
+                                            .bfh-flag-GA:empty,
+                                            .bfh-flag-GB:empty,
+                                            .bfh-flag-GD:empty,
+                                            .bfh-flag-GE:empty,
+                                            .bfh-flag-GG:empty,
+                                            .bfh-flag-GH:empty,
+                                            .bfh-flag-GL:empty,
+                                            .bfh-flag-GM:empty,
+                                            .bfh-flag-GN:empty,
+                                            .bfh-flag-GQ:empty,
+                                            .bfh-flag-GR:empty,
+                                            .bfh-flag-GS:empty,
+                                            .bfh-flag-GT:empty,
+                                            .bfh-flag-GU:empty,
+                                            .bfh-flag-GW:empty,
+                                            .bfh-flag-GY:empty,
+                                            .bfh-flag-HK:empty,
+                                            .bfh-flag-HN:empty,
+                                            .bfh-flag-HR:empty,
+                                            .bfh-flag-HT:empty,
+                                            .bfh-flag-HU:empty,
+                                            .bfh-flag-ID:empty,
+                                            .bfh-flag-IE:empty,
+                                            .bfh-flag-IL:empty,
+                                            .bfh-flag-IM:empty,
+                                            .bfh-flag-IN:empty,
+                                            .bfh-flag-IQ:empty,
+                                            .bfh-flag-IS:empty,
+                                            .bfh-flag-IT:empty,
+                                            .bfh-flag-JE:empty,
+                                            .bfh-flag-JM:empty,
+                                            .bfh-flag-JO:empty,
+                                            .bfh-flag-JP:empty,
+                                            .bfh-flag-KE:empty,
+                                            .bfh-flag-KG:empty,
+                                            .bfh-flag-KH:empty,
+                                            .bfh-flag-KI:empty,
+                                            .bfh-flag-KM:empty,
+                                            .bfh-flag-KN:empty,
+                                            .bfh-flag-KP:empty,
+                                            .bfh-flag-KR:empty,
+                                            .bfh-flag-KV:empty,
+                                            .bfh-flag-KW:empty,
+                                            .bfh-flag-KY:empty,
+                                            .bfh-flag-LA:empty,
+                                            .bfh-flag-LC:empty,
+                                            .bfh-flag-LK:empty,
+                                            .bfh-flag-LR:empty,
+                                            .bfh-flag-LS:empty,
+                                            .bfh-flag-LT:empty,
+                                            .bfh-flag-LU:empty,
+                                            .bfh-flag-LV:empty,
+                                            .bfh-flag-LY:empty,
+                                            .bfh-flag-MA:empty,
+                                            .bfh-flag-ME:empty,
+                                            .bfh-flag-MG:empty,
+                                            .bfh-flag-MH:empty,
+                                            .bfh-flag-ML:empty,
+                                            .bfh-flag-MM:empty,
+                                            .bfh-flag-MP:empty,
+                                            .bfh-flag-MR:empty,
+                                            .bfh-flag-MS:empty,
+                                            .bfh-flag-MT:empty,
+                                            .bfh-flag-MU:empty,
+                                            .bfh-flag-MV:empty,
+                                            .bfh-flag-MW:empty,
+                                            .bfh-flag-MZ:empty,
+                                            .bfh-flag-NA:empty,
+                                            .bfh-flag-NE:empty,
+                                            .bfh-flag-NF:empty,
+                                            .bfh-flag-NG:empty,
+                                            .bfh-flag-NI:empty,
+                                            .bfh-flag-NL:empty,
+                                            .bfh-flag-NO:empty,
+                                            .bfh-flag-NP:empty,
+                                            .bfh-flag-NR:empty,
+                                            .bfh-flag-NZ:empty,
+                                            .bfh-flag-OM:empty,
+                                            .bfh-flag-PA:empty,
+                                            .bfh-flag-PE:empty,
+                                            .bfh-flag-PG:empty,
+                                            .bfh-flag-PH:empty,
+                                            .bfh-flag-PK:empty,
+                                            .bfh-flag-PL:empty,
+                                            .bfh-flag-PN:empty,
+                                            .bfh-flag-PS:empty,
+                                            .bfh-flag-PT:empty,
+                                            .bfh-flag-PW:empty,
+                                            .bfh-flag-PY:empty,
+                                            .bfh-flag-QA:empty,
+                                            .bfh-flag-RS:empty,
+                                            .bfh-flag-RU:empty,
+                                            .bfh-flag-RW:empty,
+                                            .bfh-flag-SA:empty,
+                                            .bfh-flag-SB:empty,
+                                            .bfh-flag-SC:empty,
+                                            .bfh-flag-SD:empty,
+                                            .bfh-flag-SE:empty,
+                                            .bfh-flag-SG:empty,
+                                            .bfh-flag-SH:empty,
+                                            .bfh-flag-SI:empty,
+                                            .bfh-flag-SK:empty,
+                                            .bfh-flag-SM:empty,
+                                            .bfh-flag-SN:empty,
+                                            .bfh-flag-SO:empty,
+                                            .bfh-flag-SR:empty,
+                                            .bfh-flag-SS:empty,
+                                            .bfh-flag-ST:empty,
+                                            .bfh-flag-SV:empty,
+                                            .bfh-flag-SY:empty,
+                                            .bfh-flag-SZ:empty,
+                                            .bfh-flag-TC:empty,
+                                            .bfh-flag-TD:empty,
+                                            .bfh-flag-TG:empty,
+                                            .bfh-flag-TH:empty,
+                                            .bfh-flag-TJ:empty,
+                                            .bfh-flag-TM:empty,
+                                            .bfh-flag-TN:empty,
+                                            .bfh-flag-TP:empty,
+                                            .bfh-flag-TR:empty,
+                                            .bfh-flag-TT:empty,
+                                            .bfh-flag-TV:empty,
+                                            .bfh-flag-TW:empty,
+                                            .bfh-flag-TZ:empty,
+                                            .bfh-flag-UA:empty,
+                                            .bfh-flag-UG:empty,
+                                            .bfh-flag-US:empty,
+                                            .bfh-flag-UY:empty,
+                                            .bfh-flag-UZ:empty,
+                                            .bfh-flag-VC:empty,
+                                            .bfh-flag-VE:empty,
+                                            .bfh-flag-VG:empty,
+                                            .bfh-flag-VI:empty,
+                                            .bfh-flag-VN:empty,
+                                            .bfh-flag-VU:empty,
+                                            .bfh-flag-WS:empty,
+                                            .bfh-flag-YE:empty,
+                                            .bfh-flag-ZA:empty,
+                                            .bfh-flag-ZM:empty,
+                                            .bfh-flag-BF:empty,
+                                            .bfh-flag-CU:empty,
+                                            .bfh-flag-DE:empty,
+                                            .bfh-flag-IR:empty,
+                                            .bfh-flag-KZ:empty,
+                                            .bfh-flag-LB:empty,
+                                            .bfh-flag-LI:empty,
+                                            .bfh-flag-MC:empty,
+                                            .bfh-flag-MD:empty,
+                                            .bfh-flag-MK:empty,
+                                            .bfh-flag-MN:empty,
+                                            .bfh-flag-MO:empty,
+                                            .bfh-flag-MX:empty,
+                                            .bfh-flag-MY:empty,
+                                            .bfh-flag-PR:empty,
+                                            .bfh-flag-RO:empty,
+                                            .bfh-flag-SL:empty,
+                                            .bfh-flag-TO:empty,
+                                            .bfh-flag-VA:empty,
+                                            .bfh-flag-ZW:empty {
                                                 width: 16px
                                             }
 
-                                            .bfh-flag-AD, .bfh-flag-AE, .bfh-flag-AF, .bfh-flag-AG, .bfh-flag-AI, .bfh-flag-AL, .bfh-flag-AM, .bfh-flag-AN, .bfh-flag-AO, .bfh-flag-AQ, .bfh-flag-AR, .bfh-flag-AS, .bfh-flag-AT, .bfh-flag-AU, .bfh-flag-AW, .bfh-flag-AX, .bfh-flag-AZ, .bfh-flag-BA, .bfh-flag-BB, .bfh-flag-BD, .bfh-flag-BE, .bfh-flag-BG, .bfh-flag-BH, .bfh-flag-BI, .bfh-flag-BJ, .bfh-flag-BL, .bfh-flag-BM, .bfh-flag-BN, .bfh-flag-BO, .bfh-flag-BR, .bfh-flag-BS, .bfh-flag-BT, .bfh-flag-BW, .bfh-flag-BY, .bfh-flag-BZ, .bfh-flag-CA, .bfh-flag-CD, .bfh-flag-CF, .bfh-flag-CG, .bfh-flag-CH, .bfh-flag-CI, .bfh-flag-CL, .bfh-flag-CM, .bfh-flag-CN, .bfh-flag-CO, .bfh-flag-CR, .bfh-flag-CV, .bfh-flag-CY, .bfh-flag-CZ, .bfh-flag-DJ, .bfh-flag-DK, .bfh-flag-DM, .bfh-flag-DO, .bfh-flag-DZ, .bfh-flag-EC, .bfh-flag-EE, .bfh-flag-EG, .bfh-flag-EH, .bfh-flag-ER, .bfh-flag-ES, .bfh-flag-ET, .bfh-flag-EU, .bfh-flag-FI, .bfh-flag-FJ, .bfh-flag-FK, .bfh-flag-FM, .bfh-flag-FO, .bfh-flag-FR, .bfh-flag-FX, .bfh-flag-GF, .bfh-flag-GP, .bfh-flag-MQ, .bfh-flag-NC, .bfh-flag-PF, .bfh-flag-PM, .bfh-flag-RE, .bfh-flag-TF, .bfh-flag-WF, .bfh-flag-GA, .bfh-flag-GB, .bfh-flag-GD, .bfh-flag-GE, .bfh-flag-GG, .bfh-flag-GH, .bfh-flag-GL, .bfh-flag-GM, .bfh-flag-GN, .bfh-flag-GQ, .bfh-flag-GR, .bfh-flag-GS, .bfh-flag-GT, .bfh-flag-GU, .bfh-flag-GW, .bfh-flag-GY, .bfh-flag-HK, .bfh-flag-HN, .bfh-flag-HR, .bfh-flag-HT, .bfh-flag-HU, .bfh-flag-ID, .bfh-flag-IE, .bfh-flag-IL, .bfh-flag-IM, .bfh-flag-IN, .bfh-flag-IQ, .bfh-flag-IS, .bfh-flag-IT, .bfh-flag-JE, .bfh-flag-JM, .bfh-flag-JO, .bfh-flag-JP, .bfh-flag-KE, .bfh-flag-KG, .bfh-flag-KH, .bfh-flag-KI, .bfh-flag-KM, .bfh-flag-KN, .bfh-flag-KP, .bfh-flag-KR, .bfh-flag-KV, .bfh-flag-KW, .bfh-flag-KY, .bfh-flag-LA, .bfh-flag-LC, .bfh-flag-LK, .bfh-flag-LR, .bfh-flag-LS, .bfh-flag-LT, .bfh-flag-LU, .bfh-flag-LV, .bfh-flag-LY, .bfh-flag-MA, .bfh-flag-ME, .bfh-flag-MG, .bfh-flag-MH, .bfh-flag-ML, .bfh-flag-MM, .bfh-flag-MP, .bfh-flag-MR, .bfh-flag-MS, .bfh-flag-MT, .bfh-flag-MU, .bfh-flag-MV, .bfh-flag-MW, .bfh-flag-MZ, .bfh-flag-NA, .bfh-flag-NE, .bfh-flag-NF, .bfh-flag-NG, .bfh-flag-NI, .bfh-flag-NL, .bfh-flag-NO, .bfh-flag-NP, .bfh-flag-NR, .bfh-flag-NZ, .bfh-flag-OM, .bfh-flag-PA, .bfh-flag-PE, .bfh-flag-PG, .bfh-flag-PH, .bfh-flag-PK, .bfh-flag-PL, .bfh-flag-PN, .bfh-flag-PS, .bfh-flag-PT, .bfh-flag-PW, .bfh-flag-PY, .bfh-flag-QA, .bfh-flag-RS, .bfh-flag-RU, .bfh-flag-RW, .bfh-flag-SA, .bfh-flag-SB, .bfh-flag-SC, .bfh-flag-SD, .bfh-flag-SE, .bfh-flag-SG, .bfh-flag-SH, .bfh-flag-SI, .bfh-flag-SK, .bfh-flag-SM, .bfh-flag-SN, .bfh-flag-SO, .bfh-flag-SR, .bfh-flag-SS, .bfh-flag-ST, .bfh-flag-SV, .bfh-flag-SY, .bfh-flag-SZ, .bfh-flag-TC, .bfh-flag-TD, .bfh-flag-TG, .bfh-flag-TH, .bfh-flag-TJ, .bfh-flag-TM, .bfh-flag-TN, .bfh-flag-TP, .bfh-flag-TR, .bfh-flag-TT, .bfh-flag-TV, .bfh-flag-TW, .bfh-flag-TZ, .bfh-flag-UA, .bfh-flag-UG, .bfh-flag-US, .bfh-flag-UY, .bfh-flag-UZ, .bfh-flag-VC, .bfh-flag-VE, .bfh-flag-VG, .bfh-flag-VI, .bfh-flag-VN, .bfh-flag-VU, .bfh-flag-WS, .bfh-flag-YE, .bfh-flag-ZA, .bfh-flag-ZM, .bfh-flag-BF, .bfh-flag-CU, .bfh-flag-DE, .bfh-flag-IR, .bfh-flag-KZ, .bfh-flag-LB, .bfh-flag-LI, .bfh-flag-MC, .bfh-flag-MD, .bfh-flag-MK, .bfh-flag-MN, .bfh-flag-MO, .bfh-flag-MX, .bfh-flag-MY, .bfh-flag-PR, .bfh-flag-RO, .bfh-flag-SL, .bfh-flag-TO, .bfh-flag-VA, .bfh-flag-ZW, .bfh-flag-EUR, .bfh-flag-XCD {
+                                            .bfh-flag-AD,
+                                            .bfh-flag-AE,
+                                            .bfh-flag-AF,
+                                            .bfh-flag-AG,
+                                            .bfh-flag-AI,
+                                            .bfh-flag-AL,
+                                            .bfh-flag-AM,
+                                            .bfh-flag-AN,
+                                            .bfh-flag-AO,
+                                            .bfh-flag-AQ,
+                                            .bfh-flag-AR,
+                                            .bfh-flag-AS,
+                                            .bfh-flag-AT,
+                                            .bfh-flag-AU,
+                                            .bfh-flag-AW,
+                                            .bfh-flag-AX,
+                                            .bfh-flag-AZ,
+                                            .bfh-flag-BA,
+                                            .bfh-flag-BB,
+                                            .bfh-flag-BD,
+                                            .bfh-flag-BE,
+                                            .bfh-flag-BG,
+                                            .bfh-flag-BH,
+                                            .bfh-flag-BI,
+                                            .bfh-flag-BJ,
+                                            .bfh-flag-BL,
+                                            .bfh-flag-BM,
+                                            .bfh-flag-BN,
+                                            .bfh-flag-BO,
+                                            .bfh-flag-BR,
+                                            .bfh-flag-BS,
+                                            .bfh-flag-BT,
+                                            .bfh-flag-BW,
+                                            .bfh-flag-BY,
+                                            .bfh-flag-BZ,
+                                            .bfh-flag-CA,
+                                            .bfh-flag-CD,
+                                            .bfh-flag-CF,
+                                            .bfh-flag-CG,
+                                            .bfh-flag-CH,
+                                            .bfh-flag-CI,
+                                            .bfh-flag-CL,
+                                            .bfh-flag-CM,
+                                            .bfh-flag-CN,
+                                            .bfh-flag-CO,
+                                            .bfh-flag-CR,
+                                            .bfh-flag-CV,
+                                            .bfh-flag-CY,
+                                            .bfh-flag-CZ,
+                                            .bfh-flag-DJ,
+                                            .bfh-flag-DK,
+                                            .bfh-flag-DM,
+                                            .bfh-flag-DO,
+                                            .bfh-flag-DZ,
+                                            .bfh-flag-EC,
+                                            .bfh-flag-EE,
+                                            .bfh-flag-EG,
+                                            .bfh-flag-EH,
+                                            .bfh-flag-ER,
+                                            .bfh-flag-ES,
+                                            .bfh-flag-ET,
+                                            .bfh-flag-EU,
+                                            .bfh-flag-FI,
+                                            .bfh-flag-FJ,
+                                            .bfh-flag-FK,
+                                            .bfh-flag-FM,
+                                            .bfh-flag-FO,
+                                            .bfh-flag-FR,
+                                            .bfh-flag-FX,
+                                            .bfh-flag-GF,
+                                            .bfh-flag-GP,
+                                            .bfh-flag-MQ,
+                                            .bfh-flag-NC,
+                                            .bfh-flag-PF,
+                                            .bfh-flag-PM,
+                                            .bfh-flag-RE,
+                                            .bfh-flag-TF,
+                                            .bfh-flag-WF,
+                                            .bfh-flag-GA,
+                                            .bfh-flag-GB,
+                                            .bfh-flag-GD,
+                                            .bfh-flag-GE,
+                                            .bfh-flag-GG,
+                                            .bfh-flag-GH,
+                                            .bfh-flag-GL,
+                                            .bfh-flag-GM,
+                                            .bfh-flag-GN,
+                                            .bfh-flag-GQ,
+                                            .bfh-flag-GR,
+                                            .bfh-flag-GS,
+                                            .bfh-flag-GT,
+                                            .bfh-flag-GU,
+                                            .bfh-flag-GW,
+                                            .bfh-flag-GY,
+                                            .bfh-flag-HK,
+                                            .bfh-flag-HN,
+                                            .bfh-flag-HR,
+                                            .bfh-flag-HT,
+                                            .bfh-flag-HU,
+                                            .bfh-flag-ID,
+                                            .bfh-flag-IE,
+                                            .bfh-flag-IL,
+                                            .bfh-flag-IM,
+                                            .bfh-flag-IN,
+                                            .bfh-flag-IQ,
+                                            .bfh-flag-IS,
+                                            .bfh-flag-IT,
+                                            .bfh-flag-JE,
+                                            .bfh-flag-JM,
+                                            .bfh-flag-JO,
+                                            .bfh-flag-JP,
+                                            .bfh-flag-KE,
+                                            .bfh-flag-KG,
+                                            .bfh-flag-KH,
+                                            .bfh-flag-KI,
+                                            .bfh-flag-KM,
+                                            .bfh-flag-KN,
+                                            .bfh-flag-KP,
+                                            .bfh-flag-KR,
+                                            .bfh-flag-KV,
+                                            .bfh-flag-KW,
+                                            .bfh-flag-KY,
+                                            .bfh-flag-LA,
+                                            .bfh-flag-LC,
+                                            .bfh-flag-LK,
+                                            .bfh-flag-LR,
+                                            .bfh-flag-LS,
+                                            .bfh-flag-LT,
+                                            .bfh-flag-LU,
+                                            .bfh-flag-LV,
+                                            .bfh-flag-LY,
+                                            .bfh-flag-MA,
+                                            .bfh-flag-ME,
+                                            .bfh-flag-MG,
+                                            .bfh-flag-MH,
+                                            .bfh-flag-ML,
+                                            .bfh-flag-MM,
+                                            .bfh-flag-MP,
+                                            .bfh-flag-MR,
+                                            .bfh-flag-MS,
+                                            .bfh-flag-MT,
+                                            .bfh-flag-MU,
+                                            .bfh-flag-MV,
+                                            .bfh-flag-MW,
+                                            .bfh-flag-MZ,
+                                            .bfh-flag-NA,
+                                            .bfh-flag-NE,
+                                            .bfh-flag-NF,
+                                            .bfh-flag-NG,
+                                            .bfh-flag-NI,
+                                            .bfh-flag-NL,
+                                            .bfh-flag-NO,
+                                            .bfh-flag-NP,
+                                            .bfh-flag-NR,
+                                            .bfh-flag-NZ,
+                                            .bfh-flag-OM,
+                                            .bfh-flag-PA,
+                                            .bfh-flag-PE,
+                                            .bfh-flag-PG,
+                                            .bfh-flag-PH,
+                                            .bfh-flag-PK,
+                                            .bfh-flag-PL,
+                                            .bfh-flag-PN,
+                                            .bfh-flag-PS,
+                                            .bfh-flag-PT,
+                                            .bfh-flag-PW,
+                                            .bfh-flag-PY,
+                                            .bfh-flag-QA,
+                                            .bfh-flag-RS,
+                                            .bfh-flag-RU,
+                                            .bfh-flag-RW,
+                                            .bfh-flag-SA,
+                                            .bfh-flag-SB,
+                                            .bfh-flag-SC,
+                                            .bfh-flag-SD,
+                                            .bfh-flag-SE,
+                                            .bfh-flag-SG,
+                                            .bfh-flag-SH,
+                                            .bfh-flag-SI,
+                                            .bfh-flag-SK,
+                                            .bfh-flag-SM,
+                                            .bfh-flag-SN,
+                                            .bfh-flag-SO,
+                                            .bfh-flag-SR,
+                                            .bfh-flag-SS,
+                                            .bfh-flag-ST,
+                                            .bfh-flag-SV,
+                                            .bfh-flag-SY,
+                                            .bfh-flag-SZ,
+                                            .bfh-flag-TC,
+                                            .bfh-flag-TD,
+                                            .bfh-flag-TG,
+                                            .bfh-flag-TH,
+                                            .bfh-flag-TJ,
+                                            .bfh-flag-TM,
+                                            .bfh-flag-TN,
+                                            .bfh-flag-TP,
+                                            .bfh-flag-TR,
+                                            .bfh-flag-TT,
+                                            .bfh-flag-TV,
+                                            .bfh-flag-TW,
+                                            .bfh-flag-TZ,
+                                            .bfh-flag-UA,
+                                            .bfh-flag-UG,
+                                            .bfh-flag-US,
+                                            .bfh-flag-UY,
+                                            .bfh-flag-UZ,
+                                            .bfh-flag-VC,
+                                            .bfh-flag-VE,
+                                            .bfh-flag-VG,
+                                            .bfh-flag-VI,
+                                            .bfh-flag-VN,
+                                            .bfh-flag-VU,
+                                            .bfh-flag-WS,
+                                            .bfh-flag-YE,
+                                            .bfh-flag-ZA,
+                                            .bfh-flag-ZM,
+                                            .bfh-flag-BF,
+                                            .bfh-flag-CU,
+                                            .bfh-flag-DE,
+                                            .bfh-flag-IR,
+                                            .bfh-flag-KZ,
+                                            .bfh-flag-LB,
+                                            .bfh-flag-LI,
+                                            .bfh-flag-MC,
+                                            .bfh-flag-MD,
+                                            .bfh-flag-MK,
+                                            .bfh-flag-MN,
+                                            .bfh-flag-MO,
+                                            .bfh-flag-MX,
+                                            .bfh-flag-MY,
+                                            .bfh-flag-PR,
+                                            .bfh-flag-RO,
+                                            .bfh-flag-SL,
+                                            .bfh-flag-TO,
+                                            .bfh-flag-VA,
+                                            .bfh-flag-ZW,
+                                            .bfh-flag-EUR,
+                                            .bfh-flag-XCD {
                                                 margin-right: 5px
                                             }
 
@@ -610,7 +1320,17 @@
                                                 background-position: -1105px 0
                                             }
 
-                                            .bfh-flag-FR, .bfh-flag-FX, .bfh-flag-GF, .bfh-flag-GP, .bfh-flag-MQ, .bfh-flag-NC, .bfh-flag-PF, .bfh-flag-PM, .bfh-flag-RE, .bfh-flag-TF, .bfh-flag-WF {
+                                            .bfh-flag-FR,
+                                            .bfh-flag-FX,
+                                            .bfh-flag-GF,
+                                            .bfh-flag-GP,
+                                            .bfh-flag-MQ,
+                                            .bfh-flag-NC,
+                                            .bfh-flag-PF,
+                                            .bfh-flag-PM,
+                                            .bfh-flag-RE,
+                                            .bfh-flag-TF,
+                                            .bfh-flag-WF {
                                                 background-position: -1122px 0
                                             }
 
@@ -1249,26 +1969,30 @@
                                             .bfh-flag-ZW {
                                                 background-position: -3842px 0
                                             }
+
                                             .form-group .input-group-addon.countryFlagHolder ul {
                                                 max-height: 200px;
                                                 bottom: 39px;
                                             }
+
                                             .form-group .input-group-addon.countryFlagHolder {
                                                 width: 15%;
                                                 float: left;
                                             }
+
                                             .form-group .input-group-addon.countryFlagHolder i {
                                                 position: absolute;
                                                 top: 12px;
                                                 right: 20px;
                                             }
+
                                             .form-group .input-group-addon.countryFlagHolder i.fa-caret-down {
                                                 right: 10px;
                                             }
+
                                             .form-group .input-group-addon.countryFlagHolder img {
                                                 margin-top: .25em;
                                             }
-
                                         </style>
 
 
@@ -1279,7 +2003,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="password">رمز:</label>
+                                        for="password">رمز:</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
                                         <input type="text" class="form-control" name="password" id="password" required value="<?php echo  $list['password'] ?>">
                                     </div>
@@ -1289,7 +2013,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="artists_name_fa">نام کاربر(فارسی):</label>
+                                        for="artists_name_fa">نام کاربر(فارسی):</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
                                         <input type="text" class="form-control" name="artists_name_fa" id="artists_name_fa" required value="<?php echo  $list['artists_name_fa'] ?>">
                                     </div>
@@ -1301,7 +2025,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 pull-right control-label rtl"
-                                           for="refresh_date">تاریخ بروزرسانی</label>
+                                        for="refresh_date">تاریخ بروزرسانی</label>
                                     <div class="col-xs-12 col-sm-8 pull-right">
                                         <input type="text" class="form-control date" autocomplete="off" name="refresh_date" id="refresh_date" value="<?php echo  $list['refresh_date'] ?>">
                                     </div>
@@ -1314,7 +2038,7 @@
                             <div class="col-md-12">
                                 <p class="pull-right">
                                     <button type="submit" name="update" id="submit"
-                                            class="btn btn-icon btn-success rtl"><input name="action" type="hidden" id="action" value="add"/>
+                                        class="btn btn-icon btn-success rtl"><input name="action" type="hidden" id="action" value="add" />
                                         <i class="fa fa-plus"></i>
                                         ثبت
                                     </button>
@@ -1327,6 +2051,3 @@
         </div>
     </div>
 </div>
-
-
-

@@ -71,24 +71,9 @@ class adminMembershipController
 
 
 
-    /**
-     * call register form.
-     *
-     * @param $fields
-     * @param $msg
-     *
-     * @return mixed
-     *
-     * @author malekloo
-     * @date 14/03/2016
-     *
-     * @version 01.01.01
-     */
-    public function showArtistsAddForm($fieldss = array(), $msg)
+    public function showArtistsAddForm($fieldss = [], $msg = '')
     {
-        //include_once ROOT_DIR.'component/category/admin/model/admin.category.model.php';
         //$category = new adminCategoryModel();
-
         /*$resultCategory = $category->getCategoryOption();
         if ($resultCategory['result'] == 1) {
             $fields['category'] = $category->list;
@@ -142,7 +127,7 @@ class adminMembershipController
         $COUNTRY->unsetCondition();
 
         //get select country area code
-        $COUNTRY->multiIso         = array("CN", "us", "IR", "de");
+        $COUNTRY->multiIso         = ["CN", "us", "IR", "de"];
         $COUNTRY->getAllCountryCode();
         $fields['country'] = $COUNTRY->country;
 
@@ -385,41 +370,29 @@ class adminMembershipController
         }
 
         $list['list'] = $artists->list;
-
         $list['paging'] = $artists->recordsCount;
 
 
-        $other['5'] = array(
-            'formatter' => function ($list) {
-                if ($list['status'] == 1) {
-                    $st = 'فعال';
-                } else {
-                    $st = 'غیر فعال';
-                }
-                return $st;
-            }
-        );
-        $other['6'] = array(
-            'formatter' => function ($list) {
-                $st = convertDate($list['date'], true);
-                $st .= convertDate($list['update_date'], true);
-                return $st;
-            }
-        );
+        $other['5'] = ['formatter' => function ($list) {
+            return ($list['status'] == 1) ? 'فعال' : 'غیر فعال';
+        }];
+
+        $other['6'] = ['formatter' => function ($list) {
+            $st = 'ثبت نام ' . convertDate($list['date'], true);
+            $st .= '<br>اپدیت ' . convertDate($list['update_date'], true);
+            return $st;
+        }];
 
         $internalVariable['showstatus'] = $fields['status'];
-        $other[$i - 1] = array(
-            'formatter' => function ($list, $internal) {
-                $st = 'a' . $list['showstatus'];
-                $st = '<a href="' . RELA_DIR . 'zamin/?component=membership&action=edit&id=' . $list['Artists_id'] . '&showStatus=' . $internal['showstatus']
-                    . '">ویرایش</a> <br/>
+        $other[$i - 1] = ['formatter' => function ($list, $internal) {
+            $st = 'a' . $list['showstatus'];
+            $st = '<a href="' . RELA_DIR . 'zamin/?component=membership&action=edit&id=' . $list['Artists_id'] . '&showStatus=' . $internal['showstatus']
+                . '">ویرایش</a> <br/>
                         <a href="' . RELA_DIR . 'zamin/?component=membership&action=delete&id=' . $list['Artists_id'] . $list['artists_name'] . '">حذف</a>';
-                return $st;
-            }
-        );
+            return $st;
+        }];
 
         $export = $convert->convertOutput($list, $columns, $other, $internalVariable);
-        //print_r_debug($export);
         echo json_encode($export);
         die();
     }
@@ -456,13 +429,13 @@ class adminMembershipController
         redirectPage(RELA_DIR . 'zamin/index.php?component=membership', $msg);
         die();
     }
-    public function call($fields)
-    {
-        include_once dirname(__FILE__) . '/php-ami-class.php';
-        $conn = new AstMan();
-        $ret = $conn->clickToCall($fields['number']);
-        die();
-    }
+    // public function call($fields)
+    // {
+    //     include_once dirname(__FILE__) . '/php-ami-class.php';
+    //     $conn = new AstMan();
+    //     $ret = $conn->clickToCall($fields['number']);
+    //     die();
+    // }
 
     public function getArtistsphone($input)
     {
