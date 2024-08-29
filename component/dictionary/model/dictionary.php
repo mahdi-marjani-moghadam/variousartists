@@ -1,5 +1,5 @@
 <?php
-
+namespace Component\dictionary\model;
 use Common\looeic;
 
 /**

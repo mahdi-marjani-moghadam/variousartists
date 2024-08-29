@@ -881,11 +881,7 @@ class adminArtistsModelDb
 
     public function getArtists($fields = '')
     {
-
         $conn = dbConn::getConnection();
-
-        include_once ROOT_DIR.'/model/db.inc.class.php';
-
         $condition = DataBase::filterBuilder($fields);
 
         $length=$condition['length'];
@@ -911,7 +907,7 @@ class adminArtistsModelDb
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
-
+        
         if (!$stmt) {
             $result['result'] = -1;
             $result['no'] = 1;
@@ -930,7 +926,6 @@ class adminArtistsModelDb
         $result['export']['recordsCount'] = $row_count['recCount'];
 
 
-        include_once ROOT_DIR."component/category/admin/model/admin.category.model.php";
         //$cat = new adminCategoryModel();
         //$obj = adminCategoryModel::getBy_not_Category_id(0)->getList();
 

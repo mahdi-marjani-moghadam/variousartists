@@ -1,11 +1,11 @@
 <?php
-/**
+namespace Component\membership\admin\model;
+use Common\dbConn;
+use Common\looeic;
+use Component\product\admin\model\adminProductModelDb;
+use Model\DataBase;
+use PDO;
 
- * Created by PhpStorm.
- * User: malekloo
- * Date: 2/27/2016
- * Time: 11:02 AM.
- */
 class adminMembershipArtistsModelDb
 {
     public static function insert($fields)
@@ -493,14 +493,13 @@ class adminMembershipArtistsModelDb
         $sql = substr($sql, 0, -1);
         $sql = $sql."WHERE Artists_id = '".$fields['Artists_id']."'";
 
-        include_once ROOT_DIR.'component/product/admin/model/admin.product.model.db.php';
 
-        $result = adminProductModelDb::updateArtistsProductsCity($fields['city_id'],$fields['Artists_id']);
+        // $result = adminProductModelDb::updateArtistsProductsCity($fields['city_id'],$fields['Artists_id']);
 
-        if($result['result'] != 1)
-        {
-            return $result;
-        }
+        // if($result['result'] != 1)
+        // {
+        //     return $result;
+        // }
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -894,7 +893,6 @@ class adminMembershipArtistsModelDb
 
         $conn = dbConn::getConnection();
 
-        include_once ROOT_DIR.'/model/db.inc.class.php';
 
         $condition = DataBase::filterBuilder($fields);
 

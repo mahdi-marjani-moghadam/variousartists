@@ -1,4 +1,10 @@
 <?php
+
+use Common\dbConn;
+use Component\category\admin\model\adminCategoryModel;
+use Component\product\admin\model\adminProductModelDb;
+use Model\DataBase;
+
 /**
 
  * Created by PhpStorm.
@@ -461,62 +467,50 @@ class adminArtistsModelDb
 
         return $result;
     }
-    /**
-     * edit artists by Artists_id.
-     *
-     * @param $fields
-     *
-     * @return mixed
-     *
-     * @author malekloo
-     * @date 3/16/2015
-     *
-     * @version 01.01.01
-     */
-    public static function update($fields)
-    {
-        $conn = dbConn::getConnection();
+   
+    // public static function update($fields)
+    // {
+    //     $conn = dbConn::getConnection();
 
-        $temp = self::arrayToTag($fields['category_id']);
-        $fields['category_id'] = $temp ['export']['list'];
+    //     $temp = self::arrayToTag($fields['category_id']);
+    //     $fields['category_id'] = $temp ['export']['list'];
 
-        $temp = self::arrayToTag($fields['certification_id']);
-        $fields['certification_id'] = $temp ['export']['list'];
+    //     $temp = self::arrayToTag($fields['certification_id']);
+    //     $fields['certification_id'] = $temp ['export']['list'];
 
-        $sql = 'UPDATE artists SET ';
+    //     $sql = 'UPDATE artists SET ';
 
-        foreach ($fields as $fieldName => $val) {
-            //echo $fieldName.'='.$val;
-            if($fieldName != 'artists_phone' && $fieldName != 'artists_email' && $fieldName != 'artists_address' && $fieldName != 'artists_website')
-                $sql = $sql.'`'.$fieldName."` = '".$val."',";
-        }
-        $sql = substr($sql, 0, -1);
-        $sql = $sql."WHERE Artists_id = '".$fields['Artists_id']."'";
+    //     foreach ($fields as $fieldName => $val) {
+    //         //echo $fieldName.'='.$val;
+    //         if($fieldName != 'artists_phone' && $fieldName != 'artists_email' && $fieldName != 'artists_address' && $fieldName != 'artists_website')
+    //             $sql = $sql.'`'.$fieldName."` = '".$val."',";
+    //     }
+    //     $sql = substr($sql, 0, -1);
+    //     $sql = $sql."WHERE Artists_id = '".$fields['Artists_id']."'";
 
-        include_once ROOT_DIR.'component/product/admin/model/admin.product.model.db.php';
 
-        $result = adminProductModelDb::updateArtistsProductsCity($fields['city_id'],$fields['Artists_id']);
+    //     $result = adminProductModelDb::updateArtistsProductsCity($fields['city_id'],$fields['Artists_id']);
 
-        if($result['result'] != 1)
-        {
-            return $result;
-        }
+    //     if($result['result'] != 1)
+    //     {
+    //         return $result;
+    //     }
 
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    //     $stmt = $conn->prepare($sql);
+    //     $stmt->execute();
+    //     $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-        if (!$stmt) {
-            $result['result'] = -1;
-            $result['Number'] = 1;
-            $result['msg'] = $conn->errorInfo();
+    //     if (!$stmt) {
+    //         $result['result'] = -1;
+    //         $result['Number'] = 1;
+    //         $result['msg'] = $conn->errorInfo();
 
-            return $result;
-        }
-        $result['result'] = 1;
+    //         return $result;
+    //     }
+    //     $result['result'] = 1;
 
-        return $result;
-    }
+    //     return $result;
+    // }
 
     /**
      * delete artists phones.
@@ -639,263 +633,260 @@ class adminArtistsModelDb
     }
 
 
-    private function _getReport($fields='')
-    {
+    // private function _getReport($fields='')
+    // {
 
-        global $artists_info;
-        $artists_name=$artists_info['comp_name'];
-        $this->_checkPermission();
-        $conn = parent::getConnection();
-        $fields['useTrash']='false';
-        $filter=$this->filterBuilder($fields);
-        $length=$filter['length'];
-        $filter=$filter['list'];
-        if($filter['order'] =='')
-        {
-            $filter['order']= 'ORDER BY `calldate` DESC';
-        }
-        $sql = "
-                  SELECT  `t1`.* FROM (SELECT `cdr`.* FROM `cdr` WHERE `cdr`.`dcontext` like '%-$artists_name') as t1
+    //     global $artists_info;
+    //     $artists_name=$artists_info['comp_name'];
+    //     $this->_checkPermission();
+    //     $conn = parent::getConnection();
+    //     $fields['useTrash']='false';
+    //     $filter=$this->filterBuilder($fields);
+    //     $length=$filter['length'];
+    //     $filter=$filter['list'];
+    //     if($filter['order'] =='')
+    //     {
+    //         $filter['order']= 'ORDER BY `calldate` DESC';
+    //     }
+    //     $sql = "
+    //               SELECT  `t1`.* FROM (SELECT `cdr`.* FROM `cdr` WHERE `cdr`.`dcontext` like '%-$artists_name') as t1
 
-        ".$filter['WHERE'] .$filter['filter'].$filter['order'].$filter['limit'];
+    //     ".$filter['WHERE'] .$filter['filter'].$filter['order'].$filter['limit'];
 
-        //or WHERE    news_id='$id' ");
-        $stmt = $conn->prepare($sql);
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $stmt->execute();
+    //     //or WHERE    news_id='$id' ");
+    //     $stmt = $conn->prepare($sql);
+    //     $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    //     $stmt->execute();
 
-        if (!$stmt)
-        {
-            $result['result'] = -1;
-            $result['no'] = 1;
-            $result['msg'] = $conn->errorInfo();
-            return $result;
-        }
+    //     if (!$stmt)
+    //     {
+    //         $result['result'] = -1;
+    //         $result['no'] = 1;
+    //         $result['msg'] = $conn->errorInfo();
+    //         return $result;
+    //     }
 
-        $sql="
+    //     $sql="
 
-                SELECT
-                  Count(`t1`.`cdr_id`) AS `recCount`
-                FROM
-                  (SELECT *
-                  FROM `cdr`
-                  WHERE `cdr`.`dcontext` LIKE '%-$artists_name') AS `t1`
+    //             SELECT
+    //               Count(`t1`.`cdr_id`) AS `recCount`
+    //             FROM
+    //               (SELECT *
+    //               FROM `cdr`
+    //               WHERE `cdr`.`dcontext` LIKE '%-$artists_name') AS `t1`
 
-             ".$filter['WHERE'] .$filter['filter'];
-        //echo $stmt->rowCount();
+    //          ".$filter['WHERE'] .$filter['filter'];
+    //     //echo $stmt->rowCount();
 
-        $stmTp = $conn->prepare($sql);
-        $stmTp->setFetchMode(PDO::FETCH_ASSOC);
-        $stmTp->execute();
+    //     $stmTp = $conn->prepare($sql);
+    //     $stmTp->setFetchMode(PDO::FETCH_ASSOC);
+    //     $stmTp->execute();
 
-        $rowP = $stmTp->fetch();
-        $rowFound=$rowP['recCount'];
-        $this->_paging['recordsFiltered']=$rowP['recCount'];
-        $this->_paging['recordsTotal']= $rowFound['found'];
+    //     $rowP = $stmTp->fetch();
+    //     $rowFound=$rowP['recCount'];
+    //     $this->_paging['recordsFiltered']=$rowP['recCount'];
+    //     $this->_paging['recordsTotal']= $rowFound['found'];
 
-        while($row = $stmt->fetch())
-        {
-            $callDate=$row['calldate'];
-            list($date, $time) = explode(" ",$callDate);
-            list($year, $month, $day) = explode("-", $date);
-            list($extension, $compName) = explode("-", $row['dcontext']);
-            $row['filename']=RELA_CHANEL.$artists_name.'/'.$year.'/'.$month.'/'.$day.'/'.$row['uniqueid'].'.'.'wav';
-            $this->_set_reportListDb($row['cdr_id'], $row);
-        }
-
-
-        $result['result'] = 1;
-        $result['no'] = 2;
-        return $result;
-    }
-
-    public function getArtistsold($fields = '')
-    {
-
-        $conn = dbConn::getConnection();
-
-        include_once ROOT_DIR.'/model/db.inc.class.php';
-
-        $condition = DataBase::filterBuilder($fields);
+    //     while($row = $stmt->fetch())
+    //     {
+    //         $callDate=$row['calldate'];
+    //         list($date, $time) = explode(" ",$callDate);
+    //         list($year, $month, $day) = explode("-", $date);
+    //         list($extension, $compName) = explode("-", $row['dcontext']);
+    //         $row['filename']=RELA_CHANEL.$artists_name.'/'.$year.'/'.$month.'/'.$day.'/'.$row['uniqueid'].'.'.'wav';
+    //         $this->_set_reportListDb($row['cdr_id'], $row);
+    //     }
 
 
+    //     $result['result'] = 1;
+    //     $result['no'] = 2;
+    //     return $result;
+    // }
 
-        $sql = 'SELECT SQL_CALC_FOUND_ROWS
-                 *
-    		     FROM 	artists '.$condition['list']['WHERE'].$condition['list']['filter'].$condition['list']['order'].$condition['list']['limit'];
+    // public function getArtistsold($fields = '')
+    // {
 
-        $stmt = $conn->prepare($sql);
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $stmt->execute();
+    //     $conn = dbConn::getConnection();
 
-        if (!$stmt) {
-            $result['result'] = -1;
-            $result['no'] = 1;
-            $result['msg'] = $conn->errorInfo();
+    //     include_once ROOT_DIR.'/model/db.inc.class.php';
 
-            return $result;
-        }
-
-        $sql = ' SELECT FOUND_ROWS() as recCount ';
-
-        $stmTp = $conn->prepare($sql);
-        $stmTp->setFetchMode(PDO::FETCH_ASSOC);
-        $stmTp->execute();
-        $row_count = $stmTp->fetch();
-
-        $result['export']['recordsCount'] = $row_count['recCount'];
-
-        while ($row = $stmt->fetch()) {
-            $temp = self::tagToArray($row['category_id']);
-            $row['category_id'] = $temp['export']['list'];
-            $list[$row['Artists_id']] = $row;
-
-            $temp = self::tagToArray($row['certification_id']);
-            $row['certification_id'] = $temp['export']['list'];
-            $list[$row['Artists_id']] = $row;
-
-            include_once ROOT_DIR.'component/city/admin/model/admin.city.model.db.php';
-            $row['city'] = adminCityModelDb::getCityById($row['city_id']);
-
-            $id = $row['Artists_id'];
-            // get artists phones
-            $sql1 = "select * from artists_phones where `artists_id`='$id'";
+    //     $condition = DataBase::filterBuilder($fields);
 
 
 
-            $stmt1 = $conn->prepare($sql1);
-            $stmt1->execute();
-            $stmt1->setFetchMode(PDO::FETCH_ASSOC);
+    //     $sql = 'SELECT SQL_CALC_FOUND_ROWS
+    //              *
+    // 		     FROM 	artists '.$condition['list']['WHERE'].$condition['list']['filter'].$condition['list']['order'].$condition['list']['limit'];
 
-            if (!$stmt1) {
-                $result1['result'] = -1;
-                $result1['Number'] = 1;
-                $result1['msg'] = $conn->errorInfo();
+    //     $stmt = $conn->prepare($sql);
+    //     $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    //     $stmt->execute();
 
-                return $result1;
-            }
+    //     if (!$stmt) {
+    //         $result['result'] = -1;
+    //         $result['no'] = 1;
+    //         $result['msg'] = $conn->errorInfo();
 
-            $phones = [
-                'Artists_phones_id' => [],
-                'subject' => [],
-                'number' => [],
-                'state' => [],
-                'value' => [],
-            ];
+    //         return $result;
+    //     }
 
-            while ($row1 = $stmt1->fetch()) {
-                array_push($phones['Artists_phones_id'], $row1['Artists_phones_id']);
-                array_push($phones['subject'], $row1['phone_subject']);
-                array_push($phones['number'], $row1['phone_number']);
-                array_push($phones['state'], $row1['phone_state']);
-                array_push($phones['value'], $row1['phone_value']);
-            }
+    //     $sql = ' SELECT FOUND_ROWS() as recCount ';
 
-            $row['artists_phone'] = $phones;
-            $list[$row['Artists_id']] = $row;
-            // get artists emails
-            $sql1 = "select * from artists_emails where `artists_id`='$id'";
+    //     $stmTp = $conn->prepare($sql);
+    //     $stmTp->setFetchMode(PDO::FETCH_ASSOC);
+    //     $stmTp->execute();
+    //     $row_count = $stmTp->fetch();
 
-            $stmt1 = $conn->prepare($sql1);
-            $stmt1->execute();
-            $stmt1->setFetchMode(PDO::FETCH_ASSOC);
+    //     $result['export']['recordsCount'] = $row_count['recCount'];
 
-            if (!$stmt1) {
-                $result1['result'] = -1;
-                $result1['Number'] = 1;
-                $result1['msg'] = $conn->errorInfo();
+    //     while ($row = $stmt->fetch()) {
+    //         $temp = self::tagToArray($row['category_id']);
+    //         $row['category_id'] = $temp['export']['list'];
+    //         $list[$row['Artists_id']] = $row;
 
-                return $result1;
-            }
+    //         $temp = self::tagToArray($row['certification_id']);
+    //         $row['certification_id'] = $temp['export']['list'];
+    //         $list[$row['Artists_id']] = $row;
 
-            $emails = [
-                'Artists_emails_id' => [],
-                'subject' => [],
-                'email' => [],
-            ];
+    //         include_once ROOT_DIR.'component/city/admin/model/admin.city.model.db.php';
+    //         $row['city'] = adminCityModelDb::getCityById($row['city_id']);
 
-            while ($row1 = $stmt1->fetch()) {
-                array_push($emails['Artists_emails_id'], $row1['Artists_emails_id']);
-                array_push($emails['subject'], $row1['email_subject']);
-                array_push($emails['email'], $row1['email_email']);
-            }
+    //         $id = $row['Artists_id'];
+    //         // get artists phones
+    //         $sql1 = "select * from artists_phones where `artists_id`='$id'";
 
-            $row['artists_email'] = $emails;
-            $list[$row['Artists_id']] = $row;
 
-            // get artists addresses
-            $sql1 = "select * from artists_addresses where `artists_id`='$id'";
 
-            $stmt1 = $conn->prepare($sql1);
-            $stmt1->execute();
-            $stmt1->setFetchMode(PDO::FETCH_ASSOC);
+    //         $stmt1 = $conn->prepare($sql1);
+    //         $stmt1->execute();
+    //         $stmt1->setFetchMode(PDO::FETCH_ASSOC);
 
-            if (!$stmt1) {
-                $result1['result'] = -1;
-                $result1['Number'] = 1;
-                $result1['msg'] = $conn->errorInfo();
+    //         if (!$stmt1) {
+    //             $result1['result'] = -1;
+    //             $result1['Number'] = 1;
+    //             $result1['msg'] = $conn->errorInfo();
 
-                return $result1;
-            }
+    //             return $result1;
+    //         }
 
-            $addresses = [
-                'Artists_addresses_id' => [],
-                'subject' => [],
-                'address' => [],
-            ];
+    //         $phones = [
+    //             'Artists_phones_id' => [],
+    //             'subject' => [],
+    //             'number' => [],
+    //             'state' => [],
+    //             'value' => [],
+    //         ];
 
-            while ($row1 = $stmt1->fetch()) {
-                array_push($addresses['Artists_addresses_id'], $row1['Artists_addresses_id']);
-                array_push($addresses['subject'], $row1['address_subject']);
-                array_push($addresses['address'], $row1['address_address']);
-            }
+    //         while ($row1 = $stmt1->fetch()) {
+    //             array_push($phones['Artists_phones_id'], $row1['Artists_phones_id']);
+    //             array_push($phones['subject'], $row1['phone_subject']);
+    //             array_push($phones['number'], $row1['phone_number']);
+    //             array_push($phones['state'], $row1['phone_state']);
+    //             array_push($phones['value'], $row1['phone_value']);
+    //         }
 
-            $row['artists_address'] = $addresses;
-            $list[$row['Artists_id']] = $row;
-            // get artists websites
-            $sql1 = "select * from artists_websites where `artists_id`='$id'";
+    //         $row['artists_phone'] = $phones;
+    //         $list[$row['Artists_id']] = $row;
+    //         // get artists emails
+    //         $sql1 = "select * from artists_emails where `artists_id`='$id'";
 
-            $stmt1 = $conn->prepare($sql1);
-            $stmt1->execute();
-            $stmt1->setFetchMode(PDO::FETCH_ASSOC);
+    //         $stmt1 = $conn->prepare($sql1);
+    //         $stmt1->execute();
+    //         $stmt1->setFetchMode(PDO::FETCH_ASSOC);
 
-            if (!$stmt1) {
-                $result1['result'] = -1;
-                $result1['Number'] = 1;
-                $result1['msg'] = $conn->errorInfo();
+    //         if (!$stmt1) {
+    //             $result1['result'] = -1;
+    //             $result1['Number'] = 1;
+    //             $result1['msg'] = $conn->errorInfo();
 
-                return $result1;
-            }
+    //             return $result1;
+    //         }
 
-            $websites = [
-                'Artists_websites_id' => [],
-                'subject' => [],
-                'url' => [],
-            ];
+    //         $emails = [
+    //             'Artists_emails_id' => [],
+    //             'subject' => [],
+    //             'email' => [],
+    //         ];
 
-            while ($row1 = $stmt1->fetch()) {
-                array_push($websites['Artists_websites_id'], $row1['Artists_websites_id']);
-                array_push($websites['subject'], $row1['website_subject']);
-                array_push($websites['url'], $row1['website_url']);
-            }
+    //         while ($row1 = $stmt1->fetch()) {
+    //             array_push($emails['Artists_emails_id'], $row1['Artists_emails_id']);
+    //             array_push($emails['subject'], $row1['email_subject']);
+    //             array_push($emails['email'], $row1['email_email']);
+    //         }
 
-            $row['artists_website'] = $websites;
-            $list[$row['Artists_id']] = $row;
+    //         $row['artists_email'] = $emails;
+    //         $list[$row['Artists_id']] = $row;
 
-        }
+    //         // get artists addresses
+    //         $sql1 = "select * from artists_addresses where `artists_id`='$id'";
 
-        $result['result'] = 1;
-        $result['export']['list'] = $list;
-        return $result;
-    }
+    //         $stmt1 = $conn->prepare($sql1);
+    //         $stmt1->execute();
+    //         $stmt1->setFetchMode(PDO::FETCH_ASSOC);
+
+    //         if (!$stmt1) {
+    //             $result1['result'] = -1;
+    //             $result1['Number'] = 1;
+    //             $result1['msg'] = $conn->errorInfo();
+
+    //             return $result1;
+    //         }
+
+    //         $addresses = [
+    //             'Artists_addresses_id' => [],
+    //             'subject' => [],
+    //             'address' => [],
+    //         ];
+
+    //         while ($row1 = $stmt1->fetch()) {
+    //             array_push($addresses['Artists_addresses_id'], $row1['Artists_addresses_id']);
+    //             array_push($addresses['subject'], $row1['address_subject']);
+    //             array_push($addresses['address'], $row1['address_address']);
+    //         }
+
+    //         $row['artists_address'] = $addresses;
+    //         $list[$row['Artists_id']] = $row;
+    //         // get artists websites
+    //         $sql1 = "select * from artists_websites where `artists_id`='$id'";
+
+    //         $stmt1 = $conn->prepare($sql1);
+    //         $stmt1->execute();
+    //         $stmt1->setFetchMode(PDO::FETCH_ASSOC);
+
+    //         if (!$stmt1) {
+    //             $result1['result'] = -1;
+    //             $result1['Number'] = 1;
+    //             $result1['msg'] = $conn->errorInfo();
+
+    //             return $result1;
+    //         }
+
+    //         $websites = [
+    //             'Artists_websites_id' => [],
+    //             'subject' => [],
+    //             'url' => [],
+    //         ];
+
+    //         while ($row1 = $stmt1->fetch()) {
+    //             array_push($websites['Artists_websites_id'], $row1['Artists_websites_id']);
+    //             array_push($websites['subject'], $row1['website_subject']);
+    //             array_push($websites['url'], $row1['website_url']);
+    //         }
+
+    //         $row['artists_website'] = $websites;
+    //         $list[$row['Artists_id']] = $row;
+
+    //     }
+
+    //     $result['result'] = 1;
+    //     $result['export']['list'] = $list;
+    //     return $result;
+    // }
 
     public function getArtists($fields = '')
     {
 
         $conn = dbConn::getConnection();
-
-        include_once ROOT_DIR.'/model/db.inc.class.php';
-
         $condition = DataBase::filterBuilder($fields);
 
         $length=$condition['length'];
@@ -940,7 +931,6 @@ class adminArtistsModelDb
         $result['export']['recordsCount'] = $row_count['recCount'];
 
 
-        include_once ROOT_DIR."component/category/admin/model/admin.category.model.php";
         //$cat = new adminCategoryModel();
         //$obj = adminCategoryModel::getBy_not_Category_id(0)->getList();
 

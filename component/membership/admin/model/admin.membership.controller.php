@@ -1,11 +1,6 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: malekloo
- * Date: 3/6/2016
- * Time: 11:21 AM.
- */
+
 
 use Common\validators;
 use Component\artists\admin\model\adminArtistsModel;
@@ -13,11 +8,6 @@ use Component\city\admin\model\adminCityModel;
 use Model\clsCountry;
 use Model\convertDatatableIO;
 
-include_once dirname(__FILE__) . '/admin.membership.model.php';
-
-/**
- * Class registerController.
- */
 class adminMembershipController
 {
     /**
@@ -50,7 +40,7 @@ class adminMembershipController
      *
      * @return string
      */
-    public function template($list = [], $msg = '')
+    public function template(array $list = [], $msg = ''): void
     {
         global $messageStack, $admin_info, $lang;
 
@@ -69,9 +59,6 @@ class adminMembershipController
                 echo json_encode($list);
                 break;
 
-            case 'array':
-                return $list;
-                break;
 
             case 'serialize':
                 echo serialize($list);
@@ -358,31 +345,18 @@ class adminMembershipController
         die();
     }
 
-    public function showList($msg)
+    public function showList($msg = '')
     {
         $export['status'] = 'showAll';
         $this->fileName = 'admin.membership.showList.php';
-        $this->template($export);
+        $this->template($export, $msg);
         die();
     }
 
-    /**
-     * @param $fields
-     *
-     * @return mixed
-     *
-     * @author malekloo
-     * @date 3/6/2015
-     *
-     * @version 01.01.01
-     */
+
     public function search($fields)
     {
-
-
-
         $artists = new adminArtistsModel();
-
         $i = 0;
         $columns = array(
             array('db' => 'Artists_id', 'dt' => $i++),
@@ -391,6 +365,7 @@ class adminMembershipController
             array('db' => 'artists_name_en', 'dt' => $i++),
             array('db' => 'artists_name_fa',   'dt' => $i++),
             array('db' => 'status', 'dt' => $i++),
+            array('db' => 'date', 'dt' => $i++),
             array('db' => 'Artists_id', 'dt' => $i++)
         );
         $convert = new convertDatatableIO();
@@ -405,7 +380,7 @@ class adminMembershipController
 
         if ($result['result'] != '1') {
             $this->fileName = 'admin.artists.showList.php';
-            $this->template('', $result['msg']);
+            $this->template([], $result['msg']);
             die();
         }
 
@@ -421,6 +396,13 @@ class adminMembershipController
                 } else {
                     $st = 'غیر فعال';
                 }
+                return $st;
+            }
+        );
+        $other['6'] = array(
+            'formatter' => function ($list) {
+                $st = convertDate($list['date'], true);
+                $st .= convertDate($list['update_date'], true);
                 return $st;
             }
         );
@@ -459,7 +441,6 @@ class adminMembershipController
             $msg = $result['msg'];
             redirectPage(RELA_DIR . 'zamin/index.php?component=membership', $msg);
         }
-
 
 
         $result = $artists->delete();

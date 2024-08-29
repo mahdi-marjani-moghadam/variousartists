@@ -1,9 +1,8 @@
 <?php
-/**
- * @author Malekloo Izadi Sakhamanesh <Izadi@dabacenter.ir>
- * @version 0.0.1 this is the beta version of News
- * @copyright 2015 The Imen Daba Parsian Co.
- */
+
+use Model\DataBase;
+
+
 class admin_member_db extends DataBase
 {
 
@@ -63,68 +62,67 @@ class admin_member_db extends DataBase
         $method = '_' . $method;
 
         if (method_exists($this, $method)) {
-            switch ($method) :
-                case "_set_productFields" :
+            switch ($method):
+                case "_set_productFields":
                     return $this->_set_productFields($args['0']);
                     break;
-                case "_set_companyGroupFields" :
+                case "_set_companyGroupFields":
                     return $this->_set_companyGroupFields($args['0']);
                     break;
-                case "_insertCompanyDB" :
+                case "_insertCompanyDB":
                     return $this->_insertCompanyDB($args['0']);
                     break;
-                case "_insertCompanyGroupDB" :
+                case "_insertCompanyGroupDB":
                     return $this->_insertCompanyGroupDB($args['0']);
                     break;
-                case "_insertCompanyToGroupDB" :
+                case "_insertCompanyToGroupDB":
                     return $this->_insertCompanyToGroupDB($args['0']);
                     break;
-                case "_updateCompanyDB" :
+                case "_updateCompanyDB":
                     return $this->_updateCompanyDB($args['0']);
                     break;
-                case "_updateCompanyGroupDB" :
+                case "_updateCompanyGroupDB":
                     return $this->_updateCompanyGroupDB($args['0']);
                     break;
-                case "_getCompanyById" :
+                case "_getCompanyById":
                     return $this->_getCompanyById($args['0']);
                     break;
-                case "_getCompanyGroupById" :
+                case "_getCompanyGroupById":
                     return $this->_getCompanygroupById($args['0']);
                     break;
-                case "_getCompany" :
+                case "_getCompany":
                     return $this->_getCompany($args['0']);
                     break;
-                case "_getMembersList" :
-                    return $this->_getMembersList($args['0'],$args['1']);
+                case "_getMembersList":
+                    return $this->_getMembersList($args['0'], $args['1']);
                     break;
-                case "_getCompanyGroup" :
+                case "_getCompanyGroup":
                     return $this->_getCompanyGroup($args['0']);
                     break;
-                case "_removeCompanyDB" :
+                case "_removeCompanyDB":
                     return $this->_removeCompanyDB($args['0']);
                     break;
-                case "_removeFromGroupDB" :
+                case "_removeFromGroupDB":
                     return $this->_removeFromGroupDB($args['0']);
                     break;
-                case "_set_IDs" :
+                case "_set_IDs":
                     return $this->_set_IDs($args['0']);
                     break;
-                case "_changeStatusDB" :
+                case "_changeStatusDB":
                     return $this->_changeStatusDB($args['0']);
                     break;
-                case "_changeGroupStatusDB" :
+                case "_changeGroupStatusDB":
                     return $this->_changeGroupStatusDB($args['0']);
                     break;
-                case "_trashCompanyDB" :
+                case "_trashCompanyDB":
                     return $this->_trashCompanyDB($args['0']);
                     break;
-                case "_recycleCompanyDB" :
+                case "_recycleCompanyDB":
                     return $this->_recycleCompanyDB($args['0']);
                     break;
 
             endswitch;
         }
-
     }
 
 
@@ -140,13 +138,11 @@ class admin_member_db extends DataBase
     public function __set($property, $value)
     {
 
-       switch($property)
-       {
-           case '_groupCompany':
-               $this->_groupCompany = $value;
-               break;
-       }
-
+        switch ($property) {
+            case '_groupCompany':
+                $this->_groupCompany = $value;
+                break;
+        }
     }
 
     /**
@@ -187,14 +183,12 @@ class admin_member_db extends DataBase
      */
     private function _set_List($id, $value = '')
     {
-        if (!empty($id) && is_numeric($id) && is_array($value))
-        {
+        if (!empty($id) && is_numeric($id) && is_array($value)) {
             $this->_list[$id] = $value;
         }
         $result['result'] = 1;
 
         return $result;
-
     }
 
 
@@ -210,11 +204,9 @@ class admin_member_db extends DataBase
      */
     private function _set_InsertCompanyGroupDB($insertedId, $value = '')
     {
-        if (!empty($insertedId) && is_numeric($insertedId) && is_array($insertedId))
-        {
+        if (!empty($insertedId) && is_numeric($insertedId) && is_array($insertedId)) {
             $this->_groupCompany[$insertedId] = $value;
         }
-
     }
 
 
@@ -264,8 +256,7 @@ class admin_member_db extends DataBase
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['no'] = 1;
             $result['msg'] = 'DB error : ' . $conn->errorInfo();
@@ -279,21 +270,18 @@ class admin_member_db extends DataBase
         price
         )
         VALUES";
-        foreach($this->_priceFields['price'] as $product_id => $price)
-        {
+        foreach ($this->_priceFields['price'] as $product_id => $price) {
 
             $sql .= "(
                         '" . $member_id . "',
                         '" . $product_id . "',
                         '" . $price . "'
                         ),";
-
         }
-        $sql = substr($sql,0,-1);
+        $sql = substr($sql, 0, -1);
         $stmt = $conn->prepare($sql);
         $stmt->execute();
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['no'] = 1;
             $result['msg'] = 'DB error : ' . $conn->errorInfo();
@@ -311,10 +299,7 @@ class admin_member_db extends DataBase
      * @version 01.01.01
      * @date    08/08/2015
      */
-    public function _checkPermission()
-    {
-
-    }
+    public function _checkPermission() {}
 
 
 
@@ -342,16 +327,14 @@ class admin_member_db extends DataBase
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['Number'] = 1;
             $result['msg'] = $conn->errorInfo();
             return $result;
         }
 
-        if (!$stmt->rowCount())
-        {
+        if (!$stmt->rowCount()) {
             $result['result'] = -1;
             $result['Number'] = 1;
             $result['msg'] = 'This Record was Not Found';
@@ -362,7 +345,6 @@ class admin_member_db extends DataBase
         $this->set_Fields($row);
         $result['result'] = 1;
         return $result;
-
     }
 
 
@@ -375,18 +357,18 @@ class admin_member_db extends DataBase
      * @version 01.01.01
      * @date    08/08/2015
      */
-    public function getAll($fields='')
+    public function getAll($fields = '')
     {
         //global $lang;
         $this->_checkPermission();
         $conn = parent::getConnection();
-        $filter=$this->filterBuilder($fields);
-        $length=$filter['length'];
-        $filter=$filter['list'];
+        $filter = $this->filterBuilder($fields);
+        $length = $filter['length'];
+        $filter = $filter['list'];
 
         $sql = "SELECT
                  *
-    		     FROM 	members ".$filter['filter'].$filter['order'].$filter['limit'];
+    		     FROM 	members " . $filter['filter'] . $filter['order'] . $filter['limit'];
 
 
 
@@ -394,19 +376,18 @@ class admin_member_db extends DataBase
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['no'] = 1;
             $result['msg'] = $conn->errorInfo();
             return $result;
         }
 
-        $sql="
+        $sql = "
                 SELECT COUNT(`members`.`member_id`) as recCount
                 FROM
                 `members`
-              ".$filter['filter'];
+              " . $filter['filter'];
         //echo $stmt->rowCount();
 
         $stmTp = $conn->prepare($sql);
@@ -414,12 +395,11 @@ class admin_member_db extends DataBase
         $stmTp->execute();
         $rowP = $stmTp->fetch();
 
-        $rowFound=$rowP['recCount'];
-        $this->_paging['recordsFiltered']=$rowP['recCount'];
-        $this->_paging['recordsTotal']= $rowFound;
+        $rowFound = $rowP['recCount'];
+        $this->_paging['recordsFiltered'] = $rowP['recCount'];
+        $this->_paging['recordsTotal'] = $rowFound;
 
-        while ($row = $stmt->fetch())
-        {
+        while ($row = $stmt->fetch()) {
             $this->_set_List($row['member_id'], $row);
         }
 
@@ -428,7 +408,6 @@ class admin_member_db extends DataBase
         $result['result'] = 1;
         $result['no'] = 2;
         return $result;
-
     }
 
 
@@ -470,8 +449,7 @@ class admin_member_db extends DataBase
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['no'] = 1;
             $result['msg'] = 'DB error : ' . $conn->errorInfo();
@@ -483,7 +461,6 @@ class admin_member_db extends DataBase
         $result['result'] = 1;
         $result['Number'] = 2;
         return $result;
-
     }
 
 
@@ -518,8 +495,7 @@ class admin_member_db extends DataBase
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['no'] = 1;
             $result['msg'] = 'DB error : ' . $conn->errorInfo();
@@ -554,8 +530,7 @@ class admin_member_db extends DataBase
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
 
             $result['result'] = -1;
             $result['Number'] = 1;
@@ -565,10 +540,5 @@ class admin_member_db extends DataBase
 
         $result['result'] = 1;
         return $result;
-
     }
-
-
-
-
 }

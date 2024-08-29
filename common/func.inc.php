@@ -1,5 +1,9 @@
 <?php
+
+use Common\validators;
 use Component\city\model\cityModelDb;
+use Component\dictionary\model\dictionary;
+
 function checkUppercase($string)
 {
     if (preg_match('/[A-Z]/', $string) === 0) {
@@ -369,17 +373,19 @@ function sendmails($email, $bcc, $subject, $body, $orderID, $header = '')
     return 1;
 }
 
-function convertDate($date)
+function convertDate($date, $display_time = false)
 {
+    if(!validators::validateDate($date)) return $date;
+
     include_once 'jdf.php';
-    if($date == '0000-00-00 00:00:00') return '';
-    
+    if ($date == '0000-00-00 00:00:00') return '';
+
     list($date, $time) = explode(' ', $date);
     list($g_y, $g_m, $g_d) = explode('-', $date);
     list($j_y, $j_m, $j_d) = gregorian_to_jalali($g_y, $g_m, $g_d);
     list($h, $m, $s) = explode(':', $time);
     $date = "$j_y/$j_m/$j_d";
-
+    if ($display_time) $date .= " $h:$m:$s";
     return $date;
 }
 
@@ -391,7 +397,7 @@ function convertJToGDate($date)
     $g_m = $dateTime[1];
     $g_d = $dateTime[2];
 
-    
+
     list($j_y, $j_m, $j_d) = jalali_to_gregorian($g_y, $g_m, $g_d);
     if ($j_d < 10) {
         $j_d = '0' . $j_d;
@@ -635,7 +641,7 @@ function showPageButton($currentPage, $pageCount, $totalRecord, $webaddress, $n 
                         continue;
                     }
                 ?>
-                    <a href="<?php echo  ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?php echo  ($i != $currentPage ? '' : 'current') ?>"><?php echo  $i ?></a>
+                    <a href="<?php echo ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?php echo ($i != $currentPage ? '' : 'current') ?>"><?php echo  $i ?></a>
                 <?php
 
                 }
@@ -656,7 +662,7 @@ function showPageButton($currentPage, $pageCount, $totalRecord, $webaddress, $n 
                         continue;
                     }
                 ?>
-                    <a href="<?php echo  ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?php echo  ($i != $currentPage ? '' : 'current') ?>" title=""><?php echo  $i ?></a>
+                    <a href="<?php echo ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?php echo ($i != $currentPage ? '' : 'current') ?>" title=""><?php echo  $i ?></a>
                 <?php
 
                 }
@@ -678,7 +684,7 @@ function showPageButton($currentPage, $pageCount, $totalRecord, $webaddress, $n 
                         continue;
                     }
                 ?>
-                    <a href="<?php echo  ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?php echo  ($i != $currentPage ? '' : 'current') ?>"><?php echo  $i ?></a>
+                    <a href="<?php echo ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?php echo ($i != $currentPage ? '' : 'current') ?>"><?php echo  $i ?></a>
                 <?php
 
                 }
@@ -698,7 +704,7 @@ function showPageButton($currentPage, $pageCount, $totalRecord, $webaddress, $n 
                         continue;
                     }
                 ?>
-                    <a href="<?php echo  ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?php echo  ($i != $currentPage ? '' : 'current') ?>"><?php echo  $i ?></a>
+                    <a href="<?php echo ($i != $currentPage ? $webaddress . '&currentPage' . $n . '=' . $i : 'javascript:;') ?>" class="number <?php echo ($i != $currentPage ? '' : 'current') ?>"><?php echo  $i ?></a>
                 <?php
 
                 }
@@ -747,7 +753,7 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
 
                 ?>
 
-                    <a href="<?php echo  ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?php echo  ($i != $currentPage ? '' : 'current') ?>" title="<?php echo  $i ?>"><?php echo  $i ?></a>
+                    <a href="<?php echo ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?php echo ($i != $currentPage ? '' : 'current') ?>" title="<?php echo  $i ?>"><?php echo  $i ?></a>
 
                 <?php
 
@@ -777,7 +783,7 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
 
                 ?>
 
-                    <a href="<?php echo  ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?php echo  ($i != $currentPage ? '' : 'current') ?>" title="<?php echo  $i ?>"><?php echo  $i ?></a>
+                    <a href="<?php echo ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?php echo ($i != $currentPage ? '' : 'current') ?>" title="<?php echo  $i ?>"><?php echo  $i ?></a>
 
                 <?php
 
@@ -809,7 +815,7 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
 
                 ?>
 
-                    <a href="<?php echo  ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?php echo  ($i != $currentPage ? '' : 'current') ?>" title="<?php echo  $i ?>"><?php echo  $i ?></a>
+                    <a href="<?php echo ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?php echo ($i != $currentPage ? '' : 'current') ?>" title="<?php echo  $i ?>"><?php echo  $i ?></a>
 
                 <?php
 
@@ -839,7 +845,7 @@ function showPageButtonSeo($currentPage, $pageCount, $totalRecord, $webaddress)
 
                 ?>
 
-                    <a href="<?php echo  ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?php echo  ($i != $currentPage ? '' : 'current') ?>" title="<?php echo  $i ?>"><?php echo  $i ?></a>
+                    <a href="<?php echo ($i != $currentPage ? $webaddress . 'PG-' . $i : 'javascript:;') ?>" class="number <?php echo ($i != $currentPage ? '' : 'current') ?>" title="<?php echo  $i ?>"><?php echo  $i ?></a>
 
                 <?php
 
@@ -1392,7 +1398,6 @@ function translate($text, $lang = '')
         global $lang;
     }
 
-    include_once 'component/dictionary/model/dictionary.model.php';
     $obj = dictionary::getBy_text_and_lang($text, $lang)->first();
 
     if (is_object($obj)) {
@@ -1413,9 +1418,10 @@ function dd($object, $continue = false)
 
 
 
-function get_caller($function = NULL, $use_stack = NULL) {
+function get_caller($function = NULL, $use_stack = NULL)
+{
     echo "<pre>";
-    if ( is_array($use_stack) ) {
+    if (is_array($use_stack)) {
         // If a function stack has been provided, used that.
         $stack = $use_stack;
     } else {
@@ -1434,14 +1440,14 @@ function get_caller($function = NULL, $use_stack = NULL) {
         $function = get_caller(__FUNCTION__, $stack);
     }
 
-    if ( is_string($function) && $function != "" ) {
+    if (is_string($function) && $function != "") {
         // If we are given a function name as a string, go through the function stack and find
         // it's caller.
         for ($i = 0; $i < count($stack); $i++) {
             $curr_function = $stack[$i];
             // Make sure that a caller exists, a function being called within the main script
             // won't have a caller.
-            if ( $curr_function["function"] == $function && ($i + 1) < count($stack) ) {
+            if ($curr_function["function"] == $function && ($i + 1) < count($stack)) {
                 return $stack[$i + 1]["function"];
             }
         }
@@ -1452,7 +1458,8 @@ function get_caller($function = NULL, $use_stack = NULL) {
 }
 
 if (!function_exists('slug')) {
-    function slug($slug) : string {
+    function slug($slug): string
+    {
         $slug = str_replace(' ', '-', $slug);
         $slug = str_replace('--', '-', $slug);
         $slug = str_replace('--', '-', $slug);
@@ -1460,7 +1467,7 @@ if (!function_exists('slug')) {
         $slug = trim($slug, ' ');
         $slug = trim($slug, '-');
         $slug = preg_replace('/\s+/', '-', $slug);
-        
+
         return $slug;
     }
 }

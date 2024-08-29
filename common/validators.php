@@ -170,4 +170,8 @@ class validators
 
 
     }
+    public static function validateDate($date) { 
+        $timestamp = strtotime($date); 
+        return $timestamp ? true : false; 
+    } 
 }

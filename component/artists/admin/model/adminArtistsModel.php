@@ -197,9 +197,7 @@ class adminArtistsModel extends looeic
      */
     public function getArtists($fields)
     {
-        // include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
-
-
+       
         $result = (new adminArtistsModelDb)->getArtists($fields);
 
         if($result['result'] != 1)

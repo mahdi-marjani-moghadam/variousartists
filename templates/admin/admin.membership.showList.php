@@ -1,6 +1,5 @@
 <script type="text/javascript" language="javascript" class="init">
-
-    $(document).ready(function () {
+    $(document).ready(function() {
         var $modal = $('.customMobile');
 
         // DataTable
@@ -26,7 +25,7 @@
         var oTable = dataTable.DataTable({
             "processing": true,
             "serverSide": true,
-            "ajax": "<?php echo RELA_DIR?>zamin/?component=membership&action=search&status=<?php echo $list['status']?>",
+            "ajax": "<?php echo RELA_DIR ?>zamin/?component=membership&action=search&status=<?php echo $list['status'] ?>",
             "ordering": false
         });
 
@@ -40,10 +39,10 @@
         // Apply the search
         //alert($("#search_9").val());
 
-        oTable.columns().every(function () {
+        oTable.columns().every(function() {
             var that = this;
 
-            $('	:input', this.footer()).on('keyup change', function () {
+            $('	:input', this.footer()).on('keyup change', function() {
                 that.search(this.value).draw();
             });
         });
@@ -54,15 +53,15 @@
 
         //show other phone
 
-        $('#example tbody').on('click', '.company_phone', function () {
-            var company_id=$(this).data('company_id');
+        $('#example tbody').on('click', '.company_phone', function() {
+            var company_id = $(this).data('company_id');
             $("#loading").show();
             $.ajax({
-                url: '<?php echo RELA_DIR?>zamin/?component=company&action=getCompanyPhone',
+                url: '<?php echo RELA_DIR ?>zamin/?component=company&action=getCompanyPhone',
                 type: "POST",
-                data: "company_id="+company_id,
+                data: "company_id=" + company_id,
                 cache: false,
-                success: function (data) {
+                success: function(data) {
                     $("#loading").hide();
                     $("#allcompanyphone").html(data);
 
@@ -73,22 +72,18 @@
             });
 
 
-        } );
+        });
 
 
-        $('body').on('click', '.company_allphone', function () {
-            var company_one_phone=$(this).data('myphonenumber');
-            var company_id=$(this).data('mycompanyid');
-            call(company_one_phone,company_id);
+        $('body').on('click', '.company_allphone', function() {
+            var company_one_phone = $(this).data('myphonenumber');
+            var company_id = $(this).data('mycompanyid');
+            call(company_one_phone, company_id);
             //alert(company_id+" => "+company_one_phone);
-        } );
+        });
 
         //end show other phone
     });
-
-
-
-
 </script>
 
 <div class="content-control">
@@ -113,8 +108,8 @@
             </div>
         </div>
         <div class="panel-body">
-            <div class="pull-right" ><a href="<?php echo  RELA_DIR ?>zamin/?component=membership&action=add"
-                                       class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن
+            <div class="pull-right"><a href="<?php echo  RELA_DIR ?>zamin/?component=membership&action=add"
+                    class="btn btn-primary btn-sm btn-icon text-13"><i class="fa fa-plus"></i> افزودن
                     کاربر جدید</a></div>
 
 
@@ -122,32 +117,34 @@
             <div class="row smallSpace"></div>
             <div class="table-responsive table-responsive-datatables">
                 <table id="example" class="companyTable table table-striped table-bordered rtl" cellspacing="0"
-                       width="100%">
+                    width="100%">
                     <thead>
-                    <tr>
-                        <th>ردیف</th>
-                        <th>نام کاربری </th>
-                        <th>تلفن</th>
-                        <th>نام انگلیسی</th>
-                        <th>نام فارسی</th>
-                        <th>وضعیت</th>
-                        <th>ابزار</th>
-                    </tr>
+                        <tr>
+                            <th>ردیف</th>
+                            <th>نام کاربری </th>
+                            <th>تلفن</th>
+                            <th>نام انگلیسی</th>
+                            <th>نام فارسی</th>
+                            <th>وضعیت</th>
+                            <th>تاریخ ثبت نام</th>
+                            <th>ابزار</th>
+                        </tr>
                     </thead>
                     <tfoot>
-                    <th><input type="text" name="search_1" class="search_init form-control"/></th>
-                    <th><input type="text" name="search_2" class="search_init form-control"/></th>
-                    <th><input type="text" name="search_3" class="search_init form-control"/></th>
-                    <th><input type="text" name="search_4" class="search_init form-control"/></th>
+                        <th><input type="text" name="search_1" class="search_init form-control" /></th>
+                        <th><input type="text" name="search_2" class="search_init form-control" /></th>
+                        <th><input type="text" name="search_3" class="search_init form-control" /></th>
+                        <th><input type="text" name="search_4" class="search_init form-control" /></th>
 
-                    <th><input type="text" name="search_6" class="search_init form-control"/></th>
-                    <th><select name="search_5" class="search_init " id="search_9">
-                            <option value="">همه</option>
-                            <option value="1">فعال</option>
-                            <option value="0">غیر فعال</option>
-                        </select>
-                    </th>
-                    <th><input type="text" name="search_7" class="search_init form-control"/></th>
+                        <th><input type="text" name="search_5" class="search_init form-control" /></th>
+                        <th><input type="text" name="search_6" class="search_init form-control" /></th>
+                        <th><select name="search_7" class="search_init " id="search_9">
+                                <option value="">همه</option>
+                                <option value="1">فعال</option>
+                                <option value="0">غیر فعال</option>
+                            </select>
+                        </th>
+                        <th><input type="text" name="search_8" class="search_init form-control" /></th>
                     </tfoot>
                 </table>
             </div>
