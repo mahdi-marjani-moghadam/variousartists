@@ -6,6 +6,8 @@
  * Time: 10:45 AM
  */
 
+use Component\aboutus\admin\model\adminAboutusModel;
+
 include_once(dirname(__FILE__)."/admin.aboutus.model.php");
 
 /**
@@ -76,16 +78,6 @@ class adminAboutusController
 
 
 
-
-
-    /**
-     * show about us edit form
-     *
-     * @param $msg
-     * @author marjani
-     * @date 2/27/2016
-     * @version 01.01.01
-     */
     public function showAboutusEditForm($msg)
     {
 

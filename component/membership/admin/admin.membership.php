@@ -29,6 +29,7 @@ switch ($_GET['action']) {
         break;
     case 'delete':
         checkPermissions('deleteArtists');
+        
         $artistsController->deleteArtists($_GET['id']);
         break;
 

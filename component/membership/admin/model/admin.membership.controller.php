@@ -3,8 +3,8 @@
 
 
 use Common\validators;
-use Component\artists\admin\model\adminArtistsModel;
 use Component\city\admin\model\adminCityModel;
+use Component\membership\admin\model\adminArtistsModel;
 use Model\clsCountry;
 use Model\convertDatatableIO;
 
@@ -401,7 +401,7 @@ class adminMembershipController
     public function deleteArtists($id)
     {
         $artists = new adminArtistsModel();
-
+        
 
         if (!validators::required($id) and !validators::Numeric($id)) {
             $msg = 'یافت نشد';
@@ -429,13 +429,7 @@ class adminMembershipController
         redirectPage(RELA_DIR . 'zamin/index.php?component=membership', $msg);
         die();
     }
-    // public function call($fields)
-    // {
-    //     include_once dirname(__FILE__) . '/php-ami-class.php';
-    //     $conn = new AstMan();
-    //     $ret = $conn->clickToCall($fields['number']);
-    //     die();
-    // }
+  
 
     public function getArtistsphone($input)
     {

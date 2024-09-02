@@ -1,11 +1,10 @@
 <?php
+namespace Component\banner\admin\model;
 
-/**
- * Created by PhpStorm.
- * User: marjani
- * Date: 3/06/2016
- * Time: 12:08 AM
- */
+use Common\dbConn;
+use Model\DataBase;
+use PDO;
+
 class adminBannerModelDb
 {
 
@@ -144,7 +143,6 @@ class adminBannerModelDb
 
         $conn = dbConn::getConnection();
 
-        include_once(ROOT_DIR."/model/db.inc.class.php");
 
         $condition= DataBase::filterBuilder($fields);
 

@@ -27,13 +27,6 @@ class adminArtistsModel extends looeic
      */
 
 
-    /**
-     * @param $field
-     * @return mixed
-     * @author malekloo
-     * @date 3/6/2015
-     * @version 01.01.01
-     */
     public function __get($field)
     {
         /*if($field == 'result')
@@ -206,7 +199,6 @@ class adminArtistsModel extends looeic
      */
     public function getArtists($fields)
     {
-        // include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
 
 
         $result = (new adminArtistsModelDb)->getArtists($fields);
@@ -229,7 +221,6 @@ class adminArtistsModel extends looeic
      */
     public function getArtistsById($id)
     {
-        include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
 
         $result = adminArtistsModelDb::getArtistsById($id);
 
@@ -264,7 +255,6 @@ class adminArtistsModel extends looeic
      */
     public function delete($id='')
     {
-        include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
         $result = adminArtistsModelDb::delete($this->fields['Artists_id']);
 
         return $result;

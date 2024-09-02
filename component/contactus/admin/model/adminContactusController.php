@@ -87,7 +87,7 @@ class adminContactusController
     /**
      * @param $fields
      */
-    public function showList($fields = array(), $msg = '')
+    public function showList($fields = [], $msg = '')
     {
         $contactus = new adminContactusModel();
         $result = $contactus->getContactus($fields);
@@ -148,7 +148,7 @@ class adminContactusController
 
         $contactus = new adminContactusModel();
         $query = "select * from contactus_content ";
-        $result    = $contactus->getByFilter('', $query);
+        $result    = $contactus->getByFilter([], $query);
 
         if ($result['result'] != '1') {
             $msg = $result['msg'];
@@ -172,7 +172,7 @@ class adminContactusController
     public function editContactus($fields)
     {
         // include_once ROOT_DIR.'component/contactus/admin/model/admin.contactus_content.model.php';
-        $contactus = new adminContactusModel();
+        $contactus = new adminContactusContentModel();
 
         $result    = $contactus::getBy_lang($fields['language'])->get()['export']['list'][0];
         $result->setFields($fields);

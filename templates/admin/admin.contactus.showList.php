@@ -1,31 +1,27 @@
 <script type="text/javascript" language="javascript" class="init">
-
   $(document).ready(function() {
 
     // DataTable
     var table = $('#example').DataTable();
 
     // Apply the search
-    table.columns().every( function () {
+    table.columns().every(function() {
       var that = this;
 
-      $( 'input', this.footer() ).on( 'keyup change', function () {
-        if ( that.search() !== this.value ) {
+      $('input', this.footer()).on('keyup change', function() {
+        if (that.search() !== this.value) {
           that
-              .search( this.value )
-              .draw();
+            .search(this.value)
+            .draw();
         }
-      } );
-    } );
+      });
+    });
     ////
 
     // Apply the search
 
 
-  } );
-
-
-
+  });
 </script>
 <div class="content-control">
   <!--control-nav-->
@@ -53,58 +49,55 @@
       <div class="table-responsive table-responsive-datatables">
         <table id="example" class="companyTable table table-striped table-bordered rtl" cellspacing="0" width="100%">
           <thead>
-          <tr>
-            <th>ردیف</th>
-            <th>موضوع</th>
-            <th>نام</th>
-            <th>ایمیل</th>
-            <th>نظرات</th>
-            <th>وضعیت</th>
-            <th>تاریخ</th>
-            <th></th>
-          </tr>
+            <tr>
+              <th>ردیف</th>
+              <th>موضوع</th>
+              <th>نام</th>
+              <th>ایمیل</th>
+              <th>نظرات</th>
+              <th>وضعیت</th>
+              <th>تاریخ</th>
+              <th></th>
+            </tr>
           </thead>
           <tbody>
-          <?php 
-          $cn = 1;
-          if(isset($list['list'])) {
-            foreach ($list['list'] as $id =>$fields) {
-              ?>
-              <tr>
-                <td><?php echo $fields['Contact_id']; ?></td>
-                <td><?php echo $fields['subject']; ?></td>
-                <td><?php echo $fields['name']; ?></td>
-                <td><?php echo $fields['email']; ?></td>
-                <td><?php echo $fields['comment']; ?></td>
-                <td><?php echo $fields['status']; ?></td>
-                <td><?php echo $fields['date']; ?></td>
+            <?php
+            $cn = 1;
+            if (isset($list['list'])) {
+              foreach ($list['list'] as $id => $fields) {
+            ?>
+                <tr>
+                  <td><?php echo $fields['Contact_id']; ?></td>
+                  <td><?php echo $fields['subject']; ?></td>
+                  <td><?php echo $fields['name']; ?></td>
+                  <td><?php echo $fields['email']; ?></td>
+                  <td><?php echo $fields['comment']; ?></td>
+                  <td><?php echo $fields['status']; ?></td>
+                  <td><?php echo $fields['date']; ?></td>
 
-                <td><a href="<?php echo RELA_DIR?>zamin/?component=contactus&action=showMore&id=<?php echo $fields['Contact_id']; ?>">نمایش</a>
-                  <a href="<?php echo RELA_DIR?>zamin/?component=contactus&action=deleteContactus&id=<?php echo $fields['Contact_id']; ?>">حذف</a> </td>
+                  <td><a href="<?php echo RELA_DIR ?>zamin/?component=contactus&action=showMore&id=<?php echo $fields['Contact_id']; ?>">نمایش</a>
+                    <a href="<?php echo RELA_DIR ?>zamin/?component=contactus&action=deleteContactus&id=<?php echo $fields['Contact_id']; ?>">حذف</a>
+                  </td>
 
-              </tr>
-              <?php 
+                </tr>
+            <?php
+              }
             }
-          }
-          ?>
+            ?>
           </tbody>
           <tfoot>
-          <th><input type="hidden" name="search_1" class="search_init form-control" /></th>
-          <th><input type="text" name="search_2" class="search_init form-control" /></th>
-          <th><input type="text" name="search_3" class="search_init form-control" /></th>
-          <th><input type="text" name="search_4" class="search_init form-control" /></th>
-          <th><input type="text" name="search_5" class="search_init form-control" /></th>
-          <th><input type="text" name="search_6" class="search_init form-control" /></th>
-          <th><input type="text" name="search_7" class="search_init form-control" /></th>
-          <th><input type="hidden" name="search_8" class="search_init form-control" /></th>
+            <th><input type="hidden" name="search_1" class="search_init form-control" /></th>
+            <th><input type="text" name="search_2" class="search_init form-control" /></th>
+            <th><input type="text" name="search_3" class="search_init form-control" /></th>
+            <th><input type="text" name="search_4" class="search_init form-control" /></th>
+            <th><input type="text" name="search_5" class="search_init form-control" /></th>
+            <th><input type="text" name="search_6" class="search_init form-control" /></th>
+            <th><input type="text" name="search_7" class="search_init form-control" /></th>
+            <th><input type="hidden" name="search_8" class="search_init form-control" /></th>
 
           </tfoot>
         </table>
       </div>
     </div>
   </div>
-</div><!--/content-body -->
-
-
-
-
+</div>

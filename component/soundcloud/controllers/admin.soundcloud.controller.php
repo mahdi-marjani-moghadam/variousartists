@@ -1,23 +1,22 @@
 <?php
-include_once ROOT_DIR.'component/soundcloud/model/soundcloud.model.php';
-class adminSoundcloudController{
+use Component\soundcloud\model\soundcloud;
+class adminSoundcloudController
+{
 
     public $exportType;
     public $fileName;
 
     public function __construct()
     {
-        $this->exportType='html';
-
+        $this->exportType = 'html';
     }
 
-    function template($list=array(),$msg='')
+    function template($list = [], $msg = '') : void
     {
         // global $conn, $lang;
 
 
-        switch($this->exportType)
-        {
+        switch ($this->exportType) {
             case 'html':
 
                 include(ROOT_DIR . "templates/" . CURRENT_SKIN . "/template_start.php");
@@ -31,9 +30,7 @@ class adminSoundcloudController{
             case 'json':
                 echo json_encode($list);
                 break;
-            case 'array':
-                return $list;
-                break;
+          
 
             case 'serialize':
                 echo serialize($list);
@@ -41,7 +38,6 @@ class adminSoundcloudController{
             default:
                 break;
         }
-
     }
 
     public function showList()
@@ -66,11 +62,11 @@ class adminSoundcloudController{
         die();
     }
 
-    public function showSoundcloudAddForm($fields,$msg)
+    public function showSoundcloudAddForm($fields, $msg)
     {
 
-        $this->fileName='admin.soundcloud.addForm.php';
-        $this->template($fields,$msg);
+        $this->fileName = 'admin.soundcloud.addForm.php';
+        $this->template($fields, $msg);
         die();
     }
 
@@ -80,15 +76,14 @@ class adminSoundcloudController{
      */
     public function addSoundcloud($fields)
     {
-        $soundcloud=new soundcloud();
+        $soundcloud = new soundcloud();
         $result = $soundcloud->setFields($fields);
         $soundcloud->save();
-        if($result['result']!='1')
-        {
-            $this->showSoundcloudAddForm($fields,$result['msg']);
+        if ($result['result'] != '1') {
+            $this->showSoundcloudAddForm($fields, $result['msg']);
         }
 
-        $msg='عملیات با موفقیت انجام شد';
+        $msg = 'عملیات با موفقیت انجام شد';
         redirectPage(RELA_DIR . "zamin/index.php?component=soundcloud", $msg);
         die();
     }
@@ -99,15 +94,14 @@ class adminSoundcloudController{
 
         $object = soundcloud::find($id);
 
-        if(!is_object($object))
-        {
-            $msg=$object['msg'];
+        if (!is_object($object)) {
+            $msg = $object['msg'];
             redirectPage(RELA_DIR . "zamin/index.php?component=soundcloud", $msg);
         }
 
         $object->delete();
 
-        $msg='حذف شد.';
+        $msg = 'حذف شد.';
         redirectPage(RELA_DIR . "zamin/index.php?component=soundcloud", $msg);
         die();
     }

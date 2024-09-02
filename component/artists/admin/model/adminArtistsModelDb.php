@@ -485,12 +485,12 @@ class adminArtistsModelDb
 
         // include_once ROOT_DIR.'component/product/admin/model/admin.product.model.db.php';
 
-        $result = adminProductModelDb::updateArtistsProductsCity($fields['city_id'],$fields['Artists_id']);
+        // $result = adminProductModelDb::updateArtistsProductsCity($fields['city_id'],$fields['Artists_id']);
 
-        if($result['result'] != 1)
-        {
-            return $result;
-        }
+        // if($result['result'] != 1)
+        // {
+        //     return $result;
+        // }
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();

@@ -101,11 +101,11 @@
                                 <li class="<?php echo ($PARAM[0] == 'register')?'current':'';?>">
                                     <a href="<?php echo RELA_DIR?>register"><div><?php echo register?></div></a>
                                 </li>
-							<?php   } else{?>
+							<?php   } else { ?>
 								<li class="<?php echo ($PARAM[0] == 'account')?'current':'';?>">
-                                    <a href="<?php echo RELA_DIR?>account"><div>
-                                            <?php global $lang?>
-                                            <?if($member_info['nickname']){echo $member_info['nickname'];}
+                                    <a href="<?php echo RELA_DIR ?>account"><div>
+                                            
+                                            <?php if($member_info['nickname']){echo $member_info['nickname'];}
                                             elseif($member_info["artists_name_$lang"]){echo $member_info["artists_name_$lang"];}
                                             else{echo 'Account';} ?>
                                         </div></a></li>

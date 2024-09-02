@@ -22,20 +22,7 @@ switch ($_GET['action'])
         else
         {
 
-            $soundcloudController->showSoundcloudAddForm('','');
-        }
-        break;
-    case 'edit':
-        if(isset($_POST['action']) & $_POST['action']=='edit')
-        {
-
-            $soundcloudController->editSoundcloud($_POST);
-        }
-        else
-        {
-            $input['Soundcloud_id']=$_GET['id'];
-
-            $soundcloudController->showSoundcloudEditForm($input,'');
+            $soundcloudController->showSoundcloudAddForm([],'');
         }
         break;
     case 'delete':

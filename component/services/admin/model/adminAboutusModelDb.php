@@ -1,11 +1,11 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: marjani
- * Date: 2/27/2016
- * Time: 1:57 PM
- */
+namespace Component\services\admin\model;
+
+use Common\dbConn;
+use Model\DataBase;
+use PDO;
+
 class adminAboutusModelDb
 {
 
@@ -46,14 +46,13 @@ class adminAboutusModelDb
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['Number'] = 1;
             $result['msg'] = $conn->errorInfo();
             return $result;
         }
-        $result['export']['insert_id']=$conn->lastInsertId();
+        $result['export']['insert_id'] = $conn->lastInsertId();
         $result['result'] = 1;
         return $result;
     }
@@ -81,8 +80,7 @@ class adminAboutusModelDb
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['Number'] = 1;
             $result['msg'] = $conn->errorInfo();
@@ -92,49 +90,42 @@ class adminAboutusModelDb
         return $result;
     }
 
-    public function getAboutus($fields='')
+    public function getAboutus($fields = '')
     {
 
         $conn = dbConn::getConnection();
 
-        include_once(ROOT_DIR."/model/db.inc.class.php");
 
-        $condition= DataBase::filterBuilder($fields);
+        $condition = DataBase::filterBuilder($fields);
 
         $sql = "SELECT SQL_CALC_FOUND_ROWS
                  *
-    		     FROM 	aboutus ".$condition['list']['WHERE'].$condition['list']['filter'].$condition['list']['order'].$condition['list']['limit'];
+    		     FROM 	aboutus " . $condition['list']['WHERE'] . $condition['list']['filter'] . $condition['list']['order'] . $condition['list']['limit'];
 
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['no'] = 1;
             $result['msg'] = $conn->errorInfo();
             return $result;
         }
 
-        $sql=" SELECT FOUND_ROWS() as recCount ";
+        $sql = " SELECT FOUND_ROWS() as recCount ";
 
         $stmTp = $conn->prepare($sql);
         $stmTp->setFetchMode(PDO::FETCH_ASSOC);
         $stmTp->execute();
         $rowP = $stmTp->fetch();
 
-        $result['export']['recordsCount']= $rowP['recCount'];
+        $result['export']['recordsCount'] = $rowP['recCount'];
 
         $row = $stmt->fetch();
 
         $result['result'] = 1;
         $result['export']['list'] = $row;
         return $result;
-
     }
-
-
-
-
 }

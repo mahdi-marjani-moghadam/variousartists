@@ -1,52 +1,30 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marjani
- * Date: 3/06/2016
- * Time: 12:08 AM
- */
 
-include_once(dirname(__FILE__)."/admin.banner.model.php");
 
-/**
- * Class bannerController
- */
+
+use Common\validators;
+use Component\banner\admin\model\adminBannerModel;
+
+
 class adminBannerController
 {
 
-    /**
-     * Contains file type
-     * @var
-     */
+
     public $exportType;
 
-    /**
-     * Contains file name
-     * @var
-     */
     public $fileName;
 
-    /**
-     *
-     */
     public function __construct()
     {
-        $this->exportType='html';
-
+        $this->exportType = 'html';
     }
 
-    /**
-     * @param array $list
-     * @param $msg
-     * @return string
-     */
-    function template($list=array(),$msg='')
+
+    function template($list = [], $msg = ''): void
     {
-        // global $conn, $lang;
 
 
-        switch($this->exportType)
-        {
+        switch ($this->exportType) {
             case 'html':
                 include(ROOT_DIR . "templates/" . CURRENT_SKIN . "/template_start.php");
                 include(ROOT_DIR . "templates/" . CURRENT_SKIN . "/template_header.php");
@@ -59,17 +37,13 @@ class adminBannerController
             case 'json':
                 echo json_encode($list);
                 break;
-            case 'array':
-                return $list;
-                break;
 
             case 'serialize':
-                 echo serialize($list);
+                echo serialize($list);
                 break;
             default:
                 break;
         }
-
     }
 
 
@@ -81,17 +55,16 @@ class adminBannerController
     public function showList($fields)
     {
         $banner = adminBannerModel::getAll()->getList();
-        if($banner['result']!='1')
-        {
-            $this->fileName='admin.banner.showList.php';
-            $this->template('',$banner['msg']);
+        if ($banner['result'] != '1') {
+            $this->fileName = 'admin.banner.showList.php';
+            $this->template('', $banner['msg']);
             die();
         }
 
-        $export['list']=$banner['export']['list'];
+        $export['list'] = $banner['export']['list'];
 
-        $export['recordsCount']=$banner['export']['recordsCount'];
-        $this->fileName='admin.banner.showList.php';
+        $export['recordsCount'] = $banner['export']['recordsCount'];
+        $this->fileName = 'admin.banner.showList.php';
         $this->template($export);
         die();
     }
@@ -100,12 +73,12 @@ class adminBannerController
      * @param $fields
      * @param $msg
      */
-    public function showBannerAddForm($fields,$msg)
+    public function showBannerAddForm($fields, $msg)
     {
 
 
-        $this->fileName='admin.banner.addForm.php';
-        $this->template($fields,$msg);
+        $this->fileName = 'admin.banner.addForm.php';
+        $this->template($fields, $msg);
         die();
     }
 
@@ -116,24 +89,23 @@ class adminBannerController
     public function addBanner($fields)
     {
 
-        $banner=new adminBannerModel();
+        $banner = new adminBannerModel();
 
-        $result=$banner->setFields($fields);
+        $result = $banner->setFields($fields);
 
 
-        if($result['result']==-1)
-        {
-            $this->showBannerAddForm($fields,$result['msg']);
+        if ($result['result'] == -1) {
+            $this->showBannerAddForm($fields, $result['msg']);
             //return $result;
         }
         $banner->save();
 
-        if(file_exists($_FILES['image']['tmp_name'])){
+        if (file_exists($_FILES['image']['tmp_name'])) {
 
-            $type  = explode('/',$_FILES['image']['type']);
+            $type  = explode('/', $_FILES['image']['type']);
 
-            $input['upload_dir'] = ROOT_DIR.'statics/banner/';
-            $result = fileUploader($input,$_FILES['image']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/banner/';
+            $result = fileUploader($input, $_FILES['image']);
             $banner->image = $result['image_name'];
             $result = $banner->save();
         }
@@ -141,11 +113,10 @@ class adminBannerController
 
         //$result=$banner->add();
 
-        if($result['result']!='1')
-        {
-            $this->showBannerAddForm($fields,$result['msg']);
+        if ($result['result'] != '1') {
+            $this->showBannerAddForm($fields, $result['msg']);
         }
-        $msg='عملیات با موفقیت انجام شد';
+        $msg = 'عملیات با موفقیت انجام شد';
         redirectPage(RELA_DIR . "zamin/index.php?component=banner", $msg);
         die();
     }
@@ -154,28 +125,26 @@ class adminBannerController
      * @param $fields
      * @param $msg
      */
-    public function showBannerEditForm($fields,$msg)
+    public function showBannerEditForm($fields, $msg)
     {
-        if(!validator::required($fields['Banner_id']) and !validator::Numeric($fields['Banner_id']))
-        {
-            $msg= 'یافت نشد';
+        if (!validators::required($fields['Banner_id']) and !validators::Numeric($fields['Banner_id'])) {
+            $msg = 'یافت نشد';
             redirectPage(RELA_DIR . "zamin/index.php?component=banner", $msg);
         }
 
         $banner = adminBannerModel::find($fields['Banner_id']);
 
-        if(!is_object($banner))
-        {
-            $msg=$banner['msg'];
+        if (!is_object($banner)) {
+            $msg = $banner['msg'];
             redirectPage(RELA_DIR . "zamin/index.php?component=banner", $msg);
         }
 
-        $export=$banner->fields;
+        $export = $banner->fields;
 
 
 
-        $this->fileName='admin.banner.editForm.php';
-        $this->template($export,$msg);
+        $this->fileName = 'admin.banner.editForm.php';
+        $this->template($export, $msg);
         die();
     }
 
@@ -186,41 +155,38 @@ class adminBannerController
     {
         //$banner=new adminBannerModel();
 
-        if(!validator::required($fields['Banner_id']) and !validator::Numeric($fields['Banner_id']))
-        {
-            $msg= 'یافت نشد';
+        if (!validators::required($fields['Banner_id']) and !validators::Numeric($fields['Banner_id'])) {
+            $msg = 'یافت نشد';
             redirectPage(RELA_DIR . "zamin/index.php?component=banner", $msg);
         }
 
         $banner = adminBannerModel::find($fields['Banner_id']);
 
-        if(!is_object($banner))
-        {
-            $msg=$banner['msg'];
+        if (!is_object($banner)) {
+            $msg = $banner['msg'];
             redirectPage(RELA_DIR . "zamin/index.php?component=banner", $msg);
         }
 
 
-        $result=$banner->setFields($fields);
+        $result = $banner->setFields($fields);
 
 
 
-        if($result['result']!=1)
-        {
-            $this->showBannerEditForm($fields,$result['msg']);
+        if ($result['result'] != 1) {
+            $this->showBannerEditForm($fields, $result['msg']);
         }
 
 
 
         $banner->save();
 
-        if(file_exists($_FILES['image']['tmp_name'])){
+        if (file_exists($_FILES['image']['tmp_name'])) {
 
-            $type  = explode('/',$_FILES['image']['type']);
+            $type  = explode('/', $_FILES['image']['type']);
 
-            $input['upload_dir'] = ROOT_DIR.'statics/banner/';
-            $result = fileUploader($input,$_FILES['image']);
-            fileRemover($input['upload_dir'],$banner->fields['image']);
+            $input['upload_dir'] = ROOT_DIR . 'statics/banner/';
+            $result = fileUploader($input, $_FILES['image']);
+            fileRemover($input['upload_dir'], $banner->fields['image']);
             $banner->image = $result['image_name'];
 
             $result = $banner->save();
@@ -229,11 +195,10 @@ class adminBannerController
 
 
 
-        if($result['result']!='1')
-        {
-            $this->showBannerEditForm($fields,$result['msg']);
+        if ($result['result'] != '1') {
+            $this->showBannerEditForm($fields, $result['msg']);
         }
-        $msg='عملیات با موفقیت انجام شد';
+        $msg = 'عملیات با موفقیت انجام شد';
         redirectPage(RELA_DIR . "zamin/index.php?component=banner", $msg);
         die();
     }
@@ -249,32 +214,28 @@ class adminBannerController
     public function deleteBanner($fields)
     {
 
-        if(!validator::required($fields['Banner_id']) and !validator::Numeric($fields['Banner_id']))
-        {
+        if (!validators::required($fields['Banner_id']) and !validators::Numeric($fields['Banner_id'])) {
 
-            $this->showBannerEditForm($fields,translate('not found'));
+            $this->showBannerEditForm($fields, translate('not found'));
         }
 
         $obj = adminBannerModel::find($fields['Banner_id']);
 
-        if(!is_object($obj))
-        {
-            $msg=$obj['msg'];
+        if (!is_object($obj)) {
+            $msg = $obj['msg'];
             redirectPage(RELA_DIR . "zamin/index.php?component=banner", $msg);
         }
 
-        $dir = ROOT_DIR.'statics/banner/';
-        fileRemover($dir,$obj->fields['image']);
+        $dir = ROOT_DIR . 'statics/banner/';
+        fileRemover($dir, $obj->fields['image']);
         $result = $obj->delete();
 
 
-        if($result['result']!=1)
-        {
-            $this->showBannerEditForm($fields,$result['msg']);
+        if ($result['result'] != 1) {
+            $this->showBannerEditForm($fields, $result['msg']);
         }
-        $msg='عملیات با موفقیت انجام شد';
+        $msg = 'عملیات با موفقیت انجام شد';
         redirectPage(RELA_DIR . "zamin/index.php?component=banner", $msg);
         die();
     }
 }
-?>

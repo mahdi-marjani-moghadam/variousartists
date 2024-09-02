@@ -1,12 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marjani
- * Date: 2/28/2016
- * Time: 10:45 AM
- */
 
-include_once(dirname(__FILE__)."/admin.services.model.php");
+use Component\services\admin\model\adminServicesModel;
+
+
+
 
 /**
  * Class aboutusController
@@ -14,34 +11,22 @@ include_once(dirname(__FILE__)."/admin.services.model.php");
 class adminServicesController
 {
 
-    /**
-     * Contains file type
-     * @var
-     */
+
     public $exportType;
 
-    /**
-     * Contains file name
-     * @var
-     */
+
     public $fileName;
 
-    /**
-     *
-     */
+
     public function __construct()
     {
-        $this->exportType='html';
-
+        $this->exportType = 'html';
     }
 
-    function template($list=array(),$msg='')
+    function template($list = [], $msg = ''): void
     {
-        // global $conn, $lang;
 
-
-        switch($this->exportType)
-        {
+        switch ($this->exportType) {
             case 'html':
 
                 include(ROOT_DIR . "templates/" . CURRENT_SKIN . "/template_start.php");
@@ -55,17 +40,13 @@ class adminServicesController
             case 'json':
                 echo json_encode($list);
                 break;
-            case 'array':
-                return $list;
-                break;
 
             case 'serialize':
-                 echo serialize($list);
+                echo serialize($list);
                 break;
             default:
                 break;
         }
-
     }
 
 
@@ -75,60 +56,45 @@ class adminServicesController
 
         $obj = adminServicesModel::getAll()->getList();
 
-        if($obj['result']!='1')
-        {
-            $msg=$obj['msg'];
+        if ($obj['result'] != '1') {
+            $msg = $obj['msg'];
             redirectPage(RELA_DIR . "zamin/index.php?component=aboutus", $msg);
         }
 
-        foreach ($obj['export']['list'] as $k => $va)
-        {
-            $export[$va['lang']]= $va;
+        foreach ($obj['export']['list'] as $k => $va) {
+            $export[$va['lang']] = $va;
         }
 
 
 
-        $this->fileName='admin.services.editForm.php';
-        $this->template($export,$msg);
+        $this->fileName = 'admin.services.editForm.php';
+        $this->template($export, $msg);
         die();
     }
 
-    /**
-     * edit about us
-     *
-     * @param $fields
-     * @author marjani
-     * @date 2/27/2016
-     * @version 01.01.01
-     */
+
     public function editServices($fields)
     {
         $obj = adminServicesModel::getBy_lang($fields['lang'])->get();
 
-        if($obj['result']!='1')
-        {
-            $msg=$obj['msg'];
+        if ($obj['result'] != '1') {
+            $msg = $obj['msg'];
             redirectPage(RELA_DIR . "zamin/index.php?component=aboutus", $msg);
         }
 
         $services = $obj['export']['list'][0];
-        $servicesR=$services->setFields($fields);
-        if($servicesR['result']!=1)
-        {
+        $servicesR = $services->setFields($fields);
+        if ($servicesR['result'] != 1) {
             $this->showServicesEditForm($servicesR['msg']);
         }
 
-        $result=$services->save();
+        $result = $services->save();
 
-        if($result['result']!='1')
-        {
+        if ($result['result'] != '1') {
             $this->showServicesEditForm($result['msg']);
         }
-        $msg='عملیات با موفقیت انجام شد';
+        $msg = 'عملیات با موفقیت انجام شد';
         redirectPage(RELA_DIR . "zamin/index.php?component=services", $msg);
         die();
     }
-
-
 }
-?>
