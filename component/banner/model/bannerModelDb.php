@@ -1,15 +1,15 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: marjani
- * Date: 3/10/2016
- * Time: 10:21 AM
- */
+namespace Component\banner\model;
+
+use Common\dbConn;
+use Model\DataBase;
+use PDO;
+
 class bannerModelDb
 {
 
-    static function insert($id,$fields)
+    static function insert($id, $fields)
     {
         //global $lang;
 
@@ -25,16 +25,14 @@ class bannerModelDb
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['Number'] = 1;
             $result['msg'] = $conn->errorInfo();
             return $result;
         }
 
-        if (!$stmt->rowCount())
-        {
+        if (!$stmt->rowCount()) {
             $result['result'] = -1;
             $result['no'] = 1;
             $result['msg'] = 'This Record was Not Found';
@@ -47,7 +45,6 @@ class bannerModelDb
         $result['list'] = $row;
 
         return $result;
-
     }
 
 
@@ -66,16 +63,14 @@ class bannerModelDb
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['Number'] = 1;
             $result['msg'] = $conn->errorInfo();
             return $result;
         }
 
-        if (!$stmt->rowCount())
-        {
+        if (!$stmt->rowCount()) {
             $result['result'] = -1;
             $result['no'] = 1;
             $result['msg'] = 'This Record was Not Found';
@@ -88,53 +83,48 @@ class bannerModelDb
         $result['list'] = $row;
 
         return $result;
-
     }
 
-    public function getBanner($fields='')
+    public function getBanner($fields = '')
     {
 
         $conn = dbConn::getConnection();
 
-        include_once(ROOT_DIR."/model/db.inc.class.php");
 
-        $condition= DataBase::filterBuilder($fields);
+        $condition = DataBase::filterBuilder($fields);
 
         $sql = "SELECT SQL_CALC_FOUND_ROWS
                  *
-    		     FROM 	banner ".$condition['list']['WHERE'].$condition['list']['filter'].$condition['list']['order'].$condition['list']['limit'];
+    		     FROM 	banner " . $condition['list']['WHERE'] . $condition['list']['filter'] . $condition['list']['order'] . $condition['list']['limit'];
 
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['no'] = 1;
             $result['msg'] = $conn->errorInfo();
             return $result;
         }
 
-        $sql=" SELECT FOUND_ROWS() as recCount ";
+        $sql = " SELECT FOUND_ROWS() as recCount ";
 
         $stmTp = $conn->prepare($sql);
         $stmTp->setFetchMode(PDO::FETCH_ASSOC);
         $stmTp->execute();
         $rowP = $stmTp->fetch();
 
-        $result['export']['recordsCount']= $rowP['recCount'];
+        $result['export']['recordsCount'] = $rowP['recCount'];
 
 
 
-        while ($row = $stmt->fetch())
-        {
-            $list[$row['Banner_id']]= $row;
+        while ($row = $stmt->fetch()) {
+            $list[$row['Banner_id']] = $row;
         }
         $result['result'] = 1;
         $result['export']['list'] = $list;
         return $result;
-
     }
 
     static public function getBannerEasy()
@@ -152,8 +142,7 @@ class bannerModelDb
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-        if (!$stmt)
-        {
+        if (!$stmt) {
             $result['result'] = -1;
             $result['no'] = 1;
             $result['msg'] = $conn->errorInfo();
@@ -165,9 +154,5 @@ class bannerModelDb
         $result['export']['list'] = $list;
 
         return $result;
-
     }
-
-
-
 }

@@ -34,7 +34,7 @@ switch ($_GET['action'])
         else
         {
 
-            $salonController->showSalonAddForm('','');
+            $salonController->showSalonAddForm();
         }
         break;
     case 'edit':

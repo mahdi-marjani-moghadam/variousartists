@@ -1,19 +1,12 @@
 <?php
+
 use Component\article\model\articleModel;
+use Component\banner\model\bannerModel;
 use Component\category\model\categoryModel;
 use Component\event\model\eventModel;
-/**
- * Created by PhpStorm.
- * User: malek
- * Date: 2/20/2016
- * Time: 4:24 PM
- */
+use Component\soundcloud\model\soundcloud;
 
-include_once(dirname(__FILE__)."/index.model.php");
 
-/**
- * Class articleController
- */
 class indexController
 {
 
@@ -34,26 +27,14 @@ class indexController
      */
     public function __construct()
     {
-        $this->exportType='html';
-
+        $this->exportType = 'html';
     }
 
-    /**
-     * call template
-     *
-     * @param string $list
-     * @param $msg
-     * @return string
-     */
-    public function template($list=array(),$msg='')
+    public function template($list = [], $msg = ''): void
     {
-        global $PARAM,$member_info;
-        //print_r($list['category_list']);
-        //die();
-        global $PARAM, $lang;
+        global $PARAM, $member_info, $lang;
 
-        switch($this->exportType)
-        {
+        switch ($this->exportType) {
 
             case 'html':
                 include(ROOT_DIR . "templates/" . CURRENT_SKIN . "/title.inc.php");
@@ -75,33 +56,22 @@ class indexController
             default:
                 break;
         }
-
     }
 
-    /**
-     * show all article
-     *
-     * @param $_input
-     * @author marjani
-     * @date 2/28/2016
-     * @version 01.01.01
-     */
     public function showMore($_input)
     {
-        if(!is_numeric($_input))
-        {
-            $msg= 'یافت نشد';
+        if (!is_numeric($_input)) {
+            $msg = 'یافت نشد';
             $this->fileName = "article.showList.php";
-            $this->template('',$msg);
+            $this->template('', $msg);
             die();
         }
-        $article=new articleModel;
-        $result=$article->getArticleById($_input);
+        $article = new articleModel;
+        $result = $article->getArticleById($_input);
 
-        if($result['result']!=1)
-        {
+        if ($result['result'] != 1) {
             $this->fileName = "article.showList.php";
-            $this->template('',$result['msg']);
+            $this->template('', $result['msg']);
             die();
         }
         $this->fileName = "article.showMore.php";
@@ -110,35 +80,24 @@ class indexController
     }
 
 
-    /**
-     * get all article and  show in list
-     *
-     * @param $fields
-     * @author marjani,malekloo
-     * @date 2/28/2016
-     * @version 01.01.02
-     */
     public function showALL($fields)
     {
 
         //use category model func by getCategoryUlLi
-        // include_once(ROOT_DIR."component/category/model/category.model.php");
         $category = new categoryModel();
 
         $resultCategory = $category->getCategoryUlLi();
 
 
-        if($resultCategory['result'] == 1)
-        {
+        if ($resultCategory['result'] == 1) {
             $export['category_list'] = $resultCategory['export']['list'];
         }
 
-        // include_once(ROOT_DIR."component/event/model/event.model.php");
         $event = new eventModel();
         $limit['limit']['start'] = 0;
         $limit['limit']['length'] = 18;
-        $limit['order']['date']='DESC';
-        $limit['where']='status = 1 and (`date` >= date_sub(now(),interval 1 day) or date2 >= date_sub(now(),interval 1 day) or date3 >= date_sub(now(),interval 1 day))';
+        $limit['order']['date'] = 'DESC';
+        $limit['where'] = 'status = 1 and (`date` >= date_sub(now(),interval 1 day) or date2 >= date_sub(now(),interval 1 day) or date3 >= date_sub(now(),interval 1 day))';
         $result = $event->getByFilter($limit);
 
         $export['lastEvent'] = $result['export']['list'];
@@ -149,17 +108,15 @@ class indexController
         }
 
 
-        include_once(ROOT_DIR."component/banner/model/banner.model.php");
         $banner = new bannerModel();
 
-        $fields['order']['priority']='ASC';
+        $fields['order']['priority'] = 'ASC';
         $banner = $banner->getByFilter($fields);
         $export['banner'] = $banner['export']['list'];
 
 
 
         /** sound cloud */
-        include_once(ROOT_DIR."component/soundcloud/model/soundcloud.model.php");
         $soundcloud = new soundcloud();
         $sc_rs = $soundcloud->getByFilter();
         $export['soundcloud'] = $sc_rs['export']['list'];
@@ -172,6 +129,4 @@ class indexController
         $this->template($export);
         die();
     }
-
 }
-?>

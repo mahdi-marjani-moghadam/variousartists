@@ -1,18 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: malek
- * Date: 2/20/2016
- * Time: 4:24 AM.
- */
+
 namespace Component\product\model;
+
 use Common\looeic;
 use Common\validators;
 use Component\article\model\articleModelDb;
 use Component\artists\model\artistsModel;
 use Component\artists\model\artistsModelDb;
 
-// include_once ROOT_DIR.'/common/validators.php';
 
 class productModel extends looeic
 {
@@ -71,7 +66,7 @@ class productModel extends looeic
     public function setFieldss($input)
     {
         foreach ($input as $field => $val) {
-            $funcName = '__set'.ucfirst($field);
+            $funcName = '__set' . ucfirst($field);
             if (method_exists($this, $funcName)) {
                 $result = $this->$funcName($val);
                 if ($result['result']) {
@@ -111,7 +106,6 @@ class productModel extends looeic
      */
     public function getProductByCompanyId($id)
     {
-        include_once dirname(__FILE__).'/product.model.db.php';
 
         $result = productModelDb::getProductByCompanyId($id);
 
@@ -136,11 +130,10 @@ class productModel extends looeic
 
         return $result;
     }
-    public function getProductByArtistsId($id='',$fields=[])
+    public function getProductByArtistsId($id = '', $fields = [])
     {
-        include_once dirname(__FILE__).'/product.model.db.php';
 
-        $result = productModelDb::getProductByArtistsId($id,$fields);
+        $result = productModelDb::getProductByArtistsId($id, $fields);
 
         if ($result['result'] != 1) {
             return $result;
@@ -160,8 +153,7 @@ class productModel extends looeic
 
         $page = $this->pagination();
 
-        if($page['result'] == 1)
-        {
+        if ($page['result'] == 1) {
             $result['pagination'] = $page['export'];
         }
 
@@ -181,7 +173,6 @@ class productModel extends looeic
      */
     public function getProductById($id)
     {
-        include_once dirname(__FILE__).'/product.model.db.php';
 
         $result = productModelDb::getProductById($id);
 
@@ -205,33 +196,31 @@ class productModel extends looeic
         return $result;
     }
 
-     /**
-      * @param $fields
-      *
-      * @return mixed
-      */
-     /**
-      * @param $fields
-      *
-      * @return mixed
-      */
-     public function getRelatedProducts($id, $companyId = null)
-     {
-         include_once dirname(__FILE__).'/product.model.db.php';
-         $result = productModelDb::getRelatedProducts($id, $companyId);
-         if ($result['result'] != 1) {
-             return $result;
-         }
-         $this->list = $result['export']['list'];
+    /**
+     * @param $fields
+     *
+     * @return mixed
+     */
+    /**
+     * @param $fields
+     *
+     * @return mixed
+     */
+    public function getRelatedProducts($id, $companyId = null)
+    {
+        $result = productModelDb::getRelatedProducts($id, $companyId);
+        if ($result['result'] != 1) {
+            return $result;
+        }
+        $this->list = $result['export']['list'];
 
-         return $result;
-     }
+        return $result;
+    }
     /**
      *
      */
     public function getProductByCategoryId($fields)
     {
-        include_once dirname(__FILE__).'/product.model.db.php';
 
         $result = productModelDb::getProductByCategoryId($fields);
 
@@ -255,7 +244,6 @@ class productModel extends looeic
      */
     public function getProduct($fields)
     {
-        include_once dirname(__FILE__).'/product.model.db.php';
 
         $result = productModelDb::getProduct($fields);
 
@@ -293,7 +281,7 @@ class productModel extends looeic
         $catString = '';
         foreach ($fields as $k => $catid) {
             if (is_numeric($catid)) {
-                $catString .= ",'".$catid."'";
+                $catString .= ",'" . $catid . "'";
             }
         }
         $catString = substr($catString, 1);
@@ -336,8 +324,8 @@ class productModel extends looeic
             $PARAM = array_filter($PARAM, 'strlen');
         }
 
-        for ($i = 1;$i <= $pageCount;++$i) {
-            $pagination[] = $PARAM[0].'/'.$PARAM[1].'/page/'.$temp;
+        for ($i = 1; $i <= $pageCount; ++$i) {
+            $pagination[] = $PARAM[0] . '/' . $PARAM[1] . '/page/' . $temp;
             $temp = $temp + 1;
         }
 
@@ -353,9 +341,7 @@ class productModel extends looeic
         if (array_search('page', $PARAM)) {
             $index_pageSize = array_search('page', $PARAM);
             $page = $PARAM[$index_pageSize + 1];
-        }
-        else
-        {
+        } else {
             $page = 1;
         }
         $result['export']['current'] = $page;
@@ -365,49 +351,43 @@ class productModel extends looeic
 
     public function pushRate($fields)
     {
-        if ($fields['val'] == '')
-        {
+        if ($fields['val'] == '') {
             $result['result'] = -1;
             $result['msg'] = 'Val is empty';
             return $result;
         }
-        // include_once ROOT_DIR . 'component/artists/model/artists.model.php';
         $artists = new artistsModel();
         $result = $artists->getArtistsById($fields['artists_id']);
-        if($result['result'] == -1)
-        {
+        if ($result['result'] == -1) {
             return $result;
         }
 
-        $artistsRate = $result['list']['rate']*$result['list']['rate_count'];
-        $artistsRateCount = $result['list']['rate_count']+1;
-        $artistsNewRate = ($artistsRate+ $fields['val'])/$artistsRateCount;
+        $artistsRate = $result['list']['rate'] * $result['list']['rate_count'];
+        $artistsRateCount = $result['list']['rate_count'] + 1;
+        $artistsNewRate = ($artistsRate + $fields['val']) / $artistsRateCount;
 
-        $result = artistsModelDb::pushRateDB($artistsNewRate,$artistsRateCount,$fields['artists_id']);
-        if($result['result'] == -1)
-        {
+        $result = artistsModelDb::pushRateDB($artistsNewRate, $artistsRateCount, $fields['artists_id']);
+        if ($result['result'] == -1) {
             return $result;
         }
 
         include_once dirname(__FILE__) . '/product.model.db.php';
         $result = $this->getProductById($fields['product_id']);
-        if($result['result'] == -1)
-        {
+        if ($result['result'] == -1) {
             return $result;
         }
 
-        $rate = $result['list']['rate']*$result['list']['rate_count'];
-        $rate_count = $result['list']['rate_count']+1;
+        $rate = $result['list']['rate'] * $result['list']['rate_count'];
+        $rate_count = $result['list']['rate_count'] + 1;
 
-        $newRate = ($rate+ $fields['val'])/$rate_count;
+        $newRate = ($rate + $fields['val']) / $rate_count;
 
 
-        $result = productModelDb::pushRateDB($newRate,$rate_count,$fields['product_id']);
+        $result = productModelDb::pushRateDB($newRate, $rate_count, $fields['product_id']);
 
         $result['rate'] = $fields['val'];
 
 
         return $result;
-
     }
 }

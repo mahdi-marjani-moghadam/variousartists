@@ -1,11 +1,11 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: malek
- * Date: 2/20/2016
- * Time: 4:33 AM
- */
+namespace Component\index\model;
+
+use Common\dbConn;
+use Model\DataBase;
+use PDO;
+
 class articleModelDb
 {
 
@@ -146,7 +146,6 @@ class articleModelDb
 
         $conn = dbConn::getConnection();
 
-        include_once(ROOT_DIR."/model/db.inc.class.php");
 
         $condition= DataBase::filterBuilder($fields);
 

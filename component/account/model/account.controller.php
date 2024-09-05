@@ -12,6 +12,7 @@ use Component\account\model\accountModel;
 use Component\artists\admin\model\adminArtistsModel;
 use Component\artists\model\artists;
 use Component\artists\model\artistsModel;
+use Component\blog\model\blog;
 use Component\category\admin\model\adminCategoryModel;
 use Component\category\model\categoryModel;
 use Component\country\model\country;
@@ -58,7 +59,7 @@ class accountController
      *
      * @return string
      */
-    public function template($list = [], $msg = '')
+    public function template($list = [], $msg = ''): void
     {
         global $PARAM, $lang, $member_info;
 
@@ -75,9 +76,7 @@ class accountController
             case 'json':
                 echo json_encode($list);
                 break;
-            case 'array':
-                return $list;
-                break;
+
 
             case 'serialize':
                 echo serialize($list);
@@ -91,9 +90,6 @@ class accountController
     {
 
         global $member_info;
-
-        // include_once ROOT_DIR . "component/invoice/model/invoice.model.php";
-
 
         $invoice = invoice::getBy_member_id($member_info['Artists_id'])->getList();
 
@@ -114,7 +110,6 @@ class accountController
 
         $export['list'] = $object->fields;
 
-        // include_once ROOT_DIR . 'component/product/model/product.model.php';
         $products = new productModel();
 
 
@@ -203,17 +198,18 @@ class accountController
 
 
         global $messageStack, $member_info;
-        include_once ROOT_DIR . 'component/event/admin/model/admin.event.model.php';
         $event = new adminEventModel();
 
 
-        $_input['date'] = ($_input['date'] != '' ? convertJToGDate($_input['date']) : '0000-00-00');
-        $_input['date2'] = ($_input['date2'] != '' ? convertJToGDate($_input['date2']) : '0000-00-00');
-        $_input['date3'] = ($_input['date3'] != '' ? convertJToGDate($_input['date3']) : '0000-00-00');
+        $_input['date'] = $_input['date'] != '' ? convertJToGDate($_input['date']) : '0000-00-00';
+        $_input['date2'] = $_input['date2'] != '' ? convertJToGDate($_input['date2']) : '0000-00-00';
+        $_input['date3'] = $_input['date3'] != '' ? convertJToGDate($_input['date3']) : '0000-00-00';
 
+        if (isset($_input['category_id']))
+            $_input['category_id'] = ',' . implode(',', $_input['category_id']) . ',';
 
-        $_input['category_id'] = ',' . implode(',', $_input['category_id']) . ',';
-        $_input['genre_id'] = ',' . implode(',', $_input['genre_id']) . ',';
+        if (isset($_input['genre_id']))
+            $_input['genre_id'] = ',' . implode(',', $_input['genre_id']) . ',';
 
         $result = $event->setFields($_input);
 
@@ -236,7 +232,6 @@ class accountController
             $result = $event->save();
         }
 
-
         //$result = $event->addEvent();
 
         if ($result['result'] != '1') {
@@ -253,7 +248,6 @@ class accountController
     {
         global $member_info;
 
-        include_once ROOT_DIR . 'component/category/admin/model/admin.category.model.php';
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
@@ -285,7 +279,6 @@ class accountController
 
 
         /** country */
-        include_once ROOT_DIR . 'component/country/model/country.model.php';
         $country = new country();
         $resultCountry = $country::getAll()->getList();
         if ($resultCountry['result'] == 1) {
@@ -316,8 +309,10 @@ class accountController
         $_input['date'] = ($_input['date'] != '' ? convertJToGDate($_input['date']) : '0000-00-00');
         $_input['date2'] = ($_input['date2'] != '' ? convertJToGDate($_input['date2']) : '0000-00-00');
         $_input['date3'] = ($_input['date3'] != '' ? convertJToGDate($_input['date3']) : '0000-00-00');
-        $_input['category_id'] = ',' . implode(',', $_input['category_id']) . ',';
-        $_input['genre_id'] = ',' . implode(',', $_input['genre_id']) . ',';
+        if (isset($_input['category_id']))
+            $_input['category_id'] = ',' . implode(',', $_input['category_id']) . ',';
+        if (isset($_input['genre_id']))
+            $_input['genre_id'] = ',' . implode(',', $_input['genre_id']) . ',';
 
         $result = $event->setFields($_input);
         if ($result['result'] == -1) {
@@ -526,10 +521,11 @@ class accountController
     {
 
         global $member_info, $lang;
-        include_once ROOT_DIR . 'component/product/model/product.model.php';
         $account = new productModel();
-        $fields['category_id'] = "," . (implode(",", $fields['category_id'])) . ",";
-        $fields['genre_id'] = "," . (implode(",", $fields['genre_id'])) . ",";
+        if (isset($fields['category_id']))
+            $fields['category_id'] = "," . (implode(",", $fields['category_id'])) . ",";
+        if (isset($fields['genre_id']))
+            $fields['genre_id'] = "," . (implode(",", $fields['genre_id'])) . ",";
         $fields['artists_id'] = $member_info['Artists_id'];
 
         if ($lang == 'fa') {
@@ -632,9 +628,10 @@ class accountController
             redirectPage(RELA_DIR, $account['msg']);
         }
 
-
-        $fields['category_id'] = "," . (implode(",", $fields['category_id'])) . ",";
-        $fields['genre_id'] = "," . (implode(",", $fields['genre_id'])) . ",";
+        if (isset($fields['category_id']))
+            $fields['category_id'] = "," . (implode(",", $fields['category_id'])) . ",";
+        if (isset($fields['genre_id']))
+            $fields['genre_id'] = "," . (implode(",", $fields['genre_id'])) . ",";
         $fields['artists_id'] = $member_info['Artists_id'];
         $fields['status'] = 0;
 

@@ -228,7 +228,7 @@
 
                                         <select class="form-control" name="category_id[]" data-input="select2" placeholder="Multiple select" multiple>
                                             <?php 
-                                            foreach($list['category'] as $category_id => $value)
+                                            foreach($list['category'] ?? [] as $category_id => $value)
                                             {
                                                 ?>
                                                 <option  <?php echo in_array($category_id,explode(",",$list['category_id']) ) ? 'selected' : '' ?> value="<?php echo $category_id?>">
@@ -278,12 +278,12 @@
                             <div class="col-xs-12 col-sm-12 col-md-6" style="">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-4 col-md-4 pull-right control-label rtl"
-                                           for="country_id"><?php echo country?></label>
+                                           for="country_id">کشور</label>
                                     <div class="col-xs-12 col-sm-8 col-md-8 pull-right">
                                         <select name="country_id" id="country_id" data-input="select2">
 
                                             <?php 
-                                            foreach($list['country'] as $province_id => $value)
+                                            foreach($list['country'] ?? [] as $province_id => $value)
                                             {?>
                                             <option
                                                 <?php echo  $value['id'] == $list['country_id'] ? 'selected' : '' ?>

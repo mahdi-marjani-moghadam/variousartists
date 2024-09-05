@@ -15,9 +15,11 @@
                                             </thead>
 
                                             <?php 
-                                            $i=$this->recordsCount;
-                                            $start = $i - (($list['pagination']['current'] - 1)*PAGE_SIZE);
-                                            foreach($list['artistsInvoiceList'] as $k => $value):
+                                           $i = $this->recordsCount;
+            
+                                           $current = isset($list['pagination']['current'])?$list['pagination']['current']:1;
+                                           $start = $i - (($current - 1) * PAGE_SIZE);
+                                           foreach ($list['artistsInvoiceList'] ?? [] as $k => $value):
 
                                                 ?>
                                             <tr>
@@ -39,7 +41,7 @@
                                         </table>
 
                                         <?php 
-                                        if(count($list['pagination']['list']))
+                                        if (isset($list['pagination']['list']) && count($list['pagination']['list'])) 
                                         {
                                             ?>
                                             <ul class="pagination">

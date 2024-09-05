@@ -9,7 +9,6 @@
 
 use Component\salon\admin\model\adminSalonModel;
 
-include_once(dirname(__FILE__) . "/admin.salon.model.php");
 
 /**
  * Class newsController
@@ -61,7 +60,7 @@ class adminSalonController
             case 'json':
                 echo json_encode($list);
                 break;
-      
+
 
             case 'serialize':
                 echo serialize($list);
@@ -200,11 +199,7 @@ class adminSalonController
         //     die();
     }
 
-    /**
-     * @param $fields
-     * @param $msg
-     */
-    public function showSalonAddForm($fields, $msg)
+    public function showSalonAddForm($fields = [], $msg = '')
     {
 
 
@@ -287,7 +282,6 @@ class adminSalonController
     public function editSalon($fields)
 
     {
-        /*        print_r_debug($fields);*/
         $object = adminSalonModel::find($fields['Salon_id']);
         if (!is_object($object)) {
             $msg = $object['msg'];
