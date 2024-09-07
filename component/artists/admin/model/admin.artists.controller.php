@@ -102,7 +102,6 @@ class adminArtistsController
     {
 
         global $dataStack;
-        include_once ROOT_DIR . 'component/category/admin/model/admin.category.model.php';
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
@@ -110,7 +109,6 @@ class adminArtistsController
             $fields['category'] = $category->list;
         }
         /** genre */
-        include_once ROOT_DIR . 'component/genre/admin/model/admin.genre.model.php';
         $genre = new adminGenreModel();
 
         $resultGenre = $genre->getGenreOption();
@@ -127,7 +125,6 @@ class adminArtistsController
 
 
 
-        include_once ROOT_DIR . 'component/province/admin/model/admin.province.model.php';
         //$province = new adminProvinceModel();
         $province = adminProvinceModel::getAll()->getList();
 
@@ -139,7 +136,6 @@ class adminArtistsController
         //////////////////////////////////////////////////
         ////                get country               ////
         //////////////////////////////////////////////////
-        include_once(ROOT_DIR . "model/country.class.php");
         $COUNTRY = new clsCountry();
         $COUNTRY->countryFieldName = array("iso", "phone_code", "name", "max_length", "sample");
 
