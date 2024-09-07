@@ -54,7 +54,7 @@
                                         </table>
 
                                         <?php 
-                                        if(count($list['pagination']['list']))
+                                        if(isset($list['pagination']['list']) && count($list['pagination']['list']))
                                         {
                                             ?>
                                             <ul class="pagination">

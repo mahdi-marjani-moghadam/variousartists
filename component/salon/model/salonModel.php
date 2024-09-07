@@ -15,7 +15,6 @@ class salonModel extends looeic
     /**
      * @var
      */
-    private $fields;  // other record fields
     /**
      * @var
      */

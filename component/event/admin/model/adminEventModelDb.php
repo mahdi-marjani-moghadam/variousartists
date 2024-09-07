@@ -509,7 +509,6 @@ class adminEventModelDb
         $sql = substr($sql, 0, -1);
         $sql = $sql . "WHERE Event_id = '" . $fields['Event_id'] . "'";
 
-        // include_once ROOT_DIR.'component/product/admin/model/admin.product.model.db.php';
         // todo: chech after
         // $result = adminProductModelDb::updateEventProductsCity($fields['city_id'],$fields['Event_id']);
 
@@ -731,7 +730,6 @@ class adminEventModelDb
 
         $conn = dbConn::getConnection();
 
-        // include_once ROOT_DIR.'/model/db.inc.class.php';
 
         $condition = DataBase::filterBuilder($fields);
 
@@ -771,7 +769,6 @@ class adminEventModelDb
             $row['certification_id'] = $temp['export']['list'];
             $list[$row['Event_id']] = $row;
 
-            // include_once ROOT_DIR.'component/city/admin/model/admin.city.model.db.php';
             $row['city'] = adminCityModelDb::getCityById($row['city_id']);
 
             $id = $row['Event_id'];
@@ -910,7 +907,6 @@ class adminEventModelDb
         
         $conn = dbConn::getConnection();
 
-        // include_once ROOT_DIR.'/model/db.inc.class.php';
         
         $condition = DataBase::filterBuilder($fields);
 
@@ -955,7 +951,6 @@ class adminEventModelDb
         $result['export']['recordsCount'] = $row_count['recCount'];
 
 
-        include_once ROOT_DIR . "component/category/admin/model/admin.category.model.php";
 
         //$cat = new adminCategoryModel();
         //$obj = adminCategoryModel::getBy_not_Category_id(0)->getList();
@@ -997,7 +992,6 @@ class adminEventModelDb
 
         $conn = dbConn::getConnection();
 
-        include_once ROOT_DIR . '/model/db.inc.class.php';
 
         $condition = DataBase::filterBuilder($fields);
 
@@ -1042,7 +1036,6 @@ class adminEventModelDb
         $result['export']['recordsCount'] = $row_count['recCount'];
 
 
-        include_once ROOT_DIR . "component/category/admin/model/admin.category.model.php";
 
         //$cat = new adminCategoryModel();
         //$obj = adminCategoryModel::getBy_not_Category_id(0)->getList();

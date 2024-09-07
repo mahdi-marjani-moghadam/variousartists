@@ -37,7 +37,6 @@ class adminEventModel extends looeic
     }
     public function getEventDraft($fields)
     {
-        include_once(dirname(__FILE__) . "/admin.event.model.db.php");
 
         ///$fields['order']['Event_id'] =
         $result = (new adminEventModelDb)->getEventDraft($fields);
@@ -59,7 +58,6 @@ class adminEventModel extends looeic
      */
     public function getEventById($id)
     {
-        include_once(dirname(__FILE__) . "/admin.event.model.db.php");
 
         $result = adminEventModelDb::getEventById($id);
 
@@ -87,7 +85,6 @@ class adminEventModel extends looeic
 
     public function getEventphoneAll($input)
     {
-        include_once(dirname(__FILE__) . "/admin.event.model.db.php");
         $result = adminEventModelDb::getAllPhone($input);
 
         if ($result['result'] != 1) {

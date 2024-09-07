@@ -9,7 +9,6 @@ use Component\category\admin\model\adminCategoryModel;
  * Time: 4:24 PM
  */
 
-include_once(dirname(__FILE__) . "/admin.category.model.php");
 
 /**
  * Class newsController
