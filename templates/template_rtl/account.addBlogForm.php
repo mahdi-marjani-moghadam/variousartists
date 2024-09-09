@@ -112,13 +112,13 @@
                         <label class="col-xs-12 col-sm-4 pull-right control-label rtl" for="category_id">category_id:</label>
                         <div class="col-xs-12 col-sm-8 pull-right">
                             <select class="form-control" name="category_id[]" data-input="select2" placeholder="Multiple select" multiple>
-                                <?php 
+                                <?php
                                 foreach ($list['category'] as $category_id => $value) {
                                 ?>
-                                    <option <?php echo in_array($category_id, $list['category_id']) ? 'selected' : '' ?> value="<?php echo  $category_id ?>">
+                                    <option <?php echo is_array($list['category_id']) && in_array($category_id, $list['category_id']) ? 'selected' : '' ?> value="<?php echo  $category_id ?>">
                                         <?php echo  $value['export'] ?>
                                     </option>
-                                <?php 
+                                <?php
                                 }
                                 ?>
                             </select>

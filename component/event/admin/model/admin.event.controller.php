@@ -761,7 +761,6 @@ class adminEventController
         //print_r_debug($fields);
         $event = new adminEvent_galleryModel();
 
-        include_once(ROOT_DIR . "model/datatable.converter.php");
         $i = 0;
         $columns = array(
             array('db' => 'Event_gallery_id', 'dt' => $i++),
@@ -855,7 +854,6 @@ class adminEventController
 
         $event = new adminEventModel();
 
-        include_once(ROOT_DIR . "model/datatable.converter.php");
         $i = 0;
         $columns = array(
             array('db' => 'Event_id', 'dt' => $i++),
@@ -955,7 +953,6 @@ class adminEventController
 
         $event = new adminEventModel();
 
-        include_once(ROOT_DIR . "model/datatable.converter.php");
         $i = 0;
         $columns = array(
             array('db' => 'Event_id', 'dt' => $i++),
@@ -1068,7 +1065,6 @@ class adminEventController
      */
     public function updateCity()
     {
-        // include_once ROOT_DIR . 'component/city/admin/model/admin.city.model.db.php';
 
         $cityList = adminCityModelDb::getAll()['export']['list'];
 
@@ -1137,7 +1133,6 @@ class adminEventController
         }
 
 
-        include_once ROOT_DIR . '/component/event_gallery/admin/model/admin.event_gallery.model.php';
         $result = adminEvent_galleryModel::getBy_event_id($id)->get();
 
 
@@ -1239,7 +1234,6 @@ class adminEventController
     public function getCityAjax($input)
     {
         $province_id = $input['province_id'];
-        // include_once ROOT_DIR . '/component/city/admin/model/admin.city.model.php';
         $model = new adminCityModel();
         $result = $model->getCitiesByprovinceID($province_id);
 

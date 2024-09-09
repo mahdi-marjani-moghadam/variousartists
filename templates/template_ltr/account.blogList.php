@@ -46,7 +46,7 @@
                     </td>
                     <!--<td><a href=" "  class="button button-3d button-mini button-rounded button-aqua ">پرداخت فاکتور</a> </td>-->
                 </tr>
-            <? endforeach; ?>
+            <?php endforeach; ?>
         </table>
 
         <?php

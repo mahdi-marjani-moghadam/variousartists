@@ -76,7 +76,7 @@
 
 
                     <div class="col_full nobottommargin">
-                        <?php if(count($list['event_gallery'])): ?>
+                        <?php if(is_array($list['event_gallery']) && count($list['event_gallery'])): ?>
                             <h4>تصاویر</h4>
 
                             <!-- Events Single Gallery Thumbs

@@ -36,7 +36,7 @@ class salesController
      *
      * @return string
      */
-    public function template($list = [], $msg = '')
+    public function template($list = [], $msg = ''): void
     {
         global $member_info;
 
@@ -49,9 +49,6 @@ class salesController
 
             case 'json':
                 echo json_encode($list);
-                break;
-            case 'array':
-                return $list;
                 break;
 
             case 'serialize':
@@ -230,7 +227,6 @@ class salesController
     function checkEvent($fields)
     {
         global $lang, $messageStack;
-        include_once ROOT_DIR . 'component/event/model/event.model.php';
         $objEvent = eventModel::getBy_Event_id($fields['event_id'])->getList();
         if ($objEvent['export']['recordsCount'] == 0) {
             $ms = event_not_found;
@@ -245,7 +241,7 @@ class salesController
     {
         global $lang, $messageStack;
         $salon_id = substr($objEvent['salon_id'], 1, -1);
-        $objSalon = salon::getBy_Salon_id($salon_id)->getList();
+        $objSalon = salonModel::getBy_Salon_id($salon_id)->getList();
         if ($objSalon['export']['recordsCount'] == 0) {
             $ms = salon_not_found;
             $messageStack->add_session('message', $ms, 'error');
@@ -260,8 +256,7 @@ class salesController
         global $lang, $messageStack;
         $fields = $this->urlDecode();
 
-        include_once ROOT_DIR . 'component/salon/newModel/salon.model.php';
-        $objSalon = salon::getBy_Salon_id($salon_id)->getList();
+        $objSalon = salonModel::getBy_Salon_id($salon_id)->getList();
 
         if ($objSalon['export']['recordsCount'] == 0) {
             $ms = position_not_found;
@@ -279,7 +274,6 @@ class salesController
         global $lang, $messageStack;
         $fields = $this->urlDecode();
 
-        include_once ROOT_DIR . 'component/sales/model/sales.model.php';
         $obj = new salesModel();
 
         $objSales = $obj->getAll()
@@ -352,8 +346,7 @@ class salesController
 
 
         /** get salon position */
-        include_once ROOT_DIR . 'component/salon/newModel/salon.model.php';
-        $objSalon = salon::getBy_parent_id($objSalon['Salon_id'])->getList();
+        $objSalon = salonModel::getBy_parent_id($objSalon['Salon_id'])->getList();
         if ($objSalon['export']['recordsCount'] == 0) {
             /** if not found go to next step */
             $ms = Position_not_found_with_this_salon;
@@ -469,7 +462,7 @@ class salesController
 
 
         /** my chair */
-        $choose = implode($result2, ',');
+        $choose = implode(',', $result2);
 
         /** add sales  / status is 0 */
         $finalsave = new salesModel();
@@ -574,6 +567,8 @@ class salesController
         $login = $payment->login(bank_username, bank_password);
 
 
+        if (!isset($login['return']))
+            redirectPage(RELA_DIR . "sales/invoice");
 
         $login = $login['return'];
         $sessionId = $login['SessionId'];
@@ -593,14 +588,15 @@ class salesController
         $params['Signature'] = $dataToSign;
         $params['WSContext'] = array('SessionId' => $sessionId, 'UserId' => username, 'Password' => password);
 
-        $generateSignedPurchaseToken = $payment->generateSignedPurchaseToken($params);
-        $generateSignedPurchaseToken = $generateSignedPurchaseToken['return'];
-        $generateSignedPurchaseToken = $generateSignedPurchaseToken['Token'];
+        $generateSignedPurchaseToken = $payment->generateSignedPurchaseToken($params)['return']['Token'];
+        // $generateSignedPurchaseToken = $generateSignedPurchaseToken['return'];
+        // $generateSignedPurchaseToken = $generateSignedPurchaseToken['Token'];
 
         /** end bank */
         $export['gspt'] = $generateSignedPurchaseToken;
 
         $salesObj2 = salesModel::getBy_user_id_and_sales_id($member_info['Artists_id'], $input['sid'])->get()['export']['list'][0];
+        // dd($salesObj2);
         $salesObj2->bank_token = $generateSignedPurchaseToken;
         $salesObj2->save();
 

@@ -409,7 +409,6 @@ class accountController
     {
         global $member_info;
 
-        include_once ROOT_DIR . 'component/invoice/model/invoice.model.php';
         $invoice = new invoice();
 
 
@@ -468,7 +467,6 @@ class accountController
     {
         global $member_info;
 
-        // include_once ROOT_DIR . 'component/product/model/product.model.php';
         $products = new productModel();
 
         $object = artists::find($member_info['Artists_id']);
@@ -573,7 +571,6 @@ class accountController
         }
 
         /** update artists date  */
-        // include_once ROOT_DIR . 'component/artists/admin/model/admin.artists.model.php';
         $artists = artistsModel::find($account->fields['artists_id']);
         $artists->update_date = date('Y-m-d H:i:s');
         $result = $artists->save();
@@ -620,7 +617,6 @@ class accountController
     public function editProduct($fields)
     {
         global $member_info, $lang;
-        // include_once ROOT_DIR . 'component/product/model/product.model.php';
 
 
         $account = productModel::find($fields['artists_products_id']);
@@ -681,7 +677,6 @@ class accountController
         global $member_info;
 
 
-        include_once "component/product/model/product.model.php";
         $obj = productModel::find($fields['product_id']);
         if (!is_object($obj)) {
             redirectPage(RELA_DIR, $obj['msg']);
@@ -690,7 +685,6 @@ class accountController
         $export = $obj->fields;
 
         /** category */
-        include_once(ROOT_DIR . "component/category/model/category.model.php");
         $category = new categoryModel();
         $resultCategory = $category->getCategoryOption();
         if ($resultCategory['result'] == 1) {
@@ -698,7 +692,6 @@ class accountController
         }
 
         /** genre */
-        include_once(ROOT_DIR . "component/genre/model/genre.model.php");
         $genre = new genreModel();
         $resultGenre = $genre->getGenreOption();
         if ($resultGenre['result'] == 1) {
@@ -708,7 +701,6 @@ class accountController
         $export['artists_id'] = $member_info['Artists_id'];
 
         /** update artists date  */
-        // include_once ROOT_DIR . 'component/artists/admin/model/admin.artists.model.php';
         $artists = artistsModel::find($obj->fields['artists_id']);
         $artists->update_date = date('Y-m-d H:i:s');
         $result = $artists->save();
@@ -761,7 +753,6 @@ class accountController
     public function editProfile($fields)
     {
         global $member_info, $lang;
-        include_once ROOT_DIR . 'component/artists/model/artists.model.php';
 
 
         $account = artists::find($fields['Artists_id']);
@@ -829,7 +820,6 @@ class accountController
     {
         global $member_info;
 
-        // include_once "component/artists/model/artists.model.php";
         $obj = artistsModel::find($member_info['Artists_id']);
         // print_r_debug($obj);
         if (!is_object($obj)) {
@@ -843,7 +833,6 @@ class accountController
         $export['category_id'] = explode(',', $export['category_id']);
         $export['genre_id'] = explode(',', $export['genre_id']);
 
-        include_once(ROOT_DIR . "component/category/model/category.model.php");
         $category = new categoryModel();
 
         $resultCategory = $category->getCategoryOption();
@@ -852,7 +841,6 @@ class accountController
             $export['category'] = $category->list;
         }
         /** genre */
-        include_once(ROOT_DIR . "component/genre/model/genre.model.php");
         $genre = new genreModel();
         $resultGenre = $genre->getGenreOption();
         if ($resultGenre['result'] == 1) {
@@ -1041,7 +1029,6 @@ class accountController
 
 
         /** category */
-        include_once(ROOT_DIR . "component/category/model/category.model.php");
         $category = new categoryModel();
         $resultCategory = $category->getCategoryOption();
         if ($resultCategory['result'] == 1) {
@@ -1070,7 +1057,6 @@ class accountController
 
 
         global $member_info;
-        include_once ROOT_DIR . 'component/blog/model/blog.model.php';
         $account = new blog();
 
         $fields['category_id'] = "," . (implode(",", $fields['category_id'])) . ",";
@@ -1118,7 +1104,6 @@ class accountController
     public function editBlog($fields = array())
     {
         global $member_info, $lang;
-        include_once ROOT_DIR . 'component/blog/model/blog.model.php';
 
 
         $account = blog::find($fields['id']);
@@ -1164,7 +1149,6 @@ class accountController
         global $member_info;
 
 
-        include_once "component/blog/model/blog.model.php";
         $obj = blog::find($fields['id']);
         if (!is_object($obj)) {
             redirectPage(RELA_DIR, $obj['msg']);
@@ -1173,7 +1157,6 @@ class accountController
         $export = $obj->fields;
 
         /** category */
-        include_once(ROOT_DIR . "component/category/model/category.model.php");
         $category = new categoryModel();
         $resultCategory = $category->getCategoryOption();
         if ($resultCategory['result'] == 1) {
@@ -1185,7 +1168,7 @@ class accountController
         $export['artists_id'] = $member_info['Artists_id'];
 
         /** update artists date  */
-        /*include_once ROOT_DIR.'component/artists/admin/model/admin.artists.model.php';
+        /*
         $artists = adminArtistsModel::find($obj->fields['artists_id']);
         $artists->update_date = date('Y-m-d H:i:s');
         $result = $artists->save();*/

@@ -8,16 +8,7 @@ use Component\salon\admin\model\adminSalonModelDb;
 
 class salonModel extends looeic
 {
-    /**
-     * @var
-     */
-    private $TableName;
-    /**
-     * @var
-     */
-    /**
-     * @var
-     */
+    protected $TABLE_NAME = 'salon';
     private $list;  // other record fields
     /**
      * @var
