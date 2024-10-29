@@ -1,6 +1,7 @@
 <?php
 
 namespace Component\artists\admin\model;
+
 use Common\looeic;
 
 class adminArtistsModel extends looeic
@@ -40,7 +41,6 @@ class adminArtistsModel extends looeic
         {
             return $this->fields[$field];
         }*/
-
     }
 
 
@@ -55,52 +55,44 @@ class adminArtistsModel extends looeic
     public function addArtists()
     {
 
-        foreach($this->requiredFields as $field => $val)
-        {
+        foreach ($this->requiredFields as $field => $val) {
             $requiredList[$field] = $this->fields[$field];
         }
 
         $result = $this->setFields($requiredList);
-        if($result['result'] == -1)
-        {
+        if ($result['result'] == -1) {
             return $result;
         }
 
-        include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
 
         // echo "<pre>";
         // print_r($this->fields);
         // die();
 
         $result = adminArtistsModelDb::insert($this->fields);
-        if($result['result'] != 1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
 
         $this->fields['Artists_id'] = $result['export']['insert_id'];
 
         $result = adminArtistsModelDb::insertToPhones($this->fields, $this->fields['Artists_id']);
-        if($result['result'] != 1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
 
         $result = adminArtistsModelDb::insertToEmails($this->fields, $this->fields['Artists_id']);
-        if($result['result'] != 1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
 
         $result = adminArtistsModelDb::insertToAddresses($this->fields, $this->fields['Artists_id']);
-        if($result['result'] != 1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
 
         $result = adminArtistsModelDb::insertToWebsites($this->fields, $this->fields['Artists_id']);
-        if($result['result'] != 1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
 
@@ -118,67 +110,55 @@ class adminArtistsModel extends looeic
      */
     public function edit()
     {
-        foreach($this->requiredFields as $field => $val)
-        {
+        foreach ($this->requiredFields as $field => $val) {
             $requiredList[$field] = $this->fields[$field];
         }
         $result = $this->setFields($requiredList);
         print_r_debug($requiredList);
 
-        if($result['result'] == -1)
-        {
+        if ($result['result'] == -1) {
             return $result;
         }
 
-        include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
         // companies
         $result = adminArtistsModelDb::update($this->fields);
-        if($result['result'] != 1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
         // phones
         $result = adminArtistsModelDb::deletePhones($this->fields['Artists_id']);
-        if($result['result'] != 1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
-        $result = adminArtistsModelDb::insertToPhones($this->fields,$this->fields['Artists_id']);
-        if($result['result'] != 1)
-        {
+        $result = adminArtistsModelDb::insertToPhones($this->fields, $this->fields['Artists_id']);
+        if ($result['result'] != 1) {
             return $result;
         }
         // emails
         $result = adminArtistsModelDb::deleteEmails($this->fields['Artists_id']);
-        if($result['result'] != 1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
-        $result = adminArtistsModelDb::insertToEmails($this->fields,$this->fields['Artists_id']);
-        if($result['result'] != 1)
-        {
+        $result = adminArtistsModelDb::insertToEmails($this->fields, $this->fields['Artists_id']);
+        if ($result['result'] != 1) {
             return $result;
         }
         // addresses
         $result = adminArtistsModelDb::deleteAddresses($this->fields['Artists_id']);
-        if($result['result'] != 1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
-        $result = adminArtistsModelDb::insertToAddresses($this->fields,$this->fields['Artists_id']);
-        if($result['result'] != 1)
-        {
+        $result = adminArtistsModelDb::insertToAddresses($this->fields, $this->fields['Artists_id']);
+        if ($result['result'] != 1) {
             return $result;
         }
         // websites
         $result = adminArtistsModelDb::deleteWebsites($this->fields['Artists_id']);
-        if($result['result'] != 1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
-        $result = adminArtistsModelDb::insertToWebsites($this->fields,$this->fields['Artists_id']);
-        if($result['result'] != 1)
-        {
+        $result = adminArtistsModelDb::insertToWebsites($this->fields, $this->fields['Artists_id']);
+        if ($result['result'] != 1) {
             return $result;
         }
 
@@ -197,11 +177,10 @@ class adminArtistsModel extends looeic
      */
     public function getArtists($fields)
     {
-       
+
         $result = (new adminArtistsModelDb)->getArtists($fields);
 
-        if($result['result'] != 1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
         $this->list = $result['export']['list'];
@@ -218,12 +197,10 @@ class adminArtistsModel extends looeic
      */
     public function getArtistsById($id)
     {
-        include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
 
         $result = adminArtistsModelDb::getArtistsById($id);
 
-        if($result['result'] != 1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
 
@@ -243,22 +220,9 @@ class adminArtistsModel extends looeic
         return $result;
     }
 
-    /**
-     * delete artists by artists_id
-     *
-     * @return mixed
-     * @author mahmoud malekloo <mahmoud.malekloo@gmail.com>
-     * @date 2/24/2015
-     * @version 01.01.01
-     */
-    public function delete($id='')
+
+    public function delete($id=''): array
     {
-        include_once(dirname(__FILE__) . "/admin.artists.model.db.php");
-        $result = adminArtistsModelDb::delete($this->fields['Artists_id']);
-
-        return $result;
+        return adminArtistsModelDb::delete($this->fields['Artists_id']);
     }
-
-
-
 }

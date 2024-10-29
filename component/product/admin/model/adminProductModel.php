@@ -13,8 +13,8 @@ use Common\looeic;
 class adminProductModel extends looeic
 {
     protected $TABLE_NAME = 'artists_products';
-    //private $fields;  // other record fields
-    private $list;  // other record fields
+    public $fields;  // other record fields
+    public $list;  // other record fields
 
     private $result;
     public $recordsCount;

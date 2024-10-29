@@ -1147,7 +1147,7 @@ class adminEventController
         $result = $event->delete();
 
         if ($result['result'] != '1') {
-            redirectPage(RELA_DIR . 'zamin/index.php?component=event', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=event');
         }
 
         $msg = 'عملیات با موفقیت انجام شد';

@@ -23,11 +23,11 @@ class adminCategoryModel extends looeic
         'parent_id' => 'required'
     );
     private $TableName;
-    public $fields;  // other record fields
-    private $list;  // other record fields
+    // public $fields;  // other record fields
+    public $list;  // other record fields
     private $recordsCount;  // other record fields
     public $level = 0;
-    private $result;
+    // private $result;
 
     public function __construct()
     {

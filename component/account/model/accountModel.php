@@ -1,17 +1,19 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: daba
  * Date: 08-Sep-16
  * Time: 9:23 AM
  */
+
 namespace Component\account\model;
+
 use Common\looeic;
 use Common\validators;
 use Component\account\model\accountModelDb;
 
-// include_once(ROOT_DIR . "/common/validators.php");
-define("A",'کمتر از 5 کاراکتر نمیشود');
+define("A", 'کمتر از 5 کاراکتر نمیشود');
 class accountModel extends looeic
 {
     /*protected $rules = array(
@@ -60,22 +62,15 @@ class accountModel extends looeic
      */
     public function __get($field)
     {
-        if ($field == 'result')
-        {
+        if ($field == 'result') {
             return $this->result;
-        }
-        else if ($field == 'list')
-        {
+        } else if ($field == 'list') {
             return $this->list;
-        }
-        else if ($field == 'recordsCount')
-        {
+        } else if ($field == 'recordsCount') {
             return $this->recordsCount;
-        }else
-        {
+        } else {
             return parent::__get($field);
         }
-
     }
 
     /**
@@ -88,7 +83,7 @@ class accountModel extends looeic
      * @version 01.01.01
      */
 
-   /*public function setFields ($input)
+    /*public function setFields ($input)
     {
        // print_r_debug($input);
 
@@ -126,15 +121,13 @@ class accountModel extends looeic
      * @date 2/24/2015
      * @version 01.01.01
      */
-    private function __setProduct ($input)
+    private function __setProduct($input)
     {
 
-        if(!validators::required($input))
-        {
-            $result['result']=-1;
-            $result['msg']='pleas enter title';
-        }else
-        {
+        if (!validators::required($input)) {
+            $result['result'] = -1;
+            $result['msg'] = 'pleas enter title';
+        } else {
             $result['result'] = 1;
         }
 
@@ -150,17 +143,14 @@ class accountModel extends looeic
      * @date 2/24/2015
      * @version 01.01.01
      */
-    private function __setCategory ($input)
+    private function __setCategory($input)
     {
-        if($input=='')
-        {
+        if ($input == '') {
             $result['result'] = 1;
-        }else if(!validators::required($input))
-        {
-            $result['result']=-1;
-            $result['msg']='pleas enter Brif description';
-        }else
-        {
+        } else if (!validators::required($input)) {
+            $result['result'] = -1;
+            $result['msg'] = 'pleas enter Brif description';
+        } else {
             $result['result'] = 1;
         }
         return $result;
@@ -175,17 +165,14 @@ class accountModel extends looeic
      * @date 2/24/2015
      * @version 01.01.01
      */
-    private function __setKeyword ($input)
+    private function __setKeyword($input)
     {
-        if($input=='')
-        {
+        if ($input == '') {
             $result['result'] = 1;
-        }else if(!validators::required($input))
-        {
-            $result['result']=-1;
-            $result['msg']='pleas enter Description';
-        }else
-        {
+        } else if (!validators::required($input)) {
+            $result['result'] = -1;
+            $result['msg'] = 'pleas enter Description';
+        } else {
             $result['result'] = 1;
         }
         return $result;
@@ -200,17 +187,14 @@ class accountModel extends looeic
      * @date 2/24/2015
      * @version 01.01.01
      */
-    private function __setLang ($input)
+    private function __setLang($input)
     {
-        if($input=='')
-        {
+        if ($input == '') {
             $result['result'] = 1;
-        }else if(!validators::required($input))
-        {
-            $result['result']=-1;
-            $result['msg']='pleas enter Meta_keyword';
-        }else
-        {
+        } else if (!validators::required($input)) {
+            $result['result'] = -1;
+            $result['msg'] = 'pleas enter Meta_keyword';
+        } else {
             $result['result'] = 1;
         }
         return $result;
@@ -225,17 +209,14 @@ class accountModel extends looeic
      * @date 2/24/2015
      * @version 01.01.01
      */
-    private function __setAccounttype ($input)
+    private function __setAccounttype($input)
     {
-        if($input=='')
-        {
+        if ($input == '') {
             $result['result'] = 1;
-        }else if(!validators::required($input))
-        {
-            $result['result']=-1;
-            $result['msg']='pleas enter Meta_description';
-        }else
-        {
+        } else if (!validators::required($input)) {
+            $result['result'] = -1;
+            $result['msg'] = 'pleas enter Meta_description';
+        } else {
             $result['result'] = 1;
         }
         return $result;
@@ -255,15 +236,13 @@ class accountModel extends looeic
      * @date 2/24/2015
      * @version 01.01.01
      */
-    
+
     public function getAccountById($id)
     {
-        // include_once(dirname(__FILE__)."/account.model.db.php");
 
-        $result=accountModelDb::getAccountById($id);
+        $result = accountModelDb::getAccountById($id);
 
-        if($result['result']!=1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
 
@@ -278,8 +257,8 @@ class accountModel extends looeic
         */
         //or
 
-        $this->fields=$result['export']['list'];
-       // print_r_debug( $this->fields);
+        $this->fields = $result['export']['list'];
+        // print_r_debug( $this->fields);
         return $result;
     }
 
@@ -294,16 +273,14 @@ class accountModel extends looeic
      */
     public function getAccount($fields)
     {
-        include_once(dirname(__FILE__)."/account.model.db.php");
 
-        $result=accountModelDb::getAccount($fields);
+        $result = accountModelDb::getAccount($fields);
 
-        if($result['result']!=1)
-        {
+        if ($result['result'] != 1) {
             return $result;
         }
-        $this->list=$result['export']['list'];
-        $this->recordsCount=$result['export']['recordsCount'];
+        $this->list = $result['export']['list'];
+        $this->recordsCount = $result['export']['recordsCount'];
 
         return $result;
     }
@@ -318,10 +295,9 @@ class accountModel extends looeic
      */
     public function add()
     {
-        include_once(dirname(__FILE__)."/account.model.db.php");
 
-        $result=accountModelDb::insert($this->fields);
-        $this->fields['Account_id']=$result['export']['insert_id'];
+        $result = accountModelDb::insert($this->fields);
+        $this->fields['Account_id'] = $result['export']['insert_id'];
         return $result;
     }
 
@@ -335,12 +311,10 @@ class accountModel extends looeic
      * @date 2/24/2015
      * @version 01.01.01
      */
-    public function delete()
+    public function delete($id = '')
     {
-        include_once(dirname(__FILE__)."/account.model.db.php");
-        $result=accountModelDb::delete($this->fields);
-       // print_r_debug($result);
+        $result = accountModelDb::delete($this->fields);
+        // print_r_debug($result);
         return $result;
     }
-
 }

@@ -10,6 +10,8 @@ class adminEventModel extends looeic
     public $recordsCount;
     protected $TABLE_NAME = 'event';
 
+    public $fields;
+
     /**
      * get all event
      *

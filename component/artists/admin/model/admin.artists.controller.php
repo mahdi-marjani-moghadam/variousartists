@@ -1,11 +1,6 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: malekloo
- * Date: 3/6/2016
- * Time: 11:21 AM.
- */
+
 
 use Common\validators;
 use Component\artists\admin\model\adminArtistsModel;
@@ -53,7 +48,7 @@ class adminArtistsController
      *
      * @return string
      */
-    public function template($list = [], $msg = '')
+    public function template($list = [], $msg = ''): void
     {
         global $messageStack, $admin_info, $lang;
 
@@ -72,9 +67,7 @@ class adminArtistsController
                 echo json_encode($list);
                 break;
 
-            case 'array':
-                return $list;
-                break;
+
 
             case 'serialize':
                 echo serialize($list);
@@ -280,7 +273,7 @@ class adminArtistsController
         $export['data'] = $dataStack->output('data');
 
 
-        
+
         if (isset($export['data']['areacode']) && count($export['data']) > 0 && $export['data']['areacode'] != '') {
             $COUNTRY->condition = array("phone_code" => $export['data']['areacode']); // or "iso"=>"ir"
         } else {
@@ -316,7 +309,7 @@ class adminArtistsController
 
         $oldStatus = $artists->fields['status'];
 
-        if(isValidDateTime($fields['refresh_date'])){
+        if (isValidDateTime($fields['refresh_date'])) {
             $fields['refresh_date'] = convertJToGDate($fields['refresh_date']);
         }
         if ($fields['birthday'] != '') {
@@ -571,12 +564,12 @@ class adminArtistsController
     {
         if (!validators::required($id) and !validators::Numeric($id)) {
             $msg = 'یافت نشد';
-            redirectPage(RELA_DIR . 'zamin/index.php?component=artists', $msg);
+            redirectPage(RELA_DIR . 'zamin/index.php?component=artists', message: $msg);
         }
-        $artists = new adminArtistsModel();
-        $result = $artists::getAll()->where('Artists_id', '=', $id)->get();
-        $result['export']['list'][0]->fields['blog'] = ($result['export']['list'][0]->fields['blog'] == 1) ? 0 : 1;
-        $result['export']['list'][0]->save();
-        redirectPage(RELA_DIR . 'zamin/index.php?component=artists', 'عملیات با موفقیت انجام شد.');
+        $result = adminArtistsModel::find($id);
+        $result->blog = ($result->fields['blog'] == 1) ? 0 : 1;
+        if ($result->state_id == '') $result->state_id = 0;
+        $result->save();
+        redirectPage(RELA_DIR . 'zamin/index.php?component=artists', message: 'عملیات با موفقیت انجام شد.');
     }
 }

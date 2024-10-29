@@ -13,7 +13,6 @@ use Component\category\admin\model\adminCategoryModel;
 use Component\genre\admin\model\adminGenreModel;
 use Component\product\admin\model\adminProductModel;
 
-include_once(dirname(__FILE__) . "/admin.product.model.php");
 
 /**
  * Class registerController
@@ -134,7 +133,6 @@ class adminProductController
         }
 
         /** update artists date  */
-        // include_once ROOT_DIR.'component/artists/admin/model/admin.artists.model.php';
         $artists = adminArtistsModel::find($product->fields['artists_id']);
         $artists->update_date = date('Y-m-d H:i:s');
         $result = $artists->save();
@@ -167,7 +165,6 @@ class adminProductController
     public function showProductAddForm($fields, $msg)
     {
 
-        // include_once(ROOT_DIR."component/category/admin/model/admin.category.model.php");
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
@@ -177,7 +174,6 @@ class adminProductController
         }
 
         /** genre */
-        // include_once(ROOT_DIR."component/genre/admin/model/admin.genre.model.php");
         $genre = new adminGenreModel();
 
         $resultGenre = $genre->getGenreOption();
@@ -258,7 +254,6 @@ class adminProductController
         }
 
         /** update artists date  */
-        include_once ROOT_DIR . 'component/artists/admin/model/admin.artists.model.php';
         $artists = adminArtistsModel::find($product->fields['artists_id']);
         $artists->update_date = date('Y-m-d H:i:s');
         $result = $artists->save();
@@ -289,7 +284,6 @@ class adminProductController
 
         $export = $product->fields;
 
-        include_once(ROOT_DIR . "component/category/admin/model/admin.category.model.php");
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
@@ -299,7 +293,6 @@ class adminProductController
         }
 
         /** genre */
-        include_once(ROOT_DIR . "component/genre/admin/model/admin.genre.model.php");
         $genre = new adminGenreModel();
         $resultGenre = $genre->getGenreOption();
         if ($resultGenre['result'] == 1) {
