@@ -8,7 +8,7 @@ use PDO;
 
 class artistsModelDb
 {
-    public static function getArtistsById($id)
+    public static function getArtistsById($id): array
     {
         global $lang;
 
@@ -53,7 +53,7 @@ class artistsModelDb
         return $result;
     }
 
-    public static function getArtistsByCategoryId($id)
+    public static function getArtistsByCategoryId($id): array
     {
         $conn = dbConn::getConnection();
         $sql = "SELECT SQL_CALC_FOUND_ROWS
@@ -102,7 +102,7 @@ class artistsModelDb
         return $result;
     }
 
-    public function getArtists($fields = '')
+    public function getArtists($fields = ''): array
     {
         global $lang;
         $conn = dbConn::getConnection();
@@ -111,7 +111,7 @@ class artistsModelDb
 
         $condition = DataBase::filterBuilder($fields);
 
-         $sql = "SELECT SQL_CALC_FOUND_ROWS 
+        $sql = "SELECT SQL_CALC_FOUND_ROWS 
                       *,artists_name_$lang as artists_name 
                       FROM artists WHERE type=1 and status='1'";
         /*if (isset($fields['condition']['city_id'])) {
@@ -121,7 +121,7 @@ class artistsModelDb
             $sql .= ' AND (';
             $categories = explode(',', $fields['condition']['category_id']);
             foreach ($categories as $key => $value) {
-                $sql .= "category_id like '%,".$value.",%' or ";
+                $sql .= "category_id like '%," . $value . ",%' or ";
             }
             $sql = substr($sql, 0, -3);
             $sql .= ') ';
@@ -131,13 +131,13 @@ class artistsModelDb
             $sql .= ' AND (';
             $categories = explode(',', $fields['condition']['genre_id']);
             foreach ($categories as $key => $value) {
-                $sql .= "genre_id like '%,".$value.",%' or ";
+                $sql .= "genre_id like '%," . $value . ",%' or ";
             }
             $sql = substr($sql, 0, -3);
             $sql .= ') ';
         }
 
-        $sql .= $condition['list']['order'].$condition['list']['limit'];
+        $sql .= $condition['list']['order'] . $condition['list']['limit'];
         //print_r($sql);die();
         $stmt = $conn->prepare($sql);
 
@@ -173,23 +173,23 @@ class artistsModelDb
     {
         $conn = dbConn::getConnection();
 
-        include_once ROOT_DIR.'/model/db.inc.class.php';
+        include_once ROOT_DIR . '/model/db.inc.class.php';
 
         $condition = DataBase::filterBuilder($fields);
         $appendSql = "WHERE  status='1' ";
 
         if ($condition['list']['WHERE'] != '') {
-            $appendSql = $appendSql.' and ';
-            $condition['list']['filter'] = '('.$condition['list']['filter'].')';
+            $appendSql = $appendSql . ' and ';
+            $condition['list']['filter'] = '(' . $condition['list']['filter'] . ')';
         }
 
         $sql = 'SELECT SQL_CALC_FOUND_ROWS
                  *
-    		     FROM 	artists '.$appendSql;
+    		     FROM 	artists ' . $appendSql;
         if (isset($fields['chose']['city_id'])) {
-            $sql .= ' AND city_id = '.$fields['chose']['city_id'];
+            $sql .= ' AND city_id = ' . $fields['chose']['city_id'];
         }
-        $sql .= $condition['list']['filter'].$condition['list']['order'].$condition['list']['limit'];
+        $sql .= $condition['list']['filter'] . $condition['list']['order'] . $condition['list']['limit'];
         $stmt = $conn->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
@@ -242,13 +242,13 @@ class artistsModelDb
             }
         }
         if ($keyCount > 0) {
-            $sql .= ') AND Artists_id != '.$id;
+            $sql .= ') AND Artists_id != ' . $id;
         } else {
             $sql .= ' 0';
         }
 
-        $sqlLow = $sql." AND (priority != '1' or priority is null) ";
-        $sqlHigh = $sql." AND priority = '1' ";
+        $sqlLow = $sql . " AND (priority != '1' or priority is null) ";
+        $sqlHigh = $sql . " AND priority = '1' ";
 
         $stmt = $conn->prepare($sqlHigh);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -338,8 +338,8 @@ class artistsModelDb
     {
         $conn = dbConn::getConnection();
 
-      // get artists phones
-      $sql1 = "select * from artists_phones where `artists_id`='$id'";
+        // get artists phones
+        $sql1 = "select * from artists_phones where `artists_id`='$id'";
 
         $stmt1 = $conn->prepare($sql1);
         $stmt1->execute();
@@ -354,12 +354,12 @@ class artistsModelDb
         }
 
         $phones = [
-          'Artists_phones_id' => [],
-          'subject' => [],
-          'number' => [],
-          'state' => [],
-          'value' => [],
-      ];
+            'Artists_phones_id' => [],
+            'subject' => [],
+            'number' => [],
+            'state' => [],
+            'value' => [],
+        ];
 
         while ($row1 = $stmt1->fetch()) {
             array_push($phones['Artists_phones_id'], $row1['Artists_phones_id']);
@@ -371,8 +371,8 @@ class artistsModelDb
 
         $row['artists_phone'] = $phones;
         $list[$row['Artists_id']] = $row;
-      // get artists emails
-      $sql1 = "select * from artists_emails where `artists_id`='$id'";
+        // get artists emails
+        $sql1 = "select * from artists_emails where `artists_id`='$id'";
 
         $stmt1 = $conn->prepare($sql1);
         $stmt1->execute();
@@ -387,10 +387,10 @@ class artistsModelDb
         }
 
         $emails = [
-          'Artists_emails_id' => [],
-          'subject' => [],
-          'email' => [],
-      ];
+            'Artists_emails_id' => [],
+            'subject' => [],
+            'email' => [],
+        ];
 
         while ($row1 = $stmt1->fetch()) {
             array_push($emails['Artists_emails_id'], $row1['Artists_emails_id']);
@@ -401,8 +401,8 @@ class artistsModelDb
         $row['artists_email'] = $emails;
         $list[$row['Artists_id']] = $row;
 
-      // get artists addresses
-      $sql1 = "select * from artists_addresses where `artists_id`='$id'";
+        // get artists addresses
+        $sql1 = "select * from artists_addresses where `artists_id`='$id'";
 
         $stmt1 = $conn->prepare($sql1);
         $stmt1->execute();
@@ -417,10 +417,10 @@ class artistsModelDb
         }
 
         $addresses = [
-          'Artists_addresses_id' => [],
-          'subject' => [],
-          'address' => [],
-      ];
+            'Artists_addresses_id' => [],
+            'subject' => [],
+            'address' => [],
+        ];
 
         while ($row1 = $stmt1->fetch()) {
             array_push($addresses['Artists_addresses_id'], $row1['Artists_addresses_id']);
@@ -430,8 +430,8 @@ class artistsModelDb
 
         $row['artists_address'] = $addresses;
         $list[$row['Artists_id']] = $row;
-      // get artists websites
-      $sql1 = "select * from artists_websites where `artists_id`='$id'";
+        // get artists websites
+        $sql1 = "select * from artists_websites where `artists_id`='$id'";
 
         $stmt1 = $conn->prepare($sql1);
         $stmt1->execute();
@@ -446,10 +446,10 @@ class artistsModelDb
         }
 
         $websites = [
-          'Artists_websites_id' => [],
-          'subject' => [],
-          'url' => [],
-      ];
+            'Artists_websites_id' => [],
+            'subject' => [],
+            'url' => [],
+        ];
 
         while ($row1 = $stmt1->fetch()) {
             array_push($websites['Artists_websites_id'], $row1['Artists_websites_id']);
@@ -462,7 +462,7 @@ class artistsModelDb
         return $row;
     }
 
-    public static function pushRateDB($rate,$rate_product,$product_id)
+    public static function pushRateDB($rate, $rate_product, $product_id)
     {
         //global $lang;
 

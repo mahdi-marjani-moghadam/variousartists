@@ -37,7 +37,7 @@ class memberLogIn
     public function __construct()
     {
         $this->exportType = 'html';
-        $this->_requiredFields = array("username", "password", "artists_name", "logo");
+        $this->_requiredFields = ["username", "password", "artists_name", "logo"];
     }
 
     public function __set($field, $value)
@@ -47,22 +47,22 @@ class memberLogIn
                 $this->_rasParameter = $value;
                 break;
             case 'existCompany':
-                $_Result = $this->_set_existCompany($value);
+                $this->_set_existCompany($value);
                 break;
             case 'Domain':
-                $_Result = $this->_set_Domain($value);
+                $this->_set_Domain($value);
                 break;
         }
     }
 
-    private function _set_existCompany($id)
+    private function _set_existCompany($id): void
     {
         if (is_numeric($id)) {
             $this->_existCompany = $id;
         }
     }
 
-    private function _set_Domain($id)
+    private function _set_Domain($id): void
     {
         if (is_string($id)) {
             $this->_Domain = $id;
@@ -94,8 +94,7 @@ class memberLogIn
             if ($_Result[0] == 1 || $_Result[0] == 0) {
                 $methodName = '_' . $methodName;
                 $_Result    = $this->$methodName();
-                return ($_Result);
-                die();
+                return $_Result;
             } elseif ($_Result[0] == -1) {
                 redirectPage(RELA_DIR . 'index.php', $_Result['errMsg']);
                 die();
@@ -212,7 +211,6 @@ class memberLogIn
                 break;
             case 'array':
                 return $list;
-                break;
 
             case 'serialize':
                 echo serialize($list);
@@ -250,7 +248,6 @@ class memberLogIn
 
 
         $conn = dbConn::getConnection();
-        include_once ROOT_DIR . '/model/db.inc.class.php';
 
         if ($username == '') {
             $username = (handleData($_REQUEST["username"]));
@@ -468,7 +465,6 @@ class memberLogIn
     {
 
         /////// category
-        // include_once(ROOT_DIR . "component/category/admin/model/admin.category.model.php");
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
@@ -482,7 +478,6 @@ class memberLogIn
 
 
         /// /////// genre
-        // include_once(ROOT_DIR . "component/genre/admin/model/admin.genre.model.php");
         $genre = new adminGenreModel();
 
         $resultGenre = $genre->getGenreOption();
@@ -494,7 +489,6 @@ class memberLogIn
 
 
         //////////// province
-        // include_once ROOT_DIR . 'component/province/model/province.model.php';
         $province = province::getAll()->getList();
         //$resultProvince = $province->getStates();
         if ($province['result'] == 1) {
@@ -509,7 +503,6 @@ class memberLogIn
         //////////////////////////////////////////////////
         ////                get country               ////
         //////////////////////////////////////////////////
-        // include_once(ROOT_DIR . "model/country.class.php");
         $COUNTRY = new clsCountry();
         $COUNTRY->countryFieldName = array("iso", "phone_code", "name", "max_length", "sample");
 
@@ -538,7 +531,6 @@ class memberLogIn
 
 
         if (isset($_GET['ref'])) {
-            // include_once ROOT_DIR . 'component/artists/model/artists.model.php';
             $ref = (new artists)->find($_GET['ref']);
             if (is_object($ref)) {
                 $fields['refferer'] = $ref;
@@ -574,7 +566,6 @@ class memberLogIn
 
         global $messageStack, $lang;
 
-        include_once(ROOT_DIR . "component/artists/model/artists.model.php");
 
 
         ///////////////////////// ref 
@@ -614,7 +605,7 @@ class memberLogIn
             $messageStack->add_session('register', captcha_not_true);
             $this->showRegisterForm($_input, captcha_not_true);
         }
-        
+
         /////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////
@@ -741,7 +732,6 @@ class memberLogIn
 
 
             // sms
-            // include_once ROOT_DIR . 'component/magfa/magfa.model.php';
             // $sms = new WebServiceSample;
 
             if ($lang == 'fa') {
@@ -783,7 +773,6 @@ class memberLogIn
                 $result = $artists->save();
             }
 
-            // include_once ROOT_DIR . 'component/magfa/magfa.model.php';
             // $sms = new WebServiceSample;
 
             if ($lang == 'fa') {
@@ -839,7 +828,6 @@ class memberLogIn
     function memberregister($_input)
     {
         global $messageStack, $lang;
-        include_once(ROOT_DIR . "component/artists/model/artists.model.php");
 
         if (checkMail($_input['username']) == 0) {
             $messageStack->add_session('register', email_is_not_valid);
@@ -891,7 +879,6 @@ class memberLogIn
 
     function registerValidate($fields)
     {
-        include_once(ROOT_DIR . "common/validators.php");
 
         $fieldsString  = $valuesString = '';
         foreach ($fields as $name => $value) {
@@ -1012,7 +999,7 @@ class memberLogIn
      */
 
 
-    private function _checkLoginBySession()
+    private function _checkLoginBySession(): array
     {
         $conn = dbConn::getConnection();
 
@@ -1064,7 +1051,6 @@ class memberLogIn
         global $member_info;
 
 
-        include_once(ROOT_DIR . 'component/artists/model/artists.model.php');
 
         if (checkMail($fields['email']) == 1) {
             $obj = artists::getBy_username($fields['email'])->get();
@@ -1101,7 +1087,6 @@ class memberLogIn
             }
         }
         if ($obj['export']['list'][0]->fields['artists_phone1'] != '') {
-            // include_once ROOT_DIR . 'component/magfa/magfa.model.php';
             // $sms = new WebServiceSample;
             $url =  RELA_DIR . 'login/changePass/?email=' . $obj['export']['list'][0]->fields['username'] . '&code=' . $code;
             $message = translate('Your change password link: ') . "\n" . $url . "\n\n" . translate('website: www.variousartists.ir');
@@ -1133,7 +1118,6 @@ class memberLogIn
 
     function checkCode($fields)
     {
-        include_once(ROOT_DIR . 'component/artists/model/artists.model.php');
 
         $obj = artists::getBy_username_and_forgot_code($fields['email'], $fields['code'])->get();
 
@@ -1158,7 +1142,6 @@ class memberLogIn
             $this->showChangePassForm($fields, translate('don`t match'));
         }
 
-        include_once(ROOT_DIR . 'component/artists/model/artists.model.php');
         $obj = artists::getBy_email_and_forgot_code($fields['email'], $fields['code'])->get();
         $obj1 = $obj['export']['list'][0];
 
