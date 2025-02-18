@@ -1,41 +1,20 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: marjani
- * Date: 3/6/2015
- * Time: 10:35 AM
- */
+
 namespace Component\register\model;
+
+use Common\looeic;
 use Common\validators;
-// include_once(ROOT_DIR . "/common/validators.php");
-class registerModel
+use Component\register\model\registerModelDb;
+
+class registerModel extends looeic
 {
     private $fields;  // other record fields
     private $list;  // other record fields
 
     private $result;
 
-    /**
-     * registerModel constructor.
-     */
-    public function __construct()
-    {
 
-        // $this->requiredFields = array(
-        //     'company_name' =>  '',
-        //     'company_phone1' =>  '',
-        //     'email' =>  ''
-        // );
-    }
-
-    /**
-     * @param $field
-     * @return mixed
-     * @author malekloo
-     * @date 3/6/2015
-     * @version 01.01.01
-     */
     public function __get($field)
     {
         if ($field == 'result') {
@@ -49,43 +28,7 @@ class registerModel
         }
     }
 
-    /**
-     * validator controller
-     *
-     * @param $input
-     * @return mixed
-     * @author malekloo
-     * @date 3/6/2015
-     * @version 01.01.01
-     */
-    public function setFields($input)
-    {
-        foreach ($input as $field => $val) {
-            $funcName = '__set' . ucfirst($field);
-            if (method_exists($this, $funcName)) {
-                $result = $this->$funcName($val);
 
-                if ($result['result'] == '1') {
-                    $this->fields[$field] = $val;
-                } else {
-
-                    return $result;
-                }
-            }
-        }
-        $result['result'] = 1;
-        return $result;
-    }
-
-    /**
-     * check subject
-     *
-     * @param $input
-     * @return mixed
-     * @author malekloo
-     * @date 3/6/2015
-     * @version 01.01.01
-     */
     private function __setCompany_name($input)
     {
         if (!validators::required($input)) {
@@ -98,15 +41,7 @@ class registerModel
         return $result;
     }
 
-    /**
-     *check email
-     *
-     * @param $input
-     * @return mixed
-     * @author malekloo
-     * @date 3/6/2015
-     * @version 01.01.01
-     */
+
     private function __setEmail($input)
     {
         if (validators::Email($input) != '1') {
@@ -119,15 +54,7 @@ class registerModel
         return $result;
     }
 
-    /**
-     * check Address
-     *
-     * @param $input
-     * @return mixed
-     * @author malekloo
-     * @date 3/6/2015
-     * @version 01.01.01
-     */
+
     private function __setAddress($input)
     {
         /*if(!validators::required($input))
@@ -142,15 +69,7 @@ class registerModel
 
         return $result;
     }
-    /**
-     * check Address
-     *
-     * @param $input
-     * @return mixed
-     * @author malekloo
-     * @date 3/6/2015
-     * @version 01.01.01
-     */
+
     private function __setCompany_phone1($input)
     {
         if (!validators::required($input)) {
@@ -165,15 +84,6 @@ class registerModel
 
 
 
-    /**
-     * check coordinator_name
-     *
-     * @param $input
-     * @return mixed
-     * @author malekloo
-     * @date 3/6/2015
-     * @version 01.01.01
-     */
     private function __setCoordinator_name($input)
     {
         if (!validators::required($input)) {
@@ -186,15 +96,7 @@ class registerModel
         return $result;
     }
 
-    /**
-     * check Coordinator_family
-     *
-     * @param $input
-     * @return mixed
-     * @author malekloo
-     * @date 3/6/2015
-     * @version 01.01.01
-     */
+
     private function __setCoordinator_family($input)
     {
         if (!validators::required($input)) {
@@ -207,15 +109,7 @@ class registerModel
         return $result;
     }
 
-    /**
-     * check __setCoordinator_phone
-     *
-     * @param $input
-     * @return mixed
-     * @author malekloo
-     * @date 3/6/2015
-     * @version 01.01.01
-     */
+
     private function __setCoordinator_phone($input)
     {
         if (!validators::required($input)) {
@@ -227,18 +121,10 @@ class registerModel
 
         return $result;
     }
-    /**
-     * add contact us
-     *
-     * @param $input
-     * @return mixed
-     * @author malekloo
-     * @date 3/6/2015
-     * @version 01.01.01
-     */
+
     public function addRegister()
     {
-
+        
         foreach ($this->requiredFields as $field => $val) {
             $requiredList[$field] = $this->fields[$field];
         }
@@ -248,7 +134,6 @@ class registerModel
             return $result;
         }
 
-        include_once(dirname(__FILE__) . "/register.model.db.php");
 
 
 

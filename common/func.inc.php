@@ -3,6 +3,11 @@
 use Common\validators;
 use Component\city\model\cityModelDb;
 use Component\dictionary\model\dictionary;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+
 
 function checkUppercase($string)
 {
@@ -287,27 +292,29 @@ function GetExtension($str)
 
 function sendmail($email, $subject, $body, $header = '')
 {
-    include_once ROOT_DIR . 'common/phpmailer/class.phpmailer.php';
+    // include_once ROOT_DIR . 'common/phpmailer/class.phpmailer.php';
     //set_time_limit(3000);
     $headers = "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=utf-8\r\n";
     $headers .= "$header\r\n" . 'Reply-To: ' . SMTP_USERNAME . "\r\n" . 'X-Mailer: PHP/' . phpversion();
-
-    $mail = new PHPMailer();
+    $mail = new PHPMailer(true);
+    // $mail = new PHPMailer();
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
     $mail->IsSMTP();
-    $mail->Host = SMTP_SERVER;
+    $mail->Host = SMTP_SERVER; 
     $mail->SMTPAuth = true;     // turn on SMTP authentication
     $mail->Username = SMTP_USERNAME;  // SMTP username
     $mail->Password = SMTP_PASSWORD; // SMTP password
     $mail->From = SMTP_USERNAME;
     $mail->FromName = SMTP_SENDER;
-    $mail->Port = 587;                                    // TCP port to connect to
+    $mail->Port = 465;      
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;                              // TCP port to connect to
     $mail->IsHTML(true);
     $mail->SetLanguage('en', ROOT_DIR . 'common/phpmailer/');
     $mail->Subject = $subject;
     $mail->Body = $body;
     $mail->AltBody = $body;
-    $mail->SMTPDebug  = 1;
+    $mail->SMTPDebug  = SMTP::DEBUG_SERVER;
     $mail->ClearAddresses();
     $mail->AddAddress($email);
 
@@ -319,6 +326,7 @@ function sendmail($email, $subject, $body, $header = '')
     } catch (Exception $e) {
         $res['result'] = -1;
         $res['msg'] = "Mailer Error: " . $mail->ErrorInfo;
+        dd($mail->ErrorInfo);
         return $res;
     }
 
@@ -335,14 +343,14 @@ function sendmail($email, $subject, $body, $header = '')
 
 function sendmails($email, $bcc, $subject, $body, $orderID, $header = '')
 {
-    include_once ROOT_DIR . 'common/phpmailer/class.phpmailer.php';
+    // include_once ROOT_DIR . 'common/phpmailer/class.phpmailer.php';
 
     //set_time_limit(3000);
     $headers = "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=utf-8\r\n";
     $headers .= "$header\r\n" . 'Reply-To: ' . SMTP_USERNAME . "\r\n" . 'X-Mailer: PHP/' . phpversion();
-
-    $mail = new PHPMailer();
+    $mail = new PHPMailer(true);
+    // $mail = new PHPMailer();
     $mail->IsSMTP();
     $mail->Host = SMTP_SERVER;
     $mail->SMTPAuth = true;     // turn on SMTP authentication
@@ -350,6 +358,7 @@ function sendmails($email, $bcc, $subject, $body, $orderID, $header = '')
     $mail->Password = SMTP_PASSWORD; // SMTP password
     $mail->From = SMTP_USERNAME;
     $mail->FromName = SMTP_SENDER;
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     $mail->IsHTML(true);
     $mail->SetLanguage('en', ROOT_DIR . 'common/phpmailer/');
     $mail->Subject = $subject;
@@ -375,7 +384,7 @@ function sendmails($email, $bcc, $subject, $body, $orderID, $header = '')
 
 function convertDate($date, $display_time = false)
 {
-    if(!validators::validateDate($date)) return $date;
+    if (!validators::validateDate($date)) return $date;
 
     include_once 'jdf.php';
     if ($date == '0000-00-00 00:00:00') return '';

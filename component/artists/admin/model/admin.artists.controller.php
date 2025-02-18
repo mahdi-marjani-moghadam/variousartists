@@ -327,8 +327,10 @@ class adminArtistsController
         $temp = implode(",", $artists->fields['category_id']);
         $artists->category_id = ',' . $temp . ',';
 
-        $temp = implode(",", $artists->fields['genre_id']);
-        $artists->genre_id = ',' . $temp . ',';
+        if(is_array($artists->fields['genre_id'])){
+            $temp = implode(",", $artists->fields['genre_id']);
+            $artists->genre_id = ',' . $temp . ',';
+        }
 
 
         if ($result['result'] != 1) {

@@ -157,7 +157,7 @@
                                 <?php endif; ?>
                                 <h3><?php echo  create_new_account ?> <span style="float: left; font-size:.7em"><?php echo (is_object($list['refferer']))? 'ref: '.$list['refferer']->artists_name_fa : ''?></span>  </h3>
                                 <form id="register-form" name="register-form" enctype="multipart/form-data" class="nobottommargin" action="<?php echo RELA_DIR ?>register" method="post">
-                                    <input type="hidden" name="ref" value="<?php echo $list['refferer']->Artists_id?>">
+                                    <input type="hidden" name="ref" value="<?php echo $list['refferer']->Artists_id ?? 0?>">
                                     <div class="col_full form-group">
                                         <label for="artists_phone1"><?php echo mobile ?> <span class="red-text">*</span></label>
 
@@ -279,8 +279,8 @@
                                         <input type="text" id="soundcloud" style="direction: ltr" name="soundcloud" value="<?php echo ($_REQUEST['soundcloud'] == '') ? '' : $_REQUEST['soundcloud']; ?>" placeholder="" class="form-control" />
                                     </div>
                                     <div class="col_full art">
-                                        <label for="beeptunes"> <?php echo beeptunes ?></label>
-                                        <input type="text" id="beeptunes" style="direction: ltr" name="beeptunes" value="<?php echo ($_REQUEST['beeptunes'] == '') ? '' : $_REQUEST['beeptunes']; ?>" placeholder="" class="form-control" />
+                                        <label for="spotify"> spotify</label>
+                                        <input type="text" id="spotify" style="direction: ltr" name="spotify" value="<?php echo ($_REQUEST['spotify'] == '') ? '' : $_REQUEST['spotify']; ?>" placeholder="" class="form-control" />
                                     </div>
 
                                     <div class="col_full art">

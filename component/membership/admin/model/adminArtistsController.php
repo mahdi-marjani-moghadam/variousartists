@@ -144,7 +144,6 @@ class adminArtistsController
      */
     public function showArtistsAddForm($fields, $msg)
     {
-        include_once ROOT_DIR . 'component/category/admin/model/admin.category.model.php';
         $category = new adminCategoryModel();
 
         $resultCategory = $category->getCategoryOption();
@@ -153,7 +152,6 @@ class adminArtistsController
         }
 
         /** genre */
-        include_once ROOT_DIR . 'component/genre/admin/model/admin.genre.model.php';
         $genre = new adminGenreModel();
 
         $resultGenre = $genre->getGenreOption();
@@ -161,14 +159,13 @@ class adminArtistsController
             $fields['genre'] = $genre->list;
         }
 
-        /*include_once ROOT_DIR.'component/city/admin/model/admin.city.model.php';
+        /*
         $city = new adminCityModel();
         $resultCity = $city->getCities();
         if ($resultCity['result'] == 1) {
             $fields['cities'] = $city->list;
         }*/
 
-        include_once ROOT_DIR . 'component/province/admin/model/admin.province.model.php';
         //$province = new adminProvinceModel();
         $province = adminProvinceModel::getAll()->getList();
 
@@ -305,21 +302,20 @@ class adminArtistsController
             $export['cities'] = $province['export']['list'];
         }
 
-        /*include_once ROOT_DIR.'component/city/admin/model/admin.city.model.php';
+        /*
         $city = new adminCityModel();
         $resultCity = $city->getCities();
         if ($resultCity['result'] == 1) {
             $export['cities'] = $city->list;
         }*/
 
-        /*include_once ROOT_DIR.'component/state/admin/model/admin.state.model.php';
+        /*
         $state = new adminStateModel();
         $resultState = $state->getStates();
         if ($resultState['result'] == 1) {
             $export['states'] = $state->list;
         }
 
-        include_once ROOT_DIR.'component/certification/admin/model/admin.certification.model.php';
         $certification = new adminCertificationModel();
 
         $resultCertification = $certification->getCertification();
@@ -461,7 +457,6 @@ class adminArtistsController
 
         $artists = new adminArtistsModel();
 
-        include_once(ROOT_DIR . "model/datatable.converter.php");
         $i = 0;
         $columns = array(
             array('db' => 'Artists_id', 'dt' => $i++),
@@ -561,7 +556,6 @@ class adminArtistsController
 
         $artists = new adminArtistsModel();
 
-        include_once(ROOT_DIR . "model/datatable.converter.php");
         $i = 0;
         $columns = array(
             array('db' => 'Artists_id', 'dt' => $i++),

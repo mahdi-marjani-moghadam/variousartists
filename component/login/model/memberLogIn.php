@@ -566,8 +566,8 @@ class memberLogIn
 
         global $messageStack, $lang;
 
-
-
+        sendmail('marjani.mahdi@gmail.com', 'register', 'asdfasdf');
+        die();
         ///////////////////////// ref 
         if (isset($_input['ref']) && is_numeric($_input['ref'])) {
             $ref = (new artists)->find($_input['ref']);
@@ -815,12 +815,11 @@ class memberLogIn
             $this->showLoginForm($_input, $result['msg']);
         }
 
-
         $msg = 'عملیات با موفقیت انجام شد';
         $messageStack->add_session('register', $msg);
 
 
-
+        
         $result['msg'] = translate('Congratulation. You are registered successfuly.');
         return $result;
     }
